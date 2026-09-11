@@ -1,0 +1,50 @@
+{
+  "text": "账单详情",
+  "coordinate_space": "axis_crop_normalized_bottom_left",
+  "vision_characters": [
+    {
+      "bbox_coordinate_space": "full_image_normalized_bottom_left",
+      "character": "账",
+      "character_index": 0,
+      "normalized_bbox_bottom_left": [
+        9.736841913640123e-09,
+        0.11428571428571432,
+        0.29605262184210546,
+        0.7714285714285714
+      ]
+    },
+    {
+      "bbox_coordinate_space": "full_image_normalized_bottom_left",
+      "character": "单",
+      "character_index": 1,
+      "normalized_bbox_bottom_left": [
+        0.29605263157894735,
+        0.11428571428571432,
+        0.23684210526315796,
+        0.7714285714285714
+      ]
+    },
+    {
+      "bbox_coordinate_space": "full_image_normalized_bottom_left",
+      "character": "详",
+      "character_index": 2,
+      "normalized_bbox_bottom_left": [
+        0.5328947368421053,
+        0.11428571428571432,
+        0.23684210526315785,
+        0.7714285714285714
+      ]
+    },
+    {
+      "bbox_coordinate_space": "full_image_normalized_bottom_left",
+      "character": "情",
+      "character_index": 3,
+      "normalized_bbox_bottom_left": [
+        0.7697368421052632,
+        0.11428571428571432,
+        0.20394736842105265,
+        0.7714285714285714
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "method": "blur32",
+  "gates": {
+    "1": null,
+    "2": {
+      "max_distance": 0.02,
+      "min_margin": 0.005
+    },
+    "4": {
+      "max_distance": 0.04,
+      "min_margin": 0.002
+    }
+  },
+  "selection_scope": "calibration query images only"
+}

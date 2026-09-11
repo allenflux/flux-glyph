@@ -1,0 +1,2680 @@
+{
+  "status": "passed",
+  "claim_scope": "local Docker Linux resource and coverage test, not true-font accuracy or cloud-host speed",
+  "health": {
+    "ok": true,
+    "model_version": "r13-pp-ink-v1-b2ff7910",
+    "max_upload_mb": 8,
+    "max_pixels": 12000000,
+    "workers": 1,
+    "queue_size": 2,
+    "authentication_required": false
+  },
+  "container": {
+    "architecture": "aarch64",
+    "cpu_limit": 2.0,
+    "memory_limit_bytes": 1610612736,
+    "memory_peak_bytes": 882053120,
+    "memory_current_bytes": 788869120,
+    "oom_killed": false,
+    "restart_count": 0,
+    "running": true,
+    "readonly_rootfs": true,
+    "image_id": "sha256:5269e411934b0483e10b9cecb65074876626295d1fbd99f5db4fc9c61c0ac5e8"
+  },
+  "count": 100,
+  "domains": {
+    "white": 50,
+    "blue": 50
+  },
+  "latency_seconds": {
+    "pipeline_median": 1.4548820214999978,
+    "pipeline_p95": 1.6958060176500225,
+    "http_median": 1.6260873540304601,
+    "http_p95": 2.0431945583433846
+  },
+  "coverage_counts": {
+    "detected_regions": 3321,
+    "chinese_regions": 2791,
+    "pingfang_supported": 977,
+    "other_candidates": 661,
+    "uncertain": 1185,
+    "out_of_scope": 498,
+    "processing_limited_regions": 0
+  },
+  "emitted_font_counts": {
+    "PingFang SC": 977,
+    "HarmonyOS Sans SC": 252,
+    "MiSans": 290,
+    "OPPO Sans": 70,
+    "Baoli SC": 5,
+    "Noto Sans CJK SC": 16,
+    "Heiti SC": 2,
+    "Hiragino Sans GB": 1,
+    "Yuanti SC": 1,
+    "Kaiti SC": 24
+  },
+  "maximum_pixel_probe": {
+    "size": [
+      2000,
+      6000
+    ],
+    "summary": {
+      "detected_regions": 31,
+      "chinese_regions": 27,
+      "pingfang_supported": 0,
+      "other_candidates": 8,
+      "uncertain": 19,
+      "out_of_scope": 4,
+      "processing_limited_regions": 0
+    },
+    "timing_seconds": {
+      "detector": 0.07183433400018657,
+      "ocr": 0.7506130420001682,
+      "font_matching": 0.4023789580000994,
+      "total": 1.6007797920001394
+    }
+  },
+  "records": [
+    {
+      "source_id": "R14-white-001",
+      "source_sha256": "c3b59c864d87cfdd221aa87128cfae9589b78ba26a4fe33540fda45f6c5d0de1",
+      "domain": "white",
+      "job_id": "a35ecb02885544a38f30841b70d7be57",
+      "size": [
+        1320,
+        2868
+      ],
+      "summary": {
+        "detected_regions": 32,
+        "chinese_regions": 27,
+        "pingfang_supported": 16,
+        "other_candidates": 0,
+        "uncertain": 12,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.10945437500004118,
+        "ocr": 0.8875152919999891,
+        "font_matching": 0.32583104200011803,
+        "total": 1.4566072919999442
+      },
+      "http_seconds": 1.6319232499226928
+    },
+    {
+      "source_id": "R14-white-002",
+      "source_sha256": "35b446f73b16db38c4c2ee7414c31ac0cae69ec87c42e3092557f0bd62066dc0",
+      "domain": "white",
+      "job_id": "6b6db9d0aa37459483a4b6336a4a515e",
+      "size": [
+        1080,
+        2400
+      ],
+      "summary": {
+        "detected_regions": 33,
+        "chinese_regions": 25,
+        "pingfang_supported": 0,
+        "other_candidates": 12,
+        "uncertain": 13,
+        "out_of_scope": 8,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09341095900003893,
+        "ocr": 0.8584531669998796,
+        "font_matching": 0.3359010419999322,
+        "total": 1.3926389589998962
+      },
+      "http_seconds": 1.4265811250079423
+    },
+    {
+      "source_id": "R14-white-003",
+      "source_sha256": "26a208f332f84e62735149dbf2e11f9b4660123a93173d16da7c9286154ba976",
+      "domain": "white",
+      "job_id": "b8f5df82ed1d413da344873bfe83f116",
+      "size": [
+        1080,
+        2400
+      ],
+      "summary": {
+        "detected_regions": 15,
+        "chinese_regions": 12,
+        "pingfang_supported": 0,
+        "other_candidates": 3,
+        "uncertain": 9,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08893062499987536,
+        "ocr": 0.36909004199992523,
+        "font_matching": 0.16494883399991522,
+        "total": 0.7025285419999818
+      },
+      "http_seconds": 0.8216546662151814
+    },
+    {
+      "source_id": "R14-white-004",
+      "source_sha256": "90e8864db752a75643463f039ee989f161cf2f680feb5c9c39c6869df365a034",
+      "domain": "white",
+      "job_id": "3a63cbbc2a33469fbb9b54ac04f44915",
+      "size": [
+        1206,
+        2622
+      ],
+      "summary": {
+        "detected_regions": 32,
+        "chinese_regions": 26,
+        "pingfang_supported": 18,
+        "other_candidates": 0,
+        "uncertain": 8,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08842504200015355,
+        "ocr": 0.8582647919999999,
+        "font_matching": 0.39987874999997075,
+        "total": 1.4735858760000156
+      },
+      "http_seconds": 1.6279769581742585
+    },
+    {
+      "source_id": "R14-white-005",
+      "source_sha256": "281e3140959a49bd0a6589d01b16c40625de23d89138ed01d848dac0f039f0c5",
+      "domain": "white",
+      "job_id": "b570c09127ee408c9f7f509befdd1c18",
+      "size": [
+        1290,
+        2796
+      ],
+      "summary": {
+        "detected_regions": 35,
+        "chinese_regions": 28,
+        "pingfang_supported": 21,
+        "other_candidates": 0,
+        "uncertain": 7,
+        "out_of_scope": 7,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.0915927080000074,
+        "ocr": 0.9724397090001276,
+        "font_matching": 0.4345407499999965,
+        "total": 1.7158741679998002
+      },
+      "http_seconds": 1.8313513328321278
+    },
+    {
+      "source_id": "R14-white-006",
+      "source_sha256": "b287653ca10899a3d064ad3a96fa11411d26b9a3e234147cf0964650f249880a",
+      "domain": "white",
+      "job_id": "78100579797f4588b5db920ec79762da",
+      "size": [
+        1320,
+        2868
+      ],
+      "summary": {
+        "detected_regions": 31,
+        "chinese_regions": 25,
+        "pingfang_supported": 12,
+        "other_candidates": 0,
+        "uncertain": 13,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09083075000012286,
+        "ocr": 0.887779417000047,
+        "font_matching": 0.3117725409999821,
+        "total": 1.4402440839999144
+      },
+      "http_seconds": 1.6311419168487191
+    },
+    {
+      "source_id": "R14-white-007",
+      "source_sha256": "2c7539836b5d9f946633471548a62e100fa8f34edd8f69f87bbca877fbc6b98a",
+      "domain": "white",
+      "job_id": "9c0759175e994927be345eb9f70c9cc2",
+      "size": [
+        1284,
+        2778
+      ],
+      "summary": {
+        "detected_regions": 33,
+        "chinese_regions": 27,
+        "pingfang_supported": 19,
+        "other_candidates": 0,
+        "uncertain": 8,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.0896255420000216,
+        "ocr": 0.8583841249999296,
+        "font_matching": 0.40039454099996874,
+        "total": 1.5056605009999657
+      },
+      "http_seconds": 1.6391409998759627
+    },
+    {
+      "source_id": "R14-white-008",
+      "source_sha256": "437048e8a109c2ff1394b99f8b6c94c6c32f6fc5da22bcd689ca53e52385d29b",
+      "domain": "white",
+      "job_id": "ed58d8affe8445b68d1ee9e444be5ca4",
+      "size": [
+        720,
+        1570
+      ],
+      "summary": {
+        "detected_regions": 33,
+        "chinese_regions": 26,
+        "pingfang_supported": 0,
+        "other_candidates": 7,
+        "uncertain": 19,
+        "out_of_scope": 7,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09486904200002755,
+        "ocr": 0.786326833999965,
+        "font_matching": 0.23115920800000822,
+        "total": 1.178186500000038
+      },
+      "http_seconds": 1.2344495421275496
+    },
+    {
+      "source_id": "R14-white-009",
+      "source_sha256": "7bc0531e54f10c20db4a7090724dd8e25c06830e3572495ecdfd3b594ab94177",
+      "domain": "white",
+      "job_id": "a2882ece353a4a8197f53cd51240c7c1",
+      "size": [
+        720,
+        1421
+      ],
+      "summary": {
+        "detected_regions": 29,
+        "chinese_regions": 24,
+        "pingfang_supported": 0,
+        "other_candidates": 7,
+        "uncertain": 18,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09601758300004803,
+        "ocr": 0.7948314580000897,
+        "font_matching": 0.24069745899987538,
+        "total": 1.1842806670001664
+      },
+      "http_seconds": 1.2111465828493237
+    },
+    {
+      "source_id": "R14-white-010",
+      "source_sha256": "759e0c160f788502eec04a866a80aa67cf6d3d715ba82d94c261c14ec89e4ab4",
+      "domain": "white",
+      "job_id": "5546361263d0451a889b273100301b67",
+      "size": [
+        1080,
+        2400
+      ],
+      "summary": {
+        "detected_regions": 31,
+        "chinese_regions": 26,
+        "pingfang_supported": 0,
+        "other_candidates": 19,
+        "uncertain": 7,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08978479200004585,
+        "ocr": 0.8304515840000022,
+        "font_matching": 0.31150499999989734,
+        "total": 1.3229315000000952
+      },
+      "http_seconds": 1.4211792501155287
+    },
+    {
+      "source_id": "R14-white-011",
+      "source_sha256": "7efd34b75abb126e6a4abc3471f4630618da6f1dae467eb3ff91a3b6e06fff51",
+      "domain": "white",
+      "job_id": "eacde992e66348bdb2374057cf1f3b7e",
+      "size": [
+        828,
+        1792
+      ],
+      "summary": {
+        "detected_regions": 32,
+        "chinese_regions": 24,
+        "pingfang_supported": 19,
+        "other_candidates": 0,
+        "uncertain": 5,
+        "out_of_scope": 8,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09210358400014229,
+        "ocr": 0.8083493750000343,
+        "font_matching": 0.2791664999999739,
+        "total": 1.2503242509999382
+      },
+      "http_seconds": 1.420732542173937
+    },
+    {
+      "source_id": "R14-white-012",
+      "source_sha256": "0151da73f44542b90e8be889f06e59d51b5fb9d90f6aeed6d5f96ae6577e95ad",
+      "domain": "white",
+      "job_id": "e95c43cacbf142e088f7c87a1d6a2cd6",
+      "size": [
+        1080,
+        2373
+      ],
+      "summary": {
+        "detected_regions": 33,
+        "chinese_regions": 25,
+        "pingfang_supported": 0,
+        "other_candidates": 14,
+        "uncertain": 11,
+        "out_of_scope": 8,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09201808399984657,
+        "ocr": 0.8346432920000098,
+        "font_matching": 0.321266334000029,
+        "total": 1.3674486249999518
+      },
+      "http_seconds": 1.4282559580169618
+    },
+    {
+      "source_id": "R14-white-013",
+      "source_sha256": "78ff1552839c865be96f99d33a012591720fca2538defdb090b04916c4eaf38a",
+      "domain": "white",
+      "job_id": "ba3372de1efa4092916d64fb3511ff2a",
+      "size": [
+        1290,
+        2796
+      ],
+      "summary": {
+        "detected_regions": 32,
+        "chinese_regions": 24,
+        "pingfang_supported": 21,
+        "other_candidates": 0,
+        "uncertain": 3,
+        "out_of_scope": 8,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09136170900001161,
+        "ocr": 0.7805589170000076,
+        "font_matching": 0.31401804200004335,
+        "total": 1.329083417999982
+      },
+      "http_seconds": 1.4137466659303755
+    },
+    {
+      "source_id": "R14-white-014",
+      "source_sha256": "5a71979c35535be7439378c1d79ef9dba5894ab7a9a65f3691652a77faaf92ce",
+      "domain": "white",
+      "job_id": "2e542eeda2ff4328883f9045ff173510",
+      "size": [
+        1206,
+        2622
+      ],
+      "summary": {
+        "detected_regions": 32,
+        "chinese_regions": 25,
+        "pingfang_supported": 20,
+        "other_candidates": 0,
+        "uncertain": 5,
+        "out_of_scope": 7,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09084504200018273,
+        "ocr": 0.7851920830000836,
+        "font_matching": 0.3259317090000877,
+        "total": 1.3293898340000396
+      },
+      "http_seconds": 1.4237427080515772
+    },
+    {
+      "source_id": "R14-white-015",
+      "source_sha256": "d672153e93b009ccca9fa5d5cccaf3e738c021926412fe2d892c119dfe604958",
+      "domain": "white",
+      "job_id": "446f6c5bf4dd4436a9a1fac1d256e32d",
+      "size": [
+        1284,
+        2778
+      ],
+      "summary": {
+        "detected_regions": 32,
+        "chinese_regions": 27,
+        "pingfang_supported": 19,
+        "other_candidates": 0,
+        "uncertain": 8,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09139683299986245,
+        "ocr": 0.7969338329999118,
+        "font_matching": 0.34092083400014417,
+        "total": 1.3565383340001063
+      },
+      "http_seconds": 1.424333417089656
+    },
+    {
+      "source_id": "R14-white-016",
+      "source_sha256": "d43f1e46831aa506631f890d997fddc5a208d5a78947b15b13b44d51d87f8b0a",
+      "domain": "white",
+      "job_id": "d86c56e987cb4f6281fb53132f2c6592",
+      "size": [
+        1256,
+        2760
+      ],
+      "summary": {
+        "detected_regions": 33,
+        "chinese_regions": 24,
+        "pingfang_supported": 0,
+        "other_candidates": 17,
+        "uncertain": 8,
+        "out_of_scope": 8,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.0933282920000238,
+        "ocr": 0.8859827920000498,
+        "font_matching": 0.34462662500004626,
+        "total": 1.4871729169999526
+      },
+      "http_seconds": 1.62157908314839
+    },
+    {
+      "source_id": "R14-white-017",
+      "source_sha256": "a3be7b8ef4cec206b73cb3fa23aa21d070f90db634498a01b782fe4a096d8cc0",
+      "domain": "white",
+      "job_id": "cefad3e646fd46d3b18f6217b99f77fa",
+      "size": [
+        1290,
+        2796
+      ],
+      "summary": {
+        "detected_regions": 31,
+        "chinese_regions": 26,
+        "pingfang_supported": 21,
+        "other_candidates": 0,
+        "uncertain": 5,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.0935920829999759,
+        "ocr": 0.8114400419999583,
+        "font_matching": 0.42304204200013373,
+        "total": 1.478197001000126
+      },
+      "http_seconds": 1.6238268329761922
+    },
+    {
+      "source_id": "R14-white-018",
+      "source_sha256": "608e1de13656f66010a8303ad32b39cb5126fe240d70f16d8798636b6f08b47e",
+      "domain": "white",
+      "job_id": "5ef42b2d07934c4c94298d671e80603e",
+      "size": [
+        1272,
+        2800
+      ],
+      "summary": {
+        "detected_regions": 8,
+        "chinese_regions": 5,
+        "pingfang_supported": 0,
+        "other_candidates": 3,
+        "uncertain": 2,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09015995799995835,
+        "ocr": 0.17136966699990808,
+        "font_matching": 0.05433820899997954,
+        "total": 0.428358333999995
+      },
+      "http_seconds": 0.6222542091272771
+    },
+    {
+      "source_id": "R14-white-019",
+      "source_sha256": "92213f6c2375a6270495d1399beefd3b262c42d87b75e91587b12d4e10f62e6b",
+      "domain": "white",
+      "job_id": "e7d06e77ed9943efa17b78bfb2cc86ff",
+      "size": [
+        828,
+        1792
+      ],
+      "summary": {
+        "detected_regions": 31,
+        "chinese_regions": 23,
+        "pingfang_supported": 17,
+        "other_candidates": 0,
+        "uncertain": 7,
+        "out_of_scope": 7,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09592041700011578,
+        "ocr": 0.7617792500000178,
+        "font_matching": 0.24300562500002343,
+        "total": 1.169764374999886
+      },
+      "http_seconds": 1.2254629170056432
+    },
+    {
+      "source_id": "R14-white-020",
+      "source_sha256": "29d1e16baad399508194f667f1b421fd0811b3cbbedcd4c81ebd6e1dcf89d64e",
+      "domain": "white",
+      "job_id": "8f825562bbf74c2fbd5d40d81787b577",
+      "size": [
+        1206,
+        2622
+      ],
+      "summary": {
+        "detected_regions": 32,
+        "chinese_regions": 26,
+        "pingfang_supported": 18,
+        "other_candidates": 0,
+        "uncertain": 8,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09071420899999794,
+        "ocr": 0.8176317080001354,
+        "font_matching": 0.3092746249999436,
+        "total": 1.3267365429999245
+      },
+      "http_seconds": 1.4246413330547512
+    },
+    {
+      "source_id": "R14-white-021",
+      "source_sha256": "0ffde2d7188dbd71da1fed104d6a09334a2486afc6292092daf3988d56d1d0aa",
+      "domain": "white",
+      "job_id": "c95939ca170c4624af21b4f37b489204",
+      "size": [
+        1320,
+        2868
+      ],
+      "summary": {
+        "detected_regions": 30,
+        "chinese_regions": 25,
+        "pingfang_supported": 20,
+        "other_candidates": 1,
+        "uncertain": 4,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09312708400011616,
+        "ocr": 0.8473495830000957,
+        "font_matching": 0.31097429200008264,
+        "total": 1.410509999999931
+      },
+      "http_seconds": 1.6273113749921322
+    },
+    {
+      "source_id": "R14-white-022",
+      "source_sha256": "962322057e02486b284af735db580f2549ecf182824c2b6781b4935119d309da",
+      "domain": "white",
+      "job_id": "84b90ee07e584208ae2aca23088e564f",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 31,
+        "chinese_regions": 24,
+        "pingfang_supported": 17,
+        "other_candidates": 0,
+        "uncertain": 7,
+        "out_of_scope": 7,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09117204199992557,
+        "ocr": 0.8919434590000037,
+        "font_matching": 0.2837927079999645,
+        "total": 1.3826436669999111
+      },
+      "http_seconds": 1.416327292099595
+    },
+    {
+      "source_id": "R14-white-023",
+      "source_sha256": "20da8d9deffdcc29215cac53e4cfadf20b52c12b0af741fcb008c7ec0b89fb18",
+      "domain": "white",
+      "job_id": "32f56425886c48bbadeae64498ffa4cd",
+      "size": [
+        1080,
+        2340
+      ],
+      "summary": {
+        "detected_regions": 34,
+        "chinese_regions": 29,
+        "pingfang_supported": 0,
+        "other_candidates": 19,
+        "uncertain": 10,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09227183300004071,
+        "ocr": 0.826809583999875,
+        "font_matching": 0.3958662079999158,
+        "total": 1.4392964169999232
+      },
+      "http_seconds": 1.6208932918962091
+    },
+    {
+      "source_id": "R14-white-024",
+      "source_sha256": "357ca4d56006be22dd122d1043d40e075c36c7bd8a3baa9036191c66243c5ceb",
+      "domain": "white",
+      "job_id": "f89bb5933a57431099af93809805a74b",
+      "size": [
+        1020,
+        2250
+      ],
+      "summary": {
+        "detected_regions": 36,
+        "chinese_regions": 26,
+        "pingfang_supported": 0,
+        "other_candidates": 18,
+        "uncertain": 8,
+        "out_of_scope": 10,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09142904200007251,
+        "ocr": 0.8976527499999065,
+        "font_matching": 0.3030001249999259,
+        "total": 1.4147561249999399
+      },
+      "http_seconds": 1.6257410838734359
+    },
+    {
+      "source_id": "R14-white-025",
+      "source_sha256": "068a8509a8bafc2e8fdc35a306a39d06be27b19167b13d1ae540866200f535f4",
+      "domain": "white",
+      "job_id": "f950b4f2eadf43989fae67e43b5afbe7",
+      "size": [
+        1206,
+        2622
+      ],
+      "summary": {
+        "detected_regions": 29,
+        "chinese_regions": 23,
+        "pingfang_supported": 16,
+        "other_candidates": 0,
+        "uncertain": 7,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09271304200001396,
+        "ocr": 0.8267717510000239,
+        "font_matching": 0.3192927500001588,
+        "total": 1.3670311250000395
+      },
+      "http_seconds": 1.4243696660269052
+    },
+    {
+      "source_id": "R14-white-026",
+      "source_sha256": "54e72ba1d0e6001df4d4c628b5d4aa38b33eb8d88fcf42ade56536572461ae93",
+      "domain": "white",
+      "job_id": "9cefeec1282844d69217e6c272ab905b",
+      "size": [
+        720,
+        1600
+      ],
+      "summary": {
+        "detected_regions": 33,
+        "chinese_regions": 27,
+        "pingfang_supported": 0,
+        "other_candidates": 11,
+        "uncertain": 16,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08920887499994024,
+        "ocr": 0.8130052080000496,
+        "font_matching": 0.27500787500002843,
+        "total": 1.2378539590001765
+      },
+      "http_seconds": 1.4278039999771863
+    },
+    {
+      "source_id": "R14-white-027",
+      "source_sha256": "a460589abcb1039a77edbbb2acbb7302dfcbe95c33af62d45d9d695b313923ac",
+      "domain": "white",
+      "job_id": "b72d11f3569a45099de1f938c94acbbb",
+      "size": [
+        1272,
+        2800
+      ],
+      "summary": {
+        "detected_regions": 30,
+        "chinese_regions": 25,
+        "pingfang_supported": 0,
+        "other_candidates": 13,
+        "uncertain": 12,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09133670799997162,
+        "ocr": 0.8286770419999812,
+        "font_matching": 0.3370163340000545,
+        "total": 1.4260805840001467
+      },
+      "http_seconds": 1.6288608750328422
+    },
+    {
+      "source_id": "R14-white-028",
+      "source_sha256": "994c9c5087cc696cb958b2e38210232653976f7023658cfa8421e3e9bacabdf7",
+      "domain": "white",
+      "job_id": "7b96ecc6bfd3445ebeee7b48d917afab",
+      "size": [
+        1320,
+        2868
+      ],
+      "summary": {
+        "detected_regions": 34,
+        "chinese_regions": 25,
+        "pingfang_supported": 15,
+        "other_candidates": 0,
+        "uncertain": 10,
+        "out_of_scope": 9,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09236395900006755,
+        "ocr": 0.9075754989999041,
+        "font_matching": 0.3595074590000422,
+        "total": 1.5219535839999025
+      },
+      "http_seconds": 1.6474951659329236
+    },
+    {
+      "source_id": "R14-white-029",
+      "source_sha256": "328310bebdb2bafc9ffbf89109c7ed4dac43df3a0ff2ddde30138c89d902005f",
+      "domain": "white",
+      "job_id": "804080ecd4214dfb9138dfaad09d7779",
+      "size": [
+        1200,
+        2670
+      ],
+      "summary": {
+        "detected_regions": 34,
+        "chinese_regions": 27,
+        "pingfang_supported": 0,
+        "other_candidates": 22,
+        "uncertain": 5,
+        "out_of_scope": 7,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08513912500006882,
+        "ocr": 0.8234607500000948,
+        "font_matching": 0.4204460839998774,
+        "total": 1.4785245420000592
+      },
+      "http_seconds": 1.6228452089708298
+    },
+    {
+      "source_id": "R14-white-030",
+      "source_sha256": "2e0901245e7b105e0ddf058e2fbf7799cd9700049fbb7c9943e4675a4a57582f",
+      "domain": "white",
+      "job_id": "21aa8f0d5fd44795b739495d1f9b0360",
+      "size": [
+        1320,
+        2868
+      ],
+      "summary": {
+        "detected_regions": 33,
+        "chinese_regions": 27,
+        "pingfang_supported": 16,
+        "other_candidates": 0,
+        "uncertain": 11,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09245154199993522,
+        "ocr": 0.8407567500000823,
+        "font_matching": 0.3200669170000765,
+        "total": 1.4073552089998884
+      },
+      "http_seconds": 1.630032000131905
+    },
+    {
+      "source_id": "R14-white-031",
+      "source_sha256": "d3708f8ba54ffcb91ff5f1d020a82388f8871be6ae381170641a26af8a474620",
+      "domain": "white",
+      "job_id": "fcd029499ca74725910674b132ee5c9e",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 34,
+        "chinese_regions": 25,
+        "pingfang_supported": 17,
+        "other_candidates": 0,
+        "uncertain": 8,
+        "out_of_scope": 9,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09443670799987558,
+        "ocr": 0.9277782080000634,
+        "font_matching": 0.3245272080000632,
+        "total": 1.486121335000007
+      },
+      "http_seconds": 1.6231150419916958
+    },
+    {
+      "source_id": "R14-white-032",
+      "source_sha256": "147fffa190d4a4c829b3e94fd178ce542c37af515e0623091312671b1bebf946",
+      "domain": "white",
+      "job_id": "dc5f6b76fb5f44488773386e3a241960",
+      "size": [
+        596,
+        932
+      ],
+      "summary": {
+        "detected_regions": 19,
+        "chinese_regions": 13,
+        "pingfang_supported": 0,
+        "other_candidates": 3,
+        "uncertain": 10,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.12077270900022086,
+        "ocr": 0.48142704199995023,
+        "font_matching": 0.18096129199989264,
+        "total": 0.8326490839999678
+      },
+      "http_seconds": 1.0149397500790656
+    },
+    {
+      "source_id": "R14-white-033",
+      "source_sha256": "d245aab07ec392ae2f0f265e13a8a16b250562dad5f44703589f5acff5fa7038",
+      "domain": "white",
+      "job_id": "ad827a8c7d384f258348f16d92f3aa43",
+      "size": [
+        1080,
+        2340
+      ],
+      "summary": {
+        "detected_regions": 30,
+        "chinese_regions": 22,
+        "pingfang_supported": 0,
+        "other_candidates": 9,
+        "uncertain": 13,
+        "out_of_scope": 8,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09299654100004773,
+        "ocr": 0.823399333999987,
+        "font_matching": 0.2829526250000072,
+        "total": 1.3256756260000202
+      },
+      "http_seconds": 1.4178440840914845
+    },
+    {
+      "source_id": "R14-white-034",
+      "source_sha256": "7fa42d6431beb79bd76df34783fb469523f7e4371365a47154de80aaee336c44",
+      "domain": "white",
+      "job_id": "9d265db3f69e490f843ac2a1df3c6d07",
+      "size": [
+        720,
+        1612
+      ],
+      "summary": {
+        "detected_regions": 34,
+        "chinese_regions": 30,
+        "pingfang_supported": 0,
+        "other_candidates": 5,
+        "uncertain": 25,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08592108399989229,
+        "ocr": 0.8609637499998826,
+        "font_matching": 0.28772441700016316,
+        "total": 1.3017127929999788
+      },
+      "http_seconds": 1.4275402911007404
+    },
+    {
+      "source_id": "R14-white-035",
+      "source_sha256": "2f911e7bbb3d501e6e775e960b319d94f3aa8a08d501ca4905ec0302ace8e20f",
+      "domain": "white",
+      "job_id": "61a4c73361c54f6fa7f121a54927bdd5",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 32,
+        "chinese_regions": 28,
+        "pingfang_supported": 21,
+        "other_candidates": 0,
+        "uncertain": 7,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08968533299980663,
+        "ocr": 0.8128206250000858,
+        "font_matching": 0.39524354100012715,
+        "total": 1.4213825009999255
+      },
+      "http_seconds": 1.6221992920618504
+    },
+    {
+      "source_id": "R14-white-036",
+      "source_sha256": "93b29ac58ae47f03656b2963ba471a79b922820d5ae435f76030ca5b0f6c8116",
+      "domain": "white",
+      "job_id": "e7a6b8f375844f2da2aa2dfa107139c0",
+      "size": [
+        1200,
+        2608
+      ],
+      "summary": {
+        "detected_regions": 34,
+        "chinese_regions": 24,
+        "pingfang_supported": 0,
+        "other_candidates": 13,
+        "uncertain": 12,
+        "out_of_scope": 9,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09219516699999986,
+        "ocr": 0.8908061250001538,
+        "font_matching": 0.2996431260000918,
+        "total": 1.4402630839999802
+      },
+      "http_seconds": 1.6328845829702914
+    },
+    {
+      "source_id": "R14-white-037",
+      "source_sha256": "76650ec69e803af1ccd53943f1e4eb82d8caa42887fbfb82dfb3a92dcff0ffe6",
+      "domain": "white",
+      "job_id": "91ffbf6c704f43dc9e9d734ce6d73014",
+      "size": [
+        1224,
+        2912
+      ],
+      "summary": {
+        "detected_regions": 33,
+        "chinese_regions": 25,
+        "pingfang_supported": 0,
+        "other_candidates": 19,
+        "uncertain": 6,
+        "out_of_scope": 8,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08510995899996487,
+        "ocr": 0.8496373749999293,
+        "font_matching": 0.42289200100003654,
+        "total": 1.527495541999997
+      },
+      "http_seconds": 1.632897000061348
+    },
+    {
+      "source_id": "R14-white-038",
+      "source_sha256": "53caa91fc6e12d8d75096a8abc8fa7d20d8ff0feb8909d204801217faa18e197",
+      "domain": "white",
+      "job_id": "c79b35e0f8264176bf0cfb34b1e41563",
+      "size": [
+        576,
+        1280
+      ],
+      "summary": {
+        "detected_regions": 32,
+        "chinese_regions": 28,
+        "pingfang_supported": 0,
+        "other_candidates": 2,
+        "uncertain": 26,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09185633300012341,
+        "ocr": 0.8033358759998919,
+        "font_matching": 0.1963739169998462,
+        "total": 1.1494527929999094
+      },
+      "http_seconds": 1.2148112920112908
+    },
+    {
+      "source_id": "R14-white-039",
+      "source_sha256": "83aa65114a5ea9ab76d1d3b181044fc4a4aa7b807ffe840433df4eaca392d3aa",
+      "domain": "white",
+      "job_id": "b4ff16e0206b4262913e63ccbc6c2cae",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 31,
+        "chinese_regions": 24,
+        "pingfang_supported": 19,
+        "other_candidates": 0,
+        "uncertain": 5,
+        "out_of_scope": 7,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.0913705000000391,
+        "ocr": 0.8596973759999855,
+        "font_matching": 0.3269185419999303,
+        "total": 1.3990246260000276
+      },
+      "http_seconds": 1.6332054170779884
+    },
+    {
+      "source_id": "R14-white-040",
+      "source_sha256": "7f995d6b8f63401c2b0f688fb19db560401681bd0f3a6046f190f8187532e726",
+      "domain": "white",
+      "job_id": "cd3c7a54a7b54cb19bf3e1e8099e06fe",
+      "size": [
+        1290,
+        2796
+      ],
+      "summary": {
+        "detected_regions": 34,
+        "chinese_regions": 29,
+        "pingfang_supported": 21,
+        "other_candidates": 1,
+        "uncertain": 7,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09427424999989853,
+        "ocr": 0.7856662500000766,
+        "font_matching": 0.3929811670000163,
+        "total": 1.4769712509998953
+      },
+      "http_seconds": 1.6295107081532478
+    },
+    {
+      "source_id": "R14-white-041",
+      "source_sha256": "022244c0d26b048dd1ff08ab15b8359fc993aab0a9275bb35c75d75904e6a197",
+      "domain": "white",
+      "job_id": "91dd6df155804fd4b8bf3b0cd868fb25",
+      "size": [
+        1116,
+        2484
+      ],
+      "summary": {
+        "detected_regions": 35,
+        "chinese_regions": 30,
+        "pingfang_supported": 0,
+        "other_candidates": 14,
+        "uncertain": 16,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08538045799991778,
+        "ocr": 0.90225416699991,
+        "font_matching": 0.3421354579998024,
+        "total": 1.4531567510000514
+      },
+      "http_seconds": 1.6299024580512196
+    },
+    {
+      "source_id": "R14-white-042",
+      "source_sha256": "f55ed31078d4b1e85e54192d7e77a55a581389ad04c2efe6f380457161252d7a",
+      "domain": "white",
+      "job_id": "0a26547eed814b349ea199cd96b95c29",
+      "size": [
+        1206,
+        2622
+      ],
+      "summary": {
+        "detected_regions": 35,
+        "chinese_regions": 29,
+        "pingfang_supported": 21,
+        "other_candidates": 0,
+        "uncertain": 8,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09203129100001206,
+        "ocr": 0.8421107919998576,
+        "font_matching": 0.41406437499995263,
+        "total": 1.4893814179999936
+      },
+      "http_seconds": 1.6308986248914152
+    },
+    {
+      "source_id": "R14-white-043",
+      "source_sha256": "7f856a2f26a107395744fc6f23da0371c17d2aecf19cef499d3db1207801c6a7",
+      "domain": "white",
+      "job_id": "e477a992c19b42dc84281214f742cb17",
+      "size": [
+        1080,
+        2412
+      ],
+      "summary": {
+        "detected_regions": 36,
+        "chinese_regions": 28,
+        "pingfang_supported": 0,
+        "other_candidates": 15,
+        "uncertain": 14,
+        "out_of_scope": 7,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08411054199996215,
+        "ocr": 0.9213034169999901,
+        "font_matching": 0.36823566700013544,
+        "total": 1.5072850419999213
+      },
+      "http_seconds": 1.6264180419966578
+    },
+    {
+      "source_id": "R14-white-044",
+      "source_sha256": "c8a75e3150b328ea4d0736a23ce76805cc244a3800dd640e81ca31ec2b361031",
+      "domain": "white",
+      "job_id": "72fa25ad6b6a4f15b41c45ed570fc96b",
+      "size": [
+        1280,
+        2772
+      ],
+      "summary": {
+        "detected_regions": 29,
+        "chinese_regions": 23,
+        "pingfang_supported": 0,
+        "other_candidates": 21,
+        "uncertain": 2,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09182895900016774,
+        "ocr": 0.8120193330000802,
+        "font_matching": 0.34595183400006135,
+        "total": 1.3964896260001751
+      },
+      "http_seconds": 1.6253457500133663
+    },
+    {
+      "source_id": "R14-white-045",
+      "source_sha256": "6df8e955969622774bb5b5884e9e01aea727573b7a739761a14a5cf265dde922",
+      "domain": "white",
+      "job_id": "bebbff5fdac346ada7e58634b173b0d5",
+      "size": [
+        1080,
+        2400
+      ],
+      "summary": {
+        "detected_regions": 33,
+        "chinese_regions": 27,
+        "pingfang_supported": 0,
+        "other_candidates": 11,
+        "uncertain": 16,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09325666600011573,
+        "ocr": 0.8576808749999145,
+        "font_matching": 0.36517366700013554,
+        "total": 1.424242958999912
+      },
+      "http_seconds": 1.6444072080776095
+    },
+    {
+      "source_id": "R14-white-046",
+      "source_sha256": "a7d9254e67aa67efa0e9665ce7b96076e6749df24c0833f84f04da2962129444",
+      "domain": "white",
+      "job_id": "474d7b8a3f1e4839a57f3d5a404893ff",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 38,
+        "chinese_regions": 29,
+        "pingfang_supported": 21,
+        "other_candidates": 0,
+        "uncertain": 8,
+        "out_of_scope": 9,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09213416700004018,
+        "ocr": 0.9008884170000329,
+        "font_matching": 0.40434799999979987,
+        "total": 1.5221938340000634
+      },
+      "http_seconds": 1.6329374590422958
+    },
+    {
+      "source_id": "R14-white-047",
+      "source_sha256": "af8ca62482a883cbe17ac605003e40fde6754ad3b442630c0c3325b1a306e7ce",
+      "domain": "white",
+      "job_id": "59bf03715b564df7814e657047477fda",
+      "size": [
+        1080,
+        2412
+      ],
+      "summary": {
+        "detected_regions": 34,
+        "chinese_regions": 27,
+        "pingfang_supported": 0,
+        "other_candidates": 15,
+        "uncertain": 12,
+        "out_of_scope": 7,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08460508399980426,
+        "ocr": 0.8571467920000941,
+        "font_matching": 0.3273717080001006,
+        "total": 1.395782833000112
+      },
+      "http_seconds": 1.6304082500282675
+    },
+    {
+      "source_id": "R14-white-048",
+      "source_sha256": "a871098057cb40abccba0790214815bedbc7f00086cf213c28dc45fd66f8f1b7",
+      "domain": "white",
+      "job_id": "735d48504204444c832d8254419368ed",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 33,
+        "chinese_regions": 26,
+        "pingfang_supported": 18,
+        "other_candidates": 0,
+        "uncertain": 8,
+        "out_of_scope": 7,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09168783299992356,
+        "ocr": 0.8479621669998778,
+        "font_matching": 0.34883195899988095,
+        "total": 1.4214118340000823
+      },
+      "http_seconds": 1.6226020001340657
+    },
+    {
+      "source_id": "R14-white-049",
+      "source_sha256": "c0f3d501a4f4183abc78d575a07bd744667bdb3178f9c4da1710c4b511fb77af",
+      "domain": "white",
+      "job_id": "a92eb3b4972f4e8693ef3f220b56307f",
+      "size": [
+        1080,
+        2520
+      ],
+      "summary": {
+        "detected_regions": 35,
+        "chinese_regions": 27,
+        "pingfang_supported": 0,
+        "other_candidates": 10,
+        "uncertain": 17,
+        "out_of_scope": 8,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08473895800011633,
+        "ocr": 0.8929943749999438,
+        "font_matching": 0.3247554999998101,
+        "total": 1.4210739599998305
+      },
+      "http_seconds": 1.6295930000487715
+    },
+    {
+      "source_id": "R14-white-050",
+      "source_sha256": "f8901a3556ab8ae75033bb68a53f36f4a67c65ef00677e6b5db90c51cfe073f1",
+      "domain": "white",
+      "job_id": "2b674fb3928b4ea39a6005faf53b67e6",
+      "size": [
+        1200,
+        2608
+      ],
+      "summary": {
+        "detected_regions": 32,
+        "chinese_regions": 25,
+        "pingfang_supported": 0,
+        "other_candidates": 20,
+        "uncertain": 5,
+        "out_of_scope": 7,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09184508300018024,
+        "ocr": 0.7781946249999692,
+        "font_matching": 0.3164595000000645,
+        "total": 1.3269003760001397
+      },
+      "http_seconds": 1.423102041007951
+    },
+    {
+      "source_id": "R14-blue-001",
+      "source_sha256": "5f283755e8ce09aae1feb3d54a877e26585f4838192a8076ef1cb400223d4b52",
+      "domain": "blue",
+      "job_id": "99b80fd887bf4fdd859e732d487787ca",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 38,
+        "chinese_regions": 33,
+        "pingfang_supported": 22,
+        "other_candidates": 0,
+        "uncertain": 11,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.0925249580000127,
+        "ocr": 0.8747987500000818,
+        "font_matching": 0.42410866699992766,
+        "total": 1.568478875999972
+      },
+      "http_seconds": 1.6147496248595417
+    },
+    {
+      "source_id": "R14-blue-002",
+      "source_sha256": "2d3afa7d6135f6934247b0fb96a6eca1403a2a596fccee5898bea3143dfb8096",
+      "domain": "blue",
+      "job_id": "b78f0945a4da45829be432e32f340720",
+      "size": [
+        1256,
+        2760
+      ],
+      "summary": {
+        "detected_regions": 36,
+        "chinese_regions": 29,
+        "pingfang_supported": 0,
+        "other_candidates": 0,
+        "uncertain": 32,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09687429199993858,
+        "ocr": 0.9019078759999957,
+        "font_matching": 0.08153324999989309,
+        "total": 1.2945968750000247
+      },
+      "http_seconds": 2.837999166920781
+    },
+    {
+      "source_id": "R14-blue-003",
+      "source_sha256": "bb935d500e971d43de27c8d5189968b898c535d6ab82e08d35f20a21379d95f6",
+      "domain": "blue",
+      "job_id": "171a2d9c3d1d45148a46ccf4cbb9e415",
+      "size": [
+        1080,
+        2412
+      ],
+      "summary": {
+        "detected_regions": 37,
+        "chinese_regions": 33,
+        "pingfang_supported": 0,
+        "other_candidates": 18,
+        "uncertain": 16,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.10118041699979585,
+        "ocr": 0.8669374169999173,
+        "font_matching": 0.3721974580000733,
+        "total": 1.5149257929999749
+      },
+      "http_seconds": 2.6422876669093966
+    },
+    {
+      "source_id": "R14-blue-004",
+      "source_sha256": "45a82c837383000c9d5b72af4229eaa464f4bc00c9b14035809c14ce59e2208d",
+      "domain": "blue",
+      "job_id": "4a5433865e504a0ba75c2ea5c3071102",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 39,
+        "chinese_regions": 35,
+        "pingfang_supported": 23,
+        "other_candidates": 0,
+        "uncertain": 12,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09318912499998078,
+        "ocr": 0.9364568340001824,
+        "font_matching": 0.42591749999996864,
+        "total": 1.6307913749999443
+      },
+      "http_seconds": 3.2375178749207407
+    },
+    {
+      "source_id": "R14-blue-005",
+      "source_sha256": "d52ac17ded3eb23c3f7ef40ebc2c91749f29a9253c8a73cffb7b7b9911d28f8f",
+      "domain": "blue",
+      "job_id": "2625c45719d44cb9a844f434c47114ae",
+      "size": [
+        1206,
+        2622
+      ],
+      "summary": {
+        "detected_regions": 38,
+        "chinese_regions": 34,
+        "pingfang_supported": 24,
+        "other_candidates": 0,
+        "uncertain": 11,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.0977007499998308,
+        "ocr": 0.8617815830000382,
+        "font_matching": 0.42789958399998795,
+        "total": 1.5766103760001897
+      },
+      "http_seconds": 2.8511325418949127
+    },
+    {
+      "source_id": "R14-blue-006",
+      "source_sha256": "0318a6aee1b358288cf7e9e866afef95d970ef798bbc967518af2f0f281f6165",
+      "domain": "blue",
+      "job_id": "ca04bbc06868464790600f348b8b73cd",
+      "size": [
+        1290,
+        2796
+      ],
+      "summary": {
+        "detected_regions": 42,
+        "chinese_regions": 38,
+        "pingfang_supported": 25,
+        "other_candidates": 0,
+        "uncertain": 13,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.0939409169998271,
+        "ocr": 0.9339588760001334,
+        "font_matching": 0.42417908399988846,
+        "total": 1.6387270840000383
+      },
+      "http_seconds": 1.840632583014667
+    },
+    {
+      "source_id": "R14-blue-007",
+      "source_sha256": "f70ea0bcc896ed783f74afd0dacecc33940e874e1251a3909c9b1ac151d68ec1",
+      "domain": "blue",
+      "job_id": "88b11bd0a2d6445eac204f61594c3bff",
+      "size": [
+        1080,
+        2400
+      ],
+      "summary": {
+        "detected_regions": 37,
+        "chinese_regions": 34,
+        "pingfang_supported": 0,
+        "other_candidates": 23,
+        "uncertain": 12,
+        "out_of_scope": 2,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09152054200012572,
+        "ocr": 0.8080517500000042,
+        "font_matching": 0.41875608300006206,
+        "total": 1.5112170429999878
+      },
+      "http_seconds": 1.6229506249073893
+    },
+    {
+      "source_id": "R14-blue-008",
+      "source_sha256": "c5d85475f6a802f42bbfd7fb2e4d5330dd3cc23cb883824736a0356b1e14ce80",
+      "domain": "blue",
+      "job_id": "4f2114f953434d87a4a3296e28073ace",
+      "size": [
+        1320,
+        2868
+      ],
+      "summary": {
+        "detected_regions": 40,
+        "chinese_regions": 37,
+        "pingfang_supported": 21,
+        "other_candidates": 0,
+        "uncertain": 16,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.0934020419999797,
+        "ocr": 0.8764961669999138,
+        "font_matching": 0.36877191700000367,
+        "total": 1.5415265839999392
+      },
+      "http_seconds": 1.6278853751718998
+    },
+    {
+      "source_id": "R14-blue-009",
+      "source_sha256": "be5f9d484893cbba58baf0cf72311dc821490e086abc92b25db1e6a8bf960d3b",
+      "domain": "blue",
+      "job_id": "d9c63d7b1bc742feb857dd6a962f9cf8",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 18,
+        "chinese_regions": 12,
+        "pingfang_supported": 4,
+        "other_candidates": 0,
+        "uncertain": 8,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08981258399990111,
+        "ocr": 0.49446004199990057,
+        "font_matching": 0.18494770899997093,
+        "total": 0.9498168749998968
+      },
+      "http_seconds": 1.0166815828997642
+    },
+    {
+      "source_id": "R14-blue-010",
+      "source_sha256": "36c9b7ddd5c99a5a0f411e0fbb89482add99a189bcfb2c2650bae7f6ca92dc58",
+      "domain": "blue",
+      "job_id": "d2a1271263ed46ceb0e8ef3b522d2eff",
+      "size": [
+        1170,
+        2532
+      ],
+      "summary": {
+        "detected_regions": 39,
+        "chinese_regions": 35,
+        "pingfang_supported": 19,
+        "other_candidates": 0,
+        "uncertain": 17,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08760970799994539,
+        "ocr": 0.8657155000000785,
+        "font_matching": 0.36670858399997996,
+        "total": 1.4953922499998953
+      },
+      "http_seconds": 1.6220411248505116
+    },
+    {
+      "source_id": "R14-blue-011",
+      "source_sha256": "4bffe4bfd76e9a8cde131c9eef386eef511cb8cf85e0d4a489f404c653b2bff4",
+      "domain": "blue",
+      "job_id": "a70a32c0b6054503b71c1e3dfd7359b9",
+      "size": [
+        1080,
+        2340
+      ],
+      "summary": {
+        "detected_regions": 40,
+        "chinese_regions": 38,
+        "pingfang_supported": 0,
+        "other_candidates": 24,
+        "uncertain": 14,
+        "out_of_scope": 2,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09066995900002439,
+        "ocr": 0.8869630000001507,
+        "font_matching": 0.4193127920000279,
+        "total": 1.5723085009999522
+      },
+      "http_seconds": 1.6221382920630276
+    },
+    {
+      "source_id": "R14-blue-012",
+      "source_sha256": "ef2f5649724e98d04b67982132e97c4861f7f84a38af09fb6a4ce63feeef1487",
+      "domain": "blue",
+      "job_id": "1688eedfa5b64fae94be34561d997d6d",
+      "size": [
+        1220,
+        2656
+      ],
+      "summary": {
+        "detected_regions": 29,
+        "chinese_regions": 26,
+        "pingfang_supported": 0,
+        "other_candidates": 14,
+        "uncertain": 13,
+        "out_of_scope": 2,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09043295799983753,
+        "ocr": 0.6842408329998761,
+        "font_matching": 0.33410429199989267,
+        "total": 1.4750546259999737
+      },
+      "http_seconds": 1.6280903338920325
+    },
+    {
+      "source_id": "R14-blue-013",
+      "source_sha256": "869d9acb44adcefdb8aa6f6ddf57b8a353e5495886981f5a4af01a1a1bd0d880",
+      "domain": "blue",
+      "job_id": "6bc90a124eb144ed890f50ecab4402c2",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 39,
+        "chinese_regions": 35,
+        "pingfang_supported": 17,
+        "other_candidates": 0,
+        "uncertain": 18,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09087412500002756,
+        "ocr": 0.8646792500001084,
+        "font_matching": 0.38062237500002993,
+        "total": 1.505714874999967
+      },
+      "http_seconds": 1.6312692079227418
+    },
+    {
+      "source_id": "R14-blue-014",
+      "source_sha256": "210f0e78749ffe83ad3570a5a320211b8f44bfb94a93ebf590cdb086f69ce731",
+      "domain": "blue",
+      "job_id": "a8184edc33fc4e62af5e2dda1681dc45",
+      "size": [
+        1200,
+        2664
+      ],
+      "summary": {
+        "detected_regions": 37,
+        "chinese_regions": 33,
+        "pingfang_supported": 0,
+        "other_candidates": 14,
+        "uncertain": 20,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09044187499989675,
+        "ocr": 0.8209235839999565,
+        "font_matching": 0.3265832509998745,
+        "total": 1.4597920010000962
+      },
+      "http_seconds": 1.6229970841668546
+    },
+    {
+      "source_id": "R14-blue-015",
+      "source_sha256": "5b279e35e3a39c945ac1df3840375e1d2b8c9cbf56982ef8507e0f55f9c5aa7a",
+      "domain": "blue",
+      "job_id": "e654dbb7282a4454b94ccb955706b105",
+      "size": [
+        1290,
+        2796
+      ],
+      "summary": {
+        "detected_regions": 19,
+        "chinese_regions": 14,
+        "pingfang_supported": 10,
+        "other_candidates": 0,
+        "uncertain": 5,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.0901469170000837,
+        "ocr": 0.453976166999837,
+        "font_matching": 0.21274300000004587,
+        "total": 0.9147003340001447
+      },
+      "http_seconds": 1.022782834013924
+    },
+    {
+      "source_id": "R14-blue-016",
+      "source_sha256": "82204fbc3e8868cdd47c5cc5d10b2331a903491813a0c6d69b2a06b0c47e2d90",
+      "domain": "blue",
+      "job_id": "a147a3fdfbdd497bbdf8f6e23c3470de",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 36,
+        "chinese_regions": 33,
+        "pingfang_supported": 20,
+        "other_candidates": 0,
+        "uncertain": 13,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09020945799989022,
+        "ocr": 0.8097419579999041,
+        "font_matching": 0.4083727080001154,
+        "total": 1.4680457929998738
+      },
+      "http_seconds": 1.6320906670298427
+    },
+    {
+      "source_id": "R14-blue-017",
+      "source_sha256": "8807fbf4006176ec3232c6cf5cd37a46f833e01885583d758ea3365d838aa440",
+      "domain": "blue",
+      "job_id": "fb3ea60f0399460094a034df0c3b8565",
+      "size": [
+        1308,
+        2880
+      ],
+      "summary": {
+        "detected_regions": 15,
+        "chinese_regions": 13,
+        "pingfang_supported": 0,
+        "other_candidates": 10,
+        "uncertain": 3,
+        "out_of_scope": 2,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08986083299987513,
+        "ocr": 0.3359302509998088,
+        "font_matching": 0.1754395420000492,
+        "total": 0.8093692919999285
+      },
+      "http_seconds": 1.0281228749081492
+    },
+    {
+      "source_id": "R14-blue-018",
+      "source_sha256": "309e82e08cbde9165607bc10febfb6f4008eeade4bda6fe59d63b0b78013e7d3",
+      "domain": "blue",
+      "job_id": "aa9bccabe7b94e5486e2b125841d43af",
+      "size": [
+        1125,
+        2001
+      ],
+      "summary": {
+        "detected_regions": 34,
+        "chinese_regions": 30,
+        "pingfang_supported": 23,
+        "other_candidates": 0,
+        "uncertain": 8,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.10956962499994916,
+        "ocr": 0.7677932090000468,
+        "font_matching": 0.3468102090000684,
+        "total": 1.383608168000137
+      },
+      "http_seconds": 1.4215087909251451
+    },
+    {
+      "source_id": "R14-blue-019",
+      "source_sha256": "8b043d56457a1da28ff927089a549bccea9523707d1c6b4b4c5cf8f27cc3c60e",
+      "domain": "blue",
+      "job_id": "2ad591d161c344fe84c19d9aca8683f0",
+      "size": [
+        1080,
+        2340
+      ],
+      "summary": {
+        "detected_regions": 36,
+        "chinese_regions": 33,
+        "pingfang_supported": 0,
+        "other_candidates": 19,
+        "uncertain": 15,
+        "out_of_scope": 2,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09030654200000754,
+        "ocr": 0.8034037509999052,
+        "font_matching": 0.4129789169999185,
+        "total": 1.4786318750000191
+      },
+      "http_seconds": 1.6212269589304924
+    },
+    {
+      "source_id": "R14-blue-020",
+      "source_sha256": "eace9bac9058136cf2946ac0aba120ec4c05d53e553d8cb8f3c58c0952bcc4ee",
+      "domain": "blue",
+      "job_id": "ba6cc3845fff4640bef82506bedddf6a",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 37,
+        "chinese_regions": 34,
+        "pingfang_supported": 22,
+        "other_candidates": 0,
+        "uncertain": 12,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09180533300013849,
+        "ocr": 0.8151960000000145,
+        "font_matching": 0.3961897090000548,
+        "total": 1.503897668000036
+      },
+      "http_seconds": 1.626155792037025
+    },
+    {
+      "source_id": "R14-blue-021",
+      "source_sha256": "5b6f8f98be7320ecde6614f43d3edae60e0f2930d13b0c90c29ea6bbd8f66155",
+      "domain": "blue",
+      "job_id": "eaea45113f3340b09a425082039a2ea7",
+      "size": [
+        1320,
+        2848
+      ],
+      "summary": {
+        "detected_regions": 18,
+        "chinese_regions": 14,
+        "pingfang_supported": 0,
+        "other_candidates": 10,
+        "uncertain": 5,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09023058400021,
+        "ocr": 0.41894704199989974,
+        "font_matching": 0.1946469590000106,
+        "total": 0.9017300010000326
+      },
+      "http_seconds": 1.0159902081359178
+    },
+    {
+      "source_id": "R14-blue-022",
+      "source_sha256": "eef1b23cefa4f5d9e60a64dace3a51cd4101ce0ca951abc96fc8e628db3c9daf",
+      "domain": "blue",
+      "job_id": "14541728073146deba9011c338638665",
+      "size": [
+        1280,
+        2772
+      ],
+      "summary": {
+        "detected_regions": 34,
+        "chinese_regions": 30,
+        "pingfang_supported": 0,
+        "other_candidates": 9,
+        "uncertain": 22,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09113220799986266,
+        "ocr": 0.784340874999998,
+        "font_matching": 0.32202304199995524,
+        "total": 1.3358942920001482
+      },
+      "http_seconds": 1.4241458750329912
+    },
+    {
+      "source_id": "R14-blue-023",
+      "source_sha256": "ac0ef710bbc2688a7f2f0e51f87d7412889399bc97a333e498fb8806d2c9492b",
+      "domain": "blue",
+      "job_id": "62d42fc047ea49a3a4f56fbc9ea78139",
+      "size": [
+        1280,
+        2832
+      ],
+      "summary": {
+        "detected_regions": 16,
+        "chinese_regions": 12,
+        "pingfang_supported": 0,
+        "other_candidates": 9,
+        "uncertain": 3,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09001704199999949,
+        "ocr": 0.3716865419999067,
+        "font_matching": 0.1787184160000379,
+        "total": 0.8342009580001104
+      },
+      "http_seconds": 1.020977291977033
+    },
+    {
+      "source_id": "R14-blue-024",
+      "source_sha256": "e7dcba9b6450b56b2c268c71095b2649680f95c7e470ae337fbcd87ed93c4ec0",
+      "domain": "blue",
+      "job_id": "b1d92b0c3a8546758a78a89e5f126215",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 43,
+        "chinese_regions": 38,
+        "pingfang_supported": 18,
+        "other_candidates": 0,
+        "uncertain": 20,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09079091700004938,
+        "ocr": 0.9497420830000465,
+        "font_matching": 0.41946200000006684,
+        "total": 1.8516984179998417
+      },
+      "http_seconds": 2.042834124993533
+    },
+    {
+      "source_id": "R14-blue-025",
+      "source_sha256": "110c2f699adc7b8d1b89cdc2e2d61310b186d3429dfe111d7ce79812e47bea12",
+      "domain": "blue",
+      "job_id": "bc6d98d9cefe403f83c4a78ad45766f0",
+      "size": [
+        1080,
+        2440
+      ],
+      "summary": {
+        "detected_regions": 39,
+        "chinese_regions": 35,
+        "pingfang_supported": 0,
+        "other_candidates": 15,
+        "uncertain": 20,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08398666700009016,
+        "ocr": 0.8756785419998323,
+        "font_matching": 0.3405011249999461,
+        "total": 1.5080980420000287
+      },
+      "http_seconds": 1.6272077918983996
+    },
+    {
+      "source_id": "R14-blue-026",
+      "source_sha256": "52fc0a65a70f6caf197bfa46c0608be178fe6ef479ce21f8ba39dc0fb3c9e39b",
+      "domain": "blue",
+      "job_id": "478cafddcea04403aaedf8d90eea77ca",
+      "size": [
+        1290,
+        2796
+      ],
+      "summary": {
+        "detected_regions": 11,
+        "chinese_regions": 7,
+        "pingfang_supported": 5,
+        "other_candidates": 0,
+        "uncertain": 2,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08897937500000808,
+        "ocr": 0.2494918750001034,
+        "font_matching": 0.10339637499987475,
+        "total": 0.5933953750000001
+      },
+      "http_seconds": 0.6076054589357227
+    },
+    {
+      "source_id": "R14-blue-027",
+      "source_sha256": "b6cc3d4aff5e423119a58dc8eea5e6205c578ea44fbad489193b0c3f6a4cb800",
+      "domain": "blue",
+      "job_id": "049ec4e4b04c491db9437cdbc7f1f45f",
+      "size": [
+        1290,
+        2796
+      ],
+      "summary": {
+        "detected_regions": 43,
+        "chinese_regions": 36,
+        "pingfang_supported": 26,
+        "other_candidates": 1,
+        "uncertain": 9,
+        "out_of_scope": 7,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.091113458999871,
+        "ocr": 0.9824301250000644,
+        "font_matching": 0.4087211669998396,
+        "total": 1.6788922920000005
+      },
+      "http_seconds": 1.8325888749677688
+    },
+    {
+      "source_id": "R14-blue-028",
+      "source_sha256": "51e58088139649374a6aa81f9619e6b1f40bee4182895cba2d1c31c6ce97a39a",
+      "domain": "blue",
+      "job_id": "a66b0af14bd34089ba1db97df095855a",
+      "size": [
+        1206,
+        2622
+      ],
+      "summary": {
+        "detected_regions": 39,
+        "chinese_regions": 33,
+        "pingfang_supported": 15,
+        "other_candidates": 0,
+        "uncertain": 19,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09117575000004763,
+        "ocr": 0.8486527920001663,
+        "font_matching": 0.3426446250000481,
+        "total": 1.7002808340000684
+      },
+      "http_seconds": 1.831890834029764
+    },
+    {
+      "source_id": "R14-blue-029",
+      "source_sha256": "7a9eed9df2903dcb29d43bb0e8f0e3b0febdc9761807e8d74dec0b9c67f599f4",
+      "domain": "blue",
+      "job_id": "1a29806fa1984dd09791655b843a5023",
+      "size": [
+        1080,
+        2504
+      ],
+      "summary": {
+        "detected_regions": 43,
+        "chinese_regions": 40,
+        "pingfang_supported": 0,
+        "other_candidates": 22,
+        "uncertain": 18,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.0840108339998551,
+        "ocr": 0.9652009169999474,
+        "font_matching": 0.4239170839998678,
+        "total": 1.6955705010000202
+      },
+      "http_seconds": 1.8348662501666695
+    },
+    {
+      "source_id": "R14-blue-030",
+      "source_sha256": "d9054c9075e12cdb9958045b0b2e921a43ac1241fa36b50c075e2dfdb7d80dec",
+      "domain": "blue",
+      "job_id": "a026c519ccb04805861f5c8f3135d4de",
+      "size": [
+        1080,
+        2376
+      ],
+      "summary": {
+        "detected_regions": 39,
+        "chinese_regions": 37,
+        "pingfang_supported": 0,
+        "other_candidates": 16,
+        "uncertain": 21,
+        "out_of_scope": 2,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09134466699993027,
+        "ocr": 0.8760909170000559,
+        "font_matching": 0.3649642909999784,
+        "total": 1.5116306679999525
+      },
+      "http_seconds": 1.6280057500116527
+    },
+    {
+      "source_id": "R14-blue-031",
+      "source_sha256": "3f76aea768ff947a2be430c796b74032570a55ff36d48cbe9e5a252cc7e02fe4",
+      "domain": "blue",
+      "job_id": "8a3f0f2fe8a242eea66455b5e1f9a264",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 39,
+        "chinese_regions": 36,
+        "pingfang_supported": 24,
+        "other_candidates": 0,
+        "uncertain": 12,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09098825000000943,
+        "ocr": 0.8603479170001265,
+        "font_matching": 0.37536387499994817,
+        "total": 1.5017046250000021
+      },
+      "http_seconds": 1.6184684580657631
+    },
+    {
+      "source_id": "R14-blue-032",
+      "source_sha256": "3222bee5894ec12df5b33063332911044e65e3006aaf1083599222ecac722b49",
+      "domain": "blue",
+      "job_id": "85ff9d571b1249179e30758e5ccf303f",
+      "size": [
+        1264,
+        2780
+      ],
+      "summary": {
+        "detected_regions": 43,
+        "chinese_regions": 39,
+        "pingfang_supported": 0,
+        "other_candidates": 20,
+        "uncertain": 19,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.0949445830001423,
+        "ocr": 0.9603618339999684,
+        "font_matching": 0.4829170000000431,
+        "total": 1.899147917000164
+      },
+      "http_seconds": 2.0500427919905633
+    },
+    {
+      "source_id": "R14-blue-033",
+      "source_sha256": "01c32f86ea86698a250ab7169895caea7ed0bb4e57074e8bc56b83cc24b75e93",
+      "domain": "blue",
+      "job_id": "3d1bd46a425747d4aceb53a4465420b4",
+      "size": [
+        1272,
+        2800
+      ],
+      "summary": {
+        "detected_regions": 39,
+        "chinese_regions": 36,
+        "pingfang_supported": 0,
+        "other_candidates": 19,
+        "uncertain": 17,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09081433300002573,
+        "ocr": 0.8680180409999139,
+        "font_matching": 0.41501337600016086,
+        "total": 1.6184577919998446
+      },
+      "http_seconds": 1.831319750053808
+    },
+    {
+      "source_id": "R14-blue-034",
+      "source_sha256": "978dc519e41baa25493ef75d24625a5a89a9ed94986fe799e1534e56b28070b4",
+      "domain": "blue",
+      "job_id": "1767b090f007489f97239ca2af867411",
+      "size": [
+        1284,
+        2778
+      ],
+      "summary": {
+        "detected_regions": 41,
+        "chinese_regions": 36,
+        "pingfang_supported": 25,
+        "other_candidates": 0,
+        "uncertain": 13,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.10053391700012071,
+        "ocr": 0.9074901670001054,
+        "font_matching": 0.38196254200011026,
+        "total": 1.6227411669999583
+      },
+      "http_seconds": 1.8290317091159523
+    },
+    {
+      "source_id": "R14-blue-035",
+      "source_sha256": "2fb7e7c25d8ce32e3ed1687a09557e76ce5fe9e372e35042994290b3c4d9bb89",
+      "domain": "blue",
+      "job_id": "02465f0d6d9f49328c225f90b64a69c5",
+      "size": [
+        1080,
+        2460
+      ],
+      "summary": {
+        "detected_regions": 36,
+        "chinese_regions": 32,
+        "pingfang_supported": 0,
+        "other_candidates": 8,
+        "uncertain": 24,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08439833300008104,
+        "ocr": 0.8123016249999182,
+        "font_matching": 0.29262441700007,
+        "total": 1.3841562510001495
+      },
+      "http_seconds": 1.4217637910041958
+    },
+    {
+      "source_id": "R14-blue-036",
+      "source_sha256": "689b34688ceba6bec7113dec459fc0ced1c04b80e06dd602d4f0e91946d0ccac",
+      "domain": "blue",
+      "job_id": "5339e51c0a4a48a3b1529f40e072890d",
+      "size": [
+        1170,
+        2532
+      ],
+      "summary": {
+        "detected_regions": 40,
+        "chinese_regions": 34,
+        "pingfang_supported": 22,
+        "other_candidates": 0,
+        "uncertain": 14,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09128420899992307,
+        "ocr": 0.893066792999889,
+        "font_matching": 0.4096947079999609,
+        "total": 1.543553250999821
+      },
+      "http_seconds": 1.6290268329903483
+    },
+    {
+      "source_id": "R14-blue-037",
+      "source_sha256": "bcb536bff86ed4b5af9583a4c63c6b81a43938a4bd0ae8e1537150585b29d850",
+      "domain": "blue",
+      "job_id": "50d37005c0cf4460880771bf87b635d2",
+      "size": [
+        1290,
+        2796
+      ],
+      "summary": {
+        "detected_regions": 42,
+        "chinese_regions": 38,
+        "pingfang_supported": 24,
+        "other_candidates": 1,
+        "uncertain": 13,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09136854200005473,
+        "ocr": 0.9471602500000245,
+        "font_matching": 0.4508988750001208,
+        "total": 1.71027729299999
+      },
+      "http_seconds": 1.8201318748760968
+    },
+    {
+      "source_id": "R14-blue-038",
+      "source_sha256": "c9d3b23ae2d1c84d93e7a32aa8b9d4702ae6861f474cbaf58e4f6040fe015527",
+      "domain": "blue",
+      "job_id": "ca710ad96dd149d5983e078f06ac5348",
+      "size": [
+        1206,
+        2622
+      ],
+      "summary": {
+        "detected_regions": 41,
+        "chinese_regions": 37,
+        "pingfang_supported": 19,
+        "other_candidates": 0,
+        "uncertain": 19,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09230875000002925,
+        "ocr": 0.9188701260000016,
+        "font_matching": 0.3729514999999992,
+        "total": 1.5819380840000576
+      },
+      "http_seconds": 1.626856124959886
+    },
+    {
+      "source_id": "R14-blue-039",
+      "source_sha256": "53b1552cc6c65751ec54a2114d713b2a499899ea9080bfbe747c20cc66c110e4",
+      "domain": "blue",
+      "job_id": "bfe609919a674c1f94b332510c48bea1",
+      "size": [
+        1080,
+        2400
+      ],
+      "summary": {
+        "detected_regions": 40,
+        "chinese_regions": 34,
+        "pingfang_supported": 0,
+        "other_candidates": 21,
+        "uncertain": 13,
+        "out_of_scope": 6,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09137637499998164,
+        "ocr": 0.8978706259999854,
+        "font_matching": 0.3967557080000006,
+        "total": 1.5630194180000672
+      },
+      "http_seconds": 1.6209333748556674
+    },
+    {
+      "source_id": "R14-blue-040",
+      "source_sha256": "55e9cf4e8bc3d38202e3930d5196fd19e9164bf20af3c1e872b8616fc43b16cb",
+      "domain": "blue",
+      "job_id": "8d3739b84ee641b7b5c5f0626c02de25",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 41,
+        "chinese_regions": 35,
+        "pingfang_supported": 22,
+        "other_candidates": 0,
+        "uncertain": 16,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09152958300001046,
+        "ocr": 0.9154594169999655,
+        "font_matching": 0.41323620900016067,
+        "total": 1.5994438340001125
+      },
+      "http_seconds": 1.8364760410040617
+    },
+    {
+      "source_id": "R14-blue-041",
+      "source_sha256": "4f86aa6486e8a44565097f3959e585c2e9040474ab550d3792319e8fce6c5385",
+      "domain": "blue",
+      "job_id": "5c0ea79262254e88aaed7c4d1da74435",
+      "size": [
+        1320,
+        2868
+      ],
+      "summary": {
+        "detected_regions": 38,
+        "chinese_regions": 35,
+        "pingfang_supported": 22,
+        "other_candidates": 0,
+        "uncertain": 13,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.092548208999915,
+        "ocr": 0.8477969589998793,
+        "font_matching": 0.4179668760000368,
+        "total": 1.6057100850000552
+      },
+      "http_seconds": 1.8326365409884602
+    },
+    {
+      "source_id": "R14-blue-042",
+      "source_sha256": "b123d10cc1aa266ebf1689321424206896eea85e19a0c16a7c6c69338aa63ad2",
+      "domain": "blue",
+      "job_id": "f78bfefec5d04914b565b58993cb3e95",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 40,
+        "chinese_regions": 34,
+        "pingfang_supported": 21,
+        "other_candidates": 0,
+        "uncertain": 15,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09142195799995534,
+        "ocr": 0.8961979590001192,
+        "font_matching": 0.4047795000001315,
+        "total": 1.5580171680001058
+      },
+      "http_seconds": 1.6260189160238951
+    },
+    {
+      "source_id": "R14-blue-043",
+      "source_sha256": "cf756cb89da0b49f3995389029e81a3647700b0e459fc1737951bd05965321a4",
+      "domain": "blue",
+      "job_id": "ff1d535f175f4ae58fc5b3a39ed8c97f",
+      "size": [
+        1080,
+        2388
+      ],
+      "summary": {
+        "detected_regions": 15,
+        "chinese_regions": 10,
+        "pingfang_supported": 0,
+        "other_candidates": 4,
+        "uncertain": 6,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08947433399998772,
+        "ocr": 0.35081941599992206,
+        "font_matching": 0.11938712500000292,
+        "total": 0.6616499579999982
+      },
+      "http_seconds": 0.8235517079010606
+    },
+    {
+      "source_id": "R14-blue-044",
+      "source_sha256": "94fb25f08220438ff9a2089b864f26e1657cf87c4642ebf13405fb9905ec6993",
+      "domain": "blue",
+      "job_id": "ce9c7dfcb06f4ded9634882cc19c81ca",
+      "size": [
+        1440,
+        3168
+      ],
+      "summary": {
+        "detected_regions": 17,
+        "chinese_regions": 13,
+        "pingfang_supported": 1,
+        "other_candidates": 8,
+        "uncertain": 4,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09058291599990298,
+        "ocr": 0.4097116249999999,
+        "font_matching": 0.20527562600000238,
+        "total": 0.9095665840000038
+      },
+      "http_seconds": 1.0258135830517858
+    },
+    {
+      "source_id": "R14-blue-045",
+      "source_sha256": "e9c4e181bc95b5ba48ac652abd03c57178f96f0e18abacead7d57a693594cf54",
+      "domain": "blue",
+      "job_id": "a7625281e942467491c7961a1e43f05f",
+      "size": [
+        1080,
+        2400
+      ],
+      "summary": {
+        "detected_regions": 39,
+        "chinese_regions": 35,
+        "pingfang_supported": 0,
+        "other_candidates": 26,
+        "uncertain": 10,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09042791699994268,
+        "ocr": 0.8634839590001775,
+        "font_matching": 0.3973354580000432,
+        "total": 1.533900917999972
+      },
+      "http_seconds": 1.632777958875522
+    },
+    {
+      "source_id": "R14-blue-046",
+      "source_sha256": "77ec478b0f1db9242d3b4def2a0a74c95f075dc7f087f5f5ef0e8ff43b6c642f",
+      "domain": "blue",
+      "job_id": "0392d528b9d24d859f9cd4460151cb01",
+      "size": [
+        1284,
+        2778
+      ],
+      "summary": {
+        "detected_regions": 32,
+        "chinese_regions": 28,
+        "pingfang_supported": 13,
+        "other_candidates": 0,
+        "uncertain": 15,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09096137499977885,
+        "ocr": 0.827591583000185,
+        "font_matching": 0.3871522090000781,
+        "total": 1.5005637510000724
+      },
+      "http_seconds": 1.6304165420588106
+    },
+    {
+      "source_id": "R14-blue-047",
+      "source_sha256": "cf7367a860c175472acbba3419a2cc26c4005db8ef33e42d5de168cccbe33c11",
+      "domain": "blue",
+      "job_id": "de6fcdf92c3444f7be7b6507497b2d75",
+      "size": [
+        1179,
+        2556
+      ],
+      "summary": {
+        "detected_regions": 39,
+        "chinese_regions": 35,
+        "pingfang_supported": 25,
+        "other_candidates": 0,
+        "uncertain": 10,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09069820800004891,
+        "ocr": 0.8541500839999117,
+        "font_matching": 0.3768859170002088,
+        "total": 1.4980364589998771
+      },
+      "http_seconds": 1.6378902499563992
+    },
+    {
+      "source_id": "R14-blue-048",
+      "source_sha256": "e094d9f749efe41ba76eb75f3436c0d0ea6b1e92665eea96c9e5e431a516db4a",
+      "domain": "blue",
+      "job_id": "13390e6af9f94e65bcbe8073a318359d",
+      "size": [
+        1080,
+        2460
+      ],
+      "summary": {
+        "detected_regions": 37,
+        "chinese_regions": 33,
+        "pingfang_supported": 0,
+        "other_candidates": 10,
+        "uncertain": 23,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.08436579099998198,
+        "ocr": 0.8453374170001098,
+        "font_matching": 0.32409995900002286,
+        "total": 1.4279165840000587
+      },
+      "http_seconds": 1.626793459057808
+    },
+    {
+      "source_id": "R14-blue-049",
+      "source_sha256": "8798016360d39d047ded52e186696dd9d8277ca21ec70d42abd7e9ac8303b60c",
+      "domain": "blue",
+      "job_id": "ff9df6b8f69c40c28010a13eed0e0a3f",
+      "size": [
+        1080,
+        2400
+      ],
+      "summary": {
+        "detected_regions": 37,
+        "chinese_regions": 34,
+        "pingfang_supported": 0,
+        "other_candidates": 16,
+        "uncertain": 18,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09111104099997647,
+        "ocr": 0.8478294999999889,
+        "font_matching": 0.38719925000009425,
+        "total": 1.530756626000084
+      },
+      "http_seconds": 1.6296652499586344
+    },
+    {
+      "source_id": "R14-blue-050",
+      "source_sha256": "e4ed9ffbf0c048e7aeb1aa9e789a50d55373f8643d89093f4d51c7ca5046cac2",
+      "domain": "blue",
+      "job_id": "1dd9f8fdea0f40c59bb6dfaa48bb593e",
+      "size": [
+        828,
+        1792
+      ],
+      "summary": {
+        "detected_regions": 37,
+        "chinese_regions": 34,
+        "pingfang_supported": 22,
+        "other_candidates": 0,
+        "uncertain": 12,
+        "out_of_scope": 3,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09065829099995426,
+        "ocr": 0.8620788329999414,
+        "font_matching": 0.39774104200000693,
+        "total": 1.445038084000089
+      },
+      "http_seconds": 1.6410157920327038
+    }
+  ]
+}

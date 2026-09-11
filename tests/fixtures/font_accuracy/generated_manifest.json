@@ -1,0 +1,3125 @@
+{
+  "schema": "flux-glyph-controlled-font-e2e-generated-v1",
+  "protocol_sha256": "2e99954e033b207784ee652b530e62bb1db738cb6c63a892ca8b78cf764cc7af",
+  "case_count": 36,
+  "font_count": 6,
+  "render_profile_count": 6,
+  "source_fonts_verified": true,
+  "exact_postscript_faces_verified": true,
+  "cases": [
+    {
+      "case_id": "pingfang_21.0d1e1_regular--white_png_26",
+      "input_file": "inputs/pingfang_21.0d1e1_regular--white_png_26.png",
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "negative_family": false,
+      "source_font_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+      "postscript_name": "PingFangSC-Regular",
+      "face_index": 3,
+      "id": "white_png_26",
+      "text": "账单详情",
+      "font_size": 26,
+      "background": "white",
+      "format": "PNG",
+      "input_sha256": "685b08a8cea615abea35b67a893c1bab4deff830040d0e92536cb2dc3bc7f0d0",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        323,
+        172,
+        427,
+        212
+      ],
+      "expected_glyph_bboxes": [
+        [
+          323,
+          172,
+          349,
+          212
+        ],
+        [
+          349,
+          172,
+          375,
+          212
+        ],
+        [
+          375,
+          172,
+          401,
+          212
+        ],
+        [
+          401,
+          172,
+          427,
+          212
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          324,
+          182,
+          348,
+          207
+        ],
+        [
+          350,
+          182,
+          374,
+          207
+        ],
+        [
+          376,
+          182,
+          400,
+          207
+        ],
+        [
+          401,
+          182,
+          426,
+          207
+        ]
+      ]
+    },
+    {
+      "case_id": "pingfang_21.0d1e1_regular--white_jpeg90_32",
+      "input_file": "inputs/pingfang_21.0d1e1_regular--white_jpeg90_32.jpg",
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "negative_family": false,
+      "source_font_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+      "postscript_name": "PingFangSC-Regular",
+      "face_index": 3,
+      "id": "white_jpeg90_32",
+      "text": "付款成功",
+      "font_size": 32,
+      "background": "white",
+      "format": "JPEG",
+      "jpeg_quality": 90,
+      "input_sha256": "a831540251037d85519d409f57c54fde43350d04a66e1aebf4e3bf782cd325fe",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        311,
+        172,
+        439,
+        218
+      ],
+      "expected_glyph_bboxes": [
+        [
+          311,
+          172,
+          343,
+          218
+        ],
+        [
+          343,
+          172,
+          375,
+          218
+        ],
+        [
+          375,
+          172,
+          407,
+          218
+        ],
+        [
+          407,
+          172,
+          439,
+          218
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          312,
+          183,
+          342,
+          214
+        ],
+        [
+          344,
+          183,
+          374,
+          214
+        ],
+        [
+          376,
+          183,
+          406,
+          214
+        ],
+        [
+          408,
+          183,
+          437,
+          214
+        ]
+      ]
+    },
+    {
+      "case_id": "pingfang_21.0d1e1_regular--blue_png_28",
+      "input_file": "inputs/pingfang_21.0d1e1_regular--blue_png_28.png",
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "negative_family": false,
+      "source_font_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+      "postscript_name": "PingFangSC-Regular",
+      "face_index": 3,
+      "id": "blue_png_28",
+      "text": "转账到银行卡",
+      "font_size": 28,
+      "background": "alipay_blue",
+      "format": "PNG",
+      "input_sha256": "f2909d38ad305dd40820eab02137847e99384455017ada13216474fea26d25a5",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        291,
+        172,
+        459,
+        214
+      ],
+      "expected_glyph_bboxes": [
+        [
+          291,
+          172,
+          319,
+          214
+        ],
+        [
+          319,
+          172,
+          347,
+          214
+        ],
+        [
+          347,
+          172,
+          375,
+          214
+        ],
+        [
+          375,
+          172,
+          403,
+          214
+        ],
+        [
+          403,
+          172,
+          431,
+          214
+        ],
+        [
+          431,
+          172,
+          459,
+          214
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          292,
+          183,
+          318,
+          209
+        ],
+        [
+          320,
+          183,
+          346,
+          209
+        ],
+        [
+          348,
+          183,
+          373,
+          209
+        ],
+        [
+          376,
+          183,
+          402,
+          209
+        ],
+        [
+          404,
+          183,
+          430,
+          209
+        ],
+        [
+          432,
+          183,
+          458,
+          209
+        ]
+      ]
+    },
+    {
+      "case_id": "pingfang_21.0d1e1_regular--blue_jpeg82_36",
+      "input_file": "inputs/pingfang_21.0d1e1_regular--blue_jpeg82_36.jpg",
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "negative_family": false,
+      "source_font_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+      "postscript_name": "PingFangSC-Regular",
+      "face_index": 3,
+      "id": "blue_jpeg82_36",
+      "text": "订单详情",
+      "font_size": 36,
+      "background": "alipay_blue",
+      "format": "JPEG",
+      "jpeg_quality": 82,
+      "input_sha256": "04ab5911fd51819fa8e58979b8bac2d1cee5407fe6fbc6dd2c7ded50b5cdf5e0",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        303,
+        172,
+        447,
+        222
+      ],
+      "expected_glyph_bboxes": [
+        [
+          303,
+          172,
+          339,
+          222
+        ],
+        [
+          339,
+          172,
+          375,
+          222
+        ],
+        [
+          375,
+          172,
+          411,
+          222
+        ],
+        [
+          411,
+          172,
+          447,
+          222
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          304,
+          185,
+          338,
+          219
+        ],
+        [
+          341,
+          185,
+          373,
+          219
+        ],
+        [
+          376,
+          185,
+          410,
+          219
+        ],
+        [
+          412,
+          185,
+          446,
+          219
+        ]
+      ]
+    },
+    {
+      "case_id": "pingfang_21.0d1e1_regular--pale_blue_png_42",
+      "input_file": "inputs/pingfang_21.0d1e1_regular--pale_blue_png_42.png",
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "negative_family": false,
+      "source_font_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+      "postscript_name": "PingFangSC-Regular",
+      "face_index": 3,
+      "id": "pale_blue_png_42",
+      "text": "收款码服务",
+      "font_size": 42,
+      "background": "pale_blue",
+      "format": "PNG",
+      "input_sha256": "ee86efee61a6b791e06072b337bc3a0940019bc59aa2600b5e554dafbc804d7d",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        270,
+        172,
+        480,
+        228
+      ],
+      "expected_glyph_bboxes": [
+        [
+          270,
+          172,
+          312,
+          228
+        ],
+        [
+          312,
+          172,
+          354,
+          228
+        ],
+        [
+          354,
+          172,
+          396,
+          228
+        ],
+        [
+          396,
+          172,
+          438,
+          228
+        ],
+        [
+          438,
+          172,
+          480,
+          228
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          272,
+          186,
+          311,
+          226
+        ],
+        [
+          313,
+          186,
+          353,
+          226
+        ],
+        [
+          355,
+          188,
+          394,
+          225
+        ],
+        [
+          398,
+          188,
+          437,
+          226
+        ],
+        [
+          439,
+          186,
+          479,
+          226
+        ]
+      ]
+    },
+    {
+      "case_id": "pingfang_21.0d1e1_regular--white_jpeg74_24",
+      "input_file": "inputs/pingfang_21.0d1e1_regular--white_jpeg74_24.jpg",
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "negative_family": false,
+      "source_font_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+      "postscript_name": "PingFangSC-Regular",
+      "face_index": 3,
+      "id": "white_jpeg74_24",
+      "text": "余额宝收益",
+      "font_size": 24,
+      "background": "white",
+      "format": "JPEG",
+      "jpeg_quality": 74,
+      "input_sha256": "bccbbc31be1f36d707b956dd57455c1e53f20d4bfcf8832a63ec1e6685816c54",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        315,
+        172,
+        435,
+        210
+      ],
+      "expected_glyph_bboxes": [
+        [
+          315,
+          172,
+          339,
+          210
+        ],
+        [
+          339,
+          172,
+          363,
+          210
+        ],
+        [
+          363,
+          172,
+          387,
+          210
+        ],
+        [
+          387,
+          172,
+          411,
+          210
+        ],
+        [
+          411,
+          172,
+          435,
+          210
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          315,
+          182,
+          339,
+          205
+        ],
+        [
+          339,
+          182,
+          363,
+          205
+        ],
+        [
+          365,
+          182,
+          386,
+          204
+        ],
+        [
+          388,
+          182,
+          411,
+          205
+        ],
+        [
+          412,
+          182,
+          434,
+          204
+        ]
+      ]
+    },
+    {
+      "case_id": "noto_regular--white_png_26",
+      "input_file": "inputs/noto_regular--white_png_26.png",
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "negative_family": false,
+      "source_font_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "postscript_name": "NotoSansCJKsc-Regular",
+      "face_index": 0,
+      "id": "white_png_26",
+      "text": "账单详情",
+      "font_size": 26,
+      "background": "white",
+      "format": "PNG",
+      "input_sha256": "72402df2886045023d5b7a4287752a9134b3fbb706fa940a110f99b2193cdfa8",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        323,
+        172,
+        427,
+        212
+      ],
+      "expected_glyph_bboxes": [
+        [
+          323,
+          172,
+          349,
+          212
+        ],
+        [
+          349,
+          172,
+          375,
+          212
+        ],
+        [
+          375,
+          172,
+          401,
+          212
+        ],
+        [
+          401,
+          172,
+          427,
+          212
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          324,
+          185,
+          349,
+          210
+        ],
+        [
+          350,
+          184,
+          374,
+          210
+        ],
+        [
+          376,
+          184,
+          400,
+          210
+        ],
+        [
+          401,
+          184,
+          426,
+          210
+        ]
+      ]
+    },
+    {
+      "case_id": "noto_regular--white_jpeg90_32",
+      "input_file": "inputs/noto_regular--white_jpeg90_32.jpg",
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "negative_family": false,
+      "source_font_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "postscript_name": "NotoSansCJKsc-Regular",
+      "face_index": 0,
+      "id": "white_jpeg90_32",
+      "text": "付款成功",
+      "font_size": 32,
+      "background": "white",
+      "format": "JPEG",
+      "jpeg_quality": 90,
+      "input_sha256": "6b1a9b7a069f151ba5df32938d3dfba3360616283842b591a0eb4300f1c9c61a",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        311,
+        172,
+        439,
+        218
+      ],
+      "expected_glyph_bboxes": [
+        [
+          311,
+          172,
+          343,
+          218
+        ],
+        [
+          343,
+          172,
+          375,
+          218
+        ],
+        [
+          375,
+          172,
+          407,
+          218
+        ],
+        [
+          407,
+          172,
+          439,
+          218
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          312,
+          187,
+          342,
+          218
+        ],
+        [
+          344,
+          186,
+          374,
+          218
+        ],
+        [
+          376,
+          186,
+          406,
+          218
+        ],
+        [
+          408,
+          187,
+          438,
+          218
+        ]
+      ]
+    },
+    {
+      "case_id": "noto_regular--blue_png_28",
+      "input_file": "inputs/noto_regular--blue_png_28.png",
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "negative_family": false,
+      "source_font_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "postscript_name": "NotoSansCJKsc-Regular",
+      "face_index": 0,
+      "id": "blue_png_28",
+      "text": "转账到银行卡",
+      "font_size": 28,
+      "background": "alipay_blue",
+      "format": "PNG",
+      "input_sha256": "3db89304bcc1da43f5da937094325cb6af5166c62a8a83b2ee02b0955163850a",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        291,
+        172,
+        459,
+        214
+      ],
+      "expected_glyph_bboxes": [
+        [
+          291,
+          172,
+          319,
+          214
+        ],
+        [
+          319,
+          172,
+          347,
+          214
+        ],
+        [
+          347,
+          172,
+          375,
+          214
+        ],
+        [
+          375,
+          172,
+          403,
+          214
+        ],
+        [
+          403,
+          172,
+          431,
+          214
+        ],
+        [
+          431,
+          172,
+          459,
+          214
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          292,
+          184,
+          318,
+          212
+        ],
+        [
+          320,
+          185,
+          346,
+          212
+        ],
+        [
+          348,
+          185,
+          373,
+          211
+        ],
+        [
+          375,
+          184,
+          403,
+          212
+        ],
+        [
+          403,
+          184,
+          430,
+          212
+        ],
+        [
+          432,
+          184,
+          458,
+          212
+        ]
+      ]
+    },
+    {
+      "case_id": "noto_regular--blue_jpeg82_36",
+      "input_file": "inputs/noto_regular--blue_jpeg82_36.jpg",
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "negative_family": false,
+      "source_font_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "postscript_name": "NotoSansCJKsc-Regular",
+      "face_index": 0,
+      "id": "blue_jpeg82_36",
+      "text": "订单详情",
+      "font_size": 36,
+      "background": "alipay_blue",
+      "format": "JPEG",
+      "jpeg_quality": 82,
+      "input_sha256": "1c2ed0ca8d6d4bee425d3c9a0d4af508c5fdf4fbbd1213fb32f624f1dfb0565c",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        303,
+        172,
+        447,
+        222
+      ],
+      "expected_glyph_bboxes": [
+        [
+          303,
+          172,
+          339,
+          222
+        ],
+        [
+          339,
+          172,
+          375,
+          222
+        ],
+        [
+          375,
+          172,
+          411,
+          222
+        ],
+        [
+          411,
+          172,
+          447,
+          222
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          304,
+          187,
+          338,
+          221
+        ],
+        [
+          340,
+          187,
+          374,
+          222
+        ],
+        [
+          376,
+          186,
+          410,
+          221
+        ],
+        [
+          412,
+          187,
+          446,
+          222
+        ]
+      ]
+    },
+    {
+      "case_id": "noto_regular--pale_blue_png_42",
+      "input_file": "inputs/noto_regular--pale_blue_png_42.png",
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "negative_family": false,
+      "source_font_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "postscript_name": "NotoSansCJKsc-Regular",
+      "face_index": 0,
+      "id": "pale_blue_png_42",
+      "text": "收款码服务",
+      "font_size": 42,
+      "background": "pale_blue",
+      "format": "PNG",
+      "input_sha256": "643c551b3fb0e0f9dc99c03f07b1dae566ab3022f9e19046977468f0852805f6",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        270,
+        172,
+        480,
+        228
+      ],
+      "expected_glyph_bboxes": [
+        [
+          270,
+          172,
+          312,
+          228
+        ],
+        [
+          312,
+          172,
+          354,
+          228
+        ],
+        [
+          354,
+          172,
+          396,
+          228
+        ],
+        [
+          396,
+          172,
+          438,
+          228
+        ],
+        [
+          438,
+          172,
+          480,
+          228
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          272,
+          189,
+          311,
+          228
+        ],
+        [
+          313,
+          189,
+          353,
+          228
+        ],
+        [
+          355,
+          191,
+          394,
+          228
+        ],
+        [
+          397,
+          191,
+          437,
+          228
+        ],
+        [
+          439,
+          189,
+          479,
+          228
+        ]
+      ]
+    },
+    {
+      "case_id": "noto_regular--white_jpeg74_24",
+      "input_file": "inputs/noto_regular--white_jpeg74_24.jpg",
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "negative_family": false,
+      "source_font_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "postscript_name": "NotoSansCJKsc-Regular",
+      "face_index": 0,
+      "id": "white_jpeg74_24",
+      "text": "余额宝收益",
+      "font_size": 24,
+      "background": "white",
+      "format": "JPEG",
+      "jpeg_quality": 74,
+      "input_sha256": "7bdfdae43f25859e17d78c6765713501d6c15bb1c6095e4359f758d7fd000bf8",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        315,
+        172,
+        435,
+        210
+      ],
+      "expected_glyph_bboxes": [
+        [
+          315,
+          172,
+          339,
+          210
+        ],
+        [
+          339,
+          172,
+          363,
+          210
+        ],
+        [
+          363,
+          172,
+          387,
+          210
+        ],
+        [
+          387,
+          172,
+          411,
+          210
+        ],
+        [
+          411,
+          172,
+          435,
+          210
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          315,
+          183,
+          339,
+          207
+        ],
+        [
+          339,
+          183,
+          363,
+          207
+        ],
+        [
+          364,
+          183,
+          386,
+          206
+        ],
+        [
+          388,
+          183,
+          411,
+          207
+        ],
+        [
+          412,
+          183,
+          434,
+          206
+        ]
+      ]
+    },
+    {
+      "case_id": "harmonyos_regular--white_png_26",
+      "input_file": "inputs/harmonyos_regular--white_png_26.png",
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "negative_family": false,
+      "source_font_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "postscript_name": "HarmonyOS_Sans_SC",
+      "face_index": 0,
+      "id": "white_png_26",
+      "text": "账单详情",
+      "font_size": 26,
+      "background": "white",
+      "format": "PNG",
+      "input_sha256": "22b42b0b9bc9cf76da831a6a1f1a4cb4880ff1faca39b965f29ca62a3b49071c",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        323,
+        172,
+        427,
+        212
+      ],
+      "expected_glyph_bboxes": [
+        [
+          323,
+          172,
+          349,
+          212
+        ],
+        [
+          349,
+          172,
+          375,
+          212
+        ],
+        [
+          375,
+          172,
+          401,
+          212
+        ],
+        [
+          401,
+          172,
+          427,
+          212
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          323,
+          179,
+          348,
+          203
+        ],
+        [
+          351,
+          179,
+          374,
+          203
+        ],
+        [
+          375,
+          179,
+          400,
+          203
+        ],
+        [
+          402,
+          179,
+          427,
+          203
+        ]
+      ]
+    },
+    {
+      "case_id": "harmonyos_regular--white_jpeg90_32",
+      "input_file": "inputs/harmonyos_regular--white_jpeg90_32.jpg",
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "negative_family": false,
+      "source_font_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "postscript_name": "HarmonyOS_Sans_SC",
+      "face_index": 0,
+      "id": "white_jpeg90_32",
+      "text": "付款成功",
+      "font_size": 32,
+      "background": "white",
+      "format": "JPEG",
+      "jpeg_quality": 90,
+      "input_sha256": "37cd488f1cb89a4d053c3a43e4b18f99a3be88fd9968440a7083b80a528e075b",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        311,
+        172,
+        439,
+        218
+      ],
+      "expected_glyph_bboxes": [
+        [
+          311,
+          172,
+          343,
+          218
+        ],
+        [
+          343,
+          172,
+          375,
+          218
+        ],
+        [
+          375,
+          172,
+          407,
+          218
+        ],
+        [
+          407,
+          172,
+          439,
+          218
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          312,
+          179,
+          342,
+          208
+        ],
+        [
+          344,
+          178,
+          374,
+          209
+        ],
+        [
+          376,
+          178,
+          406,
+          209
+        ],
+        [
+          408,
+          179,
+          437,
+          209
+        ]
+      ]
+    },
+    {
+      "case_id": "harmonyos_regular--blue_png_28",
+      "input_file": "inputs/harmonyos_regular--blue_png_28.png",
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "negative_family": false,
+      "source_font_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "postscript_name": "HarmonyOS_Sans_SC",
+      "face_index": 0,
+      "id": "blue_png_28",
+      "text": "转账到银行卡",
+      "font_size": 28,
+      "background": "alipay_blue",
+      "format": "PNG",
+      "input_sha256": "b8998356564139a10cf3c7c112b2601ef692955792312fab05ec8aa8eefd18f1",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        291,
+        172,
+        459,
+        214
+      ],
+      "expected_glyph_bboxes": [
+        [
+          291,
+          172,
+          319,
+          214
+        ],
+        [
+          319,
+          172,
+          347,
+          214
+        ],
+        [
+          347,
+          172,
+          375,
+          214
+        ],
+        [
+          375,
+          172,
+          403,
+          214
+        ],
+        [
+          403,
+          172,
+          431,
+          214
+        ],
+        [
+          431,
+          172,
+          459,
+          214
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          292,
+          178,
+          318,
+          205
+        ],
+        [
+          320,
+          178,
+          347,
+          205
+        ],
+        [
+          348,
+          179,
+          373,
+          204
+        ],
+        [
+          375,
+          178,
+          401,
+          205
+        ],
+        [
+          403,
+          178,
+          430,
+          204
+        ],
+        [
+          432,
+          178,
+          457,
+          204
+        ]
+      ]
+    },
+    {
+      "case_id": "harmonyos_regular--blue_jpeg82_36",
+      "input_file": "inputs/harmonyos_regular--blue_jpeg82_36.jpg",
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "negative_family": false,
+      "source_font_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "postscript_name": "HarmonyOS_Sans_SC",
+      "face_index": 0,
+      "id": "blue_jpeg82_36",
+      "text": "订单详情",
+      "font_size": 36,
+      "background": "alipay_blue",
+      "format": "JPEG",
+      "jpeg_quality": 82,
+      "input_sha256": "18681ca030f69cc4210753806c1e62868f334563eec992cf363573638c79f651",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        303,
+        172,
+        447,
+        222
+      ],
+      "expected_glyph_bboxes": [
+        [
+          303,
+          172,
+          339,
+          222
+        ],
+        [
+          339,
+          172,
+          375,
+          222
+        ],
+        [
+          375,
+          172,
+          411,
+          222
+        ],
+        [
+          411,
+          172,
+          447,
+          222
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          304,
+          179,
+          338,
+          212
+        ],
+        [
+          341,
+          179,
+          373,
+          213
+        ],
+        [
+          376,
+          179,
+          410,
+          213
+        ],
+        [
+          411,
+          180,
+          445,
+          213
+        ]
+      ]
+    },
+    {
+      "case_id": "harmonyos_regular--pale_blue_png_42",
+      "input_file": "inputs/harmonyos_regular--pale_blue_png_42.png",
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "negative_family": false,
+      "source_font_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "postscript_name": "HarmonyOS_Sans_SC",
+      "face_index": 0,
+      "id": "pale_blue_png_42",
+      "text": "收款码服务",
+      "font_size": 42,
+      "background": "pale_blue",
+      "format": "PNG",
+      "input_sha256": "31a57301a8c33fa87f980541ab7556fb4245293e94e767f3d2f9c13bfd4927d2",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        270,
+        172,
+        480,
+        228
+      ],
+      "expected_glyph_bboxes": [
+        [
+          270,
+          172,
+          312,
+          228
+        ],
+        [
+          312,
+          172,
+          354,
+          228
+        ],
+        [
+          354,
+          172,
+          396,
+          228
+        ],
+        [
+          396,
+          172,
+          438,
+          228
+        ],
+        [
+          438,
+          172,
+          480,
+          228
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          272,
+          179,
+          311,
+          219
+        ],
+        [
+          313,
+          180,
+          353,
+          219
+        ],
+        [
+          355,
+          182,
+          394,
+          218
+        ],
+        [
+          397,
+          181,
+          437,
+          219
+        ],
+        [
+          439,
+          178,
+          479,
+          219
+        ]
+      ]
+    },
+    {
+      "case_id": "harmonyos_regular--white_jpeg74_24",
+      "input_file": "inputs/harmonyos_regular--white_jpeg74_24.jpg",
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "negative_family": false,
+      "source_font_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "postscript_name": "HarmonyOS_Sans_SC",
+      "face_index": 0,
+      "id": "white_jpeg74_24",
+      "text": "余额宝收益",
+      "font_size": 24,
+      "background": "white",
+      "format": "JPEG",
+      "jpeg_quality": 74,
+      "input_sha256": "442133f26a0bdc6128ffe9291a3504bba12d67543c5e381da617e40a9df5c7eb",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        315,
+        172,
+        435,
+        210
+      ],
+      "expected_glyph_bboxes": [
+        [
+          315,
+          172,
+          339,
+          210
+        ],
+        [
+          339,
+          172,
+          363,
+          210
+        ],
+        [
+          363,
+          172,
+          387,
+          210
+        ],
+        [
+          387,
+          172,
+          411,
+          210
+        ],
+        [
+          411,
+          172,
+          435,
+          210
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          316,
+          179,
+          339,
+          201
+        ],
+        [
+          339,
+          178,
+          362,
+          201
+        ],
+        [
+          364,
+          178,
+          386,
+          200
+        ],
+        [
+          388,
+          179,
+          411,
+          202
+        ],
+        [
+          412,
+          178,
+          434,
+          200
+        ]
+      ]
+    },
+    {
+      "case_id": "misans_regular--white_png_26",
+      "input_file": "inputs/misans_regular--white_png_26.png",
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "negative_family": false,
+      "source_font_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "postscript_name": "MiSans-Regular",
+      "face_index": 0,
+      "id": "white_png_26",
+      "text": "账单详情",
+      "font_size": 26,
+      "background": "white",
+      "format": "PNG",
+      "input_sha256": "06e0687000cdcaf45c85908861dd8e39a8623bac66d7ab3074461bb004b60ff2",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        323,
+        172,
+        427,
+        212
+      ],
+      "expected_glyph_bboxes": [
+        [
+          323,
+          172,
+          349,
+          212
+        ],
+        [
+          349,
+          172,
+          375,
+          212
+        ],
+        [
+          375,
+          172,
+          401,
+          212
+        ],
+        [
+          401,
+          172,
+          427,
+          212
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          324,
+          182,
+          348,
+          206
+        ],
+        [
+          350,
+          181,
+          374,
+          206
+        ],
+        [
+          376,
+          181,
+          400,
+          206
+        ],
+        [
+          402,
+          182,
+          426,
+          206
+        ]
+      ]
+    },
+    {
+      "case_id": "misans_regular--white_jpeg90_32",
+      "input_file": "inputs/misans_regular--white_jpeg90_32.jpg",
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "negative_family": false,
+      "source_font_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "postscript_name": "MiSans-Regular",
+      "face_index": 0,
+      "id": "white_jpeg90_32",
+      "text": "付款成功",
+      "font_size": 32,
+      "background": "white",
+      "format": "JPEG",
+      "jpeg_quality": 90,
+      "input_sha256": "e5d1b2d976b07c1cbeafbe26b7e9bc647906a0011fbff9170e91918e1c69175d",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        311,
+        172,
+        439,
+        218
+      ],
+      "expected_glyph_bboxes": [
+        [
+          311,
+          172,
+          343,
+          218
+        ],
+        [
+          343,
+          172,
+          375,
+          218
+        ],
+        [
+          375,
+          172,
+          407,
+          218
+        ],
+        [
+          407,
+          172,
+          439,
+          218
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          312,
+          183,
+          342,
+          213
+        ],
+        [
+          344,
+          183,
+          374,
+          213
+        ],
+        [
+          376,
+          182,
+          406,
+          213
+        ],
+        [
+          408,
+          182,
+          436,
+          213
+        ]
+      ]
+    },
+    {
+      "case_id": "misans_regular--blue_png_28",
+      "input_file": "inputs/misans_regular--blue_png_28.png",
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "negative_family": false,
+      "source_font_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "postscript_name": "MiSans-Regular",
+      "face_index": 0,
+      "id": "blue_png_28",
+      "text": "转账到银行卡",
+      "font_size": 28,
+      "background": "alipay_blue",
+      "format": "PNG",
+      "input_sha256": "31b5183abf7872e39523dfdc65e40d64a32c2c6b97ee72c66741dcb69c706978",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        291,
+        172,
+        459,
+        214
+      ],
+      "expected_glyph_bboxes": [
+        [
+          291,
+          172,
+          319,
+          214
+        ],
+        [
+          319,
+          172,
+          347,
+          214
+        ],
+        [
+          347,
+          172,
+          375,
+          214
+        ],
+        [
+          375,
+          172,
+          403,
+          214
+        ],
+        [
+          403,
+          172,
+          431,
+          214
+        ],
+        [
+          431,
+          172,
+          459,
+          214
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          292,
+          182,
+          318,
+          209
+        ],
+        [
+          320,
+          182,
+          346,
+          208
+        ],
+        [
+          348,
+          182,
+          372,
+          208
+        ],
+        [
+          376,
+          182,
+          402,
+          208
+        ],
+        [
+          404,
+          182,
+          430,
+          208
+        ],
+        [
+          432,
+          182,
+          458,
+          208
+        ]
+      ]
+    },
+    {
+      "case_id": "misans_regular--blue_jpeg82_36",
+      "input_file": "inputs/misans_regular--blue_jpeg82_36.jpg",
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "negative_family": false,
+      "source_font_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "postscript_name": "MiSans-Regular",
+      "face_index": 0,
+      "id": "blue_jpeg82_36",
+      "text": "订单详情",
+      "font_size": 36,
+      "background": "alipay_blue",
+      "format": "JPEG",
+      "jpeg_quality": 82,
+      "input_sha256": "76880ba445254952ad315caeecfd9a94d016ce2f411a6b59b682f56ad33b2ce6",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        303,
+        172,
+        447,
+        222
+      ],
+      "expected_glyph_bboxes": [
+        [
+          303,
+          172,
+          339,
+          222
+        ],
+        [
+          339,
+          172,
+          375,
+          222
+        ],
+        [
+          375,
+          172,
+          411,
+          222
+        ],
+        [
+          411,
+          172,
+          447,
+          222
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          305,
+          183,
+          338,
+          216
+        ],
+        [
+          341,
+          183,
+          373,
+          217
+        ],
+        [
+          377,
+          183,
+          409,
+          217
+        ],
+        [
+          412,
+          183,
+          445,
+          217
+        ]
+      ]
+    },
+    {
+      "case_id": "misans_regular--pale_blue_png_42",
+      "input_file": "inputs/misans_regular--pale_blue_png_42.png",
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "negative_family": false,
+      "source_font_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "postscript_name": "MiSans-Regular",
+      "face_index": 0,
+      "id": "pale_blue_png_42",
+      "text": "收款码服务",
+      "font_size": 42,
+      "background": "pale_blue",
+      "format": "PNG",
+      "input_sha256": "35f3e849a12e33f3d806b3af2b700796220a284dffe512102822570ec5c50b58",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        270,
+        172,
+        480,
+        228
+      ],
+      "expected_glyph_bboxes": [
+        [
+          270,
+          172,
+          312,
+          228
+        ],
+        [
+          312,
+          172,
+          354,
+          228
+        ],
+        [
+          354,
+          172,
+          396,
+          228
+        ],
+        [
+          396,
+          172,
+          438,
+          228
+        ],
+        [
+          438,
+          172,
+          480,
+          228
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          273,
+          184,
+          310,
+          224
+        ],
+        [
+          313,
+          184,
+          352,
+          224
+        ],
+        [
+          356,
+          186,
+          393,
+          223
+        ],
+        [
+          398,
+          186,
+          436,
+          223
+        ],
+        [
+          440,
+          183,
+          478,
+          224
+        ]
+      ]
+    },
+    {
+      "case_id": "misans_regular--white_jpeg74_24",
+      "input_file": "inputs/misans_regular--white_jpeg74_24.jpg",
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "negative_family": false,
+      "source_font_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "postscript_name": "MiSans-Regular",
+      "face_index": 0,
+      "id": "white_jpeg74_24",
+      "text": "余额宝收益",
+      "font_size": 24,
+      "background": "white",
+      "format": "JPEG",
+      "jpeg_quality": 74,
+      "input_sha256": "f1f4d91e49be7f353f055313d0299400b866e281b673d88a76a314d369cbec34",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        315,
+        172,
+        435,
+        210
+      ],
+      "expected_glyph_bboxes": [
+        [
+          315,
+          172,
+          339,
+          210
+        ],
+        [
+          339,
+          172,
+          363,
+          210
+        ],
+        [
+          363,
+          172,
+          387,
+          210
+        ],
+        [
+          387,
+          172,
+          411,
+          210
+        ],
+        [
+          411,
+          172,
+          435,
+          210
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          316,
+          181,
+          338,
+          204
+        ],
+        [
+          340,
+          181,
+          362,
+          204
+        ],
+        [
+          364,
+          181,
+          386,
+          203
+        ],
+        [
+          388,
+          181,
+          410,
+          204
+        ],
+        [
+          412,
+          181,
+          434,
+          203
+        ]
+      ]
+    },
+    {
+      "case_id": "oppo_regular--white_png_26",
+      "input_file": "inputs/oppo_regular--white_png_26.png",
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "negative_family": false,
+      "source_font_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "postscript_name": "OPPOSans",
+      "face_index": 0,
+      "id": "white_png_26",
+      "text": "账单详情",
+      "font_size": 26,
+      "background": "white",
+      "format": "PNG",
+      "input_sha256": "f9640ce19eb8ea9a8d5edebed9494fe81f044b928a05d6313bf66a36c0f47a0c",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        325,
+        172,
+        425,
+        212
+      ],
+      "expected_glyph_bboxes": [
+        [
+          325,
+          172,
+          350,
+          212
+        ],
+        [
+          350,
+          172,
+          375,
+          212
+        ],
+        [
+          375,
+          172,
+          400,
+          212
+        ],
+        [
+          400,
+          172,
+          425,
+          212
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          325,
+          181,
+          350,
+          204
+        ],
+        [
+          351,
+          180,
+          374,
+          205
+        ],
+        [
+          376,
+          180,
+          399,
+          205
+        ],
+        [
+          400,
+          180,
+          424,
+          204
+        ]
+      ]
+    },
+    {
+      "case_id": "oppo_regular--white_jpeg90_32",
+      "input_file": "inputs/oppo_regular--white_jpeg90_32.jpg",
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "negative_family": false,
+      "source_font_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "postscript_name": "OPPOSans",
+      "face_index": 0,
+      "id": "white_jpeg90_32",
+      "text": "付款成功",
+      "font_size": 32,
+      "background": "white",
+      "format": "JPEG",
+      "jpeg_quality": 90,
+      "input_sha256": "5e4088458e413c5df5146ec67a6d97e01f118a8630932a79778d60a16c957fdb",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        313,
+        172,
+        437,
+        218
+      ],
+      "expected_glyph_bboxes": [
+        [
+          313,
+          172,
+          344,
+          218
+        ],
+        [
+          344,
+          172,
+          375,
+          218
+        ],
+        [
+          375,
+          172,
+          406,
+          218
+        ],
+        [
+          406,
+          172,
+          437,
+          218
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          313,
+          181,
+          343,
+          211
+        ],
+        [
+          344,
+          181,
+          374,
+          211
+        ],
+        [
+          375,
+          181,
+          405,
+          211
+        ],
+        [
+          407,
+          181,
+          434,
+          211
+        ]
+      ]
+    },
+    {
+      "case_id": "oppo_regular--blue_png_28",
+      "input_file": "inputs/oppo_regular--blue_png_28.png",
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "negative_family": false,
+      "source_font_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "postscript_name": "OPPOSans",
+      "face_index": 0,
+      "id": "blue_png_28",
+      "text": "转账到银行卡",
+      "font_size": 28,
+      "background": "alipay_blue",
+      "format": "PNG",
+      "input_sha256": "d1e72ad69135bbc074dcc29372a8220eb461b44cc13a1856002c631c8b6bb832",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        294,
+        172,
+        456,
+        214
+      ],
+      "expected_glyph_bboxes": [
+        [
+          294,
+          172,
+          321,
+          214
+        ],
+        [
+          321,
+          172,
+          348,
+          214
+        ],
+        [
+          348,
+          172,
+          375,
+          214
+        ],
+        [
+          375,
+          172,
+          402,
+          214
+        ],
+        [
+          402,
+          172,
+          429,
+          214
+        ],
+        [
+          429,
+          172,
+          456,
+          214
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          295,
+          181,
+          320,
+          207
+        ],
+        [
+          321,
+          181,
+          347,
+          207
+        ],
+        [
+          349,
+          181,
+          373,
+          206
+        ],
+        [
+          375,
+          181,
+          401,
+          207
+        ],
+        [
+          402,
+          181,
+          428,
+          206
+        ],
+        [
+          430,
+          181,
+          455,
+          207
+        ]
+      ]
+    },
+    {
+      "case_id": "oppo_regular--blue_jpeg82_36",
+      "input_file": "inputs/oppo_regular--blue_jpeg82_36.jpg",
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "negative_family": false,
+      "source_font_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "postscript_name": "OPPOSans",
+      "face_index": 0,
+      "id": "blue_jpeg82_36",
+      "text": "订单详情",
+      "font_size": 36,
+      "background": "alipay_blue",
+      "format": "JPEG",
+      "jpeg_quality": 82,
+      "input_sha256": "9be7a43a44c8484a8aba3ecb3ce25edf4e1f989791227f0d6fd9146b46a4dbe8",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        307,
+        172,
+        443,
+        222
+      ],
+      "expected_glyph_bboxes": [
+        [
+          307,
+          172,
+          341,
+          222
+        ],
+        [
+          341,
+          172,
+          375,
+          222
+        ],
+        [
+          375,
+          172,
+          409,
+          222
+        ],
+        [
+          409,
+          172,
+          443,
+          222
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          308,
+          182,
+          340,
+          214
+        ],
+        [
+          343,
+          181,
+          374,
+          215
+        ],
+        [
+          376,
+          182,
+          408,
+          215
+        ],
+        [
+          409,
+          182,
+          442,
+          215
+        ]
+      ]
+    },
+    {
+      "case_id": "oppo_regular--pale_blue_png_42",
+      "input_file": "inputs/oppo_regular--pale_blue_png_42.png",
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "negative_family": false,
+      "source_font_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "postscript_name": "OPPOSans",
+      "face_index": 0,
+      "id": "pale_blue_png_42",
+      "text": "收款码服务",
+      "font_size": 42,
+      "background": "pale_blue",
+      "format": "PNG",
+      "input_sha256": "cb68ac7751676d27e6392e4e564517c44b59c0209827ffb423899b8075e734b1",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        275,
+        172,
+        475,
+        228
+      ],
+      "expected_glyph_bboxes": [
+        [
+          275,
+          172,
+          315,
+          228
+        ],
+        [
+          315,
+          172,
+          355,
+          228
+        ],
+        [
+          355,
+          172,
+          395,
+          228
+        ],
+        [
+          395,
+          172,
+          435,
+          228
+        ],
+        [
+          435,
+          172,
+          475,
+          228
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          277,
+          183,
+          314,
+          222
+        ],
+        [
+          316,
+          183,
+          354,
+          221
+        ],
+        [
+          355,
+          185,
+          392,
+          221
+        ],
+        [
+          396,
+          185,
+          434,
+          221
+        ],
+        [
+          436,
+          182,
+          474,
+          222
+        ]
+      ]
+    },
+    {
+      "case_id": "oppo_regular--white_jpeg74_24",
+      "input_file": "inputs/oppo_regular--white_jpeg74_24.jpg",
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "negative_family": false,
+      "source_font_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "postscript_name": "OPPOSans",
+      "face_index": 0,
+      "id": "white_jpeg74_24",
+      "text": "余额宝收益",
+      "font_size": 24,
+      "background": "white",
+      "format": "JPEG",
+      "jpeg_quality": 74,
+      "input_sha256": "28a72af46f13d6179d41df02cad3de44ac0c2283940948145ab458e319dbe5b5",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        318,
+        172,
+        433,
+        210
+      ],
+      "expected_glyph_bboxes": [
+        [
+          318,
+          172,
+          341,
+          210
+        ],
+        [
+          341,
+          172,
+          364,
+          210
+        ],
+        [
+          364,
+          172,
+          387,
+          210
+        ],
+        [
+          387,
+          172,
+          410,
+          210
+        ],
+        [
+          410,
+          172,
+          433,
+          210
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          318,
+          180,
+          341,
+          202
+        ],
+        [
+          341,
+          180,
+          363,
+          202
+        ],
+        [
+          365,
+          180,
+          386,
+          201
+        ],
+        [
+          388,
+          180,
+          410,
+          203
+        ],
+        [
+          411,
+          180,
+          432,
+          201
+        ]
+      ]
+    },
+    {
+      "case_id": "negative_songti_regular--white_png_26",
+      "input_file": "inputs/negative_songti_regular--white_png_26.png",
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "negative_family": true,
+      "source_font_sha256": "6873ac2ccab5c2e74d87d6b690f3773098dd6a6238805363a3b3567f2caf6f47",
+      "postscript_name": "STSongti-SC-Regular",
+      "face_index": 6,
+      "id": "white_png_26",
+      "text": "账单详情",
+      "font_size": 26,
+      "background": "white",
+      "format": "PNG",
+      "input_sha256": "a3f7a0ea1ef2d9afb05907106f13db7e51e90dd790ea4ff683710a0078ff7469",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        323,
+        172,
+        427,
+        212
+      ],
+      "expected_glyph_bboxes": [
+        [
+          323,
+          172,
+          349,
+          212
+        ],
+        [
+          349,
+          172,
+          375,
+          212
+        ],
+        [
+          375,
+          172,
+          401,
+          212
+        ],
+        [
+          401,
+          172,
+          427,
+          212
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          323,
+          183,
+          348,
+          209
+        ],
+        [
+          349,
+          183,
+          375,
+          208
+        ],
+        [
+          375,
+          183,
+          401,
+          208
+        ],
+        [
+          402,
+          183,
+          427,
+          208
+        ]
+      ]
+    },
+    {
+      "case_id": "negative_songti_regular--white_jpeg90_32",
+      "input_file": "inputs/negative_songti_regular--white_jpeg90_32.jpg",
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "negative_family": true,
+      "source_font_sha256": "6873ac2ccab5c2e74d87d6b690f3773098dd6a6238805363a3b3567f2caf6f47",
+      "postscript_name": "STSongti-SC-Regular",
+      "face_index": 6,
+      "id": "white_jpeg90_32",
+      "text": "付款成功",
+      "font_size": 32,
+      "background": "white",
+      "format": "JPEG",
+      "jpeg_quality": 90,
+      "input_sha256": "4f6be7e5b01b652e5fea2f5545c4ecb46f14a600485b25f52cf94e9db397c470",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        311,
+        172,
+        439,
+        218
+      ],
+      "expected_glyph_bboxes": [
+        [
+          311,
+          172,
+          343,
+          218
+        ],
+        [
+          343,
+          172,
+          375,
+          218
+        ],
+        [
+          375,
+          172,
+          407,
+          218
+        ],
+        [
+          407,
+          172,
+          439,
+          218
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          312,
+          186,
+          343,
+          216
+        ],
+        [
+          343,
+          185,
+          375,
+          216
+        ],
+        [
+          376,
+          185,
+          406,
+          216
+        ],
+        [
+          408,
+          185,
+          438,
+          215
+        ]
+      ]
+    },
+    {
+      "case_id": "negative_songti_regular--blue_png_28",
+      "input_file": "inputs/negative_songti_regular--blue_png_28.png",
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "negative_family": true,
+      "source_font_sha256": "6873ac2ccab5c2e74d87d6b690f3773098dd6a6238805363a3b3567f2caf6f47",
+      "postscript_name": "STSongti-SC-Regular",
+      "face_index": 6,
+      "id": "blue_png_28",
+      "text": "转账到银行卡",
+      "font_size": 28,
+      "background": "alipay_blue",
+      "format": "PNG",
+      "input_sha256": "e3d13a0cb5979f726c575bd870fcd6c16d902633650e79930d5a30d6fc5d6e01",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        291,
+        172,
+        459,
+        214
+      ],
+      "expected_glyph_bboxes": [
+        [
+          291,
+          172,
+          319,
+          214
+        ],
+        [
+          319,
+          172,
+          347,
+          214
+        ],
+        [
+          347,
+          172,
+          375,
+          214
+        ],
+        [
+          375,
+          172,
+          403,
+          214
+        ],
+        [
+          403,
+          172,
+          431,
+          214
+        ],
+        [
+          431,
+          172,
+          459,
+          214
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          291,
+          184,
+          318,
+          211
+        ],
+        [
+          320,
+          183,
+          347,
+          211
+        ],
+        [
+          348,
+          184,
+          374,
+          211
+        ],
+        [
+          375,
+          184,
+          403,
+          211
+        ],
+        [
+          404,
+          184,
+          430,
+          211
+        ],
+        [
+          432,
+          184,
+          459,
+          211
+        ]
+      ]
+    },
+    {
+      "case_id": "negative_songti_regular--blue_jpeg82_36",
+      "input_file": "inputs/negative_songti_regular--blue_jpeg82_36.jpg",
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "negative_family": true,
+      "source_font_sha256": "6873ac2ccab5c2e74d87d6b690f3773098dd6a6238805363a3b3567f2caf6f47",
+      "postscript_name": "STSongti-SC-Regular",
+      "face_index": 6,
+      "id": "blue_jpeg82_36",
+      "text": "订单详情",
+      "font_size": 36,
+      "background": "alipay_blue",
+      "format": "JPEG",
+      "jpeg_quality": 82,
+      "input_sha256": "f3b72dff37b17213012283a1ab15781dd3e8277b9c6a1beb05b3309409b00719",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        303,
+        172,
+        447,
+        222
+      ],
+      "expected_glyph_bboxes": [
+        [
+          303,
+          172,
+          339,
+          222
+        ],
+        [
+          339,
+          172,
+          375,
+          222
+        ],
+        [
+          375,
+          172,
+          411,
+          222
+        ],
+        [
+          411,
+          172,
+          447,
+          222
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          303,
+          187,
+          337,
+          222
+        ],
+        [
+          340,
+          186,
+          374,
+          221
+        ],
+        [
+          375,
+          187,
+          410,
+          221
+        ],
+        [
+          411,
+          187,
+          446,
+          222
+        ]
+      ]
+    },
+    {
+      "case_id": "negative_songti_regular--pale_blue_png_42",
+      "input_file": "inputs/negative_songti_regular--pale_blue_png_42.png",
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "negative_family": true,
+      "source_font_sha256": "6873ac2ccab5c2e74d87d6b690f3773098dd6a6238805363a3b3567f2caf6f47",
+      "postscript_name": "STSongti-SC-Regular",
+      "face_index": 6,
+      "id": "pale_blue_png_42",
+      "text": "收款码服务",
+      "font_size": 42,
+      "background": "pale_blue",
+      "format": "PNG",
+      "input_sha256": "c8fbf513e5bbf33b8389bc7aee1b02a4f35c800b75bf2dc83d57372e3abcb2ab",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        270,
+        172,
+        480,
+        228
+      ],
+      "expected_glyph_bboxes": [
+        [
+          270,
+          172,
+          312,
+          228
+        ],
+        [
+          312,
+          172,
+          354,
+          228
+        ],
+        [
+          354,
+          172,
+          396,
+          228
+        ],
+        [
+          396,
+          172,
+          438,
+          228
+        ],
+        [
+          438,
+          172,
+          480,
+          228
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          271,
+          188,
+          310,
+          228
+        ],
+        [
+          313,
+          188,
+          354,
+          228
+        ],
+        [
+          356,
+          189,
+          396,
+          228
+        ],
+        [
+          397,
+          189,
+          437,
+          228
+        ],
+        [
+          439,
+          188,
+          478,
+          228
+        ]
+      ]
+    },
+    {
+      "case_id": "negative_songti_regular--white_jpeg74_24",
+      "input_file": "inputs/negative_songti_regular--white_jpeg74_24.jpg",
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "negative_family": true,
+      "source_font_sha256": "6873ac2ccab5c2e74d87d6b690f3773098dd6a6238805363a3b3567f2caf6f47",
+      "postscript_name": "STSongti-SC-Regular",
+      "face_index": 6,
+      "id": "white_jpeg74_24",
+      "text": "余额宝收益",
+      "font_size": 24,
+      "background": "white",
+      "format": "JPEG",
+      "jpeg_quality": 74,
+      "input_sha256": "b87f71b60c20d536b9227e8b40e60c1c5c23e090cc1fdc0355df25f303106133",
+      "image_size": [
+        750,
+        420
+      ],
+      "expected_text_bbox": [
+        315,
+        172,
+        435,
+        210
+      ],
+      "expected_glyph_bboxes": [
+        [
+          315,
+          172,
+          339,
+          210
+        ],
+        [
+          339,
+          172,
+          363,
+          210
+        ],
+        [
+          363,
+          172,
+          387,
+          210
+        ],
+        [
+          387,
+          172,
+          411,
+          210
+        ],
+        [
+          411,
+          172,
+          435,
+          210
+        ]
+      ],
+      "expected_ink_bboxes": [
+        [
+          315,
+          183,
+          339,
+          206
+        ],
+        [
+          339,
+          183,
+          362,
+          207
+        ],
+        [
+          364,
+          183,
+          386,
+          205
+        ],
+        [
+          388,
+          183,
+          410,
+          207
+        ],
+        [
+          411,
+          183,
+          435,
+          206
+        ]
+      ]
+    }
+  ]
+}

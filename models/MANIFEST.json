@@ -1,0 +1,51 @@
+{
+  "schema": "flux-glyph-models-v2",
+  "files": [
+    {
+      "path": "font/GATES.json",
+      "sha256": "2961f7894ac29c10dc275fd10ede903b65f98fdf5e610db562212b88aa35342e",
+      "bytes": 255
+    },
+    {
+      "path": "font/VERIFICATION.json",
+      "sha256": "9050480f86a5d7cc62a1f7e642f664a7f408bc70f2302bebf99f64d53300bb2c",
+      "bytes": 1059
+    },
+    {
+      "path": "font/metadata.json",
+      "sha256": "b2ff7910baa755790b64964c3cb55e1024719a512704cefa1fd9759e0c0ab7cf",
+      "bytes": 29342
+    },
+    {
+      "path": "font/references.npz.zip",
+      "sha256": "6d355c542efbca8965c144956d40c3476a4bd1a7a42646f94de315c49a6b72d5",
+      "bytes": 68077821
+    },
+    {
+      "path": "pp/charset/ppocr_keys_v1.txt",
+      "sha256": "a1c84d9bdb9ab29043c58896224d32941783eb821629618416dcb08f12886492",
+      "bytes": 26250
+    },
+    {
+      "path": "pp/onnx/paddle_ocr_cls.onnx",
+      "sha256": "e263cad54b85e6dd6ce5aed66154785682a221be2216300ce321e58a9d022296",
+      "bytes": 571423
+    },
+    {
+      "path": "pp/onnx/paddle_ocr_det.onnx",
+      "sha256": "69ce850fec741a2a4568c7c924bb025c9d4f1129e5f96ab428c799ccc5ef2275",
+      "bytes": 4729474
+    },
+    {
+      "path": "pp/onnx/paddle_ocr_rec.onnx",
+      "sha256": "ad7dd55f6759fa02333bff6eb179a4f51be5b89cbe6f710249c95f47d0211350",
+      "bytes": 10812334
+    },
+    {
+      "path": "pp/paddle_ocr_delivery.contract.json",
+      "sha256": "5e5eeb877847bfc73597acfacfbdd43b9be9820fafce10c8e8c6715d9fb8c492",
+      "bytes": 8145
+    }
+  ],
+  "source_note": "user-supplied PP ONNX plus frozen R13 reference rasters compacted without new neural training"
+}

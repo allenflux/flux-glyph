@@ -1,0 +1,165 @@
+{
+  "status": "passed",
+  "health": {
+    "ok": true,
+    "model_version": "r13-pp-ink-v1-b2ff7910",
+    "max_upload_mb": 8,
+    "max_pixels": 12000000,
+    "workers": 1,
+    "queue_size": 2,
+    "authentication_required": false
+  },
+  "records": [
+    {
+      "name": "R14-white-001",
+      "id": "8ce8097145d5412bbf3ae67924ecb787",
+      "summary": {
+        "detected_regions": 32,
+        "chinese_regions": 27,
+        "pingfang_supported": 16,
+        "other_candidates": 0,
+        "uncertain": 12,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09166429200013226,
+        "ocr": 0.8043655000001309,
+        "font_matching": 0.3213066250000338,
+        "total": 1.365381834000118
+      },
+      "size": [
+        1320,
+        2868
+      ]
+    },
+    {
+      "name": "R14-white-009",
+      "id": "d4ff7df597454dd1a2b5acd5c10e7f9e",
+      "summary": {
+        "detected_regions": 29,
+        "chinese_regions": 24,
+        "pingfang_supported": 0,
+        "other_candidates": 7,
+        "uncertain": 18,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.097069749999946,
+        "ocr": 0.7981317919998219,
+        "font_matching": 0.254567292000047,
+        "total": 1.2059523340001306
+      },
+      "size": [
+        720,
+        1421
+      ]
+    },
+    {
+      "name": "R14-blue-001",
+      "id": "43673695cd504ca88ae36697e87c97f0",
+      "summary": {
+        "detected_regions": 38,
+        "chinese_regions": 33,
+        "pingfang_supported": 22,
+        "other_candidates": 0,
+        "uncertain": 11,
+        "out_of_scope": 5,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09244808299990837,
+        "ocr": 0.8659892919999947,
+        "font_matching": 0.3873207500000717,
+        "total": 1.5238658339999347
+      },
+      "size": [
+        1179,
+        2556
+      ]
+    },
+    {
+      "name": "R14-blue-002",
+      "id": "63f87044a3984f68aacc826631652d2b",
+      "summary": {
+        "detected_regions": 36,
+        "chinese_regions": 29,
+        "pingfang_supported": 0,
+        "other_candidates": 0,
+        "uncertain": 32,
+        "out_of_scope": 4,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.09340016600003764,
+        "ocr": 0.8784270420001121,
+        "font_matching": 0.08734529100001964,
+        "total": 1.2936157510000612
+      },
+      "size": [
+        1256,
+        2760
+      ]
+    },
+    {
+      "name": "exif-rotated-title",
+      "id": "04b447c410e44554a6fd3d3db790689e",
+      "summary": {
+        "detected_regions": 1,
+        "chinese_regions": 1,
+        "pingfang_supported": 1,
+        "other_candidates": 0,
+        "uncertain": 0,
+        "out_of_scope": 0,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.00381179200007864,
+        "ocr": 0.022038999999949738,
+        "font_matching": 0.015655166999977155,
+        "total": 0.04460662499991486
+      },
+      "size": [
+        227,
+        69
+      ]
+    },
+    {
+      "name": "blank",
+      "id": "b8d3f0781052498d9d1ae5b194d41c61",
+      "summary": {
+        "detected_regions": 0,
+        "chinese_regions": 0,
+        "pingfang_supported": 0,
+        "other_candidates": 0,
+        "uncertain": 0,
+        "out_of_scope": 0,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.047662333999824114,
+        "ocr": 3.4160000268457225e-06,
+        "font_matching": 0.00017020799987221835,
+        "total": 0.0545916670000679
+      },
+      "size": [
+        400,
+        600
+      ]
+    }
+  ],
+  "checks": [
+    "multipart synchronous predict",
+    "raw binary asynchronous job",
+    "raw byte SHA",
+    "EXIF orientation",
+    "original and ROI exact pixels",
+    "every extracted glyph exact source pixels",
+    "same-size annotated PNG changed only on copy",
+    "JSON download exact result",
+    "blank image",
+    "invalid image rejection",
+    "missing/traversal path rejection"
+  ]
+}

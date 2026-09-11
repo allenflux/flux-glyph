@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "archive_bytes": 84258979,
+  "sha256": "5269eb7ac5f36991ecc838265b8a21ea54f1c58875292469bb2f4278e9e5b9b7",
+  "version": "r13-pp-ink-v1-b2ff7910",
+  "files": 9,
+  "checks": [
+    "all model SHA256 verified",
+    "clean root install and atomic selection",
+    "runtime initialization from installed bundle",
+    "PP blank image detection",
+    "font archive lookup",
+    "unsafe zip rejected without activation change"
+  ]
+}

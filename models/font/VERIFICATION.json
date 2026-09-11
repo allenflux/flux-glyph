@@ -1,0 +1,22 @@
+{
+  "schema": "flux-glyph-r13-compact-verification-v2",
+  "characters": 986,
+  "expected_per_character_sources": 93,
+  "checked_every_source_png_sha256": true,
+  "source_pngs_checked": 91698,
+  "r12_blur32_vector_comparisons": 91698,
+  "r12_vector_array_equal": 91698,
+  "r12_vector_max_abs_difference": 0.0,
+  "r12_vector_tolerance": 1e-12,
+  "archive": "references.npz.zip",
+  "archive_sha256": "6d355c542efbca8965c144956d40c3476a4bd1a7a42646f94de315c49a6b72d5",
+  "archive_bytes": 68077821,
+  "metadata_sha256": "b2ff7910baa755790b64964c3cb55e1024719a512704cefa1fd9759e0c0ab7cf",
+  "source_manifest_sha256": "f1c9d9f438642c8a6e4ec5a03c7c02e9d6dce0001e61212291c764ff78a3ca54",
+  "source_code_sha256": {
+    "foreground.py": "7d6fda017441facc47453bdc71642c07d2f998cab568978d08bf7cf8640eafde",
+    "glyph_preprocess.py": "0b9c215f7666ce8c9a335cb966f5b3f5552935eee65e0c7bb6177fbcdb008782",
+    "frozen_r12_matcher.py": "c01175f67f9a3ff77fee2802638aac2f94583de4bce09579ccdcb8b3e426e28f"
+  },
+  "algorithm_version": "r12-normalized-glyph_blur1_resize32_uint8"
+}

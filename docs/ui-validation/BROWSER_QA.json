@@ -1,0 +1,339 @@
+{
+  "result": "passed",
+  "testedAt": "2026-09-11T14:06:09.895Z",
+  "baseUrl": "http://127.0.0.1:9000",
+  "health": {
+    "ok": true,
+    "model_version": "r13-pp-ink-v1-b2ff7910",
+    "max_upload_mb": 8,
+    "max_pixels": 12000000,
+    "workers": 1,
+    "queue_size": 8,
+    "authentication_required": false,
+    "running_jobs": 0,
+    "waiting_jobs": 0
+  },
+  "checks": [
+    "real upload, one-worker FIFO queue position downshift, and asynchronous polling",
+    "visible animated stage progress without false 100%, plus reduced-motion behavior",
+    "Chinese/English switching during pending and completed states",
+    "result beside exact formatted JSON on desktop and stacked on mobile",
+    "exact full JSON copy through Clipboard API and insecure-context fallback",
+    "no legacy JSON download control; original-size annotated PNG still downloads",
+    "polygon selection, crop, font evidence, source coordinates, and pixel annotation",
+    "OCR text and raw JSON unchanged by localization",
+    "new selection and real upload error clear stale result/JSON controls",
+    "desktop/mobile overflow and browser diagnostics",
+    "quiet 18px Glyph branding, no footer, and a loaded red/white SVG favicon"
+  ],
+  "cases": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "mobile": false
+      },
+      "job": "10da0e8f33394e80b2683846caf8422d",
+      "status": "识别完成",
+      "progress": {
+        "stage_code": "complete",
+        "percent": 100,
+        "current": null,
+        "total": null
+      },
+      "processing": {
+        "job": "10da0e8f33394e80b2683846caf8422d",
+        "status": "queued",
+        "progress": {
+          "stage_code": "queued",
+          "percent": 0,
+          "current": null,
+          "total": null
+        },
+        "queue": {
+          "position": 8,
+          "ahead": 8,
+          "total": 8
+        },
+        "label": "排队中…",
+        "queueText": "排队第 8 位，前方 8 个任务",
+        "animated": true,
+        "visible": true,
+        "screenshot": "docs/ui-validation/browser_processing.png",
+        "languages": {
+          "en": {
+            "label": "Waiting in queue…",
+            "queue": "Queue position 8 · 8 job(s) ahead",
+            "status": "Waiting in queue…"
+          },
+          "zh": {
+            "label": "排队中…",
+            "queue": "排队第 8 位，前方 8 个任务",
+            "status": "排队中…"
+          },
+          "snapshot": {
+            "id": "10da0e8f33394e80b2683846caf8422d",
+            "status": "queued",
+            "stage": "等待识别",
+            "created_at": 1789135552.385364,
+            "filename": "ui_title_billing_details.png",
+            "progress": {
+              "stage_code": "queued",
+              "percent": 0,
+              "current": null,
+              "total": null
+            },
+            "queue_position": 8,
+            "queue_ahead": 8,
+            "queue_total": 8
+          }
+        },
+        "reducedMotion": {
+          "animationName": "none",
+          "animationDuration": "0s",
+          "transitionDuration": "0s"
+        },
+        "queueFillers": 8,
+        "timeline": [
+          {
+            "status": "queued",
+            "position": 8,
+            "ahead": 8,
+            "total": 8,
+            "progress": {
+              "stage_code": "queued",
+              "percent": 0,
+              "current": null,
+              "total": null
+            }
+          },
+          {
+            "status": "queued",
+            "position": 7,
+            "ahead": 7,
+            "total": 7,
+            "progress": {
+              "stage_code": "queued",
+              "percent": 0,
+              "current": null,
+              "total": null
+            }
+          }
+        ],
+        "reconnect": {
+          "job": "10da0e8f33394e80b2683846caf8422d",
+          "status": "连接暂时中断，2 秒后继续查询当前任务…",
+          "startDisabled": true,
+          "result": null
+        }
+      },
+      "regions": 1,
+      "original": {
+        "width": 227,
+        "height": 69
+      },
+      "annotated": {
+        "width": 227,
+        "height": 69
+      },
+      "changedPixels": 2277,
+      "crop": {
+        "width": 221,
+        "height": 60
+      },
+      "viewBox": "0 0 227 69",
+      "noHorizontalOverflow": true,
+      "viewerFitsImage": true,
+      "glyphEvidenceFits": true,
+      "candidateHeadingSpansColumns": true,
+      "selectedRegion": "R001",
+      "summary": "检测 1 · 中文 1 · 苹方支持 1 · 0.04 秒 · r13-pp-ink-v1-b2ff7910",
+      "layout": {
+        "sideBySide": true,
+        "stacked": false
+      },
+      "json": {
+        "formattedExact": true,
+        "bytes": 5694,
+        "legacyDownloadAbsent": true
+      },
+      "clipboard": {
+        "fallback": "JSON 已复制",
+        "api": "JSON copied",
+        "exact": true
+      },
+      "localization": {
+        "chinese": {
+          "uploadTitle": "上传图片",
+          "resultTitle": "识别结果",
+          "progress": "识别完成",
+          "fontReason": "中文字形通过苹方门槛，逐字候选一致。"
+        },
+        "english": {
+          "uploadTitle": "Upload image",
+          "resultTitle": "Recognition results",
+          "progress": "Recognition complete",
+          "fontReason": "The Chinese glyphs pass the PingFang threshold and agree across character candidates."
+        },
+        "ocrUnchanged": true,
+        "rawJsonUnchanged": true
+      },
+      "staleOutputCleared": true,
+      "errorState": {
+        "message": "图片无法读取。请上传 8 MB 内、1200 万像素内的 PNG、JPG 或 WebP 静态图。",
+        "result": null,
+        "json": "",
+        "resultHidden": true,
+        "copyDisabled": true,
+        "progressInvalid": "true",
+        "progressNow": null
+      },
+      "branding": {
+        "heading": "Glyph",
+        "fontSize": "18px",
+        "footerAbsent": true,
+        "favicon": {
+          "href": "/static/favicon.svg?v=fg-red-1",
+          "status": 200,
+          "type": "image/svg+xml",
+          "red": true,
+          "white": true,
+          "viewBox": true
+        }
+      },
+      "docsLocalization": {
+        "lang": "en",
+        "heading": "Submit an image",
+        "brand": "Glyph · API",
+        "fontSize": "18px",
+        "footerAbsent": true
+      },
+      "faviconScreenshot": "docs/ui-validation/browser_favicon.png",
+      "download": {
+        "png": {
+          "filename": "flux-glyph-10da0e8f33394e80b2683846caf8422d.png",
+          "bytes": 5408,
+          "width": 227,
+          "height": 69
+        }
+      },
+      "screenshots": {
+        "desktopZh": "docs/ui-validation/browser_desktop_zh.png",
+        "desktopEn": "docs/ui-validation/browser_desktop_en.png"
+      },
+      "browserErrors": [],
+      "ignoredBrowserDiagnostics": [
+        "http 400: http://127.0.0.1:9000/api/jobs",
+        "console: Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:9000/api/jobs)"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "mobile": true
+      },
+      "job": "39d1f60568534cd4bacbb0085ea6a56d",
+      "status": "识别完成",
+      "progress": {
+        "stage_code": "complete",
+        "percent": 100,
+        "current": null,
+        "total": null
+      },
+      "processing": null,
+      "regions": 1,
+      "original": {
+        "width": 227,
+        "height": 69
+      },
+      "annotated": {
+        "width": 227,
+        "height": 69
+      },
+      "changedPixels": 2277,
+      "crop": {
+        "width": 221,
+        "height": 60
+      },
+      "viewBox": "0 0 227 69",
+      "noHorizontalOverflow": true,
+      "viewerFitsImage": true,
+      "glyphEvidenceFits": true,
+      "candidateHeadingSpansColumns": true,
+      "selectedRegion": "R001",
+      "summary": "检测 1 · 中文 1 · 苹方支持 1 · 0.05 秒 · r13-pp-ink-v1-b2ff7910",
+      "layout": {
+        "sideBySide": false,
+        "stacked": true
+      },
+      "json": {
+        "formattedExact": true,
+        "bytes": 5693,
+        "legacyDownloadAbsent": true
+      },
+      "clipboard": {
+        "fallback": "JSON 已复制",
+        "api": "JSON copied",
+        "exact": true
+      },
+      "localization": {
+        "chinese": {
+          "uploadTitle": "上传图片",
+          "resultTitle": "识别结果",
+          "progress": "识别完成",
+          "fontReason": "中文字形通过苹方门槛，逐字候选一致。"
+        },
+        "english": {
+          "uploadTitle": "Upload image",
+          "resultTitle": "Recognition results",
+          "progress": "Recognition complete",
+          "fontReason": "The Chinese glyphs pass the PingFang threshold and agree across character candidates."
+        },
+        "ocrUnchanged": true,
+        "rawJsonUnchanged": true
+      },
+      "staleOutputCleared": true,
+      "errorState": {
+        "message": "图片无法读取。请上传 8 MB 内、1200 万像素内的 PNG、JPG 或 WebP 静态图。",
+        "result": null,
+        "json": "",
+        "resultHidden": true,
+        "copyDisabled": true,
+        "progressInvalid": "true",
+        "progressNow": null
+      },
+      "branding": {
+        "heading": "Glyph",
+        "fontSize": "18px",
+        "footerAbsent": true,
+        "favicon": {
+          "href": "/static/favicon.svg?v=fg-red-1",
+          "status": 200,
+          "type": "image/svg+xml",
+          "red": true,
+          "white": true,
+          "viewBox": true
+        }
+      },
+      "docsLocalization": null,
+      "faviconScreenshot": null,
+      "download": {
+        "png": {
+          "filename": "flux-glyph-39d1f60568534cd4bacbb0085ea6a56d.png",
+          "bytes": 5408,
+          "width": 227,
+          "height": 69
+        }
+      },
+      "screenshots": {
+        "mobile": "docs/ui-validation/browser_mobile.png"
+      },
+      "browserErrors": [],
+      "ignoredBrowserDiagnostics": [
+        "http 400: http://127.0.0.1:9000/api/jobs",
+        "console: Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:9000/api/jobs)"
+      ]
+    }
+  ]
+}

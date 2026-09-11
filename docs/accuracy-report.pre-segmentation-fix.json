@@ -1,0 +1,7265 @@
+{
+  "schema": "flux-glyph-controlled-font-e2e-report-v1",
+  "evaluated_at_utc": "2026-09-11T13:25:09.038379+00:00",
+  "claim_scope": "controlled synthetic end-to-end only; no real Alipay screenshot font truth",
+  "uncertain_counted_as_correct": false,
+  "strict_correct_definition": "detected selected region + exact OCR + every expected Han glyph segmented ok + each source bbox covers >=90% of the known rendered ink bbox and stays within its character cell (+/-2 px) + accepted family + exact expected family",
+  "protocol_sha256": "2e99954e033b207784ee652b530e62bb1db738cb6c63a892ca8b78cf764cc7af",
+  "generated_manifest_sha256": "70b6a15d913905478211e6062bb29505696de002700b050d8c190c17cdc4c094",
+  "model_version": "r13-pp-ink-v1-b2ff7910",
+  "runtime_code_sha256": {
+    "pipeline.py": "485f57c82568cd6832b71e78cd4cabbfcefff006af5c92fdd66ea58e4d577f83",
+    "ppocr.py": "d8e01fd0f16dfb0f381edeef3ad9d94d49f7a4078b472f6ab1d89a5c4d45a769",
+    "segmentation.py": "6a429da3b8f6feb86d87e60baf1cf475846e6a7a7b31783e32438ecb9436c67d",
+    "font_matcher.py": "f63b260e1fb2216e1546c2e1e407b1bac26269371c6b1570bfd5ee5d7c2f21de"
+  },
+  "metrics": {
+    "overall": {
+      "total": 36,
+      "accepted": 21,
+      "correct": 14,
+      "accepted_precision": 0.666667,
+      "coverage": 0.583333,
+      "total_correct_rate": 0.388889,
+      "ocr_exact_rate": 1.0,
+      "segmentation_status_ok_rate": 0.805556,
+      "segmentation_complete_rate": 0.583333,
+      "oracle_match_correct_rate": 0.722222
+    },
+    "by_family": {
+      "HarmonyOS Sans SC": {
+        "total": 6,
+        "accepted": 3,
+        "correct": 2,
+        "accepted_precision": 0.666667,
+        "coverage": 0.5,
+        "total_correct_rate": 0.333333,
+        "ocr_exact_rate": 1.0,
+        "segmentation_status_ok_rate": 0.833333,
+        "segmentation_complete_rate": 0.666667,
+        "oracle_match_correct_rate": 0.5
+      },
+      "MiSans": {
+        "total": 6,
+        "accepted": 3,
+        "correct": 2,
+        "accepted_precision": 0.666667,
+        "coverage": 0.5,
+        "total_correct_rate": 0.333333,
+        "ocr_exact_rate": 1.0,
+        "segmentation_status_ok_rate": 0.666667,
+        "segmentation_complete_rate": 0.5,
+        "oracle_match_correct_rate": 0.666667
+      },
+      "Noto Sans CJK SC": {
+        "total": 6,
+        "accepted": 4,
+        "correct": 4,
+        "accepted_precision": 1.0,
+        "coverage": 0.666667,
+        "total_correct_rate": 0.666667,
+        "ocr_exact_rate": 1.0,
+        "segmentation_status_ok_rate": 0.666667,
+        "segmentation_complete_rate": 0.666667,
+        "oracle_match_correct_rate": 1.0
+      },
+      "OPPO Sans": {
+        "total": 6,
+        "accepted": 3,
+        "correct": 2,
+        "accepted_precision": 0.666667,
+        "coverage": 0.5,
+        "total_correct_rate": 0.333333,
+        "ocr_exact_rate": 1.0,
+        "segmentation_status_ok_rate": 1.0,
+        "segmentation_complete_rate": 1.0,
+        "oracle_match_correct_rate": 0.166667
+      },
+      "PingFang SC": {
+        "total": 6,
+        "accepted": 3,
+        "correct": 3,
+        "accepted_precision": 1.0,
+        "coverage": 0.5,
+        "total_correct_rate": 0.5,
+        "ocr_exact_rate": 1.0,
+        "segmentation_status_ok_rate": 0.833333,
+        "segmentation_complete_rate": 0.5,
+        "oracle_match_correct_rate": 1.0
+      },
+      "Songti SC": {
+        "total": 6,
+        "accepted": 5,
+        "correct": 1,
+        "accepted_precision": 0.2,
+        "coverage": 0.833333,
+        "total_correct_rate": 0.166667,
+        "ocr_exact_rate": 1.0,
+        "segmentation_status_ok_rate": 0.833333,
+        "segmentation_complete_rate": 0.166667,
+        "oracle_match_correct_rate": 1.0
+      }
+    },
+    "failure_counts": {
+      "detection_miss": 0,
+      "ocr_or_region_selection": 0,
+      "segmentation": 15,
+      "font_abstention": 6,
+      "font_mismatch": 1
+    },
+    "non_pingfang_false_pingfang_accepts": 0,
+    "non_pingfang_cases": 30,
+    "non_pingfang_false_pingfang_rate": 0.0
+  },
+  "cases": [
+    {
+      "case_id": "pingfang_21.0d1e1_regular--white_png_26",
+      "input_file": "inputs/pingfang_21.0d1e1_regular--white_png_26.png",
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "negative_family": false,
+      "expected_text": "账单详情",
+      "actual_text": "账单详情",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.90758182814756,
+      "ocr_confidence": 0.9997261613607407,
+      "segmentation_status_ok": true,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "账",
+          "predicted_bbox": [
+            334,
+            182,
+            348,
+            208
+          ],
+          "truth_cell_bbox": [
+            323,
+            172,
+            349,
+            212
+          ],
+          "truth_ink_bbox": [
+            324,
+            182,
+            348,
+            207
+          ],
+          "truth_ink_bbox_coverage": 0.583333,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        },
+        {
+          "character": "单",
+          "predicted_bbox": [
+            348,
+            182,
+            374,
+            208
+          ],
+          "truth_cell_bbox": [
+            349,
+            172,
+            375,
+            212
+          ],
+          "truth_ink_bbox": [
+            350,
+            182,
+            374,
+            207
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "详",
+          "predicted_bbox": [
+            374,
+            182,
+            401,
+            208
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            401,
+            212
+          ],
+          "truth_ink_bbox": [
+            376,
+            182,
+            400,
+            207
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "情",
+          "predicted_bbox": [
+            401,
+            182,
+            426,
+            208
+          ],
+          "truth_cell_bbox": [
+            401,
+            172,
+            427,
+            212
+          ],
+          "truth_ink_bbox": [
+            401,
+            182,
+            426,
+            207
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "账",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "单",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "详",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "情",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "PingFang SC",
+          "distance": 0.12366419299134537
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.1502469199636201
+        },
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.15063223103612555
+        }
+      ],
+      "oracle_match": {
+        "family": "PingFang SC",
+        "correct": true,
+        "accepted_pingfang": true,
+        "candidates": [
+          {
+            "family": "PingFang SC",
+            "distance": 0.017834933138334036
+          },
+          {
+            "family": "Noto Sans CJK SC",
+            "distance": 0.054467973814440296
+          },
+          {
+            "family": "Hiragino Sans GB",
+            "distance": 0.06357203053416496
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.06238616700284183,
+        "ocr": 0.021227125078439713,
+        "font_matching": 0.01752370805479586,
+        "total": 0.10717362514697015
+      }
+    },
+    {
+      "case_id": "pingfang_21.0d1e1_regular--white_jpeg90_32",
+      "input_file": "inputs/pingfang_21.0d1e1_regular--white_jpeg90_32.jpg",
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "negative_family": false,
+      "expected_text": "付款成功",
+      "actual_text": "付款成功",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9286202303547826,
+      "ocr_confidence": 0.9996792823076248,
+      "segmentation_status_ok": true,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "付",
+          "predicted_bbox": [
+            322,
+            183,
+            342,
+            214
+          ],
+          "truth_cell_bbox": [
+            311,
+            172,
+            343,
+            218
+          ],
+          "truth_ink_bbox": [
+            312,
+            183,
+            342,
+            214
+          ],
+          "truth_ink_bbox_coverage": 0.666667,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        },
+        {
+          "character": "款",
+          "predicted_bbox": [
+            342,
+            183,
+            374,
+            214
+          ],
+          "truth_cell_bbox": [
+            343,
+            172,
+            375,
+            218
+          ],
+          "truth_ink_bbox": [
+            344,
+            183,
+            374,
+            214
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "成",
+          "predicted_bbox": [
+            374,
+            183,
+            406,
+            214
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            407,
+            218
+          ],
+          "truth_ink_bbox": [
+            376,
+            183,
+            406,
+            214
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "功",
+          "predicted_bbox": [
+            406,
+            183,
+            437,
+            214
+          ],
+          "truth_cell_bbox": [
+            407,
+            172,
+            439,
+            218
+          ],
+          "truth_ink_bbox": [
+            408,
+            183,
+            437,
+            214
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "付",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "款",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "成",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "功",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "PingFang SC",
+          "distance": 0.17687749833183117
+        },
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.20221427883230148
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.2253505143745897
+        }
+      ],
+      "oracle_match": {
+        "family": "PingFang SC",
+        "correct": true,
+        "accepted_pingfang": true,
+        "candidates": [
+          {
+            "family": "PingFang SC",
+            "distance": 0.021551680545607382
+          },
+          {
+            "family": "Noto Sans CJK SC",
+            "distance": 0.05979655495168662
+          },
+          {
+            "family": "Heiti SC",
+            "distance": 0.09576523046297539
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.06437279214151204,
+        "ocr": 0.020861917175352573,
+        "font_matching": 0.012127500027418137,
+        "total": 0.10197958396747708
+      }
+    },
+    {
+      "case_id": "pingfang_21.0d1e1_regular--blue_png_28",
+      "input_file": "inputs/pingfang_21.0d1e1_regular--blue_png_28.png",
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "negative_family": false,
+      "expected_text": "转账到银行卡",
+      "actual_text": "转账到银行卡",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.8430757937076847,
+      "ocr_confidence": 0.9996072153250376,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "转",
+          "predicted_bbox": [
+            291,
+            183,
+            319,
+            210
+          ],
+          "truth_cell_bbox": [
+            291,
+            172,
+            319,
+            214
+          ],
+          "truth_ink_bbox": [
+            292,
+            183,
+            318,
+            209
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "账",
+          "predicted_bbox": [
+            319,
+            183,
+            346,
+            210
+          ],
+          "truth_cell_bbox": [
+            319,
+            172,
+            347,
+            214
+          ],
+          "truth_ink_bbox": [
+            320,
+            183,
+            346,
+            209
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "到",
+          "predicted_bbox": [
+            346,
+            183,
+            374,
+            210
+          ],
+          "truth_cell_bbox": [
+            347,
+            172,
+            375,
+            214
+          ],
+          "truth_ink_bbox": [
+            348,
+            183,
+            373,
+            209
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "银",
+          "predicted_bbox": [
+            374,
+            183,
+            403,
+            209
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            403,
+            214
+          ],
+          "truth_ink_bbox": [
+            376,
+            183,
+            402,
+            209
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "行",
+          "predicted_bbox": [
+            403,
+            183,
+            430,
+            210
+          ],
+          "truth_cell_bbox": [
+            403,
+            172,
+            431,
+            214
+          ],
+          "truth_ink_bbox": [
+            404,
+            183,
+            430,
+            209
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "卡",
+          "predicted_bbox": [
+            430,
+            183,
+            457,
+            210
+          ],
+          "truth_cell_bbox": [
+            431,
+            172,
+            459,
+            214
+          ],
+          "truth_ink_bbox": [
+            432,
+            183,
+            458,
+            209
+          ],
+          "truth_ink_bbox_coverage": 0.961538,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "转",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "账",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "到",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "银",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "行",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "卡",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "supported",
+      "accepted": true,
+      "predicted_family": "PingFang SC",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "PingFang SC",
+          "distance": 0.010043586330302667
+        },
+        {
+          "family": "Hiragino Sans GB",
+          "distance": 0.06094034675575364
+        },
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.06290713804408282
+        }
+      ],
+      "oracle_match": {
+        "family": "PingFang SC",
+        "correct": true,
+        "accepted_pingfang": true,
+        "candidates": [
+          {
+            "family": "PingFang SC",
+            "distance": 0.010034496042371888
+          },
+          {
+            "family": "Hiragino Sans GB",
+            "distance": 0.061021913741234536
+          },
+          {
+            "family": "Noto Sans CJK SC",
+            "distance": 0.06269517866749945
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05779920797795057,
+        "ocr": 0.020556457806378603,
+        "font_matching": 0.014332166872918606,
+        "total": 0.09719629096798599
+      }
+    },
+    {
+      "case_id": "pingfang_21.0d1e1_regular--blue_jpeg82_36",
+      "input_file": "inputs/pingfang_21.0d1e1_regular--blue_jpeg82_36.jpg",
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "negative_family": false,
+      "expected_text": "订单详情",
+      "actual_text": "订单详情",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9121839066279429,
+      "ocr_confidence": 0.9967646896839142,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "订",
+          "predicted_bbox": [
+            304,
+            185,
+            339,
+            220
+          ],
+          "truth_cell_bbox": [
+            303,
+            172,
+            339,
+            222
+          ],
+          "truth_ink_bbox": [
+            304,
+            185,
+            338,
+            219
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "单",
+          "predicted_bbox": [
+            339,
+            185,
+            375,
+            220
+          ],
+          "truth_cell_bbox": [
+            339,
+            172,
+            375,
+            222
+          ],
+          "truth_ink_bbox": [
+            341,
+            185,
+            373,
+            219
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "详",
+          "predicted_bbox": [
+            375,
+            185,
+            411,
+            220
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            411,
+            222
+          ],
+          "truth_ink_bbox": [
+            376,
+            185,
+            410,
+            219
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "情",
+          "predicted_bbox": [
+            411,
+            184,
+            445,
+            220
+          ],
+          "truth_cell_bbox": [
+            411,
+            172,
+            447,
+            222
+          ],
+          "truth_ink_bbox": [
+            412,
+            185,
+            446,
+            219
+          ],
+          "truth_ink_bbox_coverage": 0.970588,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "订",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "单",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "详",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "情",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "supported",
+      "accepted": true,
+      "predicted_family": "PingFang SC",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "PingFang SC",
+          "distance": 0.006882336023427971
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.06535087013081856
+        },
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.06609015269042637
+        }
+      ],
+      "oracle_match": {
+        "family": "PingFang SC",
+        "correct": true,
+        "accepted_pingfang": true,
+        "candidates": [
+          {
+            "family": "PingFang SC",
+            "distance": 0.006816436814925331
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.06528612163978181
+          },
+          {
+            "family": "Noto Sans CJK SC",
+            "distance": 0.06584560217018268
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05736429104581475,
+        "ocr": 0.020539792021736503,
+        "font_matching": 0.01138304197229445,
+        "total": 0.09393829200416803
+      }
+    },
+    {
+      "case_id": "pingfang_21.0d1e1_regular--pale_blue_png_42",
+      "input_file": "inputs/pingfang_21.0d1e1_regular--pale_blue_png_42.png",
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "negative_family": false,
+      "expected_text": "收款码服务",
+      "actual_text": "收款码服务",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9242574267430242,
+      "ocr_confidence": 0.9994366645812989,
+      "segmentation_status_ok": false,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "收",
+          "predicted_bbox": [
+            286,
+            188,
+            310,
+            226
+          ],
+          "truth_cell_bbox": [
+            270,
+            172,
+            312,
+            228
+          ],
+          "truth_ink_bbox": [
+            272,
+            186,
+            311,
+            226
+          ],
+          "truth_ink_bbox_coverage": 0.584615,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        },
+        {
+          "character": "款",
+          "predicted_bbox": [
+            310,
+            188,
+            352,
+            226
+          ],
+          "truth_cell_bbox": [
+            312,
+            172,
+            354,
+            228
+          ],
+          "truth_ink_bbox": [
+            313,
+            186,
+            353,
+            226
+          ],
+          "truth_ink_bbox_coverage": 0.92625,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "码",
+          "predicted_bbox": [
+            352,
+            188,
+            394,
+            226
+          ],
+          "truth_cell_bbox": [
+            354,
+            172,
+            396,
+            228
+          ],
+          "truth_ink_bbox": [
+            355,
+            188,
+            394,
+            225
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "服",
+          "predicted_bbox": [
+            394,
+            188,
+            436,
+            226
+          ],
+          "truth_cell_bbox": [
+            396,
+            172,
+            438,
+            228
+          ],
+          "truth_ink_bbox": [
+            398,
+            188,
+            437,
+            226
+          ],
+          "truth_ink_bbox_coverage": 0.974359,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "务",
+          "predicted_bbox": null,
+          "truth_cell_bbox": [
+            438,
+            172,
+            480,
+            228
+          ],
+          "truth_ink_bbox": [
+            439,
+            186,
+            479,
+            226
+          ],
+          "truth_ink_bbox_coverage": 0.0,
+          "within_character_cell_tolerance": false,
+          "geometry_ok": false
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "收",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "款",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "码",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "服",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "务",
+          "status": "uncertain",
+          "reason": "missing_neighbour_ctc_anchor"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "PingFang SC",
+          "distance": 0.1844453418818993
+        },
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.21343895705167912
+        },
+        {
+          "family": "MiSans",
+          "distance": 0.22158225803226037
+        }
+      ],
+      "oracle_match": {
+        "family": "PingFang SC",
+        "correct": true,
+        "accepted_pingfang": true,
+        "candidates": [
+          {
+            "family": "PingFang SC",
+            "distance": 0.020445968197108845
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.06237386728212415
+          },
+          {
+            "family": "Noto Sans CJK SC",
+            "distance": 0.0671873511604171
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05756441690027714,
+        "ocr": 0.020614667097106576,
+        "font_matching": 0.011977457907050848,
+        "total": 0.09462591586634517
+      }
+    },
+    {
+      "case_id": "pingfang_21.0d1e1_regular--white_jpeg74_24",
+      "input_file": "inputs/pingfang_21.0d1e1_regular--white_jpeg74_24.jpg",
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "negative_family": false,
+      "expected_text": "余额宝收益",
+      "actual_text": "余额宝收益",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9882585518583135,
+      "ocr_confidence": 0.9994147539138794,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "余",
+          "predicted_bbox": [
+            315,
+            182,
+            338,
+            205
+          ],
+          "truth_cell_bbox": [
+            315,
+            172,
+            339,
+            210
+          ],
+          "truth_ink_bbox": [
+            315,
+            182,
+            339,
+            205
+          ],
+          "truth_ink_bbox_coverage": 0.958333,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "额",
+          "predicted_bbox": [
+            338,
+            182,
+            363,
+            206
+          ],
+          "truth_cell_bbox": [
+            339,
+            172,
+            363,
+            210
+          ],
+          "truth_ink_bbox": [
+            339,
+            182,
+            363,
+            205
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "宝",
+          "predicted_bbox": [
+            363,
+            182,
+            386,
+            205
+          ],
+          "truth_cell_bbox": [
+            363,
+            172,
+            387,
+            210
+          ],
+          "truth_ink_bbox": [
+            365,
+            182,
+            386,
+            204
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "收",
+          "predicted_bbox": [
+            386,
+            182,
+            410,
+            206
+          ],
+          "truth_cell_bbox": [
+            387,
+            172,
+            411,
+            210
+          ],
+          "truth_ink_bbox": [
+            388,
+            182,
+            411,
+            205
+          ],
+          "truth_ink_bbox_coverage": 0.956522,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "益",
+          "predicted_bbox": [
+            410,
+            182,
+            434,
+            205
+          ],
+          "truth_cell_bbox": [
+            411,
+            172,
+            435,
+            210
+          ],
+          "truth_ink_bbox": [
+            412,
+            182,
+            434,
+            204
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "余",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "额",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "宝",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "收",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "益",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "supported",
+      "accepted": true,
+      "predicted_family": "PingFang SC",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "PingFang SC",
+          "distance": 0.018941981465831703
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.04098290788750121
+        },
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.04423861433354752
+        }
+      ],
+      "oracle_match": {
+        "family": "PingFang SC",
+        "correct": true,
+        "accepted_pingfang": true,
+        "candidates": [
+          {
+            "family": "PingFang SC",
+            "distance": 0.018941981465831703
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.04098290788750121
+          },
+          {
+            "family": "Noto Sans CJK SC",
+            "distance": 0.04423861433354752
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05735695897601545,
+        "ocr": 0.020858541829511523,
+        "font_matching": 0.012900665868073702,
+        "total": 0.09579929197207093
+      }
+    },
+    {
+      "case_id": "noto_regular--white_png_26",
+      "input_file": "inputs/noto_regular--white_png_26.png",
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "negative_family": false,
+      "expected_text": "账单详情",
+      "actual_text": "账单详情",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9228167440500353,
+      "ocr_confidence": 0.999830573797226,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "账",
+          "predicted_bbox": [
+            324,
+            184,
+            348,
+            210
+          ],
+          "truth_cell_bbox": [
+            323,
+            172,
+            349,
+            212
+          ],
+          "truth_ink_bbox": [
+            324,
+            185,
+            349,
+            210
+          ],
+          "truth_ink_bbox_coverage": 0.96,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "单",
+          "predicted_bbox": [
+            348,
+            184,
+            374,
+            211
+          ],
+          "truth_cell_bbox": [
+            349,
+            172,
+            375,
+            212
+          ],
+          "truth_ink_bbox": [
+            350,
+            184,
+            374,
+            210
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "详",
+          "predicted_bbox": [
+            374,
+            184,
+            401,
+            211
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            401,
+            212
+          ],
+          "truth_ink_bbox": [
+            376,
+            184,
+            400,
+            210
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "情",
+          "predicted_bbox": [
+            401,
+            183,
+            425,
+            211
+          ],
+          "truth_cell_bbox": [
+            401,
+            172,
+            427,
+            212
+          ],
+          "truth_ink_bbox": [
+            401,
+            184,
+            426,
+            210
+          ],
+          "truth_ink_bbox_coverage": 0.96,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "账",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "单",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "详",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "情",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "Noto Sans CJK SC",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.0415214443986231
+        },
+        {
+          "family": "Yuanti SC",
+          "distance": 0.05780546410059853
+        },
+        {
+          "family": "MiSans",
+          "distance": 0.07186862164714927
+        }
+      ],
+      "oracle_match": {
+        "family": "Noto Sans CJK SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "Noto Sans CJK SC",
+            "distance": 0.04084894493232738
+          },
+          {
+            "family": "Yuanti SC",
+            "distance": 0.057162981346275926
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.07129034495326339
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.057337667094543576,
+        "ocr": 0.020845375023782253,
+        "font_matching": 0.009358208160847425,
+        "total": 0.09187654103152454
+      }
+    },
+    {
+      "case_id": "noto_regular--white_jpeg90_32",
+      "input_file": "inputs/noto_regular--white_jpeg90_32.jpg",
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "negative_family": false,
+      "expected_text": "付款成功",
+      "actual_text": "付款成功",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9853795834713511,
+      "ocr_confidence": 0.9989472925662994,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "付",
+          "predicted_bbox": [
+            312,
+            187,
+            342,
+            218
+          ],
+          "truth_cell_bbox": [
+            311,
+            172,
+            343,
+            218
+          ],
+          "truth_ink_bbox": [
+            312,
+            187,
+            342,
+            218
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "款",
+          "predicted_bbox": [
+            342,
+            187,
+            374,
+            218
+          ],
+          "truth_cell_bbox": [
+            343,
+            172,
+            375,
+            218
+          ],
+          "truth_ink_bbox": [
+            344,
+            186,
+            374,
+            218
+          ],
+          "truth_ink_bbox_coverage": 0.96875,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "成",
+          "predicted_bbox": [
+            374,
+            187,
+            407,
+            218
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            407,
+            218
+          ],
+          "truth_ink_bbox": [
+            376,
+            186,
+            406,
+            218
+          ],
+          "truth_ink_bbox_coverage": 0.96875,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "功",
+          "predicted_bbox": [
+            407,
+            187,
+            437,
+            218
+          ],
+          "truth_cell_bbox": [
+            407,
+            172,
+            439,
+            218
+          ],
+          "truth_ink_bbox": [
+            408,
+            187,
+            438,
+            218
+          ],
+          "truth_ink_bbox_coverage": 0.966667,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "付",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "款",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "成",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "功",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "Noto Sans CJK SC",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.026871811690269365
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.05548674171682513
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.07496446518635042
+        }
+      ],
+      "oracle_match": {
+        "family": "Noto Sans CJK SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "Noto Sans CJK SC",
+            "distance": 0.026871811690269365
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.05548674171682513
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.07496446518635042
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05763408308848739,
+        "ocr": 0.020695375045761466,
+        "font_matching": 0.00991591694764793,
+        "total": 0.09263183292932808
+      }
+    },
+    {
+      "case_id": "noto_regular--blue_png_28",
+      "input_file": "inputs/noto_regular--blue_png_28.png",
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "negative_family": false,
+      "expected_text": "转账到银行卡",
+      "actual_text": "转账到银行卡",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9599437000628817,
+      "ocr_confidence": 0.9996895094712576,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "转",
+          "predicted_bbox": [
+            291,
+            185,
+            318,
+            212
+          ],
+          "truth_cell_bbox": [
+            291,
+            172,
+            319,
+            214
+          ],
+          "truth_ink_bbox": [
+            292,
+            184,
+            318,
+            212
+          ],
+          "truth_ink_bbox_coverage": 0.964286,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "账",
+          "predicted_bbox": [
+            318,
+            185,
+            346,
+            212
+          ],
+          "truth_cell_bbox": [
+            319,
+            172,
+            347,
+            214
+          ],
+          "truth_ink_bbox": [
+            320,
+            185,
+            346,
+            212
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "到",
+          "predicted_bbox": [
+            346,
+            185,
+            375,
+            212
+          ],
+          "truth_cell_bbox": [
+            347,
+            172,
+            375,
+            214
+          ],
+          "truth_ink_bbox": [
+            348,
+            185,
+            373,
+            211
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "银",
+          "predicted_bbox": [
+            375,
+            185,
+            403,
+            212
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            403,
+            214
+          ],
+          "truth_ink_bbox": [
+            375,
+            184,
+            403,
+            212
+          ],
+          "truth_ink_bbox_coverage": 0.964286,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "行",
+          "predicted_bbox": [
+            403,
+            185,
+            431,
+            212
+          ],
+          "truth_cell_bbox": [
+            403,
+            172,
+            431,
+            214
+          ],
+          "truth_ink_bbox": [
+            403,
+            184,
+            430,
+            212
+          ],
+          "truth_ink_bbox_coverage": 0.964286,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "卡",
+          "predicted_bbox": [
+            431,
+            185,
+            457,
+            212
+          ],
+          "truth_cell_bbox": [
+            431,
+            172,
+            459,
+            214
+          ],
+          "truth_ink_bbox": [
+            432,
+            184,
+            458,
+            212
+          ],
+          "truth_ink_bbox_coverage": 0.927198,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "转",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "账",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "到",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "银",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "行",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "卡",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "Noto Sans CJK SC",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.06556833840070998
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.10921339374884488
+        },
+        {
+          "family": "Yuanti SC",
+          "distance": 0.12233260623402353
+        }
+      ],
+      "oracle_match": {
+        "family": "Noto Sans CJK SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "Noto Sans CJK SC",
+            "distance": 0.039954225239023165
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.08094319042177671
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.0835187342751113
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05715887504629791,
+        "ocr": 0.0214586250949651,
+        "font_matching": 0.012601042166352272,
+        "total": 0.09573508403263986
+      }
+    },
+    {
+      "case_id": "noto_regular--blue_jpeg82_36",
+      "input_file": "inputs/noto_regular--blue_jpeg82_36.jpg",
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "negative_family": false,
+      "expected_text": "订单详情",
+      "actual_text": "订单详情",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9284125958389603,
+      "ocr_confidence": 0.9960781931877136,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "订",
+          "predicted_bbox": [
+            304,
+            187,
+            340,
+            222
+          ],
+          "truth_cell_bbox": [
+            303,
+            172,
+            339,
+            222
+          ],
+          "truth_ink_bbox": [
+            304,
+            187,
+            338,
+            221
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "单",
+          "predicted_bbox": [
+            340,
+            186,
+            375,
+            222
+          ],
+          "truth_cell_bbox": [
+            339,
+            172,
+            375,
+            222
+          ],
+          "truth_ink_bbox": [
+            340,
+            187,
+            374,
+            222
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "详",
+          "predicted_bbox": [
+            375,
+            186,
+            411,
+            222
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            411,
+            222
+          ],
+          "truth_ink_bbox": [
+            376,
+            186,
+            410,
+            221
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "情",
+          "predicted_bbox": [
+            411,
+            186,
+            445,
+            222
+          ],
+          "truth_cell_bbox": [
+            411,
+            172,
+            447,
+            222
+          ],
+          "truth_ink_bbox": [
+            412,
+            187,
+            446,
+            222
+          ],
+          "truth_ink_bbox_coverage": 0.970588,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "订",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "单",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "详",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "情",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "Noto Sans CJK SC",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.03107371687667615
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.057554404206627774
+        },
+        {
+          "family": "Hiragino Sans GB",
+          "distance": 0.07614253951179417
+        }
+      ],
+      "oracle_match": {
+        "family": "Noto Sans CJK SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "Noto Sans CJK SC",
+            "distance": 0.03100045863224582
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.057594168720696615
+          },
+          {
+            "family": "Hiragino Sans GB",
+            "distance": 0.07603201375444285
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.057974041905254126,
+        "ocr": 0.020849332911893725,
+        "font_matching": 0.009710042038932443,
+        "total": 0.09288179106079042
+      }
+    },
+    {
+      "case_id": "noto_regular--pale_blue_png_42",
+      "input_file": "inputs/noto_regular--pale_blue_png_42.png",
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "negative_family": false,
+      "expected_text": "收款码服务",
+      "actual_text": "收款码服务",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9359932122191922,
+      "ocr_confidence": 0.9992014288902282,
+      "segmentation_status_ok": false,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "收",
+          "predicted_bbox": [
+            287,
+            191,
+            310,
+            230
+          ],
+          "truth_cell_bbox": [
+            270,
+            172,
+            312,
+            228
+          ],
+          "truth_ink_bbox": [
+            272,
+            189,
+            311,
+            228
+          ],
+          "truth_ink_bbox_coverage": 0.5595,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        },
+        {
+          "character": "款",
+          "predicted_bbox": [
+            310,
+            191,
+            353,
+            230
+          ],
+          "truth_cell_bbox": [
+            312,
+            172,
+            354,
+            228
+          ],
+          "truth_ink_bbox": [
+            313,
+            189,
+            353,
+            228
+          ],
+          "truth_ink_bbox_coverage": 0.948718,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "码",
+          "predicted_bbox": [
+            353,
+            191,
+            396,
+            230
+          ],
+          "truth_cell_bbox": [
+            354,
+            172,
+            396,
+            228
+          ],
+          "truth_ink_bbox": [
+            355,
+            191,
+            394,
+            228
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "服",
+          "predicted_bbox": [
+            396,
+            191,
+            438,
+            230
+          ],
+          "truth_cell_bbox": [
+            396,
+            172,
+            438,
+            228
+          ],
+          "truth_ink_bbox": [
+            397,
+            191,
+            437,
+            228
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "务",
+          "predicted_bbox": null,
+          "truth_cell_bbox": [
+            438,
+            172,
+            480,
+            228
+          ],
+          "truth_ink_bbox": [
+            439,
+            189,
+            479,
+            228
+          ],
+          "truth_ink_bbox_coverage": 0.0,
+          "within_character_cell_tolerance": false,
+          "geometry_ok": false
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "收",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "款",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "码",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "服",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "务",
+          "status": "uncertain",
+          "reason": "missing_neighbour_ctc_anchor"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.1651720302007986
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.1873759944529998
+        },
+        {
+          "family": "MiSans",
+          "distance": 0.19685835541157737
+        }
+      ],
+      "oracle_match": {
+        "family": "Noto Sans CJK SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "Noto Sans CJK SC",
+            "distance": 0.039943384660863536
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.06622811684129655
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.08892218016104163
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.057198625057935715,
+        "ocr": 0.02070170803926885,
+        "font_matching": 0.01025916705839336,
+        "total": 0.0925767079461366
+      }
+    },
+    {
+      "case_id": "noto_regular--white_jpeg74_24",
+      "input_file": "inputs/noto_regular--white_jpeg74_24.jpg",
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "negative_family": false,
+      "expected_text": "余额宝收益",
+      "actual_text": "余额宝收益",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.904219663861693,
+      "ocr_confidence": 0.9982967257499695,
+      "segmentation_status_ok": false,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "余",
+          "predicted_bbox": [
+            315,
+            182,
+            338,
+            208
+          ],
+          "truth_cell_bbox": [
+            315,
+            172,
+            339,
+            210
+          ],
+          "truth_ink_bbox": [
+            315,
+            183,
+            339,
+            207
+          ],
+          "truth_ink_bbox_coverage": 0.958333,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "额",
+          "predicted_bbox": [
+            338,
+            183,
+            362,
+            208
+          ],
+          "truth_cell_bbox": [
+            339,
+            172,
+            363,
+            210
+          ],
+          "truth_ink_bbox": [
+            339,
+            183,
+            363,
+            207
+          ],
+          "truth_ink_bbox_coverage": 0.958333,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "宝",
+          "predicted_bbox": [
+            362,
+            183,
+            386,
+            207
+          ],
+          "truth_cell_bbox": [
+            363,
+            172,
+            387,
+            210
+          ],
+          "truth_ink_bbox": [
+            364,
+            183,
+            386,
+            206
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "收",
+          "predicted_bbox": [
+            386,
+            182,
+            410,
+            208
+          ],
+          "truth_cell_bbox": [
+            387,
+            172,
+            411,
+            210
+          ],
+          "truth_ink_bbox": [
+            388,
+            183,
+            411,
+            207
+          ],
+          "truth_ink_bbox_coverage": 0.956522,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "益",
+          "predicted_bbox": null,
+          "truth_cell_bbox": [
+            411,
+            172,
+            435,
+            210
+          ],
+          "truth_ink_bbox": [
+            412,
+            183,
+            434,
+            206
+          ],
+          "truth_ink_bbox_coverage": 0.0,
+          "within_character_cell_tolerance": false,
+          "geometry_ok": false
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "余",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "额",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "宝",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "收",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "益",
+          "status": "uncertain",
+          "reason": "missing_neighbour_ctc_anchor"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.0428259939703082
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.09317444856602622
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.0944684832810257
+        }
+      ],
+      "oracle_match": {
+        "family": "Noto Sans CJK SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "Noto Sans CJK SC",
+            "distance": 0.05706637588605934
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.08429807924047865
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.08770188556517258
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05753104086034,
+        "ocr": 0.020495624979957938,
+        "font_matching": 0.009528833208605647,
+        "total": 0.09172612498514354
+      }
+    },
+    {
+      "case_id": "harmonyos_regular--white_png_26",
+      "input_file": "inputs/harmonyos_regular--white_png_26.png",
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "negative_family": false,
+      "expected_text": "账单详情",
+      "actual_text": "账单详情",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9763403936460705,
+      "ocr_confidence": 0.9998584538698196,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "账",
+          "predicted_bbox": [
+            323,
+            178,
+            348,
+            203
+          ],
+          "truth_cell_bbox": [
+            323,
+            172,
+            349,
+            212
+          ],
+          "truth_ink_bbox": [
+            323,
+            179,
+            348,
+            203
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "单",
+          "predicted_bbox": [
+            348,
+            178,
+            375,
+            204
+          ],
+          "truth_cell_bbox": [
+            349,
+            172,
+            375,
+            212
+          ],
+          "truth_ink_bbox": [
+            351,
+            179,
+            374,
+            203
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "详",
+          "predicted_bbox": [
+            375,
+            178,
+            401,
+            204
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            401,
+            212
+          ],
+          "truth_ink_bbox": [
+            375,
+            179,
+            400,
+            203
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "情",
+          "predicted_bbox": [
+            401,
+            178,
+            426,
+            204
+          ],
+          "truth_cell_bbox": [
+            401,
+            172,
+            427,
+            212
+          ],
+          "truth_ink_bbox": [
+            402,
+            179,
+            427,
+            203
+          ],
+          "truth_ink_bbox_coverage": 0.96,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "账",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "单",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "详",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "情",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "font_abstention",
+      "candidates": [
+        {
+          "family": "OPPO Sans",
+          "distance": 0.031983056177620955
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.034914688275298894
+        },
+        {
+          "family": "MiSans",
+          "distance": 0.03938290972836711
+        }
+      ],
+      "oracle_match": {
+        "family": null,
+        "correct": false,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.032193452431552805
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.03415411334904736
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.035834512565171756
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.057609417010098696,
+        "ocr": 0.02055645897053182,
+        "font_matching": 0.008898833068087697,
+        "total": 0.09108587494120002
+      }
+    },
+    {
+      "case_id": "harmonyos_regular--white_jpeg90_32",
+      "input_file": "inputs/harmonyos_regular--white_jpeg90_32.jpg",
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "negative_family": false,
+      "expected_text": "付款成功",
+      "actual_text": "付款成功",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.938855675580067,
+      "ocr_confidence": 0.9996409714221954,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "付",
+          "predicted_bbox": [
+            312,
+            178,
+            342,
+            209
+          ],
+          "truth_cell_bbox": [
+            311,
+            172,
+            343,
+            218
+          ],
+          "truth_ink_bbox": [
+            312,
+            179,
+            342,
+            208
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "款",
+          "predicted_bbox": [
+            342,
+            178,
+            374,
+            209
+          ],
+          "truth_cell_bbox": [
+            343,
+            172,
+            375,
+            218
+          ],
+          "truth_ink_bbox": [
+            344,
+            178,
+            374,
+            209
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "成",
+          "predicted_bbox": [
+            374,
+            178,
+            406,
+            209
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            407,
+            218
+          ],
+          "truth_ink_bbox": [
+            376,
+            178,
+            406,
+            209
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "功",
+          "predicted_bbox": [
+            406,
+            178,
+            436,
+            210
+          ],
+          "truth_cell_bbox": [
+            407,
+            172,
+            439,
+            218
+          ],
+          "truth_ink_bbox": [
+            408,
+            179,
+            437,
+            209
+          ],
+          "truth_ink_bbox_coverage": 0.965517,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "付",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "款",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "成",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "功",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "HarmonyOS Sans SC",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.02381127631026031
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.03746431630143626
+        },
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.05449001466812575
+        }
+      ],
+      "oracle_match": {
+        "family": null,
+        "correct": false,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.024027313228863922
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.03188269840373814
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.053278786426928626
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05736624985001981,
+        "ocr": 0.020889041014015675,
+        "font_matching": 0.009572042152285576,
+        "total": 0.09228958305902779
+      }
+    },
+    {
+      "case_id": "harmonyos_regular--blue_png_28",
+      "input_file": "inputs/harmonyos_regular--blue_png_28.png",
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "negative_family": false,
+      "expected_text": "转账到银行卡",
+      "actual_text": "转账到银行卡",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9671900634830063,
+      "ocr_confidence": 0.9997390111287435,
+      "segmentation_status_ok": true,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "转",
+          "predicted_bbox": [
+            303,
+            179,
+            319,
+            205
+          ],
+          "truth_cell_bbox": [
+            291,
+            172,
+            319,
+            214
+          ],
+          "truth_ink_bbox": [
+            292,
+            178,
+            318,
+            205
+          ],
+          "truth_ink_bbox_coverage": 0.555556,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        },
+        {
+          "character": "账",
+          "predicted_bbox": [
+            319,
+            179,
+            347,
+            205
+          ],
+          "truth_cell_bbox": [
+            319,
+            172,
+            347,
+            214
+          ],
+          "truth_ink_bbox": [
+            320,
+            178,
+            347,
+            205
+          ],
+          "truth_ink_bbox_coverage": 0.962963,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "到",
+          "predicted_bbox": [
+            347,
+            179,
+            373,
+            205
+          ],
+          "truth_cell_bbox": [
+            347,
+            172,
+            375,
+            214
+          ],
+          "truth_ink_bbox": [
+            348,
+            179,
+            373,
+            204
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "银",
+          "predicted_bbox": [
+            373,
+            179,
+            401,
+            205
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            403,
+            214
+          ],
+          "truth_ink_bbox": [
+            375,
+            178,
+            401,
+            205
+          ],
+          "truth_ink_bbox_coverage": 0.962963,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "行",
+          "predicted_bbox": [
+            401,
+            179,
+            430,
+            205
+          ],
+          "truth_cell_bbox": [
+            403,
+            172,
+            431,
+            214
+          ],
+          "truth_ink_bbox": [
+            403,
+            178,
+            430,
+            204
+          ],
+          "truth_ink_bbox_coverage": 0.961538,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "卡",
+          "predicted_bbox": [
+            430,
+            179,
+            457,
+            205
+          ],
+          "truth_cell_bbox": [
+            431,
+            172,
+            459,
+            214
+          ],
+          "truth_ink_bbox": [
+            432,
+            178,
+            457,
+            204
+          ],
+          "truth_ink_bbox_coverage": 0.961538,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "转",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "账",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "到",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "银",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "行",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "卡",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "HarmonyOS Sans SC",
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.12282248154300453
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.1399482472805088
+        },
+        {
+          "family": "OPPO Sans",
+          "distance": 0.14268754144401605
+        }
+      ],
+      "oracle_match": {
+        "family": "HarmonyOS Sans SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.030092188498982524
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.03579528978884224
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.05439835311586947
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.057442333083599806,
+        "ocr": 0.020717290928587317,
+        "font_matching": 0.012097875121980906,
+        "total": 0.09473758284002542
+      }
+    },
+    {
+      "case_id": "harmonyos_regular--blue_jpeg82_36",
+      "input_file": "inputs/harmonyos_regular--blue_jpeg82_36.jpg",
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "negative_family": false,
+      "expected_text": "订单详情",
+      "actual_text": "订单详情",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9333503364347944,
+      "ocr_confidence": 0.996374100446701,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "订",
+          "predicted_bbox": [
+            304,
+            179,
+            340,
+            213
+          ],
+          "truth_cell_bbox": [
+            303,
+            172,
+            339,
+            222
+          ],
+          "truth_ink_bbox": [
+            304,
+            179,
+            338,
+            212
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "单",
+          "predicted_bbox": [
+            340,
+            179,
+            375,
+            214
+          ],
+          "truth_cell_bbox": [
+            339,
+            172,
+            375,
+            222
+          ],
+          "truth_ink_bbox": [
+            341,
+            179,
+            373,
+            213
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "详",
+          "predicted_bbox": [
+            375,
+            179,
+            411,
+            214
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            411,
+            222
+          ],
+          "truth_ink_bbox": [
+            376,
+            179,
+            410,
+            213
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "情",
+          "predicted_bbox": [
+            411,
+            179,
+            444,
+            214
+          ],
+          "truth_cell_bbox": [
+            411,
+            172,
+            447,
+            222
+          ],
+          "truth_ink_bbox": [
+            411,
+            180,
+            445,
+            213
+          ],
+          "truth_ink_bbox_coverage": 0.970588,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "订",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "单",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "详",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "情",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "font_abstention",
+      "candidates": [
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.030731922515957633
+        },
+        {
+          "family": "MiSans",
+          "distance": 0.03917444489833158
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.0412169597983475
+        }
+      ],
+      "oracle_match": {
+        "family": "HarmonyOS Sans SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.03071761460422101
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.03923109151341811
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.04133935343436579
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05710075004026294,
+        "ocr": 0.02089179097674787,
+        "font_matching": 0.009962874930351973,
+        "total": 0.09231516695581377
+      }
+    },
+    {
+      "case_id": "harmonyos_regular--pale_blue_png_42",
+      "input_file": "inputs/harmonyos_regular--pale_blue_png_42.png",
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "negative_family": false,
+      "expected_text": "收款码服务",
+      "actual_text": "收款码服务",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.8857920017962572,
+      "ocr_confidence": 0.9992608070373535,
+      "segmentation_status_ok": false,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "收",
+          "predicted_bbox": [
+            286,
+            180,
+            311,
+            219
+          ],
+          "truth_cell_bbox": [
+            270,
+            172,
+            312,
+            228
+          ],
+          "truth_ink_bbox": [
+            272,
+            179,
+            311,
+            219
+          ],
+          "truth_ink_bbox_coverage": 0.625,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        },
+        {
+          "character": "款",
+          "predicted_bbox": [
+            311,
+            180,
+            353,
+            219
+          ],
+          "truth_cell_bbox": [
+            312,
+            172,
+            354,
+            228
+          ],
+          "truth_ink_bbox": [
+            313,
+            180,
+            353,
+            219
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "码",
+          "predicted_bbox": [
+            353,
+            181,
+            395,
+            219
+          ],
+          "truth_cell_bbox": [
+            354,
+            172,
+            396,
+            228
+          ],
+          "truth_ink_bbox": [
+            355,
+            182,
+            394,
+            218
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "服",
+          "predicted_bbox": [
+            395,
+            180,
+            437,
+            219
+          ],
+          "truth_cell_bbox": [
+            396,
+            172,
+            438,
+            228
+          ],
+          "truth_ink_bbox": [
+            397,
+            181,
+            437,
+            219
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "务",
+          "predicted_bbox": null,
+          "truth_cell_bbox": [
+            438,
+            172,
+            480,
+            228
+          ],
+          "truth_ink_bbox": [
+            439,
+            178,
+            479,
+            219
+          ],
+          "truth_ink_bbox_coverage": 0.0,
+          "within_character_cell_tolerance": false,
+          "geometry_ok": false
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "收",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "款",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "码",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "服",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "务",
+          "status": "uncertain",
+          "reason": "missing_neighbour_ctc_anchor"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "MiSans",
+          "distance": 0.16774773475417876
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.17428948964977597
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.1805986736764134
+        }
+      ],
+      "oracle_match": {
+        "family": "HarmonyOS Sans SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.02960389650668511
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.045505370450165096
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.05188563245792175
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05769104207865894,
+        "ocr": 0.02073045796714723,
+        "font_matching": 0.010172167094424367,
+        "total": 0.09307695808820426
+      }
+    },
+    {
+      "case_id": "harmonyos_regular--white_jpeg74_24",
+      "input_file": "inputs/harmonyos_regular--white_jpeg74_24.jpg",
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "negative_family": false,
+      "expected_text": "余额宝收益",
+      "actual_text": "余额宝收益",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.8860886522228756,
+      "ocr_confidence": 0.9984352707862854,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "余",
+          "predicted_bbox": [
+            315,
+            178,
+            338,
+            202
+          ],
+          "truth_cell_bbox": [
+            315,
+            172,
+            339,
+            210
+          ],
+          "truth_ink_bbox": [
+            316,
+            179,
+            339,
+            201
+          ],
+          "truth_ink_bbox_coverage": 0.956522,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "额",
+          "predicted_bbox": [
+            338,
+            178,
+            362,
+            201
+          ],
+          "truth_cell_bbox": [
+            339,
+            172,
+            363,
+            210
+          ],
+          "truth_ink_bbox": [
+            339,
+            178,
+            362,
+            201
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "宝",
+          "predicted_bbox": [
+            362,
+            178,
+            386,
+            201
+          ],
+          "truth_cell_bbox": [
+            363,
+            172,
+            387,
+            210
+          ],
+          "truth_ink_bbox": [
+            364,
+            178,
+            386,
+            200
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "收",
+          "predicted_bbox": [
+            386,
+            178,
+            410,
+            202
+          ],
+          "truth_cell_bbox": [
+            387,
+            172,
+            411,
+            210
+          ],
+          "truth_ink_bbox": [
+            388,
+            179,
+            411,
+            202
+          ],
+          "truth_ink_bbox_coverage": 0.956522,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "益",
+          "predicted_bbox": [
+            410,
+            178,
+            434,
+            201
+          ],
+          "truth_cell_bbox": [
+            411,
+            172,
+            435,
+            210
+          ],
+          "truth_ink_bbox": [
+            412,
+            178,
+            434,
+            200
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "余",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "额",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "宝",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "收",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "益",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "HarmonyOS Sans SC",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.035433250427504136
+        },
+        {
+          "family": "MiSans",
+          "distance": 0.04537993305875558
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.05806882129061315
+        }
+      ],
+      "oracle_match": {
+        "family": null,
+        "correct": false,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.035433250427504136
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.04537993305875558
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.05806882129061315
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.057365582790225744,
+        "ocr": 0.020809083012863994,
+        "font_matching": 0.010544250020757318,
+        "total": 0.0932294160593301
+      }
+    },
+    {
+      "case_id": "misans_regular--white_png_26",
+      "input_file": "inputs/misans_regular--white_png_26.png",
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "negative_family": false,
+      "expected_text": "账单详情",
+      "actual_text": "账单详情",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.8858520616474864,
+      "ocr_confidence": 0.9998288005590439,
+      "segmentation_status_ok": true,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "账",
+          "predicted_bbox": [
+            334,
+            181,
+            348,
+            207
+          ],
+          "truth_cell_bbox": [
+            323,
+            172,
+            349,
+            212
+          ],
+          "truth_ink_bbox": [
+            324,
+            182,
+            348,
+            206
+          ],
+          "truth_ink_bbox_coverage": 0.583333,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        },
+        {
+          "character": "单",
+          "predicted_bbox": [
+            348,
+            181,
+            374,
+            207
+          ],
+          "truth_cell_bbox": [
+            349,
+            172,
+            375,
+            212
+          ],
+          "truth_ink_bbox": [
+            350,
+            181,
+            374,
+            206
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "详",
+          "predicted_bbox": [
+            374,
+            181,
+            401,
+            207
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            401,
+            212
+          ],
+          "truth_ink_bbox": [
+            376,
+            181,
+            400,
+            206
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "情",
+          "predicted_bbox": [
+            401,
+            181,
+            425,
+            207
+          ],
+          "truth_cell_bbox": [
+            401,
+            172,
+            427,
+            212
+          ],
+          "truth_ink_bbox": [
+            402,
+            182,
+            426,
+            206
+          ],
+          "truth_ink_bbox_coverage": 0.958333,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "账",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "单",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "详",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "情",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "HarmonyOS Sans SC",
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.12335786032074014
+        },
+        {
+          "family": "MiSans",
+          "distance": 0.13283692583587126
+        },
+        {
+          "family": "OPPO Sans",
+          "distance": 0.13442047220790201
+        }
+      ],
+      "oracle_match": {
+        "family": "HarmonyOS Sans SC",
+        "correct": false,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.021747635800972775
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.022301246422988974
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.031095598312966377
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05737962503917515,
+        "ocr": 0.020502832951024175,
+        "font_matching": 0.00937787489965558,
+        "total": 0.09159287484362721
+      }
+    },
+    {
+      "case_id": "misans_regular--white_jpeg90_32",
+      "input_file": "inputs/misans_regular--white_jpeg90_32.jpg",
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "negative_family": false,
+      "expected_text": "付款成功",
+      "actual_text": "付款成功",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9479403924196959,
+      "ocr_confidence": 0.9995852559804916,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "付",
+          "predicted_bbox": [
+            312,
+            182,
+            341,
+            213
+          ],
+          "truth_cell_bbox": [
+            311,
+            172,
+            343,
+            218
+          ],
+          "truth_ink_bbox": [
+            312,
+            183,
+            342,
+            213
+          ],
+          "truth_ink_bbox_coverage": 0.966667,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "款",
+          "predicted_bbox": [
+            341,
+            182,
+            373,
+            213
+          ],
+          "truth_cell_bbox": [
+            343,
+            172,
+            375,
+            218
+          ],
+          "truth_ink_bbox": [
+            344,
+            183,
+            374,
+            213
+          ],
+          "truth_ink_bbox_coverage": 0.966667,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "成",
+          "predicted_bbox": [
+            373,
+            182,
+            406,
+            213
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            407,
+            218
+          ],
+          "truth_ink_bbox": [
+            376,
+            182,
+            406,
+            213
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "功",
+          "predicted_bbox": [
+            406,
+            182,
+            436,
+            213
+          ],
+          "truth_cell_bbox": [
+            407,
+            172,
+            439,
+            218
+          ],
+          "truth_ink_bbox": [
+            408,
+            182,
+            436,
+            213
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "付",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "款",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "成",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "功",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "MiSans",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "MiSans",
+          "distance": 0.037611632899060776
+        },
+        {
+          "family": "OPPO Sans",
+          "distance": 0.05987005831080794
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.06455858405099163
+        }
+      ],
+      "oracle_match": {
+        "family": "MiSans",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "MiSans",
+            "distance": 0.037611632899060776
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.05987005831080794
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.06455858405099163
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.057431875029578805,
+        "ocr": 0.020831999834626913,
+        "font_matching": 0.009821792133152485,
+        "total": 0.09250391693785787
+      }
+    },
+    {
+      "case_id": "misans_regular--blue_png_28",
+      "input_file": "inputs/misans_regular--blue_png_28.png",
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "negative_family": false,
+      "expected_text": "转账到银行卡",
+      "actual_text": "转账到银行卡",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.8557628223095516,
+      "ocr_confidence": 0.9997735619544983,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "转",
+          "predicted_bbox": [
+            292,
+            182,
+            318,
+            209
+          ],
+          "truth_cell_bbox": [
+            291,
+            172,
+            319,
+            214
+          ],
+          "truth_ink_bbox": [
+            292,
+            182,
+            318,
+            209
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "账",
+          "predicted_bbox": [
+            318,
+            182,
+            345,
+            209
+          ],
+          "truth_cell_bbox": [
+            319,
+            172,
+            347,
+            214
+          ],
+          "truth_ink_bbox": [
+            320,
+            182,
+            346,
+            208
+          ],
+          "truth_ink_bbox_coverage": 0.961538,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "到",
+          "predicted_bbox": [
+            345,
+            182,
+            373,
+            209
+          ],
+          "truth_cell_bbox": [
+            347,
+            172,
+            375,
+            214
+          ],
+          "truth_ink_bbox": [
+            348,
+            182,
+            372,
+            208
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "银",
+          "predicted_bbox": [
+            373,
+            182,
+            403,
+            209
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            403,
+            214
+          ],
+          "truth_ink_bbox": [
+            376,
+            182,
+            402,
+            208
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "行",
+          "predicted_bbox": [
+            403,
+            182,
+            431,
+            209
+          ],
+          "truth_cell_bbox": [
+            403,
+            172,
+            431,
+            214
+          ],
+          "truth_ink_bbox": [
+            404,
+            182,
+            430,
+            208
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "卡",
+          "predicted_bbox": [
+            431,
+            182,
+            457,
+            209
+          ],
+          "truth_cell_bbox": [
+            431,
+            172,
+            459,
+            214
+          ],
+          "truth_ink_bbox": [
+            432,
+            182,
+            458,
+            208
+          ],
+          "truth_ink_bbox_coverage": 0.961538,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "转",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "账",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "到",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "银",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "行",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "卡",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "MiSans",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "MiSans",
+          "distance": 0.013718529133467142
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.027654123063852547
+        },
+        {
+          "family": "OPPO Sans",
+          "distance": 0.033987253133881214
+        }
+      ],
+      "oracle_match": {
+        "family": "MiSans",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "MiSans",
+            "distance": 0.013612936487784425
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.027462451621001544
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.033938836376024926
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05707379220984876,
+        "ocr": 0.02069954201579094,
+        "font_matching": 0.012185708153992891,
+        "total": 0.09435133403167129
+      }
+    },
+    {
+      "case_id": "misans_regular--blue_jpeg82_36",
+      "input_file": "inputs/misans_regular--blue_jpeg82_36.jpg",
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "negative_family": false,
+      "expected_text": "订单详情",
+      "actual_text": "订单详情",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9595801005186129,
+      "ocr_confidence": 0.9933517128229141,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "订",
+          "predicted_bbox": [
+            304,
+            184,
+            337,
+            217
+          ],
+          "truth_cell_bbox": [
+            303,
+            172,
+            339,
+            222
+          ],
+          "truth_ink_bbox": [
+            305,
+            183,
+            338,
+            216
+          ],
+          "truth_ink_bbox_coverage": 0.940312,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "单",
+          "predicted_bbox": [
+            337,
+            184,
+            373,
+            218
+          ],
+          "truth_cell_bbox": [
+            339,
+            172,
+            375,
+            222
+          ],
+          "truth_ink_bbox": [
+            341,
+            183,
+            373,
+            217
+          ],
+          "truth_ink_bbox_coverage": 0.970588,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "详",
+          "predicted_bbox": [
+            373,
+            184,
+            409,
+            218
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            411,
+            222
+          ],
+          "truth_ink_bbox": [
+            377,
+            183,
+            409,
+            217
+          ],
+          "truth_ink_bbox_coverage": 0.970588,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "情",
+          "predicted_bbox": [
+            409,
+            184,
+            444,
+            218
+          ],
+          "truth_cell_bbox": [
+            411,
+            172,
+            447,
+            222
+          ],
+          "truth_ink_bbox": [
+            412,
+            183,
+            445,
+            217
+          ],
+          "truth_ink_bbox_coverage": 0.941176,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "订",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "单",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "详",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "情",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "font_abstention",
+      "candidates": [
+        {
+          "family": "MiSans",
+          "distance": 0.051097786748317636
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.05493147373186125
+        },
+        {
+          "family": "OPPO Sans",
+          "distance": 0.0661173514982171
+        }
+      ],
+      "oracle_match": {
+        "family": "MiSans",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "MiSans",
+            "distance": 0.027888465042804456
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.02791738570900054
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.036042583959359165
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.056811291025951505,
+        "ocr": 0.02034591604024172,
+        "font_matching": 0.010122957872226834,
+        "total": 0.09171183314174414
+      }
+    },
+    {
+      "case_id": "misans_regular--pale_blue_png_42",
+      "input_file": "inputs/misans_regular--pale_blue_png_42.png",
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "negative_family": false,
+      "expected_text": "收款码服务",
+      "actual_text": "收款码服务",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9550549297520283,
+      "ocr_confidence": 0.9994298577308655,
+      "segmentation_status_ok": false,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "收",
+          "predicted_bbox": [
+            273,
+            186,
+            311,
+            224
+          ],
+          "truth_cell_bbox": [
+            270,
+            172,
+            312,
+            228
+          ],
+          "truth_ink_bbox": [
+            273,
+            184,
+            310,
+            224
+          ],
+          "truth_ink_bbox_coverage": 0.95,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "款",
+          "predicted_bbox": [
+            311,
+            186,
+            353,
+            224
+          ],
+          "truth_cell_bbox": [
+            312,
+            172,
+            354,
+            228
+          ],
+          "truth_ink_bbox": [
+            313,
+            184,
+            352,
+            224
+          ],
+          "truth_ink_bbox_coverage": 0.95,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "码",
+          "predicted_bbox": [
+            353,
+            186,
+            395,
+            223
+          ],
+          "truth_cell_bbox": [
+            354,
+            172,
+            396,
+            228
+          ],
+          "truth_ink_bbox": [
+            356,
+            186,
+            393,
+            223
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "服",
+          "predicted_bbox": [
+            395,
+            186,
+            437,
+            224
+          ],
+          "truth_cell_bbox": [
+            396,
+            172,
+            438,
+            228
+          ],
+          "truth_ink_bbox": [
+            398,
+            186,
+            436,
+            223
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "务",
+          "predicted_bbox": null,
+          "truth_cell_bbox": [
+            438,
+            172,
+            480,
+            228
+          ],
+          "truth_ink_bbox": [
+            440,
+            183,
+            478,
+            224
+          ],
+          "truth_ink_bbox_coverage": 0.0,
+          "within_character_cell_tolerance": false,
+          "geometry_ok": false
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "收",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "款",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "码",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "服",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "务",
+          "status": "uncertain",
+          "reason": "missing_neighbour_ctc_anchor"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "PingFang SC",
+          "distance": 0.05215056677916863
+        },
+        {
+          "family": "MiSans",
+          "distance": 0.05552408182017601
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.06625341176128988
+        }
+      ],
+      "oracle_match": {
+        "family": "MiSans",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "MiSans",
+            "distance": 0.03116633699817235
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.036542421107208
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.039111002907676884
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05708670779131353,
+        "ocr": 0.020522250095382333,
+        "font_matching": 0.010239125229418278,
+        "total": 0.09222779097035527
+      }
+    },
+    {
+      "case_id": "misans_regular--white_jpeg74_24",
+      "input_file": "inputs/misans_regular--white_jpeg74_24.jpg",
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "negative_family": false,
+      "expected_text": "余额宝收益",
+      "actual_text": "余额宝收益",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9033490483284383,
+      "ocr_confidence": 0.9981698632240296,
+      "segmentation_status_ok": false,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "余",
+          "predicted_bbox": [
+            316,
+            181,
+            338,
+            205
+          ],
+          "truth_cell_bbox": [
+            315,
+            172,
+            339,
+            210
+          ],
+          "truth_ink_bbox": [
+            316,
+            181,
+            338,
+            204
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "额",
+          "predicted_bbox": [
+            338,
+            180,
+            362,
+            205
+          ],
+          "truth_cell_bbox": [
+            339,
+            172,
+            363,
+            210
+          ],
+          "truth_ink_bbox": [
+            340,
+            181,
+            362,
+            204
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "宝",
+          "predicted_bbox": [
+            362,
+            181,
+            386,
+            204
+          ],
+          "truth_cell_bbox": [
+            363,
+            172,
+            387,
+            210
+          ],
+          "truth_ink_bbox": [
+            364,
+            181,
+            386,
+            203
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "收",
+          "predicted_bbox": [
+            386,
+            180,
+            410,
+            205
+          ],
+          "truth_cell_bbox": [
+            387,
+            172,
+            411,
+            210
+          ],
+          "truth_ink_bbox": [
+            388,
+            181,
+            410,
+            204
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "益",
+          "predicted_bbox": null,
+          "truth_cell_bbox": [
+            411,
+            172,
+            435,
+            210
+          ],
+          "truth_ink_bbox": [
+            412,
+            181,
+            434,
+            203
+          ],
+          "truth_ink_bbox_coverage": 0.0,
+          "within_character_cell_tolerance": false,
+          "geometry_ok": false
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "余",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "额",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "宝",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "收",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "益",
+          "status": "uncertain",
+          "reason": "missing_neighbour_ctc_anchor"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "MiSans",
+          "distance": 0.02338661773296949
+        },
+        {
+          "family": "OPPO Sans",
+          "distance": 0.0255280642644318
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.03367467576798061
+        }
+      ],
+      "oracle_match": {
+        "family": null,
+        "correct": false,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "MiSans",
+            "distance": 0.02237478616665245
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.024678885708408215
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.031721849288897944
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.057219416834414005,
+        "ocr": 0.020637999987229705,
+        "font_matching": 0.009402540978044271,
+        "total": 0.09136425005272031
+      }
+    },
+    {
+      "case_id": "oppo_regular--white_png_26",
+      "input_file": "inputs/oppo_regular--white_png_26.png",
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "negative_family": false,
+      "expected_text": "账单详情",
+      "actual_text": "账单详情",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9628079836185163,
+      "ocr_confidence": 0.9998157024383545,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "账",
+          "predicted_bbox": [
+            326,
+            180,
+            349,
+            205
+          ],
+          "truth_cell_bbox": [
+            325,
+            172,
+            350,
+            212
+          ],
+          "truth_ink_bbox": [
+            325,
+            181,
+            350,
+            204
+          ],
+          "truth_ink_bbox_coverage": 0.92,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "单",
+          "predicted_bbox": [
+            349,
+            180,
+            375,
+            205
+          ],
+          "truth_cell_bbox": [
+            350,
+            172,
+            375,
+            212
+          ],
+          "truth_ink_bbox": [
+            351,
+            180,
+            374,
+            205
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "详",
+          "predicted_bbox": [
+            375,
+            180,
+            399,
+            205
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            400,
+            212
+          ],
+          "truth_ink_bbox": [
+            376,
+            180,
+            399,
+            205
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "情",
+          "predicted_bbox": [
+            399,
+            180,
+            423,
+            205
+          ],
+          "truth_cell_bbox": [
+            400,
+            172,
+            425,
+            212
+          ],
+          "truth_ink_bbox": [
+            400,
+            180,
+            424,
+            204
+          ],
+          "truth_ink_bbox_coverage": 0.958333,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "账",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "单",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "详",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "情",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "OPPO Sans",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "OPPO Sans",
+          "distance": 0.026951197638130975
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.030870260163460728
+        },
+        {
+          "family": "MiSans",
+          "distance": 0.03139088219251887
+        }
+      ],
+      "oracle_match": {
+        "family": null,
+        "correct": false,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.02483040973572198
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.025494179943128192
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.028747598458073786
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05733595904894173,
+        "ocr": 0.020568375010043383,
+        "font_matching": 0.009348082821816206,
+        "total": 0.09134712489321828
+      }
+    },
+    {
+      "case_id": "oppo_regular--white_jpeg90_32",
+      "input_file": "inputs/oppo_regular--white_jpeg90_32.jpg",
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "negative_family": false,
+      "expected_text": "付款成功",
+      "actual_text": "付款成功",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9777545755156422,
+      "ocr_confidence": 0.9991883337497711,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "付",
+          "predicted_bbox": [
+            313,
+            181,
+            343,
+            211
+          ],
+          "truth_cell_bbox": [
+            313,
+            172,
+            344,
+            218
+          ],
+          "truth_ink_bbox": [
+            313,
+            181,
+            343,
+            211
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "款",
+          "predicted_bbox": [
+            343,
+            181,
+            374,
+            211
+          ],
+          "truth_cell_bbox": [
+            344,
+            172,
+            375,
+            218
+          ],
+          "truth_ink_bbox": [
+            344,
+            181,
+            374,
+            211
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "成",
+          "predicted_bbox": [
+            374,
+            181,
+            405,
+            211
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            406,
+            218
+          ],
+          "truth_ink_bbox": [
+            375,
+            181,
+            405,
+            211
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "功",
+          "predicted_bbox": [
+            405,
+            181,
+            434,
+            211
+          ],
+          "truth_cell_bbox": [
+            406,
+            172,
+            437,
+            218
+          ],
+          "truth_ink_bbox": [
+            407,
+            181,
+            434,
+            211
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "付",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "款",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "成",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "功",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "OPPO Sans",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "OPPO Sans",
+          "distance": 0.012560545190920647
+        },
+        {
+          "family": "MiSans",
+          "distance": 0.01932529403143976
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.03574191079026068
+        }
+      ],
+      "oracle_match": {
+        "family": "OPPO Sans",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "OPPO Sans",
+            "distance": 0.012560545190920647
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.01932529403143976
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.03574191079026068
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05741529096849263,
+        "ocr": 0.0207177079282701,
+        "font_matching": 0.009588874876499176,
+        "total": 0.09212625003419816
+      }
+    },
+    {
+      "case_id": "oppo_regular--blue_png_28",
+      "input_file": "inputs/oppo_regular--blue_png_28.png",
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "negative_family": false,
+      "expected_text": "转账到银行卡",
+      "actual_text": "转账到银行卡",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9877837330207858,
+      "ocr_confidence": 0.9997228483359019,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "转",
+          "predicted_bbox": [
+            294,
+            181,
+            320,
+            207
+          ],
+          "truth_cell_bbox": [
+            294,
+            172,
+            321,
+            214
+          ],
+          "truth_ink_bbox": [
+            295,
+            181,
+            320,
+            207
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "账",
+          "predicted_bbox": [
+            320,
+            181,
+            347,
+            207
+          ],
+          "truth_cell_bbox": [
+            321,
+            172,
+            348,
+            214
+          ],
+          "truth_ink_bbox": [
+            321,
+            181,
+            347,
+            207
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "到",
+          "predicted_bbox": [
+            347,
+            181,
+            373,
+            207
+          ],
+          "truth_cell_bbox": [
+            348,
+            172,
+            375,
+            214
+          ],
+          "truth_ink_bbox": [
+            349,
+            181,
+            373,
+            206
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "银",
+          "predicted_bbox": [
+            373,
+            181,
+            401,
+            207
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            402,
+            214
+          ],
+          "truth_ink_bbox": [
+            375,
+            181,
+            401,
+            207
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "行",
+          "predicted_bbox": [
+            401,
+            181,
+            428,
+            207
+          ],
+          "truth_cell_bbox": [
+            402,
+            172,
+            429,
+            214
+          ],
+          "truth_ink_bbox": [
+            402,
+            181,
+            428,
+            206
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "卡",
+          "predicted_bbox": [
+            428,
+            181,
+            454,
+            207
+          ],
+          "truth_cell_bbox": [
+            429,
+            172,
+            456,
+            214
+          ],
+          "truth_ink_bbox": [
+            430,
+            181,
+            455,
+            207
+          ],
+          "truth_ink_bbox_coverage": 0.96,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "转",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "账",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "到",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "银",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "行",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "卡",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "font_abstention",
+      "candidates": [
+        {
+          "family": "MiSans",
+          "distance": 0.013221442589200124
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.020030251279921158
+        },
+        {
+          "family": "OPPO Sans",
+          "distance": 0.020935385520481704
+        }
+      ],
+      "oracle_match": {
+        "family": "MiSans",
+        "correct": false,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "MiSans",
+            "distance": 0.013110344047434866
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.01996343263413917
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.020874643685048027
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05741700017824769,
+        "ocr": 0.020774499978870153,
+        "font_matching": 0.012025250121951103,
+        "total": 0.09443604107946157
+      }
+    },
+    {
+      "case_id": "oppo_regular--blue_jpeg82_36",
+      "input_file": "inputs/oppo_regular--blue_jpeg82_36.jpg",
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "negative_family": false,
+      "expected_text": "订单详情",
+      "actual_text": "订单详情",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9143163258157422,
+      "ocr_confidence": 0.9926192164421082,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "订",
+          "predicted_bbox": [
+            308,
+            182,
+            342,
+            215
+          ],
+          "truth_cell_bbox": [
+            307,
+            172,
+            341,
+            222
+          ],
+          "truth_ink_bbox": [
+            308,
+            182,
+            340,
+            214
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "单",
+          "predicted_bbox": [
+            342,
+            181,
+            374,
+            216
+          ],
+          "truth_cell_bbox": [
+            341,
+            172,
+            375,
+            222
+          ],
+          "truth_ink_bbox": [
+            343,
+            181,
+            374,
+            215
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "详",
+          "predicted_bbox": [
+            374,
+            181,
+            409,
+            216
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            409,
+            222
+          ],
+          "truth_ink_bbox": [
+            376,
+            182,
+            408,
+            215
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "情",
+          "predicted_bbox": [
+            409,
+            181,
+            441,
+            216
+          ],
+          "truth_cell_bbox": [
+            409,
+            172,
+            443,
+            222
+          ],
+          "truth_ink_bbox": [
+            409,
+            182,
+            442,
+            215
+          ],
+          "truth_ink_bbox_coverage": 0.969697,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "订",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "单",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "详",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "情",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "HarmonyOS Sans SC",
+      "correct": false,
+      "failure_stage": "font_mismatch",
+      "candidates": [
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.020793903581070305
+        },
+        {
+          "family": "OPPO Sans",
+          "distance": 0.02615221414015212
+        },
+        {
+          "family": "MiSans",
+          "distance": 0.03504220567077215
+        }
+      ],
+      "oracle_match": {
+        "family": null,
+        "correct": false,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.020532078818746052
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.021095289619550872
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.024802479909975084
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05884383386000991,
+        "ocr": 0.02135912491939962,
+        "font_matching": 0.011209707939997315,
+        "total": 0.09618633310310543
+      }
+    },
+    {
+      "case_id": "oppo_regular--pale_blue_png_42",
+      "input_file": "inputs/oppo_regular--pale_blue_png_42.png",
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "negative_family": false,
+      "expected_text": "收款码服务",
+      "actual_text": "收款码服务",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9293960839315177,
+      "ocr_confidence": 0.9994873404502869,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "收",
+          "predicted_bbox": [
+            277,
+            184,
+            314,
+            222
+          ],
+          "truth_cell_bbox": [
+            275,
+            172,
+            315,
+            228
+          ],
+          "truth_ink_bbox": [
+            277,
+            183,
+            314,
+            222
+          ],
+          "truth_ink_bbox_coverage": 0.974359,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "款",
+          "predicted_bbox": [
+            314,
+            184,
+            354,
+            222
+          ],
+          "truth_cell_bbox": [
+            315,
+            172,
+            355,
+            228
+          ],
+          "truth_ink_bbox": [
+            316,
+            183,
+            354,
+            221
+          ],
+          "truth_ink_bbox_coverage": 0.973684,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "码",
+          "predicted_bbox": [
+            354,
+            184,
+            394,
+            222
+          ],
+          "truth_cell_bbox": [
+            355,
+            172,
+            395,
+            228
+          ],
+          "truth_ink_bbox": [
+            355,
+            185,
+            392,
+            221
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "服",
+          "predicted_bbox": [
+            394,
+            184,
+            434,
+            222
+          ],
+          "truth_cell_bbox": [
+            395,
+            172,
+            435,
+            228
+          ],
+          "truth_ink_bbox": [
+            396,
+            185,
+            434,
+            221
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "务",
+          "predicted_bbox": [
+            434,
+            184,
+            473,
+            222
+          ],
+          "truth_cell_bbox": [
+            435,
+            172,
+            475,
+            228
+          ],
+          "truth_ink_bbox": [
+            436,
+            182,
+            474,
+            222
+          ],
+          "truth_ink_bbox_coverage": 0.925,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "收",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "款",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "码",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "服",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "务",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "font_abstention",
+      "candidates": [
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.028644089994834497
+        },
+        {
+          "family": "OPPO Sans",
+          "distance": 0.03366134687526332
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.04195577083495707
+        }
+      ],
+      "oracle_match": {
+        "family": null,
+        "correct": false,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "OPPO Sans",
+            "distance": 0.01817450859172638
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.019102047700974456
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.027159864651096766
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05767450015991926,
+        "ocr": 0.020733874989673495,
+        "font_matching": 0.012630833080038428,
+        "total": 0.09573429194279015
+      }
+    },
+    {
+      "case_id": "oppo_regular--white_jpeg74_24",
+      "input_file": "inputs/oppo_regular--white_jpeg74_24.jpg",
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "negative_family": false,
+      "expected_text": "余额宝收益",
+      "actual_text": "余额宝收益",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9084940839062134,
+      "ocr_confidence": 0.99887934923172,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "余",
+          "predicted_bbox": [
+            318,
+            179,
+            340,
+            203
+          ],
+          "truth_cell_bbox": [
+            318,
+            172,
+            341,
+            210
+          ],
+          "truth_ink_bbox": [
+            318,
+            180,
+            341,
+            202
+          ],
+          "truth_ink_bbox_coverage": 0.956522,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "额",
+          "predicted_bbox": [
+            340,
+            179,
+            363,
+            203
+          ],
+          "truth_cell_bbox": [
+            341,
+            172,
+            364,
+            210
+          ],
+          "truth_ink_bbox": [
+            341,
+            180,
+            363,
+            202
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "宝",
+          "predicted_bbox": [
+            363,
+            179,
+            387,
+            202
+          ],
+          "truth_cell_bbox": [
+            364,
+            172,
+            387,
+            210
+          ],
+          "truth_ink_bbox": [
+            365,
+            180,
+            386,
+            201
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "收",
+          "predicted_bbox": [
+            387,
+            179,
+            409,
+            203
+          ],
+          "truth_cell_bbox": [
+            387,
+            172,
+            410,
+            210
+          ],
+          "truth_ink_bbox": [
+            388,
+            180,
+            410,
+            203
+          ],
+          "truth_ink_bbox_coverage": 0.954545,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "益",
+          "predicted_bbox": [
+            409,
+            179,
+            432,
+            202
+          ],
+          "truth_cell_bbox": [
+            410,
+            172,
+            433,
+            210
+          ],
+          "truth_ink_bbox": [
+            411,
+            180,
+            432,
+            201
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "余",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "额",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "宝",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "收",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "益",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "font_abstention",
+      "candidates": [
+        {
+          "family": "MiSans",
+          "distance": 0.025213397046309916
+        },
+        {
+          "family": "OPPO Sans",
+          "distance": 0.025426013947169167
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.028342254684932365
+        }
+      ],
+      "oracle_match": {
+        "family": null,
+        "correct": false,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "MiSans",
+            "distance": 0.025213397046309916
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.025426013947169167
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.028342254684932365
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05842849984765053,
+        "ocr": 0.02068224991671741,
+        "font_matching": 0.01081999996677041,
+        "total": 0.0941939998883754
+      }
+    },
+    {
+      "case_id": "negative_songti_regular--white_png_26",
+      "input_file": "inputs/negative_songti_regular--white_png_26.png",
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "negative_family": true,
+      "expected_text": "账单详情",
+      "actual_text": "账单详情",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9284152620912319,
+      "ocr_confidence": 0.9997505694627762,
+      "segmentation_status_ok": true,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "账",
+          "predicted_bbox": [
+            335,
+            183,
+            348,
+            209
+          ],
+          "truth_cell_bbox": [
+            323,
+            172,
+            349,
+            212
+          ],
+          "truth_ink_bbox": [
+            323,
+            183,
+            348,
+            209
+          ],
+          "truth_ink_bbox_coverage": 0.52,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        },
+        {
+          "character": "单",
+          "predicted_bbox": [
+            348,
+            183,
+            375,
+            209
+          ],
+          "truth_cell_bbox": [
+            349,
+            172,
+            375,
+            212
+          ],
+          "truth_ink_bbox": [
+            349,
+            183,
+            375,
+            208
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "详",
+          "predicted_bbox": [
+            375,
+            183,
+            401,
+            209
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            401,
+            212
+          ],
+          "truth_ink_bbox": [
+            375,
+            183,
+            401,
+            208
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "情",
+          "predicted_bbox": [
+            401,
+            183,
+            426,
+            209
+          ],
+          "truth_cell_bbox": [
+            401,
+            172,
+            427,
+            212
+          ],
+          "truth_ink_bbox": [
+            402,
+            183,
+            427,
+            208
+          ],
+          "truth_ink_bbox_coverage": 0.96,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "账",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "单",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "详",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "情",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "Songti SC",
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "Songti SC",
+          "distance": 0.1787399441516178
+        },
+        {
+          "family": "Heiti SC",
+          "distance": 0.2207262218665658
+        },
+        {
+          "family": "Hiragino Sans GB",
+          "distance": 0.2213444118827306
+        }
+      ],
+      "oracle_match": {
+        "family": "Songti SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "Songti SC",
+            "distance": 0.059751483766078445
+          },
+          {
+            "family": "Heiti SC",
+            "distance": 0.10856268510770978
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.1282986712279239
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05897475010715425,
+        "ocr": 0.020795166958123446,
+        "font_matching": 0.009853624971583486,
+        "total": 0.09401424997486174
+      }
+    },
+    {
+      "case_id": "negative_songti_regular--white_jpeg90_32",
+      "input_file": "inputs/negative_songti_regular--white_jpeg90_32.jpg",
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "negative_family": true,
+      "expected_text": "付款成功",
+      "actual_text": "付款成功",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.8963780867763691,
+      "ocr_confidence": 0.9997154772281647,
+      "segmentation_status_ok": true,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "付",
+          "predicted_bbox": [
+            325,
+            185,
+            342,
+            216
+          ],
+          "truth_cell_bbox": [
+            311,
+            172,
+            343,
+            218
+          ],
+          "truth_ink_bbox": [
+            312,
+            186,
+            343,
+            216
+          ],
+          "truth_ink_bbox_coverage": 0.548387,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        },
+        {
+          "character": "款",
+          "predicted_bbox": [
+            342,
+            184,
+            374,
+            216
+          ],
+          "truth_cell_bbox": [
+            343,
+            172,
+            375,
+            218
+          ],
+          "truth_ink_bbox": [
+            343,
+            185,
+            375,
+            216
+          ],
+          "truth_ink_bbox_coverage": 0.96875,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "成",
+          "predicted_bbox": [
+            374,
+            184,
+            406,
+            216
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            407,
+            218
+          ],
+          "truth_ink_bbox": [
+            376,
+            185,
+            406,
+            216
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "功",
+          "predicted_bbox": [
+            406,
+            185,
+            437,
+            216
+          ],
+          "truth_cell_bbox": [
+            407,
+            172,
+            439,
+            218
+          ],
+          "truth_ink_bbox": [
+            408,
+            185,
+            438,
+            215
+          ],
+          "truth_ink_bbox_coverage": 0.966667,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "付",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "款",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "成",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "功",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "Songti SC",
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "Songti SC",
+          "distance": 0.19926735511751334
+        },
+        {
+          "family": "Heiti SC",
+          "distance": 0.2714781668627396
+        },
+        {
+          "family": "Hiragino Sans GB",
+          "distance": 0.2725465659524363
+        }
+      ],
+      "oracle_match": {
+        "family": "Songti SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "Songti SC",
+            "distance": 0.030533490459439955
+          },
+          {
+            "family": "Heiti SC",
+            "distance": 0.12262068688578387
+          },
+          {
+            "family": "Hiragino Sans GB",
+            "distance": 0.12869681026412677
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05768662504851818,
+        "ocr": 0.020959083922207355,
+        "font_matching": 0.010063666151836514,
+        "total": 0.09304441697895527
+      }
+    },
+    {
+      "case_id": "negative_songti_regular--blue_png_28",
+      "input_file": "inputs/negative_songti_regular--blue_png_28.png",
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "negative_family": true,
+      "expected_text": "转账到银行卡",
+      "actual_text": "转账到银行卡",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9898597880597882,
+      "ocr_confidence": 0.9998729030291239,
+      "segmentation_status_ok": true,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "转",
+          "predicted_bbox": [
+            291,
+            185,
+            318,
+            212
+          ],
+          "truth_cell_bbox": [
+            291,
+            172,
+            319,
+            214
+          ],
+          "truth_ink_bbox": [
+            291,
+            184,
+            318,
+            211
+          ],
+          "truth_ink_bbox_coverage": 0.962963,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "账",
+          "predicted_bbox": [
+            318,
+            185,
+            346,
+            211
+          ],
+          "truth_cell_bbox": [
+            319,
+            172,
+            347,
+            214
+          ],
+          "truth_ink_bbox": [
+            320,
+            183,
+            347,
+            211
+          ],
+          "truth_ink_bbox_coverage": 0.89418,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        },
+        {
+          "character": "到",
+          "predicted_bbox": [
+            346,
+            185,
+            374,
+            212
+          ],
+          "truth_cell_bbox": [
+            347,
+            172,
+            375,
+            214
+          ],
+          "truth_ink_bbox": [
+            348,
+            184,
+            374,
+            211
+          ],
+          "truth_ink_bbox_coverage": 0.962963,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "银",
+          "predicted_bbox": [
+            374,
+            185,
+            403,
+            212
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            403,
+            214
+          ],
+          "truth_ink_bbox": [
+            375,
+            184,
+            403,
+            211
+          ],
+          "truth_ink_bbox_coverage": 0.962963,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "行",
+          "predicted_bbox": [
+            403,
+            185,
+            430,
+            212
+          ],
+          "truth_cell_bbox": [
+            403,
+            172,
+            431,
+            214
+          ],
+          "truth_ink_bbox": [
+            404,
+            184,
+            430,
+            211
+          ],
+          "truth_ink_bbox_coverage": 0.962963,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "卡",
+          "predicted_bbox": [
+            430,
+            185,
+            457,
+            212
+          ],
+          "truth_cell_bbox": [
+            431,
+            172,
+            459,
+            214
+          ],
+          "truth_ink_bbox": [
+            432,
+            184,
+            459,
+            211
+          ],
+          "truth_ink_bbox_coverage": 0.891632,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "转",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "账",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "到",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "银",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "行",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "卡",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "Songti SC",
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "Songti SC",
+          "distance": 0.06024388649535176
+        },
+        {
+          "family": "Heiti SC",
+          "distance": 0.1265618749024616
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.14767518977696106
+        }
+      ],
+      "oracle_match": {
+        "family": "Songti SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "Songti SC",
+            "distance": 0.036656357267339845
+          },
+          {
+            "family": "Heiti SC",
+            "distance": 0.10030097325161341
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.14046503616059736
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.0576853749807924,
+        "ocr": 0.021481415955349803,
+        "font_matching": 0.01208554208278656,
+        "total": 0.09574875002726912
+      }
+    },
+    {
+      "case_id": "negative_songti_regular--blue_jpeg82_36",
+      "input_file": "inputs/negative_songti_regular--blue_jpeg82_36.jpg",
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "negative_family": true,
+      "expected_text": "订单详情",
+      "actual_text": "订单详情",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9391712593480499,
+      "ocr_confidence": 0.9988368153572083,
+      "segmentation_status_ok": true,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "订",
+          "predicted_bbox": [
+            319,
+            188,
+            338,
+            222
+          ],
+          "truth_cell_bbox": [
+            303,
+            172,
+            339,
+            222
+          ],
+          "truth_ink_bbox": [
+            303,
+            187,
+            337,
+            222
+          ],
+          "truth_ink_bbox_coverage": 0.514286,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        },
+        {
+          "character": "单",
+          "predicted_bbox": [
+            338,
+            186,
+            375,
+            221
+          ],
+          "truth_cell_bbox": [
+            339,
+            172,
+            375,
+            222
+          ],
+          "truth_ink_bbox": [
+            340,
+            186,
+            374,
+            221
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "详",
+          "predicted_bbox": [
+            375,
+            187,
+            411,
+            222
+          ],
+          "truth_cell_bbox": [
+            375,
+            172,
+            411,
+            222
+          ],
+          "truth_ink_bbox": [
+            375,
+            187,
+            410,
+            221
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "情",
+          "predicted_bbox": [
+            411,
+            186,
+            444,
+            222
+          ],
+          "truth_cell_bbox": [
+            411,
+            172,
+            447,
+            222
+          ],
+          "truth_ink_bbox": [
+            411,
+            187,
+            446,
+            222
+          ],
+          "truth_ink_bbox_coverage": 0.942857,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "订",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "单",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "详",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "情",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "Songti SC",
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "Songti SC",
+          "distance": 0.22858741904472088
+        },
+        {
+          "family": "Heiti SC",
+          "distance": 0.30149939223954875
+        },
+        {
+          "family": "Hiragino Sans GB",
+          "distance": 0.30355941273048376
+        }
+      ],
+      "oracle_match": {
+        "family": "Songti SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "Songti SC",
+            "distance": 0.04950291066138626
+          },
+          {
+            "family": "Heiti SC",
+            "distance": 0.12989902558182773
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.14632503955582032
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05787287512794137,
+        "ocr": 0.020755667006596923,
+        "font_matching": 0.00968954199925065,
+        "total": 0.0925925001502037
+      }
+    },
+    {
+      "case_id": "negative_songti_regular--pale_blue_png_42",
+      "input_file": "inputs/negative_songti_regular--pale_blue_png_42.png",
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "negative_family": true,
+      "expected_text": "收款码服务",
+      "actual_text": "收款码服务",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9786954502055727,
+      "ocr_confidence": 0.9995399951934815,
+      "segmentation_status_ok": false,
+      "segmentation_complete": false,
+      "segmentation_geometry": [
+        {
+          "character": "收",
+          "predicted_bbox": [
+            285,
+            190,
+            310,
+            228
+          ],
+          "truth_cell_bbox": [
+            270,
+            172,
+            312,
+            228
+          ],
+          "truth_ink_bbox": [
+            271,
+            188,
+            310,
+            228
+          ],
+          "truth_ink_bbox_coverage": 0.608974,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": false
+        },
+        {
+          "character": "款",
+          "predicted_bbox": [
+            310,
+            190,
+            353,
+            228
+          ],
+          "truth_cell_bbox": [
+            312,
+            172,
+            354,
+            228
+          ],
+          "truth_ink_bbox": [
+            313,
+            188,
+            354,
+            228
+          ],
+          "truth_ink_bbox_coverage": 0.926829,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "码",
+          "predicted_bbox": [
+            353,
+            190,
+            395,
+            229
+          ],
+          "truth_cell_bbox": [
+            354,
+            172,
+            396,
+            228
+          ],
+          "truth_ink_bbox": [
+            356,
+            189,
+            396,
+            228
+          ],
+          "truth_ink_bbox_coverage": 0.95,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "服",
+          "predicted_bbox": [
+            395,
+            190,
+            437,
+            229
+          ],
+          "truth_cell_bbox": [
+            396,
+            172,
+            438,
+            228
+          ],
+          "truth_ink_bbox": [
+            397,
+            189,
+            437,
+            228
+          ],
+          "truth_ink_bbox_coverage": 0.974359,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "务",
+          "predicted_bbox": null,
+          "truth_cell_bbox": [
+            438,
+            172,
+            480,
+            228
+          ],
+          "truth_ink_bbox": [
+            439,
+            188,
+            478,
+            228
+          ],
+          "truth_ink_bbox_coverage": 0.0,
+          "within_character_cell_tolerance": false,
+          "geometry_ok": false
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "收",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "款",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "码",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "服",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "务",
+          "status": "uncertain",
+          "reason": "missing_neighbour_ctc_anchor"
+        }
+      ],
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "correct": false,
+      "failure_stage": "segmentation",
+      "candidates": [
+        {
+          "family": "Songti SC",
+          "distance": 0.20515106411782577
+        },
+        {
+          "family": "Hiragino Sans GB",
+          "distance": 0.24999498332594147
+        },
+        {
+          "family": "Noto Sans CJK SC",
+          "distance": 0.25549852074518853
+        }
+      ],
+      "oracle_match": {
+        "family": "Songti SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "Songti SC",
+            "distance": 0.0379617832362326
+          },
+          {
+            "family": "Heiti SC",
+            "distance": 0.14813957776587042
+          },
+          {
+            "family": "MiSans",
+            "distance": 0.1512970791902917
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.05827275011688471,
+        "ocr": 0.020969332894310355,
+        "font_matching": 0.010302624898031354,
+        "total": 0.09412349993363023
+      }
+    },
+    {
+      "case_id": "negative_songti_regular--white_jpeg74_24",
+      "input_file": "inputs/negative_songti_regular--white_jpeg74_24.jpg",
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "negative_family": true,
+      "expected_text": "余额宝收益",
+      "actual_text": "余额宝收益",
+      "ocr_exact": true,
+      "detected_regions": 1,
+      "selected_region_id": "R001",
+      "detector_score": 0.9557271569203107,
+      "ocr_confidence": 0.9998164653778077,
+      "segmentation_status_ok": true,
+      "segmentation_complete": true,
+      "segmentation_geometry": [
+        {
+          "character": "余",
+          "predicted_bbox": [
+            316,
+            183,
+            338,
+            207
+          ],
+          "truth_cell_bbox": [
+            315,
+            172,
+            339,
+            210
+          ],
+          "truth_ink_bbox": [
+            315,
+            183,
+            339,
+            206
+          ],
+          "truth_ink_bbox_coverage": 0.916667,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "额",
+          "predicted_bbox": [
+            338,
+            183,
+            362,
+            207
+          ],
+          "truth_cell_bbox": [
+            339,
+            172,
+            363,
+            210
+          ],
+          "truth_ink_bbox": [
+            339,
+            183,
+            362,
+            207
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "宝",
+          "predicted_bbox": [
+            362,
+            183,
+            386,
+            205
+          ],
+          "truth_cell_bbox": [
+            363,
+            172,
+            387,
+            210
+          ],
+          "truth_ink_bbox": [
+            364,
+            183,
+            386,
+            205
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "收",
+          "predicted_bbox": [
+            386,
+            183,
+            410,
+            207
+          ],
+          "truth_cell_bbox": [
+            387,
+            172,
+            411,
+            210
+          ],
+          "truth_ink_bbox": [
+            388,
+            183,
+            410,
+            207
+          ],
+          "truth_ink_bbox_coverage": 1.0,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        },
+        {
+          "character": "益",
+          "predicted_bbox": [
+            410,
+            183,
+            433,
+            206
+          ],
+          "truth_cell_bbox": [
+            411,
+            172,
+            435,
+            210
+          ],
+          "truth_ink_bbox": [
+            411,
+            183,
+            435,
+            206
+          ],
+          "truth_ink_bbox_coverage": 0.916667,
+          "within_character_cell_tolerance": true,
+          "geometry_ok": true
+        }
+      ],
+      "glyph_statuses": [
+        {
+          "character": "余",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "额",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "宝",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "收",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        },
+        {
+          "character": "益",
+          "status": "ok",
+          "reason": "ctc_anchor_refined_by_low_ink_projection"
+        }
+      ],
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "Songti SC",
+      "correct": true,
+      "failure_stage": null,
+      "candidates": [
+        {
+          "family": "Songti SC",
+          "distance": 0.08970222900124947
+        },
+        {
+          "family": "Heiti SC",
+          "distance": 0.14036014033021776
+        },
+        {
+          "family": "OPPO Sans",
+          "distance": 0.14251735907347837
+        }
+      ],
+      "oracle_match": {
+        "family": "Songti SC",
+        "correct": true,
+        "accepted_pingfang": false,
+        "candidates": [
+          {
+            "family": "Songti SC",
+            "distance": 0.05258724811819384
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.1375929350701935
+          },
+          {
+            "family": "Heiti SC",
+            "distance": 0.14144079871615392
+          }
+        ]
+      },
+      "timing_seconds": {
+        "detector": 0.0583210838958621,
+        "ocr": 0.02078629215247929,
+        "font_matching": 0.011326082982122898,
+        "total": 0.09480662480928004
+      }
+    }
+  ],
+  "failure_montage_cases": [
+    "pingfang_21.0d1e1_regular--white_png_26",
+    "noto_regular--pale_blue_png_42",
+    "harmonyos_regular--white_png_26",
+    "harmonyos_regular--blue_png_28",
+    "misans_regular--white_png_26",
+    "misans_regular--blue_jpeg82_36"
+  ]
+}

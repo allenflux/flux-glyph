@@ -1,0 +1,110 @@
+{
+  "result": "passed",
+  "testedAt": "2026-09-11T14:13:14.921Z",
+  "baseUrl": "http://127.0.0.1:9000",
+  "checks": [
+    "main/docs at 1280, 390, and 320 pixels",
+    "Chinese/English segmented-button switching and aria-pressed",
+    "responsive main/docs heading sizes",
+    "upper-right language alignment with API link below",
+    "subtitle row without overlap",
+    "no body overflow or off-viewport header elements"
+  ],
+  "cases": [
+    {
+      "viewport": 1280,
+      "route": "/",
+      "heading": {
+        "text": "Flux Glyph",
+        "zhSize": "40px",
+        "enSize": "40px"
+      },
+      "languageSwitch": true,
+      "languageRightAligned": true,
+      "apiBelowLanguage": true,
+      "subtitleBelowTitle": true,
+      "noOverlap": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "viewport": 1280,
+      "route": "/docs",
+      "heading": {
+        "text": "Flux Glyph API",
+        "zhSize": "32px",
+        "enSize": "32px"
+      },
+      "languageSwitch": true,
+      "languageRightAligned": true,
+      "apiBelowLanguage": true,
+      "subtitleBelowTitle": true,
+      "noOverlap": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "viewport": 390,
+      "route": "/",
+      "heading": {
+        "text": "Flux Glyph",
+        "zhSize": "32px",
+        "enSize": "32px"
+      },
+      "languageSwitch": true,
+      "languageRightAligned": true,
+      "apiBelowLanguage": true,
+      "subtitleBelowTitle": true,
+      "noOverlap": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "viewport": 390,
+      "route": "/docs",
+      "heading": {
+        "text": "Flux Glyph API",
+        "zhSize": "26px",
+        "enSize": "26px"
+      },
+      "languageSwitch": true,
+      "languageRightAligned": true,
+      "apiBelowLanguage": true,
+      "subtitleBelowTitle": true,
+      "noOverlap": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "viewport": 320,
+      "route": "/",
+      "heading": {
+        "text": "Flux Glyph",
+        "zhSize": "32px",
+        "enSize": "32px"
+      },
+      "languageSwitch": true,
+      "languageRightAligned": true,
+      "apiBelowLanguage": true,
+      "subtitleBelowTitle": true,
+      "noOverlap": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "viewport": 320,
+      "route": "/docs",
+      "heading": {
+        "text": "Flux Glyph API",
+        "zhSize": "26px",
+        "enSize": "26px"
+      },
+      "languageSwitch": true,
+      "languageRightAligned": true,
+      "apiBelowLanguage": true,
+      "subtitleBelowTitle": true,
+      "noOverlap": true,
+      "noHorizontalOverflow": true
+    }
+  ],
+  "browserErrors": [],
+  "screenshots": [
+    "docs/ui-validation/header-desktop.png",
+    "docs/ui-validation/header-mobile.png"
+  ]
+}

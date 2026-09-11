@@ -1,0 +1,53 @@
+{
+  "schema": "flux-glyph-controlled-font-e2e-v1",
+  "protocol_frozen_before_first_run": true,
+  "scope": "Controlled synthetic mobile-style screenshots rendered from hash-verified source fonts; not real Alipay screenshot accuracy.",
+  "font_manifest_source": "/Users/allenflux/PycharmProjects/alipay-ai-inference/runs/alipay-font-generalization-v8-20260911/data/fonts.json",
+  "fonts": [
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "postscript_name": "PingFangSC-Regular",
+      "source_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9"
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "postscript_name": "NotoSansCJKsc-Regular",
+      "source_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b"
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "postscript_name": "HarmonyOS_Sans_SC",
+      "source_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1"
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "postscript_name": "MiSans-Regular",
+      "source_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6"
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "postscript_name": "OPPOSans",
+      "source_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3"
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "postscript_name": "STSongti-SC-Regular",
+      "source_sha256": "6873ac2ccab5c2e74d87d6b690f3773098dd6a6238805363a3b3567f2caf6f47",
+      "negative_family": true
+    }
+  ],
+  "render_profiles": [
+    {"id": "white_png_26", "text": "账单详情", "font_size": 26, "background": "white", "format": "PNG"},
+    {"id": "white_jpeg90_32", "text": "付款成功", "font_size": 32, "background": "white", "format": "JPEG", "jpeg_quality": 90},
+    {"id": "blue_png_28", "text": "转账到银行卡", "font_size": 28, "background": "alipay_blue", "format": "PNG"},
+    {"id": "blue_jpeg82_36", "text": "订单详情", "font_size": 36, "background": "alipay_blue", "format": "JPEG", "jpeg_quality": 82},
+    {"id": "pale_blue_png_42", "text": "收款码服务", "font_size": 42, "background": "pale_blue", "format": "PNG"},
+    {"id": "white_jpeg74_24", "text": "余额宝收益", "font_size": 24, "background": "white", "format": "JPEG", "jpeg_quality": 74}
+  ]
+}

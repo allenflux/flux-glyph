@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "public_deployment_url": "http://allenflux.tech:9000",
+  "tested_url": "http://127.0.0.1:9000",
+  "public_domain_deployed_by_this_task": false,
+  "manual_Content_Type_or_X_Filename_required": false,
+  "cases": [
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:9000",
+      "manual_headers": false,
+      "job_id": "c0d5713abca4403a85cdc071474b4063",
+      "font": "PingFang SC"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:9000/upload",
+      "manual_headers": false,
+      "job_id": "4758e10aae224e70971ae80021219cd9",
+      "font": "PingFang SC"
+    },
+    {
+      "method": "PUT",
+      "url": "http://127.0.0.1:9000/upload/screenshot.png",
+      "manual_headers": false,
+      "job_id": "ebd8285b15c54201a8cbd261c4b9ab23",
+      "font": "PingFang SC"
+    }
+  ],
+  "unit_test_count": 16
+}
