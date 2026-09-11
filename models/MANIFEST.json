@@ -43,8 +43,8 @@
     },
     {
       "path": "pp/paddle_ocr_delivery.contract.json",
-      "sha256": "5e5eeb877847bfc73597acfacfbdd43b9be9820fafce10c8e8c6715d9fb8c492",
-      "bytes": 8145
+      "sha256": "3457279d02acb449b6844cfa132687585b3bedc1f3e6736fdb539adc6edb9b2a",
+      "bytes": 7851
     }
   ],
   "source_note": "user-supplied PP ONNX plus frozen R13 reference rasters compacted without new neural training"

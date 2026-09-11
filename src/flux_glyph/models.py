@@ -28,7 +28,16 @@ def verify_bundle(directory):
         path=(root/relative).resolve()
         if not path.is_relative_to(root) or not path.is_file():raise ValueError('Invalid model manifest path')
         paths.add(relative)
-        if path.stat().st_size!=row['bytes'] or file_sha(path)!=row['sha256']:raise ValueError('Model file checksum mismatch: '+relative)
+        actual_size=path.stat().st_size
+        actual_sha=file_sha(path)
+        if actual_size!=row['bytes'] or actual_sha!=row['sha256']:
+            raise ValueError(
+                f'Model file checksum mismatch: {relative}; bundle={root}; '
+                f'expected bytes={row["bytes"]}, sha256={row["sha256"]}; '
+                f'actual bytes={actual_size}, sha256={actual_sha}. '
+                'Restore this file from the matching original model bundle. '
+                'Preserve original bytes and line endings; do not regenerate MANIFEST.json to bypass validation.'
+            )
     required={'font/metadata.json','font/GATES.json','pp/onnx/paddle_ocr_det.onnx','pp/onnx/paddle_ocr_rec.onnx','pp/onnx/paddle_ocr_cls.onnx','pp/charset/ppocr_keys_v1.txt','pp/paddle_ocr_delivery.contract.json'}
     meta=json.loads((root/'font/metadata.json').read_text());archive=meta.get('archive') if isinstance(meta,dict) else None
     if not isinstance(archive,str) or PurePosixPath(archive).name!=archive:raise ValueError('Invalid font archive path')

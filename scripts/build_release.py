@@ -13,7 +13,7 @@ def main():
     args=parser.parse_args()
     if args.output.exists():raise ValueError('Choose a new output file; existing release will not be overwritten')
     selected,version,manifest=load_active(ROOT/'models')
-    files={name:ROOT/name for name in ('Dockerfile','compose.yaml','requirements.txt','requirements.lock','README.md','.env.example','.dockerignore','.gitignore')}
+    files={name:ROOT/name for name in ('Dockerfile','compose.yaml','requirements.txt','requirements.lock','README.md','.env.example','.dockerignore','.gitignore','.gitattributes')}
     for folder in ('src','web','assets','scripts','tests','docs'):
         for path in (ROOT/folder).rglob('*'):
             if path.is_file() and not any(p.startswith('.') or p=='__pycache__' for p in path.relative_to(ROOT).parts) and path.suffix!='.pyc':

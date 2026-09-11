@@ -123,3 +123,11 @@ docker compose restart api
 - `assets/`：用于画中文标注的开源字体子集与许可证。
 - `scripts/`：离线模型打包、导入和回退工具。
 - `tests/`、`docs/`：功能测试、精度和资源验证记录。
+
+## Git 部署时的模型校验
+
+模型清单校验原始字节，包括换行。PP 配置已统一为 LF；`.gitattributes` 中的 `models/** -text` 禁止 Git 再自动改写模型文件。请将属性文件和 `models/MANIFEST.json` 一并提交，保留严格校验。
+
+若启动报 `Model file checksum mismatch`，先同步完整版本并重建；不要按服务器上的异常文件重新生成清单。`./models` 挂载会覆盖镜像内模型，只重建镜像而未同步宿主机模型文件不能修复此类问题。新日志会显示实际模型目录、预期及实际字节数和 SHA256；切换过模型版本时还需检查 `models/ACTIVE.json` 指向的目录。
+
+本次修复的 PP 配置为 7851 字节，SHA256 为 `3457279d02acb449b6844cfa132687585b3bedc1f3e6736fdb539adc6edb9b2a`。配置内容和神经网络权重不变；仅统一换行并将清单对齐到已经存于 Git 的文件。
