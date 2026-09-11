@@ -100,13 +100,16 @@ async function layout(command, width, height, language) {
     document.querySelector('[data-language="${language}"]').click();
     document.querySelector('.viewer').scrollTop=0;document.getElementById('regions').scrollTop=0;document.getElementById('ocr-output').scrollTop=0;
     const q=s=>document.querySelector(s), r=e=>{const x=e.getBoundingClientRect();return {x:x.x,y:x.y,w:x.width,h:x.height,b:x.bottom,r:x.right}};
-    const visual=r(q('.result-visual')), ocr=r(q('.ocr-panel')), viewer=r(q('.viewer')), image=r(q('.image-layer')), svg=r(q('#overlay')), original=r(q('#original')), upload=r(q('.upload-help'));
+    const grid=r(q('.result-grid')), visual=r(q('.result-visual')), detail=r(q('#detail-panel')), data=r(q('.data-column')), ocr=r(q('.ocr-panel')), json=r(q('.json-panel')), viewer=r(q('.viewer')), image=r(q('.image-layer')), svg=r(q('#overlay')), original=r(q('#original')), upload=r(q('.upload-help'));
     return {lang:document.documentElement.lang,scrollWidth:document.documentElement.scrollWidth,innerWidth,
-      visual,ocr,viewer,image,svg,original,overlayAligned:Math.abs(svg.x-original.x)<.5&&Math.abs(svg.y-original.y)<.5&&Math.abs(svg.w-original.w)<.5&&Math.abs(svg.h-original.h)<.5,upload,viewport:{w:innerWidth,h:innerHeight},ocrRows:q('#ocr-output').querySelectorAll('.ocr-row').length,
+      grid,visual,detail,data,ocr,json,viewer,image,svg,original,overlayAligned:Math.abs(svg.x-original.x)<.5&&Math.abs(svg.y-original.y)<.5&&Math.abs(svg.w-original.w)<.5&&Math.abs(svg.h-original.h)<.5,upload,viewport:{w:innerWidth,h:innerHeight},ocrRows:q('#ocr-output').querySelectorAll('.ocr-row').length,
       ocrText:q('#ocr-output').innerText,copyText:q('#copy-ocr').textContent,resultTop:r(q('#result-section')).y,
       apiButton:q('#api-link').getBoundingClientRect().height, imageReasonable:viewer.h <= innerHeight*.82,
       offenders:[...document.querySelectorAll('body *')].map(e=>({tag:e.tagName,id:e.id,cls:e.className?.baseVal||e.className||'',r:e.getBoundingClientRect().right,w:e.getBoundingClientRect().width,scroll:e.scrollWidth})).filter(x=>x.r>innerWidth+1),
-      mobileStacked:ocr.y >= visual.b-1, desktopAdjacent:ocr.x >= visual.r-1 && ocr.y < visual.b,
+      detailFull:Math.abs(detail.x-grid.x)<1&&Math.abs(detail.w-grid.w)<1&&detail.y>=visual.b-1,
+      dataFull:Math.abs(data.x-grid.x)<1&&Math.abs(data.w-grid.w)<1&&data.y>=detail.b-1,
+      dataPanelsFull:Math.abs(ocr.x-data.x)<1&&Math.abs(ocr.w-data.w)<1&&Math.abs(json.x-data.x)<1&&Math.abs(json.w-data.w)<1,
+      dataStacked:json.y>=ocr.b-1,
       selected:[...q('#ocr-output').querySelectorAll('.ocr-row.selected')].length};
   })()`);
   assert(value.scrollWidth <= value.innerWidth + 1, `${width}px horizontal overflow: ${JSON.stringify(value)}`);
@@ -114,12 +117,15 @@ async function layout(command, width, height, language) {
   assert(value.apiButton >= 32, `${width}px API tool button is too small`);
   assert(value.imageReasonable, `${width}px result image overwhelms viewport: ${JSON.stringify(value.image)}`);
   assert(value.overlayAligned, `${width}px source image and SVG overlay diverged: ${JSON.stringify({image:value.original,svg:value.svg})}`);
-  assert(width <= 1180 ? value.mobileStacked : value.desktopAdjacent, `${width}px result layout has the wrong proportion: ${JSON.stringify(value)}`);
+  assert(value.detailFull && value.dataFull, `${width}px detail/data rows are not full-width and ordered: ${JSON.stringify(value)}`);
+  assert(value.dataPanelsFull && value.dataStacked, `${width}px OCR/JSON must be ordered full-width rows: ${JSON.stringify(value)}`);
   await evaluate(command, "window.scrollTo(0,document.getElementById('result-section').offsetTop);true");
   const resultShot = await screenshot(command, `ocr-${width}x${height}-${language}.png`);
   let topShot = null;
   if (width === 1920 && height === 900 && language === 'zh') { await evaluate(command, 'window.scrollTo(0,0);true'); topShot=await screenshot(command,'ocr-1920x900-zh-page-top.png'); }
-  return {...value, screenshot:resultShot, topScreenshot:topShot};
+  let detailDataShot=null;
+  if (width===1920&&height===1080&&language==='zh') {await evaluate(command,"window.scrollTo(0,document.getElementById('detail-panel').offsetTop-20);true");detailDataShot=await screenshot(command,'ocr-1920x1080-zh-detail-data.png');}
+  return {...value, screenshot:resultShot, topScreenshot:topShot, detailDataScreenshot:detailDataShot};
 }
 
 (async () => {
@@ -159,16 +165,19 @@ async function layout(command, width, height, language) {
     const colors = Object.fromEntries(timeline.filter(x => x.stage).map(x => [x.stage, x.color])); colors.complete = settledComplete.color;
     assert(colors.running === 'rgb(37, 99, 235)' && colors.complete === 'rgb(20, 128, 74)', `running/completion colors are incorrect: ${JSON.stringify(colors)}`);
     await waitFor(command, "document.querySelectorAll('#ocr-output .ocr-row').length>=2 && document.querySelector('#overlay polygon')", 'OCR transcript');
+    assert(await evaluate(command, "document.getElementById('detail-panel').hidden && !document.querySelector('#overlay .selected,#regions .selected,#ocr-output .selected')"), 'font detail must start collapsed with no selected region');
 
     const linkage = await evaluate(command, `(() => {
-      const rows=[...document.querySelectorAll('#ocr-output .ocr-row')], viewer=document.querySelector('.viewer'), list=document.getElementById('regions'), detail=document.getElementById('detail');
+      const rows=[...document.querySelectorAll('#ocr-output .ocr-row')], viewer=document.querySelector('.viewer'), list=document.getElementById('regions'), detail=document.getElementById('detail'), panel=document.getElementById('detail-panel');
       window.scrollTo(0,document.getElementById('result-section').offsetTop); const pageY=window.scrollY, listTop=list.getBoundingClientRect().top;
-      const checks=[]; for (const target of [rows[0],rows[Math.floor(rows.length/2)],rows[rows.length-1]]) {const beforeY=window.scrollY;target.click();checks.push({id:target.dataset.regionId,selected:String(window.FluxGlyphUI.get().selected),row:target.classList.contains('selected'),polygon:!!document.querySelector('#overlay polygon.selected'),region:!!document.querySelector('#regions .region.selected'),pageStable:Math.abs(window.scrollY-beforeY)<1,listStable:Math.abs(list.getBoundingClientRect().top-listTop)<1,viewerScroll:viewer.scrollTop,detailHeight:detail.getBoundingClientRect().height,detailMax:getComputedStyle(detail).maxHeight});}
+      const checks=[]; let stablePanelHeight=null; for (const target of [rows[0],rows[Math.floor(rows.length/2)],rows[rows.length-1]]) {const beforeY=window.scrollY;target.click();const panelHeight=panel.getBoundingClientRect().height;if(stablePanelHeight===null)stablePanelHeight=panelHeight;checks.push({id:target.dataset.regionId,selected:String(window.FluxGlyphUI.get().selected),row:target.classList.contains('selected'),polygon:!!document.querySelector('#overlay polygon.selected'),region:!!document.querySelector('#regions .region.selected'),shown:!panel.hidden,pageStable:Math.abs(window.scrollY-beforeY)<1,listStable:Math.abs(list.getBoundingClientRect().top-listTop)<1,panelStable:Math.abs(panelHeight-stablePanelHeight)<1,viewerScroll:viewer.scrollTop,detailHeight:detail.getBoundingClientRect().height,detailMax:getComputedStyle(detail).maxHeight});}
       const polygon=document.querySelectorAll('#overlay polygon')[0], beforePolygonY=window.scrollY, beforeViewer=viewer.scrollTop;polygon.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true}));
-      return {checks,pageY,polygonPageStable:Math.abs(window.scrollY-beforePolygonY)<1,polygonViewerStable:Math.abs(viewer.scrollTop-beforeViewer)<1,detail:detail.innerText,detailScrolls:detail.scrollHeight<=detail.clientHeight+1||['auto','scroll'].includes(getComputedStyle(detail).overflowY)};
+      const polygonPageStable=Math.abs(window.scrollY-beforePolygonY)<1,polygonViewerStable=Math.abs(viewer.scrollTop-beforeViewer)<1,detailText=detail.innerText;document.getElementById('close-detail').click();const closed={hidden:panel.hidden,selected:window.FluxGlyphUI.get().selected,highlights:document.querySelectorAll('#overlay .selected,#regions .selected,#ocr-output .selected').length};rows[1].click();
+      return {checks,pageY,polygonPageStable,polygonViewerStable,detail:detailText,detailScrolls:detail.scrollHeight<=detail.clientHeight+1||['auto','scroll'].includes(getComputedStyle(detail).overflowY),closed,reopened:!panel.hidden&&String(window.FluxGlyphUI.get().selected)===rows[1].dataset.regionId};
     })()`);
-    assert(linkage.checks.every(x => x.selected === x.id && x.row && x.polygon && x.region && x.pageStable && x.listStable), `OCR row linkage or stable-page layout failed: ${JSON.stringify(linkage)}`);
+    assert(linkage.checks.every(x => x.selected === x.id && x.row && x.polygon && x.region && x.shown && x.pageStable && x.listStable && x.panelStable), `OCR row linkage or stable-page layout failed: ${JSON.stringify(linkage)}`);
     assert(linkage.polygonPageStable && linkage.polygonViewerStable && linkage.detail.length > 10 && linkage.detailScrolls, `Polygon selection moved the page/viewer or detail is unbounded: ${JSON.stringify(linkage)}`);
+    assert(linkage.closed.hidden && linkage.closed.selected === null && linkage.closed.highlights === 0 && linkage.reopened, `detail collapse/reopen contract failed: ${JSON.stringify(linkage)}`);
 
     const exact = await evaluate(command, `(() => {const r=window.FluxGlyphUI.get().result;return {ocr:r.regions.map(x=>x.text).filter(Boolean).join('\\n'),json:JSON.stringify(r,null,2),shown:document.getElementById('ocr-output').innerText};})()`);
     await evaluate(command, "document.getElementById('copy-ocr').click(); true", false, true);

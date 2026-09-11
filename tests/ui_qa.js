@@ -36,7 +36,9 @@ assert(/transition:none!important;animation:none!important/.test(css), 'reduced-
 const storageWrites = [...js.matchAll(/localStorage\.setItem\(\s*['"]([^'"]+)['"]/g)].map(match => match[1]);
 assert.deepStrictEqual(storageWrites, ['flux-glyph-language'], 'only the language preference may be persisted');
 assert(!/(?:localStorage|sessionStorage)\.setItem\([^\n]*(?:token|auth)/i.test(js), 'access tokens must never be persisted');
-assert(/\.data-column\{[^}]*grid-template-rows:minmax\(0,1fr\)[^}]*height:/.test(css) && /#json-output\{[^}]*flex:1[^}]*overflow:auto/.test(css) && /font-family:ui-monospace/.test(css), 'JSON panel must be bounded by its fixed parent slot, scrollable, and monospace');
+assert(/\.data-column\{[^}]*grid-template-columns:minmax\(0,1fr\)[^}]*grid-template-rows:/.test(css) && /#json-output\{[^}]*flex:1[^}]*overflow:auto/.test(css) && /font-family:ui-monospace/.test(css), 'OCR and JSON must use full-width ordered rows, with scrollable monospace JSON');
+for (const id of ['detail-panel', 'close-detail']) assert(new RegExp(`id=["']${id}["']`).test(html), `missing collapsible detail control: #${id}`);
+assert(/id="detail-panel"[^>]*hidden/.test(html), 'font detail must be collapsed before a region is selected');
 for (const token of ['@media(max-width:760px)', 'border-radius:4px', 'background:var(--soft)']) {
   assert(css.includes(token), `reference-style token absent: ${token}`);
 }

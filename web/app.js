@@ -10,7 +10,7 @@
 
   const messages = {
     zh: {
-      regionsTitle: '文字区域', fontDetailTitle: '字体详情',
+      regionsTitle: '文字区域', fontDetailTitle: '字体详情', closeDetail: '收起详情', cropTitle: '原图裁字', fontConclusionTitle: '字体判断',
       tagline: '上传截图，查看每个文字区域的字体结果与原图证据。', language: '语言', apiExample: 'API 示例',
       unlockTitle: '解锁访问', unlockHelp: '此服务需要访问令牌。令牌只在本次页面会话中用于设置安全 Cookie，不会保存在浏览器存储中。', tokenPlaceholder: '输入访问令牌', unlock: '解锁',
       uploadTitle: '上传图片', uploadHelp: '支持 PNG、JPG、WebP。字体结果仅针对框内中文；英文和数字保留检测框。', dropPrompt: '选择图片或拖入这里', noFile: '尚未选择图片', start: '开始识别', downloadPng: '下载标注 PNG',
@@ -25,7 +25,7 @@
       apiHelp: '上传支付宝图片，完成后直接返回字体识别 JSON。', apiAsync: '使用 ?wait=false 先返回任务 ID，再轮询 GET /api/jobs/{id}。仍兼容 POST /api/predict?wait=true。', apiDocs: '完整 API 说明'
     },
     en: {
-      regionsTitle: 'Text regions', fontDetailTitle: 'Font details',
+      regionsTitle: 'Text regions', fontDetailTitle: 'Font details', closeDetail: 'Hide details', cropTitle: 'Source crop', fontConclusionTitle: 'Font result',
       tagline: 'Upload a screenshot to inspect font results and source evidence for each text region.', language: 'Language', apiExample: 'API examples',
       unlockTitle: 'Unlock access', unlockHelp: 'This service requires an access token. It is used only to set a secure cookie for this page session and is never saved in browser storage.', tokenPlaceholder: 'Enter access token', unlock: 'Unlock',
       uploadTitle: 'Upload image', uploadHelp: 'Supports PNG, JPG, and WebP. Font results cover Chinese text only; Latin letters and numbers keep their detection boxes.', dropPrompt: 'Choose an image or drop it here', noFile: 'No image selected', start: 'Start recognition', downloadPng: 'Download annotated PNG',
@@ -103,6 +103,7 @@
     $('ocr-count').textContent = '';
     $('copy-ocr').disabled = true;
     $('ocr-copy-status').textContent = '';
+    $('detail-panel').hidden = true;
     for (const id of ['regions', 'detail', 'overlay']) $(id).replaceChildren();
     for (const node of [$('regions'), $('detail'), $('ocr-output'), document.querySelector('.viewer')]) node.scrollTop = 0;
     $('download-png').removeAttribute('href');
@@ -397,7 +398,8 @@
       const polygon = svg('polygon', {
         class: `quad ${value.status || 'uncertain'}${selected === region.id ? ' selected' : ''}`,
         points: points(region.quad), tabindex: 0, role: 'button', 'aria-label': t('regionLabel', {id: region.id}),
-        'data-region-id': region.id, 'aria-pressed': selected === region.id
+        'data-region-id': region.id, 'aria-pressed': selected === region.id,
+        'aria-controls': 'detail-panel', 'aria-expanded': selected === region.id
       });
       polygon.addEventListener('click', () => select(region.id));
       polygon.addEventListener('keydown', event => {
@@ -418,6 +420,8 @@
       button.type = 'button';
       button.dataset.regionId = region.id;
       button.setAttribute('aria-pressed', String(selected === region.id));
+      button.setAttribute('aria-controls', 'detail-panel');
+      button.setAttribute('aria-expanded', String(selected === region.id));
       button.className = `region ${value.status || 'uncertain'}${selected === region.id ? ' selected' : ''}`;
       button.onclick = () => select(region.id, true);
       const tag = document.createElement('span');
@@ -470,6 +474,8 @@
       button.className = `ocr-row ${value.status || 'uncertain'}${selected === region.id ? ' selected' : ''}`;
       button.dataset.regionId = region.id;
       button.setAttribute('aria-pressed', String(selected === region.id));
+      button.setAttribute('aria-controls', 'detail-panel');
+      button.setAttribute('aria-expanded', String(selected === region.id));
       button.onclick = () => select(region.id, true);
       const text = document.createElement('span');
       text.className = 'ocr-text';
@@ -508,20 +514,31 @@
   function renderDetail() {
     const root = $('detail');
     const region = (result?.regions || []).find(item => item.id === selected);
+    $('detail-panel').hidden = !region;
     if (!region) {
       root.className = 'empty-state';
       root.textContent = result && !(result.regions || []).length ? t('noRegions') : t('detailEmpty');
       return;
     }
     const value = font(region);
-    root.className = '';
+    root.className = 'detail-content';
     root.replaceChildren();
+    const preview = document.createElement('section');
+    preview.className = 'detail-section detail-preview';
+    const cropHeading = document.createElement('h3');
+    cropHeading.textContent = t('cropTitle');
+    preview.append(cropHeading);
+    const verdict = document.createElement('section');
+    verdict.className = 'detail-section detail-verdict';
+    const verdictHeading = document.createElement('h3');
+    verdictHeading.textContent = t('fontConclusionTitle');
+    verdict.append(verdictHeading);
     if (region.crop_url) {
       const image = new Image();
       image.className = 'detail-image';
       image.src = region.crop_url;
       image.alt = t('cropAlt');
-      root.append(image);
+      preview.append(image);
     }
     const title = document.createElement('h2');
     title.textContent = region.text || t('unknownText');
@@ -545,7 +562,9 @@
     const confidence = document.createElement('p');
     confidence.className = 'ocr-confidence';
     confidence.textContent = ocrConfidence(region);
-    root.append(title, confidence, identity, reason, note);
+    preview.append(title, confidence);
+    verdict.append(identity, reason, note);
+    root.append(preview, verdict);
     if (value.candidates?.length) {
       const distances = document.createElement('div');
       distances.className = 'dist';
@@ -559,12 +578,17 @@
         distance.textContent = Number(candidate.distance).toFixed(4);
         distances.append(family, distance);
       }
-      root.append(distances);
+      verdict.append(distances);
     }
     if (region.glyphs?.length) {
-      const heading = document.createElement('p');
+      const glyphSection = document.createElement('section');
+      glyphSection.className = 'detail-section detail-glyphs';
+      const heading = document.createElement('h3');
       heading.textContent = t('glyphEvidence');
-      root.append(heading);
+      const grid = document.createElement('div');
+      grid.className = 'detail-glyph-grid';
+      glyphSection.append(heading, grid);
+      root.append(glyphSection);
       for (const glyph of region.glyphs) {
         const row = document.createElement('div');
         row.className = 'glyph';
@@ -581,7 +605,7 @@
         small.textContent = glyphReason(glyph);
         text.append(strong, small);
         row.append(text);
-        root.append(row);
+        grid.append(row);
       }
     }
   }
@@ -605,6 +629,7 @@
       const active = node.dataset.regionId === id;
       node.classList.toggle('selected', active);
       node.setAttribute('aria-pressed', String(active));
+      node.setAttribute('aria-expanded', String(active));
     }
     if (changed) {
       renderDetail();
@@ -612,6 +637,18 @@
     }
     for (const container of [$('regions'), $('ocr-output')]) revealInContainer(container, container.querySelector('.selected'));
     if (revealInImage) revealInContainer(document.querySelector('.viewer'), $('overlay').querySelector('.quad.selected'));
+  }
+
+  function closeDetail() {
+    const control = $('regions').querySelector('.selected');
+    selected = null;
+    for (const node of document.querySelectorAll('#overlay [data-region-id], #regions [data-region-id], #ocr-output [data-region-id]')) {
+      node.classList.remove('selected');
+      node.setAttribute('aria-pressed', 'false');
+      node.setAttribute('aria-expanded', 'false');
+    }
+    renderDetail();
+    control?.focus({preventScroll: true});
   }
 
   function fallbackCopy(text) {
@@ -724,6 +761,8 @@
   });
   $('copy-json').addEventListener('click', copyJson);
   $('copy-ocr').addEventListener('click', copyOcr);
+  $('close-detail').addEventListener('click', closeDetail);
+  $('detail-panel').addEventListener('keydown', event => { if (event.key === 'Escape') closeDetail(); });
   $('file').onchange = event => setFile(event.target.files[0] || null);
   $('drop').addEventListener('click', event => { if (event.target !== $('file')) $('file').click(); });
   $('drop').addEventListener('keydown', event => {
