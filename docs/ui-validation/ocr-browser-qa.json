@@ -1,0 +1,1363 @@
+{
+  "result": "passed",
+  "testedAt": "2026-09-11T14:58:55.377Z",
+  "fixture": "synthetic multi-region composition of tests/fixtures/ui_title_billing_details.png plus rendered Latin/digits",
+  "timeline": [
+    {
+      "done": false,
+      "error": "",
+      "stage": "running",
+      "status": "",
+      "color": "rgb(37, 99, 235)",
+      "panel": "rgb(255, 255, 255)"
+    },
+    {
+      "done": false,
+      "error": "",
+      "stage": "running",
+      "status": "running",
+      "color": "rgb(37, 99, 235)",
+      "panel": "rgb(255, 255, 255)"
+    },
+    {
+      "done": true,
+      "error": "",
+      "stage": "complete",
+      "status": "complete",
+      "color": "rgb(25, 119, 121)",
+      "panel": "rgb(255, 255, 255)"
+    }
+  ],
+  "colors": {
+    "running": "rgb(37, 99, 235)",
+    "complete": "rgb(20, 128, 74)",
+    "error": "rgb(180, 35, 24)"
+  },
+  "regions": 4,
+  "linkage": {
+    "checks": [
+      {
+        "id": "R001",
+        "selected": "R001",
+        "row": true,
+        "polygon": true,
+        "region": true,
+        "pageStable": true,
+        "listStable": true,
+        "viewerScroll": 0,
+        "detailHeight": 302.859375,
+        "detailMax": "none"
+      },
+      {
+        "id": "R003",
+        "selected": "R003",
+        "row": true,
+        "polygon": true,
+        "region": true,
+        "pageStable": true,
+        "listStable": true,
+        "viewerScroll": 319,
+        "detailHeight": 302.859375,
+        "detailMax": "none"
+      },
+      {
+        "id": "R004",
+        "selected": "R004",
+        "row": true,
+        "polygon": true,
+        "region": true,
+        "pageStable": true,
+        "listStable": true,
+        "viewerScroll": 503,
+        "detailHeight": 302.859375,
+        "detailMax": "none"
+      }
+    ],
+    "pageY": 471,
+    "polygonPageStable": true,
+    "polygonViewerStable": true,
+    "detail": "账单详情账单详情账单详情\n\nOCR 置信度 99.9%\n\n待确认\n\n部分汉字无法可靠分字，保留原图区域供复核。\n\n字体结果仅针对框内中文；英文和数字尚未判定。\n\nTop 3 原始距离（距离不是概率）\n\nPingFang SC\n0.0441\nHarmonyOS Sans SC\n0.0672\nNoto Sans CJK SC\n0.0787\n\n原图单字证据\n\n账 · 待确认\n字形触及裁图边缘\n单 · PingFang SC\n已提取原图字形\n详 · PingFang SC\n已提取原图字形\n情 · PingFang SC\n已提取原图字形\n账 · PingFang SC\n已提取原图字形\n单 · PingFang SC\n已提取原图字形\n详 · PingFang SC\n已提取原图字形\n情 · PingFang SC\n已提取原图字形\n账 · PingFang SC\n已提取原图字形\n单 · PingFang SC\n已提取原图字形\n详 · PingFang SC\n已提取原图字形\n情 · 待确认\n字形触及裁图边缘",
+    "detailScrolls": true
+  },
+  "clipboard": {
+    "api": true,
+    "fallback": true,
+    "jsonExact": true
+  },
+  "png": "flux-glyph-1fba5afeae9947fbad701cdd4083247d.png",
+  "reset": {
+    "hidden": true,
+    "stage": "",
+    "bar": "0%",
+    "result": true,
+    "ocr": ""
+  },
+  "layouts": [
+    {
+      "lang": "zh-CN",
+      "scrollWidth": 1920,
+      "innerWidth": 1920,
+      "visual": {
+        "x": 104,
+        "y": -22.078125,
+        "w": 1211.421875,
+        "h": 660,
+        "b": 637.921875,
+        "r": 1315.421875
+      },
+      "ocr": {
+        "x": 1331.421875,
+        "y": -22.078125,
+        "w": 484.578125,
+        "h": 309,
+        "b": 286.921875,
+        "r": 1816
+      },
+      "viewer": {
+        "x": 119,
+        "y": -7.078125,
+        "w": 583.703125,
+        "h": 630,
+        "b": 622.921875,
+        "r": 702.703125
+      },
+      "image": {
+        "x": 119,
+        "y": -7.078125,
+        "w": 583.703125,
+        "h": 752.65625,
+        "b": 745.578125,
+        "r": 702.703125
+      },
+      "svg": {
+        "x": 119,
+        "y": -7.078125,
+        "w": 583.703125,
+        "h": 752.65625,
+        "b": 745.578125,
+        "r": 702.703125
+      },
+      "original": {
+        "x": 119,
+        "y": -7.078125,
+        "w": 583.703125,
+        "h": 752.65625,
+        "b": 745.578125,
+        "r": 702.703125
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 104,
+        "y": -299.625,
+        "w": 1712,
+        "h": 187.0625,
+        "b": -112.5625,
+        "r": 1816
+      },
+      "viewport": {
+        "w": 1920,
+        "h": 900
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR 置信度 99.9%\n字体：待确认\n账单详情账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\n账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\nORDER2026/TOTAL88.50\nOCR 置信度 99.3%\n字体：字体未覆盖",
+      "copyText": "复制全文",
+      "resultTop": -86.5625,
+      "apiButton": 38,
+      "imageReasonable": true,
+      "offenders": [],
+      "mobileStacked": false,
+      "desktopAdjacent": true,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-1920x900-zh.png",
+      "topScreenshot": "docs/ui-validation/ocr-1920x900-zh-page-top.png"
+    },
+    {
+      "lang": "en",
+      "scrollWidth": 1920,
+      "innerWidth": 1920,
+      "visual": {
+        "x": 104,
+        "y": 470.609375,
+        "w": 1211.421875,
+        "h": 660,
+        "b": 1130.609375,
+        "r": 1315.421875
+      },
+      "ocr": {
+        "x": 1331.421875,
+        "y": 470.609375,
+        "w": 484.578125,
+        "h": 309,
+        "b": 779.609375,
+        "r": 1816
+      },
+      "viewer": {
+        "x": 119,
+        "y": 485.609375,
+        "w": 583.703125,
+        "h": 630,
+        "b": 1115.609375,
+        "r": 702.703125
+      },
+      "image": {
+        "x": 119,
+        "y": 485.609375,
+        "w": 583.703125,
+        "h": 752.65625,
+        "b": 1238.265625,
+        "r": 702.703125
+      },
+      "svg": {
+        "x": 119,
+        "y": 485.609375,
+        "w": 583.703125,
+        "h": 752.65625,
+        "b": 1238.265625,
+        "r": 702.703125
+      },
+      "original": {
+        "x": 119,
+        "y": 485.609375,
+        "w": 583.703125,
+        "h": 752.65625,
+        "b": 1238.265625,
+        "r": 702.703125
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 104,
+        "y": 171.375,
+        "w": 1712,
+        "h": 208.75,
+        "b": 380.125,
+        "r": 1816
+      },
+      "viewport": {
+        "w": 1920,
+        "h": 900
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR confidence 99.9%\nFont: Review needed\n账单详情账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\n账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\nORDER2026/TOTAL88.50\nOCR confidence 99.3%\nFont: Font out of scope",
+      "copyText": "Copy all",
+      "resultTop": 406.125,
+      "apiButton": 38,
+      "imageReasonable": true,
+      "offenders": [],
+      "mobileStacked": false,
+      "desktopAdjacent": true,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-1920x900-en.png",
+      "topScreenshot": null
+    },
+    {
+      "lang": "zh-CN",
+      "scrollWidth": 1920,
+      "innerWidth": 1920,
+      "visual": {
+        "x": 104,
+        "y": -15.078125,
+        "w": 1211.421875,
+        "h": 786,
+        "b": 770.921875,
+        "r": 1315.421875
+      },
+      "ocr": {
+        "x": 1331.421875,
+        "y": -15.078125,
+        "w": 484.578125,
+        "h": 372,
+        "b": 356.921875,
+        "r": 1816
+      },
+      "viewer": {
+        "x": 119,
+        "y": -0.078125,
+        "w": 583.703125,
+        "h": 756,
+        "b": 755.921875,
+        "r": 702.703125
+      },
+      "image": {
+        "x": 119,
+        "y": -0.078125,
+        "w": 583.703125,
+        "h": 752.65625,
+        "b": 752.578125,
+        "r": 702.703125
+      },
+      "svg": {
+        "x": 119,
+        "y": -0.078125,
+        "w": 583.703125,
+        "h": 752.65625,
+        "b": 752.578125,
+        "r": 702.703125
+      },
+      "original": {
+        "x": 119,
+        "y": -0.078125,
+        "w": 583.703125,
+        "h": 752.65625,
+        "b": 752.578125,
+        "r": 702.703125
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 104,
+        "y": -292.625,
+        "w": 1712,
+        "h": 187.0625,
+        "b": -105.5625,
+        "r": 1816
+      },
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR 置信度 99.9%\n字体：待确认\n账单详情账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\n账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\nORDER2026/TOTAL88.50\nOCR 置信度 99.3%\n字体：字体未覆盖",
+      "copyText": "复制全文",
+      "resultTop": -79.5625,
+      "apiButton": 38,
+      "imageReasonable": true,
+      "offenders": [],
+      "mobileStacked": false,
+      "desktopAdjacent": true,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-1920x1080-zh.png",
+      "topScreenshot": null
+    },
+    {
+      "lang": "en",
+      "scrollWidth": 1920,
+      "innerWidth": 1920,
+      "visual": {
+        "x": 104,
+        "y": 64.609375,
+        "w": 1211.421875,
+        "h": 786,
+        "b": 850.609375,
+        "r": 1315.421875
+      },
+      "ocr": {
+        "x": 1331.421875,
+        "y": 64.609375,
+        "w": 484.578125,
+        "h": 372,
+        "b": 436.609375,
+        "r": 1816
+      },
+      "viewer": {
+        "x": 119,
+        "y": 79.609375,
+        "w": 583.703125,
+        "h": 756,
+        "b": 835.609375,
+        "r": 702.703125
+      },
+      "image": {
+        "x": 119,
+        "y": 79.609375,
+        "w": 583.703125,
+        "h": 752.65625,
+        "b": 832.265625,
+        "r": 702.703125
+      },
+      "svg": {
+        "x": 119,
+        "y": 79.609375,
+        "w": 583.703125,
+        "h": 752.65625,
+        "b": 832.265625,
+        "r": 702.703125
+      },
+      "original": {
+        "x": 119,
+        "y": 79.609375,
+        "w": 583.703125,
+        "h": 752.65625,
+        "b": 832.265625,
+        "r": 702.703125
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 104,
+        "y": -234.625,
+        "w": 1712,
+        "h": 208.75,
+        "b": -25.875,
+        "r": 1816
+      },
+      "viewport": {
+        "w": 1920,
+        "h": 1080
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR confidence 99.9%\nFont: Review needed\n账单详情账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\n账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\nORDER2026/TOTAL88.50\nOCR confidence 99.3%\nFont: Font out of scope",
+      "copyText": "Copy all",
+      "resultTop": 0.125,
+      "apiButton": 38,
+      "imageReasonable": true,
+      "offenders": [],
+      "mobileStacked": false,
+      "desktopAdjacent": true,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-1920x1080-en.png",
+      "topScreenshot": null
+    },
+    {
+      "lang": "zh-CN",
+      "scrollWidth": 1280,
+      "innerWidth": 1280,
+      "visual": {
+        "x": 32,
+        "y": 42.921875,
+        "w": 857.140625,
+        "h": 660,
+        "b": 702.921875,
+        "r": 889.140625
+      },
+      "ocr": {
+        "x": 905.140625,
+        "y": 42.921875,
+        "w": 342.859375,
+        "h": 309,
+        "b": 351.921875,
+        "r": 1248
+      },
+      "viewer": {
+        "x": 47,
+        "y": 57.921875,
+        "w": 406.5625,
+        "h": 630,
+        "b": 687.921875,
+        "r": 453.5625
+      },
+      "image": {
+        "x": 47,
+        "y": 57.921875,
+        "w": 406.5625,
+        "h": 524.25,
+        "b": 582.171875,
+        "r": 453.5625
+      },
+      "svg": {
+        "x": 47,
+        "y": 57.921875,
+        "w": 406.5625,
+        "h": 524.25,
+        "b": 582.171875,
+        "r": 453.5625
+      },
+      "original": {
+        "x": 47,
+        "y": 57.921875,
+        "w": 406.5625,
+        "h": 524.25,
+        "b": 582.171875,
+        "r": 453.5625
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 32,
+        "y": -234.625,
+        "w": 1216,
+        "h": 187.0625,
+        "b": -47.5625,
+        "r": 1248
+      },
+      "viewport": {
+        "w": 1280,
+        "h": 900
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR 置信度 99.9%\n字体：待确认\n账单详情账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\n账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\nORDER2026/TOTAL88.50\nOCR 置信度 99.3%\n字体：字体未覆盖",
+      "copyText": "复制全文",
+      "resultTop": -21.5625,
+      "apiButton": 38,
+      "imageReasonable": true,
+      "offenders": [],
+      "mobileStacked": false,
+      "desktopAdjacent": true,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-1280x900-zh.png",
+      "topScreenshot": null
+    },
+    {
+      "lang": "en",
+      "scrollWidth": 1280,
+      "innerWidth": 1280,
+      "visual": {
+        "x": 32,
+        "y": 64.609375,
+        "w": 857.140625,
+        "h": 660,
+        "b": 724.609375,
+        "r": 889.140625
+      },
+      "ocr": {
+        "x": 905.140625,
+        "y": 64.609375,
+        "w": 342.859375,
+        "h": 309,
+        "b": 373.609375,
+        "r": 1248
+      },
+      "viewer": {
+        "x": 47,
+        "y": 79.609375,
+        "w": 406.5625,
+        "h": 630,
+        "b": 709.609375,
+        "r": 453.5625
+      },
+      "image": {
+        "x": 47,
+        "y": 79.609375,
+        "w": 406.5625,
+        "h": 524.25,
+        "b": 603.859375,
+        "r": 453.5625
+      },
+      "svg": {
+        "x": 47,
+        "y": 79.609375,
+        "w": 406.5625,
+        "h": 524.25,
+        "b": 603.859375,
+        "r": 453.5625
+      },
+      "original": {
+        "x": 47,
+        "y": 79.609375,
+        "w": 406.5625,
+        "h": 524.25,
+        "b": 603.859375,
+        "r": 453.5625
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 32,
+        "y": -234.625,
+        "w": 1216,
+        "h": 208.75,
+        "b": -25.875,
+        "r": 1248
+      },
+      "viewport": {
+        "w": 1280,
+        "h": 900
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR confidence 99.9%\nFont: Review needed\n账单详情账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\n账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\nORDER2026/TOTAL88.50\nOCR confidence 99.3%\nFont: Font out of scope",
+      "copyText": "Copy all",
+      "resultTop": 0.125,
+      "apiButton": 38,
+      "imageReasonable": true,
+      "offenders": [],
+      "mobileStacked": false,
+      "desktopAdjacent": true,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-1280x900-en.png",
+      "topScreenshot": null
+    },
+    {
+      "lang": "zh-CN",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "visual": {
+        "x": 19.1875,
+        "y": 64.609375,
+        "w": 729.625,
+        "h": 660,
+        "b": 724.609375,
+        "r": 748.8125
+      },
+      "ocr": {
+        "x": 19.1875,
+        "y": 740.609375,
+        "w": 358.8125,
+        "h": 440,
+        "b": 1180.609375,
+        "r": 378
+      },
+      "viewer": {
+        "x": 34.1875,
+        "y": 79.609375,
+        "w": 342.8125,
+        "h": 630,
+        "b": 709.609375,
+        "r": 377
+      },
+      "image": {
+        "x": 34.1875,
+        "y": 79.609375,
+        "w": 342.8125,
+        "h": 442.046875,
+        "b": 521.65625,
+        "r": 377
+      },
+      "svg": {
+        "x": 34.1875,
+        "y": 79.609375,
+        "w": 342.8125,
+        "h": 442.046875,
+        "b": 521.65625,
+        "r": 377
+      },
+      "original": {
+        "x": 34.1875,
+        "y": 79.609375,
+        "w": 342.8125,
+        "h": 442.046875,
+        "b": 521.65625,
+        "r": 377
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 19.1875,
+        "y": -234.625,
+        "w": 729.625,
+        "h": 208.75,
+        "b": -25.875,
+        "r": 748.8125
+      },
+      "viewport": {
+        "w": 768,
+        "h": 900
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR 置信度 99.9%\n字体：待确认\n账单详情账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\n账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\nORDER2026/TOTAL88.50\nOCR 置信度 99.3%\n字体：字体未覆盖",
+      "copyText": "复制全文",
+      "resultTop": 0.125,
+      "apiButton": 38,
+      "imageReasonable": true,
+      "offenders": [],
+      "mobileStacked": true,
+      "desktopAdjacent": false,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-768x900-zh.png",
+      "topScreenshot": null
+    },
+    {
+      "lang": "en",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "visual": {
+        "x": 19.1875,
+        "y": 115.46875,
+        "w": 729.625,
+        "h": 660,
+        "b": 775.46875,
+        "r": 748.8125
+      },
+      "ocr": {
+        "x": 19.1875,
+        "y": 791.46875,
+        "w": 358.8125,
+        "h": 440,
+        "b": 1231.46875,
+        "r": 378
+      },
+      "viewer": {
+        "x": 34.1875,
+        "y": 130.46875,
+        "w": 342.8125,
+        "h": 630,
+        "b": 760.46875,
+        "r": 377
+      },
+      "image": {
+        "x": 34.1875,
+        "y": 130.46875,
+        "w": 342.8125,
+        "h": 442.046875,
+        "b": 572.515625,
+        "r": 377
+      },
+      "svg": {
+        "x": 34.1875,
+        "y": 130.46875,
+        "w": 342.8125,
+        "h": 442.046875,
+        "b": 572.515625,
+        "r": 377
+      },
+      "original": {
+        "x": 34.1875,
+        "y": 130.46875,
+        "w": 342.8125,
+        "h": 442.046875,
+        "b": 572.515625,
+        "r": 377
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 19.1875,
+        "y": -233.9375,
+        "w": 729.625,
+        "h": 230.4375,
+        "b": -3.5,
+        "r": 748.8125
+      },
+      "viewport": {
+        "w": 768,
+        "h": 900
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR confidence 99.9%\nFont: Review needed\n账单详情账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\n账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\nORDER2026/TOTAL88.50\nOCR confidence 99.3%\nFont: Font out of scope",
+      "copyText": "Copy all",
+      "resultTop": 22.5,
+      "apiButton": 38,
+      "imageReasonable": true,
+      "offenders": [],
+      "mobileStacked": true,
+      "desktopAdjacent": false,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-768x900-en.png",
+      "topScreenshot": null
+    },
+    {
+      "lang": "zh-CN",
+      "scrollWidth": 740,
+      "innerWidth": 740,
+      "visual": {
+        "x": 14,
+        "y": 115.296875,
+        "w": 712,
+        "h": 1196,
+        "b": 1311.296875,
+        "r": 726
+      },
+      "ocr": {
+        "x": 14,
+        "y": 1327.296875,
+        "w": 712,
+        "h": 320,
+        "b": 1647.296875,
+        "r": 726
+      },
+      "viewer": {
+        "x": 27,
+        "y": 128.296875,
+        "w": 686,
+        "h": 504,
+        "b": 632.296875,
+        "r": 713
+      },
+      "image": {
+        "x": 27,
+        "y": 128.296875,
+        "w": 686,
+        "h": 884.578125,
+        "b": 1012.875,
+        "r": 713
+      },
+      "svg": {
+        "x": 27,
+        "y": 128.296875,
+        "w": 686,
+        "h": 884.578125,
+        "b": 1012.875,
+        "r": 713
+      },
+      "original": {
+        "x": 27,
+        "y": 128.296875,
+        "w": 686,
+        "h": 884.578125,
+        "b": 1012.875,
+        "r": 713
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 14,
+        "y": -300.625,
+        "w": 712,
+        "h": 295.75,
+        "b": -4.875,
+        "r": 726
+      },
+      "viewport": {
+        "w": 740,
+        "h": 900
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR 置信度 99.9%\n字体：待确认\n账单详情账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\n账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\nORDER2026/TOTAL88.50\nOCR 置信度 99.3%\n字体：字体未覆盖",
+      "copyText": "复制全文",
+      "resultTop": 21.125,
+      "apiButton": 36,
+      "imageReasonable": true,
+      "offenders": [],
+      "mobileStacked": true,
+      "desktopAdjacent": false,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-740x900-zh.png",
+      "topScreenshot": null
+    },
+    {
+      "lang": "en",
+      "scrollWidth": 740,
+      "innerWidth": 740,
+      "visual": {
+        "x": 14,
+        "y": 115.984375,
+        "w": 712,
+        "h": 1196,
+        "b": 1311.984375,
+        "r": 726
+      },
+      "ocr": {
+        "x": 14,
+        "y": 1327.984375,
+        "w": 712,
+        "h": 320,
+        "b": 1647.984375,
+        "r": 726
+      },
+      "viewer": {
+        "x": 27,
+        "y": 128.984375,
+        "w": 686,
+        "h": 504,
+        "b": 632.984375,
+        "r": 713
+      },
+      "image": {
+        "x": 27,
+        "y": 128.984375,
+        "w": 686,
+        "h": 884.578125,
+        "b": 1013.5625,
+        "r": 713
+      },
+      "svg": {
+        "x": 27,
+        "y": 128.984375,
+        "w": 686,
+        "h": 884.578125,
+        "b": 1013.5625,
+        "r": 713
+      },
+      "original": {
+        "x": 27,
+        "y": 128.984375,
+        "w": 686,
+        "h": 884.578125,
+        "b": 1013.5625,
+        "r": 713
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 14,
+        "y": -321.625,
+        "w": 712,
+        "h": 317.4375,
+        "b": -4.1875,
+        "r": 726
+      },
+      "viewport": {
+        "w": 740,
+        "h": 900
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR confidence 99.9%\nFont: Review needed\n账单详情账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\n账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\nORDER2026/TOTAL88.50\nOCR confidence 99.3%\nFont: Font out of scope",
+      "copyText": "Copy all",
+      "resultTop": 21.8125,
+      "apiButton": 36,
+      "imageReasonable": true,
+      "offenders": [],
+      "mobileStacked": true,
+      "desktopAdjacent": false,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-740x900-en.png",
+      "topScreenshot": null
+    },
+    {
+      "lang": "zh-CN",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "visual": {
+        "x": 14,
+        "y": 51.0625,
+        "w": 362,
+        "h": 1123.25,
+        "b": 1174.3125,
+        "r": 376
+      },
+      "ocr": {
+        "x": 14,
+        "y": 1186.3125,
+        "w": 362,
+        "h": 320,
+        "b": 1506.3125,
+        "r": 376
+      },
+      "viewer": {
+        "x": 27,
+        "y": 64.0625,
+        "w": 336,
+        "h": 433.25,
+        "b": 497.3125,
+        "r": 363
+      },
+      "image": {
+        "x": 27,
+        "y": 64.0625,
+        "w": 336,
+        "h": 433.25,
+        "b": 497.3125,
+        "r": 363
+      },
+      "svg": {
+        "x": 27,
+        "y": 64.0625,
+        "w": 336,
+        "h": 433.25,
+        "b": 497.3125,
+        "r": 363
+      },
+      "original": {
+        "x": 27,
+        "y": 64.0625,
+        "w": 336,
+        "h": 433.25,
+        "b": 497.3125,
+        "r": 363
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 14,
+        "y": -417.234375,
+        "w": 362,
+        "h": 317.4375,
+        "b": -99.796875,
+        "r": 376
+      },
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR 置信度 99.9%\n字体：待确认\n账单详情账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\n账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\nORDER2026/TOTAL88.50\nOCR 置信度 99.3%\n字体：字体未覆盖",
+      "copyText": "复制全文",
+      "resultTop": -73.796875,
+      "apiButton": 36,
+      "imageReasonable": true,
+      "offenders": [
+        {
+          "tag": "CODE",
+          "id": "",
+          "cls": "",
+          "r": 493.59375,
+          "w": 463.59375,
+          "scroll": 0
+        },
+        {
+          "tag": "CODE",
+          "id": "",
+          "cls": "",
+          "r": 577.875,
+          "w": 547.875,
+          "scroll": 0
+        }
+      ],
+      "mobileStacked": true,
+      "desktopAdjacent": false,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-390x844-zh.png",
+      "topScreenshot": null
+    },
+    {
+      "lang": "en",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "visual": {
+        "x": 14,
+        "y": 202.71875,
+        "w": 362,
+        "h": 1123.25,
+        "b": 1325.96875,
+        "r": 376
+      },
+      "ocr": {
+        "x": 14,
+        "y": 1337.96875,
+        "w": 362,
+        "h": 320,
+        "b": 1657.96875,
+        "r": 376
+      },
+      "viewer": {
+        "x": 27,
+        "y": 215.71875,
+        "w": 336,
+        "h": 433.25,
+        "b": 648.96875,
+        "r": 363
+      },
+      "image": {
+        "x": 27,
+        "y": 215.71875,
+        "w": 336,
+        "h": 433.25,
+        "b": 648.96875,
+        "r": 363
+      },
+      "svg": {
+        "x": 27,
+        "y": 215.71875,
+        "w": 336,
+        "h": 433.25,
+        "b": 648.96875,
+        "r": 363
+      },
+      "original": {
+        "x": 27,
+        "y": 215.71875,
+        "w": 336,
+        "h": 433.25,
+        "b": 648.96875,
+        "r": 363
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 14,
+        "y": -343.546875,
+        "w": 362,
+        "h": 368.8125,
+        "b": 25.265625,
+        "r": 376
+      },
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR confidence 99.9%\nFont: Review needed\n账单详情账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\n账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\nORDER2026/TOTAL88.50\nOCR confidence 99.3%\nFont: Font out of scope",
+      "copyText": "Copy all",
+      "resultTop": 51.265625,
+      "apiButton": 36,
+      "imageReasonable": true,
+      "offenders": [
+        {
+          "tag": "CODE",
+          "id": "",
+          "cls": "",
+          "r": 493.59375,
+          "w": 463.59375,
+          "scroll": 0
+        },
+        {
+          "tag": "CODE",
+          "id": "",
+          "cls": "",
+          "r": 577.875,
+          "w": 547.875,
+          "scroll": 0
+        }
+      ],
+      "mobileStacked": true,
+      "desktopAdjacent": false,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-390x844-en.png",
+      "topScreenshot": null
+    },
+    {
+      "lang": "zh-CN",
+      "scrollWidth": 320,
+      "innerWidth": 320,
+      "visual": {
+        "x": 14,
+        "y": 57.4375,
+        "w": 292,
+        "h": 1033,
+        "b": 1090.4375,
+        "r": 306
+      },
+      "ocr": {
+        "x": 14,
+        "y": 1102.4375,
+        "w": 292,
+        "h": 320,
+        "b": 1422.4375,
+        "r": 306
+      },
+      "viewer": {
+        "x": 27,
+        "y": 70.4375,
+        "w": 266,
+        "h": 343,
+        "b": 413.4375,
+        "r": 293
+      },
+      "image": {
+        "x": 27,
+        "y": 70.4375,
+        "w": 266,
+        "h": 343,
+        "b": 413.4375,
+        "r": 293
+      },
+      "svg": {
+        "x": 27,
+        "y": 70.4375,
+        "w": 266,
+        "h": 343,
+        "b": 413.4375,
+        "r": 293
+      },
+      "original": {
+        "x": 27,
+        "y": 70.4375,
+        "w": 266,
+        "h": 343,
+        "b": 413.4375,
+        "r": 293
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 14,
+        "y": -488.546875,
+        "w": 292,
+        "h": 395.125,
+        "b": -93.421875,
+        "r": 306
+      },
+      "viewport": {
+        "w": 320,
+        "h": 700
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR 置信度 99.9%\n字体：待确认\n账单详情账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\n账单详情\nOCR 置信度 99.9%\n字体：PingFang SC · 支持\nORDER2026/TOTAL88.50\nOCR 置信度 99.3%\n字体：字体未覆盖",
+      "copyText": "复制全文",
+      "resultTop": -67.421875,
+      "apiButton": 36,
+      "imageReasonable": true,
+      "offenders": [
+        {
+          "tag": "CODE",
+          "id": "",
+          "cls": "",
+          "r": 493.59375,
+          "w": 463.59375,
+          "scroll": 0
+        },
+        {
+          "tag": "CODE",
+          "id": "",
+          "cls": "",
+          "r": 577.875,
+          "w": 547.875,
+          "scroll": 0
+        }
+      ],
+      "mobileStacked": true,
+      "desktopAdjacent": false,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-320x700-zh.png",
+      "topScreenshot": null
+    },
+    {
+      "lang": "en",
+      "scrollWidth": 320,
+      "innerWidth": 320,
+      "visual": {
+        "x": 14,
+        "y": 249.890625,
+        "w": 292,
+        "h": 1033,
+        "b": 1282.890625,
+        "r": 306
+      },
+      "ocr": {
+        "x": 14,
+        "y": 1294.890625,
+        "w": 292,
+        "h": 320,
+        "b": 1614.890625,
+        "r": 306
+      },
+      "viewer": {
+        "x": 27,
+        "y": 262.890625,
+        "w": 266,
+        "h": 343,
+        "b": 605.890625,
+        "r": 293
+      },
+      "image": {
+        "x": 27,
+        "y": 262.890625,
+        "w": 266,
+        "h": 343,
+        "b": 605.890625,
+        "r": 293
+      },
+      "svg": {
+        "x": 27,
+        "y": 262.890625,
+        "w": 266,
+        "h": 343,
+        "b": 605.890625,
+        "r": 293
+      },
+      "original": {
+        "x": 27,
+        "y": 262.890625,
+        "w": 266,
+        "h": 343,
+        "b": 605.890625,
+        "r": 293
+      },
+      "overlayAligned": true,
+      "upload": {
+        "x": 14,
+        "y": -421.546875,
+        "w": 292,
+        "h": 463.296875,
+        "b": 41.75,
+        "r": 306
+      },
+      "viewport": {
+        "w": 320,
+        "h": 700
+      },
+      "ocrRows": 4,
+      "ocrText": "账单详情账单详情账单详情\nOCR confidence 99.9%\nFont: Review needed\n账单详情账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\n账单详情\nOCR confidence 99.9%\nFont: PingFang SC · Supported\nORDER2026/TOTAL88.50\nOCR confidence 99.3%\nFont: Font out of scope",
+      "copyText": "Copy all",
+      "resultTop": 67.75,
+      "apiButton": 36,
+      "imageReasonable": true,
+      "offenders": [
+        {
+          "tag": "CODE",
+          "id": "",
+          "cls": "",
+          "r": 493.59375,
+          "w": 463.59375,
+          "scroll": 0
+        },
+        {
+          "tag": "CODE",
+          "id": "",
+          "cls": "",
+          "r": 577.875,
+          "w": 547.875,
+          "scroll": 0
+        }
+      ],
+      "mobileStacked": true,
+      "desktopAdjacent": false,
+      "selected": 1,
+      "screenshot": "docs/ui-validation/ocr-320x700-en.png",
+      "topScreenshot": null
+    }
+  ],
+  "docs": [
+    {
+      "width": 390,
+      "language": {},
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "tools": {
+        "x": 193.25,
+        "y": 92.875,
+        "w": 182.75,
+        "h": 42
+      },
+      "title": {
+        "x": 14,
+        "y": 24,
+        "w": 362,
+        "h": 31.1875
+      },
+      "header": {
+        "x": 14,
+        "y": 24,
+        "w": 362,
+        "h": 110.875
+      },
+      "lang": "zh-CN"
+    },
+    {
+      "width": 390,
+      "language": {},
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "tools": {
+        "x": 126.6875,
+        "y": 114.5625,
+        "w": 249.3125,
+        "h": 42
+      },
+      "title": {
+        "x": 14,
+        "y": 24,
+        "w": 362,
+        "h": 31.1875
+      },
+      "header": {
+        "x": 14,
+        "y": 24,
+        "w": 362,
+        "h": 132.5625
+      },
+      "lang": "en"
+    },
+    {
+      "width": 320,
+      "language": {},
+      "scrollWidth": 320,
+      "innerWidth": 320,
+      "tools": {
+        "x": 123.25,
+        "y": 114.5625,
+        "w": 182.75,
+        "h": 42
+      },
+      "title": {
+        "x": 14,
+        "y": 24,
+        "w": 292,
+        "h": 31.1875
+      },
+      "header": {
+        "x": 14,
+        "y": 24,
+        "w": 292,
+        "h": 132.5625
+      },
+      "lang": "zh-CN"
+    },
+    {
+      "width": 320,
+      "language": {},
+      "scrollWidth": 320,
+      "innerWidth": 320,
+      "tools": {
+        "x": 56.6875,
+        "y": 114.5625,
+        "w": 249.3125,
+        "h": 42
+      },
+      "title": {
+        "x": 14,
+        "y": 24,
+        "w": 292,
+        "h": 31.1875
+      },
+      "header": {
+        "x": 14,
+        "y": 24,
+        "w": 292,
+        "h": 132.5625
+      },
+      "lang": "en"
+    }
+  ],
+  "browserErrors": [],
+  "ignoredDiagnostics": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ]
+}

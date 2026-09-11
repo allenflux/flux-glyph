@@ -1,0 +1,3 @@
+# Model manifests hash the original bytes, including text-file line endings.
+# Keep model payloads opaque during Git checkout/add on every platform.
+models/** -text

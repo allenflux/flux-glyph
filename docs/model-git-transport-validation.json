@@ -1,0 +1,29 @@
+{
+  "cause": "Git index stored LF; working tree held CRLF with core.autocrlf=input; manifest described CRLF bytes",
+  "original_bytes": 8145,
+  "canonical_bytes": 7851,
+  "original_sha256": "5e5eeb877847bfc73597acfacfbdd43b9be9820fafce10c8e8c6715d9fb8c492",
+  "canonical_sha256": "3457279d02acb449b6844cfa132687585b3bedc1f3e6736fdb539adc6edb9b2a",
+  "canonical_file_equals_previous_git_index": true,
+  "json_content_semantically_equal": true,
+  "other_eight_model_files_unchanged": true,
+  "git_add_checkout_input_and_true": "passed, all nine model files byte-identical",
+  "model_boundary_and_git_transport_tests": "4 passed",
+  "integrity_validation_remains_required": true,
+  "docker_startup_health": {
+    "ok": true,
+    "model_version": "r13-pp-ink-v1-b2ff7910",
+    "max_upload_mb": 8,
+    "max_pixels": 12000000,
+    "workers": 1,
+    "queue_size": 8,
+    "authentication_required": false,
+    "running_jobs": 0,
+    "waiting_jobs": 0
+  },
+  "docker_real_upload": {
+    "status_code": 200,
+    "font": "PingFang SC",
+    "source_sha256": "b1122751f8aac12ce5ab92a9b3a151ba076287e5133f44067f9a1013b5877f10"
+  }
+}
