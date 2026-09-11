@@ -28,7 +28,7 @@ MAX_BYTES=int(os.getenv('FLUX_MAX_UPLOAD_MB','8'))*1024*1024
 MAX_PIXELS=int(os.getenv('FLUX_MAX_PIXELS','12000000'))
 MAX_QUEUE=int(os.getenv('FLUX_QUEUE_SIZE','8'))
 MAX_JOBS=int(os.getenv('FLUX_MAX_SAVED_JOBS','100'))
-TTL_HOURS=float(os.getenv('FLUX_RETENTION_HOURS','24'))
+TTL_HOURS=float(os.getenv('FLUX_RETENTION_HOURS','168'))
 DATA=Path(os.getenv('FLUX_DATA_DIR',str(ROOT/'data'))).resolve()
 TOKEN=os.getenv('FLUX_API_TOKEN','')
 Image.MAX_IMAGE_PIXELS=MAX_PIXELS
@@ -69,7 +69,8 @@ class Jobs:
                 job=json.loads(path.read_text())
                 if job['status'] in ('queued','running'):
                     job.update(status='error',stage='服务已重启',error='任务中断，请重新提交图片。',error_code='service_restarted',
-                               progress={'stage_code':'error','percent':None,'current':None,'total':None})
+                               progress={'stage_code':'error','percent':None,'current':None,'total':None},finished_at=time.time())
+                    save_json(path,job)
                 self.jobs[path.parent.name]=job
             except (ValueError,KeyError):continue
         self.cleanup()
@@ -84,14 +85,21 @@ class Jobs:
             completed=[]
             for key,path in paths.items():
                 if key in self.active:continue
-                created=self.jobs.get(key,{}).get('created_at',path.stat().st_mtime)
-                try:created=float(created)
-                except (ValueError,TypeError):created=path.stat().st_mtime
-                completed.append((created,key))
+                job=self.jobs.get(key)
+                # Never remove work that is still recorded as queued/running,
+                # even if active bookkeeping is temporarily out of sync.
+                if job and job.get('status') in ('queued','running'):continue
+                finished=(job or {}).get('finished_at')
+                if finished is None:
+                    try:finished=(path/'job.json').stat().st_mtime
+                    except OSError:finished=path.stat().st_mtime
+                try:finished=float(finished)
+                except (ValueError,TypeError):finished=path.stat().st_mtime
+                completed.append((finished,key))
             completed.sort();remove=set()
-            for created,key in completed:
-                if created<time.time()-TTL_HOURS*3600:remove.add(key)
-            for _,key in completed[:max(0,len(paths)-MAX_JOBS)]:remove.add(key)
+            for finished,key in completed:
+                if finished<time.time()-TTL_HOURS*3600:remove.add(key)
+            for _,key in completed[:max(0,len(completed)-MAX_JOBS)]:remove.add(key)
             for key in remove:
                 try:shutil.rmtree(paths[key])
                 except FileNotFoundError:pass
@@ -138,6 +146,7 @@ class Jobs:
                     progress={**self.jobs[identifier].get('progress',{}),'stage_code':'error'})
         finally:
             with self.lock:
+                self.jobs[identifier]['finished_at']=time.time()
                 save_json(directory/'job.json',self.jobs[identifier]);self.active.discard(identifier)
             self.capacity.release();self.cleanup()
 

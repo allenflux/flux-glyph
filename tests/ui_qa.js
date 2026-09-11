@@ -36,8 +36,8 @@ assert(/transition:none!important;animation:none!important/.test(css), 'reduced-
 const storageWrites = [...js.matchAll(/localStorage\.setItem\(\s*['"]([^'"]+)['"]/g)].map(match => match[1]);
 assert.deepStrictEqual(storageWrites, ['flux-glyph-language'], 'only the language preference may be persisted');
 assert(!/(?:localStorage|sessionStorage)\.setItem\([^\n]*(?:token|auth)/i.test(js), 'access tokens must never be persisted');
-assert(/max-height:72vh/.test(css) && /font-family:ui-monospace/.test(css), 'JSON panel must be bounded and monospace');
-for (const token of ['@media(max-width:720px)', 'border-radius:4px', 'background:var(--soft)']) {
+assert(/\.data-column\{[^}]*grid-template-rows:minmax\(0,1fr\)[^}]*height:/.test(css) && /#json-output\{[^}]*flex:1[^}]*overflow:auto/.test(css) && /font-family:ui-monospace/.test(css), 'JSON panel must be bounded by its fixed parent slot, scrollable, and monospace');
+for (const token of ['@media(max-width:760px)', 'border-radius:4px', 'background:var(--soft)']) {
   assert(css.includes(token), `reference-style token absent: ${token}`);
 }
 

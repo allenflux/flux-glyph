@@ -11,8 +11,8 @@ services:
       FLUX_MAX_PIXELS: "12000000"
       FLUX_MAX_REGIONS: "200"
       FLUX_QUEUE_SIZE: "8"
-      FLUX_MAX_SAVED_JOBS: "100"
-      FLUX_RETENTION_HOURS: "24"
+      FLUX_MAX_SAVED_JOBS: ${FLUX_MAX_SAVED_JOBS:-100}
+      FLUX_RETENTION_HOURS: ${FLUX_RETENTION_HOURS:-168}
     volumes:
       - ./models:/app/models:ro
       - glyph-data:/app/data

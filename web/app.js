@@ -10,6 +10,7 @@
 
   const messages = {
     zh: {
+      regionsTitle: '文字区域', fontDetailTitle: '字体详情',
       tagline: '上传截图，查看每个文字区域的字体结果与原图证据。', language: '语言', apiExample: 'API 示例',
       unlockTitle: '解锁访问', unlockHelp: '此服务需要访问令牌。令牌只在本次页面会话中用于设置安全 Cookie，不会保存在浏览器存储中。', tokenPlaceholder: '输入访问令牌', unlock: '解锁',
       uploadTitle: '上传图片', uploadHelp: '支持 PNG、JPG、WebP。字体结果仅针对框内中文；英文和数字保留检测框。', dropPrompt: '选择图片或拖入这里', noFile: '尚未选择图片', start: '开始识别', downloadPng: '下载标注 PNG',
@@ -17,12 +18,14 @@
       preparing: '正在准备图片…', detecting: '正在框选文字区域…', recognizing: '正在识读文字…', matching: '正在匹配字体…', annotating: '正在生成字体标注图片…', finalizing: '正在整理结果…', progressLabel: '阶段进度', progressCount: '{current}/{total}', queuePosition: '排队第 {position} 位，前方 {ahead} 个任务', queueNext: '即将开始处理', busy: '当前排队任务较多，请稍后再试。图片仍保留，可直接再次开始识别。', invalidImage: '图片无法读取。请上传 8 MB 内、1200 万像素内的 PNG、JPG 或 WebP 静态图。', imageTooLarge: '图片超过 8 MB 上传限制，请选择较小的图片。', uploadFailed: '任务创建失败，请检查连接后再次开始识别。', restarted: '服务已重启，请再次开始识别。',
       resultsTitle: '识别结果', detailEmpty: '点击图片中的文字框或区域列表查看字体证据。', noRegions: '未检测到文字区域。请使用清晰、未裁切的截图重试。', originalAlt: '后端已校正方向的原图', overlayLabel: '检测到的文字区域', regionLabel: '文字区域 {id}', cropAlt: '所选文字区域裁图', glyphAlt: '单字 {character}',
       copyJson: '复制 JSON', copied: 'JSON 已复制', copyFailed: '无法自动复制，请在 JSON 区域中手动选择复制。', jsonLabel: '格式化 JSON',
+      ocrTitle: 'OCR 文字', copyOcr: '复制全文', ocrCopied: 'OCR 全文已复制', ocrCopyFailed: '无法自动复制，请手动选择文字。', ocrHelp: 'OCR 置信度描述文字识读可靠性；字体标签是单独的字体结论。', ocrEmpty: '没有识读出非空文字。', ocrLines: '{count} 行文字', ocrConfidence: 'OCR 置信度 {value}', ocrConfidenceUnknown: 'OCR 置信度 —', fontConclusion: '字体：{value}', legendLabel: '字体结论图例',
       detected: '检测 {count}', chinese: '中文 {count}', pingfang: '苹方支持 {count}', seconds: '{count} 秒',
-      supported: '支持', candidate: '候选', uncertain: '待确认', outOfScope: '不支持', unknownText: '未识别文字', unknownFont: '待确认', noReason: '没有进一步说明', scopeNote: '字体结果仅针对框内中文；英文和数字尚未判定。', topDistances: 'Top 3 原始距离（距离不是概率）', glyphEvidence: '原图单字证据',
+      supported: '支持', candidate: '候选', uncertain: '待确认', outOfScope: '字体未覆盖', unknownText: '未识别文字', unknownFont: '待确认', noReason: '没有进一步说明', scopeNote: '字体结果仅针对框内中文；英文和数字尚未判定。', topDistances: 'Top 3 原始距离（距离不是概率）', glyphEvidence: '原图单字证据',
       modelVersion: '模型版本：{version}', healthUnavailable: '服务状态暂不可用', unlocked: '已解锁，可以上传图片', authError: '令牌无效或服务拒绝访问，请重试。',
       apiHelp: '上传支付宝图片，完成后直接返回字体识别 JSON。', apiAsync: '使用 ?wait=false 先返回任务 ID，再轮询 GET /api/jobs/{id}。仍兼容 POST /api/predict?wait=true。', apiDocs: '完整 API 说明'
     },
     en: {
+      regionsTitle: 'Text regions', fontDetailTitle: 'Font details',
       tagline: 'Upload a screenshot to inspect font results and source evidence for each text region.', language: 'Language', apiExample: 'API examples',
       unlockTitle: 'Unlock access', unlockHelp: 'This service requires an access token. It is used only to set a secure cookie for this page session and is never saved in browser storage.', tokenPlaceholder: 'Enter access token', unlock: 'Unlock',
       uploadTitle: 'Upload image', uploadHelp: 'Supports PNG, JPG, and WebP. Font results cover Chinese text only; Latin letters and numbers keep their detection boxes.', dropPrompt: 'Choose an image or drop it here', noFile: 'No image selected', start: 'Start recognition', downloadPng: 'Download annotated PNG',
@@ -30,8 +33,9 @@
       preparing: 'Preparing image…', detecting: 'Detecting text regions…', recognizing: 'Reading text…', matching: 'Matching fonts…', annotating: 'Generating annotated image…', finalizing: 'Finalizing results…', progressLabel: 'Stage progress', progressCount: '{current}/{total}', queuePosition: 'Queue position {position} · {ahead} job(s) ahead', queueNext: 'Starting soon', busy: 'The queue is currently full. Try again shortly; your selected image is still ready.', invalidImage: 'The image could not be read. Upload a static PNG, JPG, or WebP under 8 MB and 12 megapixels.', imageTooLarge: 'The image exceeds the 8 MB upload limit. Choose a smaller image.', uploadFailed: 'The job could not be created. Check your connection and start recognition again.', restarted: 'The service restarted before this job finished. Start recognition again.',
       resultsTitle: 'Recognition results', detailEmpty: 'Select a box in the image or a region in the list to inspect its font evidence.', noRegions: 'No text regions were found. Try a clear, uncropped screenshot.', originalAlt: 'Source image with orientation corrected by the server', overlayLabel: 'Detected text regions', regionLabel: 'Text region {id}', cropAlt: 'Crop of the selected text region', glyphAlt: 'Glyph {character}',
       copyJson: 'Copy JSON', copied: 'JSON copied', copyFailed: 'Automatic copy failed. Select the formatted JSON and copy it manually.', jsonLabel: 'Formatted JSON',
+      ocrTitle: 'OCR text', copyOcr: 'Copy all', ocrCopied: 'OCR text copied', ocrCopyFailed: 'Automatic copy failed. Select the text manually.', ocrHelp: 'OCR confidence measures text-reading reliability; the font label is a separate conclusion.', ocrEmpty: 'No non-empty text was recognized.', ocrLines: '{count} text lines', ocrConfidence: 'OCR confidence {value}', ocrConfidenceUnknown: 'OCR confidence —', fontConclusion: 'Font: {value}', legendLabel: 'Font conclusion legend',
       detected: 'Detected {count}', chinese: 'Chinese {count}', pingfang: 'PingFang supported {count}', seconds: '{count} sec',
-      supported: 'Supported', candidate: 'Candidate', uncertain: 'Review', outOfScope: 'Unsupported', unknownText: 'Unrecognized text', unknownFont: 'Review needed', noReason: 'No further explanation is available.', scopeNote: 'Font results cover Chinese text only; Latin letters and numbers are not classified.', topDistances: 'Top 3 raw distances (distance is not probability)', glyphEvidence: 'Source glyph evidence',
+      supported: 'Supported', candidate: 'Candidate', uncertain: 'Review', outOfScope: 'Font out of scope', unknownText: 'Unrecognized text', unknownFont: 'Review needed', noReason: 'No further explanation is available.', scopeNote: 'Font results cover Chinese text only; Latin letters and numbers are not classified.', topDistances: 'Top 3 raw distances (distance is not probability)', glyphEvidence: 'Source glyph evidence',
       modelVersion: 'Model version: {version}', healthUnavailable: 'Service status is unavailable', unlocked: 'Unlocked. You can upload an image.', authError: 'The token is invalid or the service refused access. Try again.',
       apiHelp: 'Upload a payment screenshot and receive font-recognition JSON when processing completes.', apiAsync: 'Use ?wait=false to receive a job ID first, then poll GET /api/jobs/{id}. POST /api/predict?wait=true remains supported.', apiDocs: 'Full API documentation'
     }
@@ -95,6 +99,12 @@
     $('json-output').textContent = '';
     $('copy-json').disabled = true;
     $('copy-status').textContent = '';
+    $('ocr-output').replaceChildren();
+    $('ocr-count').textContent = '';
+    $('copy-ocr').disabled = true;
+    $('ocr-copy-status').textContent = '';
+    for (const id of ['regions', 'detail', 'overlay']) $(id).replaceChildren();
+    for (const node of [$('regions'), $('detail'), $('ocr-output'), document.querySelector('.viewer')]) node.scrollTop = 0;
     $('download-png').removeAttribute('href');
     $('download-png').setAttribute('aria-disabled', 'true');
   }
@@ -105,8 +115,10 @@
     $('progress-panel').hidden = true;
     $('progress-panel').classList.remove('progress-error');
     $('progress-panel').classList.remove('progress-complete');
+    $('progress-panel').removeAttribute('data-stage');
     const track = $('progress-track');
     track.classList.remove('indeterminate');
+    track.removeAttribute('data-stage');
     track.removeAttribute('aria-valuenow');
     track.removeAttribute('aria-valuetext');
     track.removeAttribute('aria-invalid');
@@ -168,6 +180,8 @@
     panel.hidden = false;
     panel.classList.remove('progress-error');
     panel.classList.toggle('progress-complete', forceComplete);
+    panel.dataset.stage = forceComplete ? 'complete' : (status === 'queued' ? 'queued' : 'running');
+    track.dataset.stage = panel.dataset.stage;
     track.removeAttribute('aria-invalid');
     $('progress-label').textContent = t(key);
     const hasCount = current != null && total != null && total > 0;
@@ -190,8 +204,11 @@
     const track = $('progress-track');
     panel.hidden = false;
     panel.classList.add('progress-error');
+    panel.dataset.stage = 'error';
+    track.dataset.stage = 'error';
     panel.classList.remove('progress-complete');
     track.classList.remove('indeterminate');
+    track.removeAttribute('aria-valuenow');
     track.setAttribute('aria-invalid', 'true');
     track.setAttribute('aria-valuetext', message);
     $('progress-label').textContent = message;
@@ -335,16 +352,18 @@
     result = nextResult;
     selected = null;
     $('result-section').hidden = false;
-    $('original').src = result.image_url || '';
     $('original').onload = draw;
+    $('original').src = result.image_url || '';
     $('download-png').href = result.annotated_image_url || '';
     $('download-png').setAttribute('aria-disabled', result.annotated_image_url ? 'false' : 'true');
     $('json-output').textContent = JSON.stringify(result, null, 2);
     $('copy-json').disabled = false;
     $('copy-status').textContent = '';
     renderResultText();
+    renderOcr();
     renderList();
     renderDetail();
+    draw();
   }
 
   function renderResultText() {
@@ -352,13 +371,18 @@
     const summary = result.summary || {};
     const elapsed = result.timing_seconds?.total ?? result.timing_seconds;
     const parts = [
-      t('detected', {count: summary.detected_regions ?? result.regions?.length ?? 0}),
-      t('chinese', {count: summary.chinese_regions ?? '—'}),
-      t('pingfang', {count: summary.pingfang_supported ?? '—'})
+      {text: t('detected', {count: summary.detected_regions ?? result.regions?.length ?? 0}), tone: 'detected'},
+      {text: t('chinese', {count: summary.chinese_regions ?? '—'}), tone: 'candidate'},
+      {text: t('pingfang', {count: summary.pingfang_supported ?? '—'}), tone: 'supported'}
     ];
-    if (Number.isFinite(elapsed)) parts.push(t('seconds', {count: Number(elapsed).toFixed(2)}));
-    if (result.model_version) parts.push(result.model_version);
-    $('summary').textContent = parts.join(' · ');
+    if (Number.isFinite(elapsed)) parts.push({text: t('seconds', {count: Number(elapsed).toFixed(2)}), tone: 'neutral'});
+    if (result.model_version) parts.push({text: result.model_version, tone: 'neutral'});
+    $('summary').replaceChildren(...parts.map(part => {
+      const item = document.createElement('span');
+      item.className = `summary-chip ${part.tone}`;
+      item.textContent = part.text;
+      return item;
+    }));
   }
 
   function draw() {
@@ -372,7 +396,8 @@
       const value = font(region);
       const polygon = svg('polygon', {
         class: `quad ${value.status || 'uncertain'}${selected === region.id ? ' selected' : ''}`,
-        points: points(region.quad), tabindex: 0, role: 'button', 'aria-label': t('regionLabel', {id: region.id})
+        points: points(region.quad), tabindex: 0, role: 'button', 'aria-label': t('regionLabel', {id: region.id}),
+        'data-region-id': region.id, 'aria-pressed': selected === region.id
       });
       polygon.addEventListener('click', () => select(region.id));
       polygon.addEventListener('keydown', event => {
@@ -384,12 +409,17 @@
 
   function renderList() {
     const root = $('regions');
+    const previousScroll = root.scrollTop;
+    const focusedRegion = root.contains(document.activeElement) ? document.activeElement.dataset.regionId : null;
     root.replaceChildren();
     for (const region of result?.regions || []) {
       const value = font(region);
       const button = document.createElement('button');
-      button.className = `region${selected === region.id ? ' selected' : ''}`;
-      button.onclick = () => select(region.id);
+      button.type = 'button';
+      button.dataset.regionId = region.id;
+      button.setAttribute('aria-pressed', String(selected === region.id));
+      button.className = `region ${value.status || 'uncertain'}${selected === region.id ? ' selected' : ''}`;
+      button.onclick = () => select(region.id, true);
       const tag = document.createElement('span');
       tag.className = `tag ${value.status || 'uncertain'}`;
       tag.textContent = t(statusKey(value.status));
@@ -402,6 +432,62 @@
       button.append(tag, text);
       root.append(button);
     }
+    root.scrollTop = previousScroll;
+    if (focusedRegion != null) root.querySelector(`[data-region-id="${CSS.escape(String(focusedRegion))}"]`)?.focus({preventScroll: true});
+  }
+
+  function ocrRegions() {
+    return (result?.regions || []).filter(region => String(region.text ?? '').trim());
+  }
+
+  function ocrConfidence(region) {
+    if (region.ocr_confidence == null || region.ocr_confidence === '') return t('ocrConfidenceUnknown');
+    const confidence = Number(region.ocr_confidence);
+    if (!Number.isFinite(confidence)) return t('ocrConfidenceUnknown');
+    const percent = confidence <= 1 ? confidence * 100 : confidence;
+    return t('ocrConfidence', {value: `${Math.max(0, Math.min(100, percent)).toFixed(1)}%`});
+  }
+
+  function renderOcr() {
+    const root = $('ocr-output');
+    const previousScroll = root.scrollTop;
+    const focusedRegion = document.activeElement?.classList?.contains('ocr-row') ? document.activeElement.dataset.regionId : null;
+    root.replaceChildren();
+    const regions = ocrRegions();
+    $('ocr-count').textContent = t('ocrLines', {count: regions.length});
+    $('copy-ocr').disabled = regions.length === 0;
+    if (!regions.length) {
+      const empty = document.createElement('p');
+      empty.className = 'empty-state';
+      empty.textContent = t('ocrEmpty');
+      root.append(empty);
+      return;
+    }
+    for (const region of regions) {
+      const value = font(region);
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = `ocr-row ${value.status || 'uncertain'}${selected === region.id ? ' selected' : ''}`;
+      button.dataset.regionId = region.id;
+      button.setAttribute('aria-pressed', String(selected === region.id));
+      button.onclick = () => select(region.id, true);
+      const text = document.createElement('span');
+      text.className = 'ocr-text';
+      text.textContent = String(region.text);
+      const meta = document.createElement('span');
+      meta.className = 'ocr-meta';
+      const confidence = document.createElement('span');
+      confidence.className = 'ocr-confidence';
+      confidence.textContent = ocrConfidence(region);
+      const conclusion = document.createElement('span');
+      conclusion.className = 'ocr-font';
+      conclusion.textContent = t('fontConclusion', {value: value.family ? `${value.family} · ${t(statusKey(value.status))}` : fontLabel(value)});
+      meta.append(confidence, conclusion);
+      button.append(text, meta);
+      root.append(button);
+    }
+    root.scrollTop = previousScroll;
+    if (focusedRegion != null) root.querySelector(`[data-region-id="${CSS.escape(String(focusedRegion))}"]`)?.focus({preventScroll: true});
   }
 
   function glyphReason(glyph) {
@@ -442,15 +528,24 @@
     const identity = document.createElement('p');
     const label = document.createElement('strong');
     label.id = 'font-label';
-    label.textContent = fontLabel(value);
-    identity.append(label, ` · ${t(statusKey(value.status))}`);
+    label.textContent = value.family || fontLabel(value);
+    identity.append(label);
+    if (value.family) {
+      const badge = document.createElement('span');
+      badge.className = `tag ${value.status}`;
+      badge.textContent = t(statusKey(value.status));
+      identity.append(' ', badge);
+    }
     const reason = document.createElement('p');
     reason.id = 'font-reason';
     reason.textContent = fontReason(value);
     const note = document.createElement('p');
     note.className = 'muted';
     note.textContent = t('scopeNote');
-    root.append(title, identity, reason, note);
+    const confidence = document.createElement('p');
+    confidence.className = 'ocr-confidence';
+    confidence.textContent = ocrConfidence(region);
+    root.append(title, confidence, identity, reason, note);
     if (value.candidates?.length) {
       const distances = document.createElement('div');
       distances.className = 'dist';
@@ -491,14 +586,36 @@
     }
   }
 
-  function select(id) {
+  function revealInContainer(container, item) {
+    if (!container || !item) return;
+    const outer = container.getBoundingClientRect();
+    const inner = item.getBoundingClientRect();
+    const top = outer.top + container.clientTop;
+    const bottom = top + container.clientHeight;
+    if (inner.top < top) container.scrollTop += inner.top - top;
+    else if (inner.bottom > bottom) container.scrollTop += Math.min(inner.top - top, inner.bottom - bottom);
+  }
+
+  function select(id, revealInImage = false) {
+    if (!(result?.regions || []).some(region => region.id === id)) return;
+    const changed = selected !== id;
     selected = id;
-    draw();
-    renderList();
-    renderDetail();
+    // Keep the existing controls and their focus; only replace the detail pane.
+    for (const node of document.querySelectorAll('#overlay [data-region-id], #regions [data-region-id], #ocr-output [data-region-id]')) {
+      const active = node.dataset.regionId === id;
+      node.classList.toggle('selected', active);
+      node.setAttribute('aria-pressed', String(active));
+    }
+    if (changed) {
+      renderDetail();
+      $('detail').scrollTop = 0;
+    }
+    for (const container of [$('regions'), $('ocr-output')]) revealInContainer(container, container.querySelector('.selected'));
+    if (revealInImage) revealInContainer(document.querySelector('.viewer'), $('overlay').querySelector('.quad.selected'));
   }
 
   function fallbackCopy(text) {
+    const previousFocus = document.activeElement;
     const input = document.createElement('textarea');
     input.value = text;
     input.setAttribute('readonly', '');
@@ -507,7 +624,7 @@
     input.select();
     input.setSelectionRange(0, input.value.length);
     let copied = false;
-    try { copied = document.execCommand('copy'); } finally { input.remove(); }
+    try { copied = document.execCommand('copy'); } finally { input.remove(); previousFocus?.focus({preventScroll: true}); }
     if (!copied) throw Error('copy failed');
   }
 
@@ -523,6 +640,21 @@
     } catch (_) {
       $('copy-status').textContent = t('copyFailed');
       $('json-output').focus();
+    }
+  }
+
+  async function copyOcr() {
+    const raw = ocrRegions().map(region => String(region.text)).join('\n');
+    if (!raw) return;
+    try {
+      if (navigator.clipboard?.writeText) {
+        try { await navigator.clipboard.writeText(raw); }
+        catch (_) { fallbackCopy(raw); }
+      } else fallbackCopy(raw);
+      $('ocr-copy-status').textContent = t('ocrCopied');
+    } catch (_) {
+      $('ocr-copy-status').textContent = t('ocrCopyFailed');
+      $('ocr-output').focus();
     }
   }
 
@@ -563,6 +695,7 @@
     $('language').setAttribute('aria-label', t('language'));
     document.querySelectorAll('[data-i18n]').forEach(node => { node.textContent = t(node.dataset.i18n); });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(node => { node.placeholder = t(node.dataset.i18nPlaceholder); });
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(node => { node.setAttribute('aria-label', t(node.dataset.i18nAriaLabel)); });
     $('progress-track').setAttribute('aria-label', t('progressLabel'));
     $('original').alt = t('originalAlt');
     $('overlay').setAttribute('aria-label', t('overlayLabel'));
@@ -577,8 +710,9 @@
     else if (progressState) markProgressError($('error').textContent);
     if (latestSnapshot) updateQueue(latestSnapshot);
     if (reconnectState) state('reconnecting', false, reconnectState);
-    if (result) { renderResultText(); draw(); renderList(); renderDetail(); }
+    if (result) { renderResultText(); draw(); renderList(); renderOcr(); renderDetail(); }
     if ($('copy-status').textContent) $('copy-status').textContent = t($('copy-status').textContent === messages.zh.copied || $('copy-status').textContent === messages.en.copied ? 'copied' : 'copyFailed');
+    if ($('ocr-copy-status').textContent) $('ocr-copy-status').textContent = t($('ocr-copy-status').textContent === messages.zh.ocrCopied || $('ocr-copy-status').textContent === messages.en.ocrCopied ? 'ocrCopied' : 'ocrCopyFailed');
     if (persist) { try { localStorage.setItem('flux-glyph-language', language); } catch (_) {} }
   }
 
@@ -589,6 +723,7 @@
     if (button && button !== $('language') && $('language').contains(button)) applyLanguage(button.dataset.language);
   });
   $('copy-json').addEventListener('click', copyJson);
+  $('copy-ocr').addEventListener('click', copyOcr);
   $('file').onchange = event => setFile(event.target.files[0] || null);
   $('drop').addEventListener('click', event => { if (event.target !== $('file')) $('file').click(); });
   $('drop').addEventListener('keydown', event => {

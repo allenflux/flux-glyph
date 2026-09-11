@@ -93,6 +93,8 @@ def test_failed_job_releases_queue_and_restart_does_not_claim_it_is_running(monk
         with TestClient(api.app) as client:
             interrupted=client.get('/api/jobs/'+crashed).json()
             assert interrupted['status']=='error' and interrupted['error_code']=='service_restarted'
+            assert interrupted['finished_at']>=interrupted['created_at']
+            assert json.loads((old/'job.json').read_text())['finished_at']==interrupted['finished_at']
             assert interrupted['queue_position'] is None and interrupted['queue_total']==0
             assert interrupted['progress']['percent'] is None
             first=client.post('/api/jobs',content=raw.getvalue()).json()

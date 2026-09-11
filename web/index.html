@@ -12,12 +12,14 @@
 <body>
   <header class="page-heading">
     <h1><span class="brand-prefix">Flux</span> Glyph</h1>
-    <div id="language" class="language-switch" role="group" aria-label="语言">
-      <button type="button" class="language-option" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button>
-      <button type="button" class="language-option" data-language="en" lang="en" aria-pressed="false" aria-label="English">EN</button>
+    <div class="header-tools">
+      <a id="api-link" class="header-link" href="#api"><span aria-hidden="true">&lt;/&gt;</span><span data-i18n="apiExample">API 示例</span></a>
+      <div id="language" class="language-switch" role="group" aria-label="语言">
+        <button type="button" class="language-option" data-language="zh" lang="zh-CN" aria-pressed="true">中文</button>
+        <button type="button" class="language-option" data-language="en" lang="en" aria-pressed="false" aria-label="English">EN</button>
+      </div>
     </div>
     <p class="muted header-description" data-i18n="tagline">上传截图，查看每个文字区域的字体结果与原图证据。</p>
-    <a id="api-link" class="header-link" href="#api" data-i18n="apiExample">API 示例</a>
   </header>
   <main>
     <section id="auth-panel" class="auth-panel" hidden>
@@ -49,17 +51,31 @@
     </section>
     <section id="result-section" hidden>
       <div class="panel-heading"><h2 data-i18n="resultsTitle">识别结果</h2><span id="summary" class="muted"></span></div>
+      <div class="result-legend" aria-label="字体结论图例" data-i18n-aria-label="legendLabel">
+        <span class="legend-item supported"><i></i><span data-i18n="supported">支持</span></span><span class="legend-item candidate"><i></i><span data-i18n="candidate">候选</span></span><span class="legend-item uncertain"><i></i><span data-i18n="uncertain">待确认</span></span><span class="legend-item out_of_scope"><i></i><span data-i18n="outOfScope">不支持</span></span>
+      </div>
       <div class="result-grid">
         <div class="result-visual">
           <div class="workspace">
             <div class="viewer"><div class="image-layer"><img id="original" alt="后端已校正方向的原图"><svg id="overlay" aria-label="检测到的文字区域"></svg></div></div>
-            <aside><div id="detail" class="empty-state">点击图片中的文字框或区域列表查看字体证据。</div><div id="regions" class="region-list"></div></aside>
+            <aside class="font-panel">
+              <section class="font-slot region-slot" aria-labelledby="regions-title"><h3 id="regions-title" data-i18n="regionsTitle">文字区域</h3><div id="regions" class="region-list"></div></section>
+              <section class="font-slot detail-slot" aria-labelledby="detail-title"><h3 id="detail-title" data-i18n="fontDetailTitle">字体详情</h3><div id="detail" class="empty-state">点击图片中的文字框或区域列表查看字体证据。</div></section>
+            </aside>
           </div>
         </div>
-        <aside class="json-panel" aria-labelledby="json-title">
-          <div class="json-heading"><h2 id="json-title">JSON</h2><button id="copy-json" class="button" disabled data-i18n="copyJson">复制 JSON</button></div>
-          <p id="copy-status" class="copy-status muted" aria-live="polite"></p>
-          <pre id="json-output" tabindex="0" aria-label="格式化 JSON"></pre>
+        <aside class="data-column">
+          <section class="ocr-panel" aria-labelledby="ocr-title">
+            <div class="json-heading"><div><h2 id="ocr-title" data-i18n="ocrTitle">OCR 文字</h2><p id="ocr-count" class="panel-caption muted"></p></div><button id="copy-ocr" class="button" disabled data-i18n="copyOcr">复制全文</button></div>
+            <p class="ocr-help muted" data-i18n="ocrHelp">OCR 置信度描述文字识读可靠性；字体标签是单独的字体结论。</p>
+            <p id="ocr-copy-status" class="copy-status muted" aria-live="polite"></p>
+            <div id="ocr-output" class="ocr-list" tabindex="0"></div>
+          </section>
+          <section class="json-panel" aria-labelledby="json-title">
+            <div class="json-heading"><h2 id="json-title">JSON</h2><button id="copy-json" class="button" disabled data-i18n="copyJson">复制 JSON</button></div>
+            <p id="copy-status" class="copy-status muted" aria-live="polite"></p>
+            <pre id="json-output" tabindex="0" aria-label="格式化 JSON"></pre>
+          </section>
         </aside>
       </div>
     </section>

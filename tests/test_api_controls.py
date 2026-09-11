@@ -67,17 +67,26 @@ def test_authenticated_upload_queue_and_private_assets(monkeypatch,tmp_path):
         release.set()
 
 
-def test_retention_includes_orphans_and_keeps_failed_deletions(monkeypatch,tmp_path):
+def test_retention_uses_finished_time_and_keeps_pending_jobs(monkeypatch,tmp_path):
     monkeypatch.setattr(api,'DATA',tmp_path)
     monkeypatch.setattr(api,'TTL_HOURS',1)
+    monkeypatch.setattr(api,'MAX_JOBS',100)
     old=time.time()-7200
-    orphan='1'*32;active='2'*32;retry='3'*32
-    for identifier in (orphan,active,retry):
+    recent=time.time()
+    orphan='1'*32;active='2'*32;retry='3'*32;queued='4'*32;completed='5'*32
+    for identifier in (orphan,active,retry,queued,completed):
         directory=tmp_path/identifier;directory.mkdir()
         (directory/'uploaded-image').write_bytes(b'private test data')
+        (directory/'job.json').write_text('{}')
         os.utime(directory,(old,old))
+        os.utime(directory/'job.json',(old,old))
     jobs=api.Jobs.__new__(api.Jobs);jobs.lock=threading.RLock()
-    jobs.active={active};jobs.jobs={active:{'created_at':old},retry:{'created_at':old}}
+    jobs.active={active};jobs.jobs={
+        active:{'status':'running','created_at':old},
+        queued:{'status':'queued','created_at':old},
+        retry:{'status':'complete','created_at':old,'finished_at':old},
+        completed:{'status':'complete','created_at':old,'finished_at':recent},
+    }
     original_delete=api.shutil.rmtree
     def transient_failure(path):
         if path.name==retry:raise PermissionError('simulated transient filesystem failure')
@@ -87,6 +96,31 @@ def test_retention_includes_orphans_and_keeps_failed_deletions(monkeypatch,tmp_p
         jobs.cleanup()
     assert not (tmp_path/orphan).exists()
     assert (tmp_path/active).is_dir()
+    assert (tmp_path/queued).is_dir()
+    assert (tmp_path/completed).is_dir()
     assert (tmp_path/retry).is_dir() and retry in jobs.jobs
     jobs.cleanup()
     assert not (tmp_path/retry).exists() and retry not in jobs.jobs
+
+
+def test_retention_count_cap_only_counts_completed_jobs(monkeypatch,tmp_path):
+    monkeypatch.setattr(api,'DATA',tmp_path)
+    monkeypatch.setattr(api,'TTL_HOURS',168)
+    monkeypatch.setattr(api,'MAX_JOBS',1)
+    now=time.time()
+    oldest='6'*32;newest='7'*32;queued='8'*32
+    jobs=api.Jobs.__new__(api.Jobs);jobs.lock=threading.RLock();jobs.active=set()
+    jobs.jobs={
+        oldest:{'status':'complete','finished_at':now-20},
+        newest:{'status':'complete','finished_at':now-10},
+        queued:{'status':'queued','created_at':now-30},
+    }
+    for identifier in jobs.jobs:
+        directory=tmp_path/identifier;directory.mkdir()
+        (directory/'job.json').write_text('{}')
+        (directory/'public-result.json').write_text('{}')
+        (directory/'crop.png').write_bytes(b'crop')
+    jobs.cleanup()
+    assert not (tmp_path/oldest).exists()
+    assert (tmp_path/newest).is_dir()
+    assert (tmp_path/queued).is_dir()
