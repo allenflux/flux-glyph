@@ -1,0 +1,58 @@
+{
+  "status": "NO_PROMOTABLE_CHECKPOINT",
+  "optimizer_steps_executed": 4000,
+  "state_before_sha256": "a60a5fc62cabf69c7f07c5a3505e0715054d7848f413938a1f6ad16ff1836146",
+  "state_after_sha256": "a7846274898e0c66899099db1a3097bdef78228e5888215620ada9cafb37dbd9",
+  "parameters_changed": true,
+  "last_checkpoint": {
+    "path": "last-trained.pth",
+    "sha256": "385b0a0c190e96668811ba1d26e82ca1d81d66c72bfa14c596f1c66184c0d71e"
+  },
+  "history_sha256": "7b59ef89d6e68835920a08d80a60801c52a9469ad7101f62cdf5c67f6b6bc48d",
+  "training_freeze_sha256": "aca3c0b981dee965dd5704ccb956cc1e4b2d2d9ee0ca95ee403a9935ac0f20be",
+  "parent_calibration": {
+    "path": "PARENT_CALIBRATION.json",
+    "sha256": "0859a28559ced0db97993545e51562c0b865c6d3fdeb509ca50a9bc2e2b5bc3d"
+  },
+  "test_arrays_opened": false,
+  "training_region_sampling": {
+    "rows": 8744,
+    "visited": 8744,
+    "minimum_visits": 16,
+    "maximum_visits": 233,
+    "family_weights": {
+      "HarmonyOS Sans SC": 1,
+      "MiSans": 1,
+      "Noto Sans CJK SC": 1,
+      "OPPO Sans": 1,
+      "PingFang": 2,
+      "SF Pro": 2,
+      "Helvetica": 2,
+      "Alipay Number": 1
+    },
+    "family_visits": {
+      "HarmonyOS Sans SC": 23273,
+      "MiSans": 23273,
+      "Noto Sans CJK SC": 23272,
+      "OPPO Sans": 23273,
+      "PingFang": 46546,
+      "SF Pro": 46545,
+      "Helvetica": 46545,
+      "Alipay Number": 23273
+    },
+    "native_family_visits": {
+      "SF Pro": 46545,
+      "MiSans": 23273,
+      "Noto Sans CJK SC": 23272,
+      "PingFang TC": 15507,
+      "OPPO Sans": 23273,
+      "Helvetica": 46545,
+      "PingFang SC": 15523,
+      "HarmonyOS Sans SC": 23273,
+      "PingFang HK": 15516,
+      "Alipay Number": 23273
+    }
+  },
+  "test_history": "reused",
+  "test_scope": "Previously used fixed test pages; regression suite, not a new blind test."
+}

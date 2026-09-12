@@ -1,0 +1,68 @@
+{
+  "schema": "flux-glyph-system-average-regression-binding-v1",
+  "operation": "parameter_averaging",
+  "additional_optimizer_steps_executed": 0,
+  "source_optimizer_steps_executed": 4000,
+  "selected_alpha": 0.75,
+  "protocol_sha256": "dd71ea0422e3c3daf4cf4a027ea02528c0bddf840f2f2925762d080ee5f8d9c0",
+  "averaging_freeze_sha256": "dfa0f3e2e0eef65688aad0de7a41c91658394cc1da35b7d5fea7105817c44e2d",
+  "selection_freeze_sha256": "2e4a4ebcd006bd65ee15d753b999fd67704620a3296f12a47b90d2beab32f6b8",
+  "checkpoint_sha256": "f8c88780be227f7a158104e3e7610523cb22793297a31da23b82df8185e5580e",
+  "model_sha256": "f32b964609071ec3492c7be7d79cdd446264f0e37ff253210daf16c7f70f5f7b",
+  "metadata_sha256": "321b02355e6c2fa8dd585d8ad057183bbe28f9cb096bbde31c6cb6211e8bb0ab",
+  "bundle_manifest_sha256": "39fe2ab3b192b47bd41e52d7b49f9201e6043ab0f1df79d24513408ddd8ddd15",
+  "parity_sha256": "d874a122ff63f40e8090359cd330928eddd08b2267cc3cb8acf75438250aa885",
+  "source_bindings": {
+    "parent_checkpoint": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-hant-region-v1/region/model.pth",
+      "sha256": "aeda192187c90fa3e59afc23d879d8eda8d8f9fd987895bfd0d0d120c884649a"
+    },
+    "parent_metadata": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-hant-region-v1/bundle-stable/region_neural/metadata.json",
+      "sha256": "c91256136fd88c3f0d8ff380ff285916c42a14038f20399e6e2660ac2c2e1b49"
+    },
+    "source_failure": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/NO_PROMOTABLE_CHECKPOINT.json",
+      "sha256": "2707577b4c6538b731d92ac14bb3e1ea500c5c710dbfd0f16f2f7e1079411d2c"
+    },
+    "source_training_freeze": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/TRAINING_FREEZE.json",
+      "sha256": "aca3c0b981dee965dd5704ccb956cc1e4b2d2d9ee0ca95ee403a9935ac0f20be"
+    },
+    "source_history": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/history.json",
+      "sha256": "7b59ef89d6e68835920a08d80a60801c52a9469ad7101f62cdf5c67f6b6bc48d"
+    },
+    "last_checkpoint": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/last-trained.pth",
+      "sha256": "385b0a0c190e96668811ba1d26e82ca1d81d66c72bfa14c596f1c66184c0d71e"
+    },
+    "data_manifest": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-hant-region-v1/data/MANIFEST.json",
+      "sha256": "ed75b831c6132284ad8e908f6a34723b0e0c1380a8a18be62dfbeefffdd35022"
+    }
+  },
+  "source_code_sha256": {
+    "src/flux_glyph/__init__.py": "e142e2ae88b88ac8cc8fb9bdb280444b9effc0384691f6b34eab8d1d5cb0f2a7",
+    "src/flux_glyph/api.py": "0fc67c6a0a707232a71389d1d16936008cd4c6f57e865f77461b795ba33c1348",
+    "src/flux_glyph/detection.py": "858e5b80f45887ee766d390458d279d65ac18f0413ad43cbe87e58f72c4a3ded",
+    "src/flux_glyph/font_matcher.py": "2345f1e8f7bc1be8d4d55dc78709c0d99442730720fb90d023296c1db3ec0298",
+    "src/flux_glyph/foreground.py": "7d6fda017441facc47453bdc71642c07d2f998cab568978d08bf7cf8640eafde",
+    "src/flux_glyph/glyph_preprocess.py": "0b9c215f7666ce8c9a335cb966f5b3f5552935eee65e0c7bb6177fbcdb008782",
+    "src/flux_glyph/latin_matcher.py": "4280c6d08776e9456926486942151c6234191639bc122a18cdd81fa8ed075ecb",
+    "src/flux_glyph/model_download.py": "98035d831408554ca8522a6c2047de57371b1ed6845c8343e2bee58770985b7f",
+    "src/flux_glyph/models.py": "34ee62ca6b214f958d8d494784b08b29fd75ddc42159540652796aaeee620268",
+    "src/flux_glyph/neural_font.py": "0ff1867758c38df5254ae5ef96e9f4ce5e0bfa08f31a82df30e96b1ebec0eac6",
+    "src/flux_glyph/pipeline.py": "34f0890acec330592dd11770e5d29feaf1271aa197110cdc7ac81f3cbdde2eb7",
+    "src/flux_glyph/ppocr.py": "46e6b470bb0cc5820a363a5977de1ff70381a28f819f287913034dc2f3328fa9",
+    "src/flux_glyph/region_font.py": "6e9ce2c812be94e41e0ca492c7555c671a5bd9d6bed34bec83200076f2202a25",
+    "src/flux_glyph/segmentation.py": "9e981576cd1e24e9b9318e9632bc9f91dada9afa3170f59a637aaf5c17cb7604",
+    "src/flux_glyph/text_style.py": "12c6e880aa68c42c0242679205e4e8bdb2331d511be99134430e65a6c1a8b650",
+    "scripts/evaluate_region_fonts.py": "9c040c045ca7f0d3cabac53730be4d824442ac2aa9395706341eda18c0193aa8",
+    "scripts/evaluate_ios_screenshots.py": "77ba2c62a98e4edca26a5eb32f3d8be6330cd03c1b6c82e110dcab25f53ad5af",
+    "training/capture/prepare_captured.py": "fe750ca6f9ba548080a4056175e247acda69ad8a512037242a86a2726f4d5a2e",
+    "artifacts/ios-system-average-evaluation/regression_tools.py": "b90c7b16f6757f6a3ffb9d58a6fb577a7caaaf1aa8bee3948836fea9c3358542",
+    "artifacts/ios-system-finetune-evaluation/regression_tools.py": "1a697df2d60ece36dc9500259c97317d8e51b4eee29b8c6922736bdf8a701f2e"
+  },
+  "test_history": "reused"
+}

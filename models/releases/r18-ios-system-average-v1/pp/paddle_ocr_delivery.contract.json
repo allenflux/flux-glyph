@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "kind": "paddle_ocr_v2_delivery",
+  "source_audit_contract_sha256": "15cf457008465ef3ec36edfe20a26a05634c39de2d119b3136b43b532f4cecbc",
+  "runtime": {
+    "paddleocr_version": "2.10.0",
+    "paddle_version": "3.3.0",
+    "python_version": "3.10.11",
+    "platform": "win32",
+    "resolved_by": "transfer_receipt_ai.ocr.PaddleOCRReader(require_v2=True)"
+  },
+  "effective_paddleocr_args": {
+    "help": "==SUPPRESS==",
+    "use_xpu": false,
+    "use_npu": false,
+    "use_mlu": false,
+    "use_gcu": false,
+    "min_subgraph_size": 15,
+    "image_dir": null,
+    "page_num": 0,
+    "det_algorithm": "DB",
+    "det_model_dir": "onnx/paddle_ocr_det.onnx",
+    "det_limit_side_len": 960,
+    "det_limit_type": "max",
+    "det_box_type": "quad",
+    "det_db_thresh": 0.3,
+    "det_db_box_thresh": 0.6,
+    "det_db_unclip_ratio": 1.5,
+    "max_batch_size": 10,
+    "use_dilation": false,
+    "det_db_score_mode": "fast",
+    "det_east_score_thresh": 0.8,
+    "det_east_cover_thresh": 0.1,
+    "det_east_nms_thresh": 0.2,
+    "det_sast_score_thresh": 0.5,
+    "det_sast_nms_thresh": 0.2,
+    "det_pse_thresh": 0,
+    "det_pse_box_thresh": 0.85,
+    "det_pse_min_area": 16,
+    "det_pse_scale": 1,
+    "scales": [
+      8,
+      16,
+      32
+    ],
+    "alpha": 1.0,
+    "beta": 1.0,
+    "fourier_degree": 5,
+    "rec_algorithm": "SVTR_LCNet",
+    "rec_model_dir": "onnx/paddle_ocr_rec.onnx",
+    "rec_image_inverse": true,
+    "rec_image_shape": "3, 48, 320",
+    "rec_batch_num": 6,
+    "max_text_length": 25,
+    "rec_char_dict_path": "charset/ppocr_keys_v1.txt",
+    "use_space_char": true,
+    "vis_font_path": "./doc/fonts/simfang.ttf",
+    "drop_score": 0.5,
+    "e2e_algorithm": "PGNet",
+    "e2e_model_dir": null,
+    "e2e_limit_side_len": 768,
+    "e2e_limit_type": "max",
+    "e2e_pgnet_score_thresh": 0.5,
+    "e2e_char_dict_path": "./ppocr/utils/ic15_dict.txt",
+    "e2e_pgnet_valid_set": "totaltext",
+    "e2e_pgnet_mode": "fast",
+    "use_angle_cls": true,
+    "cls_model_dir": "onnx/paddle_ocr_cls.onnx",
+    "cls_image_shape": "3, 48, 192",
+    "label_list": [
+      "0",
+      "180"
+    ],
+    "cls_batch_num": 6,
+    "cls_thresh": 0.9,
+    "use_pdserving": false,
+    "warmup": false,
+    "sr_model_dir": null,
+    "sr_image_shape": "3, 32, 128",
+    "sr_batch_num": 1,
+    "draw_img_save_dir": "./inference_results",
+    "save_crop_res": false,
+    "crop_res_save_dir": "./output",
+    "use_mp": false,
+    "total_process_num": 1,
+    "process_id": 0,
+    "benchmark": false,
+    "save_log_path": "./log_output/",
+    "show_log": false,
+    "use_onnx": true,
+    "onnx_providers": false,
+    "onnx_sess_options": false,
+    "return_word_box": false,
+    "output": "./output",
+    "table_max_len": 488,
+    "table_algorithm": "TableAttn",
+    "table_model_dir": null,
+    "merge_no_span_structure": true,
+    "table_char_dict_path": null,
+    "formula_algorithm": "LaTeXOCR",
+    "formula_model_dir": null,
+    "formula_char_dict_path": null,
+    "formula_batch_num": 1,
+    "layout_model_dir": null,
+    "layout_dict_path": null,
+    "layout_score_threshold": 0.5,
+    "layout_nms_threshold": 0.5,
+    "kie_algorithm": "LayoutXLM",
+    "ser_model_dir": null,
+    "re_model_dir": null,
+    "use_visual_backbone": true,
+    "ser_dict_path": "../train_data/XFUND/class_list_xfun.txt",
+    "ocr_order_method": null,
+    "mode": "structure",
+    "image_orientation": false,
+    "layout": true,
+    "table": true,
+    "formula": false,
+    "ocr": true,
+    "recovery": false,
+    "recovery_to_markdown": false,
+    "use_pdf2docx_api": false,
+    "invert": false,
+    "binarize": false,
+    "alphacolor": [
+      255,
+      255,
+      255
+    ],
+    "lang": "ch",
+    "det": true,
+    "rec": true,
+    "type": "ocr",
+    "savefile": false,
+    "ocr_version": "PP-OCRv4",
+    "structure_version": "PP-StructureV2"
+  },
+  "adapter_contract": {
+    "input_color_order": "RGB_passthrough_to_paddle_v2",
+    "line_aggregation": {
+      "text": "clean each non-empty line then join with one ASCII space",
+      "confidence": "arithmetic mean of all Paddle line confidences"
+    },
+    "hardware_note": "Snapshot initialisation may run on CPU; device-selection args are not OCR behavior parity settings.",
+    "required_components": [
+      "text_detection",
+      "angle_classification",
+      "text_recognition"
+    ]
+  },
+  "models": {
+    "det": {
+      "path": "onnx/paddle_ocr_det.onnx",
+      "sha256": "69ce850fec741a2a4568c7c924bb025c9d4f1129e5f96ab428c799ccc5ef2275",
+      "size_bytes": 4729474,
+      "io": {
+        "inputs": [
+          {
+            "name": "x",
+            "shape": [
+              "DynamicDimension.0",
+              3,
+              "DynamicDimension.1",
+              "DynamicDimension.2"
+            ],
+            "type": "tensor(float)"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "sigmoid_0.tmp_0",
+            "shape": [
+              "DynamicDimension.3",
+              1,
+              "DynamicDimension.4",
+              "DynamicDimension.5"
+            ],
+            "type": "tensor(float)"
+          }
+        ],
+        "onnxruntime_cpu_provider_loaded": true
+      },
+      "dynamic_shape_validation": {
+        "input_shape": [
+          "DynamicDimension.0",
+          3,
+          "DynamicDimension.1",
+          "DynamicDimension.2"
+        ],
+        "required_dynamic_axes": [
+          2,
+          3
+        ]
+      }
+    },
+    "rec": {
+      "path": "onnx/paddle_ocr_rec.onnx",
+      "sha256": "ad7dd55f6759fa02333bff6eb179a4f51be5b89cbe6f710249c95f47d0211350",
+      "size_bytes": 10812334,
+      "io": {
+        "inputs": [
+          {
+            "name": "x",
+            "shape": [
+              "DynamicDimension.0",
+              3,
+              48,
+              "DynamicDimension.1"
+            ],
+            "type": "tensor(float)"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "softmax_11.tmp_0",
+            "shape": [
+              "DynamicDimension.2",
+              "DynamicDimension.3",
+              6625
+            ],
+            "type": "tensor(float)"
+          }
+        ],
+        "onnxruntime_cpu_provider_loaded": true
+      },
+      "dynamic_shape_validation": {
+        "input_shape": [
+          "DynamicDimension.0",
+          3,
+          48,
+          "DynamicDimension.1"
+        ],
+        "required_dynamic_axes": [
+          3
+        ]
+      }
+    },
+    "cls": {
+      "path": "onnx/paddle_ocr_cls.onnx",
+      "sha256": "e263cad54b85e6dd6ce5aed66154785682a221be2216300ce321e58a9d022296",
+      "size_bytes": 571423,
+      "io": {
+        "inputs": [
+          {
+            "name": "x",
+            "shape": [
+              "DynamicDimension.0",
+              3,
+              "DynamicDimension.1",
+              "DynamicDimension.2"
+            ],
+            "type": "tensor(float)"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "softmax_0.tmp_0",
+            "shape": [
+              "DynamicDimension.3",
+              2
+            ],
+            "type": "tensor(float)"
+          }
+        ],
+        "onnxruntime_cpu_provider_loaded": true
+      },
+      "dynamic_shape_validation": {
+        "input_shape": [
+          "DynamicDimension.0",
+          3,
+          "DynamicDimension.1",
+          "DynamicDimension.2"
+        ],
+        "required_dynamic_axes": []
+      }
+    }
+  },
+  "dictionary": {
+    "path": "charset/ppocr_keys_v1.txt",
+    "sha256": "a1c84d9bdb9ab29043c58896224d32941783eb821629618416dcb08f12886492",
+    "size_bytes": 26250
+  },
+  "package_size_bytes": 16139481,
+  "runtime_dependencies": [
+    "ONNX Runtime",
+    "OpenCV-compatible image processing for the OCR adapter"
+  ],
+  "forbidden_runtime_dependencies": [
+    "Python",
+    "PaddlePaddle",
+    "PaddleOCR",
+    "paddle static graph files"
+  ]
+}

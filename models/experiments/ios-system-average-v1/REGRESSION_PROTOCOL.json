@@ -1,0 +1,113 @@
+{
+  "schema": "flux-glyph-system-averaging-fixed-regression-v1",
+  "operation": "parameter_averaging",
+  "source_bindings": {
+    "parent_checkpoint": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-hant-region-v1/region/model.pth",
+      "sha256": "aeda192187c90fa3e59afc23d879d8eda8d8f9fd987895bfd0d0d120c884649a"
+    },
+    "parent_metadata": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-hant-region-v1/bundle-stable/region_neural/metadata.json",
+      "sha256": "c91256136fd88c3f0d8ff380ff285916c42a14038f20399e6e2660ac2c2e1b49"
+    },
+    "source_failure": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/NO_PROMOTABLE_CHECKPOINT.json",
+      "sha256": "2707577b4c6538b731d92ac14bb3e1ea500c5c710dbfd0f16f2f7e1079411d2c"
+    },
+    "source_training_freeze": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/TRAINING_FREEZE.json",
+      "sha256": "aca3c0b981dee965dd5704ccb956cc1e4b2d2d9ee0ca95ee403a9935ac0f20be"
+    },
+    "source_history": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/history.json",
+      "sha256": "7b59ef89d6e68835920a08d80a60801c52a9469ad7101f62cdf5c67f6b6bc48d"
+    },
+    "last_checkpoint": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/last-trained.pth",
+      "sha256": "385b0a0c190e96668811ba1d26e82ca1d81d66c72bfa14c596f1c66184c0d71e"
+    },
+    "data_manifest": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-hant-region-v1/data/MANIFEST.json",
+      "sha256": "ed75b831c6132284ad8e908f6a34723b0e0c1380a8a18be62dfbeefffdd35022"
+    }
+  },
+  "source_preconditions": {
+    "source_status": "NO_PROMOTABLE_CHECKPOINT",
+    "source_optimizer_steps_executed": 4000,
+    "source_test_arrays_opened": false,
+    "source_parameters_changed": true
+  },
+  "additional_optimizer_steps_executed": 0,
+  "source_optimizer_steps_executed": 4000,
+  "alpha_grid": [
+    0.05,
+    0.1,
+    0.2,
+    0.35,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "alpha_zero_baseline_only": true,
+  "formula": "(1-alpha)*R17_parent + alpha*last_trained; all floating tensors including size head; non-floating tensors must match exactly",
+  "system_families": [
+    "PingFang",
+    "SF Pro",
+    "Helvetica"
+  ],
+  "fixed_policy": {
+    "temperature": 0.5,
+    "gates": {
+      "min_score": 0.5,
+      "min_margin": 0.01,
+      "min_patch_agreement": 0.7
+    },
+    "max_size_relative_spread": 0.2
+  },
+  "selection": {
+    "source": "calibration_only",
+    "same_eligibility_as_system_finetuning": true,
+    "preserve_all_parent_accepted_correct_rows": true,
+    "rank": [
+      "system_correct",
+      "minimum_system_correct_coverage",
+      "overall_correct",
+      "negative_mean_size_relative_error"
+    ],
+    "tie": "earliest_alpha_in_fixed_grid",
+    "only_last_training_endpoint": true,
+    "single_selected_model": true,
+    "no_grid_refinement": true
+  },
+  "baseline_reports": {
+    "native": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-hant-region-v1/e2e-stable/report.json",
+      "sha256": "395b3fd5c1637192db781eb86f5f78a3a6fc23a249c0f57bb9dd511db6fff053"
+    },
+    "legacy": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-hant-region-v1/legacy-regression/report.json",
+      "sha256": "6cbe81a4405526ab190aa6f47576254565526b0a6109a48b3a2ba4d38ce7a817"
+    }
+  },
+  "regression_sources": {
+    "captures": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/mobile-font-capture/ios-hant-capture-v1/labels.jsonl",
+      "sha256": "454aae37f4c6e427de6634d1a49bf7365f84a8ba6790aeb2263af903abde5395"
+    },
+    "native_test_pages": 100,
+    "legacy_fixtures": 67,
+    "test_history": "reused",
+    "blind_test": false
+  },
+  "acceptance": {
+    "system_correct_names_strictly_increase": true,
+    "system_wrong_names_do_not_increase": true,
+    "overall_wrong_names_do_not_increase": true,
+    "all_previous_accepted_correct_regions_retained": true,
+    "unknown_false_accepts_do_not_increase_including_detection_mismatch": true,
+    "no_previously_rejected_unknown_case_newly_named": true,
+    "detection_mismatch_is_not_successful_unknown_rejection": true
+  },
+  "failure_action": "Keep failed source run and this experiment evidence; no installation, alternate alpha or test-targeted retry",
+  "scope": "Additional CAL-only model selection using already trained parent/endpoint. Extra optimizer steps zero. Same 100 native and 67 legacy reused regression, not new blind or physical-device validation"
+}

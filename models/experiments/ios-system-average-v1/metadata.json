@@ -1,0 +1,220 @@
+{
+  "schema": "flux-glyph-region-font-v1",
+  "algorithm": "region-cnn64x256-v1",
+  "families": [
+    "HarmonyOS Sans SC",
+    "MiSans",
+    "Noto Sans CJK SC",
+    "OPPO Sans",
+    "PingFang",
+    "SF Pro",
+    "Helvetica",
+    "Alipay Number"
+  ],
+  "model": {
+    "path": "model.onnx",
+    "sha256": "f32b964609071ec3492c7be7d79cdd446264f0e37ff253210daf16c7f70f5f7b"
+  },
+  "font_label_groups": {
+    "PingFang": [
+      "PingFang SC",
+      "PingFang TC",
+      "PingFang HK"
+    ]
+  },
+  "font_sources": {
+    "HarmonyOS Sans SC": [
+      "asset"
+    ],
+    "MiSans": [
+      "asset"
+    ],
+    "Noto Sans CJK SC": [
+      "asset"
+    ],
+    "OPPO Sans": [
+      "asset"
+    ],
+    "PingFang": [
+      "system"
+    ],
+    "SF Pro": [
+      "system"
+    ],
+    "Helvetica": [
+      "system"
+    ],
+    "Alipay Number": [
+      "asset"
+    ]
+  },
+  "temperature": 0.5,
+  "gates": {
+    "min_score": 0.5,
+    "min_margin": 0.01,
+    "min_patch_agreement": 0.7
+  },
+  "max_size_relative_spread": 0.2,
+  "preprocessing": {
+    "function": "preprocess_region",
+    "shape": [
+      1,
+      64,
+      256
+    ],
+    "dtype": "float32",
+    "max_tiles": 8,
+    "source_sha256": "6e9ce2c812be94e41e0ca492c7555c671a5bd9d6bed34bec83200076f2202a25"
+  },
+  "size": {
+    "target": "log(font_size_screen_px/ink_height_px)",
+    "valid_log_ratio_range": [
+      -3,
+      3
+    ],
+    "aggregation": "exp(median(log_em_ratio))",
+    "spread": "(p90_ratio-p10_ratio)/exp(median(log_em_ratio))"
+  },
+  "aggregation": "mean_softmax_probability_across_patches",
+  "ocr_required": false,
+  "script_input_required": false,
+  "release_status": "experimental",
+  "scope": "CAL-selected parameter average; zero additional optimizer steps. Reused regression tests have not been opened by this run.",
+  "training": {
+    "operation": "parameter_averaging",
+    "optimizer_steps_executed": 0,
+    "source_optimizer_steps_executed": 4000,
+    "selected_step": 0,
+    "data_manifest_sha256": "ed75b831c6132284ad8e908f6a34723b0e0c1380a8a18be62dfbeefffdd35022",
+    "source_kind": "ios_simulator_screenshot",
+    "state_after_sha256": "bebbada14b6b6b25bb7d86224cb391130ee7982aac092310042d9437c84a4007",
+    "selection_sha256": "2e4a4ebcd006bd65ee15d753b999fd67704620a3296f12a47b90d2beab32f6b8"
+  },
+  "derivation": {
+    "operation": "parameter_averaging",
+    "formula": "(1-alpha)*R17_parent + alpha*last_trained; all floating tensors including size head; non-floating tensors must match exactly",
+    "source_run": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run",
+    "source_optimizer_steps_executed": 4000,
+    "additional_optimizer_steps_executed": 0,
+    "source_bindings": {
+      "source_failure": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/NO_PROMOTABLE_CHECKPOINT.json",
+        "sha256": "2707577b4c6538b731d92ac14bb3e1ea500c5c710dbfd0f16f2f7e1079411d2c"
+      },
+      "source_report": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/report.json",
+        "sha256": "2707577b4c6538b731d92ac14bb3e1ea500c5c710dbfd0f16f2f7e1079411d2c"
+      },
+      "source_training_freeze": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/TRAINING_FREEZE.json",
+        "sha256": "aca3c0b981dee965dd5704ccb956cc1e4b2d2d9ee0ca95ee403a9935ac0f20be"
+      },
+      "parent_metadata": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-hant-region-v1/bundle-stable/region_neural/metadata.json",
+        "sha256": "c91256136fd88c3f0d8ff380ff285916c42a14038f20399e6e2660ac2c2e1b49"
+      },
+      "parent_checkpoint": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-hant-region-v1/region/model.pth",
+        "sha256": "aeda192187c90fa3e59afc23d879d8eda8d8f9fd987895bfd0d0d120c884649a"
+      },
+      "last_checkpoint": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/last-trained.pth",
+        "sha256": "385b0a0c190e96668811ba1d26e82ca1d81d66c72bfa14c596f1c66184c0d71e"
+      },
+      "parent_calibration": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/PARENT_CALIBRATION.json",
+        "sha256": "0859a28559ced0db97993545e51562c0b865c6d3fdeb509ca50a9bc2e2b5bc3d"
+      },
+      "data_manifest": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-hant-region-v1/data/MANIFEST.json",
+        "sha256": "ed75b831c6132284ad8e908f6a34723b0e0c1380a8a18be62dfbeefffdd35022"
+      },
+      "code:training/train_regions.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/training/train_regions.py",
+        "sha256": "6bc2b70093daeb8e3119983a744b65fd52eb22ac83a964f42242a1b3a2a9fd4c"
+      },
+      "frozen_code:training/train_regions.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/frozen-code/training/train_regions.py",
+        "sha256": "6bc2b70093daeb8e3119983a744b65fd52eb22ac83a964f42242a1b3a2a9fd4c"
+      },
+      "code:training/region_network.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/training/region_network.py",
+        "sha256": "aeca98a74d495942efebe9f82b2ef7b05cc8aafa60696e6ff7430b50eec4dbf2"
+      },
+      "frozen_code:training/region_network.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/frozen-code/training/region_network.py",
+        "sha256": "aeca98a74d495942efebe9f82b2ef7b05cc8aafa60696e6ff7430b50eec4dbf2"
+      },
+      "code:training/network.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/training/network.py",
+        "sha256": "ce52a705cecb29cd5a024fb5a8ec5d05a710c9bedc0998c870b366f2ff763f22"
+      },
+      "frozen_code:training/network.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/frozen-code/training/network.py",
+        "sha256": "ce52a705cecb29cd5a024fb5a8ec5d05a710c9bedc0998c870b366f2ff763f22"
+      },
+      "code:training/region_labels.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/training/region_labels.py",
+        "sha256": "15ebbee685d7544b633c0e01e18533958a8b887587770377715cb04e06f536ca"
+      },
+      "frozen_code:training/region_labels.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/frozen-code/training/region_labels.py",
+        "sha256": "15ebbee685d7544b633c0e01e18533958a8b887587770377715cb04e06f536ca"
+      },
+      "code:training/capture/generate_scenes.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/training/capture/generate_scenes.py",
+        "sha256": "fec60d9e12084a73ba888391c527af4684fd3f07532655b54d383630b60f7f3d"
+      },
+      "frozen_code:training/capture/generate_scenes.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/frozen-code/training/capture/generate_scenes.py",
+        "sha256": "fec60d9e12084a73ba888391c527af4684fd3f07532655b54d383630b60f7f3d"
+      },
+      "code:src/flux_glyph/region_font.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/src/flux_glyph/region_font.py",
+        "sha256": "6e9ce2c812be94e41e0ca492c7555c671a5bd9d6bed34bec83200076f2202a25"
+      },
+      "frozen_code:src/flux_glyph/region_font.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/frozen-code/src/flux_glyph/region_font.py",
+        "sha256": "6e9ce2c812be94e41e0ca492c7555c671a5bd9d6bed34bec83200076f2202a25"
+      },
+      "code:training/system_finetune.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/training/system_finetune.py",
+        "sha256": "1b9b7ea53d7350cd32ad57f5d16dcc233769882aaf1ee95afbc150f06a6cd50c"
+      },
+      "frozen_code:training/system_finetune.py": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/frozen-code/training/system_finetune.py",
+        "sha256": "1b9b7ea53d7350cd32ad57f5d16dcc233769882aaf1ee95afbc150f06a6cd50c"
+      },
+      "source_regression_protocol": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/REGRESSION_PROTOCOL.json",
+        "sha256": "08699972418d6e2114d6d2794e4be26d5429bb6c8a2b0e0d887611b0272c7761"
+      },
+      "source_history": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-finetune-v1/run/history.json",
+        "sha256": "7b59ef89d6e68835920a08d80a60801c52a9469ad7101f62cdf5c67f6b6bc48d"
+      },
+      "averaging_regression_protocol": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-system-average-v1/REGRESSION_PROTOCOL.json",
+        "sha256": "dd71ea0422e3c3daf4cf4a027ea02528c0bddf840f2f2925762d080ee5f8d9c0"
+      }
+    },
+    "selected_alpha": 0.75,
+    "state_sha256": "bebbada14b6b6b25bb7d86224cb391130ee7982aac092310042d9437c84a4007"
+  },
+  "calibration": {
+    "gate_found": true,
+    "recalibrated": false,
+    "source": "parent_metadata",
+    "parent_metadata_sha256": "c91256136fd88c3f0d8ff380ff285916c42a14038f20399e6e2660ac2c2e1b49",
+    "selection_source": "calibration_only_fixed_alpha_grid"
+  },
+  "export": {
+    "groupnorm_lowering": "reshape_centered_mean_square_variance_v1",
+    "frozen_parameters_unchanged": true,
+    "reduction_dtype": "float64",
+    "original_onnx_sha256": "7de03a33f743c4f2d1afead28331097bcff09f43fe47b0dc7a42ab26733caf9f",
+    "checkpoint_sha256": "f8c88780be227f7a158104e3e7610523cb22793297a31da23b82df8185e5580e",
+    "export_source_sha256": "07f1d4964201d651af7066ed8e9ae8e6b13efd3ac4c8e3cc94de70e206e9b56a",
+    "parity_reference": "original torch.nn.GroupNorm, unchanged tolerances"
+  }
+}

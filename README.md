@@ -12,7 +12,7 @@
 
 R17 使用新采集的 1,000 张原生 iOS Simulator 截图继续训练，包含简体、繁体、英文和数字。八个字体输出中，PingFang 表示苹方字体族，覆盖原生 SC／TC／HK，不宣称能从相同字形区分地区版本。SF Pro、PingFang 和 Helvetica 来自系统；Alipay Number 及其余类别由采集应用加载，**Alipay Number 不是 iOS 系统字体**。来源写入元数据和下载说明。
 
-系统字体的本地微调方式与发布条件见 [系统字体优先训练](docs/ios-system-font-training.md)。训练候选通过验收前不会替换当前活动模型。
+系统字体的本地微调方式与发布条件见 [系统字体优先训练](docs/ios-system-font-training.md)。候选在固定回归中的系统字体正确数由 518 增至 527，但有旧正确结果退为待确认，未通过预设保留条件；已保存候选供审阅，当前活动模型仍为 R17。详见 [优化回归结果](docs/ios-system-font-results.md)。
 
 新固定测试的 100 张完整截图、1,104 个区域中，1,013 个字体名正确、1 个错误、90 个待确认；没有漏检或额外框。已输出名称的准确率为 99.90%，返回名称的覆盖率为 91.85%。这些是受控模拟器成绩，不能推广到任意 App、真机或未知字体。详见 [R17 验证报告](docs/ios-traditional-results.md)、[采集证据](docs/ios-traditional-capture.md) 和 [训练流程](docs/ios-traditional-training.md)。
 

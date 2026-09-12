@@ -1,0 +1,23 @@
+{
+  "version": "r18-ios-system-average-v1",
+  "status": "held_for_review_due_to_regressions",
+  "active": false,
+  "source_optimizer_steps_executed": 4000,
+  "additional_optimizer_steps_executed": 0,
+  "selected_alpha": 0.75,
+  "fixed_regression_passed": false,
+  "system_correct_before": 518,
+  "system_correct_after": 527,
+  "system_truth_regions": 547,
+  "system_wrong_before": 1,
+  "system_wrong_after": 1,
+  "native_previous_correct_now_pending": 5,
+  "legacy_regressions": [
+    "Noto blue_png_28: correct to pending",
+    "Noto white_jpeg74_24: pending to wrong PingFang"
+  ],
+  "model_sha256": "f32b964609071ec3492c7be7d79cdd446264f0e37ff253210daf16c7f70f5f7b",
+  "regression_report_sha256": "62aed3a3806b061905aa13206a5362785965f51e71ddf3916fbac317d1905bbc",
+  "staged_bundle": "models/releases/r18-ios-system-average-v1",
+  "production_model_unchanged": "r17-ios-hant-region-v1"
+}
