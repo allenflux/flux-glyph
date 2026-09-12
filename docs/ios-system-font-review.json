@@ -1,0 +1,409 @@
+{
+  "schema": "flux-glyph-system-average-public-review-v1",
+  "strict_protocol_passed": false,
+  "candidate_active": false,
+  "decision_reason": "Five formerly accepted correct native regions became uncertain; do not relabel the fixed regression protocol as passed.",
+  "derivation": {
+    "source_optimizer_steps": 4000,
+    "additional_optimizer_steps": 0,
+    "alpha": 0.75,
+    "formula": "0.25*R17+0.75*last-trained"
+  },
+  "policy": {
+    "temperature": 0.5,
+    "min_score": 0.5,
+    "min_margin": 0.01,
+    "min_patch_agreement": 0.7,
+    "unchanged_from_R17": true
+  },
+  "scope": {
+    "native_pages": 100,
+    "native_regions": 1104,
+    "legacy_cases": 67,
+    "test_history": "reused",
+    "physical_device_accuracy_established": false
+  },
+  "overall": {
+    "before": {
+      "truth_regions": 1104,
+      "font_name_correct": 1013,
+      "wrong_font_names": 1,
+      "pending_after_detection": 90,
+      "font_coverage_all_truth": 0.9184782608695652
+    },
+    "after": {
+      "truth_regions": 1104,
+      "font_name_correct": 1028,
+      "wrong_font_names": 1,
+      "pending_after_detection": 75,
+      "font_coverage_all_truth": 0.9320652173913043
+    }
+  },
+  "systems": {
+    "before": {
+      "truth_regions": 547,
+      "accepted": 519,
+      "correct": 518,
+      "wrong": 1,
+      "pending": 28,
+      "coverage": 0.9488117001828154,
+      "correct_coverage": 0.946983546617916,
+      "accepted_precision": 0.9980732177263969
+    },
+    "after": {
+      "truth_regions": 547,
+      "accepted": 528,
+      "correct": 527,
+      "wrong": 1,
+      "pending": 19,
+      "coverage": 0.9652650822669104,
+      "correct_coverage": 0.9634369287020109,
+      "accepted_precision": 0.9981060606060606
+    }
+  },
+  "system_families": {
+    "PingFang SC": {
+      "before": {
+        "truth_regions": 122,
+        "font_name_correct": 115,
+        "wrong_font_names": 0,
+        "pending_after_detection": 7,
+        "font_coverage_all_truth": 0.9426229508196722
+      },
+      "after": {
+        "truth_regions": 122,
+        "font_name_correct": 118,
+        "wrong_font_names": 0,
+        "pending_after_detection": 4,
+        "font_coverage_all_truth": 0.9672131147540983
+      }
+    },
+    "PingFang TC": {
+      "before": {
+        "truth_regions": 122,
+        "font_name_correct": 117,
+        "wrong_font_names": 0,
+        "pending_after_detection": 5,
+        "font_coverage_all_truth": 0.9590163934426229
+      },
+      "after": {
+        "truth_regions": 122,
+        "font_name_correct": 119,
+        "wrong_font_names": 0,
+        "pending_after_detection": 3,
+        "font_coverage_all_truth": 0.9754098360655737
+      }
+    },
+    "PingFang HK": {
+      "before": {
+        "truth_regions": 122,
+        "font_name_correct": 113,
+        "wrong_font_names": 0,
+        "pending_after_detection": 9,
+        "font_coverage_all_truth": 0.9262295081967213
+      },
+      "after": {
+        "truth_regions": 122,
+        "font_name_correct": 115,
+        "wrong_font_names": 0,
+        "pending_after_detection": 7,
+        "font_coverage_all_truth": 0.9426229508196722
+      }
+    },
+    "SF Pro": {
+      "before": {
+        "truth_regions": 130,
+        "font_name_correct": 124,
+        "wrong_font_names": 1,
+        "pending_after_detection": 5,
+        "font_coverage_all_truth": 0.9615384615384616
+      },
+      "after": {
+        "truth_regions": 130,
+        "font_name_correct": 125,
+        "wrong_font_names": 1,
+        "pending_after_detection": 4,
+        "font_coverage_all_truth": 0.9692307692307692
+      }
+    },
+    "Helvetica": {
+      "before": {
+        "truth_regions": 51,
+        "font_name_correct": 49,
+        "wrong_font_names": 0,
+        "pending_after_detection": 2,
+        "font_coverage_all_truth": 0.9607843137254902
+      },
+      "after": {
+        "truth_regions": 51,
+        "font_name_correct": 50,
+        "wrong_font_names": 0,
+        "pending_after_detection": 1,
+        "font_coverage_all_truth": 0.9803921568627451
+      }
+    }
+  },
+  "orthography": {
+    "simplified": {
+      "before": {
+        "truth_regions": 343,
+        "font_name_correct": 309,
+        "wrong_font_names": 0,
+        "pending_after_detection": 34,
+        "font_coverage_all_truth": 0.9008746355685131
+      },
+      "after": {
+        "truth_regions": 343,
+        "font_name_correct": 312,
+        "wrong_font_names": 0,
+        "pending_after_detection": 31,
+        "font_coverage_all_truth": 0.9096209912536443
+      }
+    },
+    "traditional": {
+      "before": {
+        "truth_regions": 361,
+        "font_name_correct": 321,
+        "wrong_font_names": 0,
+        "pending_after_detection": 40,
+        "font_coverage_all_truth": 0.889196675900277
+      },
+      "after": {
+        "truth_regions": 361,
+        "font_name_correct": 328,
+        "wrong_font_names": 0,
+        "pending_after_detection": 33,
+        "font_coverage_all_truth": 0.9085872576177285
+      }
+    },
+    "english": {
+      "before": {
+        "truth_regions": 200,
+        "font_name_correct": 191,
+        "wrong_font_names": 1,
+        "pending_after_detection": 8,
+        "font_coverage_all_truth": 0.96
+      },
+      "after": {
+        "truth_regions": 200,
+        "font_name_correct": 193,
+        "wrong_font_names": 1,
+        "pending_after_detection": 6,
+        "font_coverage_all_truth": 0.97
+      }
+    },
+    "numeric": {
+      "before": {
+        "truth_regions": 200,
+        "font_name_correct": 192,
+        "wrong_font_names": 0,
+        "pending_after_detection": 8,
+        "font_coverage_all_truth": 0.96
+      },
+      "after": {
+        "truth_regions": 200,
+        "font_name_correct": 195,
+        "wrong_font_names": 0,
+        "pending_after_detection": 5,
+        "font_coverage_all_truth": 0.975
+      }
+    }
+  },
+  "native_gain_loss": {
+    "additional_correct": 20,
+    "old_correct_became_uncertain": 5,
+    "new_wrong_font_names": 0,
+    "all_five_top1_unchanged": true
+  },
+  "native_regressions": [
+    {
+      "region_id": "ios-hant-v1-scene-00238-r03",
+      "native_family": "PingFang HK",
+      "source_sha256": "50e4c5b868d50d04432b03876d1a875dcb4da090df8687c457bd6e18871481a5",
+      "before": {
+        "status": "candidate",
+        "accepted_family": "PingFang",
+        "top1": "PingFang",
+        "model_score": 0.8824913050718461,
+        "patch_agreement": 1.0,
+        "reason": "region_neural_family_candidate"
+      },
+      "after": {
+        "status": "uncertain",
+        "accepted_family": null,
+        "top1": "PingFang",
+        "model_score": 0.5873896678397268,
+        "patch_agreement": 0.5,
+        "reason": "mixed_or_ambiguous_region"
+      },
+      "top1_unchanged": true
+    },
+    {
+      "region_id": "ios-hant-v1-scene-00469-r10",
+      "native_family": "Noto Sans CJK SC",
+      "source_sha256": "1492231eb575b592c6605d83868472a1e9cf844f912017790fe588b6bfafe213",
+      "before": {
+        "status": "candidate",
+        "accepted_family": "Noto Sans CJK SC",
+        "top1": "Noto Sans CJK SC",
+        "model_score": 0.720186142365656,
+        "patch_agreement": 1.0,
+        "reason": "region_neural_family_candidate"
+      },
+      "after": {
+        "status": "uncertain",
+        "accepted_family": null,
+        "top1": "Noto Sans CJK SC",
+        "model_score": 0.6650357806951452,
+        "patch_agreement": 0.5,
+        "reason": "mixed_or_ambiguous_region"
+      },
+      "top1_unchanged": true
+    },
+    {
+      "region_id": "ios-hant-v1-scene-00504-r07",
+      "native_family": "Noto Sans CJK SC",
+      "source_sha256": "bb9ad12abb878930194bc085ee85ed78dfdb89487deda1b9b06275b6f9443c0a",
+      "before": {
+        "status": "candidate",
+        "accepted_family": "Noto Sans CJK SC",
+        "top1": "Noto Sans CJK SC",
+        "model_score": 0.750261849071722,
+        "patch_agreement": 1.0,
+        "reason": "region_neural_family_candidate"
+      },
+      "after": {
+        "status": "uncertain",
+        "accepted_family": null,
+        "top1": "Noto Sans CJK SC",
+        "model_score": 0.7113498939334284,
+        "patch_agreement": 0.5,
+        "reason": "mixed_or_ambiguous_region"
+      },
+      "top1_unchanged": true
+    },
+    {
+      "region_id": "ios-hant-v1-scene-00836-r06",
+      "native_family": "MiSans",
+      "source_sha256": "06978bf1e4e197e35a8bbc92fc723843902d9d8a692795140c76fa97a99178cf",
+      "before": {
+        "status": "candidate",
+        "accepted_family": "MiSans",
+        "top1": "MiSans",
+        "model_score": 0.805834957274154,
+        "patch_agreement": 1.0,
+        "reason": "region_neural_family_candidate"
+      },
+      "after": {
+        "status": "uncertain",
+        "accepted_family": null,
+        "top1": "MiSans",
+        "model_score": 0.7134524931631852,
+        "patch_agreement": 0.6666666666666666,
+        "reason": "mixed_or_ambiguous_region"
+      },
+      "top1_unchanged": true
+    },
+    {
+      "region_id": "ios-hant-v1-scene-00887-r08",
+      "native_family": "Noto Sans CJK SC",
+      "source_sha256": "7d8e0e59aa6bdb19a8de8387493838027b8d246a34d58b95d4ca6617797eab48",
+      "before": {
+        "status": "candidate",
+        "accepted_family": "Noto Sans CJK SC",
+        "top1": "Noto Sans CJK SC",
+        "model_score": 0.7511162754506326,
+        "patch_agreement": 1.0,
+        "reason": "region_neural_family_candidate"
+      },
+      "after": {
+        "status": "uncertain",
+        "accepted_family": null,
+        "top1": "Noto Sans CJK SC",
+        "model_score": 0.7232014639404611,
+        "patch_agreement": 0.5,
+        "reason": "mixed_or_ambiguous_region"
+      },
+      "top1_unchanged": true
+    }
+  ],
+  "legacy_noto_regressions": [
+    {
+      "id": "noto_regular--blue_png_28",
+      "native_family": "Noto Sans CJK SC",
+      "source_sha256": "3db89304bcc1da43f5da937094325cb6af5166c62a8a83b2ee02b0955163850a",
+      "before": {
+        "status": "candidate",
+        "accepted_family": "Noto Sans CJK SC",
+        "top1": "Noto Sans CJK SC",
+        "model_score": 0.6801719019084,
+        "patch_agreement": 1.0,
+        "reason": "region_neural_family_candidate",
+        "scored_outcome": "correct_name"
+      },
+      "after": {
+        "status": "uncertain",
+        "accepted_family": null,
+        "top1": "Noto Sans CJK SC",
+        "model_score": 0.6063058145602425,
+        "patch_agreement": 0.5,
+        "reason": "mixed_or_ambiguous_region",
+        "scored_outcome": "abstained_known"
+      }
+    },
+    {
+      "id": "noto_regular--white_jpeg74_24",
+      "native_family": "Noto Sans CJK SC",
+      "source_sha256": "7bdfdae43f25859e17d78c6765713501d6c15bb1c6095e4359f758d7fd000bf8",
+      "before": {
+        "status": "uncertain",
+        "accepted_family": null,
+        "top1": "PingFang",
+        "model_score": 0.591904149961498,
+        "patch_agreement": 0.5,
+        "reason": "mixed_or_ambiguous_region",
+        "scored_outcome": "abstained_known"
+      },
+      "after": {
+        "status": "candidate",
+        "accepted_family": "PingFang",
+        "top1": "PingFang",
+        "model_score": 0.6838452793310899,
+        "patch_agreement": 1.0,
+        "reason": "region_neural_family_candidate",
+        "scored_outcome": "wrong_name"
+      }
+    }
+  ],
+  "legacy_unknown": {
+    "before": {
+      "cases": 14,
+      "wrong_name_outcomes": 11,
+      "false_named_regions_including_detection_mismatch": 12,
+      "cases_with_false_names": 12,
+      "rejected_unknown": 2,
+      "detection_count_mismatch": 1
+    },
+    "after": {
+      "cases": 14,
+      "wrong_name_outcomes": 9,
+      "false_named_regions_including_detection_mismatch": 10,
+      "cases_with_false_names": 10,
+      "rejected_unknown": 4,
+      "detection_count_mismatch": 1
+    }
+  },
+  "artifact_sha256": {
+    "model": "f32b964609071ec3492c7be7d79cdd446264f0e37ff253210daf16c7f70f5f7b",
+    "protocol": "dd71ea0422e3c3daf4cf4a027ea02528c0bddf840f2f2925762d080ee5f8d9c0",
+    "binding": "9365827641a29f77e50260b0b55a58392cc3b0d16d8dce9c68dea10a88c9d4bf",
+    "comparison": "62aed3a3806b061905aa13206a5362785965f51e71ddf3916fbac317d1905bbc",
+    "native_report": "d533d4d0dca7880e857cbe0a8ccacbe00365c5e87cd992df11a90f04ec943bf2",
+    "legacy_report": "c2d062281ad8f37d967e021725d2cb3ea47914d82b6bc6cbc35cf2c27672c185"
+  },
+  "limitations": [
+    "Model scores are not calibrated probabilities of correct recognition.",
+    "Unknown fonts still produce false names.",
+    "A reported first candidate is separate from an accepted font result."
+  ]
+}

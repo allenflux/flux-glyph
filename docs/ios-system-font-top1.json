@@ -1,0 +1,1697 @@
+{
+  "schema": "flux-glyph-top1-descriptive-supplement-v1",
+  "purpose": "Supplementary descriptive metric only; frozen regression remains failed.",
+  "inference_performed": false,
+  "parameter_or_gate_changes": false,
+  "test_history": "reused",
+  "definition": "First ranked candidate including uncertain regions; empty candidates counted separately; native correctness uses the explicitly declared PingFang label group.",
+  "native": {
+    "overall": {
+      "before": {
+        "truth_regions": 1104,
+        "correct": 1095,
+        "wrong": 9,
+        "no_candidate": 0,
+        "correct_fraction_all_truth": 0.9918478260869565
+      },
+      "after": {
+        "truth_regions": 1104,
+        "correct": 1097,
+        "wrong": 7,
+        "no_candidate": 0,
+        "correct_fraction_all_truth": 0.9936594202898551
+      }
+    },
+    "system": {
+      "before": {
+        "truth_regions": 547,
+        "correct": 544,
+        "wrong": 3,
+        "no_candidate": 0,
+        "correct_fraction_all_truth": 0.9945155393053017
+      },
+      "after": {
+        "truth_regions": 547,
+        "correct": 546,
+        "wrong": 1,
+        "no_candidate": 0,
+        "correct_fraction_all_truth": 0.9981718464351006
+      }
+    },
+    "by_native_family": {
+      "Alipay Number": {
+        "before": {
+          "truth_regions": 13,
+          "correct": 13,
+          "wrong": 0,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 1.0
+        },
+        "after": {
+          "truth_regions": 13,
+          "correct": 13,
+          "wrong": 0,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 1.0
+        }
+      },
+      "HarmonyOS Sans SC": {
+        "before": {
+          "truth_regions": 170,
+          "correct": 168,
+          "wrong": 2,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.9882352941176471
+        },
+        "after": {
+          "truth_regions": 170,
+          "correct": 169,
+          "wrong": 1,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.9941176470588236
+        }
+      },
+      "Helvetica": {
+        "before": {
+          "truth_regions": 51,
+          "correct": 51,
+          "wrong": 0,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 1.0
+        },
+        "after": {
+          "truth_regions": 51,
+          "correct": 51,
+          "wrong": 0,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 1.0
+        }
+      },
+      "MiSans": {
+        "before": {
+          "truth_regions": 113,
+          "correct": 113,
+          "wrong": 0,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 1.0
+        },
+        "after": {
+          "truth_regions": 113,
+          "correct": 112,
+          "wrong": 1,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.9911504424778761
+        }
+      },
+      "Noto Sans CJK SC": {
+        "before": {
+          "truth_regions": 93,
+          "correct": 92,
+          "wrong": 1,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.989247311827957
+        },
+        "after": {
+          "truth_regions": 93,
+          "correct": 92,
+          "wrong": 1,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.989247311827957
+        }
+      },
+      "OPPO Sans": {
+        "before": {
+          "truth_regions": 168,
+          "correct": 165,
+          "wrong": 3,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.9821428571428571
+        },
+        "after": {
+          "truth_regions": 168,
+          "correct": 165,
+          "wrong": 3,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.9821428571428571
+        }
+      },
+      "PingFang HK": {
+        "before": {
+          "truth_regions": 122,
+          "correct": 121,
+          "wrong": 1,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.9918032786885246
+        },
+        "after": {
+          "truth_regions": 122,
+          "correct": 122,
+          "wrong": 0,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 1.0
+        }
+      },
+      "PingFang SC": {
+        "before": {
+          "truth_regions": 122,
+          "correct": 122,
+          "wrong": 0,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 1.0
+        },
+        "after": {
+          "truth_regions": 122,
+          "correct": 122,
+          "wrong": 0,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 1.0
+        }
+      },
+      "PingFang TC": {
+        "before": {
+          "truth_regions": 122,
+          "correct": 122,
+          "wrong": 0,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 1.0
+        },
+        "after": {
+          "truth_regions": 122,
+          "correct": 122,
+          "wrong": 0,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 1.0
+        }
+      },
+      "SF Pro": {
+        "before": {
+          "truth_regions": 130,
+          "correct": 128,
+          "wrong": 2,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.9846153846153847
+        },
+        "after": {
+          "truth_regions": 130,
+          "correct": 129,
+          "wrong": 1,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.9923076923076923
+        }
+      }
+    },
+    "by_orthography": {
+      "english": {
+        "before": {
+          "truth_regions": 200,
+          "correct": 197,
+          "wrong": 3,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.985
+        },
+        "after": {
+          "truth_regions": 200,
+          "correct": 198,
+          "wrong": 2,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.99
+        }
+      },
+      "numeric": {
+        "before": {
+          "truth_regions": 200,
+          "correct": 200,
+          "wrong": 0,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 1.0
+        },
+        "after": {
+          "truth_regions": 200,
+          "correct": 200,
+          "wrong": 0,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 1.0
+        }
+      },
+      "simplified": {
+        "before": {
+          "truth_regions": 343,
+          "correct": 341,
+          "wrong": 2,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.9941690962099126
+        },
+        "after": {
+          "truth_regions": 343,
+          "correct": 342,
+          "wrong": 1,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.9970845481049563
+        }
+      },
+      "traditional": {
+        "before": {
+          "truth_regions": 361,
+          "correct": 357,
+          "wrong": 4,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.9889196675900277
+        },
+        "after": {
+          "truth_regions": 361,
+          "correct": 357,
+          "wrong": 4,
+          "no_candidate": 0,
+          "correct_fraction_all_truth": 0.9889196675900277
+        }
+      }
+    },
+    "top1_changes": [
+      {
+        "region_id": "ios-hant-v1-scene-00139-r09",
+        "native_family": "MiSans",
+        "before_top1": "MiSans",
+        "after_top1": "Noto Sans CJK SC",
+        "before_correct": true,
+        "after_correct": false,
+        "source_sha256": "88fe9a6e431c274b8af634eefb2b795e6a0c3cbcabadcc83baeb6e3ccb54037e"
+      },
+      {
+        "region_id": "ios-hant-v1-scene-00381-r02",
+        "native_family": "SF Pro",
+        "before_top1": "Helvetica",
+        "after_top1": "SF Pro",
+        "before_correct": false,
+        "after_correct": true,
+        "source_sha256": "166704de860c39a36f0de0b824d721bcc9c335331e4e59721b34b27c79f7b403"
+      },
+      {
+        "region_id": "ios-hant-v1-scene-00547-r04",
+        "native_family": "HarmonyOS Sans SC",
+        "before_top1": "OPPO Sans",
+        "after_top1": "HarmonyOS Sans SC",
+        "before_correct": false,
+        "after_correct": true,
+        "source_sha256": "aba87f27ec1214ca315e0bda4c673aacfa7de638fc235c29692544103deb5a97"
+      },
+      {
+        "region_id": "ios-hant-v1-scene-00595-r03",
+        "native_family": "PingFang HK",
+        "before_top1": "Noto Sans CJK SC",
+        "after_top1": "PingFang",
+        "before_correct": false,
+        "after_correct": true,
+        "source_sha256": "b0b6ea9139dce059e935636e23685af753c338005ccdaf7c87972f4c5febf8e3"
+      }
+    ],
+    "change_counts": {
+      "correct_to_wrong": 1,
+      "wrong_to_correct": 3
+    }
+  },
+  "legacy": {
+    "comparable_single_region_cases": 61,
+    "top1_changed_cases": 4,
+    "changes": [
+      {
+        "id": "harmonyos_regular--blue_png_28",
+        "expected_family": "HarmonyOS Sans SC",
+        "source_sha256": "b8998356564139a10cf3c7c112b2601ef692955792312fab05ec8aa8eefd18f1",
+        "source_bbox": [
+          288,
+          176,
+          462,
+          210
+        ],
+        "before_top1": "MiSans",
+        "after_top1": "HarmonyOS Sans SC",
+        "before_status": "uncertain",
+        "after_status": "uncertain"
+      },
+      {
+        "id": "negative_songti_regular--blue_png_28",
+        "expected_family": null,
+        "source_sha256": "e3d13a0cb5979f726c575bd870fcd6c16d902633650e79930d5a30d6fc5d6e01",
+        "source_bbox": [
+          288,
+          182,
+          463,
+          216
+        ],
+        "before_top1": "PingFang",
+        "after_top1": "SF Pro",
+        "before_status": "candidate",
+        "after_status": "uncertain"
+      },
+      {
+        "id": "harmonyos_regular_38_1",
+        "expected_family": "HarmonyOS Sans SC",
+        "source_sha256": "1622e2c3b970b961e37b9a6f1660c404b55f9096e7df493009bf1e283b8c942e",
+        "source_bbox": [
+          7,
+          7,
+          108,
+          42
+        ],
+        "before_top1": "SF Pro",
+        "after_top1": "HarmonyOS Sans SC",
+        "before_status": "candidate",
+        "after_status": "candidate"
+      },
+      {
+        "id": "negative_times_38_3",
+        "expected_family": null,
+        "source_sha256": "29dd9d55c2bd47249b5563ca66c11729414846223be0edba12deb24ba38fd799",
+        "source_bbox": [
+          5,
+          3,
+          103,
+          41
+        ],
+        "before_top1": "HarmonyOS Sans SC",
+        "after_top1": "SF Pro",
+        "before_status": "candidate",
+        "after_status": "candidate"
+      }
+    ],
+    "excluded_cases": [
+      {
+        "id": "helvetica_bold_38_2",
+        "before_detection_count": 3,
+        "after_detection_count": 3,
+        "reason": "not_exactly_one_identical_geometry_region_in_both_runs"
+      },
+      {
+        "id": "harmonyos_regular_38_2",
+        "before_detection_count": 2,
+        "after_detection_count": 2,
+        "reason": "not_exactly_one_identical_geometry_region_in_both_runs"
+      },
+      {
+        "id": "misans_regular_38_2",
+        "before_detection_count": 2,
+        "after_detection_count": 2,
+        "reason": "not_exactly_one_identical_geometry_region_in_both_runs"
+      },
+      {
+        "id": "oppo_regular_38_2",
+        "before_detection_count": 2,
+        "after_detection_count": 2,
+        "reason": "not_exactly_one_identical_geometry_region_in_both_runs"
+      },
+      {
+        "id": "alipay_number_regular_38_2",
+        "before_detection_count": 2,
+        "after_detection_count": 2,
+        "reason": "not_exactly_one_identical_geometry_region_in_both_runs"
+      },
+      {
+        "id": "negative_courier_38_2",
+        "before_detection_count": 2,
+        "after_detection_count": 2,
+        "reason": "not_exactly_one_identical_geometry_region_in_both_runs"
+      }
+    ],
+    "exact_geometry_region_pairs_including_multi_detection_cases": 74,
+    "all_geometry_top1_changes": [
+      {
+        "id": "harmonyos_regular--blue_png_28",
+        "expected_family": "HarmonyOS Sans SC",
+        "source_sha256": "b8998356564139a10cf3c7c112b2601ef692955792312fab05ec8aa8eefd18f1",
+        "source_bbox": [
+          288,
+          176,
+          462,
+          210
+        ],
+        "before_top1": "MiSans",
+        "after_top1": "HarmonyOS Sans SC",
+        "before_status": "uncertain",
+        "after_status": "uncertain"
+      },
+      {
+        "id": "negative_songti_regular--blue_png_28",
+        "expected_family": null,
+        "source_sha256": "e3d13a0cb5979f726c575bd870fcd6c16d902633650e79930d5a30d6fc5d6e01",
+        "source_bbox": [
+          288,
+          182,
+          463,
+          216
+        ],
+        "before_top1": "PingFang",
+        "after_top1": "SF Pro",
+        "before_status": "candidate",
+        "after_status": "uncertain"
+      },
+      {
+        "id": "harmonyos_regular_38_1",
+        "expected_family": "HarmonyOS Sans SC",
+        "source_sha256": "1622e2c3b970b961e37b9a6f1660c404b55f9096e7df493009bf1e283b8c942e",
+        "source_bbox": [
+          7,
+          7,
+          108,
+          42
+        ],
+        "before_top1": "SF Pro",
+        "after_top1": "HarmonyOS Sans SC",
+        "before_status": "candidate",
+        "after_status": "candidate"
+      },
+      {
+        "id": "negative_times_38_3",
+        "expected_family": null,
+        "source_sha256": "29dd9d55c2bd47249b5563ca66c11729414846223be0edba12deb24ba38fd799",
+        "source_bbox": [
+          5,
+          3,
+          103,
+          41
+        ],
+        "before_top1": "HarmonyOS Sans SC",
+        "after_top1": "SF Pro",
+        "before_status": "candidate",
+        "after_status": "candidate"
+      }
+    ],
+    "multi_detection_warning": "Pairwise output comparison does not establish truth matching or successful unknown-font rejection."
+  },
+  "source_reports_sha256": {
+    "native_before": "395b3fd5c1637192db781eb86f5f78a3a6fc23a249c0f57bb9dd511db6fff053",
+    "native_after": "d533d4d0dca7880e857cbe0a8ccacbe00365c5e87cd992df11a90f04ec943bf2",
+    "legacy_before": "6cbe81a4405526ab190aa6f47576254565526b0a6109a48b3a2ba4d38ce7a817",
+    "legacy_after": "c2d062281ad8f37d967e021725d2cb3ea47914d82b6bc6cbc35cf2c27672c185"
+  },
+  "native_saved_results": {
+    "before": {
+      "ios:ios-ios-hant-v1-scene-00000": {
+        "sha256": "3b0e3ea59b1e8d5baec16a138f921482cf8f69c5188cddc7dfff5655df3e8909",
+        "source_sha256": "430cbd8e2f99a3b808bc61e151675587672450ffe4c15d62e0cfed3f10248a58"
+      },
+      "ios:ios-ios-hant-v1-scene-00007": {
+        "sha256": "1c350953e6ac12d0219167222d4f739ad840d06728957d6e834e85e2075141c4",
+        "source_sha256": "eac9b7ecaa728b6b3b2bba3911ede126251a8149e6f3a2360f560764603dda5f"
+      },
+      "ios:ios-ios-hant-v1-scene-00010": {
+        "sha256": "3f826c5acfe2e50a0e204a895a90f6bb6cbf84925d91134ee8bf629abdc1efa1",
+        "source_sha256": "c0df3373cac3a68a6924ddf1f354cd0e62a13cced556f8b9211537d6f61f5a5e"
+      },
+      "ios:ios-ios-hant-v1-scene-00050": {
+        "sha256": "7ed379559ad8b3576e2408b655a650ee03c97e660fe99fc6c36cd895dbbb6a2e",
+        "source_sha256": "ca281cff1f7725929e91e7566f9b903082f84bd79b54dc46a24863c6f20dc93c"
+      },
+      "ios:ios-ios-hant-v1-scene-00073": {
+        "sha256": "f9176bcd94e56bcb6fb42e85ec48b142be0b44db2f4762a3cb3b186b731f9c79",
+        "source_sha256": "63f133b07222c627e452cc446598d3583852ffb82e92046f1a435f289defcfc6"
+      },
+      "ios:ios-ios-hant-v1-scene-00089": {
+        "sha256": "e8c5ba60061872eda841ceba5cbc218117a242f237bef03fd1168b14bed3ca05",
+        "source_sha256": "ad3c7b2ede668fa11cd5d3394781e85a86c0d24db78d6b8911543fc484736b1e"
+      },
+      "ios:ios-ios-hant-v1-scene-00091": {
+        "sha256": "8bde4b63cb788b78196b5d0419a87c8deb4440234ad8f6212535711eb74a50c5",
+        "source_sha256": "82e17db75669ff7e7b085c460bf0c4647675921dee55a8f67d562ab190bf0928"
+      },
+      "ios:ios-ios-hant-v1-scene-00105": {
+        "sha256": "6af1f6b99932939dd911224951f7604af7d0358206d2468f8ba89d7f5ed97980",
+        "source_sha256": "92c87ec7e8aeb31b1723226455ee70caa47eec43c39319cfc33140c2374a84bc"
+      },
+      "ios:ios-ios-hant-v1-scene-00138": {
+        "sha256": "e9b905d5927163d1d4a38608504568e8d13e1e88d97be2f59133601f695862a9",
+        "source_sha256": "b196624bef39a90e67dec829259baf40823223d8426f1671015d9d6ff2efd536"
+      },
+      "ios:ios-ios-hant-v1-scene-00139": {
+        "sha256": "a73eda4343a75d5ce951434d4f024d1da86f8881ffbd3cec1bc3a197f8549bbf",
+        "source_sha256": "88fe9a6e431c274b8af634eefb2b795e6a0c3cbcabadcc83baeb6e3ccb54037e"
+      },
+      "ios:ios-ios-hant-v1-scene-00151": {
+        "sha256": "be7fd4ac3be004f9cca6b96605f6f6e9249ba4a69d9a62c7bd98096cfaf21bd9",
+        "source_sha256": "df49cce8aaf607318e112482a2d1262ce5ea7ef2e8a1a08e28180d27599b0d80"
+      },
+      "ios:ios-ios-hant-v1-scene-00160": {
+        "sha256": "f4657a812eb651123e87af04e72abbc808a4cadcfeb381d932acc3c97450b45d",
+        "source_sha256": "80e5a7dd7d6f0addb78248c73841927640be1756390a07fa2ffca313f533c0bb"
+      },
+      "ios:ios-ios-hant-v1-scene-00181": {
+        "sha256": "52e33b490258c8fe532beede1a99af01bf3a8c49d2b3c238907648c9c7aa0d2c",
+        "source_sha256": "68e2276e3f3ac98764113c6ae3f5d0716df6e6e81dc149f62f23ce81e496e7e8"
+      },
+      "ios:ios-ios-hant-v1-scene-00205": {
+        "sha256": "8779ad5bf75799a1e2e626759a5737474d74a40186d42a45d3a66f2f65377a35",
+        "source_sha256": "ed763fa2834dcc73c4bcb5488392334d66f0c591f583c84335a2491c1032dcad"
+      },
+      "ios:ios-ios-hant-v1-scene-00217": {
+        "sha256": "2ba7673c12ee350c0593c297d768d83eac2e0750f34a3bdf3f3c8ca304f42fea",
+        "source_sha256": "262b5b571dd16091e78262ebeda0ca74d51d1092b7446649ce6f19ade4dee334"
+      },
+      "ios:ios-ios-hant-v1-scene-00225": {
+        "sha256": "ca9bcbfccf15ca17f021c67cb07bb053aa7ec87339417ac745b9379b944dd3da",
+        "source_sha256": "0b65a443166a1cbeb355c2f1370e0c6a7b87b65de53993fa1424cf8f528b2259"
+      },
+      "ios:ios-ios-hant-v1-scene-00226": {
+        "sha256": "3b0489d8d337d2f03276c4267f55f043aa9c86e3ea2fe1d6c4b3bc9cbb0e8c3f",
+        "source_sha256": "12cbf28aa37c48414c1ea5eefc904f49c1e04ea90c588958820766f3496e2eff"
+      },
+      "ios:ios-ios-hant-v1-scene-00232": {
+        "sha256": "4747f2bc4a809119700a28705b34628540fb742907730bf77edd053c72ab514b",
+        "source_sha256": "593c3d3eb6c351a1a83680c5a433b64a9e1acd234f66d38e723d865ee364dd64"
+      },
+      "ios:ios-ios-hant-v1-scene-00238": {
+        "sha256": "a13005e4a00c681ef6ca44be4d177ce894f120fbc96d128d201c373d0608c5a6",
+        "source_sha256": "50e4c5b868d50d04432b03876d1a875dcb4da090df8687c457bd6e18871481a5"
+      },
+      "ios:ios-ios-hant-v1-scene-00241": {
+        "sha256": "7442be59b458d00815559305b78b6691589518ee1511a36d90f18300d01c2a74",
+        "source_sha256": "fdcc4f5f37150ac7fb78f65d1d66c31e2df8cf4f9bfbbc589bfb065142dc37cf"
+      },
+      "ios:ios-ios-hant-v1-scene-00257": {
+        "sha256": "dada1ab5f614903d9411556c67c561405f6ed4d8cfc2aa044f03878f441207c4",
+        "source_sha256": "1ba7b59e8b84ac0d769654d1f9ce0923789a3e5a392365f2cd89c3aeadcbf3fd"
+      },
+      "ios:ios-ios-hant-v1-scene-00276": {
+        "sha256": "1f5d48b55f8ee6fce3e0755c1947556d4ca2ca819740787b27a1e4a866ccc0b3",
+        "source_sha256": "52c61858dc44ec47cadb12927f1b5e076a5d503cf88b7d14235de75304df0f8e"
+      },
+      "ios:ios-ios-hant-v1-scene-00278": {
+        "sha256": "fbfc70c9ba6d3d7e320e0a47913798a5351a203d09a6b44f75c114bd4f7e4ddf",
+        "source_sha256": "3fad1fdfd4744830f569400a99b8c0b40a693740dd5e23528fca9a6ccfbc5cc7"
+      },
+      "ios:ios-ios-hant-v1-scene-00284": {
+        "sha256": "c6470143da3589a69f5fb4f09c595c7dbcb43d06017b0a1140ffdce878db0663",
+        "source_sha256": "b2343f6fecae85b3c59054b02930350b39998bafb5a3e4e31291e70b51fc71b0"
+      },
+      "ios:ios-ios-hant-v1-scene-00289": {
+        "sha256": "115a77fd76671243a549f994819d691be35b27acc6f37ed0d1664a30ee2c4996",
+        "source_sha256": "9b4cb94354caa9d425eaf38b769a37600cbb8c2452676dc7588a569dfeebb1f0"
+      },
+      "ios:ios-ios-hant-v1-scene-00293": {
+        "sha256": "db0009457329b5ca352bcf30a29502e60562c43c3972fd286646386fdb5ea2df",
+        "source_sha256": "84973da0caaab48e3c1b56db9ff8d34cd70773dd6ff314b4ffbfa7853c95bf11"
+      },
+      "ios:ios-ios-hant-v1-scene-00296": {
+        "sha256": "06031317e061d1e00e214995c1184c68486e5b732a2166384d52379683b5dff6",
+        "source_sha256": "0b09939ef8cad26c8263335768787dad308eb029fae59111f77f2ecd30221a87"
+      },
+      "ios:ios-ios-hant-v1-scene-00310": {
+        "sha256": "23305b0bae91df35ee4fad9ad55750e91aa888302b1f83b179154f25abaa3658",
+        "source_sha256": "632161996c5d6cffa85b99d2ff885cdf540d07b93fef9eec31b0c9dfbc4eb3f0"
+      },
+      "ios:ios-ios-hant-v1-scene-00315": {
+        "sha256": "3c070041273493a9c6b928c2a60b46db3012dccaaa625dec57f73fddbc74b651",
+        "source_sha256": "45caf1847cdc4ce2d5efb4c88f6c723f0d664fe9fcf85e358c19c5240bf0e129"
+      },
+      "ios:ios-ios-hant-v1-scene-00322": {
+        "sha256": "5795468a64851229997c5ca429b3d2d3a5bf077db101a61fcb9fcdf9db912ebd",
+        "source_sha256": "efa46f9e7ae2d2d4688a2328ee14a2676128942da7cf138b2e5906f718f73303"
+      },
+      "ios:ios-ios-hant-v1-scene-00342": {
+        "sha256": "4e0ce3e8b9013ddebc1da4e4d26d1afa8b276f45c0972415b6405aa583e48152",
+        "source_sha256": "21472b294348f9211f4204c8ee17e0eb414171c5e50aac68561551c3daabb375"
+      },
+      "ios:ios-ios-hant-v1-scene-00352": {
+        "sha256": "d397a5125733d7d0a700fbf70531a06ebb62188dc24ed45ec214f38a5301bd7d",
+        "source_sha256": "cfbda82985240a03158a9346bf3c09085570ffb3d54507e9f2596dae582a2150"
+      },
+      "ios:ios-ios-hant-v1-scene-00381": {
+        "sha256": "d6c279b24fe637682a2418b332ddd36ba8738c176df2665dabfa5afb6ac3cfb6",
+        "source_sha256": "166704de860c39a36f0de0b824d721bcc9c335331e4e59721b34b27c79f7b403"
+      },
+      "ios:ios-ios-hant-v1-scene-00382": {
+        "sha256": "1483cd233137c87fa7a066f800e64f5de863e1f9407e7e8c98a456a8f63cf6d2",
+        "source_sha256": "389dc8063c07a25c653551e85696e3829b5dc8b7b12dd42505f1b129aaec800c"
+      },
+      "ios:ios-ios-hant-v1-scene-00400": {
+        "sha256": "9a055b1d482b33c5e36186fed0cd81c667c55473cf5416538397fae4f68bb059",
+        "source_sha256": "71da1d4f41495b706cb4a415e82065885817c013e00202eb1515fa6eaeff810e"
+      },
+      "ios:ios-ios-hant-v1-scene-00402": {
+        "sha256": "aae7bcea6cf0b07fa626fd96b42876c9c65b102bb7d8b82427cfb29525794149",
+        "source_sha256": "7255e99dcb40f395e8fd7c7c26b11e73b3c1cd3e3466b997e87abe2cceb5f6b7"
+      },
+      "ios:ios-ios-hant-v1-scene-00407": {
+        "sha256": "a134b7bb5930cb772749287c1de71ce7e2d6fd16e0dec3f2454a8d06d48c9b1a",
+        "source_sha256": "bddafa879d7c37c6c190003b1fb12986149465e0e9c0f79b39627638193ae9c5"
+      },
+      "ios:ios-ios-hant-v1-scene-00410": {
+        "sha256": "1c3411cadbff970806ee2752019a806d494cf34b028e3002d85b4889e5c2b947",
+        "source_sha256": "922de4334e2a1af6bd7700d264d3ca30644832bc3e28956e1ce72d4a6e79812d"
+      },
+      "ios:ios-ios-hant-v1-scene-00430": {
+        "sha256": "821b2dba67e1134bf4dc9e2a1d325987ecb59f1bb8f723dd8b75c8564105502f",
+        "source_sha256": "f004239c927ce3b75520a4911cb95f057e35747504e0f20b5184f4935d3d61f1"
+      },
+      "ios:ios-ios-hant-v1-scene-00444": {
+        "sha256": "f908bcd707d24f9f2bf6b10b023a76ecc5ffbbe863c03de41e40b039e62bde7f",
+        "source_sha256": "2b68c9e75a6890de634bdb194f321db818feeca2ca4e9acccf478594063f3a1e"
+      },
+      "ios:ios-ios-hant-v1-scene-00461": {
+        "sha256": "fa5d18c752e9fcc8e470dbffdbb294189c385a9bf842345622af6ffc8cbf009b",
+        "source_sha256": "bc38a2a957de876f5381b9064dd5e36ae8753b44d353b450690ab2154324ef0c"
+      },
+      "ios:ios-ios-hant-v1-scene-00469": {
+        "sha256": "f1d45647534397c26fdbc4712de7710ada7f6c064f26444d5aed7f540202b395",
+        "source_sha256": "1492231eb575b592c6605d83868472a1e9cf844f912017790fe588b6bfafe213"
+      },
+      "ios:ios-ios-hant-v1-scene-00473": {
+        "sha256": "9f2b9d935057fedff8b3d72c05d4074e05af463cd0a51d00d6f3b239d4317437",
+        "source_sha256": "1fa6916091910a912c6091120758561a08fc6962a7a9526968afca92b4f1f094"
+      },
+      "ios:ios-ios-hant-v1-scene-00477": {
+        "sha256": "68d95f9fed5758606ebaadf916aad0256059655d214c1f66351da6174bd6880a",
+        "source_sha256": "31ce33a54ffd6d5b7fec236746029734172131399815d911260ad87139bccb80"
+      },
+      "ios:ios-ios-hant-v1-scene-00503": {
+        "sha256": "a1292d5d5159ba5d5959b1fb0df2cdfe981f57d1f4f81d11f8355b63fda0b9bf",
+        "source_sha256": "0e08df262ba235e75b5796b0c42dede740832a8b6b10df69bf3f88bb61c0d209"
+      },
+      "ios:ios-ios-hant-v1-scene-00504": {
+        "sha256": "73ea660cd02652ec4bc51b2d0312713c27115f8b1c125c9c5cd814ba45f31193",
+        "source_sha256": "bb9ad12abb878930194bc085ee85ed78dfdb89487deda1b9b06275b6f9443c0a"
+      },
+      "ios:ios-ios-hant-v1-scene-00513": {
+        "sha256": "073991c3a9dcc3e15ba6f385332f54456162ed6b497cf8ae494bff3ea2b8a086",
+        "source_sha256": "ba052e4833dd8c5a4d5d3d4a2443b5f2dd60e32cd83ebcd34deb718bfdf11efa"
+      },
+      "ios:ios-ios-hant-v1-scene-00547": {
+        "sha256": "d40df3c5522115e401f668c99990bf2420f3cdb50b9a5ca919100dc15ab9df99",
+        "source_sha256": "aba87f27ec1214ca315e0bda4c673aacfa7de638fc235c29692544103deb5a97"
+      },
+      "ios:ios-ios-hant-v1-scene-00548": {
+        "sha256": "ae59ce34e17e2479b06c3eefdf628cf28b7c365195dcdf64c410671bd5f5a6a9",
+        "source_sha256": "34b850e0adc085d64b5bab1a82e7a6976d8e02a6e53ec85a36b2cd0c37b73e0a"
+      },
+      "ios:ios-ios-hant-v1-scene-00560": {
+        "sha256": "e20b431d97f07f2c7a1ac835b1699b5ac05d4e4753a503965814ed25ee96a796",
+        "source_sha256": "108e7fe10eeff5112a13499b2578b16126ec1ae4d8bba1c80fed1b655c0be9c3"
+      },
+      "ios:ios-ios-hant-v1-scene-00561": {
+        "sha256": "95c7d675a3d9f1f3741d24cf549848d7c340eb1cdb30a79b386d6b9629d60792",
+        "source_sha256": "3617a9bb4e12cdbd5db29a58c8fcb3187f6ee7a7df2d072e7334b067b8d027b1"
+      },
+      "ios:ios-ios-hant-v1-scene-00581": {
+        "sha256": "21b6dc62f758556f84561564ff2dedb87d9bef8a256917eab3f6165b472ba7d7",
+        "source_sha256": "536e8b4d31200cf14730e3c4c2a5b914f67bc6ea963ce7602e7739b9469a7e01"
+      },
+      "ios:ios-ios-hant-v1-scene-00584": {
+        "sha256": "76addb9803416c54f847240ae638892bf7d92e41494e960159133a8311d45a4e",
+        "source_sha256": "86dc9addf5b4b9063d310d52424aa76706498c05e9db790a9ff609e750a046fd"
+      },
+      "ios:ios-ios-hant-v1-scene-00595": {
+        "sha256": "5dd96bd2b0e3807036eeb075895320744730222d2cef31195e92c53c946079ad",
+        "source_sha256": "b0b6ea9139dce059e935636e23685af753c338005ccdaf7c87972f4c5febf8e3"
+      },
+      "ios:ios-ios-hant-v1-scene-00617": {
+        "sha256": "8c9e5c42376c5b2629d89783bcdbea5ba9363fc5ae20861bcfd7acece947c0cc",
+        "source_sha256": "ebc4d88b15107a6c76d6f3a2853be8c9946b526cb42e4a6d51096ea5b8a945fc"
+      },
+      "ios:ios-ios-hant-v1-scene-00621": {
+        "sha256": "8123de971e3f29182a36dede14b6a948317f6ebe5a247c778874275bf22a7561",
+        "source_sha256": "0e9b3a97a5e0e8b8db45cd071634b7a7dfd69723444cc222f240d51fb6fe8242"
+      },
+      "ios:ios-ios-hant-v1-scene-00646": {
+        "sha256": "3566b08af5751746878847ea00ec1516a2b49ae4188d093b2a24f7aa49f9bd9c",
+        "source_sha256": "13651da251b691a28172c4ea209ea8eda3f030e52d9af22ddaef2c64410aae05"
+      },
+      "ios:ios-ios-hant-v1-scene-00651": {
+        "sha256": "2423f5b603bf322be269099bb3ae8a0f57572f17c74e18124c22129a57ec1e9d",
+        "source_sha256": "8ccea6b5e27490ad55ae66098e00c623d9502d358f88690183ebe04c6ffeba85"
+      },
+      "ios:ios-ios-hant-v1-scene-00652": {
+        "sha256": "fa23ff7788379a5da1b5d3faa4332afadccf84791e4501e50bcc3e0b5706e23b",
+        "source_sha256": "ce630b98bffff50c6395c98dd25485769fd22a0e2ec048e697699fca5c5dd01d"
+      },
+      "ios:ios-ios-hant-v1-scene-00655": {
+        "sha256": "f2d4e5595c6d86fbb8f9af90b08db126c23e133c90d772ad9daacc44d0e514a2",
+        "source_sha256": "ab13bd2b0f3108d1ad25203828b80b0fbda909695fd05ea5e230810391133fef"
+      },
+      "ios:ios-ios-hant-v1-scene-00679": {
+        "sha256": "5514f923666e5b9b398526d38dec5e004e5f0e6700eda15482c392bb26dc851f",
+        "source_sha256": "913b963d7544a796df1043bd74117067c252e40f6c354624829cee8f2fe361c3"
+      },
+      "ios:ios-ios-hant-v1-scene-00692": {
+        "sha256": "85bc5c670b563751dbf89c924f35e43897ef77043e3da95fe34d505b45099d18",
+        "source_sha256": "71fc80550c688c5668be2f0e7d74699d139e0d8b76742b7c6fc56dd4e8a9d9e3"
+      },
+      "ios:ios-ios-hant-v1-scene-00697": {
+        "sha256": "276d899a8eb9d39ef3b9f794460ef31a0cf97772ecfa93fab7f2d9f1b53e8a8d",
+        "source_sha256": "513c555572d679bf3a2d6f4ddfbad46c888b4a2632e62be99abecc11bb5c561f"
+      },
+      "ios:ios-ios-hant-v1-scene-00708": {
+        "sha256": "b94c8817114e75693d94c0b125c791e1cceac26a3b47b19762b35ff11a996a2a",
+        "source_sha256": "8da1d043fca46de1d65b7663b07f8909699b8865620b47d2459f98bc35f84960"
+      },
+      "ios:ios-ios-hant-v1-scene-00712": {
+        "sha256": "181938c2052f8632be83402e36999a6924e4504b4633b32ac8493f567489cb88",
+        "source_sha256": "c53c24e68a0ab21fb3dcd97d179dee4cbd885ba82d8f442f227090e9c74a219a"
+      },
+      "ios:ios-ios-hant-v1-scene-00720": {
+        "sha256": "d215d7ec93b2fa541b53aabb972ce6942f9579601f67b064dc028cb0b3f279a7",
+        "source_sha256": "5954160f394628f4f498d8324cd58521fa0dba36f6872cb93cca979dd4953a85"
+      },
+      "ios:ios-ios-hant-v1-scene-00735": {
+        "sha256": "e18bbadbe68edf3426bd475cf6601ce7df95f166e9a1af668259a93236e1ab15",
+        "source_sha256": "6acf7cdf48aa13e4101b320771fc2eca183b3fb6e3954616b533d4e81dfac9b9"
+      },
+      "ios:ios-ios-hant-v1-scene-00741": {
+        "sha256": "6c806611e7a502472eb22f2f67a83d70d450f398fb949a4d6871d63e1e9fcc69",
+        "source_sha256": "0f1bf2b242dfc3e2dc012adc31cca0a38478c5e0a8acdeb9fcdb78ad560d9338"
+      },
+      "ios:ios-ios-hant-v1-scene-00759": {
+        "sha256": "e14536de62d324c7817353188be1eac00eec3432e361058af73242a9acb67797",
+        "source_sha256": "543e32f7da6e70c71ce66985a4909096bff0cb72a2d1ef00e26b933f01f74765"
+      },
+      "ios:ios-ios-hant-v1-scene-00763": {
+        "sha256": "4cbcec22da9a6c9fbc03c7eb6bdc06dfa2e5dad2018efb3dbc8fe01ecf19d4ef",
+        "source_sha256": "e439d14dd199e6d8bded3082e7894d144c47723dfd4dcba7d1bd7c4bb3fe6a1d"
+      },
+      "ios:ios-ios-hant-v1-scene-00786": {
+        "sha256": "877faaf8fbcfa1f1dfaff1e0c62af442d0790fe67c3deea11219040a90063eeb",
+        "source_sha256": "d80d02962c73c71c7e0207e8be9a2eb4754ad218315c684118df3e0c9d6687bd"
+      },
+      "ios:ios-ios-hant-v1-scene-00791": {
+        "sha256": "3afbce37e6696a43af1cb4cbe550cbedcac727ec95d1455a7f03de5dc90e1391",
+        "source_sha256": "b1303cff095634d3636242083c0a5965d6bc91daf9cc8ffc9fdd7e266f6a70d4"
+      },
+      "ios:ios-ios-hant-v1-scene-00800": {
+        "sha256": "03d754506ced6a959252ff68bab9d3313b6a6a37bc48b640dbb74b958d99189c",
+        "source_sha256": "5dd9b2480b27b860ec83123ba08439cd1e3dd4dab11e3e611e678047edfcdf9e"
+      },
+      "ios:ios-ios-hant-v1-scene-00803": {
+        "sha256": "6375b104e204174bc28550b493b418ffdbcc0c12f91af5c43c438f92dc2c6cfc",
+        "source_sha256": "d28d49964e5696f0f70878457679d5568f499c71bc8bf00a8b875fb56c25b77c"
+      },
+      "ios:ios-ios-hant-v1-scene-00806": {
+        "sha256": "33119c70327f2a95be80a06271778c7c29a139708c639f4b985ae64819b7c784",
+        "source_sha256": "60bc0dea4055864f6d8d9feb93f8a253df4aff5f555fa0b76c9b0fa8336be2ac"
+      },
+      "ios:ios-ios-hant-v1-scene-00809": {
+        "sha256": "e10af935a0ecb8e10f62cba4027cc19e979275e8b6fa3e0a72b1c98a77dd8e78",
+        "source_sha256": "b2c1f29e9be3b60f25b60711b44916baf53f3e92768dcd0479652edd62bc696d"
+      },
+      "ios:ios-ios-hant-v1-scene-00825": {
+        "sha256": "6c5fde0164f030e53efec86abf74dcc73b2c0bbfafdc18fd9471e785fa8efacb",
+        "source_sha256": "23b16f27e20cf6462f6cdf09cb574809f56a28d6a1a5fd2783803ae7ce63ff1a"
+      },
+      "ios:ios-ios-hant-v1-scene-00829": {
+        "sha256": "b77680f6a3096f19e2d6bf51d37e12c6a5f60a17165796fabd000d633662b72a",
+        "source_sha256": "c5c8d5cc0c036a507f1a1913382d69aaeab892e756d6a46c5c48d6a97356b210"
+      },
+      "ios:ios-ios-hant-v1-scene-00834": {
+        "sha256": "3d0b93d2e4a3a19f6eff829c968e22a84e61e13a31d4786c3829c4c6816d43cb",
+        "source_sha256": "1e20d9f353b97c41e48de1b56905d7ccb16cfd62e55cef0c13003dc3b4135297"
+      },
+      "ios:ios-ios-hant-v1-scene-00836": {
+        "sha256": "310dd58ef85cb339b956483df2d824bac6f8ea49f273e4d5da489fd42bca0c98",
+        "source_sha256": "06978bf1e4e197e35a8bbc92fc723843902d9d8a692795140c76fa97a99178cf"
+      },
+      "ios:ios-ios-hant-v1-scene-00837": {
+        "sha256": "abdcb5ab3d2ee810dc8f0437663db0223b2527f6f7e88f86e75be38eb7096960",
+        "source_sha256": "abff8a13bc0049fbe68fdedefe3ea361c9b1ea6d78f49c6d3792922c8f3f1a91"
+      },
+      "ios:ios-ios-hant-v1-scene-00852": {
+        "sha256": "efa44ee9f3c2a9fc8fa84f30d5103d612d06df006dcdcf12a60c07948380db12",
+        "source_sha256": "76f86497ee71d4a57ef0540b7a9c08bbdc512160dae50a3e147bc29ef24b54d3"
+      },
+      "ios:ios-ios-hant-v1-scene-00859": {
+        "sha256": "6c69840c2ce1dbba3647ba402550b5666a3bd0c9523632c27f3264c2442c864e",
+        "source_sha256": "e6ef87fa110deeb441be48edaae08e08003655dd0af1ba2fb43fa9a672c02771"
+      },
+      "ios:ios-ios-hant-v1-scene-00865": {
+        "sha256": "4da63da121e4c6d64eeceb7cdf2fc1857525361796ca9b7aa6482ab23be99ca2",
+        "source_sha256": "ecc451cfce55ba2196c242a3f704bd9bc7d69e0448365dcfd29a6a1e00558ec0"
+      },
+      "ios:ios-ios-hant-v1-scene-00884": {
+        "sha256": "65a812844e68ba4dac1959c5c982f73bbba8102e6b44e530d773eb3788222dbd",
+        "source_sha256": "2b7b0bbe10b813e47ac822756dca9668eb082f0cc920ea8e8b53141de649fd38"
+      },
+      "ios:ios-ios-hant-v1-scene-00887": {
+        "sha256": "2d28891536a7510847346389d5861763402465058b066f7003f399ab72c65654",
+        "source_sha256": "7d8e0e59aa6bdb19a8de8387493838027b8d246a34d58b95d4ca6617797eab48"
+      },
+      "ios:ios-ios-hant-v1-scene-00893": {
+        "sha256": "d62bc2c35e8085450918391c6aa94e2c574ba1e7f7d387208d34b9aae36e47dc",
+        "source_sha256": "b374e84c9a41ae8f029ef5d0d24773484923c352b53436c0c4e35a4bbce89a85"
+      },
+      "ios:ios-ios-hant-v1-scene-00902": {
+        "sha256": "926276b9bcab6ed2d808cc142862c9f5ffe644696e440f0665233b8c1d4a1082",
+        "source_sha256": "9d0306a1f1873118e3a3d09f4e5d9a9194269491120113362d947d0f1abcb0f4"
+      },
+      "ios:ios-ios-hant-v1-scene-00906": {
+        "sha256": "ff7c386e201ca19bdcfcd3b86043d15537ec60b8454e1d37962341c4f9aa4ad3",
+        "source_sha256": "c3c469b72dbbd6eee914bb2bea7f366762f611a41afee0aecd71451882852c05"
+      },
+      "ios:ios-ios-hant-v1-scene-00920": {
+        "sha256": "8f1901a88a51e6303bccd061af7da8b405bb36c206724d88cf4d6ffb7569b97d",
+        "source_sha256": "646ee97b130629bae25f930d273ace17f77de92ab2c74aec8f5def8cf6b28526"
+      },
+      "ios:ios-ios-hant-v1-scene-00921": {
+        "sha256": "bec78d331eedb4fa9c713dddbdd39e9cf543f826dd238eeafb7c4776d3294b7d",
+        "source_sha256": "c3d6a7f8a6cdd1d4e4006cd533f6e992d4e3487920721b2341b3e8cb89118e0e"
+      },
+      "ios:ios-ios-hant-v1-scene-00931": {
+        "sha256": "467582ee8eb882e206e694b7eb81c21e8b1a134731866e93b38cbc6d0432555e",
+        "source_sha256": "4470d3d83f38709c9987d5c319c62a2443977b58f389a97c9ac59f956917aac1"
+      },
+      "ios:ios-ios-hant-v1-scene-00947": {
+        "sha256": "107f290cc9436f08915ad3a5312df4f071389ced1c70aa5cd70860389610b3e4",
+        "source_sha256": "6cd86a7d76c686abce730a7bae1d97f41a348471928a5e8d257eb177d7e3f293"
+      },
+      "ios:ios-ios-hant-v1-scene-00950": {
+        "sha256": "c5bdd31a13a3e99a77c5371c1285779533f2b569a3ab8f988c11357725ef9216",
+        "source_sha256": "9b5670d339eb3c6af23b5b09a48578a58ee531be7ffa95e4a94ce79a0760fc36"
+      },
+      "ios:ios-ios-hant-v1-scene-00957": {
+        "sha256": "a08044b32c4f1c1cc81b2545c3ff95550bafd77ca5d7d3e8f661f971181194d5",
+        "source_sha256": "40d21aab6944c68dc071ab7a8d284d4d8dab704a21348bb41e04051ef1fe0cb0"
+      },
+      "ios:ios-ios-hant-v1-scene-00958": {
+        "sha256": "325099b11c156d129cb8ae175f612bd5d9b926c3aeb4bb5aa95eca06c129db64",
+        "source_sha256": "c803d7540330230ac5a005ad766f0035dcb84798ae28ec672827eb5a73b1305e"
+      },
+      "ios:ios-ios-hant-v1-scene-00964": {
+        "sha256": "5b9ec757eaef15b79c1bcae3f65fb838ef9421e73ce352b2768c61716277edf2",
+        "source_sha256": "85b1094e02b6cad0633e51590d00395c7a4041571cf56a720f2ff8d03678f9ac"
+      },
+      "ios:ios-ios-hant-v1-scene-00967": {
+        "sha256": "d12b6d418483db2d08c3b8f489a50cf05ac67fe200240a5643b816f0c02b164e",
+        "source_sha256": "9298e0cb26dd1d10f452a43622bd83698cfe988e3fcf66bce7673bc25f6f6825"
+      },
+      "ios:ios-ios-hant-v1-scene-00995": {
+        "sha256": "b2168843063bfc01052770f5e5eb4ed7acea2270149908f467b8abd0bec30136",
+        "source_sha256": "414efa0875f5d380a249fbc0a56e3ed21d75557f7aaecf04256179bd7c66ad88"
+      },
+      "ios:ios-ios-hant-v1-scene-00999": {
+        "sha256": "78b0c814a6f79af58e4f0636351ae534976c5fc352f2a5182a660832ac1e4b8c",
+        "source_sha256": "448d34e28c90874c21a5da4c71a41c49f839d8f4b587dca33bc5f77f86626a59"
+      }
+    },
+    "after": {
+      "ios:ios-ios-hant-v1-scene-00000": {
+        "sha256": "b9a68c17833e61ece0888de0e2c118d09d8a2437796d11e7b5d1cf1688b9d24e",
+        "source_sha256": "430cbd8e2f99a3b808bc61e151675587672450ffe4c15d62e0cfed3f10248a58"
+      },
+      "ios:ios-ios-hant-v1-scene-00007": {
+        "sha256": "0ef600d3fd704b1c35122c3cd6c1d331dcba5fd431c2042b7c81fba1d98723c7",
+        "source_sha256": "eac9b7ecaa728b6b3b2bba3911ede126251a8149e6f3a2360f560764603dda5f"
+      },
+      "ios:ios-ios-hant-v1-scene-00010": {
+        "sha256": "a10732c4fa9521c105df374f04ad0fa28cd7a19216a9f2507616f2fdcc885d1d",
+        "source_sha256": "c0df3373cac3a68a6924ddf1f354cd0e62a13cced556f8b9211537d6f61f5a5e"
+      },
+      "ios:ios-ios-hant-v1-scene-00050": {
+        "sha256": "3ee2f4b7e9895ef2f1f15642d216b9134c0ed30ae7c9211fd32bed89516d6c55",
+        "source_sha256": "ca281cff1f7725929e91e7566f9b903082f84bd79b54dc46a24863c6f20dc93c"
+      },
+      "ios:ios-ios-hant-v1-scene-00073": {
+        "sha256": "34696cbdea02a43da153a9d5afcfde7df445218c19c15a24a422fbb3a716f933",
+        "source_sha256": "63f133b07222c627e452cc446598d3583852ffb82e92046f1a435f289defcfc6"
+      },
+      "ios:ios-ios-hant-v1-scene-00089": {
+        "sha256": "e1b41dd675b030a5e26b8c376edb9c1f673b5d88f029d0a4d6b26aa743052add",
+        "source_sha256": "ad3c7b2ede668fa11cd5d3394781e85a86c0d24db78d6b8911543fc484736b1e"
+      },
+      "ios:ios-ios-hant-v1-scene-00091": {
+        "sha256": "f8251ae34969edadf9b032d8118a46be997fecc6c1440beaf322a6139ca1f2a8",
+        "source_sha256": "82e17db75669ff7e7b085c460bf0c4647675921dee55a8f67d562ab190bf0928"
+      },
+      "ios:ios-ios-hant-v1-scene-00105": {
+        "sha256": "fde51105b03338b8b2c52b6f2e80e27045077153aa30620ccb2a101e4cc9dd53",
+        "source_sha256": "92c87ec7e8aeb31b1723226455ee70caa47eec43c39319cfc33140c2374a84bc"
+      },
+      "ios:ios-ios-hant-v1-scene-00138": {
+        "sha256": "b79fd96fde606f511851eb6b1290c284e25ac53e8276725dc05eb983c997ac2f",
+        "source_sha256": "b196624bef39a90e67dec829259baf40823223d8426f1671015d9d6ff2efd536"
+      },
+      "ios:ios-ios-hant-v1-scene-00139": {
+        "sha256": "cb58269b2eeb20243023b6c78285ae73b5c733d70de4972057233ec1e8307ca9",
+        "source_sha256": "88fe9a6e431c274b8af634eefb2b795e6a0c3cbcabadcc83baeb6e3ccb54037e"
+      },
+      "ios:ios-ios-hant-v1-scene-00151": {
+        "sha256": "49c1fe3dfb2d5c6656b6c1041e84a98a227d75f725523c73cb5190638f799a14",
+        "source_sha256": "df49cce8aaf607318e112482a2d1262ce5ea7ef2e8a1a08e28180d27599b0d80"
+      },
+      "ios:ios-ios-hant-v1-scene-00160": {
+        "sha256": "56391be82fc09b50be6961f1db5294e3c58ddd84d9536ba466a0635ec9d42aaa",
+        "source_sha256": "80e5a7dd7d6f0addb78248c73841927640be1756390a07fa2ffca313f533c0bb"
+      },
+      "ios:ios-ios-hant-v1-scene-00181": {
+        "sha256": "c40c1e0618b72ca3cec249f8abc29d538cb22991d2a43204a63b2526a60fee78",
+        "source_sha256": "68e2276e3f3ac98764113c6ae3f5d0716df6e6e81dc149f62f23ce81e496e7e8"
+      },
+      "ios:ios-ios-hant-v1-scene-00205": {
+        "sha256": "2f4ac5bb82ff82f08ed53a69d90834c8e316bdfa97f60ed571b464518e006266",
+        "source_sha256": "ed763fa2834dcc73c4bcb5488392334d66f0c591f583c84335a2491c1032dcad"
+      },
+      "ios:ios-ios-hant-v1-scene-00217": {
+        "sha256": "4f8aaa9f8f3d7433c11dcd27b3076569de108aeb68ab0f95d4821ecc1d9f698f",
+        "source_sha256": "262b5b571dd16091e78262ebeda0ca74d51d1092b7446649ce6f19ade4dee334"
+      },
+      "ios:ios-ios-hant-v1-scene-00225": {
+        "sha256": "67a77e6462d6ae6a477479458ba62e80ca411d30b0089cc5a6e40ae2098791d1",
+        "source_sha256": "0b65a443166a1cbeb355c2f1370e0c6a7b87b65de53993fa1424cf8f528b2259"
+      },
+      "ios:ios-ios-hant-v1-scene-00226": {
+        "sha256": "3065d36a36002a3cf599d3cf9a4f107b9aebd1aa156b9210bbba4eda45c75a9a",
+        "source_sha256": "12cbf28aa37c48414c1ea5eefc904f49c1e04ea90c588958820766f3496e2eff"
+      },
+      "ios:ios-ios-hant-v1-scene-00232": {
+        "sha256": "8159bef7d609830429f7e2963e522b74c8bcbf603a9f6295a267a3b4a3be8285",
+        "source_sha256": "593c3d3eb6c351a1a83680c5a433b64a9e1acd234f66d38e723d865ee364dd64"
+      },
+      "ios:ios-ios-hant-v1-scene-00238": {
+        "sha256": "73ecc0126b0ae70cdff603e0e21b23feb1c9de3d96d2baf48eee5a0135ff18f3",
+        "source_sha256": "50e4c5b868d50d04432b03876d1a875dcb4da090df8687c457bd6e18871481a5"
+      },
+      "ios:ios-ios-hant-v1-scene-00241": {
+        "sha256": "ec41fef74b231ca71da5edc209b8668625c8ff1e29c1673a2801b87efa90b0c0",
+        "source_sha256": "fdcc4f5f37150ac7fb78f65d1d66c31e2df8cf4f9bfbbc589bfb065142dc37cf"
+      },
+      "ios:ios-ios-hant-v1-scene-00257": {
+        "sha256": "1147ee893a0d445e4ef565223dc1cd6396aaa45a38eaec602a51cb82cc0992d5",
+        "source_sha256": "1ba7b59e8b84ac0d769654d1f9ce0923789a3e5a392365f2cd89c3aeadcbf3fd"
+      },
+      "ios:ios-ios-hant-v1-scene-00276": {
+        "sha256": "fedfc99852bb0d691487ba084fe102538c70bc50d9d141912dadff7a6bf2b571",
+        "source_sha256": "52c61858dc44ec47cadb12927f1b5e076a5d503cf88b7d14235de75304df0f8e"
+      },
+      "ios:ios-ios-hant-v1-scene-00278": {
+        "sha256": "4897e72255d0555f0cb1c3b3eddd241cddda6063dfe2d30e1625d70e8cf6ef66",
+        "source_sha256": "3fad1fdfd4744830f569400a99b8c0b40a693740dd5e23528fca9a6ccfbc5cc7"
+      },
+      "ios:ios-ios-hant-v1-scene-00284": {
+        "sha256": "f4a3e5a3059d013cb196dcd61352d15366646fa39e3bb8ed4f7895698dfdb96b",
+        "source_sha256": "b2343f6fecae85b3c59054b02930350b39998bafb5a3e4e31291e70b51fc71b0"
+      },
+      "ios:ios-ios-hant-v1-scene-00289": {
+        "sha256": "dc4f861058ee6f88828a6d0dac75eb01472e6eaaeea9d28a2441c0efc168a352",
+        "source_sha256": "9b4cb94354caa9d425eaf38b769a37600cbb8c2452676dc7588a569dfeebb1f0"
+      },
+      "ios:ios-ios-hant-v1-scene-00293": {
+        "sha256": "913a4d2844cbaad9a5c27602336357c19745676f7635d9f0d79d4d42270e621c",
+        "source_sha256": "84973da0caaab48e3c1b56db9ff8d34cd70773dd6ff314b4ffbfa7853c95bf11"
+      },
+      "ios:ios-ios-hant-v1-scene-00296": {
+        "sha256": "acc9bf28d52359cb8397482ff71ff05a0e5a234cb13ec878e7226e63e936a464",
+        "source_sha256": "0b09939ef8cad26c8263335768787dad308eb029fae59111f77f2ecd30221a87"
+      },
+      "ios:ios-ios-hant-v1-scene-00310": {
+        "sha256": "56e8cb5f4f0e22ed79572de2a9453b28bde3df3ced820714acd6d4acf4768ca8",
+        "source_sha256": "632161996c5d6cffa85b99d2ff885cdf540d07b93fef9eec31b0c9dfbc4eb3f0"
+      },
+      "ios:ios-ios-hant-v1-scene-00315": {
+        "sha256": "f20f602b52b9e9f9f13b0b9038588f95b77753522ce4ac086596fdf39394ecff",
+        "source_sha256": "45caf1847cdc4ce2d5efb4c88f6c723f0d664fe9fcf85e358c19c5240bf0e129"
+      },
+      "ios:ios-ios-hant-v1-scene-00322": {
+        "sha256": "5f96d53288c5e1f06463fc4e02b9ff6364caa67ee688d3bc4b28f1280e7aa901",
+        "source_sha256": "efa46f9e7ae2d2d4688a2328ee14a2676128942da7cf138b2e5906f718f73303"
+      },
+      "ios:ios-ios-hant-v1-scene-00342": {
+        "sha256": "e45e16bb4d62e0982de600929ccddb78297d174213244f6a1bbb829f8b8ddc34",
+        "source_sha256": "21472b294348f9211f4204c8ee17e0eb414171c5e50aac68561551c3daabb375"
+      },
+      "ios:ios-ios-hant-v1-scene-00352": {
+        "sha256": "c70394399bcaa7aa4cc94a72892678bbd06318b3352983462f3fcfeea283139a",
+        "source_sha256": "cfbda82985240a03158a9346bf3c09085570ffb3d54507e9f2596dae582a2150"
+      },
+      "ios:ios-ios-hant-v1-scene-00381": {
+        "sha256": "0b8b87ddc79dc3d055a0306ad2e2c8339697546bf8853969dcc42dc8c3668fc0",
+        "source_sha256": "166704de860c39a36f0de0b824d721bcc9c335331e4e59721b34b27c79f7b403"
+      },
+      "ios:ios-ios-hant-v1-scene-00382": {
+        "sha256": "9c9825b4d03acdc1fa85f12836d328a1fc4243f4284211053e814751f7c1a487",
+        "source_sha256": "389dc8063c07a25c653551e85696e3829b5dc8b7b12dd42505f1b129aaec800c"
+      },
+      "ios:ios-ios-hant-v1-scene-00400": {
+        "sha256": "e840195f841d6553dccc40c2332df8ef593d08d5fdbf3ea7be8de0d462bf4aba",
+        "source_sha256": "71da1d4f41495b706cb4a415e82065885817c013e00202eb1515fa6eaeff810e"
+      },
+      "ios:ios-ios-hant-v1-scene-00402": {
+        "sha256": "ce38b46fd9062fe08c32dc58aed339df6c7b38e6cff439924452f9bea5b1236f",
+        "source_sha256": "7255e99dcb40f395e8fd7c7c26b11e73b3c1cd3e3466b997e87abe2cceb5f6b7"
+      },
+      "ios:ios-ios-hant-v1-scene-00407": {
+        "sha256": "b09827daa3c54c613633ed5a6a7c4c10001e3d0153bd5500a3b526d8794a7d1d",
+        "source_sha256": "bddafa879d7c37c6c190003b1fb12986149465e0e9c0f79b39627638193ae9c5"
+      },
+      "ios:ios-ios-hant-v1-scene-00410": {
+        "sha256": "506cd8500e50074d25dbe3106e35372fd14211dbe98478abcf7cb55eb465a750",
+        "source_sha256": "922de4334e2a1af6bd7700d264d3ca30644832bc3e28956e1ce72d4a6e79812d"
+      },
+      "ios:ios-ios-hant-v1-scene-00430": {
+        "sha256": "11611192cf597655c5f06a886714b19d567caa8bfb33ace86942e0a5b57ea4c1",
+        "source_sha256": "f004239c927ce3b75520a4911cb95f057e35747504e0f20b5184f4935d3d61f1"
+      },
+      "ios:ios-ios-hant-v1-scene-00444": {
+        "sha256": "f4dae59f09b5f5947f83c3abfb29ab4a86e857e09ad93ccdb979a65ef55e7f14",
+        "source_sha256": "2b68c9e75a6890de634bdb194f321db818feeca2ca4e9acccf478594063f3a1e"
+      },
+      "ios:ios-ios-hant-v1-scene-00461": {
+        "sha256": "6294beb05ed50298590bf09085eab753d2e5c150da8e6fe3b80f8bffb58626a2",
+        "source_sha256": "bc38a2a957de876f5381b9064dd5e36ae8753b44d353b450690ab2154324ef0c"
+      },
+      "ios:ios-ios-hant-v1-scene-00469": {
+        "sha256": "cf2dba91fee347fe21379192a2e13dfadae8185701b0cecb1b12d4c3f0394b74",
+        "source_sha256": "1492231eb575b592c6605d83868472a1e9cf844f912017790fe588b6bfafe213"
+      },
+      "ios:ios-ios-hant-v1-scene-00473": {
+        "sha256": "ae79f3319389d04b0d12b2a0ee7a041926fd870885dfddf60fbf432d056541ab",
+        "source_sha256": "1fa6916091910a912c6091120758561a08fc6962a7a9526968afca92b4f1f094"
+      },
+      "ios:ios-ios-hant-v1-scene-00477": {
+        "sha256": "456aa0fe77a10fb57433cb96ab4b729a8b125504ff7ba48fbc0d2af879da9717",
+        "source_sha256": "31ce33a54ffd6d5b7fec236746029734172131399815d911260ad87139bccb80"
+      },
+      "ios:ios-ios-hant-v1-scene-00503": {
+        "sha256": "0205fd46581332d72f0c45d96ec8eeeb46bff109a2f7433ec4eba9d7c748884c",
+        "source_sha256": "0e08df262ba235e75b5796b0c42dede740832a8b6b10df69bf3f88bb61c0d209"
+      },
+      "ios:ios-ios-hant-v1-scene-00504": {
+        "sha256": "f3e698f054e0ee8ab79904ef09373efd7cb11895b02ef56438d0e56fd4ee1a88",
+        "source_sha256": "bb9ad12abb878930194bc085ee85ed78dfdb89487deda1b9b06275b6f9443c0a"
+      },
+      "ios:ios-ios-hant-v1-scene-00513": {
+        "sha256": "a72536dbf4d921375b54b329a11ef26324eebba225de84ac845a18426d396f27",
+        "source_sha256": "ba052e4833dd8c5a4d5d3d4a2443b5f2dd60e32cd83ebcd34deb718bfdf11efa"
+      },
+      "ios:ios-ios-hant-v1-scene-00547": {
+        "sha256": "860a196fdcc723fda98ade40d8b610d45b0871b33c8ddec53c6fb939ff7bcdf7",
+        "source_sha256": "aba87f27ec1214ca315e0bda4c673aacfa7de638fc235c29692544103deb5a97"
+      },
+      "ios:ios-ios-hant-v1-scene-00548": {
+        "sha256": "8f20ed840f5c04826db3c506614c82f9f768ee88ad6875db2728d8977d6a7ecc",
+        "source_sha256": "34b850e0adc085d64b5bab1a82e7a6976d8e02a6e53ec85a36b2cd0c37b73e0a"
+      },
+      "ios:ios-ios-hant-v1-scene-00560": {
+        "sha256": "aaf0347c057bfc1ba51bee555d994d5f1f45d74825c53f5a3da9a92619042ce3",
+        "source_sha256": "108e7fe10eeff5112a13499b2578b16126ec1ae4d8bba1c80fed1b655c0be9c3"
+      },
+      "ios:ios-ios-hant-v1-scene-00561": {
+        "sha256": "8272c0edaf1c755d812b035cc73d2eb54568c16d5df4a735ecc0aae69898ea1f",
+        "source_sha256": "3617a9bb4e12cdbd5db29a58c8fcb3187f6ee7a7df2d072e7334b067b8d027b1"
+      },
+      "ios:ios-ios-hant-v1-scene-00581": {
+        "sha256": "3e28879476938185d4cdba0aa5e370ded5cc171d9d08637de6e75ea95a1109ce",
+        "source_sha256": "536e8b4d31200cf14730e3c4c2a5b914f67bc6ea963ce7602e7739b9469a7e01"
+      },
+      "ios:ios-ios-hant-v1-scene-00584": {
+        "sha256": "5552912a78b079604116d1c876a0e0c533f47c349c71e6fdcda0996e64af8c35",
+        "source_sha256": "86dc9addf5b4b9063d310d52424aa76706498c05e9db790a9ff609e750a046fd"
+      },
+      "ios:ios-ios-hant-v1-scene-00595": {
+        "sha256": "2713f27437b3bf7b9dde574789ae50dab60910f11fe857ae4ea0f36309d0442d",
+        "source_sha256": "b0b6ea9139dce059e935636e23685af753c338005ccdaf7c87972f4c5febf8e3"
+      },
+      "ios:ios-ios-hant-v1-scene-00617": {
+        "sha256": "431f68fdf50007be7526a10dfb85985f583d609deffdaf84cbeee7c88a595f8e",
+        "source_sha256": "ebc4d88b15107a6c76d6f3a2853be8c9946b526cb42e4a6d51096ea5b8a945fc"
+      },
+      "ios:ios-ios-hant-v1-scene-00621": {
+        "sha256": "aebf5038d0be2bef8f647f74e2c5bdbfed4b033489b473dbd7cc4c215482f74f",
+        "source_sha256": "0e9b3a97a5e0e8b8db45cd071634b7a7dfd69723444cc222f240d51fb6fe8242"
+      },
+      "ios:ios-ios-hant-v1-scene-00646": {
+        "sha256": "74ffc0a0d8a6b9c636e81949d10270227b896131e6491db8e057f4cbced560bd",
+        "source_sha256": "13651da251b691a28172c4ea209ea8eda3f030e52d9af22ddaef2c64410aae05"
+      },
+      "ios:ios-ios-hant-v1-scene-00651": {
+        "sha256": "b9916317358897fa35d899c799f15c5313fd4118765b14ccbd41e70277cfb92e",
+        "source_sha256": "8ccea6b5e27490ad55ae66098e00c623d9502d358f88690183ebe04c6ffeba85"
+      },
+      "ios:ios-ios-hant-v1-scene-00652": {
+        "sha256": "e6f011e5dc6008f4823526b44537dae980826f394e7c8c4367b8e14903591d2e",
+        "source_sha256": "ce630b98bffff50c6395c98dd25485769fd22a0e2ec048e697699fca5c5dd01d"
+      },
+      "ios:ios-ios-hant-v1-scene-00655": {
+        "sha256": "994141ea03119381e8fd6d30ee37ddaef97148680aad35e6347069dbbe50ba3a",
+        "source_sha256": "ab13bd2b0f3108d1ad25203828b80b0fbda909695fd05ea5e230810391133fef"
+      },
+      "ios:ios-ios-hant-v1-scene-00679": {
+        "sha256": "61ff7cce0727d7a3c80a19d2203e6ff0949d750c18c56be19600d1766d330dcb",
+        "source_sha256": "913b963d7544a796df1043bd74117067c252e40f6c354624829cee8f2fe361c3"
+      },
+      "ios:ios-ios-hant-v1-scene-00692": {
+        "sha256": "a7927cc70aa54f5ababe8ad8366d53d2e00ab1bb5311f843ceeba7d0559f092f",
+        "source_sha256": "71fc80550c688c5668be2f0e7d74699d139e0d8b76742b7c6fc56dd4e8a9d9e3"
+      },
+      "ios:ios-ios-hant-v1-scene-00697": {
+        "sha256": "8dede9d9dafb9a9c3b3d324b23faefaa5d12f68d6ce2b4367df601268b3dc95e",
+        "source_sha256": "513c555572d679bf3a2d6f4ddfbad46c888b4a2632e62be99abecc11bb5c561f"
+      },
+      "ios:ios-ios-hant-v1-scene-00708": {
+        "sha256": "2190869443b405893192fa8a8bef878d6b38d1e9676f221412ce1279900374aa",
+        "source_sha256": "8da1d043fca46de1d65b7663b07f8909699b8865620b47d2459f98bc35f84960"
+      },
+      "ios:ios-ios-hant-v1-scene-00712": {
+        "sha256": "767ae70837cb17d16c3d5f16b2bbba64fd59032b1d649a194dfb242ace08c979",
+        "source_sha256": "c53c24e68a0ab21fb3dcd97d179dee4cbd885ba82d8f442f227090e9c74a219a"
+      },
+      "ios:ios-ios-hant-v1-scene-00720": {
+        "sha256": "d6bc849fb540e91fbd8925a050dfd19d222538bcc0fc163e5cfcc7944f8d7352",
+        "source_sha256": "5954160f394628f4f498d8324cd58521fa0dba36f6872cb93cca979dd4953a85"
+      },
+      "ios:ios-ios-hant-v1-scene-00735": {
+        "sha256": "267d80ebd8f7cb1b7fb3214218f54bdc2fdef15c3f354c29a624eb4ef5a89b24",
+        "source_sha256": "6acf7cdf48aa13e4101b320771fc2eca183b3fb6e3954616b533d4e81dfac9b9"
+      },
+      "ios:ios-ios-hant-v1-scene-00741": {
+        "sha256": "23af15d8f5607e040cdc544b8ff1d2aca7733ea7e97c49655ed4f0d81eb7b4f4",
+        "source_sha256": "0f1bf2b242dfc3e2dc012adc31cca0a38478c5e0a8acdeb9fcdb78ad560d9338"
+      },
+      "ios:ios-ios-hant-v1-scene-00759": {
+        "sha256": "fb5fa8ee605c1d4cb630ef5d1a6ee93df5bf33463b9a6fa8392f702f6ff5820c",
+        "source_sha256": "543e32f7da6e70c71ce66985a4909096bff0cb72a2d1ef00e26b933f01f74765"
+      },
+      "ios:ios-ios-hant-v1-scene-00763": {
+        "sha256": "719fdebb6ef5f95477fd4425a128db203f94dd0567f290e6495af48025fae298",
+        "source_sha256": "e439d14dd199e6d8bded3082e7894d144c47723dfd4dcba7d1bd7c4bb3fe6a1d"
+      },
+      "ios:ios-ios-hant-v1-scene-00786": {
+        "sha256": "9dbc4c8c8192f0d74a9392b71dc39cf5b2d75e60665de538b48a82f52e248c92",
+        "source_sha256": "d80d02962c73c71c7e0207e8be9a2eb4754ad218315c684118df3e0c9d6687bd"
+      },
+      "ios:ios-ios-hant-v1-scene-00791": {
+        "sha256": "5855c40f38b900de98780c4585ddab63ce08a1ceadd60c8cfc094c7e2c8f14a1",
+        "source_sha256": "b1303cff095634d3636242083c0a5965d6bc91daf9cc8ffc9fdd7e266f6a70d4"
+      },
+      "ios:ios-ios-hant-v1-scene-00800": {
+        "sha256": "0171c6d70f5430ce0015c2fc0cd2a455582fe4546024058cf26d9c5a1bf2ae6d",
+        "source_sha256": "5dd9b2480b27b860ec83123ba08439cd1e3dd4dab11e3e611e678047edfcdf9e"
+      },
+      "ios:ios-ios-hant-v1-scene-00803": {
+        "sha256": "07e2f4f811ddbf5af011ac3b81671aa6d0672a2fc94e63e50979d9e62b715f53",
+        "source_sha256": "d28d49964e5696f0f70878457679d5568f499c71bc8bf00a8b875fb56c25b77c"
+      },
+      "ios:ios-ios-hant-v1-scene-00806": {
+        "sha256": "aa25ee0c64457a94e99e84376937a776dda9b4fc165afa9c400cd0251a7288e6",
+        "source_sha256": "60bc0dea4055864f6d8d9feb93f8a253df4aff5f555fa0b76c9b0fa8336be2ac"
+      },
+      "ios:ios-ios-hant-v1-scene-00809": {
+        "sha256": "6634646cb4b12a6f52e46ed590b50e29589828a33caa8863a27394fae5c61c5a",
+        "source_sha256": "b2c1f29e9be3b60f25b60711b44916baf53f3e92768dcd0479652edd62bc696d"
+      },
+      "ios:ios-ios-hant-v1-scene-00825": {
+        "sha256": "1330625cb945f2485fa6fc1402e32f6d92998e54ef2b3f0d358d33214ef5cf8a",
+        "source_sha256": "23b16f27e20cf6462f6cdf09cb574809f56a28d6a1a5fd2783803ae7ce63ff1a"
+      },
+      "ios:ios-ios-hant-v1-scene-00829": {
+        "sha256": "2ea52820062c6c4e71ebd1579c73042cd614625446dcbaee16058fafeada5439",
+        "source_sha256": "c5c8d5cc0c036a507f1a1913382d69aaeab892e756d6a46c5c48d6a97356b210"
+      },
+      "ios:ios-ios-hant-v1-scene-00834": {
+        "sha256": "070edbedace64bb118f57172e5d8295421dc2e26eecd21ca153bc093fc8b3924",
+        "source_sha256": "1e20d9f353b97c41e48de1b56905d7ccb16cfd62e55cef0c13003dc3b4135297"
+      },
+      "ios:ios-ios-hant-v1-scene-00836": {
+        "sha256": "42739e7d4c7eade3914f58f311860819b98a6f0ce6e26dbf73fbbf74d699828c",
+        "source_sha256": "06978bf1e4e197e35a8bbc92fc723843902d9d8a692795140c76fa97a99178cf"
+      },
+      "ios:ios-ios-hant-v1-scene-00837": {
+        "sha256": "e06678e9f52cf276695ce44549b53574632d35a44f5901966898017d69b651ff",
+        "source_sha256": "abff8a13bc0049fbe68fdedefe3ea361c9b1ea6d78f49c6d3792922c8f3f1a91"
+      },
+      "ios:ios-ios-hant-v1-scene-00852": {
+        "sha256": "ce8811865268c7f4bc179dc0709f7d3fa0480db8c6dbe9f1d3b5d2bdc813d3f7",
+        "source_sha256": "76f86497ee71d4a57ef0540b7a9c08bbdc512160dae50a3e147bc29ef24b54d3"
+      },
+      "ios:ios-ios-hant-v1-scene-00859": {
+        "sha256": "b6595d71fb02d3a36b4d41ddd59f6f25f0794af8e1b70a2d332ecd0b8f25b1b2",
+        "source_sha256": "e6ef87fa110deeb441be48edaae08e08003655dd0af1ba2fb43fa9a672c02771"
+      },
+      "ios:ios-ios-hant-v1-scene-00865": {
+        "sha256": "8e74bc8d81af62360192a87df47da356ebaa9e824a52e47ecfe3130d74bc0d40",
+        "source_sha256": "ecc451cfce55ba2196c242a3f704bd9bc7d69e0448365dcfd29a6a1e00558ec0"
+      },
+      "ios:ios-ios-hant-v1-scene-00884": {
+        "sha256": "a2f270c361abfd90c35d31eccc06743a3322562244b001624d46f34d7a083a0d",
+        "source_sha256": "2b7b0bbe10b813e47ac822756dca9668eb082f0cc920ea8e8b53141de649fd38"
+      },
+      "ios:ios-ios-hant-v1-scene-00887": {
+        "sha256": "aac429f0a8e94773c152665b8de8db8b8359cbec33408d708f3301b27595f195",
+        "source_sha256": "7d8e0e59aa6bdb19a8de8387493838027b8d246a34d58b95d4ca6617797eab48"
+      },
+      "ios:ios-ios-hant-v1-scene-00893": {
+        "sha256": "528a2de2a42e1c85579abd4005622bbf9d751a152cd9867bcb0abb1ebda68adf",
+        "source_sha256": "b374e84c9a41ae8f029ef5d0d24773484923c352b53436c0c4e35a4bbce89a85"
+      },
+      "ios:ios-ios-hant-v1-scene-00902": {
+        "sha256": "7ac689703dd7e331463f121fc990e45924c851998093f9cd54e162617b5f2317",
+        "source_sha256": "9d0306a1f1873118e3a3d09f4e5d9a9194269491120113362d947d0f1abcb0f4"
+      },
+      "ios:ios-ios-hant-v1-scene-00906": {
+        "sha256": "523efbba5e5fa7fb1d1011408c3f78bb604ebbd585d5b70d1879c54927a31c6a",
+        "source_sha256": "c3c469b72dbbd6eee914bb2bea7f366762f611a41afee0aecd71451882852c05"
+      },
+      "ios:ios-ios-hant-v1-scene-00920": {
+        "sha256": "042e2d6e63d8af74bbedf260ae726da18aed47dc38f04b4683ed4502a13fd3e4",
+        "source_sha256": "646ee97b130629bae25f930d273ace17f77de92ab2c74aec8f5def8cf6b28526"
+      },
+      "ios:ios-ios-hant-v1-scene-00921": {
+        "sha256": "9b879e73bdbf9c21003e1b472f2bbc12107b01cd4cd494b5823db02705eea1df",
+        "source_sha256": "c3d6a7f8a6cdd1d4e4006cd533f6e992d4e3487920721b2341b3e8cb89118e0e"
+      },
+      "ios:ios-ios-hant-v1-scene-00931": {
+        "sha256": "89a673ca3d84a714a3f151ed5544febc5bdd137d986620dd71b7bdbec392901d",
+        "source_sha256": "4470d3d83f38709c9987d5c319c62a2443977b58f389a97c9ac59f956917aac1"
+      },
+      "ios:ios-ios-hant-v1-scene-00947": {
+        "sha256": "2784571d759c42248872ee5f6209a48acec505440cd5a62a38c518a83ca3ed44",
+        "source_sha256": "6cd86a7d76c686abce730a7bae1d97f41a348471928a5e8d257eb177d7e3f293"
+      },
+      "ios:ios-ios-hant-v1-scene-00950": {
+        "sha256": "414257030b2bc38e7e647d0f4306206136b8530475a7d4d7fe4938e820d28186",
+        "source_sha256": "9b5670d339eb3c6af23b5b09a48578a58ee531be7ffa95e4a94ce79a0760fc36"
+      },
+      "ios:ios-ios-hant-v1-scene-00957": {
+        "sha256": "9153285de796a2b097deeece83ada75ca537ff9be7c6c46ff3b1c833b75e0841",
+        "source_sha256": "40d21aab6944c68dc071ab7a8d284d4d8dab704a21348bb41e04051ef1fe0cb0"
+      },
+      "ios:ios-ios-hant-v1-scene-00958": {
+        "sha256": "8c5e0842d66f6fcb6ad6c36bd973f4238bf569aeeec408439c80f803a4a966fa",
+        "source_sha256": "c803d7540330230ac5a005ad766f0035dcb84798ae28ec672827eb5a73b1305e"
+      },
+      "ios:ios-ios-hant-v1-scene-00964": {
+        "sha256": "8e4f3dfc586831681146d82ad8b57cd13398a82f752d3358ea985f113b4c36dd",
+        "source_sha256": "85b1094e02b6cad0633e51590d00395c7a4041571cf56a720f2ff8d03678f9ac"
+      },
+      "ios:ios-ios-hant-v1-scene-00967": {
+        "sha256": "8aad0b156e02d8f7c444e3c41e009e9bfcfc0836de736af01f6eab18e7a5f169",
+        "source_sha256": "9298e0cb26dd1d10f452a43622bd83698cfe988e3fcf66bce7673bc25f6f6825"
+      },
+      "ios:ios-ios-hant-v1-scene-00995": {
+        "sha256": "32874d4a4a2cc614cabf325b304435321437152c3f001417d62cbd8abbe87e92",
+        "source_sha256": "414efa0875f5d380a249fbc0a56e3ed21d75557f7aaecf04256179bd7c66ad88"
+      },
+      "ios:ios-ios-hant-v1-scene-00999": {
+        "sha256": "d21854a8a04ca03d65608ddbc4d075a55ab099a12a6111ebf5fefabf573c9db7",
+        "source_sha256": "448d34e28c90874c21a5da4c71a41c49f839d8f4b587dca33bc5f77f86626a59"
+      }
+    }
+  },
+  "legacy_saved_results": [
+    {
+      "id": "pingfang_21.0d1e1_regular--white_png_26",
+      "source_sha256": "685b08a8cea615abea35b67a893c1bab4deff830040d0e92536cb2dc3bc7f0d0",
+      "before_result_sha256": "8a560dafab7f2563f8fc651f2eca7435313235260af090978bdaf4acb24ae4f1",
+      "after_result_sha256": "59d7ca728c4777e4289b2dc8a548fd3222e7a1c8671284fa5bd4c613ac2fb433"
+    },
+    {
+      "id": "pingfang_21.0d1e1_regular--white_jpeg90_32",
+      "source_sha256": "a831540251037d85519d409f57c54fde43350d04a66e1aebf4e3bf782cd325fe",
+      "before_result_sha256": "9f97710a51768cee9d2ea8932560a54f2a65c1175b60e9595c3153e0c15cc6bb",
+      "after_result_sha256": "924c2b825a29401465c20a7ce1f0bd848af50c9ae889679a2dd50d1cca82d969"
+    },
+    {
+      "id": "pingfang_21.0d1e1_regular--blue_png_28",
+      "source_sha256": "f2909d38ad305dd40820eab02137847e99384455017ada13216474fea26d25a5",
+      "before_result_sha256": "e13f602a7431f7b2dcabcb26f480cceb514fa542c62e48a8475e01fcf3dca796",
+      "after_result_sha256": "7def53da67b3cc77fcbd51b16be9a7dc07db9dad971a5d22ddc39ef960262397"
+    },
+    {
+      "id": "pingfang_21.0d1e1_regular--blue_jpeg82_36",
+      "source_sha256": "04ab5911fd51819fa8e58979b8bac2d1cee5407fe6fbc6dd2c7ded50b5cdf5e0",
+      "before_result_sha256": "9b7de2c5b89bd29a048a83d97637fc769e4c04c1cd0cdf997ad7de8a9d74380e",
+      "after_result_sha256": "eae942f3f4a6cba16710f072ef0eb336a6961ebbc9b7290267bc608cd2194578"
+    },
+    {
+      "id": "pingfang_21.0d1e1_regular--pale_blue_png_42",
+      "source_sha256": "ee86efee61a6b791e06072b337bc3a0940019bc59aa2600b5e554dafbc804d7d",
+      "before_result_sha256": "6f6c808c5f35e1d9d7eccd5f81769e4f4e1960f44ffc4edb622f86df83b39ba6",
+      "after_result_sha256": "27f92bcf66fd0c0f9a203dc070dcd586555966f7f2b7f3c44b453dc8bbfc1c10"
+    },
+    {
+      "id": "pingfang_21.0d1e1_regular--white_jpeg74_24",
+      "source_sha256": "bccbbc31be1f36d707b956dd57455c1e53f20d4bfcf8832a63ec1e6685816c54",
+      "before_result_sha256": "874a70ba86cca86267fa0f9c719632bd96f75dbddbcaa86bdea57a66cd020787",
+      "after_result_sha256": "ad123b0fb60aa3ea672c9a17c44d32b46ad1cd29a636abfcc70dfc6d8b898957"
+    },
+    {
+      "id": "noto_regular--white_png_26",
+      "source_sha256": "72402df2886045023d5b7a4287752a9134b3fbb706fa940a110f99b2193cdfa8",
+      "before_result_sha256": "32e8ba55c28a27d5a4c32c98ea28649043cdf219ab824dc0c791b3611a948b96",
+      "after_result_sha256": "22330664463916e848c2d7bb83d0eb9ad8864f7c463f6b7423914b913c3c121e"
+    },
+    {
+      "id": "noto_regular--white_jpeg90_32",
+      "source_sha256": "6b1a9b7a069f151ba5df32938d3dfba3360616283842b591a0eb4300f1c9c61a",
+      "before_result_sha256": "f14bfdaa20c5e861e986fc9214a47b883ce85d4c53b3af1057980085248b58a3",
+      "after_result_sha256": "871ac761af31650c49e9ec72fa8f4bd9d77643f83fc18324fbec308f4a1918e7"
+    },
+    {
+      "id": "noto_regular--blue_png_28",
+      "source_sha256": "3db89304bcc1da43f5da937094325cb6af5166c62a8a83b2ee02b0955163850a",
+      "before_result_sha256": "cde8737d257a1c08a4030d8dba69cb9ae486bbf91d1aa145962d2c27144bd06a",
+      "after_result_sha256": "ae6b0de626232507cf0b245d52baff7db7219b7ea0361489dd85776cb5c3eebd"
+    },
+    {
+      "id": "noto_regular--blue_jpeg82_36",
+      "source_sha256": "1c2ed0ca8d6d4bee425d3c9a0d4af508c5fdf4fbbd1213fb32f624f1dfb0565c",
+      "before_result_sha256": "aaf41da286285a3940c87cb7d025c80c06a2d212d13560f1a37c176738d189b6",
+      "after_result_sha256": "9d3d8941f492ac46107c8744a319156cd46f5f84767e763a666f0686dec999aa"
+    },
+    {
+      "id": "noto_regular--pale_blue_png_42",
+      "source_sha256": "643c551b3fb0e0f9dc99c03f07b1dae566ab3022f9e19046977468f0852805f6",
+      "before_result_sha256": "aefe5b69450149b96b9a30b7c218a93f7567621f0380f892b88dcd633d1babf8",
+      "after_result_sha256": "29c1a4b85981c6df3ebb8d685df658ebb0a57ac1b455e72c9ceea96f9024b9c9"
+    },
+    {
+      "id": "noto_regular--white_jpeg74_24",
+      "source_sha256": "7bdfdae43f25859e17d78c6765713501d6c15bb1c6095e4359f758d7fd000bf8",
+      "before_result_sha256": "f349b64f1ffc768d421f53d046d9387f5af6f752e0ec50fd966ac8b5a4050db8",
+      "after_result_sha256": "44d48bb2fd73657da257b4d5716a2752c9c9f00805f408afa0dfa43b7bdf3bd3"
+    },
+    {
+      "id": "harmonyos_regular--white_png_26",
+      "source_sha256": "22b42b0b9bc9cf76da831a6a1f1a4cb4880ff1faca39b965f29ca62a3b49071c",
+      "before_result_sha256": "8172f46b522f20a7044ca1b3b1f748d511c652d5d615f5c5a17f9f276b2c0b8a",
+      "after_result_sha256": "8615811a844f98cc11ab18b389e06e2bf0d29b6f76703f612cb155f292c797a4"
+    },
+    {
+      "id": "harmonyos_regular--white_jpeg90_32",
+      "source_sha256": "37cd488f1cb89a4d053c3a43e4b18f99a3be88fd9968440a7083b80a528e075b",
+      "before_result_sha256": "21158e97b7128212f476f0170777d7bbb0769a0654d177ea8543fa2c5b9952c0",
+      "after_result_sha256": "3fcb9119f4dc6c1bb87dc6157f289b41c90d0a3ee25a8ff99d398234070c9753"
+    },
+    {
+      "id": "harmonyos_regular--blue_png_28",
+      "source_sha256": "b8998356564139a10cf3c7c112b2601ef692955792312fab05ec8aa8eefd18f1",
+      "before_result_sha256": "26146ce4daa136cdee1b92d57c60ffe53ae49c447bd836ef77b077bc041c14bb",
+      "after_result_sha256": "670b036a71a772f3c381f7cbd9c8c06be22c9bed476ecdddbb05e3f8c2f000ec"
+    },
+    {
+      "id": "harmonyos_regular--blue_jpeg82_36",
+      "source_sha256": "18681ca030f69cc4210753806c1e62868f334563eec992cf363573638c79f651",
+      "before_result_sha256": "78963ea36ad408d3e7ccd7437abcfe1ad5cf07c5e4994ac86cbc08728928baac",
+      "after_result_sha256": "fd23079562e7bfdea55a5c1cc7cee18a36049e3de12e9977e013db93684e1e34"
+    },
+    {
+      "id": "harmonyos_regular--pale_blue_png_42",
+      "source_sha256": "31a57301a8c33fa87f980541ab7556fb4245293e94e767f3d2f9c13bfd4927d2",
+      "before_result_sha256": "3729bdc97c231980522cd069c691ebd2c5dfad4623e174f2e248823f397ef701",
+      "after_result_sha256": "d35669fc7a8050e45d0c8f2ff37077c706d4cf70508b11f574dd1439e795e38f"
+    },
+    {
+      "id": "harmonyos_regular--white_jpeg74_24",
+      "source_sha256": "442133f26a0bdc6128ffe9291a3504bba12d67543c5e381da617e40a9df5c7eb",
+      "before_result_sha256": "42e7120d6aa9d9cf21dfeac85d0335692d1c6aab9e91e41bef4c3044c3d2795c",
+      "after_result_sha256": "97bb9b6d1a8b84a461ff063da668f2a9ef6afcbabcc7b4428507dfe37ce60d46"
+    },
+    {
+      "id": "misans_regular--white_png_26",
+      "source_sha256": "06e0687000cdcaf45c85908861dd8e39a8623bac66d7ab3074461bb004b60ff2",
+      "before_result_sha256": "63f5ac076909b939d46f2b42401ea936b2efb358db6f5d9719f59440cc82e6d2",
+      "after_result_sha256": "37dd41d7f6803d60dc0e902bd1a7be64926bbcbd774c1e8e1c457f10849da65f"
+    },
+    {
+      "id": "misans_regular--white_jpeg90_32",
+      "source_sha256": "e5d1b2d976b07c1cbeafbe26b7e9bc647906a0011fbff9170e91918e1c69175d",
+      "before_result_sha256": "c26b6b67ae570925019371462531b3bdb01fc56fe6ce110968e771191e74a68d",
+      "after_result_sha256": "50ba88e3f386428679e83a13919bdf7b20bbe77c0285fba4f6c877da8b5e235b"
+    },
+    {
+      "id": "misans_regular--blue_png_28",
+      "source_sha256": "31b5183abf7872e39523dfdc65e40d64a32c2c6b97ee72c66741dcb69c706978",
+      "before_result_sha256": "8d9cb65eec8b84b2d08725c1d56cc8fc7cfc55295528036c63ce738dcd94c279",
+      "after_result_sha256": "67a3e077a6206fcc0275866f51287d685c91cd2c42326a4dc550012f8fa275b4"
+    },
+    {
+      "id": "misans_regular--blue_jpeg82_36",
+      "source_sha256": "76880ba445254952ad315caeecfd9a94d016ce2f411a6b59b682f56ad33b2ce6",
+      "before_result_sha256": "1c03aec96375613cf68ba75257ec226b120abdaebc172d0c63805f159b3ae353",
+      "after_result_sha256": "ab2629503b7caf890f1dd0117c36f67027faf24a426cfaa47e8ea0f76497a88f"
+    },
+    {
+      "id": "misans_regular--pale_blue_png_42",
+      "source_sha256": "35f3e849a12e33f3d806b3af2b700796220a284dffe512102822570ec5c50b58",
+      "before_result_sha256": "0095b5caeb88a7cd74b064abfd4f2883831e5e8ac71a8c36e9bb1765cebb3b91",
+      "after_result_sha256": "8f3263dae018cf74ad24f71207e7840ee2cba7d3cb71e359881a25f289fdbb01"
+    },
+    {
+      "id": "misans_regular--white_jpeg74_24",
+      "source_sha256": "f1f4d91e49be7f353f055313d0299400b866e281b673d88a76a314d369cbec34",
+      "before_result_sha256": "4f285d957c4dd6c2ff5bb6b123df1262ce90909ef4848f5cb1481b80419985ef",
+      "after_result_sha256": "5dcc97d5cf5fc01ee997cecba2f37f2f9f05306a0f3527735278db95889e203e"
+    },
+    {
+      "id": "oppo_regular--white_png_26",
+      "source_sha256": "f9640ce19eb8ea9a8d5edebed9494fe81f044b928a05d6313bf66a36c0f47a0c",
+      "before_result_sha256": "81900f8bcef124e5faae200388cab1e612f24a78d91dd68edf686e37d71c443d",
+      "after_result_sha256": "ede31118dfedcd02cc4e2fe289297cb7496650071a54057f84617ae0658a0e35"
+    },
+    {
+      "id": "oppo_regular--white_jpeg90_32",
+      "source_sha256": "5e4088458e413c5df5146ec67a6d97e01f118a8630932a79778d60a16c957fdb",
+      "before_result_sha256": "551777bdac0561a4a3eacd4685f85dff0a3fbd72cfbc1205e69df3ea454113fd",
+      "after_result_sha256": "640cf8b3f868413c5ec1e5706873150f205eb2003ff1a2d7bf519078f436b066"
+    },
+    {
+      "id": "oppo_regular--blue_png_28",
+      "source_sha256": "d1e72ad69135bbc074dcc29372a8220eb461b44cc13a1856002c631c8b6bb832",
+      "before_result_sha256": "0919937e14ff0d98da2a475b8f84506f895697bf9aba2651088892546812e55d",
+      "after_result_sha256": "eced9a22050219e0cd1349bffe4d46631943dc675c24b09e0278de0472d53bef"
+    },
+    {
+      "id": "oppo_regular--blue_jpeg82_36",
+      "source_sha256": "9be7a43a44c8484a8aba3ecb3ce25edf4e1f989791227f0d6fd9146b46a4dbe8",
+      "before_result_sha256": "2b6cc66444aa4b080defd5572882ca4f94c5c7da062dc3bf5ea742c70dc302fa",
+      "after_result_sha256": "b14a1e04d9ae7fbbea95e0f54ab2491f8606d042b488a1a4d693fd18610585f8"
+    },
+    {
+      "id": "oppo_regular--pale_blue_png_42",
+      "source_sha256": "cb68ac7751676d27e6392e4e564517c44b59c0209827ffb423899b8075e734b1",
+      "before_result_sha256": "6e0c5b96d84a62d7615734fc35754450bef919f44c53e9ec515937a8f974ed85",
+      "after_result_sha256": "5de4d3c3e4a8692e3cf2ae5e3e7f0690a01e00223ad5a4b74f8457aa0233dbd4"
+    },
+    {
+      "id": "oppo_regular--white_jpeg74_24",
+      "source_sha256": "28a72af46f13d6179d41df02cad3de44ac0c2283940948145ab458e319dbe5b5",
+      "before_result_sha256": "4d182c3a519122645367194950ecf86af400a2f47ce340aa714e848f16dbf892",
+      "after_result_sha256": "09c6d064ce3e74a592c0ddc1fd77704c5786c75f72eec6936ec4c8ff888e41b2"
+    },
+    {
+      "id": "negative_songti_regular--white_png_26",
+      "source_sha256": "a3f7a0ea1ef2d9afb05907106f13db7e51e90dd790ea4ff683710a0078ff7469",
+      "before_result_sha256": "7e66c8ba443ee444f00309c34f5b56294e5fb0f576b5c32aa6478dae5d26f493",
+      "after_result_sha256": "0db301bd618639957aabdc0f7504c1f07c79e6f912169b6681be0535a4d4f949"
+    },
+    {
+      "id": "negative_songti_regular--white_jpeg90_32",
+      "source_sha256": "4f6be7e5b01b652e5fea2f5545c4ecb46f14a600485b25f52cf94e9db397c470",
+      "before_result_sha256": "9b8a87d86430e06775dea796610c180e102f8572aaac0237297aca4b27a7a345",
+      "after_result_sha256": "14c45d4d2e9c7b984c9b53bff386c7fcbc22c8648b35db9dac462cccad0b5b5e"
+    },
+    {
+      "id": "negative_songti_regular--blue_png_28",
+      "source_sha256": "e3d13a0cb5979f726c575bd870fcd6c16d902633650e79930d5a30d6fc5d6e01",
+      "before_result_sha256": "f30eada967283d3aa9e0699cd37f02b07d193df25ab5aa04f9ebf41299cc6b4a",
+      "after_result_sha256": "f98accb62477f3584acd25f8ceabec28f304a92c3b268cb1f5fc7a166bab00a2"
+    },
+    {
+      "id": "negative_songti_regular--blue_jpeg82_36",
+      "source_sha256": "f3b72dff37b17213012283a1ab15781dd3e8277b9c6a1beb05b3309409b00719",
+      "before_result_sha256": "cabe6ebecdaea3030f48e03b1a3b3298a1489e399fa4f3b7bbb2addeeda76d57",
+      "after_result_sha256": "ef6c7eb5ddf10d5bd4b1f988c3305e7ffbf418b50cb010b7b5fa88757dfd28dc"
+    },
+    {
+      "id": "negative_songti_regular--pale_blue_png_42",
+      "source_sha256": "c8fbf513e5bbf33b8389bc7aee1b02a4f35c800b75bf2dc83d57372e3abcb2ab",
+      "before_result_sha256": "81c9efc5d16e839d86457d457c81e34ef1e6b6ac592287cd525f4b995c439785",
+      "after_result_sha256": "0cb41f3dbfee4637bb89e3fa3c74ecd1f50ab14c69f980bc3d337f8f70cfe576"
+    },
+    {
+      "id": "negative_songti_regular--white_jpeg74_24",
+      "source_sha256": "b87f71b60c20d536b9227e8b40e60c1c5c23e090cc1fdc0355df25f303106133",
+      "before_result_sha256": "260587d6ba334b5f9239150e9b26a63484743487ba8aad7ea34d77e3576b8202",
+      "after_result_sha256": "1fe41dc8502aa8e8607434edd1449987692eaf23e2ca39a5e309f8366ef471f6"
+    },
+    {
+      "id": "sfpro_17_semibold_38_0",
+      "source_sha256": "e00677c2e99f0dc4420a78499f6765f9b45a1bb04bcc307b2d6799233f9fa5c2",
+      "before_result_sha256": "433ca631fcc61b3e6db9c80e296311b4c99711269f62a0132d7d10b47b48e8df",
+      "after_result_sha256": "fd233b777a1be7bb2a8efafd0897ea30ecb1a8eb1f0bb5594a0ee108bf40adc6"
+    },
+    {
+      "id": "sfpro_17_semibold_38_1",
+      "source_sha256": "3216778fba6ff7a2f8b98ee642db0e50516ccf82d05619a839ca2259577975ca",
+      "before_result_sha256": "34f009dbf5ded03078659f0fda6fb2658b19579496c47803f701723685dd3f22",
+      "after_result_sha256": "e9547d9936069d512cf5d7a3d2c58d6669135af314939c597aeffc128a517760"
+    },
+    {
+      "id": "sfpro_17_semibold_38_2",
+      "source_sha256": "4e52280da415ca7822450b1a29da59b39e31e1947f66cbb24501984b58122275",
+      "before_result_sha256": "6a08902195c62464e1120a565067132c9dbf1447e84ad6d0a26206a9476db7d8",
+      "after_result_sha256": "379471bf0489a078bfe97a976ecc71b7647503c8b7321fefb0a99679d886320c"
+    },
+    {
+      "id": "sfpro_17_semibold_38_3",
+      "source_sha256": "dec6e33caadd9d4fe2d369827e861a3d137075a31a7a4c39497bf2e8eadac425",
+      "before_result_sha256": "51cc4fea970eb7e59751b990f1a75084f885bb382ab831e68977dca30cea5ecb",
+      "after_result_sha256": "b71a91f98dbef35b97ddfbe9d5ea60dc0de2f2562b88bb2ecb2cb4a9264dc118"
+    },
+    {
+      "id": "helvetica_bold_38_0",
+      "source_sha256": "f5cb21844bc83352e187f19b0c467cccd781742d18b1eba820b3b6a964e1496a",
+      "before_result_sha256": "b2a6f216b7c03216686416540d4d60bc77dc4e101df4c9b66c7a5e2345252b3c",
+      "after_result_sha256": "cf750957240c9a3adc1c7925a79301a42e13181c667852878cccf59a74dde5f3"
+    },
+    {
+      "id": "helvetica_bold_38_1",
+      "source_sha256": "f36b9924ea87e55fbfd21938988c11df28f6635b1b6013251a08ec772a3d5bdf",
+      "before_result_sha256": "75aba2117f77fa204447ae46a898798a3c46d8e797fec2a148033aafc91da39f",
+      "after_result_sha256": "8474ac75958e47a46a83c14ecaac1c7f5c7afc8c22723a0bc6049c0ccccd6d16"
+    },
+    {
+      "id": "helvetica_bold_38_2",
+      "source_sha256": "e3c7e0ba8b827fd1f641be4e3356580e13461d807b93e0f7114d2a84c0a668f7",
+      "before_result_sha256": "5515f63ebbca196d1f416ff99c59fa93174506fca35f357beb447c20c13d42e2",
+      "after_result_sha256": "d52f7f7c10d46f13e15e31331405dc9ae567a07ad5682f9936ba55ce4ddb9029"
+    },
+    {
+      "id": "helvetica_bold_38_3",
+      "source_sha256": "4ac5ae999079303f387fd6b9cb342ecf393967fa693ff01e34511546153192ff",
+      "before_result_sha256": "fc7663c01c5c95e9cdca146cf387bd1896995af234a785ca255d4c02ba844466",
+      "after_result_sha256": "15c0087e613e8d0128de18693a2b2d08af3f6e2113807f055a52a31415c6d2e7"
+    },
+    {
+      "id": "harmonyos_regular_38_0",
+      "source_sha256": "48ab73ade817f52cc9db99ec071cd0337b5a31b9de9bde20cf4c8bc198218184",
+      "before_result_sha256": "3d02c720f7e1217d629e993964ea76cddfbdf8252dd1b1f577d1d684d90ba184",
+      "after_result_sha256": "dc6a5275467ef10f6af8e831cd726b1dc7faf0600d658e6dae56860d7b444b0f"
+    },
+    {
+      "id": "harmonyos_regular_38_1",
+      "source_sha256": "1622e2c3b970b961e37b9a6f1660c404b55f9096e7df493009bf1e283b8c942e",
+      "before_result_sha256": "7314025a8448025d820107b1f997fb189d6ae81ea094164e4175a06502b88bde",
+      "after_result_sha256": "df38dcce90958f79e67e250e34f0eba4a3383b321625a4fec78d45fd0706dcde"
+    },
+    {
+      "id": "harmonyos_regular_38_2",
+      "source_sha256": "52df3aa744f5528a920230348c87be82e027d1a6395385d559ed167a8b6153ee",
+      "before_result_sha256": "3b9819cb01a11afde5860d98264141e3472d9f6d4157860872dfb303645a28a5",
+      "after_result_sha256": "8c82756bb92e04bc3f621332f416054414ef41ea590f2c06574af5ae8e062302"
+    },
+    {
+      "id": "harmonyos_regular_38_3",
+      "source_sha256": "cfe6df680d17aa3a8d51d38022835009c445b416c1b807568cb05bb7f7b662ca",
+      "before_result_sha256": "8657a64d81c983ede23853ae122b7458c0c6a5c37a4716b1de0b7dfde046be08",
+      "after_result_sha256": "b98a03c2925716ca9e226536e0d9d62a8d53276e9245caf7b9a5584c00bd7fb7"
+    },
+    {
+      "id": "misans_regular_38_0",
+      "source_sha256": "94ebff060d1a1c1027adf5c065305685787bbee0bc8751c022a7752722c9bd56",
+      "before_result_sha256": "da84a0a5e9d1fb23fbc2edab9cd59c92a7a629bda7951aeea30cde4eaa33986c",
+      "after_result_sha256": "6cbc3921d40ae7c05e2b5e6ce6d4ae1d63b7d077f0694e7388d39166eba4997c"
+    },
+    {
+      "id": "misans_regular_38_1",
+      "source_sha256": "32716b67c7dcd05e6a9e7641d2be14703c6e48ff868225ec85bf5d78f2a6eeb2",
+      "before_result_sha256": "e5670d0bc703dacfdde44535291d20f339b3a20d63348d08e4d89e31ff916160",
+      "after_result_sha256": "f750058445212c8892c1ae8fb0379958f67a580451dee1cb2598d066e3806de4"
+    },
+    {
+      "id": "misans_regular_38_2",
+      "source_sha256": "df4429a4decee7cd414c3359de67ca649efa5426a03fab66b9fc3f2fbff56f65",
+      "before_result_sha256": "cc49255c4aabe3ed3da995014e356967ba3ca9e13c1b199854acc073da93691c",
+      "after_result_sha256": "4e897509d1e417f8dcdec7592fdd66c4435cd34302146cce48eb247fd99fa1df"
+    },
+    {
+      "id": "misans_regular_38_3",
+      "source_sha256": "8a88f97f35c8f9d0f6ba5968df93ccdb888ae6c8d4ad02145900f788d89f906e",
+      "before_result_sha256": "e1a190bc5813ee225474e4476ac57adf96856c7d61c3e1a49ae07f28cfe88527",
+      "after_result_sha256": "7cca10e6610ca753d82e76b3e45bd9c8f427b37d3150176d7e7ca832e76f6a34"
+    },
+    {
+      "id": "oppo_regular_38_0",
+      "source_sha256": "4f5e19156c0fce23a989094627a701e90559d32277ac26525f621b708cff0382",
+      "before_result_sha256": "6939d95c1bfdf1f0ba9a90fe7b9593d297fa0101b38cc41f2bb1c75811962bd7",
+      "after_result_sha256": "91c4bd32dea11614158c7fc806e541c33e2aef17553067892bff0009c0d616aa"
+    },
+    {
+      "id": "oppo_regular_38_1",
+      "source_sha256": "4ac84b2490c7fe20c243a8233b6e25994be11f6d76976cdcb87d822d92a45baf",
+      "before_result_sha256": "49777f4ee5efd69d8fd814d0d85ac8388954c02006cef76a4cbf53b5572f795a",
+      "after_result_sha256": "4bc4e82c11320203c1b299e2733f2785693d06c71ca14d7227ef04cea86a1a23"
+    },
+    {
+      "id": "oppo_regular_38_2",
+      "source_sha256": "02ef9666434260f98aedc7f4e3d905ff15a8363b1b4fd230ebd8e7ad93d30443",
+      "before_result_sha256": "c2896cc8fe73dc37e0cc75384a6f074354baccea75ec159db13b1532818ee3ee",
+      "after_result_sha256": "14a3f3673e6ac4cdd9b92c75673d03394b4266500926b2732b62b80e38639b93"
+    },
+    {
+      "id": "oppo_regular_38_3",
+      "source_sha256": "c3bffdce6346901445feac5eb21f4fd97617fb65a462e8177178a917224ab372",
+      "before_result_sha256": "65e7e6159f1e578932c36fddfe81b8959daa26cc1a43929e9652b1abe39754b5",
+      "after_result_sha256": "ee39ce392b46bb07dd21580c50e577d061ea5389387c7a9b400760d0a7f25e3c"
+    },
+    {
+      "id": "alipay_number_regular_38_0",
+      "source_sha256": "828d69e55632b7cc6ce995295a96d0674075454a591a6a95dc381cac2693ac2b",
+      "before_result_sha256": "14cae3964b71ba10713ba576b635b4febf00e2936e304b6fe57b61cd9f7aacd6",
+      "after_result_sha256": "0ce346c082b92d687be8c9e5314e75d933d5ce31cd1c19ad5b5313b01d574ec3"
+    },
+    {
+      "id": "alipay_number_regular_38_1",
+      "source_sha256": "a8a3b2c06b409523834b5f399994047dd765318337a4a8b0f771a0e7679d8d6e",
+      "before_result_sha256": "232afd6d13eb31107797972c49aba8513b38c9e24071c3cbc161d81fd71d2416",
+      "after_result_sha256": "ca59b33ab350458e642d6894c42197dfd47341d3d358035a9c825b2309393ff7"
+    },
+    {
+      "id": "alipay_number_regular_38_2",
+      "source_sha256": "2068ff7cce6cd201a60664a3e422a47543a9d367e4d62583d32945bda70ec1dd",
+      "before_result_sha256": "30046d0765edbc9f14faeb7a1cf5105f6322d7827108695cdf506115dcef5e33",
+      "after_result_sha256": "5a992a57d3a3119f83ae8e33c5aac5b8bc8d3c5e92ccc5d93c836f5eadc24b16"
+    },
+    {
+      "id": "negative_times_38_0",
+      "source_sha256": "bfb7c6f1711f84444807618a1605f1f098ca376acae024857dc09bd27f8ecdc2",
+      "before_result_sha256": "e242c67b34cbf8c7f95627ca3d2d8e12321b22c300822575213bea222d3dfa2c",
+      "after_result_sha256": "f416113cb17d6e1cb5a469b143710abb019f24564f77c44c4e418c668024811a"
+    },
+    {
+      "id": "negative_times_38_1",
+      "source_sha256": "79632ac443aba63a008217faa7ce24553626a93e706969aab8bdd17bd3ade08b",
+      "before_result_sha256": "8ed2ed3aba4e3c9d4ed0c2263254d40a775fb285901cda54e722d55c5458a294",
+      "after_result_sha256": "abd6b53aa544c9788ed62c1b15392b0d8daf480949287a62e8f311730584bb1d"
+    },
+    {
+      "id": "negative_times_38_2",
+      "source_sha256": "2921455cbf91b9defd1325bea39a73a530c6427fd1ca757df1356c96fbafd531",
+      "before_result_sha256": "c0c4440a8cc276672c98b5e1a4f54673097b537bc343e2b582c910d75a0af02b",
+      "after_result_sha256": "8ef5936b75d22e07235db8e26f3cc1042f7484711702eab5c470a52ee61d9c54"
+    },
+    {
+      "id": "negative_times_38_3",
+      "source_sha256": "29dd9d55c2bd47249b5563ca66c11729414846223be0edba12deb24ba38fd799",
+      "before_result_sha256": "be463f1825fa552dad6842b1e3e292265e38800c04d4e5469ef177b1dbc14b8b",
+      "after_result_sha256": "116df2bf892646c051edce216929ef975d16e7228f9c4fa24bb431c69059a0f2"
+    },
+    {
+      "id": "negative_courier_38_0",
+      "source_sha256": "3b4bff16a9019609a38f1fd5c68eb9ac914a799951ad22097abbe2ab54326029",
+      "before_result_sha256": "9372d733c86b6657488fb7b1091d2df0a7d08cbf059ccab16b8be38efba23126",
+      "after_result_sha256": "478d4b24ea2b885f5746b7372b160296a8b5944f6670c53ab20186661a5ee1e5"
+    },
+    {
+      "id": "negative_courier_38_1",
+      "source_sha256": "20abc3469914fe3826f7149601f94970a840e693e11b0baa48f6cd4920ac46c1",
+      "before_result_sha256": "408e2dfc6578131ae2a660478c539619a9e5e95ab91bc0d58c851195addcbde7",
+      "after_result_sha256": "d8c98028e4930e957e1b042e0cc60f65128dcdf2c802f59d238b343f2da58b70"
+    },
+    {
+      "id": "negative_courier_38_2",
+      "source_sha256": "666088ad1b99a9f606b04eedb262387ba7495c3c57af336f14b17ad37741f8e7",
+      "before_result_sha256": "004395c2a0cb4e33339a671911fbeb78b96c83bd3a88ed9434a4b12cb099fdf4",
+      "after_result_sha256": "05e26bfc81f9a1891eda611e6db6c3cc3a24db0f01eeaf0b89ada6be7848b709"
+    },
+    {
+      "id": "negative_courier_38_3",
+      "source_sha256": "4f6733a375a888062422712a0a7d4af3fabf35cdbf0929d41046477d7c59ac68",
+      "before_result_sha256": "48eccdbe12332b3fb0fccd5659bb6e193f7caf8f01e93ab122978ee2927d76c9",
+      "after_result_sha256": "d4661e504cf3c022cc9b20805eadd2e0fa102744bf35e3fe383f025e0fd33190"
+    }
+  ],
+  "analysis_script_sha256": "bea8ebfc9f0b3490978edef5377049ac48a22082e1dde40c11c5d9fe7f3c66e1"
+}
