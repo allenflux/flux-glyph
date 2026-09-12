@@ -93,6 +93,17 @@ class RegionFontClassifier:
                 or any(not isinstance(f, str) or not 1 <= len(f) <= 80 for f in self.families)
                 or len(set(self.families)) != len(self.families)):
             raise ValueError('Invalid region font families')
+        self.font_label_groups = m.get('font_label_groups', {})
+        allowed_groups = {'PingFang': ['PingFang SC', 'PingFang TC', 'PingFang HK']}
+        if (self.font_label_groups not in ({}, allowed_groups)
+                or any(label not in self.families or any(name in self.families for name in native)
+                       for label, native in self.font_label_groups.items())):
+            raise ValueError('Invalid region font label groups')
+        sources = m.get('font_sources', {})
+        if (not isinstance(sources, dict) or (sources and set(sources) != set(self.families))
+                or any(not isinstance(kinds, list) or not kinds or
+                       any(kind not in ('system', 'asset') for kind in kinds) for kinds in sources.values())):
+            raise ValueError('Invalid region font sources')
         gates = m.get('gates', {})
         if (not _number(m.get('temperature'), .01, 100)
                 or any(not _number(gates.get(key), 0, 1) for key in ('min_score', 'min_margin', 'min_patch_agreement'))
@@ -152,6 +163,7 @@ class RegionFontClassifier:
         else:
             result.update(status='candidate', family=result['candidates'][0]['family'],
                           reason_code='region_neural_family_candidate')
+            result['font_family_variants'] = self.font_label_groups.get(result['family'], [])
             if scores['size_relative_spread'] <= self.meta['max_size_relative_spread']:
                 result['font_size_px_estimate'] = round(prepared['ink_height_px'] * scores['em_ratio'], 2)
         result['ink_height_px'] = prepared['ink_height_px']

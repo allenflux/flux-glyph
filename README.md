@@ -2,28 +2,34 @@
 
 上传截图，定位文字区域，直接识别区域字体并估计字号、文字颜色。页面用 `R001` 等编号和原图裁图定位区域，提供字体详情、格式化 JSON、复制 JSON 和原尺寸标注 PNG 下载，支持中文与 English。
 
-网站和 API 使用 **9000** 端口。R16 保留 PP 的文字区域检测模型用于定位；字体 CNN 直接处理区域图像，不读取文字内容，不需要字符切分或人工选择中文／英文。独立字体模型也可以下载到本地使用。
+网站和 API 使用 **9000** 端口。保留 PP 的文字区域检测模型用于定位；字体 CNN 直接处理区域图像，不读取文字内容，不需要字符切分或人工选择中文／英文。独立字体模型也可以下载到本地使用。
 
-## R16 区域字体模型
+## R17 简繁体、英文与数字字体模型
 
-R16 的流程是：**原图 → 文字区域检测 → 区域字体 CNN 与字号回归 → 原图颜色测量**。字体判断使用训练后的网络权重。候选包含模型分数；`uncertain` 表示当前结果未通过门槛。
+当前流程是：**原图 → 文字区域检测 → 区域字体 CNN 与字号回归 → 原图颜色测量**。字体判断使用训练后的网络权重。候选包含模型分数；`uncertain` 表示当前结果未通过门槛。
 
-本地 Docker 已切换到 `r16-ios-region-v1`，页面为 `http://localhost:9000/`。以 `/api/health` 的 `model_version`、结果中的 `font_method` 及所选模型包为准；R16 返回 `font_method: region_neural_network`。训练来源和使用方式见 [R16 区域字体模型](docs/ios-region-font.md)，成绩及未知字体限制见 [验证报告](docs/ios-region-results.md)。本次只更新本地服务。
+本地 Docker 已切换到 `r17-ios-hant-region-v1`，页面为 `http://localhost:9000/`，模型下载位于上传区上方。以 `/api/health` 的 `model_version`、结果中的 `font_method: region_neural_network` 及所选模型包为准。本次本地验收不代表线上服务器已更新。
 
-完整 R16 包路径为 `artifacts/ios-region-font-v1/bundle-stable`；保留的字体权重与元数据路径为 `models/experiments/ios-region-v1`。在装有项目依赖的开发环境中可重建完整包，无需重复训练：
+R17 使用新采集的 1,000 张原生 iOS Simulator 截图继续训练，包含简体、繁体、英文和数字。八个字体输出中，PingFang 表示苹方字体族，覆盖原生 SC／TC／HK，不宣称能从相同字形区分地区版本。SF Pro、PingFang 和 Helvetica 来自系统；Alipay Number 及其余类别由采集应用加载，**Alipay Number 不是 iOS 系统字体**。来源写入元数据和下载说明。
+
+新固定测试的 100 张完整截图、1,104 个区域中，1,013 个字体名正确、1 个错误、90 个待确认；没有漏检或额外框。已输出名称的准确率为 99.90%，返回名称的覆盖率为 91.85%。这些是受控模拟器成绩，不能推广到任意 App、真机或未知字体。详见 [R17 验证报告](docs/ios-traditional-results.md)、[采集证据](docs/ios-traditional-capture.md) 和 [训练流程](docs/ios-traditional-training.md)。
+
+默认模型由随源码提供的 `models/ACTIVE.json` 选择，所需完整包在 `models/releases/`，因此标准 Docker Compose 部署也能提供字体模型下载。根目录历史 R14 文件保留用于回退。
+
+R17 完整包已保留在 `models/releases/r17-ios-hant-region-v1`，字体权重和元数据另存于 `models/experiments/ios-hant-region-v1`。需要重建完整包时：
 
 ```sh
 PYTHONPATH=src .venv/bin/python scripts/package_region.py \
-  --region models/experiments/ios-region-v1 \
-  --output artifacts/ios-region-font-v1/bundle-stable \
-  --version r16-ios-region-v1
+  --region models/experiments/ios-hant-region-v1 \
+  --output artifacts/rebuilt-r17-bundle \
+  --version r17-ios-hant-region-v1
 ```
 
-输出目录必须尚不存在；打包工具会验证字体模型，并从当前基础包复制 PP 检测模型和检测配置。R16 完整包不需要 PP 识字模型、字符字典、逐字参考库或旧字号统计文件。
+输出目录必须尚不存在；打包工具会验证字体模型，并从当前基础包复制 PP 检测模型和检测配置。区域模型完整包不需要 PP 识字模型、字符字典、逐字参考库或旧字号统计文件。
 
 ## 下载字体模型并单独使用
 
-网页的“字体模型”卡片显示当前可下载模型的版本、字体列表、文件大小和运行命令。下载包包含字体 ONNX、`metadata.json`、`inference.py`、`text_style.py`、`predict.py`、`requirements.txt`、README 和 SHA256 清单，不包含用户上传图片。
+网页顶部的“字体模型”卡片显示当前可下载模型的版本、文件大小和下载按钮；“本地使用方式”包含字体来源及运行命令。下载包包含字体 ONNX、`metadata.json`、`inference.py`、`text_style.py`、`predict.py`、`requirements.txt`、README 和 SHA256 清单，不包含用户上传图片。服务更新后可点“刷新状态”重新获取下载信息。
 
 解压 ZIP 后，在其目录安装依赖并运行：
 
@@ -48,7 +54,7 @@ curl -o flux-glyph-font-onnx.zip http://localhost:9000/api/models/font/download
 
 ## Docker Compose 部署
 
-将整个项目及经过验证、已选定的完整模型包复制到服务器。`compose.yaml` 默认只读挂载 `./models`；根目录保留历史包时，应先按下文“模型版本管理”安装并激活 R16，或将部署目录的 `models/` 设为完整 R16 包。
+将整个项目及经过验证、已选定的完整模型包复制到服务器。`compose.yaml` 默认只读挂载 `./models`，由随源码提供的 `ACTIVE.json` 选择已验证的完整包；无需复制本地训练的 `artifacts/` 目录。
 
 ```sh
 cp .env.example .env
@@ -59,13 +65,13 @@ docker compose logs -f api
 
 公开访问地址为 `http://allenflux.tech:9000/`，服务与上传均使用 9000 端口。健康检查为 `/api/health`，API 文档为 `/docs`。设置令牌后，网页可输入相同令牌解锁；程序请求使用 `Authorization: Bearer <令牌>`。
 
-本地 `compose.ios.yaml` 挂载 `artifacts/ios-region-font-v1/bundle-stable`，保留根目录 R14。启用本地 R16：
+本地 `compose.ios.yaml` 只设置镜像名称，继承相同的 `./models` 挂载和活动模型选择：
 
 ```sh
 docker compose -f compose.yaml -f compose.ios.yaml up -d --build
 ```
 
-默认资源配置面向 **2 核 / 2 GB** 主机：一个推理任务运行、最多八个等待；单线程 ONNX 会话与 BLAS；容器最多 2 核、1536 MiB 内存，为主机预留空间。限制单图 8 MB / 1200 万像素；最多处理 200 个文字区域，超出区域仍保留框并标明未处理。此处是部署配置，不代表 R16 的资源验收成绩。
+默认资源配置面向 **2 核 / 2 GB** 主机：一个推理任务运行、最多八个等待；单线程 ONNX 会话与 BLAS；容器最多 2 核、1536 MiB 内存，为主机预留空间。限制单图 8 MB / 1200 万像素；最多处理 200 个文字区域，超出区域仍保留框并标明未处理。此处是部署配置，不代表峰值资源验收成绩。
 
 上传数据保存在 `glyph-data` 命名卷中，每次上传有独立任务目录，包含上传文件、原图、区域裁图、标注 PNG 和 JSON。默认最多保留 **7 天（168 小时）**，并设 **100 个已结束任务**的数量上限；超过上限时提前删除最旧的结果。
 
@@ -79,16 +85,16 @@ docker compose -f compose.yaml -f compose.ios.yaml up -d --build
 
 等待时显示真实队列位置和前方任务数。准备与检测使用不定进度动画；逐区域处理后按已完成步骤推进，结果保存成功才到 100%，不预测剩余秒数。动画支持系统的减少动态效果设置。进度变绿只表示任务完成。
 
-R16 的蓝色 `candidate` 表示通过模型分数、前两名差值及区域片段一致性门槛的字体候选；琥珀色 `uncertain` 保留具体原因：
+区域模型的蓝色 `candidate` 表示通过模型分数、前两名差值及区域片段一致性门槛的字体候选；琥珀色 `uncertain` 保留具体原因：
 
 - 模型分数未达门槛，或前两名字体评分过于接近。
 - 区域内不同图像片段的字体判断不一致。
 - 区域过长、图像质量不足或背景颜色不均匀。
 - 区域超出本次处理数量上限。
 
-未通过门槛时 `font.family` 为 null，存在的候选分数仍可查看。分数是已知类别间的模型评分，不是实际准确率；未知字体也可能误判。字体名不能用于确定手机系统、设备或截图真伪。绿色 `supported` 及灰色 `out_of_scope` 保留用于历史结果兼容，R16 不沿用旧苹方参考匹配规则。
+未通过门槛时 `font.family` 为 null，存在的候选分数仍可查看。分数是已知类别间的模型评分，不是实际准确率；未知字体也可能误判。字体名不能用于确定手机系统、设备或截图真伪。绿色 `supported` 及灰色 `out_of_scope` 保留用于历史结果兼容，区域模型不沿用旧苹方参考匹配规则。
 
-`text_style.font_size_px_estimate` 是输入截图中的像素字号估计，**不是 iOS pt，也不是检测框高度**。R16 的 `font_size_px_interval` 为 null，不将图块差异伪装成置信区间。`text_color_hex` 是可见 `#RRGGBB` 颜色；缺少可靠结果时字段为 null，`size`、`color` 说明状态和原因。缩放截图会改变像素字号；颜色测量不恢复原始透明度。
+`text_style.font_size_px_estimate` 是输入截图中的像素字号估计，**不是 iOS pt，也不是检测框高度**。区域模型的 `font_size_px_interval` 为 null，不将图块差异伪装成置信区间。`text_color_hex` 是可见 `#RRGGBB` 颜色；缺少可靠结果时字段为 null，`size`、`color` 说明状态和原因。缩放截图会改变像素字号；颜色测量不恢复原始透明度。
 
 队列满时返回 429 和 `Retry-After: 2`；网页保留所选图片。拿到任务 ID 后，查询中断只重试查询，不重复上传。等待任务只保存文件和任务信息，不为每个用户加载模型。
 
@@ -120,7 +126,7 @@ curl -o result.json http://allenflux.tech:9000/api/jobs/TASK_ID/json
 
 结果包含模型版本、原图尺寸、区域 `id`、`quad`、`detector_bbox`、`source_bbox`、`crop_url`、`font`、`text_style` 和下载地址。框坐标对应 EXIF 方向校正后的原图，标注 PNG 与其尺寸一致；原上传文件不被标注覆盖。
 
-R16 返回 `ocr_performed: false`，`text` 为 null 或空字符串，`ocr_confidence` 为 null，`glyphs` 为空。`font.method` 为 `region_neural_network`，`font.scope` 为 `Detected text region`；`candidates` 使用 `{family, score}`，并提供 `score`、`margin` 和 `patch_agreement`。区域图像直接进入字体网络，检测模型仅负责找位置。
+区域模型返回 `ocr_performed: false`，`text` 为 null 或空字符串，`ocr_confidence` 为 null，`glyphs` 为空。`font.method` 为 `region_neural_network`，`font.scope` 为 `Detected text region`；`candidates` 使用 `{family, score}`，并提供 `score`、`margin` 和 `patch_agreement`。区域图像直接进入字体网络，检测模型仅负责找位置。
 
 ## 本地开发与模型版本管理
 
@@ -130,20 +136,20 @@ Python 3.11 开发环境：
 python3.11 -m venv .venv
 .venv/bin/pip install -r requirements.lock
 PYTHONPATH=src OPENBLAS_NUM_THREADS=1 \
-  FLUX_MODEL_DIR=artifacts/ios-region-font-v1/bundle \
+  FLUX_MODEL_DIR=models \
   .venv/bin/uvicorn flux_glyph.api:app --host 127.0.0.1 --port 9000
 ```
 
-运行前需按上面的命令准备完整 R16 包。`models/MANIFEST.json` 或所选包的清单记录文件大小和 SHA256；进程启动时验证模型，版本写入每个结果。只把 ONNX 放在磁盘上不会启用它。服务端只推理，不训练。
+默认加载 `models/`：存在 `ACTIVE.json` 时选择对应完整包，否则加载根目录完整包。清单记录文件大小和 SHA256；进程启动时验证模型，版本写入每个结果。只把 ONNX 放在磁盘上不会启用它。服务端只推理，不训练。
 
-将完整 R16 包导出，再安装到默认 `models/` 下，可保留根目录历史包以便回退：
+导出当前完整包，也可安装其他经过验证的版本到默认 `models/` 下；历史包保留以便回退：
 
 ```sh
 .venv/bin/python scripts/model_release.py \
-  --model-root artifacts/ios-region-font-v1/bundle export \
-  --output artifacts/flux-glyph-r16-ios-region-v1.zip
+  --model-root models export \
+  --output artifacts/flux-glyph-r17-ios-hant-region-v1.zip
 .venv/bin/python scripts/model_release.py install \
-  artifacts/flux-glyph-r16-ios-region-v1.zip --version r16-ios-region-v1
+  artifacts/flux-glyph-r17-ios-hant-region-v1.zip --version r17-ios-hant-region-v1
 # 同步完整 models/ 及配套代码后重启/重建
 docker compose up -d --build
 # 回退根目录随项目提供的历史包

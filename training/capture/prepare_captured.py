@@ -172,6 +172,8 @@ def native_source(row, scenes_sha, pages, label_root):
             require(region.get(key) == request.get(key), "native/requested region " + key + " mismatch")
         require(region.get("requested_font_postscript") == request.get("font_postscript"),
                 "native/requested PostScript name mismatch")
+        if request.get("language") is not None:
+            require(region.get("requested_language") == request["language"], "native/requested shaping language mismatch")
     return page, path, image, requested
 
 
@@ -188,6 +190,11 @@ def font_evidence(region, family, script):
         return "actual_font_postscript_mismatch"
     if region.get("requested_font_family") != family:
         return "native_family_request_mismatch"
+    if family in {"PingFang SC", "PingFang TC", "PingFang HK"}:
+        prefix = "PingFang" + family.rsplit(" ", 1)[1] + "-"
+        if (not actual_ps.startswith(prefix) or region.get("actual_font_family") != family
+                or region.get("requested_font_postscript") != actual_ps):
+            return "native_pingfang_regional_family_mismatch"
     coverage = region.get("glyph_coverage", {})
     if (not isinstance(coverage, dict) or coverage.get("font_get_glyphs_succeeded") is not True or
             coverage.get("zero_run_glyph_count") != 0 or
@@ -205,6 +212,10 @@ def font_evidence(region, family, script):
                 not isinstance(run.get("string_indices_utf16"), list) or
                 run.get("glyph_count") != len(run["glyph_ids"]) or len(run["glyph_ids"]) != len(run["string_indices_utf16"])):
             return "native_font_run_mismatch"
+        if family in {"PingFang SC", "PingFang TC", "PingFang HK"} and run.get("family") != family:
+            return "native_pingfang_regional_run_mismatch"
+        if region.get("requested_language") is not None and run.get("language") != region["requested_language"]:
+            return "native_font_run_language_mismatch"
         runs.extend(zip(run["string_indices_utf16"], run["glyph_ids"]))
     glyphs = region["glyphs"]
     if len(runs) != len(glyphs) or Counter(runs) != Counter((g.get("text_index"), g.get("glyph_id")) for g in glyphs):

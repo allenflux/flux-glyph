@@ -1,7 +1,9 @@
 """Import explicitly font-labelled screenshot regions; never infer font labels.
 
-Run in the OCR environment, separately from the PyTorch training process:
-  python training/prepare_screenshots.py --input labels.jsonl --output prepared
+Legacy glyph preparation requires a verified OCR bundle, separately from the
+current region-font serving model and the PyTorch training process:
+  python training/prepare_screenshots.py --input labels.jsonl --output prepared --legacy-model-dir models
+The selected directory is used directly; ACTIVE.json is never followed.
 
 Each JSONL row contains image, source_id, split and regions. Each region contains
 bbox [left, top, right, bottom], text, font_family and script (han or latin).
@@ -28,6 +30,23 @@ sys.path.insert(0, str(ROOT / 'src'))
 from flux_glyph.glyph_preprocess import extract_glyphs
 
 SPLITS = ('train', 'calibration', 'test')
+LEGACY_MODEL_DIR = ROOT / 'models'
+
+
+def load_legacy_ocr_bundle(directory=LEGACY_MODEL_DIR):
+    """Verify an explicit legacy bundle without following serving-model state."""
+    from flux_glyph.models import file_sha, verify_bundle
+
+    directory = Path(directory).resolve()
+    manifest = verify_bundle(directory)
+    required = {'pp/onnx/paddle_ocr_rec.onnx', 'pp/onnx/paddle_ocr_cls.onnx',
+                'pp/charset/ppocr_keys_v1.txt', 'pp/paddle_ocr_delivery.contract.json'}
+    missing = required - {row['path'] for row in manifest['files']}
+    if missing:
+        raise ValueError('Legacy glyph preparation requires an explicit OCR bundle '
+                         '(--legacy-model-dir); missing verified assets: ' + ', '.join(sorted(missing)))
+    version = manifest.get('version') or 'legacy-ocr-' + file_sha(directory / 'MANIFEST.json')[:12]
+    return directory, version, manifest
 
 
 def family_names():
@@ -181,7 +200,7 @@ def load_labels(input_file, families):
     return records
 
 
-def prepare(input_file, output_dir, model_dir=ROOT / 'models', *, reader=None):
+def prepare(input_file, output_dir, legacy_model_dir=LEGACY_MODEL_DIR, *, reader=None):
     """Prepare arrays and return manifest. reader injection is for tests only."""
     from flux_glyph.segmentation import segment_characters
 
@@ -193,9 +212,8 @@ def prepare(input_file, output_dir, model_dir=ROOT / 'models', *, reader=None):
     ocr_sources = None
     if reader is None:
         from flux_glyph.ppocr import PPReader
-        from flux_glyph.models import load_active
-        active, version, model_manifest = load_active(model_dir)
-        reader = PPReader(active / 'pp')
+        legacy, version, model_manifest = load_legacy_ocr_bundle(legacy_model_dir)
+        reader = PPReader(legacy / 'pp')
         ocr_sources = {'model_version': version,
                        'files': [item for item in model_manifest['files'] if item['path'].startswith('pp/')]}
     buckets = {split: {key: [] for key in ('x', 'y', 'chars', 'faces', 'sizes', 'scripts', 'source_ids')}
@@ -317,9 +335,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
-    parser.add_argument('--model-dir', type=Path, default=ROOT / 'models')
+    parser.add_argument('--legacy-model-dir', '--model-dir', dest='legacy_model_dir', type=Path,
+                        default=LEGACY_MODEL_DIR,
+                        help='Exact verified legacy OCR bundle directory; ignores ACTIVE.json (default: bundled models)')
     args = parser.parse_args()
-    result = prepare(args.input, args.output, args.model_dir)
+    result = prepare(args.input, args.output, args.legacy_model_dir)
     print(json.dumps({'output': str(args.output.resolve()), 'accepted': result['accepted_count'],
                       'rejection_counts': result['rejection_counts']}, ensure_ascii=False))
     return 0 if result['accepted_count'] else 2

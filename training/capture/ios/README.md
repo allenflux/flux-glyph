@@ -67,3 +67,9 @@
 标点与空格仍保留绘制证据；训练裁字只应使用 `visible` 与 `font_classification_character` 都为 true 的字形。`text_index` 使用 UTF16；允许的中文/ASCII 都属于 BMP，因此与当前字符串字符下标一致。资产字形另有 `font_source_kind` 和 `font_source_sha256`，内置字体的 SHA 字段为 null，不虚构系统字体文件哈希。
 
 `Documents/font-inventory.json` 包含当前 UIFont family/PostScript 清单、系统各字重实际字体名及已注册资产。安装或重装 App 后请重新通过 simctl 获取数据容器路径。
+
+## 简体、繁体与 PingFang 原生区域名称
+
+具名字体支持 inventory 中实际存在的 `PingFangSC-*`、`PingFangTC-*`、`PingFangHK-*`；必须同时匹配实际 CTFont family 和每个 CTRun，不会把 TC/HK 归为 SC。region 可提供 `language`：中文为 `zh-Hans`、`zh-Hant`、`zh-Hant-TW`、`zh-Hant-HK`，英文/数字为 `en`。该字段写入 CoreText shaping attribute，并记录 `requested_language` 与每个 run 的 `language`，用于离线来源核对。可选 `han_orthography` 仅描述受控文字词库，不参与推理。
+
+SC/TC/HK 是原生来源标签，并不保证可以从任意截图像素辨别。实际同文本测试中 TC/HK 可以完全同像素，因此区域网络可以输出 PingFang 家族并保留原生细分真值，不能按简繁文字直接猜测地域字体。参见 `docs/ios-traditional-capture.md`；诊断场景不用于训练。

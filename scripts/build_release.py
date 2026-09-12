@@ -14,7 +14,7 @@ def main():
     args=parser.parse_args()
     if args.output.exists():raise ValueError('Choose a new output file; existing release will not be overwritten')
     selected,version,manifest=load_active(args.model_root)
-    files={name:ROOT/name for name in ('Dockerfile','compose.yaml','requirements.txt','requirements.lock','requirements-train.txt','pytest.ini','README.md','.env.example','.dockerignore','.gitignore','.gitattributes')}
+    files={name:ROOT/name for name in ('Dockerfile','compose.yaml','compose.ios.yaml','requirements.txt','requirements.lock','requirements-train.txt','pytest.ini','README.md','.env.example','.dockerignore','.gitignore','.gitattributes')}
     for folder in ('src','web','assets','scripts','tests','docs','training'):
         for path in (ROOT/folder).rglob('*'):
             if path.is_file() and not any(p.startswith('.') or p=='__pycache__' for p in path.relative_to(ROOT).parts) and path.suffix!='.pyc':

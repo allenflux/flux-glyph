@@ -1,0 +1,88 @@
+{
+  "schema": "flux-glyph-region-training-freeze-v1",
+  "families": [
+    "HarmonyOS Sans SC",
+    "MiSans",
+    "Noto Sans CJK SC",
+    "OPPO Sans",
+    "PingFang",
+    "SF Pro",
+    "Helvetica",
+    "Alipay Number"
+  ],
+  "seed": 2026091293,
+  "device": "mps",
+  "torch": "2.8.0",
+  "optimizer_steps_planned": 4000,
+  "batch_size": 64,
+  "evaluate_every_steps": 250,
+  "optimizer": {
+    "name": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001
+  },
+  "loss": "8-family unmasked cross entropy + 0.5 smooth-L1(log em/ink ratio), beta=0.05",
+  "selection": "calibration family macro accuracy minus 0.1 times min(mean size relative error,1); earliest tie",
+  "model_inputs": [
+    "RGB-derived region tiles"
+  ],
+  "ocr_inputs": false,
+  "script_mask": false,
+  "font_label_groups": {
+    "PingFang": [
+      "PingFang SC",
+      "PingFang TC",
+      "PingFang HK"
+    ]
+  },
+  "region_aggregation": "mean patch softmax; size=ink_height*exp(median(log_em_ratio))",
+  "invalid_output": "reject entire region when any abs(log_em_ratio)>3 or whole width not covered",
+  "size_spread": "(p90_ratio-p10_ratio)/median_ratio",
+  "calibration": {
+    "gate_target_region_precision": 0.97,
+    "min_regions": 20,
+    "min_patch_agreement": 0.7,
+    "max_size_relative_spread": 0.2
+  },
+  "data_manifest_sha256": "ed75b831c6132284ad8e908f6a34723b0e0c1380a8a18be62dfbeefffdd35022",
+  "source_kind": "ios_simulator_screenshot",
+  "source_counts": {
+    "test": 100,
+    "train": 800,
+    "calibration": 100
+  },
+  "regions": {
+    "train": 8744,
+    "calibration": 1093,
+    "test": 1104
+  },
+  "warm_start": {
+    "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-region-font-v1/region/model.pth",
+    "sha256": "fe9e73936941e07c255df50e7798a277beaa9f4a7c9f87dbf2dfcc9bbc8c67b2",
+    "families": [
+      "HarmonyOS Sans SC",
+      "MiSans",
+      "Noto Sans CJK SC",
+      "OPPO Sans",
+      "PingFang SC",
+      "SF Pro",
+      "Helvetica",
+      "Alipay Number"
+    ],
+    "new_family_initializers": {
+      "PingFang": "PingFang SC"
+    },
+    "preserved_size_head": true
+  },
+  "initial_state_sha256": "76ef949a5cbfd24b39683aa575d41050aaa3b3e5a42bc028496053f0980e0f30",
+  "code_sha256": {
+    "training/train_regions.py": "3b5dc4c684afe12d9dfde2b93e85b38df51d5863fcb4491ebe1685bbf008bc98",
+    "training/region_network.py": "aeca98a74d495942efebe9f82b2ef7b05cc8aafa60696e6ff7430b50eec4dbf2",
+    "training/network.py": "ce52a705cecb29cd5a024fb5a8ec5d05a710c9bedc0998c870b366f2ff763f22",
+    "training/region_labels.py": "15ebbee685d7544b633c0e01e18533958a8b887587770377715cb04e06f536ca",
+    "training/capture/generate_scenes.py": "fec60d9e12084a73ba888391c527af4684fd3f07532655b54d383630b60f7f3d",
+    "src/flux_glyph/region_font.py": "6e9ce2c812be94e41e0ca492c7555c671a5bd9d6bed34bec83200076f2202a25"
+  },
+  "test_arrays_opened": false,
+  "test_scope": "New fixed capture pages; same controlled simulator domain as the parent model."
+}

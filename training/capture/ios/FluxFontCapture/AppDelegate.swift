@@ -104,7 +104,12 @@ private func systemWeight(_ value: Any?) -> UIFont.Weight {
 
 private func canonicalFamily(postscript: String, family: String) -> String? {
     let lower = postscript.lowercased()
-    if lower.contains("pingfangsc") || family == "PingFang SC" { return "PingFang SC" }
+    // Regional PingFang names are distinct labels, never aliases of SC.
+    for variant in ["SC", "TC", "HK"] {
+        if lower.hasPrefix("pingfang\(variant.lowercased())-") && family == "PingFang \(variant)" {
+            return "PingFang \(variant)"
+        }
+    }
     if lower.contains("helvetica") { return "Helvetica" }
     if lower.contains("sfui") || lower.contains("sfpro") || family.contains("SF Pro") || family.contains("SF UI") { return "SF Pro" }
     if let registered = activeFontAssets[postscript], registered["registration_succeeded"] as? Bool == true { return registered["family"] as? String }
@@ -359,11 +364,18 @@ private final class CaptureView: UIView {
         let requested = input["font_postscript"] as? String ?? "-system"
         let expectedFamily = input["font_family"] as? String ?? ""
         let script = input["script"] as? String ?? ""
+        let language = input["language"] as? String
         var result: [String: Any] = ["id": input["id"] as? String ?? "", "text": text, "script": script,
             "requested_font_postscript": requested, "requested_font_family": expectedFamily,
             "font_family": expectedFamily, "font_match_verified": false, "status": "rejected", "glyphs": []]
         func reject(_ reason: String) -> [String: Any] { result["reason"] = reason; return result }
         guard !text.isEmpty, !text.contains("\n"), ["han", "latin"].contains(script) else { return reject("invalid_text_or_script") }
+        if let language = language {
+            guard (script == "han" && ["zh-Hans", "zh-Hant", "zh-Hant-TW", "zh-Hant-HK"].contains(language)) ||
+                  (script == "latin" && language == "en") else { return reject("invalid_capture_language") }
+            result["requested_language"] = language
+        }
+        result["han_orthography"] = input["han_orthography"] ?? NSNull()
         let scalars = Array(text.unicodeScalars)
         guard scalars.allSatisfy({ $0.value <= 0xffff && !$0.properties.isJoinControl }),
               scalars.contains(where: { characterScript($0) == script }),
@@ -416,10 +428,12 @@ private final class CaptureView: UIView {
         result["text_color_hex"] = textColorHex
         result["actual_text_color_hex"] = textColorHex
         result["background_hex"] = backgroundHex
-        let attributed = NSAttributedString(string: text, attributes: [
+        var attributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key(kCTFontAttributeName as String): ctFont,
             NSAttributedString.Key(kCTForegroundColorAttributeName as String): color.cgColor,
-            NSAttributedString.Key(kCTLigatureAttributeName as String): 0])
+            NSAttributedString.Key(kCTLigatureAttributeName as String): 0]
+        if let language = language { attributes[NSAttributedString.Key(kCTLanguageAttributeName as String)] = language }
+        let attributed = NSAttributedString(string: text, attributes: attributes)
         let line = CTLineCreateWithAttributedString(attributed)
         var ascent: CGFloat = 0, descent: CGFloat = 0, leading: CGFloat = 0
         let advance = CTLineGetTypographicBounds(line, &ascent, &descent, &leading)
@@ -451,6 +465,7 @@ private final class CaptureView: UIView {
             CTRunGetStringIndices(item, CFRange(location: 0, length: 0), &indices)
             zeroGlyphs += glyphs.filter { $0 == 0 }.count
             runs.append(["postscript_name": runPS, "family": runFamily, "glyph_count": count,
+                         "language": attributes[kCTLanguageAttributeName] ?? NSNull(),
                          "glyph_ids": glyphs.map { Int($0) }, "string_indices_utf16": indices.map { Int($0) }])
             for i in 0 ..< count {
                 var glyph = glyphs[i]

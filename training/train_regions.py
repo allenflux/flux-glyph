@@ -60,11 +60,12 @@ def state_sha(state):
     return digest.hexdigest()
 
 
-def prepare(captures, output):
+def prepare(captures, output, *, group_pingfang=False, test_history='reused'):
     """Extract actual whole-region PNG crops; native text never enters pixels."""
     from training.capture import prepare_captured as native
     from flux_glyph.region_font import preprocess_region
-    from training.prepare_screenshots import family_names
+    from training.capture.generate_scenes import capture_families
+    from training.region_labels import label_groups, font_label, region_families
 
     captures, output = Path(captures).resolve(), Path(output).resolve()
     require(not output.exists(), 'prepared output must be new')
@@ -74,7 +75,10 @@ def prepare(captures, output):
     protocol_path, protocol = native.capture_protocol(captures.parent, scenes_sha)
     protocol_sha = sha(protocol_path)
     font_registry = {font['id']: font for font in scenes['fonts']}
-    families = family_names()
+    native_families = capture_families()
+    groups = label_groups(group_pingfang)
+    require(test_history in ('fresh', 'reused'), 'unknown test history')
+    families = region_families(groups)
     preprocess_sha = sha(ROOT / 'src/flux_glyph/region_font.py')
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix='.native-regions-', dir=output.parent) as temporary:
@@ -111,13 +115,14 @@ def prepare(captures, output):
                                         'source_sha256': record['source_sha256'], 'decoded_pixel_sha256': pixels_sha,
                                         'content_group_id': identities['content_group_id'], 'scenes_sha256': scenes_sha})
                         for region in record['regions']:
-                            family = region['font_family']
-                            require(family in families, 'native font family outside training registry')
-                            reason = native.font_evidence(region, family, region['script'])
+                            native_family = region['font_family']
+                            require(native_family in native_families, 'native font family outside training registry')
+                            reason = native.font_evidence(region, native_family, region['script'])
                             reason = reason or native.asset_evidence(region, requests[region['id']], font_registry)
                             if reason:
                                 rejected['native:' + reason] += 1
                                 continue
+                            family = font_label(native_family, groups)
                             style = native.native_style(region, record['native'])
                             require(native.bounds(region.get('bbox'), image.size), 'invalid native region bbox')
                             crop = image.crop(region['bbox'])
@@ -144,6 +149,7 @@ def prepare(captures, output):
                             raw = tiles.tobytes()
                             entry = {'index': len(metadata[split]), 'tile_start': counts[split], 'tile_count': len(tiles),
                                      'family': family, 'font_face': region['actual_font_postscript'],
+                                     'native_font_family': native_family,
                                      'source_id': record['source_id'], 'page_id': page['id'], 'region_id': region['id'],
                                      'content_group_id': identities['content_group_id'], 'split': split,
                                      'source_sha256': record['source_sha256'], 'decoded_pixel_sha256': pixels_sha,
@@ -188,6 +194,9 @@ def prepare(captures, output):
                 'capture inputs changed during preparation')
         require(sha(ROOT / 'src/flux_glyph/region_font.py') == preprocess_sha, 'preprocessing code changed during preparation')
         manifest = {'schema': DATA_SCHEMA, 'families': active, 'splits': splits, 'sources': sources,
+                    'font_label_groups': groups,
+                    'font_sources': {family: sorted({font['kind'] for font in font_registry.values()
+                                     if font_label(font['family'], groups) == family}) for family in active},
                     'source_kind': 'ios_simulator_screenshot', 'capture_domain': 'ios_simulator_controlled_scene',
                     'ui_content_is_generated': True, 'image_source': 'simctl_png', 'accepted_native_verified_only': True,
                     'input_labels': {'path': str(captures), 'sha256': labels_sha},
@@ -202,7 +211,9 @@ def prepare(captures, output):
                     'text_features_used': False, 'character_segmentation_performed': False,
                     'label_text_use': 'native evidence validation and pre-existing source/content split audit only',
                     'regression_target': 'log(native_font_size_screen_px / image_measured_ink_height_px)',
-                    'test_scope': 'Previously used fixed test pages; regression suite, not a new blind test.',
+                    'test_history': test_history,
+                    'test_scope': ('New fixed capture pages; same controlled simulator domain as the parent model.'
+                                   if test_history == 'fresh' else 'Previously used fixed test pages; regression suite, not a new blind test.'),
                     'rejected': dict(rejected), 'preparation_code_sha256': sha(Path(__file__))}
         dump(stage / 'MANIFEST.json', manifest)
         stage.rename(output)
@@ -226,10 +237,11 @@ class RegionData:
         require(m['preprocessing']['source_sha256'] == sha(ROOT / 'src/flux_glyph/region_font.py'), 'region preprocessing code differs')
         require(m['preprocessing']['shape'] == [1, 64, 256], 'region tensor geometry differs')
         self.families = m['families']
-        from training.prepare_screenshots import family_names
+        from training.region_labels import validate_groups, region_families
+        self.groups = validate_groups(m.get('font_label_groups', {}))
         require(isinstance(self.families, list) and 2 <= len(self.families) <= 64
                 and len(set(self.families)) == len(self.families), 'invalid active region classes')
-        require(self.families == [name for name in family_names() if name in self.families],
+        require(self.families == [name for name in region_families(self.groups) if name in self.families],
                 'active region classes differ from the ordered family registry')
         for name in ('input_labels', 'scenes', 'capture_protocol'):
             entry = m[name]
@@ -277,6 +289,10 @@ class RegionData:
             next_tile += row['tile_count']
             require(row['family'] in self.families and row['target'] == self.families.index(row['family'])
                     and row['native_font_verified'] is True and row['whole_width_covered'] is True, 'invalid native family target or incomplete region')
+            from training.region_labels import font_label
+            native_family = row.get('native_font_family', row['family'])
+            require(font_label(native_family, self.groups) == row['family']
+                    and (not self.groups or native_family not in self.groups), 'native font identity differs from label group')
             require(not any(key in row for key in ('text', 'script', 'tokens', 'characters')), 'region metadata leaks input text/script')
             source = self.sources.get(row['source_id'])
             require(source is not None and source['split'] == split, 'region has no source in this split')
@@ -434,9 +450,11 @@ def benchmark(args, data, training):
     torch.set_num_threads(4)
     torch.manual_seed(args.seed)
     net = RegionFontClassifier(len(data.families))
-    net.warm_start(args.warm_start, data.families)
-    with torch.no_grad():
-        net.size_head.bias.fill_(float(np.median(training['log_em_ratio'])))
+    net.warm_start(args.warm_start, data.families, new_family_parents=family_initializers(args, data.families),
+                   preserve_size_head=getattr(args, 'preserve_size_head', False))
+    if not getattr(args, 'preserve_size_head', False):
+        with torch.no_grad():
+            net.size_head.bias.fill_(float(np.median(training['log_em_ratio'])))
     net.to(args.device).train()
     optimizer = torch.optim.AdamW(net.parameters(), lr=args.learning_rate, weight_decay=1e-4)
     sampler, elapsed = RegionSampler(training, args.seed), []
@@ -498,22 +516,28 @@ def train(args):
     device = 'mps' if args.device == 'auto' and torch.backends.mps.is_available() else 'cpu' if args.device == 'auto' else args.device
     require(device != 'mps' or torch.backends.mps.is_available(), 'MPS is unavailable')
     net = RegionFontClassifier(len(families))
-    parent_families = net.warm_start(args.warm_start, families)
-    with torch.no_grad():
-        net.size_head.bias.fill_(float(np.median(training['log_em_ratio'])))
+    initializers = family_initializers(args, families)
+    parent_families = net.warm_start(args.warm_start, families, new_family_parents=initializers,
+                                    preserve_size_head=getattr(args, 'preserve_size_head', False))
+    if not getattr(args, 'preserve_size_head', False):
+        with torch.no_grad():
+            net.size_head.bias.fill_(float(np.median(training['log_em_ratio'])))
     initial = {key: value.detach().cpu().clone() for key, value in net.state_dict().items()}
     before = state_sha(initial)
     net.to(device)
     sampler = RegionSampler(training, args.seed)
     code = {str(path.relative_to(ROOT)): sha(path) for path in
-            [Path(__file__), ROOT / 'training/region_network.py', ROOT / 'training/network.py', ROOT / 'src/flux_glyph/region_font.py']}
+            [Path(__file__), ROOT / 'training/region_network.py', ROOT / 'training/network.py',
+             ROOT / 'training/region_labels.py', ROOT / 'training/capture/generate_scenes.py',
+             ROOT / 'src/flux_glyph/region_font.py']}
     freeze = {'schema': 'flux-glyph-region-training-freeze-v1', 'families': families, 'seed': args.seed,
               'device': device, 'torch': torch.__version__, 'optimizer_steps_planned': args.steps,
               'batch_size': args.batch_size, 'evaluate_every_steps': args.eval_every,
               'optimizer': {'name': 'AdamW', 'learning_rate': args.learning_rate, 'weight_decay': .0001},
-              'loss': '8-family unmasked cross entropy + 0.5 smooth-L1(log em/ink ratio), beta=0.05',
+              'loss': f'{len(families)}-family unmasked cross entropy + 0.5 smooth-L1(log em/ink ratio), beta=0.05',
               'selection': 'calibration family macro accuracy minus 0.1 times min(mean size relative error,1); earliest tie',
               'model_inputs': ['RGB-derived region tiles'], 'ocr_inputs': False, 'script_mask': False,
+              'font_label_groups': data.groups,
               'region_aggregation': 'mean patch softmax; size=ink_height*exp(median(log_em_ratio))',
               'invalid_output': 'reject entire region when any abs(log_em_ratio)>3 or whole width not covered',
               'size_spread': '(p90_ratio-p10_ratio)/median_ratio',
@@ -522,9 +546,11 @@ def train(args):
               'data_manifest_sha256': data.manifest_sha, 'source_kind': 'ios_simulator_screenshot',
               'source_counts': dict(Counter(source['split'] for source in data.sources.values())),
               'regions': {split: data.manifest['splits'][split]['regions'] for split in SPLITS},
-              'warm_start': {'path': str(args.warm_start.resolve()), 'sha256': sha(args.warm_start), 'families': parent_families},
+              'warm_start': {'path': str(args.warm_start.resolve()), 'sha256': sha(args.warm_start), 'families': parent_families,
+                             'new_family_initializers': initializers,
+                             'preserved_size_head': getattr(args, 'preserve_size_head', False)},
               'initial_state_sha256': before, 'code_sha256': code, 'test_arrays_opened': False,
-              'test_scope': 'Reused fixed regression set already evaluated in glyph-CNN version; not a new blind test.'}
+              'test_scope': data.manifest.get('test_scope', 'Reused fixed regression set; not a new blind test.')}
     dump(output / 'TRAINING_FREEZE.json', freeze)
     for path in code:
         destination = output / 'frozen-code' / path
@@ -596,6 +622,8 @@ def train(args):
     torch.save(selected, neural / 'model.pth')
     meta = {'schema': 'flux-glyph-region-font-v1', 'algorithm': 'region-cnn64x256-v1',
             'families': families, 'model': {'path': 'model.onnx', 'sha256': sha(neural / 'model.onnx')},
+            'font_label_groups': data.groups,
+            'font_sources': data.manifest.get('font_sources', {}),
             'temperature': temperature, 'gates': gates, 'max_size_relative_spread': MAX_SIZE_SPREAD,
             'preprocessing': {'function': 'preprocess_region', 'shape': [1, 64, 256], 'dtype': 'float32', 'max_tiles': 8,
                               'source_sha256': data.manifest['preprocessing']['source_sha256']},
@@ -608,18 +636,26 @@ def train(args):
                          'selection_sha256': sha(output / 'SELECTION_FREEZE.json')},
             'calibration': {'gate_found': cal_result['gate_found'], 'target_region_precision': .97},
             'release_status': 'experimental',
-            'scope': 'OCR-free whole-region font candidates and pixel em size; controlled iOS Simulator captures, reused regression test.'}
+            'scope': 'OCR-free whole-region font candidates and pixel em size; ' + freeze['test_scope']}
     dump(neural / 'metadata.json', meta)
     report = {'schema': 'flux-glyph-region-font-training-report-v1', 'families': families, 'selection': selection,
-              'test': test_result, 'test_arrays_opened_after_freeze': True, 'test_reused_from_previous_version': True,
+              'test': test_result, 'test_arrays_opened_after_freeze': True,
+              'test_reused_from_previous_version': data.manifest.get('test_history', 'reused') != 'fresh',
+              'font_label_groups': data.groups,
               'source_counts': freeze['source_counts'], 'regions': freeze['regions'], 'model_sha256': sha(neural / 'model.onnx'),
               'ocr_performed': False, 'model_inputs': ['image_tiles'],
-              'limitations': ['Test pages were evaluated by the previous glyph classifier; this is a fixed regression suite, not a new blind test.',
+              'limitations': [freeze['test_scope'],
                               'Native region boxes isolate classification/size quality; detector quality must be evaluated separately.',
                               'Screenshots are actual iOS Simulator frames of generated controlled native pages.',
                               'Physical-device/third-party-app accuracy and unknown-font rejection are not established.']}
     dump(output / 'report.json', report)
     print(json.dumps({'finished': True, 'output': str(output), 'selected_step': best['step'], 'model': str(neural / 'model.onnx')}), flush=True)
+
+
+def family_initializers(args, families):
+    if not getattr(args, 'allow_new_traditional_families', False):
+        return {}
+    return {name: 'PingFang SC' for name in ('PingFang', 'PingFang TC', 'PingFang HK') if name in families}
 
 
 def main():
@@ -628,9 +664,17 @@ def main():
     parser.add_argument('--data', required=True, type=Path)
     parser.add_argument('--output', type=Path)
     parser.add_argument('--prepare-only', action='store_true')
+    parser.add_argument('--test-history', choices=['fresh', 'reused'], default='reused',
+                        help='Record whether source test pages have been used before; fresh does not mean an unseen domain')
+    parser.add_argument('--group-pingfang', action='store_true',
+                        help='Prepare SC/TC/HK as the visually identifiable PingFang family; retain native source identity')
     parser.add_argument('--validate-only', action='store_true')
     parser.add_argument('--benchmark-steps', type=int, default=0)
     parser.add_argument('--warm-start', type=Path, default=ROOT / 'artifacts/ios-font-screenshots-v1/neural/model.pth')
+    parser.add_argument('--allow-new-traditional-families', action='store_true',
+                        help='Initialize new PingFang TC/HK heads from SC; requires actual native training samples')
+    parser.add_argument('--preserve-size-head', action='store_true',
+                        help='Continue the parent region model size head instead of reinitializing it')
     parser.add_argument('--device', choices=['cpu', 'mps', 'auto'], default='auto')
     parser.add_argument('--steps', type=int, default=3000)
     parser.add_argument('--batch-size', type=int, default=64)
@@ -643,7 +687,7 @@ def main():
             'benchmark must be a separate bounded invocation')
     if args.prepare_only:
         require(args.captures is not None, '--captures is required for preparation')
-        report = prepare(args.captures, args.data)
+        report = prepare(args.captures, args.data, group_pingfang=args.group_pingfang, test_history=args.test_history)
         print(json.dumps({'prepared': str(args.data), 'families': report['families'],
                           'regions': {s: report['splits'][s]['regions'] for s in SPLITS}}, ensure_ascii=False))
         return

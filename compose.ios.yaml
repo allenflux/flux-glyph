@@ -1,7 +1,5 @@
-# Local iOS region model: text detection + font/size CNN, without text recognition.
+# Local image name; inherits ./models and ACTIVE.json from compose.yaml.
 # docker compose -f compose.yaml -f compose.ios.yaml up -d --build
 services:
   api:
     image: flux-glyph:ios-local
-    volumes:
-      - ./artifacts/ios-region-font-v1/bundle-stable:/app/models:ro

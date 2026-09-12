@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 from PIL import Image, ImageDraw
@@ -151,11 +152,35 @@ class ScreenshotPreparationTests(unittest.TestCase):
                'split': 'train', 'source_kind': 'source_font_synthetic_smoke',
                'regions': [{'bbox': case['expected_text_bbox'], 'text': case['text'],
                             'font_family': case['expected_family'], 'script': 'han'}]}
-        report = prepare_module.prepare(self.write([row]), self.folder / 'actual-ocr')
+        report = prepare_module.prepare(self.write([row]), self.folder / 'actual-ocr',
+                                        legacy_model_dir=ROOT / 'models')
         self.assertFalse(report['test_reader_injected'])
+        self.assertEqual(report['ocr_sources']['model_version'], 'r14-mobile-fonts-v1')
         self.assertEqual([row['character'] for row in report['accepted_glyphs']], list(case['text']))
         self.assertEqual(report['splits']['train']['rows'], 4)
         self.assertEqual(report['rejected'], [])
+
+    def test_explicit_legacy_bundle_does_not_follow_active_serving_model(self):
+        with patch('flux_glyph.models.load_active', side_effect=AssertionError('Must not follow ACTIVE.json')):
+            directory, version, manifest = prepare_module.load_legacy_ocr_bundle(ROOT / 'models')
+        self.assertEqual(directory, ROOT / 'models')
+        self.assertEqual(version, 'r14-mobile-fonts-v1')
+        self.assertIn('pp/onnx/paddle_ocr_rec.onnx', {row['path'] for row in manifest['files']})
+
+    def test_region_only_bundle_is_rejected_as_legacy_ocr_input(self):
+        with self.assertRaisesRegex(ValueError, 'requires an explicit OCR bundle.*paddle_ocr_rec'):
+            prepare_module.load_legacy_ocr_bundle(ROOT / 'models/releases/r16-ios-region-v1')
+
+    def test_legacy_reader_assets_must_pass_manifest_checksum(self):
+        path = self.folder / 'pp/onnx/paddle_ocr_rec.onnx'
+        path.parent.mkdir(parents=True)
+        expected = b'verified-model-bytes'
+        (self.folder / 'MANIFEST.json').write_text(json.dumps({'files': [
+            {'path': 'pp/onnx/paddle_ocr_rec.onnx', 'bytes': len(expected),
+             'sha256': prepare_module.sha_bytes(expected)}]}))
+        path.write_bytes(b'changed-model-bytes!')
+        with self.assertRaisesRegex(ValueError, 'Model file checksum mismatch.*paddle_ocr_rec'):
+            prepare_module.load_legacy_ocr_bundle(self.folder)
 
 
 if __name__ == '__main__':

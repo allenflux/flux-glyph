@@ -1,0 +1,613 @@
+{
+  "result": "passed",
+  "testedAt": "2026-09-12T06:11:18.833Z",
+  "baseUrl": "http://127.0.0.1:9000",
+  "health": {
+    "ok": true,
+    "model_version": "r17-ios-hant-region-v1",
+    "max_upload_mb": 8,
+    "max_pixels": 12000000,
+    "workers": 1,
+    "queue_size": 8,
+    "authentication_required": false,
+    "running_jobs": 0,
+    "waiting_jobs": 0
+  },
+  "checks": [
+    "real upload, one-worker FIFO queue position downshift, and asynchronous polling",
+    "visible animated stage progress without false 100%, plus reduced-motion behavior",
+    "Chinese/English switching during pending and completed states",
+    "region results followed by full-width exact formatted JSON on desktop and mobile",
+    "health-selected active model download card, matching version, same-origin link, and standalone usage",
+    "metadata-driven system/app font sources and grouped PingFang scope in Chinese/English; legacy metadata remains compatible",
+    "real region inference returns no OCR text or single-character evidence",
+    "exact full JSON copy through Clipboard API and insecure-context fallback",
+    "no legacy JSON download control; original-size annotated PNG still downloads",
+    "polygon selection, crop, font evidence, source coordinates, and pixel annotation",
+    "region pixel size and text color/swatch match the source result without inventing uncertain values",
+    "Original result fields and raw JSON unchanged by localization",
+    "new selection and real upload error clear stale result/JSON controls",
+    "desktop/mobile overflow and browser diagnostics",
+    "responsive 40/32px Flux Glyph branding, no footer, and a loaded red/white SVG favicon"
+  ],
+  "cases": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 900,
+        "mobile": false
+      },
+      "job": "313430a227b74f629236cfa11b4f3f50",
+      "status": "识别完成",
+      "fontModel": {
+        "status": 200,
+        "info": {
+          "available": true,
+          "format": "ONNX",
+          "version": "r17-ios-hant-region-v1",
+          "families": [
+            "HarmonyOS Sans SC",
+            "MiSans",
+            "Noto Sans CJK SC",
+            "OPPO Sans",
+            "PingFang",
+            "SF Pro",
+            "Helvetica",
+            "Alipay Number"
+          ],
+          "font_label_groups": {
+            "PingFang": [
+              "PingFang SC",
+              "PingFang TC",
+              "PingFang HK"
+            ]
+          },
+          "font_sources": {
+            "HarmonyOS Sans SC": [
+              "asset"
+            ],
+            "MiSans": [
+              "asset"
+            ],
+            "Noto Sans CJK SC": [
+              "asset"
+            ],
+            "OPPO Sans": [
+              "asset"
+            ],
+            "PingFang": [
+              "system"
+            ],
+            "SF Pro": [
+              "system"
+            ],
+            "Helvetica": [
+              "system"
+            ],
+            "Alipay Number": [
+              "asset"
+            ]
+          },
+          "input_shape": [
+            null,
+            1,
+            64,
+            256
+          ],
+          "download_url": "/api/models/font/download",
+          "bytes": 1361929,
+          "sha256": "c312975ef5694d05fb4facec785946635caf91fa73b0c8daf7a1293049fbe393",
+          "ocr_required": false,
+          "usage": {
+            "install": "pip install -r requirements.txt",
+            "predict": "python predict.py text-region.png"
+          }
+        },
+        "href": "/api/models/font/download",
+        "enabled": true,
+        "visibleVersion": "r17-ios-hant-region-v1 · 1.3 MB",
+        "usage": "pip install -r requirements.txt\npython predict.py text-region.png",
+        "layout": {
+          "expanded": true,
+          "precedesUpload": true,
+          "noOverflow": true,
+          "usageVisible": true
+        }
+      },
+      "modelVersion": "r17-ios-hant-region-v1",
+      "fontMethod": "region_neural_network",
+      "ocrPerformed": false,
+      "noTranscription": true,
+      "progress": {
+        "stage_code": "complete",
+        "percent": 100,
+        "current": null,
+        "total": null
+      },
+      "processing": {
+        "job": "313430a227b74f629236cfa11b4f3f50",
+        "status": "queued",
+        "progress": {
+          "stage_code": "queued",
+          "percent": 0,
+          "current": null,
+          "total": null
+        },
+        "queue": {
+          "position": 8,
+          "ahead": 8,
+          "total": 8
+        },
+        "label": "排队中…",
+        "queueText": "排队第 8 位，前方 8 个任务",
+        "animated": true,
+        "visible": true,
+        "screenshot": "artifacts/ios-hant-region-v1/browser-qa/browser_processing.png",
+        "languages": {
+          "en": {
+            "label": "Waiting in queue…",
+            "queue": "Queue position 8 · 8 job(s) ahead",
+            "status": "Waiting in queue…"
+          },
+          "zh": {
+            "label": "排队中…",
+            "queue": "排队第 8 位，前方 8 个任务",
+            "status": "排队中…"
+          },
+          "snapshot": {
+            "id": "313430a227b74f629236cfa11b4f3f50",
+            "status": "queued",
+            "stage": "等待识别",
+            "created_at": 1789193470.4085608,
+            "filename": "ui_title_billing_details.png",
+            "progress": {
+              "stage_code": "queued",
+              "percent": 0,
+              "current": null,
+              "total": null
+            },
+            "queue_position": 8,
+            "queue_ahead": 8,
+            "queue_total": 8
+          }
+        },
+        "reducedMotion": {
+          "animationName": "none",
+          "animationDuration": "0s",
+          "transitionDuration": "0s"
+        },
+        "queueFillers": 8,
+        "timeline": [
+          {
+            "status": "queued",
+            "position": 8,
+            "ahead": 8,
+            "total": 8,
+            "progress": {
+              "stage_code": "queued",
+              "percent": 0,
+              "current": null,
+              "total": null
+            }
+          },
+          {
+            "status": "queued",
+            "position": 6,
+            "ahead": 6,
+            "total": 6,
+            "progress": {
+              "stage_code": "queued",
+              "percent": 0,
+              "current": null,
+              "total": null
+            }
+          }
+        ],
+        "reconnect": {
+          "job": "313430a227b74f629236cfa11b4f3f50",
+          "status": "连接暂时中断，2 秒后继续查询当前任务…",
+          "startDisabled": true,
+          "result": null
+        }
+      },
+      "regions": 1,
+      "original": {
+        "width": 227,
+        "height": 69
+      },
+      "annotated": {
+        "width": 227,
+        "height": 69
+      },
+      "changedPixels": 3626,
+      "crop": {
+        "width": 223,
+        "height": 62
+      },
+      "viewBox": "0 0 227 69",
+      "noHorizontalOverflow": true,
+      "viewerFitsImage": true,
+      "regionCropThumbnailsFit": true,
+      "candidateHeadingSpansColumns": true,
+      "selectedRegion": "R001",
+      "summary": "检测 1已识别 1神经网络0.01 秒r17-ios-hant-region-v1",
+      "layout": {
+        "sideBySide": false,
+        "stacked": true
+      },
+      "textStyle": {
+        "source": {
+          "text_color_hex": "#000000",
+          "font_size_px_estimate": 53.84,
+          "font_size_px_interval": null,
+          "color": {
+            "status": "estimated",
+            "reason": "visible_region_core_pixels",
+            "method": "source_rgb_core_pixels",
+            "background_hex": "#F5F5F5",
+            "glyph_count": 0,
+            "sample_pixels": 3482,
+            "spread_rgb": 0,
+            "alpha_recovered": false
+          },
+          "size": {
+            "status": "estimated",
+            "reason": "region_neural_size_regression",
+            "method": "region_neural_regression",
+            "unit": "source_image_px",
+            "relative_patch_spread": 0
+          }
+        },
+        "size": "估计字号：≈ 53.8 px",
+        "color": "文字颜色：#000000",
+        "swatch": "rgb(0, 0, 0)"
+      },
+      "json": {
+        "formattedExact": true,
+        "bytes": 3249,
+        "legacyDownloadAbsent": true
+      },
+      "clipboard": {
+        "fallback": "JSON 已复制",
+        "api": "JSON copied",
+        "exact": true
+      },
+      "localization": {
+        "chinese": {
+          "uploadTitle": "上传图片",
+          "resultTitle": "识别结果",
+          "progress": "识别完成",
+          "fontReason": "区域字体神经网络的模型分数与候选区分度达到当前门槛。",
+          "fontSources": [
+            {
+              "source": "system",
+              "text": "系统内置字体：PingFang · SF Pro · Helvetica"
+            },
+            {
+              "source": "asset",
+              "text": "应用自带字体：HarmonyOS Sans SC · MiSans · Noto Sans CJK SC · OPPO Sans · Alipay Number"
+            }
+          ],
+          "fontLabelNote": {
+            "hidden": false,
+            "text": "苹方覆盖简体／繁体，未细分地区版本。"
+          }
+        },
+        "english": {
+          "uploadTitle": "Upload image",
+          "resultTitle": "Recognition results",
+          "progress": "Recognition complete",
+          "fontReason": "The region font network passes the current score and separation gates.",
+          "fontSources": [
+            {
+              "source": "system",
+              "text": "Built-in system fonts: PingFang · SF Pro · Helvetica"
+            },
+            {
+              "source": "asset",
+              "text": "App-bundled fonts: HarmonyOS Sans SC · MiSans · Noto Sans CJK SC · OPPO Sans · Alipay Number"
+            }
+          ],
+          "fontLabelNote": {
+            "hidden": false,
+            "text": "PingFang covers Simplified and Traditional Chinese; regional variants are not classified separately."
+          }
+        },
+        "ocrUnchanged": true,
+        "rawJsonUnchanged": true
+      },
+      "staleOutputCleared": true,
+      "errorState": {
+        "message": "图片无法读取。请上传 8 MB 内、1200 万像素内的 PNG、JPG 或 WebP 静态图。",
+        "result": null,
+        "json": "",
+        "resultHidden": true,
+        "copyDisabled": true,
+        "progressInvalid": "true",
+        "progressNow": null
+      },
+      "branding": {
+        "heading": "Flux Glyph",
+        "fontSize": "40px",
+        "footerAbsent": true,
+        "favicon": {
+          "href": "/static/favicon.svg?v=fg-red-1",
+          "status": 200,
+          "type": "image/svg+xml",
+          "red": true,
+          "white": true,
+          "viewBox": true
+        }
+      },
+      "docsLocalization": {
+        "lang": "en",
+        "heading": "Download and run the font model",
+        "brand": "Flux Glyph API",
+        "fontSize": "32px",
+        "footerAbsent": true
+      },
+      "faviconScreenshot": "artifacts/ios-hant-region-v1/browser-qa/browser_favicon.png",
+      "download": {
+        "png": {
+          "filename": "flux-glyph-313430a227b74f629236cfa11b4f3f50.png",
+          "bytes": 5752,
+          "width": 227,
+          "height": 69
+        }
+      },
+      "screenshots": {
+        "modelSources": "artifacts/ios-hant-region-v1/browser-qa/browser_desktop_model_sources.png",
+        "desktopZh": "artifacts/ios-hant-region-v1/browser-qa/browser_desktop_zh.png",
+        "desktopEn": "artifacts/ios-hant-region-v1/browser-qa/browser_desktop_en.png"
+      },
+      "browserErrors": [],
+      "ignoredBrowserDiagnostics": [
+        "http 400: http://127.0.0.1:9000/api/jobs",
+        "console: Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:9000/api/jobs)"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "mobile": true
+      },
+      "job": "5cc7c92714f341678b19251450c121a3",
+      "status": "识别完成",
+      "fontModel": {
+        "status": 200,
+        "info": {
+          "available": true,
+          "format": "ONNX",
+          "version": "r17-ios-hant-region-v1",
+          "families": [
+            "HarmonyOS Sans SC",
+            "MiSans",
+            "Noto Sans CJK SC",
+            "OPPO Sans",
+            "PingFang",
+            "SF Pro",
+            "Helvetica",
+            "Alipay Number"
+          ],
+          "font_label_groups": {
+            "PingFang": [
+              "PingFang SC",
+              "PingFang TC",
+              "PingFang HK"
+            ]
+          },
+          "font_sources": {
+            "HarmonyOS Sans SC": [
+              "asset"
+            ],
+            "MiSans": [
+              "asset"
+            ],
+            "Noto Sans CJK SC": [
+              "asset"
+            ],
+            "OPPO Sans": [
+              "asset"
+            ],
+            "PingFang": [
+              "system"
+            ],
+            "SF Pro": [
+              "system"
+            ],
+            "Helvetica": [
+              "system"
+            ],
+            "Alipay Number": [
+              "asset"
+            ]
+          },
+          "input_shape": [
+            null,
+            1,
+            64,
+            256
+          ],
+          "download_url": "/api/models/font/download",
+          "bytes": 1361929,
+          "sha256": "c312975ef5694d05fb4facec785946635caf91fa73b0c8daf7a1293049fbe393",
+          "ocr_required": false,
+          "usage": {
+            "install": "pip install -r requirements.txt",
+            "predict": "python predict.py text-region.png"
+          }
+        },
+        "href": "/api/models/font/download",
+        "enabled": true,
+        "visibleVersion": "r17-ios-hant-region-v1 · 1.3 MB",
+        "usage": "pip install -r requirements.txt\npython predict.py text-region.png",
+        "layout": {
+          "expanded": true,
+          "precedesUpload": true,
+          "noOverflow": true,
+          "usageVisible": true
+        }
+      },
+      "modelVersion": "r17-ios-hant-region-v1",
+      "fontMethod": "region_neural_network",
+      "ocrPerformed": false,
+      "noTranscription": true,
+      "progress": {
+        "stage_code": "complete",
+        "percent": 100,
+        "current": null,
+        "total": null
+      },
+      "processing": null,
+      "regions": 1,
+      "original": {
+        "width": 227,
+        "height": 69
+      },
+      "annotated": {
+        "width": 227,
+        "height": 69
+      },
+      "changedPixels": 3626,
+      "crop": {
+        "width": 223,
+        "height": 62
+      },
+      "viewBox": "0 0 227 69",
+      "noHorizontalOverflow": true,
+      "viewerFitsImage": true,
+      "regionCropThumbnailsFit": true,
+      "candidateHeadingSpansColumns": true,
+      "selectedRegion": "R001",
+      "summary": "检测 1已识别 1神经网络0.02 秒r17-ios-hant-region-v1",
+      "layout": {
+        "sideBySide": false,
+        "stacked": true
+      },
+      "textStyle": {
+        "source": {
+          "text_color_hex": "#000000",
+          "font_size_px_estimate": 53.84,
+          "font_size_px_interval": null,
+          "color": {
+            "status": "estimated",
+            "reason": "visible_region_core_pixels",
+            "method": "source_rgb_core_pixels",
+            "background_hex": "#F5F5F5",
+            "glyph_count": 0,
+            "sample_pixels": 3482,
+            "spread_rgb": 0,
+            "alpha_recovered": false
+          },
+          "size": {
+            "status": "estimated",
+            "reason": "region_neural_size_regression",
+            "method": "region_neural_regression",
+            "unit": "source_image_px",
+            "relative_patch_spread": 0
+          }
+        },
+        "size": "估计字号：≈ 53.8 px",
+        "color": "文字颜色：#000000",
+        "swatch": "rgb(0, 0, 0)"
+      },
+      "json": {
+        "formattedExact": true,
+        "bytes": 3244,
+        "legacyDownloadAbsent": true
+      },
+      "clipboard": {
+        "fallback": "JSON 已复制",
+        "api": "JSON copied",
+        "exact": true
+      },
+      "localization": {
+        "chinese": {
+          "uploadTitle": "上传图片",
+          "resultTitle": "识别结果",
+          "progress": "识别完成",
+          "fontReason": "区域字体神经网络的模型分数与候选区分度达到当前门槛。",
+          "fontSources": [
+            {
+              "source": "system",
+              "text": "系统内置字体：PingFang · SF Pro · Helvetica"
+            },
+            {
+              "source": "asset",
+              "text": "应用自带字体：HarmonyOS Sans SC · MiSans · Noto Sans CJK SC · OPPO Sans · Alipay Number"
+            }
+          ],
+          "fontLabelNote": {
+            "hidden": false,
+            "text": "苹方覆盖简体／繁体，未细分地区版本。"
+          }
+        },
+        "english": {
+          "uploadTitle": "Upload image",
+          "resultTitle": "Recognition results",
+          "progress": "Recognition complete",
+          "fontReason": "The region font network passes the current score and separation gates.",
+          "fontSources": [
+            {
+              "source": "system",
+              "text": "Built-in system fonts: PingFang · SF Pro · Helvetica"
+            },
+            {
+              "source": "asset",
+              "text": "App-bundled fonts: HarmonyOS Sans SC · MiSans · Noto Sans CJK SC · OPPO Sans · Alipay Number"
+            }
+          ],
+          "fontLabelNote": {
+            "hidden": false,
+            "text": "PingFang covers Simplified and Traditional Chinese; regional variants are not classified separately."
+          }
+        },
+        "ocrUnchanged": true,
+        "rawJsonUnchanged": true
+      },
+      "staleOutputCleared": true,
+      "errorState": {
+        "message": "图片无法读取。请上传 8 MB 内、1200 万像素内的 PNG、JPG 或 WebP 静态图。",
+        "result": null,
+        "json": "",
+        "resultHidden": true,
+        "copyDisabled": true,
+        "progressInvalid": "true",
+        "progressNow": null
+      },
+      "branding": {
+        "heading": "Flux Glyph",
+        "fontSize": "32px",
+        "footerAbsent": true,
+        "favicon": {
+          "href": "/static/favicon.svg?v=fg-red-1",
+          "status": 200,
+          "type": "image/svg+xml",
+          "red": true,
+          "white": true,
+          "viewBox": true
+        }
+      },
+      "docsLocalization": null,
+      "faviconScreenshot": null,
+      "download": {
+        "png": {
+          "filename": "flux-glyph-5cc7c92714f341678b19251450c121a3.png",
+          "bytes": 5752,
+          "width": 227,
+          "height": 69
+        }
+      },
+      "screenshots": {
+        "modelSources": "artifacts/ios-hant-region-v1/browser-qa/browser_mobile_model_sources.png",
+        "mobile": "artifacts/ios-hant-region-v1/browser-qa/browser_mobile.png"
+      },
+      "browserErrors": [],
+      "ignoredBrowserDiagnostics": [
+        "http 400: http://127.0.0.1:9000/api/jobs",
+        "console: Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:9000/api/jobs)"
+      ]
+    }
+  ]
+}

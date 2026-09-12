@@ -58,3 +58,74 @@ def test_numeric_asset_does_not_label_english():
     fonts[0]['family'] = 'DeviceBrandIsNotAFont'
     with pytest.raises(ValueError, match='FAMILIES'):
         scenes.scene_document('ios', fonts, scenes.content_pages(100))
+
+
+def test_traditional_registry_is_append_only_and_inventory_verified(tmp_path):
+    assert scenes.capture_families() == scenes.families() + ['PingFang TC', 'PingFang HK']
+    with pytest.raises(ValueError, match='inventory'):
+        scenes.ios_fonts(include_traditional=True)
+    inventory = tmp_path / 'inventory.json'
+    inventory.write_text(json.dumps({'postscript_names': ['PingFangSC-Regular', 'PingFangTC-Regular', 'Helvetica']}))
+    fonts = scenes.ios_fonts(inventory, include_traditional=True)
+    named = {font['postscript']: font['family'] for font in fonts}
+    assert named['PingFangTC-Regular'] == 'PingFang TC'
+    assert not any(font['family'] == 'PingFang HK' for font in fonts)
+
+
+def test_mixed_traditional_content_is_independent_of_font_and_old_groups(tmp_path):
+    inventory = tmp_path / 'inventory.json'
+    inventory.write_text(json.dumps({'postscript_names': [f'PingFang{variant}-{suffix}' for variant in ('SC','TC','HK')
+                                                        for suffix in ('Light','Regular','Medium','Semibold')] + ['Helvetica']}))
+    old = scenes.content_pages(100)
+    forbidden = {r['text'] for page in old for r in page['regions']}
+    content = scenes.content_pages(1000, 2026091291, 'mixed', 'hant-v2', forbidden)
+    document = scenes.scene_document('ios', scenes.ios_fonts(inventory, include_traditional=True), content, 2026091291)
+    assert not {p['content_group_id'] for p in content} & {p['content_group_id'] for p in old}
+    new_text = {r['text'] for page in content for r in page['regions']}
+    assert not new_text & forbidden
+    groups = defaultdict(set)
+    traditional_text = ''
+    for page in document['pages']:
+        for row in page['regions']:
+            if row['script'] == 'han':
+                groups[(page['split'], row['font_id'])].add(row['han_orthography'])
+                assert row['language'] == ('zh-Hant' if row['han_orthography']=='traditional' else 'zh-Hans')
+                if row['han_orthography']=='traditional':
+                    traditional_text += row['text']
+    assert all(values == {'simplified','traditional'} for values in groups.values())
+    assert all(c in traditional_text for c in '帳單詳餘轉網絡醫療關閉語設')
+
+
+def test_smoke_scales_past_twenty_four_faces():
+    fonts = scenes.ios_fonts()
+    for index in range(20):
+        fonts.append(dict(fonts[0], id=f'additional-{index}'))
+    document = scenes.scene_document('ios', fonts, scenes.content_pages(1000))
+    smoke = scenes.smoke_document(document)
+    assert len(smoke['pages']) == (len(fonts)+11)//12
+    assert {r['font_id'] for p in smoke['pages'] for r in p['regions']} == {f['id'] for f in fonts}
+    assert all(len(p['regions']) == 12 for p in smoke['pages'])
+
+
+def test_second_thousand_pages_preserve_english_numeric_without_text_reuse():
+    old = scenes.content_pages(1000)
+    forbidden = {''.join(r['text'].split()) for p in old for r in p['regions']}
+    new = scenes.content_pages(1000, 2026091291, 'mixed', 'ios-hant-v1', forbidden, extended_english=True)
+    current = {''.join(r['text'].split()) for p in new for r in p['regions']}
+    assert not current & forbidden
+    assert len(current) == sum(len(p['regions']) for p in new)
+    for page in new:
+        assert Counter(r['text_kind'] for r in page['regions'])['english'] == 2
+        assert Counter(r['text_kind'] for r in page['regions'])['numeric'] == 2
+        for row in page['regions']:
+            if row['text_kind']=='numeric':
+                assert row['text'].isdigit() and row['text'].isascii()
+
+
+def test_prior_text_exclusion_uses_nfkc_casefold_and_whitespace():
+    old = scenes.content_pages(100)
+    forbidden = [r['text'].upper().replace(' ', '\t') for p in old for r in p['regions']]
+    current = scenes.content_pages(100, namespace='different', forbidden_texts=forbidden)
+    assert not ({scenes.normalized_text(r['text']) for p in current for r in p['regions']}
+                & {scenes.normalized_text(text) for text in forbidden})
+    assert scenes.normalized_text(' ＡＢＣ\t１２３ ') == scenes.normalized_text('abc123')

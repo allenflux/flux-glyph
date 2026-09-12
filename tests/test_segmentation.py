@@ -9,7 +9,7 @@ from PIL import Image, ImageDraw
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
 from flux_glyph.segmentation import segment_characters
-from flux_glyph.models import load_active
+from flux_glyph.models import verify_bundle
 from flux_glyph.ppocr import PPReader, PPRegionDetector
 
 
@@ -71,7 +71,10 @@ class SegmentationTests(unittest.TestCase):
         fixtures = Path(__file__).resolve().parent / 'fixtures'
         with Image.open(fixtures / 'ui_title_billing_details.png') as source:
             source = source.convert('RGB')
-            model_dir, _, _ = load_active(Path(__file__).resolve().parents[1] / 'models')
+            # Historical OCR geometry tests use the bundled legacy assets,
+            # independently of the current detector-only serving model.
+            model_dir = Path(__file__).resolve().parents[1] / 'models'
+            verify_bundle(model_dir)
             detected = PPRegionDetector(model_dir / 'pp').detect(source)[0]
             left, top, right, bottom = detected['source_bbox']
             margin = max(2, min(12, round((bottom - top) * .08)))
@@ -105,7 +108,8 @@ class SegmentationTests(unittest.TestCase):
     def test_pp_detector_and_reader_segment_light_text_on_blue(self):
         fixtures = Path(__file__).resolve().parent / 'fixtures'
         source_path = fixtures / 'font_accuracy/inputs/pingfang_21.0d1e1_regular--blue_png_28.png'
-        model_dir, _, _ = load_active(Path(__file__).resolve().parents[1] / 'models')
+        model_dir = Path(__file__).resolve().parents[1] / 'models'
+        verify_bundle(model_dir)
         with Image.open(source_path) as source:
             source = source.convert('RGB')
             detected = PPRegionDetector(model_dir / 'pp').detect(source)[0]

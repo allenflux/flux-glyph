@@ -1,0 +1,103 @@
+{
+  "schema": "flux-glyph-region-selection-before-test-v1",
+  "selected": {
+    "step": 4000,
+    "score": 0.9946361565697998,
+    "checkpoint_sha256": "b8e1c1b3028fd55700a6b2c33849956dba7ff9d199f8a1ac35a39d7d0a6f8813"
+  },
+  "optimizer_steps_executed": 4000,
+  "state_before_sha256": "76ef949a5cbfd24b39683aa575d41050aaa3b3e5a42bc028496053f0980e0f30",
+  "state_after_sha256": "a60a5fc62cabf69c7f07c5a3505e0715054d7848f413938a1f6ad16ff1836146",
+  "temperature": 0.5,
+  "gates": {
+    "min_score": 0.5,
+    "min_margin": 0.01,
+    "min_patch_agreement": 0.7
+  },
+  "max_size_relative_spread": 0.2,
+  "calibration": {
+    "gate_found": true,
+    "temperature": 0.5,
+    "gate_selection_level": "actual_whole_native_region",
+    "target_precision": 0.97,
+    "minimum_accepted_regions": 20,
+    "metrics": {
+      "regions": 1093,
+      "accuracy": 0.9945105215004575,
+      "macro_accuracy": 0.9952671261287153,
+      "families": {
+        "HarmonyOS Sans SC": {
+          "rows": 166,
+          "accuracy": 0.9819277108433735
+        },
+        "MiSans": {
+          "rows": 112,
+          "accuracy": 1.0
+        },
+        "Noto Sans CJK SC": {
+          "rows": 90,
+          "accuracy": 0.9888888888888889
+        },
+        "OPPO Sans": {
+          "rows": 169,
+          "accuracy": 0.9940828402366864
+        },
+        "PingFang": {
+          "rows": 362,
+          "accuracy": 0.9972375690607734
+        },
+        "SF Pro": {
+          "rows": 129,
+          "accuracy": 1.0
+        },
+        "Helvetica": {
+          "rows": 52,
+          "accuracy": 1.0
+        },
+        "Alipay Number": {
+          "rows": 13,
+          "accuracy": 1.0
+        }
+      },
+      "negative_log_likelihood": 0.05215428452276368,
+      "invalid_output_regions": 0,
+      "size": {
+        "rows": 1093,
+        "mae_px": 0.8131525632120117,
+        "mean_relative_error": 0.013839816071082964,
+        "within_10_percent": 1.0,
+        "consistent_patch_rows": 1093,
+        "consistent_patch_mae_px": 0.8131525632120117,
+        "max_size_relative_spread": 0.2
+      },
+      "accepted": {
+        "regions": 1016,
+        "correct": 1014,
+        "wrong": 2,
+        "coverage": 0.929551692589204,
+        "precision": 0.9980314960629921
+      },
+      "accepted_size": {
+        "regions": 1016,
+        "coverage": 0.929551692589204,
+        "mae_px": 0.806124189120578,
+        "mean_relative_error": 0.013708981891928667
+      }
+    },
+    "unknown_font_rejection_validated": false
+  },
+  "test_arrays_opened": false,
+  "training_seconds": 296.40615141694434,
+  "parameter_l2_change": {
+    "trunk.0.weight": 0.03947163000702858,
+    "style.0.weight": 3.202972412109375,
+    "family_head.weight": 0.4607379734516144,
+    "size_head.weight": 0.027062896639108658
+  },
+  "training_region_sampling": {
+    "rows": 8744,
+    "visited": 8744,
+    "minimum_visits": 11,
+    "maximum_visits": 320
+  }
+}

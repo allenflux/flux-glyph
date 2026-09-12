@@ -1,0 +1,105 @@
+{
+  "schema": "flux-glyph-region-font-v1",
+  "algorithm": "region-cnn64x256-v1",
+  "families": [
+    "HarmonyOS Sans SC",
+    "MiSans",
+    "Noto Sans CJK SC",
+    "OPPO Sans",
+    "PingFang",
+    "SF Pro",
+    "Helvetica",
+    "Alipay Number"
+  ],
+  "model": {
+    "path": "model.onnx",
+    "sha256": "bff569708afbb127222885539914942f9d958f46c8c11bfb9ace80784f70916b"
+  },
+  "font_label_groups": {
+    "PingFang": [
+      "PingFang SC",
+      "PingFang TC",
+      "PingFang HK"
+    ]
+  },
+  "font_sources": {
+    "HarmonyOS Sans SC": [
+      "asset"
+    ],
+    "MiSans": [
+      "asset"
+    ],
+    "Noto Sans CJK SC": [
+      "asset"
+    ],
+    "OPPO Sans": [
+      "asset"
+    ],
+    "PingFang": [
+      "system"
+    ],
+    "SF Pro": [
+      "system"
+    ],
+    "Helvetica": [
+      "system"
+    ],
+    "Alipay Number": [
+      "asset"
+    ]
+  },
+  "temperature": 0.5,
+  "gates": {
+    "min_score": 0.5,
+    "min_margin": 0.01,
+    "min_patch_agreement": 0.7
+  },
+  "max_size_relative_spread": 0.2,
+  "preprocessing": {
+    "function": "preprocess_region",
+    "shape": [
+      1,
+      64,
+      256
+    ],
+    "dtype": "float32",
+    "max_tiles": 8,
+    "source_sha256": "6e9ce2c812be94e41e0ca492c7555c671a5bd9d6bed34bec83200076f2202a25"
+  },
+  "size": {
+    "target": "log(font_size_screen_px/ink_height_px)",
+    "valid_log_ratio_range": [
+      -3,
+      3
+    ],
+    "aggregation": "exp(median(log_em_ratio))",
+    "spread": "(p90_ratio-p10_ratio)/exp(median(log_em_ratio))"
+  },
+  "aggregation": "mean_softmax_probability_across_patches",
+  "ocr_required": false,
+  "script_input_required": false,
+  "training": {
+    "data_manifest_sha256": "ed75b831c6132284ad8e908f6a34723b0e0c1380a8a18be62dfbeefffdd35022",
+    "source_kind": "ios_simulator_screenshot",
+    "optimizer_steps_executed": 4000,
+    "selected_step": 4000,
+    "parent_sha256": "fe9e73936941e07c255df50e7798a277beaa9f4a7c9f87dbf2dfcc9bbc8c67b2",
+    "state_after_sha256": "a60a5fc62cabf69c7f07c5a3505e0715054d7848f413938a1f6ad16ff1836146",
+    "selection_sha256": "de412bde37cad2363b4024d607a4a919c2fe462c15cd820a67127110ce3c6d2c"
+  },
+  "calibration": {
+    "gate_found": true,
+    "target_region_precision": 0.97
+  },
+  "release_status": "experimental",
+  "scope": "OCR-free whole-region font candidates and pixel em size; New fixed capture pages; same controlled simulator domain as the parent model.",
+  "export": {
+    "groupnorm_lowering": "reshape_centered_mean_square_variance_v1",
+    "frozen_parameters_unchanged": true,
+    "reduction_dtype": "float64",
+    "original_onnx_sha256": "dc19ddf18356653191c59e9d217cdb176c68b8a33404a07442d3d2db5f1cb528",
+    "checkpoint_sha256": "aeda192187c90fa3e59afc23d879d8eda8d8f9fd987895bfd0d0d120c884649a",
+    "export_source_sha256": "07f1d4964201d651af7066ed8e9ae8e6b13efd3ac4c8e3cc94de70e206e9b56a",
+    "parity_reference": "original torch.nn.GroupNorm, unchanged tolerances"
+  }
+}

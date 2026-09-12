@@ -27,11 +27,16 @@ const fixture = {id:'ui-fixture-only',width:750,height:980,image_url:'/fixture/o
   annotated_image_url:'/fixture/crop.png',summary:{detected_regions:regions.length},timing_seconds:{total:1.25},
   model_version:'ui-fixture-region-model',font_method:'region_neural_network',ocr_performed:false,regions};
 let availability = 'available';
+const groupedFonts = {families:['PingFang','SF Pro','Alipay Number','MiSans'],
+  font_sources:{PingFang:['system'],'SF Pro':['system'],'Alipay Number':['asset'],MiSans:['asset']},
+  font_label_groups:{PingFang:['PingFang SC','PingFang TC','PingFang HK']}};
+let fontMetadata = groupedFonts;
 const server = http.createServer((req, res) => {
   if (req.url === '/api/health') { res.setHeader('Content-Type','application/json'); res.end(JSON.stringify({model_version:'ui-fixture-region-model'})); return; }
   if (req.url === '/api/models/font') { res.setHeader('Content-Type','application/json');
     if(availability === 'locked') {res.statusCode=401;res.end('{}');return;}
-    res.end(JSON.stringify({available:availability === 'available', version:'ui-fixture-v1', families:['PingFang SC','SF Pro','MiSans'],
+    if(availability === 'failed') {res.statusCode=503;res.end('{}');return;}
+    res.end(JSON.stringify({available:availability === 'available', version:'ui-fixture-v1', ...fontMetadata,
       input_shape:[null,1,64,256],download_url:'/api/models/font/download',bytes:1048576,ocr_required:false,
       usage:{install:'pip install -r requirements.txt',predict:'python predict.py text-region.png'}}));return; }
   if (req.url === '/api/models/font/download') {res.end('UI download route fixture');return;}
@@ -70,20 +75,25 @@ const server = http.createServer((req, res) => {
     await command('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:false});
     await evaluate('window.FluxGlyphUI.show('+JSON.stringify(fixture)+')');
     await wait("document.querySelectorAll('.region-thumbnail img').length===8 && [...document.querySelectorAll('.region-thumbnail img')].every(i=>i.complete&&i.naturalWidth>0) && document.getElementById('download-model').hasAttribute('href')");
-    let result=await evaluate(`(() => ({ocr:document.querySelectorAll('#ocr-output,#copy-ocr,.ocr-panel,.ocr-confidence').length,titles:[...document.querySelectorAll('.region-heading b')].map(x=>x.textContent),thumbs:document.querySelectorAll('.region-thumbnail img').length,overflow:document.documentElement.scrollWidth>innerWidth,download:document.getElementById('download-model').getAttribute('href'),usage:document.getElementById('model-usage-command').textContent,json:document.getElementById('json-output').textContent}))()`);
-    assert(result.ocr===0,'OCR UI remained');assert(result.titles.join()===regions.map(x=>x.id).join(),'Region IDs missing');assert(!result.overflow,'Horizontal overflow '+name);assert(result.download==='/api/models/font/download','Missing same-origin model link');assert(result.usage.includes('python predict.py text-region.png'),'Missing model usage');assert(JSON.parse(result.json).ocr_performed===false,'Original no-OCR JSON changed');
+    let result=await evaluate(`(() => ({ocr:document.querySelectorAll('#ocr-output,#copy-ocr,.ocr-panel,.ocr-confidence').length,titles:[...document.querySelectorAll('.region-heading b')].map(x=>x.textContent),thumbs:document.querySelectorAll('.region-thumbnail img').length,overflow:document.documentElement.scrollWidth>innerWidth,modelBeforeUpload:document.getElementById('font-model').getBoundingClientRect().bottom<=document.querySelector('.upload-help').getBoundingClientRect().top,usageCollapsed:!document.getElementById('model-usage').open,download:document.getElementById('download-model').getAttribute('href'),usage:document.getElementById('model-usage-command').textContent,json:document.getElementById('json-output').textContent}))()`);
+    assert(result.ocr===0,'OCR UI remained');assert(result.titles.join()===regions.map(x=>x.id).join(),'Region IDs missing');assert(!result.overflow,'Horizontal overflow '+name);assert(result.modelBeforeUpload,'Model download is not above upload '+name);assert(result.usageCollapsed,'Usage should initially be compact '+name);assert(result.download==='/api/models/font/download','Missing same-origin model link');assert(result.usage.includes('python predict.py text-region.png'),'Missing model usage');assert(JSON.parse(result.json).ocr_performed===false,'Original no-OCR JSON changed');
+    result.fontSources=await evaluate(`(() => ({system:document.querySelector('[data-font-source="system"]').textContent,asset:document.querySelector('[data-font-source="asset"]').textContent,note:document.getElementById('model-label-note').textContent,noteVisible:!document.getElementById('model-label-note').hidden}))()`);
+    assert(result.fontSources.system==='系统内置字体：PingFang · SF Pro','System fonts must use recorded sources');
+    assert(result.fontSources.asset==='应用自带字体：Alipay Number · MiSans','Alipay Number must be shown as an app font');
+    assert(result.fontSources.noteVisible&&result.fontSources.note.includes('覆盖简体／繁体，未细分地区版本'),'Grouped PingFang scope missing');
     await evaluate("document.querySelector('#regions .region').click()");
     result.detail=await evaluate(`(() => ({title:document.querySelector('.detail-preview h2').textContent,glyphs:document.querySelectorAll('.glyph,.detail-glyphs').length,score:document.querySelector('.dist').textContent,style:document.querySelector('.text-style-detail').textContent,visible:!document.getElementById('detail-panel').hidden,scope:document.getElementById('detail').textContent.includes('整体外观')}))()`);
     assert(result.detail.title===regions[0].id&&result.detail.glyphs===0&&result.detail.visible,'Detail region-only failed');assert(result.detail.score.includes('0.9876'),'Region CNN score not shown');assert(result.detail.style.includes('45.5')&&result.detail.style.includes('#112233'),'Style not shown');assert(result.detail.scope,'Region scope missing');
     await evaluate("window.FluxGlyphUI.setLanguage('en')");
     assert(await evaluate("document.getElementById('font-model-title').textContent==='Font model' && document.querySelector('.dist').textContent.includes('model scores')"),'English model UI missing');
+    assert(await evaluate(`document.querySelector('[data-font-source="system"]').textContent==='Built-in system fonts: PingFang · SF Pro' && document.querySelector('[data-font-source="asset"]').textContent==='App-bundled fonts: Alipay Number · MiSans' && document.getElementById('model-label-note').textContent.includes('regional variants are not classified separately')`),'English font source categories or PingFang scope missing');
     assert(await evaluate('document.getElementById("json-output").textContent === '+JSON.stringify(result.json)),'Language changed raw JSON');
     await evaluate("document.getElementById('copy-json').click()");
     await wait("document.getElementById('copy-status').textContent.includes('copied')");
     assert(await evaluate('navigator.clipboard.readText()')===result.json,'JSON clipboard changed raw result');
     await evaluate("window.FluxGlyphUI.setLanguage('zh');document.getElementById('result-section').scrollIntoView()");
     const screen=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});fs.writeFileSync(path.join(out,name+'.png'),Buffer.from(screen.data,'base64'));
-    await evaluate("document.getElementById('font-model').scrollIntoView()");
+    await evaluate("window.scrollTo(0,0)");
     const modelScreen=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});fs.writeFileSync(path.join(out,name+'-model.png'),Buffer.from(modelScreen.data,'base64'));
     await evaluate("document.getElementById('close-detail').click()");assert(await evaluate("document.getElementById('detail-panel').hidden"),'Cannot close detail');reports.push({name,width,passed:true,...result});
   }
@@ -94,9 +104,47 @@ const server = http.createServer((req, res) => {
     const explanation=await evaluate('document.getElementById("font-reason").textContent');
     assert(explanation.includes(phrase)&&!explanation.includes('切分'),'Missing specific region uncertainty reason '+code);
   }
-  for(const mode of ['unavailable','locked']) {availability=mode;await command('Page.reload');await wait('Boolean(window.FluxGlyphUI)');await wait("document.getElementById('model-info').textContent && !document.getElementById('model-info').textContent.includes('读取')");assert(await evaluate("!document.getElementById('download-model').hasAttribute('href') && document.getElementById('download-model').getAttribute('aria-disabled')==='true'"),'Unavailable model download must be disabled');}
+  const availabilityChecks=[];
+  for(const mode of ['unavailable','failed','locked']) {
+    availability=mode;
+    await evaluate("document.getElementById('refresh-model').click()");
+    await wait("document.getElementById('font-model').getAttribute('aria-busy')==='false'");
+    const state=await evaluate(`(() => ({disabled:document.getElementById('download-model').getAttribute('aria-disabled'),href:document.getElementById('download-model').getAttribute('href'),reason:document.getElementById('model-info').textContent,retryEnabled:!document.getElementById('refresh-model').disabled,authVisible:!document.getElementById('auth-panel').hidden}))()`);
+    assert(state.disabled==='true'&&!state.href&&state.retryEnabled,'Unavailable model must retain disabled download and allow retry: '+mode);
+    assert(state.reason.includes(mode==='locked'?'访问令牌':mode==='failed'?'刷新状态':'暂无可下载'),'Availability reason must explain the failure: '+mode);
+    if(mode==='locked')assert(state.authVisible,'Locked download must expose the existing unlock panel');
+    availability='available';
+    await evaluate("document.getElementById('refresh-model').click()");
+    await wait("document.getElementById('font-model').getAttribute('aria-busy')==='false' && document.getElementById('download-model').getAttribute('aria-disabled')==='false'");
+    assert(await evaluate("document.getElementById('download-model').getAttribute('href')==='/api/models/font/download'"),'Refresh did not recover download without reloading the page');
+    availabilityChecks.push({mode,...state,recovered:true});
+  }
+  await evaluate("document.querySelector('#model-usage summary').click()");
+  assert(await evaluate("document.getElementById('model-usage').open && document.getElementById('model-usage-command').getBoundingClientRect().height>0"),'Expandable local usage did not open');
+  await evaluate("window.scrollTo(0,0)");
+  const sourceScreen=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
+  fs.writeFileSync(path.join(out,'small-mobile-model-sources.png'),Buffer.from(sourceScreen.data,'base64'));
+  assert(await evaluate('document.documentElement.scrollWidth<=innerWidth'),'Expanded font source list overflows mobile viewport');
+  const sourceCompatibilityChecks=[];
+  for(const mode of ['legacy-omitted','legacy-empty','partial']) {
+    fontMetadata=mode==='partial'
+      ? {families:['PingFang','SF Pro','Alipay Number'],font_sources:{PingFang:['system'],'SF Pro':['asset'],'Not in model':['asset']}}
+      : {families:['PingFang SC','SF Pro','Alipay Number'],...(mode==='legacy-empty'?{font_sources:{},font_label_groups:{}}:{})};
+    await evaluate("document.getElementById('refresh-model').click()");
+    await wait("document.getElementById('font-model').getAttribute('aria-busy')==='false'");
+    const state=await evaluate(`(() => ({rows:[...document.querySelectorAll('#model-families p')].map(p=>({source:p.dataset.fontSource||null,text:p.textContent})),noteHidden:document.getElementById('model-label-note').hidden,download:document.getElementById('download-model').getAttribute('href')}))()`);
+    assert(state.noteHidden,'Missing grouped label metadata must hide PingFang note: '+mode);
+    assert(state.download==='/api/models/font/download','Optional source fields must not break download: '+mode);
+    if(mode==='partial') {
+      assert(JSON.stringify(state.rows)===JSON.stringify([{source:'system',text:'系统内置字体：PingFang'},{source:'asset',text:'应用自带字体：SF Pro'},{source:null,text:'其他可识别字体：Alipay Number'}]),'Partial metadata must not guess font sources from familiar names or include unlisted families');
+    } else {
+      assert(JSON.stringify(state.rows)===JSON.stringify([{source:null,text:'可识别字体：PingFang SC · SF Pro · Alipay Number'}]),'Old model metadata must retain the unclassified font list');
+    }
+    sourceCompatibilityChecks.push({mode,...state});
+  }
+
   assert(!diagnostics.length,'JS exceptions '+diagnostics.join());
-  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({kind:'mocked region-result browser UI only, not model accuracy',passed:true,reports,diagnostics},null,2));
+  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({kind:'mocked region-result browser UI only, not model accuracy',passed:true,reports,availabilityChecks,sourceCompatibilityChecks,diagnostics},null,2));
   console.log(JSON.stringify({passed:true,viewports:reports.map(x=>x.name),output:out}));
  } finally {if(socket)socket.close();chrome.kill('SIGTERM');await new Promise(resolve=>chrome.exitCode!==null?resolve():chrome.once('exit',resolve));server.close();fs.rmSync(profile,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

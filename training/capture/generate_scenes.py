@@ -15,7 +15,9 @@ import json
 import math
 from pathlib import Path
 import random
+import re
 import shutil
+import unicodedata
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MANIFEST = (ROOT.parent / 'alipay-ai-inference/runs/'
@@ -27,6 +29,7 @@ LATIN_FAMILIES = {'HarmonyOS Sans SC', 'MiSans', 'OPPO Sans', 'SF Pro',
                   'Helvetica', 'Alipay Number', 'Roboto'}
 ROBOTO_SHA = 'd7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134'
 ALIPAY_SHA = '6074082d8cb92e175184b177e28335e0171f3ddfb2b5818d7853295f7fb0fada'
+CAPTURE_SYSTEM_FAMILIES = {'PingFang TC', 'PingFang HK'}
 
 
 def sha(path):
@@ -45,9 +48,19 @@ def families():
     raise ValueError('Missing literal training/network.py FAMILIES')
 
 
+def capture_families():
+    """Ordered capture registry; keep the frozen glyph classifier order intact."""
+    return families() + [family for family in ('PingFang TC', 'PingFang HK') if family not in families()]
+
+
 def write_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+
+def normalized_text(text):
+    """Same source-isolation identity as prepare_captured, without OCR imports."""
+    return ''.join(unicodedata.normalize('NFKC', text).casefold().split())
 
 
 def prepare_assets(output, manifest=DEFAULT_MANIFEST, platform='android', include_ios_cjk=True):
@@ -108,7 +121,7 @@ def prepare_assets(output, manifest=DEFAULT_MANIFEST, platform='android', includ
     return result
 
 
-def ios_fonts(inventory=None):
+def ios_fonts(inventory=None, include_traditional=False):
     """Inventories may provide `fonts` objects, or a list of PostScript names.
 
     System requests deliberately have null file identity until the iOS collector
@@ -118,6 +131,13 @@ def ios_fonts(inventory=None):
     for suffix, weight in [('Light', 300), ('Regular', 400), ('Medium', 500), ('Semibold', 600)]:
         requested.append({'id': 'pingfang_' + suffix.lower(), 'family': 'PingFang SC',
                           'postscript': 'PingFangSC-' + suffix, 'weight': weight, 'scripts': ['han']})
+        if include_traditional:
+            if inventory is None:
+                raise ValueError('Traditional PingFang requests require an actual iOS font inventory')
+            for variant in ('TC', 'HK'):
+                requested.append({'id': 'pingfang_' + variant.lower() + '_' + suffix.lower(),
+                                  'family': 'PingFang ' + variant, 'postscript': 'PingFang' + variant + '-' + suffix,
+                                  'weight': weight, 'scripts': ['han']})
     for weight in [300, 400, 500, 600, 700]:
         requested.append({'id': f'system_sf_{weight}', 'family': 'SF Pro', 'postscript': '-system',
                           'weight': weight, 'scripts': ['latin'], 'system_font': True})
@@ -158,28 +178,50 @@ HAN = {
     'chat': '记得 帮忙 一起 准备 需要 可以 请先 继续 及时 稍后'.split(),
     'verb': '查看 确认 处理 分享 发送 核对 检查 更新 安排 整理'.split(),
 }
+# Authored traditional vocabulary, not a font-dependent script conversion.
+# These labels describe the controlled text source, never inference inputs.
+HAN_TRADITIONAL = {
+    'time': '今日 昨日 本月 上月 最近 當天 每日 每週 明天 今晚 後天 週末 上午 下午 晚上 早上 稍後 現在 此刻 下週'.split(),
+    'item': '交通 餐飲 購物 住房 通訊 電影 外賣 出行 公交 地鐵 快遞 醫療 教育 圖書 旅行 水電 會員 服務 商城 酒店 車票 機票 儲值 轉帳 餘額 帳單 訂單 禮物 早餐 午餐 晚餐 咖啡 生鮮 超市 運動 門票 話費 流量 團購 保險'.split(),
+    'bill': '支付 付款 退款 收款 交易 結算 轉入 轉出 扣款 入帳 查詢 統計'.split(),
+    'state': '完成 成功 記錄 詳情 通知 提醒 確認 待處理 已更新 已確認 已完成 正在處理'.split(),
+    'setting': '帳號 消息 隱私 安全 通知 聲音 顯示 語言 網絡 儲存 位置 相簿 通訊錄 備份 更新 裝置 登入 密碼 主題 支付'.split(),
+    'option': '管理 設定 權限 選項 提醒 記錄 同步 檢查 保護 中心'.split(),
+    'action': '開啟 關閉 更新 查看 修改 儲存 檢查 確認 重設 完成'.split(),
+    'chat': '記得 幫忙 一起 準備 需要 可以 請先 繼續 及時 稍後'.split(),
+    'verb': '查看 確認 處理 分享 發送 核對 檢查 更新 安排 整理'.split(),
+}
 ENGLISH = {
     'verb': 'Review Confirm Update Manage Check Open Save Share Find Track View Schedule'.split(),
     'time': 'recent monthly pending saved new daily weekly current previous latest incoming outgoing scheduled completed selected archived'.split(),
     'item': 'payments orders messages settings balance transfers receipts activity privacy accounts devices updates bookings alerts contacts invoices purchases statements reminders history'.split(),
 }
+ENGLISH_EXTENDED = {**ENGLISH,
+                    'time': ENGLISH['time'] + 'draft paid ready late next last open final edited tagged'.split(),
+                    'item': ENGLISH['item'] + 'plans bills fees tasks chats notes calls files cards costs lists limits'.split()}
 
 
-def text_candidate(rng, script, category, numeric=False):
+def text_candidate(rng, script, category, numeric=False, orthography='simplified', extended_english=False):
     if numeric:
         # Digits only: no model can use an amount prefix as the family label.
         return ''.join(rng.choice('0123456789') for _ in range(rng.randint(8, 14)))
     if script == 'latin':
-        return ' '.join(rng.choice(ENGLISH[k]) for k in ['verb', 'time', 'item'])
+        words = ENGLISH_EXTENDED if extended_english else ENGLISH
+        return ' '.join(rng.choice(words[k]) for k in ['verb', 'time', 'item'])
     keys = (['time', 'item', 'bill', 'state'] if category == 'bill' else
             ['time', 'setting', 'option', 'action'] if category == 'settings' else
             ['time', 'chat', 'verb', 'item'])
-    return ''.join(rng.choice(HAN[key]) for key in keys)
+    words = HAN_TRADITIONAL if orthography == 'traditional' else HAN
+    return ''.join(rng.choice(words[key]) for key in keys)
 
 
-def content_pages(count=1000, seed=20260912):
+def content_pages(count=1000, seed=20260912, orthography='simplified', namespace='', forbidden_texts=(), extended_english=False):
     if count < 10:
         raise ValueError('At least 10 pages are required to populate all splits')
+    if orthography not in ('simplified', 'traditional', 'mixed'):
+        raise ValueError('Unknown Han orthography')
+    if namespace and not re.fullmatch('[A-Za-z0-9_-]{1,50}', namespace):
+        raise ValueError('Scene namespace must be a short safe identifier')
     rng = random.Random(seed)
     order = list(range(count))
     rng.shuffle(order)
@@ -187,10 +229,10 @@ def content_pages(count=1000, seed=20260912):
     calibration = (count - train) // 2
     mapping = {identifier: ('train' if i < train else 'calibration' if i < train + calibration else 'test')
                for i, identifier in enumerate(order)}
-    seen = set()
+    seen = {normalized_text(text) for text in forbidden_texts}
     pages = []
     for identifier in range(count):
-        group = f'scene-{identifier:05d}'
+        group = (namespace + '-' if namespace else '') + f'scene-{identifier:05d}'
         category = rng.choice(['bill', 'settings', 'chat'])
         rows = rng.randint(10, 12)
         scripts = ['han'] * (rows - 4) + ['latin'] * 4
@@ -198,11 +240,12 @@ def content_pages(count=1000, seed=20260912):
         latin_count = 0
         regions = []
         for i, script in enumerate(scripts):
+            chosen_orthography = (rng.choice(['simplified', 'traditional']) if orthography == 'mixed' else orthography)
             numeric = script == 'latin' and latin_count % 2 == 0
             latin_count += int(script == 'latin')
             for attempt in range(10000):
-                text = text_candidate(rng, script, category, numeric)
-                normalized = ''.join(text.split())
+                text = text_candidate(rng, script, category, numeric, chosen_orthography, extended_english)
+                normalized = normalized_text(text)
                 if normalized not in seen:
                     seen.add(normalized)
                     break
@@ -215,6 +258,8 @@ def content_pages(count=1000, seed=20260912):
             left = rng.choice([20, 24, 28, 32])
             top = 66 + i * 64 + rng.choice([-2, 0, 2])
             regions.append({'id': f'{group}-r{i:02d}', 'text': text, 'script': script,
+                            'han_orthography': chosen_orthography if script == 'han' else None,
+                            'language': ('zh-Hant' if chosen_orthography == 'traditional' else 'zh-Hans') if script == 'han' else 'en',
                             'text_kind': 'numeric' if numeric else 'han' if script == 'han' else 'english',
                             'font_size': font_size, 'bbox_points': [left, top, 382, top + 52]})
         pages.append({'id': group, 'content_group_id': group, 'split': mapping[identifier],
@@ -223,9 +268,9 @@ def content_pages(count=1000, seed=20260912):
 
 
 def scene_document(platform, fonts, content, seed=20260912):
-    allowed = set(families())
+    allowed = set(capture_families())
     if not fonts or any(font['family'] not in allowed for font in fonts):
-        raise ValueError('Capture fonts must belong to training/network.FAMILIES')
+        raise ValueError('Capture fonts must belong to training/network.FAMILIES or explicit native capture registry')
     by_script = {script: [font for font in fonts if script in font['scripts']] for script in ['han', 'latin']}
     if not all(by_script.values()):
         raise ValueError('Both Han and Latin fonts are needed')
@@ -272,6 +317,7 @@ def scene_document(platform, fonts, content, seed=20260912):
             'seed': seed, 'label_status': 'render requests; actual glyph font identity must pass native capture validation',
             'intended_capture_kind': 'ios_simulator_controlled_scene' if platform == 'ios' else 'android_emulator_controlled_scene',
             'ui_content_is_generated': True,
+            'capture_only_families': sorted({font['family'] for font in fonts} - set(families())),
             'split_unit': 'content_group_id shared across platforms; all normalized region text combinations are disjoint',
             'characters_may_overlap_across_splits': True,
             'font_assignment': 'shuffled face cycles per script and split; independent of text, geometry and color',
@@ -281,24 +327,13 @@ def scene_document(platform, fonts, content, seed=20260912):
 
 
 def smoke_document(document):
-    """Two diagnostic screens cover each requested face before mass capture."""
+    """Diagnostic screens cover every requested face before mass capture."""
     fonts = document['fonts']
-    if len(fonts) > 24:
-        raise ValueError('Two-page smoke supports at most 24 font faces')
+    page_count = max(2, math.ceil(len(fonts) / 12))
     pools = {kind: [r for page in document['pages'] for r in page['regions'] if r['text_kind'] == kind]
              for kind in ('han', 'english', 'numeric')}
-    chosen = (list(fonts) * math.ceil(24 / len(fonts)))[:24]
-    # Separate the two scripts across each screen without adding font-name text.
-    han = [font for font in chosen if 'han' in font['scripts']]
-    latin = [font for font in chosen if 'han' not in font['scripts']]
-    ordered = []
-    for page in range(2):
-        take_han = min(8, len(han)) if page == 0 else len(han)
-        part, han = han[:take_han], han[take_han:]
-        needed = 12 - len(part)
-        part += latin[:needed]
-        latin = latin[needed:]
-        ordered.append(part)
+    chosen = (list(fonts) * math.ceil(page_count * 12 / len(fonts)))[:page_count * 12]
+    ordered = [chosen[i:i+12] for i in range(0, len(chosen), 12)]
     pages = []
     for page_index, group in enumerate(ordered):
         identifier = f'{document["platform"]}-smoke-{page_index:02d}'
@@ -312,7 +347,7 @@ def smoke_document(document):
                           bbox_points=[24, 66 + row * 64, 382, 118 + row * 64])
             page['regions'].append(region)
         pages.append(page)
-    return dict(document, pages=pages, counts={'pages': 2, 'faces': len(fonts)}, diagnostic_only=True)
+    return dict(document, pages=pages, counts={'pages': page_count, 'faces': len(fonts)}, diagnostic_only=True)
 
 
 def main():
@@ -323,21 +358,36 @@ def main():
     parser.add_argument('--seed', type=int, default=20260912)
     parser.add_argument('--font-manifest', type=Path, default=DEFAULT_MANIFEST)
     parser.add_argument('--ios-font-inventory', type=Path)
+    parser.add_argument('--include-pingfang-traditional', action='store_true')
+    parser.add_argument('--han-orthography', choices=['simplified', 'traditional', 'mixed'], default='simplified')
+    parser.add_argument('--namespace', default='')
+    parser.add_argument('--extended-english', action='store_true', help='Larger short-English vocabulary for a second text-disjoint capture cohort')
+    parser.add_argument('--exclude-scenes', type=Path, action='append', default=[],
+                        help='Keep every new text combination and content group distinct from these earlier scene manifests')
     parser.add_argument('--no-alipay-asset', action='store_true', help='Use only iOS built-in fonts')
     parser.add_argument('--no-ios-cjk-assets', action='store_true', help='Omit imported CJK comparison fonts from iOS')
     args = parser.parse_args()
-    content = content_pages(args.pages, args.seed)
+    namespace = args.namespace or (f'{args.han_orthography}-{args.seed}' if args.han_orthography != 'simplified' else '')
+    excluded = [json.loads(path.read_text()) for path in args.exclude_scenes]
+    forbidden = [region['text'] for doc in excluded for page in doc['pages'] for region in page['regions']]
+    groups = {page.get('content_group_id', page['id']) for doc in excluded for page in doc['pages']}
+    content = content_pages(args.pages, args.seed, args.han_orthography, namespace, forbidden, args.extended_english)
+    if groups.intersection(page['content_group_id'] for page in content):
+        raise ValueError('New content groups collide with previous data; set a new --namespace')
     platforms = ['ios', 'android'] if args.platform == 'both' else [args.platform]
     result = {}
     for platform in platforms:
         fonts = (prepare_assets(args.output, args.font_manifest) if platform == 'android'
-                 else ios_fonts(args.ios_font_inventory))
+                 else ios_fonts(args.ios_font_inventory, args.include_pingfang_traditional))
         if platform == 'ios' and not args.no_alipay_asset:
             fonts += prepare_assets(args.output, args.font_manifest, platform='ios', include_ios_cjk=not args.no_ios_cjk_assets)
             for font in fonts:
                 if font['kind'] == 'asset':
                     font['host_path'], font['path'] = font['path'], Path(font['path']).name
         document = scene_document(platform, fonts, content, args.seed)
+        document['han_orthography_policy'] = args.han_orthography
+        document['english_vocabulary'] = 'extended-v1' if args.extended_english else 'original-v1'
+        document['excluded_scene_sources'] = [{'path': str(path.resolve()), 'sha256': sha(path)} for path in args.exclude_scenes]
         destination = args.output / f'{platform}-scenes.json'
         write_json(destination, document)
         smoke = smoke_document(document)

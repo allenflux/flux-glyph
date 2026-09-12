@@ -55,16 +55,30 @@ def test_fifo_positions_and_completion_progress(monkeypatch,tmp_path):
 
 def test_real_pipeline_progress_has_counts_and_never_finishes_before_api(tmp_path):
     events=[];pipeline=FontPipeline()
-    result=pipeline.run(Path(__file__).parent/'fixtures/ui_title_billing_details.png',tmp_path/'out','progress',events.append)
-    assert result['regions'][0]['font']['family']=='PingFang SC'
+    output=tmp_path/'out'
+    def record(event):
+        progress=event['progress']
+        if progress['stage_code']=='finalizing':
+            assert (output/'result.json').is_file()
+        else:
+            assert not (output/'result.json').exists()
+        if progress['stage_code']=='matching':
+            assert len(list((output/'crops').glob('*.png')))==progress['current']
+        events.append(event)
+    result=pipeline.run(Path(__file__).parent/'fixtures/ui_title_billing_details.png',output,'progress',record)
+    assert result['font_method']=='region_neural_network' and result['ocr_performed'] is False
+    assert result['regions']
     phases=[e['progress']['stage_code'] for e in events]
     assert phases[0:2]==['preparing','detecting']
     assert phases[-2:]==['annotating','finalizing']
     fractions=[e['progress']['percent'] for e in events if e['progress']['percent'] is not None]
     assert fractions==sorted(fractions) and max(fractions)<100
-    reading=[e['progress'] for e in events if e['progress']['stage_code']=='recognizing']
-    assert reading[0]['current']==0
-    assert reading[-1]['current']==reading[-1]['total']==len(result['regions'])
+    assert 'recognizing' not in phases
+    detecting=events[1]['progress']
+    assert detecting['percent'] is None and detecting['current'] is None and detecting['total'] is None
+    matching=[e['progress'] for e in events if e['progress']['stage_code']=='matching']
+    assert [p['current'] for p in matching]==list(range(len(result['regions'])+1))
+    assert all(p['total']==len(result['regions']) for p in matching)
 
 
 def test_failed_job_releases_queue_and_restart_does_not_claim_it_is_running(monkeypatch,tmp_path):

@@ -315,8 +315,8 @@ class FontPipeline:
     def run_regions(self,source,output,identifier,progress):
         """Detect regions and classify their pixels; never create an OCR reader."""
         started=time.perf_counter();output=Path(output);output.mkdir(parents=True,exist_ok=True)
-        def report(stage,message,percent=None):
-            progress({'stage':message,'progress':{'stage_code':stage,'percent':percent,'current':None,'total':None}})
+        def report(stage,message,percent=None,current=None,total=None):
+            progress({'stage':message,'progress':{'stage_code':stage,'percent':percent,'current':current,'total':total}})
         report('preparing','正在准备图片')
         with Image.open(source) as raw:image=ImageOps.exif_transpose(raw).convert('RGB')
         image.save(output/'original.png')
@@ -324,15 +324,15 @@ class FontPipeline:
         report('detecting','正在检测文字区域');mark=time.perf_counter()
         boxes=self.detector.detect(image);det_seconds=time.perf_counter()-mark
         regions=[];mark=time.perf_counter()
+        report('matching','正在识别字体',0,0,len(boxes))
         for i,box in enumerate(boxes):
-            report('matching','正在识别字体',int(95*i/max(1,len(boxes))))
             l,t,r,b=box['source_bbox'];margin=max(3,min(12,round((b-t)*.10)))
             bounds=[max(0,l-margin),max(0,t-margin),min(image.width,r+margin),min(image.height,b+margin)]
             crop=image.crop(bounds);rid=f'R{i+1:03d}'
             crop.save(output/'crops'/f'{rid}.png')
             prediction=(self.region_neural.predict(crop) if i<self.max_regions else
                         {'status':'uncertain','family':None,'candidates':[],'reason_code':'too_many_regions'})
-            font={k:prediction.get(k) for k in ('status','family','candidates','score','margin','patch_agreement','reason_code')}
+            font={k:prediction.get(k) for k in ('status','family','candidates','score','margin','patch_agreement','reason_code','font_family_variants')}
             font.update(method='region_neural_network',scope='Detected text region',font_identity_verified=False,
                         label=font['family'] or '待确认',reason=font['reason_code'])
             style=estimate_text_style(image,[],region_bbox=bounds) if i<self.max_regions else None
@@ -350,6 +350,7 @@ class FontPipeline:
                             'detector_score':box['score'],'crop_file':f'crops/{rid}.png',
                             'text':None,'ocr_confidence':None,'ocr_performed':False,'glyphs':[],
                             'font':font,'text_style':style,'font_evidence':prediction})
+            report('matching','正在识别字体',int(95*(i+1)/len(boxes)),i+1,len(boxes))
         match_seconds=time.perf_counter()-mark
         report('annotating','正在生成标注图片',96);annotation(image,regions,output/'annotated.png')
         counts=Counter(r['font']['status'] for r in regions)

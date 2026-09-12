@@ -38,7 +38,7 @@ class RealDataContractTests(unittest.TestCase):
                'regions': [{'bbox': case['expected_text_bbox'], 'text': case['text'],
                             'font_family': 'PingFang SC', 'script': 'han'}]}
         input_path.write_text(json.dumps(row, ensure_ascii=False) + '\n')
-        prepare.prepare(input_path, cls.fixture)
+        prepare.prepare(input_path, cls.fixture, legacy_model_dir=ROOT / 'models')
 
     @classmethod
     def tearDownClass(cls):

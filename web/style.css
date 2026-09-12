@@ -112,7 +112,7 @@ p{margin:10px 0}
 #json-output{flex:1;min-height:0;margin:0;padding:12px;overflow:auto;border-radius:6px;background:var(--soft);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.75rem;line-height:1.5;tab-size:2;white-space:pre;overscroll-behavior:contain}
 .clipboard-fallback{position:fixed;left:-10000px;top:0;width:1px;height:1px;opacity:0}
 .api{margin-top:36px}
-.font-model{margin-top:30px;padding:20px 22px;border:1px solid var(--line);border-radius:6px;background:#fff}.font-model pre{padding:14px;overflow:auto}.model-families{line-height:1.8;overflow-wrap:anywhere}.model-docs{font-size:.875rem;color:var(--candidate)}
+.font-model{margin:0 0 24px;padding:16px 18px;border:1px solid var(--line);border-radius:6px;background:#fff}.font-model>p{margin:6px 0}.model-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}.font-model .panel-heading{flex-direction:row;align-items:center;flex-wrap:wrap;gap:10px}.font-model details{margin-top:8px;font-size:.875rem}.font-model summary{width:max-content;max-width:100%;cursor:pointer;color:var(--candidate)}.font-model summary:focus-visible{outline:2px solid #111;outline-offset:3px}.font-model pre{padding:14px;overflow:auto}.model-families{margin:10px 0;line-height:1.8;overflow-wrap:anywhere}.model-families p{margin:4px 0}.model-docs{font-size:.875rem;color:var(--candidate)}
 pre,code{background:var(--soft);border-radius:6px}
 .api pre{padding:16px;overflow:auto}
 code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.875rem}

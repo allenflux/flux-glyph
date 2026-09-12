@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 import sys
+from types import SimpleNamespace
 
 import pytest
 
@@ -118,13 +119,12 @@ def test_mixed_font_component_is_not_promoted_to_one_family():
     page = evaluation.score_page(result([pred]), source([truth()]))
     assert page["rows"][0]["font_abstained"]
     assert evaluation.RULES["mixed_font_region_handling_validated"] is False
-    assert evaluation.RULES["test_partition_reused_from_previous_pipeline_evaluations"] is True
 
 
 def test_complete_fixed_test_partition_is_required(monkeypatch):
     monkeypatch.setattr(evaluation.shared, "checked_captures", lambda _: ([], {"test_pages": 99, "source_split_counts": {"test": 99, "train": 800, "calibration": 100}}))
     with pytest.raises(ValueError, match="preassigned"):
-        evaluation.checked_sources("unused")
+        evaluation.checked_sources("unused", test_history="reused")
 
 
 def test_orchestrator_only_passes_png_to_inference_and_checks_cached_hashes(tmp_path, monkeypatch):
@@ -143,7 +143,8 @@ def test_orchestrator_only_passes_png_to_inference_and_checks_cached_hashes(tmp_
     class PixelOnlyPipeline:
         def __init__(self, directory):
             assert directory == models
-            self.directory, self.version, self.region_neural = models, "test", object()
+            self.directory, self.version = models, "test"
+            self.region_neural = SimpleNamespace(meta={"families": ["PingFang SC", "MiSans"]})
             self.reader = self.neural = self.bank = self.latin_bank = None
 
         def run(self, supplied_image, output, identifier):
@@ -154,13 +155,13 @@ def test_orchestrator_only_passes_png_to_inference_and_checks_cached_hashes(tmp_
             evaluation.write_json(output / "result.json", value)
             return value
 
-    monkeypatch.setattr(evaluation, "checked_sources", lambda _: (records, protocol))
+    monkeypatch.setattr(evaluation, "checked_sources", lambda _, **kwargs: (records, protocol))
     monkeypatch.setattr(evaluation, "source_hashes", lambda: {"fixed-test-runtime": "0" * 64})
     monkeypatch.setattr(evaluation, "verify_bundle", lambda _: None)
     monkeypatch.setattr(evaluation.pipeline_module, "FontPipeline", PixelOnlyPipeline)
     output = tmp_path / "evaluation"
-    first = evaluation.evaluate(models, "not_passed_to_pipeline", output)
-    second = evaluation.evaluate(models, "not_passed_to_pipeline", output)
+    first = evaluation.evaluate(models, "not_passed_to_pipeline", output, test_history="reused")
+    second = evaluation.evaluate(models, "not_passed_to_pipeline", output, test_history="reused")
     assert first["metrics"] == second["metrics"]
     assert len(calls) == 1  # second pass verifies and reuses cached original output
     assert first["guard"]["ocr_calls"] == first["guard"]["segmentation_calls"] == 0
@@ -168,4 +169,104 @@ def test_orchestrator_only_passes_png_to_inference_and_checks_cached_hashes(tmp_
     result_path = output / cache["result_path"]
     result_path.write_text(result_path.read_text() + " ")
     with pytest.raises(ValueError, match="pinned file changed"):
-        evaluation.evaluate(models, "unused", output)
+        evaluation.evaluate(models, "unused", output, test_history="reused")
+
+
+def grouped_metadata():
+    return {"families": ["PingFang", "MiSans", "SF Pro"], "font_label_groups": evaluation.PINGFANG_GROUP}
+
+
+@pytest.mark.parametrize("native_family", ["PingFang SC", "PingFang TC", "PingFang HK"])
+def test_only_explicit_validated_group_scores_native_pingfang_as_parent_family(native_family):
+    native = truth(family=native_family)
+    page = evaluation.score_page(result([prediction(family="PingFang")]), source([native]), model_metadata=grouped_metadata())
+    row = page["rows"][0]
+    assert row["font_name_correct"] and row["font_label_group_applied"]
+    assert row["expected_family"] == "PingFang" and row["native_family"] == native_family
+    assert evaluation.aggregate([page])["by_native_family"][native_family]["font_name_correct"] == 1
+
+
+@pytest.mark.parametrize("native_family", ["PingFang TC", "PingFang HK"])
+def test_sc_only_model_never_gets_credit_for_traditional_native_font(native_family):
+    page = evaluation.score_page(result([prediction(family="PingFang SC")]), source([truth(family=native_family)]),
+                                 model_metadata={"families": ["PingFang SC", "MiSans"]})
+    row = page["rows"][0]
+    assert row["wrong_font_name"] and not row["font_name_correct"]
+    assert not row["font_label_group_applied"] and row["expected_family"] == native_family
+
+
+@pytest.mark.parametrize("metadata", [
+    {"families": ["PingFang", "MiSans"]},
+    {"families": ["PingFang", "MiSans"], "font_label_groups": {"PingFang": ["PingFang SC", "PingFang TC"]}},
+    {"families": ["PingFang", "MiSans"], "font_label_groups": {"PingFang": ["PingFang SC", "PingFang TC", "PingFang HK", "MiSans"]}},
+    {"families": ["PingFang", "PingFang SC"], "font_label_groups": evaluation.PINGFANG_GROUP},
+    {"families": ["PingFang SC", "MiSans"], "font_label_groups": evaluation.PINGFANG_GROUP},
+    {"families": ["PingFang", "MiSans"], "font_label_groups": {"Anything": ["PingFang SC", "MiSans"]}},
+    {"families": ["PingFang", "MiSans"], "font_label_groups": None},
+])
+def test_unsafe_or_ambiguous_model_label_group_is_rejected(metadata):
+    with pytest.raises(ValueError):
+        evaluation.validated_label_groups(metadata)
+
+
+def test_group_mapping_requires_verified_native_font_evidence():
+    native = truth(family="PingFang TC")
+    native["font_truth_verified"] = False
+    page = evaluation.score_page(result([prediction(family="PingFang")]), source([native]), model_metadata=grouped_metadata())
+    row = page["rows"][0]
+    assert row["font_unscorable"] and not row["font_name_correct"]
+    assert row["expected_family"] == "PingFang TC" and not row["font_label_group_applied"]
+
+
+def test_reporting_simplified_traditional_english_numeric_is_independent_of_inference():
+    truths = [truth("sc"), truth("tc", (0, 40, 100, 60), family="PingFang TC"),
+              truth("en", (0, 80, 100, 100), family="SF Pro"), truth("num", (0, 120, 100, 140), family="SF Pro")]
+    truths[0]["han_orthography"] = "simplified"
+    truths[1]["han_orthography"] = "traditional"
+    truths[2].update(script="latin", text="Receipt 2026")
+    truths[3].update(script="latin", text="-100.00")
+    predictions = [prediction("R0", family="PingFang"), prediction("R1", (0, 40, 100, 60), family="MiSans"),
+                   prediction("R2", (0, 80, 100, 100), family=None, status="uncertain")]
+    page = evaluation.score_page(result(predictions), source(truths), model_metadata=grouped_metadata())
+    groups = evaluation.aggregate([page])["by_orthography"]
+    assert groups["simplified"]["font_name_correct"] == 1
+    assert groups["traditional"]["wrong_font_names"] == 1
+    assert groups["english"]["pending_after_detection"] == 1
+    assert groups["numeric"]["missed"] == 1 and groups["numeric"]["pending_after_detection"] == 0
+    assert groups["traditional"]["font_coverage_all_truth"] == 1
+    assert all(pred["text"] is None for pred in predictions)
+
+
+def test_orthography_binds_verified_request_and_never_infers_from_font_name():
+    native = truth(family="PingFang SC")
+    scenes = {"pages": [{"id": "test-1", "regions": [{"id": "t1", "text": native["text"], "script": "han",
+                        "font_family": "PingFang SC", "han_orthography": "traditional", "language": "zh-Hant"}]}]}
+    bound = evaluation.bind_orthography([source([native])], scenes)
+    assert evaluation.reporting_orthography(bound[0]["regions"][0]) == "traditional"
+    scenes["pages"][0]["regions"][0]["language"] = "zh-Hans"
+    with pytest.raises(ValueError, match="traditional source language"):
+        evaluation.bind_orthography(bound, scenes)
+
+
+@pytest.mark.parametrize("history", ["fresh", "reused"])
+def test_capture_history_is_explicit_in_protocol_and_does_not_claim_unknown_domain(tmp_path, monkeypatch, history):
+    native = truth()
+    scenes = {"pages": [{"id": "test-1", "regions": [{"id": "t1", "text": native["text"], "script": "han",
+                        "font_family": "PingFang SC", "han_orthography": "simplified", "language": "zh-Hans"}]}]}
+    path = tmp_path / "Scenes.json"
+    path.write_text(json.dumps(scenes))
+    audit = {"test_pages": 100, "source_split_counts": {"train": 800, "calibration": 100, "test": 100},
+             "scenes": {"path": str(path), "sha256": evaluation.sha(path)}}
+    monkeypatch.setattr(evaluation.shared, "checked_captures", lambda _: ([source([native])], audit))
+    rows, protocol = evaluation.checked_sources("unused", test_history=history)
+    assert protocol["test_history"] == history
+    assert protocol["rules"]["test_partition_reused_from_previous_pipeline_evaluations"] is (history == "reused")
+    assert protocol["parent_training_domain_previously_seen"] is True
+    assert protocol["test_source_catalogue_sha256"] == evaluation.digest(rows)
+
+
+def test_missing_or_unknown_test_history_cannot_silently_claim_fresh():
+    with pytest.raises(TypeError):
+        evaluation.checked_sources("unused")
+    with pytest.raises(ValueError, match="explicitly"):
+        evaluation.checked_sources("unused", test_history="unknown")

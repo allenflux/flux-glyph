@@ -7,6 +7,8 @@
 <h2 data-lang="zh">单独下载并使用字体模型</h2><h2 data-lang="en" hidden>Download and run the font model</h2>
 <p data-lang="zh">模型包包含字体 ONNX、元数据、预处理与推理代码、predict.py、README 和 requirements.txt。输入一张包含单行或单个文字区域的裁图，返回字体候选、估计字号和可见文字颜色；无需提供文字内容。</p>
 <p data-lang="en" hidden>The ZIP includes the font ONNX model, metadata, preprocessing and inference code, predict.py, README, and requirements.txt. Supply a crop containing one text line or region to receive font candidates, estimated size, and visible text color. No transcription is required.</p>
+<p data-lang="zh">字体来源见首页“本地使用方式”和模型元数据：Alipay Number 是应用自带数字字体，不是 iOS 系统字体。模型若将苹方显示为 PingFang，表示识别到了字体族；简体、繁体字形可能由多个地区版本共同提供，不能由此确定 SC、TC 或 HK。</p>
+<p data-lang="en" hidden>Font origins appear under Local usage on the home page and in model metadata. Alipay Number is an app-bundled numeric font, not an iOS system font. A PingFang result identifies the family: simplified and traditional glyphs can be shared across regional variants, so it does not identify SC, TC, or HK.</p>
 <p><a class="button" href="/api/models/font/download"><span data-lang="zh">下载字体模型 ZIP</span><span data-lang="en" hidden>Download font model ZIP</span></a></p>
 <p data-lang="zh">解压后在模型包目录运行；text-region.png 替换为你的文字区域图片：</p><p data-lang="en" hidden>Extract the ZIP and run these commands in its directory. Replace text-region.png with your text-region crop:</p>
 <pre><code>pip install -r requirements.txt

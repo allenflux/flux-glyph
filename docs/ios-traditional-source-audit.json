@@ -1,0 +1,138 @@
+{
+  "schema": "flux-glyph-native-capture-source-audit-v1",
+  "all_planned_sources_verified": true,
+  "source_counts": {
+    "test": 100,
+    "train": 800,
+    "calibration": 100
+  },
+  "source_kinds": {
+    "ios_simulator_screenshot": 1000
+  },
+  "native_verified_regions": 10941,
+  "native_rejected_regions": 0,
+  "source_file_sha256_verified": 1000,
+  "source_decoded_pixel_hashes_checked": 1000,
+  "scene_sha256": "102c1592fa98c9006b4bc42f145ca205f8c6dd59a2f907804d5878519aeff74c",
+  "labels_sha256": "454aae37f4c6e427de6634d1a49bf7365f84a8ba6790aeb2263af903abde5395",
+  "capture_protocol_sha256": "ae2f4989f8c96178f68ae2c2158e66ae92aabb2010152e03fbe84f4ad8679db6",
+  "audit_code_sha256": "f741a2cec8831dd300c7c20e719598b32be24ec63328225f3f6c41b370c8252d",
+  "text_normalization": "NFKC + casefold + remove whitespace",
+  "prior_scene_exclusion": [
+    {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/mobile-font-capture/ios-capture-v1/Scenes.json",
+      "sha256": "43e24799f10099165563858df026c49fbf3789b8b3eb5499cb057c1c66bbd871",
+      "text_overlap": 0,
+      "content_group_overlap": 0
+    }
+  ],
+  "split_overlap": {
+    "source_id": 0,
+    "page_id": 0,
+    "source_file_sha256": 0,
+    "decoded_pixel_sha256": 0,
+    "content_group_id": 0,
+    "region_rgb_sha256": 0,
+    "normalized_region_text": 0
+  },
+  "splits": {
+    "train": {
+      "native_family": {
+        "SF Pro": 1034,
+        "MiSans": 894,
+        "Noto Sans CJK SC": 723,
+        "PingFang TC": 964,
+        "OPPO Sans": 1344,
+        "Helvetica": 413,
+        "PingFang SC": 964,
+        "HarmonyOS Sans SC": 1344,
+        "PingFang HK": 964,
+        "Alipay Number": 100
+      },
+      "script": {
+        "latin": 3200,
+        "han": 5544
+      },
+      "text_kind": {
+        "numeric": 1600,
+        "han": 5544,
+        "english": 1600
+      },
+      "orthography": {
+        "latin": 3200,
+        "traditional": 2740,
+        "simplified": 2804
+      },
+      "font_source": {
+        "system": 4339,
+        "asset": 4405
+      }
+    },
+    "calibration": {
+      "native_family": {
+        "PingFang HK": 120,
+        "PingFang TC": 122,
+        "PingFang SC": 120,
+        "SF Pro": 129,
+        "Helvetica": 52,
+        "Noto Sans CJK SC": 90,
+        "HarmonyOS Sans SC": 166,
+        "MiSans": 112,
+        "OPPO Sans": 169,
+        "Alipay Number": 13
+      },
+      "script": {
+        "han": 693,
+        "latin": 400
+      },
+      "text_kind": {
+        "han": 693,
+        "numeric": 200,
+        "english": 200
+      },
+      "orthography": {
+        "traditional": 342,
+        "simplified": 351,
+        "latin": 400
+      },
+      "font_source": {
+        "system": 543,
+        "asset": 550
+      }
+    },
+    "test": {
+      "native_family": {
+        "OPPO Sans": 168,
+        "Noto Sans CJK SC": 93,
+        "PingFang TC": 122,
+        "SF Pro": 130,
+        "MiSans": 113,
+        "PingFang HK": 122,
+        "PingFang SC": 122,
+        "HarmonyOS Sans SC": 170,
+        "Helvetica": 51,
+        "Alipay Number": 13
+      },
+      "script": {
+        "han": 704,
+        "latin": 400
+      },
+      "text_kind": {
+        "han": 704,
+        "numeric": 200,
+        "english": 200
+      },
+      "orthography": {
+        "simplified": 343,
+        "traditional": 361,
+        "latin": 400
+      },
+      "font_source": {
+        "asset": 557,
+        "system": 547
+      }
+    }
+  },
+  "ocr_performed": false,
+  "model_predictions_or_test_metrics_computed": false
+}

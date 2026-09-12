@@ -11,8 +11,11 @@
   const messages = {
     zh: {
       fontModelTitle: '字体模型', downloadModel: '下载字体模型', fontModelHelp: '下载后可在本地输入文字区域裁图，识别字体并估计字号、颜色。',
-      modelLoading: '正在读取模型信息…', modelUnavailable: '字体模型暂未提供下载。', modelLoadFailed: '暂时无法读取模型信息，请稍后刷新。', modelLocked: '解锁访问后可下载模型。',
+      modelLoading: '正在检查模型下载…', modelUnavailable: '当前暂无可下载的字体模型，可稍后刷新状态。', modelLoadFailed: '暂时无法获取下载信息，请点“刷新状态”重试。', modelLocked: '请先在上方输入访问令牌解锁，再下载模型。',
+      refreshModel: '刷新状态', modelUsageToggle: '本地使用方式',
       modelAvailable: '{version} · {size}', modelFamilies: '可识别字体：{families}', modelUsageHelp: '解压下载包，在解压目录安装依赖并运行：', modelUsageDocs: '模型使用说明',
+      modelSystemFonts: '系统内置字体：{families}', modelAssetFonts: '应用自带字体：{families}', modelOtherFonts: '其他可识别字体：{families}',
+      modelPingFangGroup: '苹方覆盖简体／繁体，未细分地区版本。',
       regionsTitle: '文字区域', fontDetailTitle: '字体详情', closeDetail: '收起详情', cropTitle: '原图区域裁图', fontConclusionTitle: '字体判断',
       tagline: '上传截图，识别字体、估计字号与文字颜色。', language: '语言', apiExample: 'API 示例',
       unlockTitle: '解锁访问', unlockHelp: '此服务需要访问令牌。令牌只在本次页面会话中用于设置安全 Cookie，不会保存在浏览器存储中。', tokenPlaceholder: '输入访问令牌', unlock: '解锁',
@@ -32,8 +35,11 @@
     },
     en: {
       fontModelTitle: 'Font model', downloadModel: 'Download font model', fontModelHelp: 'Run the model locally on a cropped text region to identify its font and estimate size and color.',
-      modelLoading: 'Loading model information…', modelUnavailable: 'The font model is not available for download yet.', modelLoadFailed: 'Model information is unavailable. Refresh the page to try again.', modelLocked: 'Unlock access to download the model.',
+      modelLoading: 'Checking model download…', modelUnavailable: 'No font model is available to download yet. Check again later.', modelLoadFailed: 'Download information could not be loaded. Select Refresh status to try again.', modelLocked: 'Enter your access token above to unlock the model download.',
+      refreshModel: 'Refresh status', modelUsageToggle: 'Run locally',
       modelAvailable: '{version} · {size}', modelFamilies: 'Font families: {families}', modelUsageHelp: 'Extract the download, then install dependencies and run these commands in its directory:', modelUsageDocs: 'Model usage guide',
+      modelSystemFonts: 'Built-in system fonts: {families}', modelAssetFonts: 'App-bundled fonts: {families}', modelOtherFonts: 'Other supported fonts: {families}',
+      modelPingFangGroup: 'PingFang covers Simplified and Traditional Chinese; regional variants are not classified separately.',
       regionsTitle: 'Text regions', fontDetailTitle: 'Font details', closeDetail: 'Hide details', cropTitle: 'Source crop', fontConclusionTitle: 'Font result',
       tagline: 'Upload a screenshot to identify fonts, estimated sizes, and text colors.', language: 'Language', apiExample: 'API examples',
       unlockTitle: 'Unlock access', unlockHelp: 'This service requires an access token. It is used only to set a secure cookie for this page session and is never saved in browser storage.', tokenPlaceholder: 'Enter access token', unlock: 'Unlock',
@@ -68,6 +74,7 @@
   let reconnectState = null;
   let modelInfo = null;
   let modelLoadState = 'modelLoading';
+  let modelLoading = false;
 
   function loadLanguage() {
     try { return localStorage.getItem('flux-glyph-language') === 'en' ? 'en' : 'zh'; } catch (_) { return 'zh'; }
@@ -686,6 +693,8 @@
     const download = $('download-model');
     const available = modelInfo?.available === true && modelInfo.download_url === '/api/models/font/download';
     download.setAttribute('aria-disabled', String(!available));
+    $('font-model').setAttribute('aria-busy', String(modelLoading));
+    $('refresh-model').disabled = modelLoading;
     if (available) download.href = modelInfo.download_url;
     else download.removeAttribute('href');
     $('model-info').textContent = available ? t('modelAvailable', {
@@ -694,7 +703,26 @@
     }) : t(modelLoadState);
     const families = Array.isArray(modelInfo?.families) ? modelInfo.families.filter(value => typeof value === 'string') : [];
     $('model-families').hidden = !available || !families.length;
-    $('model-families').textContent = t('modelFamilies', {families: families.join(' · ')});
+    $('model-families').replaceChildren();
+    const sources = modelInfo?.font_sources;
+    const grouped = new Set();
+    const appendFamilies = (key, names, source = '') => {
+      if (!names.length) return;
+      const row = document.createElement('p');
+      if (source) row.dataset.fontSource = source;
+      row.textContent = t(key, {families: names.join(' · ')});
+      $('model-families').append(row);
+    };
+    for (const [source, key] of [['system', 'modelSystemFonts'], ['asset', 'modelAssetFonts']]) {
+      const names = families.filter(family => Array.isArray(sources?.[family]) && sources[family].includes(source));
+      names.forEach(family => grouped.add(family));
+      appendFamilies(key, names, source);
+    }
+    appendFamilies(grouped.size ? 'modelOtherFonts' : 'modelFamilies', families.filter(family => !grouped.has(family)));
+    const pingFangNames = modelInfo?.font_label_groups?.PingFang;
+    $('model-label-note').hidden = !available || !families.includes('PingFang') || !Array.isArray(pingFangNames)
+      || !pingFangNames.includes('PingFang SC') || !pingFangNames.includes('PingFang TC');
+    $('model-label-note').textContent = t('modelPingFangGroup');
     const usage = modelInfo?.usage;
     const hasUsage = available && typeof usage?.install === 'string' && typeof usage?.predict === 'string';
     $('model-usage').hidden = !hasUsage;
@@ -702,12 +730,23 @@
   }
 
   async function loadFontModel() {
+    if (modelLoading) return;
+    modelLoading = true;
+    modelInfo = null;
+    modelLoadState = 'modelLoading';
+    renderFontModel();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
     try {
-      modelInfo = await api('/api/models/font');
+      modelInfo = await api('/api/models/font', {signal: controller.signal});
       modelLoadState = modelInfo.available === true ? 'modelLoadFailed' : 'modelUnavailable';
     } catch (error) {
       modelInfo = null;
       modelLoadState = error.status === 401 || error.status === 403 ? 'modelLocked' : 'modelLoadFailed';
+      if (modelLoadState === 'modelLocked') $('auth-panel').hidden = false;
+    } finally {
+      clearTimeout(timeout);
+      modelLoading = false;
     }
     renderFontModel();
   }
@@ -778,6 +817,7 @@
     if (button && button !== $('language') && $('language').contains(button)) applyLanguage(button.dataset.language);
   });
   $('copy-json').addEventListener('click', copyJson);
+  $('refresh-model').addEventListener('click', loadFontModel);
   $('close-detail').addEventListener('click', closeDetail);
   $('detail-panel').addEventListener('keydown', event => { if (event.key === 'Escape') closeDetail(); });
   $('file').onchange = event => setFile(event.target.files[0] || null);

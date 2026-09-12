@@ -1,10 +1,10 @@
 # 模型交付约定
 
-模型与网站/API 独立版本化。服务器加载当前选定的完整包，只执行推理。默认目录为 `models/`；若存在 `models/ACTIVE.json`，则读取其中安全相对路径 `path`，例如 `releases/r16-ios-region-v1`。也可以通过 `FLUX_MODEL_DIR` 指定其他完整包目录。
+模型与网站/API 独立版本化。服务器加载当前选定的完整包，只执行推理。默认目录为 `models/`；若存在 `models/ACTIVE.json`，则读取其中安全相对路径 `path`，例如 `releases/r17-ios-hant-region-v1`。也可以通过 `FLUX_MODEL_DIR` 指定其他完整包目录。
 
-R16 的默认流程为 PP 文字区域检测 → 区域字体 CNN／字号回归 → 原图颜色测量。保留文字位置检测，不进行文字识读；模型是否启用取决于所选完整包的清单。单独放入 ONNX 文件不会启用新算法。R16 设计、数据来源和实际验证见 [区域字体模型](ios-region-font.md)，本文不声明部署或训练已经完成。
+区域模型（R16／R17）的默认流程为 PP 文字区域检测 → 区域字体 CNN／字号回归 → 原图颜色测量。保留文字位置检测，不进行文字识读；模型是否启用取决于所选完整包的清单。单独放入 ONNX 文件不会启用新算法。R17 数据来源和实际验证见 [简繁体训练](ios-traditional-training.md) 与 [验证结果](ios-traditional-results.md)；R16 架构历史见 [区域字体模型](ios-region-font.md)。
 
-## R16 完整网站模型包
+## 区域字体完整网站模型包
 
 完整包包含以下受清单校验的文件：
 
@@ -25,6 +25,8 @@ R16 的默认流程为 PP 文字区域检测 → 区域字体 CNN／字号回归
 - `model: {path, sha256}` 指向同目录单个 ONNX 文件。
 - `temperature` 和 `gates.min_score`、`gates.min_margin`、`gates.min_patch_agreement` 控制候选门槛。
 - `max_size_relative_spread` 限制不同图块字号估计的差异。
+- `font_label_groups` 可显式声明 PingFang 字体族的 SC／TC／HK 原生成员；推理输出仍是模型实际训练的类别，不靠识字或名称猜测地区版本。旧模型可不提供该字段。
+- `font_sources` 可记录每个类别的 `system`／`asset` 加载来源，用于页面及下载说明；Alipay Number 是应用字体资产，不是系统字体。这不是网络输入。
 
 ONNX 输入 `tiles` 为 float32 `[N,1,64,256]`，批次数动态；输出顺序固定为 `logits [N,C]`、`log_em_ratio [N]`，均为 float32。输入是文字区域的图块，预处理保留字形比例、估计局部背景、提取墨迹并按高度缩放；长区域形成多个窗口。不能直接将原图任意拉伸至输入大小，也不传入 OCR 文本、字符下标或人工 script。
 
@@ -32,27 +34,27 @@ ONNX 输入 `tiles` 为 float32 `[N,1,64,256]`，批次数动态；输出顺序�
 
 输出 `font_method`、`font.method` 为 `region_neural_network`，`font.scope` 为 `Detected text region`。`ocr_performed` 为 false，`text` 为 null／空字符串，`ocr_confidence` 为 null，`glyphs` 为空。候选使用 `{family, score}`，另有 `margin`、`patch_agreement`，不再输出参考距离。分数不是实际准确率，也不保证所有未知字体会被拒绝。
 
-字号回归结合原图尺度输出 `text_style.font_size_px_estimate`，单位为截图像素，不是 iOS pt 或检测框高度。R16 的 `font_size_px_interval` 为 null；文字颜色为原图中的可见 `#RRGGBB`。无可靠估计时相应字段为 null，`size`／`color` 给出状态原因。模型不恢复原始透明度，也不依据字体名推断设备或截图真伪。
+字号回归结合原图尺度输出 `text_style.font_size_px_estimate`，单位为截图像素，不是 iOS pt 或检测框高度。区域模型的 `font_size_px_interval` 为 null；文字颜色为原图中的可见 `#RRGGBB`。无可靠估计时相应字段为 null，`size`／`color` 给出状态原因。模型不恢复原始透明度，也不依据字体名推断设备或截图真伪。
 
 ## 重建、导入与回退
 
-R16 字体权重和元数据保留目录为 `models/experiments/ios-region-v1`；完整网站包输出目录为 `artifacts/ios-region-font-v1/bundle`。准备好权重后，在装有项目依赖的环境运行：
+R17 字体权重和元数据保留目录为 `models/experiments/ios-hant-region-v1`；已验证完整包位于 `models/releases/r17-ios-hant-region-v1`。准备好权重后，在装有项目依赖的环境运行：
 
 ```sh
 PYTHONPATH=src python scripts/package_region.py \
-  --region models/experiments/ios-region-v1 \
-  --output artifacts/ios-region-font-v1/bundle \
-  --version r16-ios-region-v1
+  --region models/experiments/ios-hant-region-v1 \
+  --output artifacts/rebuilt-r17-bundle \
+  --version r17-ios-hant-region-v1
 ```
 
 `--base` 默认使用根目录 `models` 的当前活动包，从中提取检测模型。输出目录必须为新目录；打包时校验源模型及最终包，并做运行时兼容检查，不重新训练。
 
 ```sh
 python scripts/model_release.py \
-  --model-root artifacts/ios-region-font-v1/bundle export \
-  --output artifacts/flux-glyph-r16-ios-region-v1.zip
+  --model-root models export \
+  --output artifacts/flux-glyph-r17-ios-hant-region-v1.zip
 python scripts/model_release.py install \
-  artifacts/flux-glyph-r16-ios-region-v1.zip --version r16-ios-region-v1
+  artifacts/flux-glyph-r17-ios-hant-region-v1.zip --version r17-ios-hant-region-v1
 # 安装/激活后重启；同时更新代码时重建镜像
 docker compose up -d --build
 # 回退根目录内保留的原始包
@@ -62,7 +64,9 @@ docker compose restart api
 
 导出 ZIP 只包含 MANIFEST 和清单指定文件。导入先验证安全路径、SHA、文件大小及运行时兼容性，再激活新目录；旧目录保留。切换后须重启进程，防止同一进程混用不同版本。包中的 Python 文件不作为网站推理代码执行；算法契约变更须同时交付配套运行时代码。
 
-`compose.yaml` 挂载根目录 `models/`，可通过其中的 ACTIVE 选择版本；历史 `compose.ios.yaml` 指向 R15 的 `artifacts/ios-font-screenshots-v1/bundle`，不是 R16 路径。
+`scripts/build_release.py --model-root models --output PATH_TO_NEW_ZIP` 生成包含配套网站源码的部署 ZIP，将当前活动模型展开为 ZIP 内的 `models/MANIFEST.json` 及其文件，不依赖原机器的 `ACTIVE.json` 路径或 `artifacts/`。部署 ZIP 与单独字体推理下载包用途不同。
+
+`compose.yaml` 挂载根目录 `models/`，通过其中随源码提供的 `ACTIVE.json` 选择版本。`compose.ios.yaml` 只覆盖本地镜像名称，继承相同挂载，因此标准部署和本地部署均不依赖 `artifacts/`。
 
 ## 单独下载的字体推理工具包
 

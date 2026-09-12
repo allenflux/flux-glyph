@@ -17,6 +17,7 @@ def image(text='苹方未',size=35):
 
 def fake_model():
     model=RegionFontClassifier.__new__(RegionFontClassifier)
+    model.font_label_groups={}
     model.families=['One','Two']
     model.meta={'temperature':1.,'gates':{'min_score':.7,'min_margin':.15,'min_patch_agreement':.7},
                 'max_size_relative_spread':.2}
@@ -26,6 +27,16 @@ def fake_model():
         return np.tile([[5.,0.]],(len(tiles),1)).astype(np.float32),np.full(len(tiles),np.log(1.2),dtype=np.float32)
     model.session=SimpleNamespace(run=run)
     return model
+
+
+def test_grouped_font_prediction_names_family_without_inventing_region_variant():
+    model=fake_model()
+    model.families=['PingFang','SF Pro']
+    model.font_label_groups={'PingFang':['PingFang SC','PingFang TC','PingFang HK']}
+    result=model.predict(image())
+    assert result['family']=='PingFang'
+    assert result['font_family_variants']==['PingFang SC','PingFang TC','PingFang HK']
+    assert result['candidates'][0]['family']=='PingFang'
 
 
 def test_region_pixels_preserve_proportions_and_need_no_text_or_script():

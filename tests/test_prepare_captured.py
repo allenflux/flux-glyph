@@ -110,6 +110,28 @@ def test_same_character_in_different_content_groups_can_cross_splits(tmp_path):
     assert {split: row["rows"] for split, row in manifest["splits"].items()} == {"train": 2, "calibration": 2, "test": 2}
 
 
+@pytest.mark.parametrize('variant', ['TC', 'HK'])
+def test_regional_pingfang_identity_is_strict_and_not_sc_alias(tmp_path, variant):
+    _, records, _ = dataset(tmp_path, texts=('帳單',))
+    region = records[0]['regions'][0]
+    family, ps = 'PingFang ' + variant, 'PingFang' + variant + '-Regular'
+    region.update(font_family=family, requested_font_family=family, actual_font_family=family,
+                  font_postscript=ps, requested_font_postscript=ps, actual_font_postscript=ps,
+                  requested_language='zh-Hant')
+    region['font_runs'][0].update(postscript_name=ps, family=family, language='zh-Hant')
+    for glyph in region['glyphs']:
+        glyph.update(font_postscript=ps, font_family=family, actual_font_family=family)
+    assert capture.font_evidence(region, family, 'han') is None
+    region['actual_font_family'] = 'PingFang SC'
+    assert capture.font_evidence(region, family, 'han') == 'native_pingfang_regional_family_mismatch'
+    region['actual_font_family'] = family
+    region['font_runs'][0]['family'] = 'PingFang SC'
+    assert capture.font_evidence(region, family, 'han') == 'native_pingfang_regional_run_mismatch'
+    region['font_runs'][0]['family'] = family
+    region['font_runs'][0]['language'] = 'zh-Hans'
+    assert capture.font_evidence(region, family, 'han') == 'native_font_run_language_mismatch'
+
+
 def test_screenshot_hash_tampering_is_fatal_and_no_partial_bundle_published(tmp_path):
     labels, rows, _ = dataset(tmp_path)
     with Path(rows[0]["image"]).open("ab") as stream:

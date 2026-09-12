@@ -8,9 +8,10 @@ const path = require('path');
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const BASE_URL = process.env.FLUX_GLYPH_URL || 'http://127.0.0.1:9000';
-const EXPECTED_MODEL = process.env.FLUX_EXPECTED_MODEL || 'r16-ios-region-v1';
+// Optional deployment pin; the tested version always comes from live health.
+const PINNED_MODEL = process.env.FLUX_EXPECTED_MODEL || null;
 const FIXTURE = path.resolve('tests/fixtures/ui_title_billing_details.png');
-const OUTPUT = path.resolve('docs/ui-validation');
+const OUTPUT = path.resolve(process.env.FLUX_QA_OUTPUT || 'docs/ui-validation');
 const CASES = [
   {name: 'desktop', width: 1280, height: 900, mobile: false, forceQueue: true},
   {name: 'mobile', width: 390, height: 844, mobile: true, forceQueue: false},
@@ -207,10 +208,37 @@ async function switchLanguage(command, language) {
       fontReason: document.getElementById('font-reason')?.textContent || '',
       regionTitle: document.querySelector('.detail-preview h2')?.textContent || '',
       regionCrop: Boolean(document.querySelector('.detail-preview .detail-image')),
+      fontSources: [...document.querySelectorAll('#model-families p')].map(row => ({source: row.dataset.fontSource || null, text: row.textContent})),
+      fontLabelNote: {hidden: document.getElementById('model-label-note')?.hidden !== false, text: document.getElementById('model-label-note')?.textContent || ''},
       json: document.getElementById('json-output').textContent,
       ocr: (window.FluxGlyphUI.get().result?.regions || []).map(region => region.text),
     };
   })()`);
+}
+
+function assertFontSourceLabels(info, snapshot, language) {
+  const families = info.families.filter(family => typeof family === 'string');
+  const labels = language === 'zh'
+    ? {system: '系统内置字体：', asset: '应用自带字体：', other: '其他可识别字体：', all: '可识别字体：'}
+    : {system: 'Built-in system fonts: ', asset: 'App-bundled fonts: ', other: 'Other supported fonts: ', all: 'Font families: '};
+  const assigned = new Set(), expected = [];
+  for (const source of ['system', 'asset']) {
+    const names = families.filter(family => Array.isArray(info.font_sources?.[family]) && info.font_sources[family].includes(source));
+    if (names.length) expected.push({source, text: labels[source] + names.join(' · ')});
+    names.forEach(family => assigned.add(family));
+  }
+  const remaining = families.filter(family => !assigned.has(family));
+  if (remaining.length) expected.push({source: null, text: labels[assigned.size ? 'other' : 'all'] + remaining.join(' · ')});
+  assert(JSON.stringify(snapshot.fontSources) === JSON.stringify(expected),
+    `Font sources must match declared metadata, including legacy unclassified fonts: ${JSON.stringify(snapshot.fontSources)}`);
+  const group = info.font_label_groups?.PingFang;
+  const hasGroupedPingFang = families.includes('PingFang') && Array.isArray(group)
+    && group.includes('PingFang SC') && group.includes('PingFang TC');
+  assert(snapshot.fontLabelNote.hidden === !hasGroupedPingFang, 'PingFang scope note must depend on declared grouped labels');
+  if (hasGroupedPingFang) {
+    const phrase = language === 'zh' ? '苹方覆盖简体／繁体，未细分地区版本' : 'regional variants are not classified separately';
+    assert(snapshot.fontLabelNote.text.includes(phrase), `Missing localized grouped PingFang scope: ${JSON.stringify(snapshot.fontLabelNote)}`);
+  }
 }
 
 async function stopProcess(child) {
@@ -255,7 +283,7 @@ async function observeQueue(command, job, first) {
   return timeline;
 }
 
-async function runCase(testCase) {
+async function runCase(testCase, activeVersion) {
   const profileDirectory = fs.mkdtempSync(path.join(os.tmpdir(), `flux-glyph-${testCase.name}-`));
   const downloadDirectory = fs.mkdtempSync(path.join(os.tmpdir(), `flux-glyph-download-${testCase.name}-`));
   const badFixture = path.join(os.tmpdir(), `flux-glyph-invalid-${process.pid}-${testCase.name}.png`);
@@ -283,8 +311,9 @@ async function runCase(testCase) {
         return {status:response.status,info,href:link.getAttribute('href'),enabled:link.getAttribute('aria-disabled')==='false',
           visibleVersion:document.getElementById('model-info').textContent,usage:document.getElementById('model-usage-command').textContent};
       })()`, true);
-      assert(fontModel.status === 200 && fontModel.info.available && fontModel.info.version === EXPECTED_MODEL &&
-        fontModel.enabled && fontModel.href === '/api/models/font/download' && fontModel.visibleVersion.includes(EXPECTED_MODEL) &&
+      assert(fontModel.status === 200 && fontModel.info.available && fontModel.info.version === activeVersion &&
+        fontModel.enabled && fontModel.href === '/api/models/font/download' && fontModel.visibleVersion.includes(activeVersion) &&
+        Array.isArray(fontModel.info.families) && fontModel.info.families.length > 0 &&
         fontModel.info.ocr_required === false && fontModel.usage.includes('python predict.py text-region.png'),
         `Font model download card differs from the active region model: ${JSON.stringify(fontModel)}`);
 
@@ -302,6 +331,18 @@ async function runCase(testCase) {
       const initial = await switchLanguage(command, 'zh');
       assert(initial.value === 'zh' && initial.lang === 'zh-CN' && initial.pressed.zh === 'true' && initial.pressed.en === 'false', 'Chinese language selection was not applied');
       assert(initial.uploadTitle === '上传图片' && initial.start === '开始识别' && initial.copyJson === '复制 JSON', `Unexpected Chinese controls: ${JSON.stringify(initial)}`);
+      assertFontSourceLabels(fontModel.info, initial, 'zh');
+      await evaluate(command, "document.querySelector('#model-usage summary').click(); window.scrollTo(0,0); true");
+      fontModel.layout = await evaluate(command, `(() => ({
+        expanded:document.getElementById('model-usage').open,
+        precedesUpload:document.getElementById('font-model').getBoundingClientRect().bottom<=document.querySelector('.upload-help').getBoundingClientRect().top,
+        noOverflow:document.documentElement.scrollWidth<=innerWidth+1,
+        usageVisible:document.getElementById('model-usage-command').getBoundingClientRect().height>0
+      }))()`);
+      assert(fontModel.layout.expanded && fontModel.layout.precedesUpload && fontModel.layout.noOverflow && fontModel.layout.usageVisible,
+        `Top model card and expanded usage must fit the viewport: ${JSON.stringify(fontModel.layout)}`);
+      const modelScreenshot = await captureScreenshot(command, `browser_${testCase.name}_model_sources.png`);
+      await evaluate(command, "document.querySelector('#model-usage summary').click(); true");
 
       const documentNode = await command('DOM.getDocument');
       const fileNode = await command('DOM.querySelector', {nodeId: documentNode.root.nodeId, selector: '#file'});
@@ -388,6 +429,12 @@ async function runCase(testCase) {
         const visualBounds = document.querySelector('.result-visual').getBoundingClientRect(), jsonBounds = document.querySelector('.json-panel').getBoundingClientRect();
         return {job: state.job, regions: result.regions.length, polygons: overlay.querySelectorAll('polygon').length, selected: window.FluxGlyphUI.get().selected,
           modelVersion:result.model_version,fontMethod:result.font_method,ocrPerformed:result.ocr_performed,
+          regionMethods:result.regions.map(region=>region.font?.method),
+          fontNames:[...new Set(result.regions.flatMap(region=>[region.font?.family,...(region.font?.candidates||[]).map(candidate=>candidate.family)]).filter(Boolean))],
+          textStyle:{source:result.regions.find(region=>region.id===window.FluxGlyphUI.get().selected)?.text_style,
+            size:document.querySelector('.text-style-detail .text-size')?.textContent||'',
+            color:document.querySelector('.text-style-detail .text-color')?.textContent||'',
+            swatch:document.querySelector('.text-style-detail .color-swatch')?.style.backgroundColor||''},
           noTranscription:result.regions.every(region=>(region.text==null||region.text==='')&&region.ocr_confidence==null&&!(region.glyphs||[]).length),
           detailText: document.getElementById('detail').innerText, rawGlyphCode: /ctc_/i.test(document.getElementById('detail').innerText),
           crop: crop ? {width: crop.naturalWidth, height: crop.naturalHeight} : null,
@@ -405,8 +452,21 @@ async function runCase(testCase) {
       })()`, true);
 
       assert(result.regions > 0 && result.regions === result.polygons && result.selected, `Region selection failed: ${JSON.stringify(result)}`);
-      assert(result.modelVersion === EXPECTED_MODEL && result.fontMethod === 'region_neural_network' &&
+      assert(result.modelVersion === activeVersion && result.fontMethod === 'region_neural_network' &&
         result.ocrPerformed === false && result.noTranscription, 'Real inference must use the current region model without OCR');
+      assert(result.regionMethods.every(method => method === 'region_neural_network') &&
+        result.fontNames.every(family => fontModel.info.families.includes(family)),
+        'Region font methods and candidate names must match the current downloaded model labels');
+      const style = result.textStyle;
+      assert(style.source && style.size.startsWith('估计字号') && style.color.startsWith('文字颜色'), 'Selected region must show its size and color labels');
+      const px = style.source.font_size_px_estimate;
+      assert(style.size.includes(Number.isFinite(px) && px > 0 ? `≈ ${px.toFixed(1).replace(/\.0$/, '')} px` : '待确认'),
+        'Visible pixel size must match the source result, including uncertainty');
+      const hex = style.source.text_color_hex;
+      if (typeof hex === 'string' && /^#[0-9a-f]{6}$/i.test(hex)) {
+        const rgb = [1, 3, 5].map(index => parseInt(hex.slice(index, index + 2), 16));
+        assert(style.color.includes(hex.toUpperCase()) && style.swatch === `rgb(${rgb.join(', ')})`, 'Visible color and swatch must match the source result');
+      } else assert(style.color.includes('待确认') && !style.swatch, 'Missing color must remain uncertain');
       assert(result.detailText.length > 10 && !result.rawGlyphCode, 'Localized region font detail is incomplete');
       assert(await evaluate(command, "!!document.querySelector('.detail-preview .detail-image') && /^R[0-9]+$/.test(document.querySelector('.detail-preview h2').textContent) && !document.querySelector('.detail-glyphs,#ocr-output')"), 'Region detail must show its crop and ID without OCR or glyph panels');
       assert(result.crop?.width > 0 && result.crop?.height > 0, 'Selected crop did not render');
@@ -426,12 +486,13 @@ async function runCase(testCase) {
 
       const zh = await switchLanguage(command, 'zh');
       assert(zh.resultTitle === '识别结果' && zh.copyJson === '复制 JSON' && zh.status === '识别完成' && zh.progressLabel === '识别完成', `Chinese final UI is not localized: ${JSON.stringify(zh)}`);
-      const screenshots = {};
+      const screenshots = {modelSources: modelScreenshot};
       if (!testCase.mobile) screenshots.desktopZh = await captureScreenshot(command, 'browser_desktop_zh.png');
       const en = await switchLanguage(command, 'en');
       assert(en.value === 'en' && en.pressed.en === 'true' && en.pressed.zh === 'false', `English language state is incorrect: ${JSON.stringify(en)}`);
       assert(en.uploadTitle === 'Upload image' && en.start === 'Start recognition' && en.resultTitle === 'Recognition results' && en.copyJson === 'Copy JSON' && en.downloadPng === 'Download annotated PNG', `English controls are not localized: ${JSON.stringify(en)}`);
       assert(en.status === 'Recognition complete' && en.progressLabel === 'Recognition complete', `English progress is not localized: ${JSON.stringify(en)}`);
+      assertFontSourceLabels(fontModel.info, en, 'en');
       assert(en.fontReason && !/[\u3400-\u9fff]/.test(en.fontReason) && en.regionCrop && /^R[0-9]+$/.test(en.regionTitle), `English region detail is incomplete: ${JSON.stringify(en)}`);
       assert(en.json === result.jsonText && JSON.stringify(en.ocr) === JSON.stringify(result.ocr), 'Language switching changed raw JSON or original text fields');
       await evaluate(command, "document.getElementById('copy-json').click(); true", false, true);
@@ -491,10 +552,10 @@ async function runCase(testCase) {
         progress: completion.progress, processing: processing ? {...processing, queueFillers: queueFillers.length, timeline: queueTimeline, reconnect} : null,
         regions: result.regions, original: result.original, annotated: result.annotated, changedPixels: result.changedPixels, crop: result.crop, viewBox: result.viewBox,
         noHorizontalOverflow: true, viewerFitsImage: result.viewerFits, regionCropThumbnailsFit: result.regionCropsFit, candidateHeadingSpansColumns: result.headingFits,
-        selectedRegion: result.selected, summary: result.summary, layout: result.layout,
+        selectedRegion: result.selected, summary: result.summary, layout: result.layout, textStyle: result.textStyle,
         json: {formattedExact: result.jsonExact, bytes: Buffer.byteLength(result.jsonText), legacyDownloadAbsent: result.noDownloadJson},
         clipboard: {fallback: copyZh, api: copyEn, exact: clipboard === fallbackClipboard && clipboard === result.jsonText},
-        localization: {chinese: {uploadTitle: zh.uploadTitle, resultTitle: zh.resultTitle, progress: zh.progressLabel, fontReason: zh.fontReason}, english: {uploadTitle: en.uploadTitle, resultTitle: en.resultTitle, progress: en.progressLabel, fontReason: en.fontReason}, ocrUnchanged: true, rawJsonUnchanged: true},
+        localization: {chinese: {uploadTitle: zh.uploadTitle, resultTitle: zh.resultTitle, progress: zh.progressLabel, fontReason: zh.fontReason, fontSources: zh.fontSources, fontLabelNote: zh.fontLabelNote}, english: {uploadTitle: en.uploadTitle, resultTitle: en.resultTitle, progress: en.progressLabel, fontReason: en.fontReason, fontSources: en.fontSources, fontLabelNote: en.fontLabelNote}, ocrUnchanged: true, rawJsonUnchanged: true},
         staleOutputCleared: cleared, errorState, branding, docsLocalization, faviconScreenshot, download: {png: {filename: path.basename(pngPath), bytes: downloadedPng.length, ...dimensions}}, screenshots,
         browserErrors: applicationErrors, ignoredBrowserDiagnostics: diagnostics.filter(message => message.includes('/favicon.ico') || expectedInvalidUploadDiagnostic(message)),
       };
@@ -516,11 +577,14 @@ async function runCase(testCase) {
   const health = await waitForServerIdle();
   assert(health.workers === 1, `Expected one worker, got ${health.workers}`);
   assert(health.queue_size >= 8, `Expected at least eight waiting slots, got ${health.queue_size}`);
-  assert(health.model_version === EXPECTED_MODEL, `Expected ${EXPECTED_MODEL}, got ${health.model_version}`);
+  const activeVersion = health.model_version;
+  assert(typeof activeVersion === 'string' && activeVersion.length > 0, 'Health must identify the active model version');
+  if (PINNED_MODEL) assert(activeVersion === PINNED_MODEL, `Expected deployment ${PINNED_MODEL}, got ${activeVersion}`);
   const cases = [];
   for (const testCase of CASES) {
-    await waitForServerIdle();
-    cases.push(await runCase(testCase));
+    const current = await waitForServerIdle();
+    assert(current.model_version === activeVersion, 'Active model changed during browser QA; rerun against one stable deployment');
+    cases.push(await runCase(testCase, activeVersion));
   }
   const report = {
     result: 'passed', testedAt: new Date().toISOString(), baseUrl: BASE_URL, health,
@@ -529,11 +593,13 @@ async function runCase(testCase) {
       'visible animated stage progress without false 100%, plus reduced-motion behavior',
       'Chinese/English switching during pending and completed states',
       'region results followed by full-width exact formatted JSON on desktop and mobile',
-      'active R16 model download card, version, same-origin link, and standalone usage',
+      'health-selected active model download card, matching version, same-origin link, and standalone usage',
+      'metadata-driven system/app font sources and grouped PingFang scope in Chinese/English; legacy metadata remains compatible',
       'real region inference returns no OCR text or single-character evidence',
       'exact full JSON copy through Clipboard API and insecure-context fallback',
       'no legacy JSON download control; original-size annotated PNG still downloads',
       'polygon selection, crop, font evidence, source coordinates, and pixel annotation',
+      'region pixel size and text color/swatch match the source result without inventing uncertain values',
       'Original result fields and raw JSON unchanged by localization',
       'new selection and real upload error clear stale result/JSON controls',
       'desktop/mobile overflow and browser diagnostics',

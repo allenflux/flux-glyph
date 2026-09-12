@@ -21,11 +21,18 @@ assert(!/function (?:renderOcr|copyOcr|ocrConfidence|glyphReason)\(/.test(js), '
 assert(js.includes('strong.textContent = region.id') && js.includes('title.textContent = region.id'), 'region titles must use IDs without recognized text');
 assert(js.includes("thumbnail.className = 'region-thumbnail'") && css.includes('.region-thumbnail img'), 'region crops must be visible in the list');
 assert(js.includes('candidate.score') && js.includes('isNeural(value)'), 'region neural candidates must show model scores');
-for (const id of ['font-model', 'download-model', 'model-info', 'model-families', 'model-usage-command']) {
+for (const id of ['font-model', 'download-model', 'refresh-model', 'model-info', 'model-families', 'model-label-note', 'model-usage-command']) {
   assert(new RegExp(`id=["']${id}["']`).test(html), `missing standalone model control: #${id}`);
 }
 assert(js.includes("modelInfo.download_url === '/api/models/font/download'"), 'model downloads must use the fixed same-origin authenticated route');
 assert(js.includes('modelInfo?.usage') && js.includes("$('model-usage-command').textContent"), 'model usage must be rendered safely from API data');
+assert(js.includes('modelInfo?.font_sources') && js.includes('modelInfo?.font_label_groups?.PingFang'), 'font source categories and label grouping must come from model metadata');
+for (const label of ['系统内置字体', '应用自带字体', 'Built-in system fonts', 'App-bundled fonts', '未细分地区版本', 'regional variants are not classified separately']) {
+  assert(js.includes(label), `missing bilingual font provenance description: ${label}`);
+}
+assert(html.indexOf('id="font-model"') < html.indexOf('class="upload-help"') && html.indexOf('id="font-model"') < html.indexOf('id="result-section"'), 'font download must precede upload and results');
+assert(/<details id="model-usage"/.test(html) && !/<details id="model-usage"[^>]* open/.test(html), 'local usage must initially be compact and expandable');
+assert(js.includes("$('refresh-model').addEventListener('click', loadFontModel)") && js.includes('controller.abort()'), 'model availability needs a bounded request and explicit retry');
 assert(/id="language"[^>]*role="group"/.test(html), 'language switch must be an accessible group');
 assert(/button[^>]*data-language="zh"[^>]*aria-pressed="true"[^>]*>中文<\/button>/.test(html), 'language switch must provide Chinese');
 assert(/button[^>]*data-language="en"[^>]*aria-pressed="false"[^>]*>EN<\/button>/.test(html), 'language switch must provide English');
