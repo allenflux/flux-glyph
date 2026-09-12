@@ -317,19 +317,33 @@ class RegionData:
 
 
 class RegionSampler:
-    def __init__(self, data, seed):
+    def __init__(self, data, seed, *, families=None, system_family_weight=1):
+        require(type(system_family_weight) is int and system_family_weight in (1, 2), 'system family weight must be 1 or 2')
         self.data, self.rng = data, np.random.default_rng(seed)
         self.pools = {int(target): np.where(data['targets'] == target)[0] for target in np.unique(data['targets'])}
+        require(system_family_weight == 1 or (isinstance(families, list) and all(0 <= i < len(families) for i in self.pools)),
+                'weighted sampling requires the actual output family registry')
+        self.weights = {target: system_family_weight if families and families[target] in ('PingFang', 'SF Pro', 'Helvetica') else 1
+                        for target in self.pools}
+        self.weighted_cycle = []
         self.queues = {target: list(self.rng.permutation(rows)) for target, rows in self.pools.items()}
         self.visits = np.zeros(len(data['rows']), dtype=np.int32)
         self.family_cursor = 0
 
     def batch(self, size):
         families = sorted(self.pools)
-        self.rng.shuffle(families)
+        weighted = any(weight != 1 for weight in self.weights.values())
+        if not weighted:
+            self.rng.shuffle(families)
         rows = []
         for i in range(size):
-            target = families[(self.family_cursor + i) % len(families)]
+            if weighted:
+                if not self.weighted_cycle:
+                    cycle = [target for target in families for _ in range(self.weights[target])]
+                    self.weighted_cycle = list(self.rng.permutation(cycle))
+                target = int(self.weighted_cycle.pop())
+            else:
+                target = families[(self.family_cursor + i) % len(families)]
             if not self.queues[target]:
                 self.queues[target] = list(self.rng.permutation(self.pools[target]))
             rows.append(int(self.queues[target].pop()))
@@ -338,6 +352,59 @@ class RegionSampler:
         np.add.at(self.visits, indices, 1)
         tiles = np.asarray([self.data['rows'][i]['tile_start'] + int(self.rng.integers(self.data['rows'][i]['tile_count'])) for i in indices])
         return tiles, self.data['targets'][indices], self.data['log_em_ratio'][indices]
+
+
+def training_test_history(manifest, override=None):
+    recorded = manifest.get('test_history', 'reused')
+    history = override or recorded
+    require(history in ('fresh', 'reused') and not (history == 'fresh' and recorded != 'fresh'),
+            'previously used test pages cannot become fresh')
+    scope = ('Previously used fixed test pages; regression suite, not a new blind test.' if history == 'reused'
+             else manifest.get('test_scope', 'New fixed capture pages; same controlled simulator domain as the parent model.'))
+    return {'test_history': history, 'test_scope': scope}
+
+
+def system_focus_policy(args, families):
+    """Validate the predeclared continuation budget and inherit parent gates."""
+    from training.system_finetune import SYSTEM_FAMILIES, PARENT_TEMPERATURE, PARENT_GATES, MAX_SIZE_SPREAD
+    frozen = {'seed': 2026091294, 'steps': 4000, 'batch_size': 64, 'learning_rate': 3e-5,
+              'eval_every': 250, 'system_family_weight': 2, 'preserve_size_head': True}
+    require(all(getattr(args, name, None) == value for name, value in frozen.items()),
+            'system-focused mode requires the frozen seed/steps/batch/lr/eval/weight/preserve-size-head configuration')
+    require(not getattr(args, 'allow_new_traditional_families', False) and not getattr(args, 'benchmark_steps', 0),
+            'system-focused mode continues existing classes without a benchmark')
+    require(len(families) == 8 and set(SYSTEM_FAMILIES).issubset(families), 'system-focused mode requires all eight competing classes')
+    require(getattr(args, 'parent_metadata', None) is not None, '--parent-metadata is required for system-focused continuation')
+    path = Path(args.parent_metadata).resolve()
+    meta = json.loads(path.read_text())
+    require(meta.get('schema') == 'flux-glyph-region-font-v1' and meta.get('algorithm') == 'region-cnn64x256-v1'
+            and meta.get('families') == families and not meta.get('family_gates'), 'parent model registry/algorithm differs')
+    require(meta.get('temperature') == PARENT_TEMPERATURE and meta.get('gates') == PARENT_GATES
+            and meta.get('max_size_relative_spread') == MAX_SIZE_SPREAD, 'parent fixed calibration policy differs')
+    expected_state = meta.get('training', {}).get('state_after_sha256')
+    require(isinstance(expected_state, str) and len(expected_state) == 64, 'parent metadata must pin its trained state')
+    return {'enabled': True, 'system_families': list(SYSTEM_FAMILIES), 'system_family_weight': 2,
+            'parent_metadata': {'path': str(path), 'sha256': sha(path)}, 'parent_state_sha256': expected_state,
+            'fixed_policy': {'temperature': meta['temperature'], 'gates': dict(meta['gates']),
+                             'max_size_relative_spread': meta['max_size_relative_spread']},
+            'selection_policy': {'source': 'calibration_only', 'global_wrong_must_not_increase': True,
+                                 'system_wrong_by_true_and_predicted_family_must_not_increase': True,
+                                 'nonsystem_correct_must_not_decrease': True, 'nonsystem_wrong_must_not_increase': True,
+                                 'preserve_all_parent_accepted_correct_rows': True, 'system_correct_must_increase': True,
+                                 'rank': ['system_correct', 'minimum_system_correct_coverage', 'overall_correct',
+                                          'negative_mean_size_relative_error'], 'tie': 'earliest_checkpoint',
+                                 'recalibrate': False}}
+
+
+def sampling_report(sampler, training, families):
+    native_visits = Counter()
+    for row, visits in zip(training['rows'], sampler.visits):
+        native_visits[row.get('native_font_family', row.get('family', families[row.get('target', 0)]))] += int(visits)
+    return {'rows': len(training['rows']), 'visited': int(np.count_nonzero(sampler.visits)),
+            'minimum_visits': int(sampler.visits.min()), 'maximum_visits': int(sampler.visits.max()),
+            'family_weights': {families[i]: weight for i, weight in sampler.weights.items()},
+            'family_visits': {families[i]: int(sampler.visits[training['targets'] == i].sum()) for i in sampler.pools},
+            'native_family_visits': dict(native_visits)}
 
 
 def softmax(logits, temperature):
@@ -498,10 +565,18 @@ def train(args):
     data = RegionData(args.data)
     training = data.load('train')
     if args.benchmark_steps:
+        require(not getattr(args, 'system_focused', False) and getattr(args, 'system_family_weight', 1) == 1,
+                'benchmark is separate from system-focused/weighted training')
         benchmark(args, data, training)
         return
     calibration = data.load('calibration')
     families = data.families
+    focused = system_focus_policy(args, families) if getattr(args, 'system_focused', False) else None
+    history_override = getattr(args, 'test_history', None)
+    if focused:
+        require(history_override != 'fresh', 'system-focused continuation uses the existing regression test partition')
+        history_override = 'reused'
+    test_history = training_test_history(data.manifest, history_override)
     if args.validate_only:
         print(json.dumps({'validated': True, 'families': families,
                           'train_regions': len(training['rows']), 'calibration_regions': len(calibration['rows']),
@@ -524,12 +599,17 @@ def train(args):
             net.size_head.bias.fill_(float(np.median(training['log_em_ratio'])))
     initial = {key: value.detach().cpu().clone() for key, value in net.state_dict().items()}
     before = state_sha(initial)
+    if focused:
+        require(before == focused['parent_state_sha256'], 'warm-start parameters differ from the pinned parent metadata')
     net.to(device)
-    sampler = RegionSampler(training, args.seed)
+    sampler = RegionSampler(training, args.seed, families=families,
+                            system_family_weight=getattr(args, 'system_family_weight', 1))
     code = {str(path.relative_to(ROOT)): sha(path) for path in
             [Path(__file__), ROOT / 'training/region_network.py', ROOT / 'training/network.py',
              ROOT / 'training/region_labels.py', ROOT / 'training/capture/generate_scenes.py',
              ROOT / 'src/flux_glyph/region_font.py']}
+    if focused:
+        code['training/system_finetune.py'] = sha(ROOT / 'training/system_finetune.py')
     freeze = {'schema': 'flux-glyph-region-training-freeze-v1', 'families': families, 'seed': args.seed,
               'device': device, 'torch': torch.__version__, 'optimizer_steps_planned': args.steps,
               'batch_size': args.batch_size, 'evaluate_every_steps': args.eval_every,
@@ -550,7 +630,30 @@ def train(args):
                              'new_family_initializers': initializers,
                              'preserved_size_head': getattr(args, 'preserve_size_head', False)},
               'initial_state_sha256': before, 'code_sha256': code, 'test_arrays_opened': False,
-              'test_scope': data.manifest.get('test_scope', 'Reused fixed regression set; not a new blind test.')}
+              **test_history}
+    freeze['training_region_sampling'] = {'family_weights': {families[i]: weight for i, weight in sampler.weights.items()},
+                                         'system_family_weight': getattr(args, 'system_family_weight', 1),
+                                         'row_policy': 'exhaust each shuffled family row queue before reuse'}
+    protocol = getattr(args, 'regression_protocol', None)
+    if protocol:
+        protocol = Path(protocol).resolve()
+        freeze['regression_protocol'] = {'path': str(protocol), 'sha256': sha(protocol)}
+    parent_stats = None
+    if focused:
+        from training.system_finetune import selection_stats, assess_checkpoint
+        policy = focused['fixed_policy']
+        parent_obs = region_observations(*predict(net, calibration, device), calibration, policy['temperature'])
+        parent_stats = selection_stats(parent_obs, calibration, families, policy['gates'])
+        baseline = {'schema': 'flux-glyph-parent-calibration-baseline-v1', 'optimizer_steps_executed': 0,
+                    'parent_state_sha256': before, 'parent_metadata': focused['parent_metadata'], 'fixed_policy': policy,
+                    'calibration_partition': data.manifest['splits']['calibration'], 'data_manifest_sha256': data.manifest_sha,
+                    'metrics': metrics(parent_obs, calibration, families, policy['gates']), 'selection_stats': parent_stats,
+                    'test_arrays_opened': False}
+        dump(output / 'PARENT_CALIBRATION.json', baseline)
+        focused['parent_calibration'] = {'path': 'PARENT_CALIBRATION.json', 'sha256': sha(output / 'PARENT_CALIBRATION.json')}
+        freeze['system_focused'] = focused
+        freeze['selection'] = focused['selection_policy']
+        freeze['calibration'] = {**policy, 'policy_source': 'frozen_parent_metadata', 'recalibrate': False}
     dump(output / 'TRAINING_FREEZE.json', freeze)
     for path in code:
         destination = output / 'frozen-code' / path
@@ -581,24 +684,65 @@ def train(args):
                               'size_loss': float(np.mean([v[1] for v in losses[-25:]])), 'seconds': time.perf_counter() - started}), flush=True)
         if step % args.eval_every == 0 or step == args.steps:
             predictions = predict(net, calibration, device)
-            metrics_cal = metrics(region_observations(*predictions, calibration), calibration, families)
-            score = metrics_cal['macro_accuracy'] - .1 * min(metrics_cal['size']['mean_relative_error'], 1.)
+            if focused:
+                obs = region_observations(*predictions, calibration, policy['temperature'])
+                metrics_cal = metrics(obs, calibration, families, policy['gates'])
+                stats = selection_stats(obs, calibration, families, policy['gates'])
+                assessment = assess_checkpoint(stats, parent_stats)
+                score = tuple(assessment['rank'])
+                eligible = assessment['eligible']
+            else:
+                metrics_cal = metrics(region_observations(*predictions, calibration), calibration, families)
+                score = metrics_cal['macro_accuracy'] - .1 * min(metrics_cal['size']['mean_relative_error'], 1.)
+                eligible = True
             record = {'step': step, 'selection_score': score, 'calibration': metrics_cal,
                       'unique_train_regions_sampled': int(np.count_nonzero(sampler.visits)),
                       'seconds': time.perf_counter() - started}
+            if focused:
+                record.update(eligibility=assessment, selection_stats=stats)
             history.append(record)
-            if best is None or score > best['score']:
+            if eligible and (best is None or score > best['score']):
                 state = {key: value.detach().cpu().clone() for key, value in net.state_dict().items()}
                 torch.save({'state_dict': state, 'families': families, 'optimizer_steps': step}, output / 'best-calibration.pth')
                 best = {'step': step, 'score': score, 'checkpoint_sha256': sha(output / 'best-calibration.pth')}
             dump(output / 'history.json', history)
-            print(json.dumps({'calibration': record, 'best_step': best['step']}), flush=True)
+            print(json.dumps({'calibration': record, 'best_step': best['step'] if best else None}), flush=True)
+    if focused:
+        final_state = {key: value.detach().cpu().clone() for key, value in net.state_dict().items()}
+        final_sha = state_sha(final_state)
+        torch.save({'state_dict': final_state, 'families': families, 'optimizer_steps': args.steps}, output / 'last-trained.pth')
+        require(all(sha(ROOT / path) == expected for path, expected in code.items()), 'training/runtime code changed during the frozen run')
+        require(sha(data.manifest_path) == data.manifest_sha, 'prepared manifest changed during training')
+        require(sha(focused['parent_metadata']['path']) == focused['parent_metadata']['sha256'], 'parent policy changed during training')
+        if protocol:
+            require(sha(protocol) == freeze['regression_protocol']['sha256'], 'regression protocol changed during training')
+        if best is None:
+            no_candidate = {'status': 'NO_PROMOTABLE_CHECKPOINT', 'optimizer_steps_executed': args.steps,
+                            'state_before_sha256': before, 'state_after_sha256': final_sha,
+                            'parameters_changed': final_sha != before,
+                            'last_checkpoint': {'path': 'last-trained.pth', 'sha256': sha(output / 'last-trained.pth')},
+                            'history_sha256': sha(output / 'history.json'), 'training_freeze_sha256': sha(output / 'TRAINING_FREEZE.json'),
+                            'parent_calibration': focused['parent_calibration'], 'test_arrays_opened': False,
+                            'training_region_sampling': sampling_report(sampler, training, families), **test_history}
+            dump(output / 'NO_PROMOTABLE_CHECKPOINT.json', no_candidate)
+            dump(output / 'report.json', no_candidate)
+            print(json.dumps({'finished': True, 'output': str(output), **no_candidate}), flush=True)
+            return
     require(best is not None and sha(output / 'best-calibration.pth') == best['checkpoint_sha256'], 'selected region model changed')
     selected = torch.load(output / 'best-calibration.pth', map_location='cpu', weights_only=True)
     net.load_state_dict(selected['state_dict'])
     after = state_sha(selected['state_dict'])
     require(after != before, 'region model parameters did not change')
-    temperature, gates, cal_result = calibrate(*predict(net, calibration, device), calibration, families)
+    if focused:
+        temperature, gates = policy['temperature'], policy['gates']
+        selected_obs = region_observations(*predict(net, calibration, device), calibration, temperature)
+        selected_stats = selection_stats(selected_obs, calibration, families, gates)
+        require(assess_checkpoint(selected_stats, parent_stats)['eligible'], 'selected checkpoint no longer satisfies the fixed parent-relative policy')
+        cal_result = {'gate_found': True, 'temperature': temperature, 'recalibrated': False,
+                      'gate_selection_level': 'inherited_parent_metadata', 'parent_metadata': focused['parent_metadata'],
+                      'metrics': metrics(selected_obs, calibration, families, gates), 'selection_stats': selected_stats}
+    else:
+        temperature, gates, cal_result = calibrate(*predict(net, calibration, device), calibration, families)
     selection = {'schema': 'flux-glyph-region-selection-before-test-v1', 'selected': best,
                  'optimizer_steps_executed': args.steps, 'state_before_sha256': before, 'state_after_sha256': after,
                  'temperature': temperature, 'gates': gates, 'max_size_relative_spread': MAX_SIZE_SPREAD,
@@ -606,8 +750,7 @@ def train(args):
                  'training_seconds': time.perf_counter() - started,
                  'parameter_l2_change': {key: float((selected['state_dict'][key] - initial[key]).norm())
                                          for key in ('trunk.0.weight', 'style.0.weight', 'family_head.weight', 'size_head.weight')},
-                 'training_region_sampling': {'rows': len(training['rows']), 'visited': int(np.count_nonzero(sampler.visits)),
-                                              'minimum_visits': int(sampler.visits.min()), 'maximum_visits': int(sampler.visits.max())}}
+                 'training_region_sampling': sampling_report(sampler, training, families), **test_history}
     dump(output / 'SELECTION_FREEZE.json', selection)
     # The test arrays are used only after every model/gate choice above is fixed.
     test = data.load('test')
@@ -634,13 +777,15 @@ def train(args):
                          'optimizer_steps_executed': args.steps, 'selected_step': best['step'],
                          'parent_sha256': freeze['warm_start']['sha256'], 'state_after_sha256': after,
                          'selection_sha256': sha(output / 'SELECTION_FREEZE.json')},
-            'calibration': {'gate_found': cal_result['gate_found'], 'target_region_precision': .97},
+            'calibration': ({'gate_found': True, 'recalibrated': False, 'source': 'parent_metadata',
+                             'parent_metadata_sha256': focused['parent_metadata']['sha256']} if focused
+                            else {'gate_found': cal_result['gate_found'], 'target_region_precision': .97}),
             'release_status': 'experimental',
             'scope': 'OCR-free whole-region font candidates and pixel em size; ' + freeze['test_scope']}
     dump(neural / 'metadata.json', meta)
     report = {'schema': 'flux-glyph-region-font-training-report-v1', 'families': families, 'selection': selection,
               'test': test_result, 'test_arrays_opened_after_freeze': True,
-              'test_reused_from_previous_version': data.manifest.get('test_history', 'reused') != 'fresh',
+              'test_reused_from_previous_version': test_history['test_history'] != 'fresh', **test_history,
               'font_label_groups': data.groups,
               'source_counts': freeze['source_counts'], 'regions': freeze['regions'], 'model_sha256': sha(neural / 'model.onnx'),
               'ocr_performed': False, 'model_inputs': ['image_tiles'],
@@ -664,8 +809,8 @@ def main():
     parser.add_argument('--data', required=True, type=Path)
     parser.add_argument('--output', type=Path)
     parser.add_argument('--prepare-only', action='store_true')
-    parser.add_argument('--test-history', choices=['fresh', 'reused'], default='reused',
-                        help='Record whether source test pages have been used before; fresh does not mean an unseen domain')
+    parser.add_argument('--test-history', choices=['fresh', 'reused'], default=None,
+                        help='Override report test history without changing prepared data; default inherits its manifest')
     parser.add_argument('--group-pingfang', action='store_true',
                         help='Prepare SC/TC/HK as the visually identifiable PingFang family; retain native source identity')
     parser.add_argument('--validate-only', action='store_true')
@@ -675,6 +820,14 @@ def main():
                         help='Initialize new PingFang TC/HK heads from SC; requires actual native training samples')
     parser.add_argument('--preserve-size-head', action='store_true',
                         help='Continue the parent region model size head instead of reinitializing it')
+    parser.add_argument('--system-focused', action='store_true',
+                        help='Frozen eight-class system-font continuation with parent-relative fixed-gate CAL selection')
+    parser.add_argument('--system-family-weight', type=int, choices=[1, 2], default=1,
+                        help='Sampling copies for PingFang/SF Pro/Helvetica; 1 preserves the existing sampler')
+    parser.add_argument('--parent-metadata', type=Path,
+                        help='Parent region metadata that pins the unchanged calibration policy and warm-start state')
+    parser.add_argument('--regression-protocol', type=Path,
+                        help='Read-only predeclared regression protocol to bind into TRAINING_FREEZE')
     parser.add_argument('--device', choices=['cpu', 'mps', 'auto'], default='auto')
     parser.add_argument('--steps', type=int, default=3000)
     parser.add_argument('--batch-size', type=int, default=64)
@@ -687,7 +840,7 @@ def main():
             'benchmark must be a separate bounded invocation')
     if args.prepare_only:
         require(args.captures is not None, '--captures is required for preparation')
-        report = prepare(args.captures, args.data, group_pingfang=args.group_pingfang, test_history=args.test_history)
+        report = prepare(args.captures, args.data, group_pingfang=args.group_pingfang, test_history=args.test_history or 'reused')
         print(json.dumps({'prepared': str(args.data), 'families': report['families'],
                           'regions': {s: report['splits'][s]['regions'] for s in SPLITS}}, ensure_ascii=False))
         return

@@ -8,9 +8,11 @@
 
 当前流程是：**原图 → 文字区域检测 → 区域字体 CNN 与字号回归 → 原图颜色测量**。字体判断使用训练后的网络权重。候选包含模型分数；`uncertain` 表示当前结果未通过门槛。
 
-本地 Docker 已切换到 `r17-ios-hant-region-v1`，页面为 `http://localhost:9000/`，模型下载位于上传区上方。以 `/api/health` 的 `model_version`、结果中的 `font_method: region_neural_network` 及所选模型包为准。本次本地验收不代表线上服务器已更新。
+本地 Docker 和线上 `http://allenflux.tech:9000/` 已使用 `r17-ios-hant-region-v1`，模型下载位于上传区上方。以 `/api/health` 的 `model_version`、结果中的 `font_method: region_neural_network` 及所选模型包为准。训练在本地执行，经过验证的代码和模型通过 Git 的 `main` 分支更新到服务器。
 
 R17 使用新采集的 1,000 张原生 iOS Simulator 截图继续训练，包含简体、繁体、英文和数字。八个字体输出中，PingFang 表示苹方字体族，覆盖原生 SC／TC／HK，不宣称能从相同字形区分地区版本。SF Pro、PingFang 和 Helvetica 来自系统；Alipay Number 及其余类别由采集应用加载，**Alipay Number 不是 iOS 系统字体**。来源写入元数据和下载说明。
+
+系统字体的本地微调方式与发布条件见 [系统字体优先训练](docs/ios-system-font-training.md)。训练候选通过验收前不会替换当前活动模型。
 
 新固定测试的 100 张完整截图、1,104 个区域中，1,013 个字体名正确、1 个错误、90 个待确认；没有漏检或额外框。已输出名称的准确率为 99.90%，返回名称的覆盖率为 91.85%。这些是受控模拟器成绩，不能推广到任意 App、真机或未知字体。详见 [R17 验证报告](docs/ios-traditional-results.md)、[采集证据](docs/ios-traditional-capture.md) 和 [训练流程](docs/ios-traditional-training.md)。
 
@@ -54,7 +56,7 @@ curl -o flux-glyph-font-onnx.zip http://localhost:9000/api/models/font/download
 
 ## Docker Compose 部署
 
-将整个项目及经过验证、已选定的完整模型包复制到服务器。`compose.yaml` 默认只读挂载 `./models`，由随源码提供的 `ACTIVE.json` 选择已验证的完整包；无需复制本地训练的 `artifacts/` 目录。
+先在本地训练并验证模型，将代码、完整模型包和 `models/ACTIVE.json` 一起提交到 `main` 并推送。服务器只通过 Git 同步已验证的提交，然后重建推理容器；不在服务器训练。`compose.yaml` 默认只读挂载 `./models`，无需复制本地训练的 `artifacts/` 目录。
 
 ```sh
 cp .env.example .env
@@ -62,6 +64,8 @@ cp .env.example .env
 docker compose up -d --build
 docker compose logs -f api
 ```
+
+已有部署更新时，先确认工作区干净，再执行 `git pull --ff-only origin main` 和 `docker compose up -d --build`。如果远端包含未经验证的其他提交，应先核对提交号。更新后检查 `/api/health` 的版本和 `/api/models/font` 的下载信息。
 
 公开访问地址为 `http://allenflux.tech:9000/`，服务与上传均使用 9000 端口。健康检查为 `/api/health`，API 文档为 `/docs`。设置令牌后，网页可输入相同令牌解锁；程序请求使用 `Authorization: Bearer <令牌>`。
 
