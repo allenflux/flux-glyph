@@ -1,0 +1,50 @@
+[
+  {
+    "file": "Roboto-Italic[wdth,wght].ttf",
+    "family": "Roboto",
+    "typographic_family": null,
+    "postscript_name": "Roboto-Italic",
+    "version": "Version 3.015; 2026",
+    "index": 0,
+    "axes": [
+      {
+        "tag": "wght",
+        "min": 100.0,
+        "default": 400.0,
+        "max": 900.0
+      },
+      {
+        "tag": "wdth",
+        "min": 75.0,
+        "default": 100.0,
+        "max": 100.0
+      }
+    ],
+    "ascii_alphanumeric_cmap": true,
+    "cmap_codepoints": 927
+  },
+  {
+    "file": "Roboto[wdth,wght].ttf",
+    "family": "Roboto",
+    "typographic_family": null,
+    "postscript_name": "Roboto-Regular",
+    "version": "Version 3.015; 2026",
+    "index": 0,
+    "axes": [
+      {
+        "tag": "wght",
+        "min": 100.0,
+        "default": 400.0,
+        "max": 900.0
+      },
+      {
+        "tag": "wdth",
+        "min": 75.0,
+        "default": 100.0,
+        "max": 100.0
+      }
+    ],
+    "ascii_alphanumeric_cmap": true,
+    "cmap_codepoints": 927
+  }
+]

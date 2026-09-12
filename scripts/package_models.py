@@ -200,18 +200,20 @@ def verify_equivalence(legacy_root: Path, output: Path) -> dict:
 
 def write_models_manifest(models_root: Path) -> dict:
     files = []
-    if not (models_root / "pp").is_dir() or not (models_root / "font").is_dir():
-        raise ValueError("A complete bundle needs pp/ and font/ directories")
+    region_model = (models_root / "region_neural" / "metadata.json").is_file()
+    if not (models_root / "pp").is_dir() or not (region_model or (models_root / "font").is_dir()):
+        raise ValueError("A complete bundle needs pp/ and either font/ or region_neural/ assets")
     # Never sweep ACTIVE.json, old releases, or unrelated local files into a
     # bundle. Selection and historical versions belong to the deployment host.
-    assets = [p for folder in ("pp", "font", "latin") for p in (models_root / folder).rglob("*")
+    assets = [p for folder in ("pp", "font", "latin", "neural", "style", "region_neural") for p in (models_root / folder).rglob("*")
               if p.is_file() and not p.name.startswith(".")]
     for path in sorted(assets):
         files.append({"path": str(path.relative_to(models_root)), "sha256": sha256(path), "bytes": path.stat().st_size})
     manifest = {
         "schema": "flux-glyph-models-v2",
         "files": files,
-        "source_note": "user-supplied PP ONNX plus frozen R13 reference rasters compacted without new neural training",
+        "source_note": ("PP text detector plus trained region font/size CNN" if region_model else
+                        "user-supplied PP ONNX plus frozen R13 reference rasters compacted without new neural training"),
     }
     (models_root / "MANIFEST.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
     return manifest

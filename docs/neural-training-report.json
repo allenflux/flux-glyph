@@ -1,0 +1,595 @@
+{
+  "schema": "neural-font-test-report-v1",
+  "selected_epoch": 8,
+  "optimizer_steps": 1200,
+  "training_seconds": 507.98035249998793,
+  "weights_before_sha256": "f792dddcd5dab305531a2b44d4b042e4072c84c50444e38282bd8c4a4dc1e690",
+  "weights_after_sha256": "3418faff640b5c387e25cf2b9ecec059b815653a09e32cbf9aff3c5b96f0ae02",
+  "parameter_l2_change": {
+    "trunk.0.weight": 0.04663045331835747,
+    "style.0.weight": 2.293771505355835,
+    "family_head.weight": 0.44810956716537476
+  },
+  "datasets": [
+    {
+      "name": "alipay-font-smalltext-v10-20260911",
+      "script": "han",
+      "source": {
+        "path": "/Users/allenflux/PycharmProjects/alipay-ai-inference/runs/alipay-font-smalltext-v10-20260911/data/arrays/test",
+        "array_sha256": "af3c74fb5f2d13f0f367d8db8f495a1e5cebc03a9a5ffce865701fc279443714",
+        "metadata_sha256": "7ad68a31dba5dee983a3d3ffeaacd9b5b7c3466ac72b5b3abf36435dad71d07f",
+        "frozen_checksums_verified": true,
+        "rows": 23808
+      },
+      "before": {
+        "rows": 23808,
+        "valid": 23808,
+        "accuracy": 0.5529653897849462,
+        "macro_accuracy": 0.6771622474747475,
+        "families": {
+          "Baoli SC": {
+            "rows": 768,
+            "correct": 762,
+            "recall": 0.9921875
+          },
+          "HarmonyOS Sans SC": {
+            "rows": 2304,
+            "correct": 761,
+            "recall": 0.3302951388888889
+          },
+          "Heiti SC": {
+            "rows": 1536,
+            "correct": 1157,
+            "recall": 0.7532552083333334
+          },
+          "Hiragino Sans GB": {
+            "rows": 1536,
+            "correct": 852,
+            "recall": 0.5546875
+          },
+          "Kaiti SC": {
+            "rows": 768,
+            "correct": 723,
+            "recall": 0.94140625
+          },
+          "MiSans": {
+            "rows": 1536,
+            "correct": 1049,
+            "recall": 0.6829427083333334
+          },
+          "Noto Sans CJK SC": {
+            "rows": 2304,
+            "correct": 1010,
+            "recall": 0.4383680555555556
+          },
+          "OPPO Sans": {
+            "rows": 2304,
+            "correct": 1525,
+            "recall": 0.6618923611111112
+          },
+          "PingFang SC": {
+            "rows": 9216,
+            "correct": 4056,
+            "recall": 0.4401041666666667
+          },
+          "Songti SC": {
+            "rows": 768,
+            "correct": 752,
+            "recall": 0.9791666666666666
+          },
+          "Yuanti SC": {
+            "rows": 768,
+            "correct": 518,
+            "recall": 0.6744791666666666
+          }
+        }
+      },
+      "after": {
+        "rows": 23808,
+        "valid": 23808,
+        "accuracy": 0.5137768817204301,
+        "macro_accuracy": 0.6660846748737375,
+        "families": {
+          "Baoli SC": {
+            "rows": 768,
+            "correct": 764,
+            "recall": 0.9947916666666666
+          },
+          "HarmonyOS Sans SC": {
+            "rows": 2304,
+            "correct": 853,
+            "recall": 0.3702256944444444
+          },
+          "Heiti SC": {
+            "rows": 1536,
+            "correct": 1112,
+            "recall": 0.7239583333333334
+          },
+          "Hiragino Sans GB": {
+            "rows": 1536,
+            "correct": 768,
+            "recall": 0.5
+          },
+          "Kaiti SC": {
+            "rows": 768,
+            "correct": 733,
+            "recall": 0.9544270833333334
+          },
+          "MiSans": {
+            "rows": 1536,
+            "correct": 910,
+            "recall": 0.5924479166666666
+          },
+          "Noto Sans CJK SC": {
+            "rows": 2304,
+            "correct": 959,
+            "recall": 0.4162326388888889
+          },
+          "OPPO Sans": {
+            "rows": 2304,
+            "correct": 1442,
+            "recall": 0.6258680555555556
+          },
+          "PingFang SC": {
+            "rows": 9216,
+            "correct": 3317,
+            "recall": 0.3599175347222222
+          },
+          "Songti SC": {
+            "rows": 768,
+            "correct": 741,
+            "recall": 0.96484375
+          },
+          "Yuanti SC": {
+            "rows": 768,
+            "correct": 633,
+            "recall": 0.82421875
+          }
+        },
+        "accepted": {
+          "rows": 861,
+          "correct": 861,
+          "wrong": 0,
+          "coverage": 0.03616431451612903,
+          "precision": 1.0
+        }
+      },
+      "region_after": {
+        "2": {
+          "rows": 5952,
+          "accuracy": 0.5858534946236559,
+          "accepted": 158,
+          "correct_accepted": 158,
+          "wrong_accepted": 0
+        },
+        "4": {
+          "rows": 2976,
+          "accuracy": 0.6730510752688172,
+          "accepted": 67,
+          "correct_accepted": 67,
+          "wrong_accepted": 0
+        }
+      }
+    },
+    {
+      "name": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/neural-font-v1/data/latin/test.npz",
+      "script": "latin",
+      "source": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/neural-font-v1/data/latin/test.npz",
+        "sha256": "b7693f07fe4a4d4443c0bcc9cb29be2ec0645e25a6b9b34d60d79ff11a49e610",
+        "rows": 768
+      },
+      "before": {
+        "rows": 768,
+        "valid": 768,
+        "accuracy": 0.16015625,
+        "macro_accuracy": 0.17440476190476192,
+        "families": {
+          "HarmonyOS Sans SC": {
+            "rows": 120,
+            "correct": 11,
+            "recall": 0.09166666666666666
+          },
+          "MiSans": {
+            "rows": 80,
+            "correct": 43,
+            "recall": 0.5375
+          },
+          "OPPO Sans": {
+            "rows": 120,
+            "correct": 60,
+            "recall": 0.5
+          },
+          "SF Pro": {
+            "rows": 240,
+            "correct": 0,
+            "recall": 0.0
+          },
+          "Helvetica": {
+            "rows": 80,
+            "correct": 4,
+            "recall": 0.05
+          },
+          "Alipay Number": {
+            "rows": 8,
+            "correct": 0,
+            "recall": 0.0
+          },
+          "Roboto": {
+            "rows": 120,
+            "correct": 5,
+            "recall": 0.041666666666666664
+          }
+        }
+      },
+      "after": {
+        "rows": 768,
+        "valid": 768,
+        "accuracy": 0.22395833333333334,
+        "macro_accuracy": 0.35595238095238096,
+        "families": {
+          "HarmonyOS Sans SC": {
+            "rows": 120,
+            "correct": 41,
+            "recall": 0.3416666666666667
+          },
+          "MiSans": {
+            "rows": 80,
+            "correct": 42,
+            "recall": 0.525
+          },
+          "OPPO Sans": {
+            "rows": 120,
+            "correct": 47,
+            "recall": 0.39166666666666666
+          },
+          "SF Pro": {
+            "rows": 240,
+            "correct": 12,
+            "recall": 0.05
+          },
+          "Helvetica": {
+            "rows": 80,
+            "correct": 0,
+            "recall": 0.0
+          },
+          "Alipay Number": {
+            "rows": 8,
+            "correct": 8,
+            "recall": 1.0
+          },
+          "Roboto": {
+            "rows": 120,
+            "correct": 22,
+            "recall": 0.18333333333333332
+          }
+        },
+        "accepted": {
+          "rows": 0,
+          "correct": 0,
+          "wrong": 0,
+          "coverage": 0.0,
+          "precision": null
+        }
+      },
+      "region_after": {
+        "2": {
+          "rows": 192,
+          "accuracy": 0.22916666666666666,
+          "accepted": 0,
+          "correct_accepted": 0,
+          "wrong_accepted": 0
+        },
+        "4": {
+          "rows": 76,
+          "accuracy": 0.27631578947368424,
+          "accepted": 0,
+          "correct_accepted": 0,
+          "wrong_accepted": 0
+        }
+      }
+    },
+    {
+      "name": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/neural-font-v1/data/han-freetype/test.npz",
+      "script": "han",
+      "source": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/neural-font-v1/data/han-freetype/test.npz",
+        "sha256": "a0bbfe55a3955699d7fec40fed09ddde4fedafe4c3a851f3345ea9b1ca6024b4",
+        "rows": 2944
+      },
+      "before": {
+        "rows": 2944,
+        "valid": 2944,
+        "accuracy": 0.36311141304347827,
+        "macro_accuracy": 0.4417021780303031,
+        "families": {
+          "Baoli SC": {
+            "rows": 128,
+            "correct": 112,
+            "recall": 0.875
+          },
+          "HarmonyOS Sans SC": {
+            "rows": 384,
+            "correct": 51,
+            "recall": 0.1328125
+          },
+          "Heiti SC": {
+            "rows": 256,
+            "correct": 137,
+            "recall": 0.53515625
+          },
+          "Hiragino Sans GB": {
+            "rows": 256,
+            "correct": 0,
+            "recall": 0.0
+          },
+          "Kaiti SC": {
+            "rows": 128,
+            "correct": 128,
+            "recall": 1.0
+          },
+          "MiSans": {
+            "rows": 256,
+            "correct": 0,
+            "recall": 0.0
+          },
+          "Noto Sans CJK SC": {
+            "rows": 384,
+            "correct": 83,
+            "recall": 0.21614583333333334
+          },
+          "OPPO Sans": {
+            "rows": 384,
+            "correct": 111,
+            "recall": 0.2890625
+          },
+          "PingFang SC": {
+            "rows": 512,
+            "correct": 287,
+            "recall": 0.560546875
+          },
+          "Songti SC": {
+            "rows": 128,
+            "correct": 124,
+            "recall": 0.96875
+          },
+          "Yuanti SC": {
+            "rows": 128,
+            "correct": 36,
+            "recall": 0.28125
+          }
+        }
+      },
+      "after": {
+        "rows": 2944,
+        "valid": 2944,
+        "accuracy": 0.42866847826086957,
+        "macro_accuracy": 0.5376420454545454,
+        "families": {
+          "Baoli SC": {
+            "rows": 128,
+            "correct": 126,
+            "recall": 0.984375
+          },
+          "HarmonyOS Sans SC": {
+            "rows": 384,
+            "correct": 81,
+            "recall": 0.2109375
+          },
+          "Heiti SC": {
+            "rows": 256,
+            "correct": 156,
+            "recall": 0.609375
+          },
+          "Hiragino Sans GB": {
+            "rows": 256,
+            "correct": 43,
+            "recall": 0.16796875
+          },
+          "Kaiti SC": {
+            "rows": 128,
+            "correct": 128,
+            "recall": 1.0
+          },
+          "MiSans": {
+            "rows": 256,
+            "correct": 32,
+            "recall": 0.125
+          },
+          "Noto Sans CJK SC": {
+            "rows": 384,
+            "correct": 78,
+            "recall": 0.203125
+          },
+          "OPPO Sans": {
+            "rows": 384,
+            "correct": 117,
+            "recall": 0.3046875
+          },
+          "PingFang SC": {
+            "rows": 512,
+            "correct": 274,
+            "recall": 0.53515625
+          },
+          "Songti SC": {
+            "rows": 128,
+            "correct": 124,
+            "recall": 0.96875
+          },
+          "Yuanti SC": {
+            "rows": 128,
+            "correct": 103,
+            "recall": 0.8046875
+          }
+        },
+        "accepted": {
+          "rows": 53,
+          "correct": 53,
+          "wrong": 0,
+          "coverage": 0.018002717391304348,
+          "precision": 1.0
+        }
+      },
+      "region_after": {
+        "2": {
+          "rows": 736,
+          "accuracy": 0.47282608695652173,
+          "accepted": 3,
+          "correct_accepted": 3,
+          "wrong_accepted": 0
+        },
+        "4": {
+          "rows": 368,
+          "accuracy": 0.5190217391304348,
+          "accepted": 0,
+          "correct_accepted": 0,
+          "wrong_accepted": 0
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Synthetic source-font labels only; zero verified real-device screenshots.",
+    "R10 test is a previously reported benchmark, held out from this training and the R8 parent, not a newly untouched research test.",
+    "Unknown-font rejection is not validated; predictions remain candidates."
+  ],
+  "onnx_sha256": "5b59de4f9061196d3a9f81ed431c5afc303ca3e49b41f96a8bf568c693415ab7",
+  "onnx_bytes": 1462768,
+  "selected_optimizer_steps": 800,
+  "optimizer_steps_executed": 1200,
+  "selected_previous_chinese_protection_passed": true,
+  "calibration": {
+    "han": {
+      "temperature": 2.0,
+      "gate_found": false,
+      "metrics": {
+        "rows": 34688,
+        "valid": 34688,
+        "accuracy": 0.5388030442804428,
+        "macro_accuracy": 0.6630003156565657,
+        "families": {
+          "Baoli SC": {
+            "rows": 1152,
+            "correct": 1147,
+            "recall": 0.9956597222222222
+          },
+          "HarmonyOS Sans SC": {
+            "rows": 3456,
+            "correct": 1348,
+            "recall": 0.3900462962962963
+          },
+          "Heiti SC": {
+            "rows": 2304,
+            "correct": 1722,
+            "recall": 0.7473958333333334
+          },
+          "Hiragino Sans GB": {
+            "rows": 2304,
+            "correct": 1223,
+            "recall": 0.5308159722222222
+          },
+          "Kaiti SC": {
+            "rows": 1152,
+            "correct": 1097,
+            "recall": 0.9522569444444444
+          },
+          "MiSans": {
+            "rows": 2304,
+            "correct": 1328,
+            "recall": 0.5763888888888888
+          },
+          "Noto Sans CJK SC": {
+            "rows": 3456,
+            "correct": 1486,
+            "recall": 0.42997685185185186
+          },
+          "OPPO Sans": {
+            "rows": 3456,
+            "correct": 2083,
+            "recall": 0.6027199074074074
+          },
+          "PingFang SC": {
+            "rows": 12800,
+            "correct": 5356,
+            "recall": 0.4184375
+          },
+          "Songti SC": {
+            "rows": 1152,
+            "correct": 1080,
+            "recall": 0.9375
+          },
+          "Yuanti SC": {
+            "rows": 1152,
+            "correct": 820,
+            "recall": 0.7118055555555556
+          }
+        },
+        "accepted": {
+          "rows": 1254,
+          "correct": 1138,
+          "wrong": 116,
+          "coverage": 0.03615083025830258,
+          "precision": 0.9074960127591707
+        }
+      },
+      "scope": "Known-source synthetic calibration; unknown-font rejection and real screenshots unvalidated."
+    },
+    "latin": {
+      "temperature": 2.0,
+      "gate_found": false,
+      "metrics": {
+        "rows": 920,
+        "valid": 920,
+        "accuracy": 0.2467391304347826,
+        "macro_accuracy": 0.35863095238095244,
+        "families": {
+          "HarmonyOS Sans SC": {
+            "rows": 144,
+            "correct": 27,
+            "recall": 0.1875
+          },
+          "MiSans": {
+            "rows": 96,
+            "correct": 65,
+            "recall": 0.6770833333333334
+          },
+          "OPPO Sans": {
+            "rows": 144,
+            "correct": 50,
+            "recall": 0.3472222222222222
+          },
+          "SF Pro": {
+            "rows": 288,
+            "correct": 10,
+            "recall": 0.034722222222222224
+          },
+          "Helvetica": {
+            "rows": 96,
+            "correct": 10,
+            "recall": 0.10416666666666667
+          },
+          "Alipay Number": {
+            "rows": 8,
+            "correct": 6,
+            "recall": 0.75
+          },
+          "Roboto": {
+            "rows": 144,
+            "correct": 59,
+            "recall": 0.4097222222222222
+          }
+        },
+        "accepted": {
+          "rows": 0,
+          "correct": 0,
+          "wrong": 0,
+          "coverage": 0.0,
+          "precision": null
+        }
+      },
+      "scope": "Known-source synthetic calibration; unknown-font rejection and real screenshots unvalidated."
+    }
+  },
+  "release_status": "experimental",
+  "executed_training_code_directory": "artifacts/neural-font-v1/frozen-training"
+}

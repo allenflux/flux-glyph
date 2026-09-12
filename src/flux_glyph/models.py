@@ -38,6 +38,16 @@ def verify_bundle(directory):
                 'Restore this file from the matching original model bundle. '
                 'Preserve original bytes and line endings; do not regenerate MANIFEST.json to bypass validation.'
             )
+    if any(path.startswith('region_neural/') for path in paths):
+        required={'region_neural/metadata.json','pp/onnx/paddle_ocr_det.onnx','pp/paddle_ocr_delivery.contract.json'}
+        if not required.issubset(paths):raise ValueError('Region bundle lacks required files')
+        model=json.loads((root/'region_neural/metadata.json').read_text()).get('model',{})
+        name=model.get('path')
+        if (not isinstance(name,str) or PurePosixPath(name).name!=name or '\\' in name
+                or not name.endswith('.onnx')):raise ValueError('Invalid region model path')
+        required.add('region_neural/'+name)
+        if not required.issubset(paths):raise ValueError('Region bundle lacks required files')
+        return manifest
     required={'font/metadata.json','font/GATES.json','pp/onnx/paddle_ocr_det.onnx','pp/onnx/paddle_ocr_rec.onnx','pp/onnx/paddle_ocr_cls.onnx','pp/charset/ppocr_keys_v1.txt','pp/paddle_ocr_delivery.contract.json'}
     meta=json.loads((root/'font/metadata.json').read_text());archive=meta.get('archive') if isinstance(meta,dict) else None
     if not isinstance(archive,str) or PurePosixPath(archive).name!=archive:raise ValueError('Invalid font archive path')
@@ -52,6 +62,15 @@ def verify_bundle(directory):
             if not isinstance(name,str) or not name or PurePosixPath(name).name!=name or '\\' in name:
                 raise ValueError('Invalid Latin asset path')
             required.add('latin/'+name)
+    if any(path.startswith('neural/') for path in paths):
+        if 'neural/metadata.json' not in paths:raise ValueError('Model bundle lacks neural metadata')
+        neural=json.loads((root/'neural/metadata.json').read_text())
+        model=neural.get('model') if isinstance(neural,dict) else None
+        name=model.get('path') if isinstance(model,dict) else None
+        if (not isinstance(name,str) or not name or PurePosixPath(name).name!=name or
+                name in ('.','..') or '\\' in name or not name.endswith('.onnx')):
+            raise ValueError('Invalid neural model path')
+        required.add('neural/'+name)
     if not required.issubset(paths):raise ValueError('Model bundle lacks required files')
     return manifest
 

@@ -1,0 +1,75 @@
+{
+  "schema": "flux-glyph-region-training-freeze-v1",
+  "families": [
+    "HarmonyOS Sans SC",
+    "MiSans",
+    "Noto Sans CJK SC",
+    "OPPO Sans",
+    "PingFang SC",
+    "SF Pro",
+    "Helvetica",
+    "Alipay Number"
+  ],
+  "seed": 2026091243,
+  "device": "mps",
+  "torch": "2.8.0",
+  "optimizer_steps_planned": 3000,
+  "batch_size": 64,
+  "evaluate_every_steps": 250,
+  "optimizer": {
+    "name": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001
+  },
+  "loss": "8-family unmasked cross entropy + 0.5 smooth-L1(log em/ink ratio), beta=0.05",
+  "selection": "calibration family macro accuracy minus 0.1 times min(mean size relative error,1); earliest tie",
+  "model_inputs": [
+    "RGB-derived region tiles"
+  ],
+  "ocr_inputs": false,
+  "script_mask": false,
+  "region_aggregation": "mean patch softmax; size=ink_height*exp(median(log_em_ratio))",
+  "invalid_output": "reject entire region when any abs(log_em_ratio)>3 or whole width not covered",
+  "size_spread": "(p90_ratio-p10_ratio)/median_ratio",
+  "calibration": {
+    "gate_target_region_precision": 0.97,
+    "min_regions": 20,
+    "min_patch_agreement": 0.7,
+    "max_size_relative_spread": 0.2
+  },
+  "data_manifest_sha256": "ed7979b1950ff7098d01208451a50ac5abe20c0d4e143d7847f35cdc5c133c2a",
+  "source_kind": "ios_simulator_screenshot",
+  "source_counts": {
+    "train": 800,
+    "test": 100,
+    "calibration": 100
+  },
+  "regions": {
+    "train": 8807,
+    "calibration": 1112,
+    "test": 1097
+  },
+  "warm_start": {
+    "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-font-screenshots-v1/neural/model.pth",
+    "sha256": "e31fcd9dfd55a09ec9a587e5b2f01dc2e4a71afa0b5f737c2a52a7f1536d40c7",
+    "families": [
+      "HarmonyOS Sans SC",
+      "MiSans",
+      "Noto Sans CJK SC",
+      "OPPO Sans",
+      "PingFang SC",
+      "SF Pro",
+      "Helvetica",
+      "Alipay Number"
+    ]
+  },
+  "initial_state_sha256": "d731b4598657c0d11f7bd4fadfb9216fb0a1dd0697f6a3b4709e68b8cfd54b5e",
+  "code_sha256": {
+    "training/train_regions.py": "85b989ecd2ef885558f352bfd40eca4b3e39c16e1a9202473f0d1db4f7f827c7",
+    "training/region_network.py": "cbd57be052c0fb5da2b7d3f9a4d08fd9066653522cbb282d926879d5db320077",
+    "training/network.py": "ce52a705cecb29cd5a024fb5a8ec5d05a710c9bedc0998c870b366f2ff763f22",
+    "src/flux_glyph/region_font.py": "0f6a2a3afaa043ae5be74406bb1c752e5eeb76b96480f2614c8772affc059a11"
+  },
+  "test_arrays_opened": false,
+  "test_scope": "Reused fixed regression set already evaluated in glyph-CNN version; not a new blind test."
+}

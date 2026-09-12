@@ -1,14 +1,54 @@
 # Flux Glyph
 
-网页保留 `Flux Glyph` 项目名，以浅灰色弱化 `Flux`，使用红底 `fg` 小图标，无作者署名；右上角提供 `中文 / EN` 切换按钮。
+上传截图，定位文字区域，直接识别区域字体并估计字号、文字颜色。页面用 `R001` 等编号和原图裁图定位区域，提供字体详情、格式化 JSON、复制 JSON 和原尺寸标注 PNG 下载，支持中文与 English。
 
-上传支付宝截图，自动框出文字区域，点击查看中文、数字／英文字体结果与原图裁字。结果下方分别显示 OCR 文字和格式化 JSON，分别支持复制全文、复制 JSON；可下载在原图尺寸上画框、标注字体的 PNG。界面和 API 说明支持中文、English 切换。
+网站和 API 使用 **9000** 端口。R16 保留 PP 的文字区域检测模型用于定位；字体 CNN 直接处理区域图像，不读取文字内容，不需要字符切分或人工选择中文／英文。独立字体模型也可以下载到本地使用。
 
-网站和 API 使用 **9000** 端口。项目自带 PP-OCR 模型和紧凑字体参考包；运行时不依赖旧仓库、移动硬盘、macOS Vision 或在线模型下载。
+## R16 区域字体模型
+
+R16 的流程是：**原图 → 文字区域检测 → 区域字体 CNN 与字号回归 → 原图颜色测量**。字体判断使用训练后的网络权重。候选包含模型分数；`uncertain` 表示当前结果未通过门槛。
+
+本地 Docker 已切换到 `r16-ios-region-v1`，页面为 `http://localhost:9000/`。以 `/api/health` 的 `model_version`、结果中的 `font_method` 及所选模型包为准；R16 返回 `font_method: region_neural_network`。训练来源和使用方式见 [R16 区域字体模型](docs/ios-region-font.md)，成绩及未知字体限制见 [验证报告](docs/ios-region-results.md)。本次只更新本地服务。
+
+完整 R16 包路径为 `artifacts/ios-region-font-v1/bundle-stable`；保留的字体权重与元数据路径为 `models/experiments/ios-region-v1`。在装有项目依赖的开发环境中可重建完整包，无需重复训练：
+
+```sh
+PYTHONPATH=src .venv/bin/python scripts/package_region.py \
+  --region models/experiments/ios-region-v1 \
+  --output artifacts/ios-region-font-v1/bundle-stable \
+  --version r16-ios-region-v1
+```
+
+输出目录必须尚不存在；打包工具会验证字体模型，并从当前基础包复制 PP 检测模型和检测配置。R16 完整包不需要 PP 识字模型、字符字典、逐字参考库或旧字号统计文件。
+
+## 下载字体模型并单独使用
+
+网页的“字体模型”卡片显示当前可下载模型的版本、字体列表、文件大小和运行命令。下载包包含字体 ONNX、`metadata.json`、`inference.py`、`text_style.py`、`predict.py`、`requirements.txt`、README 和 SHA256 清单，不包含用户上传图片。
+
+解压 ZIP 后，在其目录安装依赖并运行：
+
+```sh
+python -m venv .venv
+# macOS / Linux: source .venv/bin/activate
+# Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+python predict.py text-region.png
+```
+
+输入应是一行或一个文字区域的裁图。脚本返回字体候选、像素字号估计及可见颜色，不要求文字内容；完整截图可交给网站/API 自动定位区域。Python 3.10+，推理依赖 ONNX Runtime、NumPy、Pillow，不需要 PyTorch。
+
+模型输入 `tiles` 为 float32 `[N,1,64,256]`；两个输出是 `logits [N,C]` 和 `log_em_ratio [N]`。必须使用包内 `preprocess_region` 保留比例、归一化背景并生成图块，再按元数据里的类别顺序、温度和门槛聚合；不要把整张截图直接拉伸成模型输入。`predict.py` 已完成这些步骤。
+
+```sh
+curl http://localhost:9000/api/models/font
+curl -o flux-glyph-font-onnx.zip http://localhost:9000/api/models/font/download
+```
+
+信息接口包含 `available`、`version`、`families`、`input_shape`、`download_url`、`bytes`、`sha256`、`ocr_required: false` 和 `usage`。未加载区域模型时返回 `available: false`，下载接口返回 404。启用令牌时，两路接口与图片识别使用同一访问保护；网页下载使用解锁后的 Cookie，命令行添加 `Authorization: Bearer YOUR_TOKEN`，不把令牌写入 URL。
 
 ## Docker Compose 部署
 
-将整个项目（包括 `models/`）复制到服务器：
+将整个项目及经过验证、已选定的完整模型包复制到服务器。`compose.yaml` 默认只读挂载 `./models`；根目录保留历史包时，应先按下文“模型版本管理”安装并激活 R16，或将部署目录的 `models/` 设为完整 R16 包。
 
 ```sh
 cp .env.example .env
@@ -19,127 +59,115 @@ docker compose logs -f api
 
 公开访问地址为 `http://allenflux.tech:9000/`，服务与上传均使用 9000 端口。健康检查为 `/api/health`，API 文档为 `/docs`。设置令牌后，网页可输入相同令牌解锁；程序请求使用 `Authorization: Bearer <令牌>`。
 
-默认面向 **2 核 / 2 GB** 主机：一个推理任务运行、最多八个等待；单线程 ONNX 会话与 BLAS；字体缓存仅保留 32 个汉字；容器最多 2 核、1536 MiB 内存，为主机预留空间。限制单图 8 MB / 1200 万像素；最多识别 200 个文字框，超出框仍可见并标明未处理。
+本地 `compose.ios.yaml` 挂载 `artifacts/ios-region-font-v1/bundle-stable`，保留根目录 R14。启用本地 R16：
 
-上传数据保存在 `glyph-data` 命名卷中，每次上传单独一个任务目录，包含上传文件、原图、区域裁图、单字裁图、标注 PNG 和 JSON。默认最多保留 **7 天（168 小时）**，并设 **100 个已结束任务**的数量上限；超过数量上限时会提前删除最旧的结果。
+```sh
+docker compose -f compose.yaml -f compose.ios.yaml up -d --build
+```
 
-服务启动、任务结束及每分钟检查一次过期数据，到期后整组删除，排队和处理中的任务保留。这是逐个任务滚动过期，不用等到每周某一天统一清空，也不需要服务器额外配置 cron。`.env` 中的 `FLUX_RETENTION_HOURS` 可修改保留时长，`FLUX_MAX_SAVED_JOBS` 可修改数量上限；修改后执行 `docker compose up -d` 应用配置。结果清理后，原结果、裁图和下载链接返回 404。
+默认资源配置面向 **2 核 / 2 GB** 主机：一个推理任务运行、最多八个等待；单线程 ONNX 会话与 BLAS；容器最多 2 核、1536 MiB 内存，为主机预留空间。限制单图 8 MB / 1200 万像素；最多处理 200 个文字区域，超出区域仍保留框并标明未处理。此处是部署配置，不代表 R16 的资源验收成绩。
 
-`docker compose down` 不会删除数据卷；不要使用 `down -v`，除非确实要清空结果。清理仅针对任务数据，`models/` 中的模型保持只读。
+上传数据保存在 `glyph-data` 命名卷中，每次上传有独立任务目录，包含上传文件、原图、区域裁图、标注 PNG 和 JSON。默认最多保留 **7 天（168 小时）**，并设 **100 个已结束任务**的数量上限；超过上限时提前删除最旧的结果。
 
-## 排队与页面交互
+服务启动、任务结束及每分钟检查一次过期数据，整组删除过期任务；排队和处理中的任务保留，无需额外设置 cron。`.env` 中的 `FLUX_RETENTION_HOURS`、`FLUX_MAX_SAVED_JOBS` 可调整保留策略，修改后执行 `docker compose up -d`。清理后原结果、裁图和下载链接返回 404。
 
-结果第一行展示原图与文字区域列表；字体详情默认隐藏，点击区域后在下一行横向展开，支持收起。OCR 文字独占下一行，JSON 放在最下方一行。切换选中区域只更新详情和高亮，不自动滚动整页。
+`docker compose down` 不会删除数据卷；只有确实要清空结果时才使用 `down -v`。清理仅针对任务数据，模型保持只读。
 
-等待时显示真实队列位置和前方任务数，处理时显示阶段和已完成区域数。准备与检测使用不定进度动画；逐区域处理后按已完成步骤推进，结果保存成功后才到 100%，不预测剩余秒数。动画支持系统的减少动态效果设置。
+## 页面、排队与字体结论
 
-排队、处理中、完成、错误采用不同颜色，并保留文字说明。结果框与字体状态使用统一颜色：绿色为通过苹方门槛、蓝色为其他字体候选、琥珀色为待确认、灰色为字库尚未覆盖的文字类型。进度变绿只表示任务完成。
+结果上方展示原图与区域缩略图列表。点击框或 `R001` 等区域编号，展开对应裁图、字体候选、字号与颜色，支持收起；切换区域不会自动滚动整页。JSON 保留原始返回内容。页面不展示识字全文、识字置信度或单字证据。
 
-OCR 面板按检测区域顺序列出非空文字，包括数字与英文。点击文字可联动原图框和字体详情；复制全文以换行连接这些区域，不额外推断票据阅读顺序。每框的 `ocr_confidence` 是文字识读置信度，不是字体判断的准确率。未可靠读出的区域和超出处理上限的区域保留原图框，不编造文字。
+等待时显示真实队列位置和前方任务数。准备与检测使用不定进度动画；逐区域处理后按已完成步骤推进，结果保存成功才到 100%，不预测剩余秒数。动画支持系统的减少动态效果设置。进度变绿只表示任务完成。
 
-队列满时返回 429 和 `Retry-After: 2`；网页保留所选图片以便重试。拿到任务 ID 后，查询中断不会自动重复上传图片。等待任务只存文件和任务信息，不为每个用户加载一套模型。
+R16 的蓝色 `candidate` 表示通过模型分数、前两名差值及区域片段一致性门槛的字体候选；琥珀色 `uncertain` 保留具体原因：
 
-浏览器负责文字框绘制、自适应布局、中英切换、OCR 文字展示与复制、JSON 格式化和复制；OCR 面板复用本次 PP 识读结果，无需再运行一个模型。服务端负责原图检测、识字、字体匹配和标注 PNG。原图不会为了页面展示而压缩后再送入模型。网页不再显示 JSON 下载按钮，原 API 下载接口继续兼容。
+- 模型分数未达门槛，或前两名字体评分过于接近。
+- 区域内不同图像片段的字体判断不一致。
+- 区域过长、图像质量不足或背景颜色不均匀。
+- 区域超出本次处理数量上限。
 
-`GET /api/jobs/{id}` 附带 `queue_position`（等待位置从 1 开始，运行时为 0，结束后为 null）、`queue_ahead`、`queue_total` 和 `progress`。`progress.stage_code` 是处理阶段，`percent` 可为 null，`current` / `total` 是当前阶段的区域计数。进度代表完成步骤比例，不代表耗时比例。
+未通过门槛时 `font.family` 为 null，存在的候选分数仍可查看。分数是已知类别间的模型评分，不是实际准确率；未知字体也可能误判。字体名不能用于确定手机系统、设备或截图真伪。绿色 `supported` 及灰色 `out_of_scope` 保留用于历史结果兼容，R16 不沿用旧苹方参考匹配规则。
 
-## API
+`text_style.font_size_px_estimate` 是输入截图中的像素字号估计，**不是 iOS pt，也不是检测框高度**。R16 的 `font_size_px_interval` 为 null，不将图块差异伪装成置信区间。`text_color_hex` 是可见 `#RRGGBB` 颜色；缺少可靠结果时字段为 null，`size`、`color` 说明状态和原因。缩放截图会改变像素字号；颜色测量不恢复原始透明度。
 
-同步识别（120 秒内完成则直接返回结果，超时返回 202 与任务 ID）：
+队列满时返回 429 和 `Retry-After: 2`；网页保留所选图片。拿到任务 ID 后，查询中断只重试查询，不重复上传。等待任务只保存文件和任务信息，不为每个用户加载模型。
+
+`GET /api/jobs/{id}` 附带 `queue_position`（等待位置从 1 开始，运行时为 0，结束后为 null）、`queue_ahead`、`queue_total` 和 `progress`。`progress.stage_code` 表示阶段，`percent` 可为 null；`current` / `total` 在提供时表示当前阶段的区域计数。进度代表完成步骤比例，不代表耗时比例。
+
+## 图片识别 API
+
+同步识别在 120 秒内完成时直接返回结果，超时返回 202 与任务 ID：
 
 ```sh
 curl -F "file=@./alipay.png" http://allenflux.tech:9000 -o result.json
-```
-
-无需手写 `Content-Type` 或 `X-Filename`，`curl -F` 会自动带上 multipart 格式与文件名。也支持：
-
-```sh
 curl -F "file=@./alipay.png" http://allenflux.tech:9000/upload
 curl -T ./alipay.png http://allenflux.tech:9000/upload/alipay.png
 ```
 
-这些上传地址默认在完成后返回 JSON；加 `?wait=false` 则先返回任务 ID。原有 `/api/jobs`、`/api/predict` 接口继续可用。
-
-有令牌时：
+`curl -F` 自动附带 multipart 格式和文件名，无需手写 `Content-Type` 或 `X-Filename`。这些上传地址加 `?wait=false` 可先返回任务 ID，原有 `/api/jobs`、`/api/predict` 继续可用。
 
 ```sh
+# 有令牌时
 curl -H 'Authorization: Bearer YOUR_TOKEN' \
   -F "file=@./alipay.png" http://allenflux.tech:9000
-```
 
-异步任务与网页相同：
-
-```sh
+# 异步提交、查询、下载
 curl -F "file=@./alipay.png" http://allenflux.tech:9000/api/jobs
 curl http://allenflux.tech:9000/api/jobs/TASK_ID
 curl -o annotated.png http://allenflux.tech:9000/api/jobs/TASK_ID/image
 curl -o result.json http://allenflux.tech:9000/api/jobs/TASK_ID/json
 ```
 
-结果包含 `model_version`、`summary`、原图尺寸、每框的 `quad`、文字、字体标签、候选距离、逐字原图裁图，以及下载地址。框坐标对应 EXIF 方向校正后的原图；导出的标注 PNG 与其像素尺寸一致。原始上传文件保留，不会被标注覆盖。
+结果包含模型版本、原图尺寸、区域 `id`、`quad`、`detector_bbox`、`source_bbox`、`crop_url`、`font`、`text_style` 和下载地址。框坐标对应 EXIF 方向校正后的原图，标注 PNG 与其尺寸一致；原上传文件不被标注覆盖。
 
-结果状态：
+R16 返回 `ocr_performed: false`，`text` 为 null 或空字符串，`ocr_confidence` 为 null，`glyphs` 为空。`font.method` 为 `region_neural_network`，`font.scope` 为 `Detected text region`；`candidates` 使用 `{family, score}`，并提供 `score`、`margin` 和 `patch_agreement`。区域图像直接进入字体网络，检测模型仅负责找位置。
 
-- `supported`：中文字形通过当前苹方规则，逐字候选一致。
-- `candidate`：其他中文字体的三个视图排名一致，或数字／英文通过距离与区分度门槛且三个视图排名一致；字体名仍为候选。
-- `uncertain`：分字不足、缺参考字、字体不一致或证据不足。
-- `out_of_scope`：字库尚未覆盖的文字类型。数字／英文已有独立参考库，证据不足时为 `uncertain`。
+## 本地开发与模型版本管理
 
-当前版本 `r14-mobile-fonts-v1`：中文参考库覆盖 11 个字体族、31 个字体样式、1194 个汉字；数字／英文参考库覆盖 6 个字体族、17 个样式、62 个字母数字。数字／英文字体包含 SF Pro、Helvetica、MiSans、HarmonyOS Sans SC、OPPO Sans，支付宝金额字体 Alipay Number 仅提供数字参考。
-
-混合文字框的主结论仅指中文部分；`font.components` 分别返回中文和数字／英文的候选、状态、字符下标，页面详情分别展示。标点作为分字邻居，不用于字体判断。短串、图标混入、黏连或证据不足时保留待确认。字体结果不代表真实设备或截图真伪。
-
-**90% 是验收目标，不是已经得到真实支付宝截图验证的准确率。** 验证须同时报告输出字体名称后的准确率、输出覆盖率、待确认数量。受控渲染图片的真字体实验不能替代真实截图的逐框字体标注。
-
-固定 36 张受控中文端到端测试：30 张输出字体名且全部正确，覆盖率／全部样本名称正确率为 83.33%；若同时要求裁字证据完整，已输出结果的严格正确率为 96.67%。安卓四家族正确数由 16/24 提升到 19/24，错误命名由 1 降至 0；苹方保持 6/6。额外数字／英文端到端测试：23 个已知字体样本中 19 个正确候选、0 个错误、4 个待确认，8 个未知字体负例全部拒识。以上均为受控渲染输入，不能写成真实手机截图识别率。详见 [本轮验证](docs/mobile-font-improvements.md) 和 [中文精度报告](docs/accuracy-report.md)。
-
-实际原图测试和资源记录见 [交付验证](docs/delivery-validation.md)。100 张原图是无字体真值的功能、覆盖与资源测试，白图和蓝图使用同一条推理流程。
-
-## 本地开发与模型迭代
-
-Python 3.11：
+Python 3.11 开发环境：
 
 ```sh
 python3.11 -m venv .venv
 .venv/bin/pip install -r requirements.lock
-PYTHONPATH=src OPENBLAS_NUM_THREADS=1 .venv/bin/uvicorn flux_glyph.api:app --host 127.0.0.1 --port 9000
+PYTHONPATH=src OPENBLAS_NUM_THREADS=1 \
+  FLUX_MODEL_DIR=artifacts/ios-region-font-v1/bundle \
+  .venv/bin/uvicorn flux_glyph.api:app --host 127.0.0.1 --port 9000
 ```
 
-`models/MANIFEST.json` 为模型文件清单及 SHA256。推理进程启动时验证模型；模型版本写入每个结果。当前字体方法是固定字形特征匹配，不是新训练的 Yuzu 字体神经网络；PP 检测和识字使用 ONNX 神经网络。字体参考包先在本地预处理，服务端按需读取，避免重复渲染和存储浮点大数组。
+运行前需按上面的命令准备完整 R16 包。`models/MANIFEST.json` 或所选包的清单记录文件大小和 SHA256；进程启动时验证模型，版本写入每个结果。只把 ONNX 放在磁盘上不会启用它。服务端只推理，不训练。
 
-本地训练/生成新模型后，按相同契约打成完整模型包。当前格式、导入与回退见 [模型交付说明](docs/model-bundles.md)。服务端仅执行推理，不执行训练。
+将完整 R16 包导出，再安装到默认 `models/` 下，可保留根目录历史包以便回退：
 
 ```sh
-# 导出当前自包含模型包
-.venv/bin/python scripts/model_release.py export --output artifacts/flux-glyph-model-v1.zip
-# 导入本地新版本；会校验 SHA 和运行时格式
-.venv/bin/python scripts/model_release.py install new-model.zip --version experiment-002
-# 重启加载已选版本
-docker compose restart api
-# 回退最初随项目提供的模型
+.venv/bin/python scripts/model_release.py \
+  --model-root artifacts/ios-region-font-v1/bundle export \
+  --output artifacts/flux-glyph-r16-ios-region-v1.zip
+.venv/bin/python scripts/model_release.py install \
+  artifacts/flux-glyph-r16-ios-region-v1.zip --version r16-ios-region-v1
+# 同步完整 models/ 及配套代码后重启/重建
+docker compose up -d --build
+# 回退根目录随项目提供的历史包
 .venv/bin/python scripts/model_release.py activate bundled
 docker compose restart api
 ```
 
-建议在本地验收新版本后再同步到服务器。新版本放入 `models/releases/版本号/`，`ACTIVE.json` 仅切换指向；旧模型文件保留，便于回退。修改代码或依赖后需要重新 `docker compose up -d --build`。
+模型管理命令在装有项目依赖的本地环境运行。安装目录为 `models/releases/版本号/`，`ACTIVE.json` 记录所选路径，旧模型保留；服务器同步完整目录后重启即可，不需要宿主机 Python 依赖。更改算法或 ONNX 输入输出契约时，应同步更新推理代码并验收。完整格式及历史兼容见 [模型交付说明](docs/model-bundles.md)。独立字体下载 ZIP 是裁图推理工具包，不是这些命令使用的完整网站模型包。
 
-模型管理命令在装有本项目依赖的本地开发环境中运行。将完整 `models/` 目录同步到服务器后重启容器即可；服务器无需安装宿主机 Python 依赖。导入检查包括全部参考数组、字体表、门槛及 PP ONNX 的完整性与运行时格式。训练算法或输出契约发生变化时，需要同时更新相应推理代码。
+开发测试依赖：`pip install pytest httpx fonttools`。运行 `PYTHONPATH=src python -m pytest -q` 和 `node tests/ui_qa.js`；`node tests/region_browser_qa.js` 使用隔离的本地页面与模拟 API 验证区域 UI，不运行字体精度评测。`tests/browser_qa.js` 和 `tests/integration_api.py` 面向已运行的服务。测试依赖和样本不参与容器推理。
 
-开发验证依赖为 `pip install pytest httpx fonttools`。运行 `PYTHONPATH=src python -m pytest -q`；固定精度复测为 `python tests/accuracy_eval.py --evaluate`。复测直接读取项目内已冻结的 36 张图片；只有重新生成输入或离线迁移旧字库才需要本地源字体/旧实验目录。实际 HTTP 检查为 `python tests/integration_api.py`。这些依赖和测试样本不参与容器推理。
+## 历史记录与项目结构
 
-## 项目结构
+R14 参考匹配记录见 [移动字体改进](docs/mobile-font-improvements.md)、[中文精度报告](docs/accuracy-report.md)；R15 单字 CNN 记录见 [iOS 截图训练](docs/ios-screenshot-training.md)、[历史截图评测](docs/ios-screenshot-results.md)。更早的实验见 [神经网络训练历史](docs/neural-font-training.md)，原部署资源记录见 [交付验证](docs/delivery-validation.md)。这些记录保留各自版本、输入和评分口径，不是 R16 验证结果。
 
-- `src/flux_glyph/`：跨平台检测、识字、原像素分字、字体匹配、标注导出、API。
-- `web/`：参考 FluxDrop 风格的单页网站。
-- `models/`：PP ONNX、字体参考包、版本清单。
-- `assets/`：用于画中文标注的开源字体子集与许可证。
-- `scripts/`：离线模型打包、导入和回退工具。
-- `tests/`、`docs/`：功能测试、精度和资源验证记录。
+- `src/flux_glyph/`：区域检测、字体／字号 CNN、颜色测量、标注导出与 API；另保留历史推理兼容代码。
+- `web/`：区域裁图交互、中英切换、模型下载与 API 说明。
+- `models/`：默认／历史模型、版本清单和保存的实验权重。
+- `assets/`：用于中文标注的字体子集与许可证。
+- `scripts/`、`training/`：模型打包、版本管理、数据采集和本地训练工具。
+- `tests/`、`docs/`：功能测试、各版本评测和操作文档。
 
 ## Git 部署时的模型校验
 
-模型清单校验原始字节，包括换行。PP 配置已统一为 LF；`.gitattributes` 中的 `models/** -text` 禁止 Git 再自动改写模型文件。请将属性文件和 `models/MANIFEST.json` 一并提交，保留严格校验。
+模型清单验证原始字节，包括换行。`.gitattributes` 的 `models/** -text` 禁止 Git 改写模型文件，部署时应保留属性文件和对应 MANIFEST。
 
-若启动报 `Model file checksum mismatch`，先同步完整版本并重建；不要按服务器上的异常文件重新生成清单。`./models` 挂载会覆盖镜像内模型，只重建镜像而未同步宿主机模型文件不能修复此类问题。新日志会显示实际模型目录、预期及实际字节数和 SHA256；切换过模型版本时还需检查 `models/ACTIVE.json` 指向的目录。
-
-本次修复的 PP 配置为 7851 字节，SHA256 为 `3457279d02acb449b6844cfa132687585b3bedc1f3e6736fdb539adc6edb9b2a`。配置内容和神经网络权重不变；仅统一换行并将清单对齐到已经存于 Git 的文件。
+启动报 `Model file checksum mismatch` 时，先同步完整版本；不要依据服务器上的异常文件重新生成清单。`./models` 挂载会覆盖镜像内模型，仅重建镜像不能修复宿主机模型不一致。日志给出实际目录、预期／实际字节数及 SHA256；切换过版本时同时检查 `models/ACTIVE.json`。

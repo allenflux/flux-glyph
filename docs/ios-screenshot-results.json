@@ -1,0 +1,2431 @@
+{
+  "schema": "flux-glyph-ios-delivery-results-v1",
+  "scope": "iOS Simulator controlled native scenes; not independent third-party app or physical phone accuracy",
+  "capture": {
+    "captured_pages": 1000,
+    "source_kind": "ios_simulator_screenshot",
+    "split_counts": {
+      "train": 800,
+      "calibration": 100,
+      "test": 100
+    },
+    "labels_sha256": "9d82c85d284a5a7c5a377325523e5105f2edddcf8022d8bf80a2a816ac5a9b10"
+  },
+  "training": {
+    "schema": "native-screenshot-font-test-report-v1",
+    "data_audit": {
+      "manifest_sha256": "5b954591aa95b3a75187440571ec9d10bcafbc5a03e65b065d7d9397cb434372",
+      "source_kind": "ios_simulator_screenshot",
+      "capture_domain": "ios_simulator_controlled_scene",
+      "ui_content_is_generated": true,
+      "test_source_metadata_inspected_for_identity_validation": true,
+      "test_glyph_pixels_loaded": true,
+      "characters_may_overlap_across_splits": true,
+      "source_overlap": {
+        "source_id": 0,
+        "source_file_sha256": 0,
+        "decoded_pixel_sha256": 0,
+        "page_id": 0,
+        "region_rgb_sha256": 0,
+        "content_group_id": 0,
+        "normalized_region_text": 0
+      },
+      "screenshots_by_split": {
+        "train": 800,
+        "test": 100,
+        "calibration": 100
+      },
+      "verified_partition_sha256": {
+        "train": {
+          "metadata": "0f56ce9efe78d570f28e58a6c9aef9f4729eaa10dfab6503c4519192c92eaa72",
+          "glyphs": "1ee3c4ec8aa914106396b2564fc4b38ee3ed1a524a3f2558c52dcd0ee7d49bd4"
+        },
+        "calibration": {
+          "metadata": "5a4ed69d9060a8d88737d145d1a4c014c5c210baaa1275880b50ee2c1c738b82",
+          "glyphs": "0e6e9f5afec0f1014d9abb12840e7994b8589585f902dfef4bddd2c9e85401ab"
+        },
+        "test": {
+          "metadata": "3a4f72909202d656d63b19d18204577df752854ce598300a25f40a5d36850a13",
+          "glyphs": "d60b712447881b82f4f87fdf3960f1b19b1d52245d6232a86f3112b0a60468be"
+        }
+      }
+    },
+    "families": [
+      "HarmonyOS Sans SC",
+      "MiSans",
+      "Noto Sans CJK SC",
+      "OPPO Sans",
+      "PingFang SC",
+      "SF Pro",
+      "Helvetica",
+      "Alipay Number"
+    ],
+    "scripts": {
+      "han": [
+        "HarmonyOS Sans SC",
+        "MiSans",
+        "Noto Sans CJK SC",
+        "OPPO Sans",
+        "PingFang SC"
+      ],
+      "latin": [
+        "HarmonyOS Sans SC",
+        "MiSans",
+        "OPPO Sans",
+        "SF Pro",
+        "Helvetica",
+        "Alipay Number"
+      ]
+    },
+    "calibration_baseline": {
+      "han": {
+        "glyph": {
+          "rows": 5816,
+          "complete_rows": 5816,
+          "accuracy": 0.5354195323246217,
+          "macro_accuracy": 0.4991614023573364,
+          "families": {
+            "HarmonyOS Sans SC": {
+              "rows": 1169,
+              "accuracy": 0.3849443969204448
+            },
+            "MiSans": {
+              "rows": 779,
+              "accuracy": 0.2374839537869063
+            },
+            "Noto Sans CJK SC": {
+              "rows": 1156,
+              "accuracy": 0.6089965397923875
+            },
+            "OPPO Sans": {
+              "rows": 1165,
+              "accuracy": 0.4738197424892704
+            },
+            "PingFang SC": {
+              "rows": 1547,
+              "accuracy": 0.7905623787976729
+            }
+          },
+          "negative_log_likelihood": 1.3842902906005357
+        },
+        "region": {
+          "rows": 712,
+          "complete_rows": 712,
+          "accuracy": 0.6853932584269663,
+          "macro_accuracy": 0.6352096087752129,
+          "families": {
+            "HarmonyOS Sans SC": {
+              "rows": 142,
+              "accuracy": 0.5915492957746479
+            },
+            "MiSans": {
+              "rows": 95,
+              "accuracy": 0.21052631578947367
+            },
+            "Noto Sans CJK SC": {
+              "rows": 142,
+              "accuracy": 0.7464788732394366
+            },
+            "OPPO Sans": {
+              "rows": 143,
+              "accuracy": 0.6643356643356644
+            },
+            "PingFang SC": {
+              "rows": 190,
+              "accuracy": 0.9631578947368421
+            }
+          },
+          "negative_log_likelihood": 0.9889780313349906
+        }
+      },
+      "latin": {
+        "glyph": {
+          "rows": 6240,
+          "complete_rows": 6240,
+          "accuracy": 0.31987179487179485,
+          "macro_accuracy": 0.43141596302795504,
+          "families": {
+            "HarmonyOS Sans SC": {
+              "rows": 1242,
+              "accuracy": 0.3752012882447665
+            },
+            "MiSans": {
+              "rows": 826,
+              "accuracy": 0.41041162227602906
+            },
+            "OPPO Sans": {
+              "rows": 1264,
+              "accuracy": 0.4319620253164557
+            },
+            "SF Pro": {
+              "rows": 1983,
+              "accuracy": 0.18255168935955624
+            },
+            "Helvetica": {
+              "rows": 791,
+              "accuracy": 0.18836915297092288
+            },
+            "Alipay Number": {
+              "rows": 134,
+              "accuracy": 1.0
+            }
+          },
+          "negative_log_likelihood": 1.6244682921710687
+        },
+        "region": {
+          "rows": 400,
+          "complete_rows": 400,
+          "accuracy": 0.4725,
+          "macro_accuracy": 0.5355030822960576,
+          "families": {
+            "HarmonyOS Sans SC": {
+              "rows": 77,
+              "accuracy": 0.5324675324675324
+            },
+            "MiSans": {
+              "rows": 53,
+              "accuracy": 0.4716981132075472
+            },
+            "OPPO Sans": {
+              "rows": 79,
+              "accuracy": 0.6582278481012658
+            },
+            "SF Pro": {
+              "rows": 128,
+              "accuracy": 0.390625
+            },
+            "Helvetica": {
+              "rows": 50,
+              "accuracy": 0.16
+            },
+            "Alipay Number": {
+              "rows": 13,
+              "accuracy": 1.0
+            }
+          },
+          "negative_log_likelihood": 1.401281514650409
+        }
+      }
+    },
+    "selection": {
+      "schema": "native-screenshot-selection-before-test-v1",
+      "selected": {
+        "epoch": 19,
+        "updates": 4750,
+        "score": 0.9878330575823699,
+        "checkpoint_sha256": "6770081c15f06bb4104ef17f8b054d5fc73d8f5b4e1cf3f4b16abe71ae0d406c"
+      },
+      "optimizer_steps_executed": 5000,
+      "state_before_sha256": "3c4196e206d36889b08b3743f1ca24ba2f29a44fec44e3fabc03a99615105f0c",
+      "state_after_sha256": "eef3c2418d828c3603adb31d9728bccf868fd23cd1c997ec5ae1747e3753fd0a",
+      "parameter_l2_change": {
+        "trunk.0.weight": 0.05727154016494751,
+        "style.0.weight": 6.322299003601074,
+        "family_head.weight": 1.229339599609375
+      },
+      "temperatures": {
+        "han": 0.5,
+        "latin": 0.5
+      },
+      "gates": {
+        "han": {
+          "min_score": 0.5,
+          "min_margin": 0.01
+        },
+        "latin": {
+          "min_score": 0.5,
+          "min_margin": 0.01
+        }
+      },
+      "calibration": {
+        "han": {
+          "temperature": 0.5,
+          "gate_found": true,
+          "glyph": {
+            "rows": 5816,
+            "complete_rows": 5816,
+            "accuracy": 0.9824621733149931,
+            "macro_accuracy": 0.9829063279179879,
+            "families": {
+              "HarmonyOS Sans SC": {
+                "rows": 1169,
+                "accuracy": 0.9666381522668948
+              },
+              "MiSans": {
+                "rows": 779,
+                "accuracy": 0.9922978177150192
+              },
+              "Noto Sans CJK SC": {
+                "rows": 1156,
+                "accuracy": 0.9818339100346021
+              },
+              "OPPO Sans": {
+                "rows": 1165,
+                "accuracy": 0.9879828326180258
+              },
+              "PingFang SC": {
+                "rows": 1547,
+                "accuracy": 0.9857789269553976
+              }
+            },
+            "negative_log_likelihood": 0.05020510650292341,
+            "accepted": {
+              "rows": 5813,
+              "correct": 5714,
+              "wrong": 99,
+              "coverage": 0.999484181568088,
+              "precision": 0.9829692069499398
+            }
+          },
+          "region": {
+            "rows": 712,
+            "complete_rows": 712,
+            "accuracy": 1.0,
+            "macro_accuracy": 1.0,
+            "families": {
+              "HarmonyOS Sans SC": {
+                "rows": 142,
+                "accuracy": 1.0
+              },
+              "MiSans": {
+                "rows": 95,
+                "accuracy": 1.0
+              },
+              "Noto Sans CJK SC": {
+                "rows": 142,
+                "accuracy": 1.0
+              },
+              "OPPO Sans": {
+                "rows": 143,
+                "accuracy": 1.0
+              },
+              "PingFang SC": {
+                "rows": 190,
+                "accuracy": 1.0
+              }
+            },
+            "negative_log_likelihood": 0.023261898106802594,
+            "accepted": {
+              "rows": 712,
+              "correct": 712,
+              "wrong": 0,
+              "coverage": 1.0,
+              "precision": 1.0
+            }
+          },
+          "target_precision": 0.97,
+          "minimum_accepted_complete_regions": 20,
+          "gate_calibration_level": "complete_native_region",
+          "temperature_selection": "minimum complete native region negative log likelihood",
+          "glyph_acceptance_precision_target_validated": false,
+          "unknown_font_rejection_validated": false
+        },
+        "latin": {
+          "temperature": 0.5,
+          "gate_found": true,
+          "glyph": {
+            "rows": 6240,
+            "complete_rows": 6240,
+            "accuracy": 0.9559294871794872,
+            "macro_accuracy": 0.968425902411492,
+            "families": {
+              "HarmonyOS Sans SC": {
+                "rows": 1242,
+                "accuracy": 0.964573268921095
+              },
+              "MiSans": {
+                "rows": 826,
+                "accuracy": 0.9903147699757869
+              },
+              "OPPO Sans": {
+                "rows": 1264,
+                "accuracy": 0.9770569620253164
+              },
+              "SF Pro": {
+                "rows": 1983,
+                "accuracy": 0.9178013111447302
+              },
+              "Helvetica": {
+                "rows": 791,
+                "accuracy": 0.9608091024020228
+              },
+              "Alipay Number": {
+                "rows": 134,
+                "accuracy": 1.0
+              }
+            },
+            "negative_log_likelihood": 0.12556190001384693,
+            "accepted": {
+              "rows": 6187,
+              "correct": 5940,
+              "wrong": 247,
+              "coverage": 0.9915064102564103,
+              "precision": 0.9600775820268305
+            }
+          },
+          "region": {
+            "rows": 400,
+            "complete_rows": 400,
+            "accuracy": 1.0,
+            "macro_accuracy": 1.0,
+            "families": {
+              "HarmonyOS Sans SC": {
+                "rows": 77,
+                "accuracy": 1.0
+              },
+              "MiSans": {
+                "rows": 53,
+                "accuracy": 1.0
+              },
+              "OPPO Sans": {
+                "rows": 79,
+                "accuracy": 1.0
+              },
+              "SF Pro": {
+                "rows": 128,
+                "accuracy": 1.0
+              },
+              "Helvetica": {
+                "rows": 50,
+                "accuracy": 1.0
+              },
+              "Alipay Number": {
+                "rows": 13,
+                "accuracy": 1.0
+              }
+            },
+            "negative_log_likelihood": 0.07129461417509315,
+            "accepted": {
+              "rows": 400,
+              "correct": 400,
+              "wrong": 0,
+              "coverage": 1.0,
+              "precision": 1.0
+            }
+          },
+          "target_precision": 0.97,
+          "minimum_accepted_complete_regions": 20,
+          "gate_calibration_level": "complete_native_region",
+          "temperature_selection": "minimum complete native region negative log likelihood",
+          "glyph_acceptance_precision_target_validated": false,
+          "unknown_font_rejection_validated": false
+        }
+      },
+      "test_glyph_pixels_loaded": false,
+      "elapsed_training_seconds": 249.46861733309925,
+      "train_sampling": {
+        "available_rows": 95559,
+        "unique_rows_sampled": 95559,
+        "minimum_visits": 3,
+        "maximum_visits": 47
+      }
+    },
+    "test_before": {
+      "han": {
+        "glyph": {
+          "rows": 5656,
+          "complete_rows": 5656,
+          "accuracy": 0.5344766619519095,
+          "macro_accuracy": 0.4988144738762735,
+          "families": {
+            "HarmonyOS Sans SC": {
+              "rows": 1132,
+              "accuracy": 0.40547703180212014
+            },
+            "MiSans": {
+              "rows": 752,
+              "accuracy": 0.2393617021276596
+            },
+            "Noto Sans CJK SC": {
+              "rows": 1138,
+              "accuracy": 0.5905096660808435
+            },
+            "OPPO Sans": {
+              "rows": 1128,
+              "accuracy": 0.4858156028368794
+            },
+            "PingFang SC": {
+              "rows": 1506,
+              "accuracy": 0.7729083665338645
+            }
+          },
+          "negative_log_likelihood": 1.3964405060424123
+        },
+        "region": {
+          "rows": 697,
+          "complete_rows": 697,
+          "accuracy": 0.6771879483500718,
+          "macro_accuracy": 0.6254544751295738,
+          "families": {
+            "HarmonyOS Sans SC": {
+              "rows": 139,
+              "accuracy": 0.5971223021582733
+            },
+            "MiSans": {
+              "rows": 93,
+              "accuracy": 0.17204301075268819
+            },
+            "Noto Sans CJK SC": {
+              "rows": 140,
+              "accuracy": 0.75
+            },
+            "OPPO Sans": {
+              "rows": 139,
+              "accuracy": 0.6618705035971223
+            },
+            "PingFang SC": {
+              "rows": 186,
+              "accuracy": 0.946236559139785
+            }
+          },
+          "negative_log_likelihood": 0.9872297762751638
+        }
+      },
+      "latin": {
+        "glyph": {
+          "rows": 6176,
+          "complete_rows": 6176,
+          "accuracy": 0.30521373056994816,
+          "macro_accuracy": 0.4203267038364169,
+          "families": {
+            "HarmonyOS Sans SC": {
+              "rows": 1227,
+              "accuracy": 0.3602281988590057
+            },
+            "MiSans": {
+              "rows": 835,
+              "accuracy": 0.4155688622754491
+            },
+            "OPPO Sans": {
+              "rows": 1214,
+              "accuracy": 0.4085667215815486
+            },
+            "SF Pro": {
+              "rows": 1976,
+              "accuracy": 0.1715587044534413
+            },
+            "Helvetica": {
+              "rows": 795,
+              "accuracy": 0.1660377358490566
+            },
+            "Alipay Number": {
+              "rows": 129,
+              "accuracy": 1.0
+            }
+          },
+          "negative_log_likelihood": 1.6460237321365734
+        },
+        "region": {
+          "rows": 400,
+          "complete_rows": 399,
+          "accuracy": 0.4425,
+          "macro_accuracy": 0.5156187927168967,
+          "families": {
+            "HarmonyOS Sans SC": {
+              "rows": 77,
+              "accuracy": 0.45454545454545453
+            },
+            "MiSans": {
+              "rows": 53,
+              "accuracy": 0.4528301886792453
+            },
+            "OPPO Sans": {
+              "rows": 76,
+              "accuracy": 0.6710526315789473
+            },
+            "SF Pro": {
+              "rows": 129,
+              "accuracy": 0.3643410852713178
+            },
+            "Helvetica": {
+              "rows": 53,
+              "accuracy": 0.1509433962264151
+            },
+            "Alipay Number": {
+              "rows": 12,
+              "accuracy": 1.0
+            }
+          },
+          "negative_log_likelihood": 1.4163655632499468
+        }
+      }
+    },
+    "test_after": {
+      "han": {
+        "glyph": {
+          "rows": 5656,
+          "complete_rows": 5656,
+          "accuracy": 0.9846181046676096,
+          "macro_accuracy": 0.9850131584000807,
+          "families": {
+            "HarmonyOS Sans SC": {
+              "rows": 1132,
+              "accuracy": 0.9770318021201413
+            },
+            "MiSans": {
+              "rows": 752,
+              "accuracy": 0.988031914893617
+            },
+            "Noto Sans CJK SC": {
+              "rows": 1138,
+              "accuracy": 0.9894551845342706
+            },
+            "OPPO Sans": {
+              "rows": 1128,
+              "accuracy": 0.9884751773049646
+            },
+            "PingFang SC": {
+              "rows": 1506,
+              "accuracy": 0.9820717131474104
+            }
+          },
+          "negative_log_likelihood": 0.04853631704029666,
+          "accepted": {
+            "rows": 5645,
+            "correct": 5565,
+            "wrong": 80,
+            "coverage": 0.9980551626591231,
+            "precision": 0.9858281665190434
+          }
+        },
+        "region": {
+          "rows": 697,
+          "complete_rows": 697,
+          "accuracy": 1.0,
+          "macro_accuracy": 1.0,
+          "families": {
+            "HarmonyOS Sans SC": {
+              "rows": 139,
+              "accuracy": 1.0
+            },
+            "MiSans": {
+              "rows": 93,
+              "accuracy": 1.0
+            },
+            "Noto Sans CJK SC": {
+              "rows": 140,
+              "accuracy": 1.0
+            },
+            "OPPO Sans": {
+              "rows": 139,
+              "accuracy": 1.0
+            },
+            "PingFang SC": {
+              "rows": 186,
+              "accuracy": 1.0
+            }
+          },
+          "negative_log_likelihood": 0.0219465911143866,
+          "accepted": {
+            "rows": 697,
+            "correct": 697,
+            "wrong": 0,
+            "coverage": 1.0,
+            "precision": 1.0
+          }
+        }
+      },
+      "latin": {
+        "glyph": {
+          "rows": 6176,
+          "complete_rows": 6176,
+          "accuracy": 0.9562823834196891,
+          "macro_accuracy": 0.9688023362824353,
+          "families": {
+            "HarmonyOS Sans SC": {
+              "rows": 1227,
+              "accuracy": 0.9657701711491442
+            },
+            "MiSans": {
+              "rows": 835,
+              "accuracy": 0.9832335329341317
+            },
+            "OPPO Sans": {
+              "rows": 1214,
+              "accuracy": 0.9744645799011532
+            },
+            "SF Pro": {
+              "rows": 1976,
+              "accuracy": 0.9195344129554656
+            },
+            "Helvetica": {
+              "rows": 795,
+              "accuracy": 0.969811320754717
+            },
+            "Alipay Number": {
+              "rows": 129,
+              "accuracy": 1.0
+            }
+          },
+          "negative_log_likelihood": 0.12706746190823023,
+          "accepted": {
+            "rows": 6109,
+            "correct": 5877,
+            "wrong": 232,
+            "coverage": 0.989151554404145,
+            "precision": 0.9620232443935177
+          }
+        },
+        "region": {
+          "rows": 400,
+          "complete_rows": 399,
+          "accuracy": 0.9975,
+          "macro_accuracy": 0.9987080103359173,
+          "families": {
+            "HarmonyOS Sans SC": {
+              "rows": 77,
+              "accuracy": 1.0
+            },
+            "MiSans": {
+              "rows": 53,
+              "accuracy": 1.0
+            },
+            "OPPO Sans": {
+              "rows": 76,
+              "accuracy": 1.0
+            },
+            "SF Pro": {
+              "rows": 129,
+              "accuracy": 0.9922480620155039
+            },
+            "Helvetica": {
+              "rows": 53,
+              "accuracy": 1.0
+            },
+            "Alipay Number": {
+              "rows": 12,
+              "accuracy": 1.0
+            }
+          },
+          "negative_log_likelihood": 0.06980109703846553,
+          "accepted": {
+            "rows": 399,
+            "correct": 398,
+            "wrong": 1,
+            "coverage": 0.9975,
+            "precision": 0.9974937343358395
+          }
+        }
+      }
+    },
+    "glyph_counts": {
+      "train": 95559,
+      "calibration": 12056,
+      "test": 11832
+    },
+    "region_counts": {
+      "train": 8807,
+      "calibration": 1112,
+      "test": 1097
+    },
+    "onnx_sha256": "87c6510b2cd4b12440549d4d5962515240464a7a0359b4ad972bfca9644b09c9",
+    "checkpoint_sha256": "e31fcd9dfd55a09ec9a587e5b2f01dc2e4a71afa0b5f737c2a52a7f1536d40c7",
+    "limitations": [
+      "Screenshots are actual iOS Simulator frames; page text and layouts are generated.",
+      "No physical-device or natural third-party app screenshot accuracy is established.",
+      "Native glyph boxes isolate font classification; OCR detection/segmentation accuracy is measured separately.",
+      "Source-font synthetic checkpoint initializes parameters; all optimizer examples are native screenshot crops.",
+      "Unknown-font rejection is not validated."
+    ]
+  },
+  "e2e": {
+    "schema": "flux-glyph-ios-screenshot-evaluation-v1",
+    "protocol": {
+      "schema": "flux-glyph-ios-screenshot-evaluation-v1",
+      "rules": {
+        "split": "test",
+        "matching": "maximum_cardinality_then_total_iou_one_to_one",
+        "truth_bbox": "native.ink_bbox_pixels",
+        "prediction_bbox": "detector_bbox",
+        "minimum_iou": 0.5,
+        "pairing_uses_text_or_font": false,
+        "ocr_normalization": "remove_unicode_whitespace_only_case_and_punctuation_preserved",
+        "font_accepted_statuses": [
+          "candidate",
+          "supported"
+        ],
+        "size_relative_error_tolerance": 0.1,
+        "color_max_channel_error_tolerance": 8,
+        "font_name_scoring_independent_of_ocr": true,
+        "strict_e2e_correct": "matched_and_ocr_normalized_exact_and_accepted_correct_font",
+        "no_detection_is_not_font_abstention": true,
+        "negative_font_samples": "none_unless_verified_native_unknown_font_labels_are_supplied"
+      },
+      "captures": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/mobile-font-capture/ios-capture-v1/labels.jsonl",
+        "sha256": "9d82c85d284a5a7c5a377325523e5105f2edddcf8022d8bf80a2a816ac5a9b10"
+      },
+      "scenes": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/mobile-font-capture/ios-capture-v1/Scenes.json",
+        "sha256": "43e24799f10099165563858df026c49fbf3789b8b3eb5499cb057c1c66bbd871"
+      },
+      "capture_protocol": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/mobile-font-capture/ios-capture-v1/CAPTURE_PROTOCOL.json",
+        "sha256": "2c932ebfa1c36b573ecfcc9dde1124684a2870e8d1d229bc0d27046a146c29cd"
+      },
+      "source_kind": "ios_simulator_screenshot",
+      "ui_content_is_generated": true,
+      "independent_third_party_app_accuracy": false,
+      "source_split_counts": {
+        "train": 800,
+        "test": 100,
+        "calibration": 100
+      },
+      "test_pages": 100,
+      "test_regions": 1097,
+      "split_isolation": {
+        "source_id": 0,
+        "source_file_sha256": 0,
+        "decoded_pixel_sha256": 0,
+        "page_id": 0,
+        "content_group_id": 0,
+        "region_rgb_sha256": 0,
+        "normalized_region_text": 0
+      },
+      "test_source_catalogue_sha256": "2b138fbddbbabc6dcaf8bbb38545a3dfdcb2d9ba3255a6c5637c0d819962a790"
+    },
+    "paired_comparison": {
+      "truth_regions": 1097,
+      "detected": {
+        "both_correct": 1097
+      },
+      "ocr_normalized_exact": {
+        "both_correct": 1097
+      },
+      "font_name_correct": {
+        "both_correct": 468,
+        "neural_only_correct": 343,
+        "neither_correct": 286
+      },
+      "strict_e2e_correct": {
+        "both_correct": 468,
+        "neural_only_correct": 343,
+        "neither_correct": 286
+      },
+      "new_wrong_font_names": 0,
+      "resolved_wrong_font_names": 3,
+      "identical_runtime_sources": true
+    }
+  },
+  "e2e_metrics": {
+    "baseline": {
+      "pages": 100,
+      "overall": {
+        "truth_regions": 1097,
+        "detected": 1097,
+        "missed": 0,
+        "detection_recall": 1.0,
+        "ocr_exact": 1089,
+        "ocr_normalized_exact": 1097,
+        "ocr_normalized_accuracy_all_truth": 1.0,
+        "ocr_normalized_accuracy_detected": 1.0,
+        "ocr_edit_distance_all_truth": 0,
+        "ocr_truth_characters": 11833,
+        "ocr_cer_all_truth_including_misses": 0.0,
+        "ocr_cer_detected": 0.0,
+        "font_accepted": 471,
+        "font_name_correct": 468,
+        "wrong_font_names": 3,
+        "font_abstained_after_detection": 626,
+        "font_unscorable_after_detection": 0,
+        "font_name_accuracy_all_truth": 0.4266180492251595,
+        "font_name_precision_among_accepted": 0.9936305732484076,
+        "strict_e2e_correct": 468,
+        "strict_e2e_accuracy": 0.4266180492251595,
+        "predicted_regions": 1097,
+        "false_positives": 0,
+        "false_positive_named_fonts": 0,
+        "false_positive_ocr_characters": 0,
+        "detection_precision": 1.0,
+        "style": {
+          "color_available": 1096,
+          "color_unavailable": 1,
+          "color_within_tolerance": 1096,
+          "color_max_channel_mae": 0.0,
+          "size_available": 0,
+          "size_unavailable": 1097,
+          "size_within_tolerance": 0,
+          "size_mae_px": null,
+          "size_mean_relative_error": null,
+          "size_empirical_intervals": 0,
+          "size_empirical_interval_coverage": null
+        }
+      },
+      "by_script": {
+        "han": {
+          "truth_regions": 697,
+          "detected": 697,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 697,
+          "ocr_normalized_exact": 697,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 5656,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 238,
+          "font_name_correct": 238,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 459,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.34146341463414637,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 238,
+          "strict_e2e_accuracy": 0.34146341463414637,
+          "style": {
+            "color_available": 696,
+            "color_unavailable": 1,
+            "color_within_tolerance": 696,
+            "color_max_channel_mae": 0.0,
+            "size_available": 0,
+            "size_unavailable": 697,
+            "size_within_tolerance": 0,
+            "size_mae_px": null,
+            "size_mean_relative_error": null,
+            "size_empirical_intervals": 0,
+            "size_empirical_interval_coverage": null
+          }
+        },
+        "latin": {
+          "truth_regions": 400,
+          "detected": 400,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 392,
+          "ocr_normalized_exact": 400,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 6177,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 233,
+          "font_name_correct": 230,
+          "wrong_font_names": 3,
+          "font_abstained_after_detection": 167,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.575,
+          "font_name_precision_among_accepted": 0.9871244635193133,
+          "strict_e2e_correct": 230,
+          "strict_e2e_accuracy": 0.575,
+          "style": {
+            "color_available": 400,
+            "color_unavailable": 0,
+            "color_within_tolerance": 400,
+            "color_max_channel_mae": 0.0,
+            "size_available": 0,
+            "size_unavailable": 400,
+            "size_within_tolerance": 0,
+            "size_mae_px": null,
+            "size_mean_relative_error": null,
+            "size_empirical_intervals": 0,
+            "size_empirical_interval_coverage": null
+          }
+        }
+      },
+      "by_expected_family": {
+        "Alipay Number": {
+          "truth_regions": 12,
+          "detected": 12,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 12,
+          "ocr_normalized_exact": 12,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 129,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 12,
+          "font_name_correct": 12,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 0,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 1.0,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 12,
+          "strict_e2e_accuracy": 1.0,
+          "style": {
+            "color_available": 12,
+            "color_unavailable": 0,
+            "color_within_tolerance": 12,
+            "color_max_channel_mae": 0.0,
+            "size_available": 0,
+            "size_unavailable": 12,
+            "size_within_tolerance": 0,
+            "size_mae_px": null,
+            "size_mean_relative_error": null,
+            "size_empirical_intervals": 0,
+            "size_empirical_interval_coverage": null
+          }
+        },
+        "HarmonyOS Sans SC": {
+          "truth_regions": 216,
+          "detected": 216,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 213,
+          "ocr_normalized_exact": 216,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 2359,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 87,
+          "font_name_correct": 87,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 129,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.4027777777777778,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 87,
+          "strict_e2e_accuracy": 0.4027777777777778,
+          "style": {
+            "color_available": 216,
+            "color_unavailable": 0,
+            "color_within_tolerance": 216,
+            "color_max_channel_mae": 0.0,
+            "size_available": 0,
+            "size_unavailable": 216,
+            "size_within_tolerance": 0,
+            "size_mae_px": null,
+            "size_mean_relative_error": null,
+            "size_empirical_intervals": 0,
+            "size_empirical_interval_coverage": null
+          }
+        },
+        "Helvetica": {
+          "truth_regions": 53,
+          "detected": 53,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 53,
+          "ocr_normalized_exact": 53,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 795,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 32,
+          "font_name_correct": 30,
+          "wrong_font_names": 2,
+          "font_abstained_after_detection": 21,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.5660377358490566,
+          "font_name_precision_among_accepted": 0.9375,
+          "strict_e2e_correct": 30,
+          "strict_e2e_accuracy": 0.5660377358490566,
+          "style": {
+            "color_available": 53,
+            "color_unavailable": 0,
+            "color_within_tolerance": 53,
+            "color_max_channel_mae": 0.0,
+            "size_available": 0,
+            "size_unavailable": 53,
+            "size_within_tolerance": 0,
+            "size_mae_px": null,
+            "size_mean_relative_error": null,
+            "size_empirical_intervals": 0,
+            "size_empirical_interval_coverage": null
+          }
+        },
+        "MiSans": {
+          "truth_regions": 146,
+          "detected": 146,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 146,
+          "ocr_normalized_exact": 146,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 1587,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 74,
+          "font_name_correct": 74,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 72,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.5068493150684932,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 74,
+          "strict_e2e_accuracy": 0.5068493150684932,
+          "style": {
+            "color_available": 146,
+            "color_unavailable": 0,
+            "color_within_tolerance": 146,
+            "color_max_channel_mae": 0.0,
+            "size_available": 0,
+            "size_unavailable": 146,
+            "size_within_tolerance": 0,
+            "size_mae_px": null,
+            "size_mean_relative_error": null,
+            "size_empirical_intervals": 0,
+            "size_empirical_interval_coverage": null
+          }
+        },
+        "Noto Sans CJK SC": {
+          "truth_regions": 140,
+          "detected": 140,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 140,
+          "ocr_normalized_exact": 140,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 1138,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 47,
+          "font_name_correct": 47,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 93,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.3357142857142857,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 47,
+          "strict_e2e_accuracy": 0.3357142857142857,
+          "style": {
+            "color_available": 140,
+            "color_unavailable": 0,
+            "color_within_tolerance": 140,
+            "color_max_channel_mae": 0.0,
+            "size_available": 0,
+            "size_unavailable": 140,
+            "size_within_tolerance": 0,
+            "size_mae_px": null,
+            "size_mean_relative_error": null,
+            "size_empirical_intervals": 0,
+            "size_empirical_interval_coverage": null
+          }
+        },
+        "OPPO Sans": {
+          "truth_regions": 215,
+          "detected": 215,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 213,
+          "ocr_normalized_exact": 215,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 2342,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 65,
+          "font_name_correct": 65,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 150,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.3023255813953488,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 65,
+          "strict_e2e_accuracy": 0.3023255813953488,
+          "style": {
+            "color_available": 215,
+            "color_unavailable": 0,
+            "color_within_tolerance": 215,
+            "color_max_channel_mae": 0.0,
+            "size_available": 0,
+            "size_unavailable": 215,
+            "size_within_tolerance": 0,
+            "size_mae_px": null,
+            "size_mean_relative_error": null,
+            "size_empirical_intervals": 0,
+            "size_empirical_interval_coverage": null
+          }
+        },
+        "PingFang SC": {
+          "truth_regions": 186,
+          "detected": 186,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 186,
+          "ocr_normalized_exact": 186,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 1506,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 59,
+          "font_name_correct": 59,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 127,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.3172043010752688,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 59,
+          "strict_e2e_accuracy": 0.3172043010752688,
+          "style": {
+            "color_available": 185,
+            "color_unavailable": 1,
+            "color_within_tolerance": 185,
+            "color_max_channel_mae": 0.0,
+            "size_available": 0,
+            "size_unavailable": 186,
+            "size_within_tolerance": 0,
+            "size_mae_px": null,
+            "size_mean_relative_error": null,
+            "size_empirical_intervals": 0,
+            "size_empirical_interval_coverage": null
+          }
+        },
+        "SF Pro": {
+          "truth_regions": 129,
+          "detected": 129,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 126,
+          "ocr_normalized_exact": 129,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 1977,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 95,
+          "font_name_correct": 94,
+          "wrong_font_names": 1,
+          "font_abstained_after_detection": 34,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.7286821705426356,
+          "font_name_precision_among_accepted": 0.9894736842105263,
+          "strict_e2e_correct": 94,
+          "strict_e2e_accuracy": 0.7286821705426356,
+          "style": {
+            "color_available": 129,
+            "color_unavailable": 0,
+            "color_within_tolerance": 129,
+            "color_max_channel_mae": 0.0,
+            "size_available": 0,
+            "size_unavailable": 129,
+            "size_within_tolerance": 0,
+            "size_mae_px": null,
+            "size_mean_relative_error": null,
+            "size_empirical_intervals": 0,
+            "size_empirical_interval_coverage": null
+          }
+        }
+      }
+    },
+    "neural": {
+      "pages": 100,
+      "overall": {
+        "truth_regions": 1097,
+        "detected": 1097,
+        "missed": 0,
+        "detection_recall": 1.0,
+        "ocr_exact": 1089,
+        "ocr_normalized_exact": 1097,
+        "ocr_normalized_accuracy_all_truth": 1.0,
+        "ocr_normalized_accuracy_detected": 1.0,
+        "ocr_edit_distance_all_truth": 0,
+        "ocr_truth_characters": 11833,
+        "ocr_cer_all_truth_including_misses": 0.0,
+        "ocr_cer_detected": 0.0,
+        "font_accepted": 811,
+        "font_name_correct": 811,
+        "wrong_font_names": 0,
+        "font_abstained_after_detection": 286,
+        "font_unscorable_after_detection": 0,
+        "font_name_accuracy_all_truth": 0.7392889699179581,
+        "font_name_precision_among_accepted": 1.0,
+        "strict_e2e_correct": 811,
+        "strict_e2e_accuracy": 0.7392889699179581,
+        "predicted_regions": 1097,
+        "false_positives": 0,
+        "false_positive_named_fonts": 0,
+        "false_positive_ocr_characters": 0,
+        "detection_precision": 1.0,
+        "style": {
+          "color_available": 1096,
+          "color_unavailable": 1,
+          "color_within_tolerance": 1096,
+          "color_max_channel_mae": 0.0,
+          "size_available": 808,
+          "size_unavailable": 289,
+          "size_within_tolerance": 808,
+          "size_mae_px": 0.5113861386138623,
+          "size_mean_relative_error": 0.009170214238643951,
+          "size_empirical_intervals": 808,
+          "size_empirical_interval_coverage": 1.0
+        }
+      },
+      "by_script": {
+        "han": {
+          "truth_regions": 697,
+          "detected": 697,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 697,
+          "ocr_normalized_exact": 697,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 5656,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 553,
+          "font_name_correct": 553,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 144,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.793400286944046,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 553,
+          "strict_e2e_accuracy": 0.793400286944046,
+          "style": {
+            "color_available": 696,
+            "color_unavailable": 1,
+            "color_within_tolerance": 696,
+            "color_max_channel_mae": 0.0,
+            "size_available": 550,
+            "size_unavailable": 147,
+            "size_within_tolerance": 550,
+            "size_mae_px": 0.4751454545454547,
+            "size_mean_relative_error": 0.008406569134170696,
+            "size_empirical_intervals": 550,
+            "size_empirical_interval_coverage": 1.0
+          }
+        },
+        "latin": {
+          "truth_regions": 400,
+          "detected": 400,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 392,
+          "ocr_normalized_exact": 400,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 6177,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 258,
+          "font_name_correct": 258,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 142,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.645,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 258,
+          "strict_e2e_accuracy": 0.645,
+          "style": {
+            "color_available": 400,
+            "color_unavailable": 0,
+            "color_within_tolerance": 400,
+            "color_max_channel_mae": 0.0,
+            "size_available": 258,
+            "size_unavailable": 142,
+            "size_within_tolerance": 258,
+            "size_mae_px": 0.5886434108527133,
+            "size_mean_relative_error": 0.010798139848955191,
+            "size_empirical_intervals": 258,
+            "size_empirical_interval_coverage": 1.0
+          }
+        }
+      },
+      "by_expected_family": {
+        "Alipay Number": {
+          "truth_regions": 12,
+          "detected": 12,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 12,
+          "ocr_normalized_exact": 12,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 129,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 12,
+          "font_name_correct": 12,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 0,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 1.0,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 12,
+          "strict_e2e_accuracy": 1.0,
+          "style": {
+            "color_available": 12,
+            "color_unavailable": 0,
+            "color_within_tolerance": 12,
+            "color_max_channel_mae": 0.0,
+            "size_available": 12,
+            "size_unavailable": 0,
+            "size_within_tolerance": 12,
+            "size_mae_px": 0.2975000000000006,
+            "size_mean_relative_error": 0.005293432145296476,
+            "size_empirical_intervals": 12,
+            "size_empirical_interval_coverage": 1.0
+          }
+        },
+        "HarmonyOS Sans SC": {
+          "truth_regions": 216,
+          "detected": 216,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 213,
+          "ocr_normalized_exact": 216,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 2359,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 149,
+          "font_name_correct": 149,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 67,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.6898148148148148,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 149,
+          "strict_e2e_accuracy": 0.6898148148148148,
+          "style": {
+            "color_available": 216,
+            "color_unavailable": 0,
+            "color_within_tolerance": 216,
+            "color_max_channel_mae": 0.0,
+            "size_available": 149,
+            "size_unavailable": 67,
+            "size_within_tolerance": 149,
+            "size_mae_px": 0.44906040268456393,
+            "size_mean_relative_error": 0.008439825227396723,
+            "size_empirical_intervals": 149,
+            "size_empirical_interval_coverage": 1.0
+          }
+        },
+        "Helvetica": {
+          "truth_regions": 53,
+          "detected": 53,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 53,
+          "ocr_normalized_exact": 53,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 795,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 40,
+          "font_name_correct": 40,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 13,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.7547169811320755,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 40,
+          "strict_e2e_accuracy": 0.7547169811320755,
+          "style": {
+            "color_available": 53,
+            "color_unavailable": 0,
+            "color_within_tolerance": 53,
+            "color_max_channel_mae": 0.0,
+            "size_available": 40,
+            "size_unavailable": 13,
+            "size_within_tolerance": 40,
+            "size_mae_px": 0.42349999999999993,
+            "size_mean_relative_error": 0.008180410687141853,
+            "size_empirical_intervals": 40,
+            "size_empirical_interval_coverage": 1.0
+          }
+        },
+        "MiSans": {
+          "truth_regions": 146,
+          "detected": 146,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 146,
+          "ocr_normalized_exact": 146,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 1587,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 111,
+          "font_name_correct": 111,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 35,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.7602739726027398,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 111,
+          "strict_e2e_accuracy": 0.7602739726027398,
+          "style": {
+            "color_available": 146,
+            "color_unavailable": 0,
+            "color_within_tolerance": 146,
+            "color_max_channel_mae": 0.0,
+            "size_available": 111,
+            "size_unavailable": 35,
+            "size_within_tolerance": 111,
+            "size_mae_px": 0.9094594594594589,
+            "size_mean_relative_error": 0.016076775704322394,
+            "size_empirical_intervals": 111,
+            "size_empirical_interval_coverage": 1.0
+          }
+        },
+        "Noto Sans CJK SC": {
+          "truth_regions": 140,
+          "detected": 140,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 140,
+          "ocr_normalized_exact": 140,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 1138,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 100,
+          "font_name_correct": 100,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 40,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.7142857142857143,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 100,
+          "strict_e2e_accuracy": 0.7142857142857143,
+          "style": {
+            "color_available": 140,
+            "color_unavailable": 0,
+            "color_within_tolerance": 140,
+            "color_max_channel_mae": 0.0,
+            "size_available": 98,
+            "size_unavailable": 42,
+            "size_within_tolerance": 98,
+            "size_mae_px": 0.5863265306122449,
+            "size_mean_relative_error": 0.010320148226989866,
+            "size_empirical_intervals": 98,
+            "size_empirical_interval_coverage": 1.0
+          }
+        },
+        "OPPO Sans": {
+          "truth_regions": 215,
+          "detected": 215,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 213,
+          "ocr_normalized_exact": 215,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 2342,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 139,
+          "font_name_correct": 139,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 76,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.6465116279069767,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 139,
+          "strict_e2e_accuracy": 0.6465116279069767,
+          "style": {
+            "color_available": 215,
+            "color_unavailable": 0,
+            "color_within_tolerance": 215,
+            "color_max_channel_mae": 0.0,
+            "size_available": 139,
+            "size_unavailable": 76,
+            "size_within_tolerance": 139,
+            "size_mae_px": 0.2844604316546764,
+            "size_mean_relative_error": 0.005105533833313134,
+            "size_empirical_intervals": 139,
+            "size_empirical_interval_coverage": 1.0
+          }
+        },
+        "PingFang SC": {
+          "truth_regions": 186,
+          "detected": 186,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 186,
+          "ocr_normalized_exact": 186,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 1506,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 148,
+          "font_name_correct": 148,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 38,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.7956989247311828,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 148,
+          "strict_e2e_accuracy": 0.7956989247311828,
+          "style": {
+            "color_available": 185,
+            "color_unavailable": 1,
+            "color_within_tolerance": 185,
+            "color_max_channel_mae": 0.0,
+            "size_available": 147,
+            "size_unavailable": 39,
+            "size_within_tolerance": 147,
+            "size_mae_px": 0.4919727891156464,
+            "size_mean_relative_error": 0.008265744461520471,
+            "size_empirical_intervals": 147,
+            "size_empirical_interval_coverage": 1.0
+          }
+        },
+        "SF Pro": {
+          "truth_regions": 129,
+          "detected": 129,
+          "missed": 0,
+          "detection_recall": 1.0,
+          "ocr_exact": 126,
+          "ocr_normalized_exact": 129,
+          "ocr_normalized_accuracy_all_truth": 1.0,
+          "ocr_normalized_accuracy_detected": 1.0,
+          "ocr_edit_distance_all_truth": 0,
+          "ocr_truth_characters": 1977,
+          "ocr_cer_all_truth_including_misses": 0.0,
+          "ocr_cer_detected": 0.0,
+          "font_accepted": 112,
+          "font_name_correct": 112,
+          "wrong_font_names": 0,
+          "font_abstained_after_detection": 17,
+          "font_unscorable_after_detection": 0,
+          "font_name_accuracy_all_truth": 0.8682170542635659,
+          "font_name_precision_among_accepted": 1.0,
+          "strict_e2e_correct": 112,
+          "strict_e2e_accuracy": 0.8682170542635659,
+          "style": {
+            "color_available": 129,
+            "color_unavailable": 0,
+            "color_within_tolerance": 129,
+            "color_max_channel_mae": 0.0,
+            "size_available": 112,
+            "size_unavailable": 17,
+            "size_within_tolerance": 112,
+            "size_mae_px": 0.49562500000000004,
+            "size_mean_relative_error": 0.009291350576912044,
+            "size_empirical_intervals": 112,
+            "size_empirical_interval_coverage": 1.0
+          }
+        }
+      }
+    }
+  },
+  "style_conditional_test": {
+    "schema": "flux-glyph-text-style-evaluation-v1",
+    "split": "test",
+    "metrics_sha256": "562ac40cc336b8056e568bcab1133f6961da599b7cb2b1c3195a83dc338467e0",
+    "data_manifest_sha256": "5b954591aa95b3a75187440571ec9d10bcafbc5a03e65b065d7d9397cb434372",
+    "fitted_on_evaluation": false,
+    "conditions": "verified native glyph boxes and true font family; not end-to-end OCR/font-classification accuracy",
+    "summary": {
+      "regions": 1097,
+      "color_estimated": 1097,
+      "color_coverage": 1.0,
+      "color_exact_rate_among_estimates": 1.0,
+      "color_max_channel_error_p95": 0.0,
+      "size_estimated": 1096,
+      "size_coverage": 0.9990884229717412,
+      "size_mae_px": 0.4988138686131387,
+      "size_median_relative_error": 0.007350877192982452,
+      "size_p95_relative_error": 0.02385897435897435,
+      "empirical_interval_coverage_among_estimates": 1.0
+    },
+    "families": {
+      "Alipay Number": {
+        "regions": 12,
+        "color_estimated": 12,
+        "color_coverage": 1.0,
+        "color_exact_rate_among_estimates": 1.0,
+        "color_max_channel_error_p95": 0.0,
+        "size_estimated": 12,
+        "size_coverage": 1.0,
+        "size_mae_px": 0.3200000000000003,
+        "size_median_relative_error": 0.008096618357487873,
+        "size_p95_relative_error": 0.00951754385964918,
+        "empirical_interval_coverage_among_estimates": 1.0
+      },
+      "HarmonyOS Sans SC": {
+        "regions": 216,
+        "color_estimated": 216,
+        "color_coverage": 1.0,
+        "color_exact_rate_among_estimates": 1.0,
+        "color_max_channel_error_p95": 0.0,
+        "size_estimated": 216,
+        "size_coverage": 1.0,
+        "size_mae_px": 0.3901851851851856,
+        "size_median_relative_error": 0.006052631578947411,
+        "size_p95_relative_error": 0.017198412698412727,
+        "empirical_interval_coverage_among_estimates": 1.0
+      },
+      "Helvetica": {
+        "regions": 53,
+        "color_estimated": 53,
+        "color_coverage": 1.0,
+        "color_exact_rate_among_estimates": 1.0,
+        "color_max_channel_error_p95": 0.0,
+        "size_estimated": 53,
+        "size_coverage": 1.0,
+        "size_mae_px": 0.4358490566037736,
+        "size_median_relative_error": 0.00866666666666668,
+        "size_p95_relative_error": 0.017307692307692316,
+        "empirical_interval_coverage_among_estimates": 1.0
+      },
+      "MiSans": {
+        "regions": 146,
+        "color_estimated": 146,
+        "color_coverage": 1.0,
+        "color_exact_rate_among_estimates": 1.0,
+        "color_max_channel_error_p95": 0.0,
+        "size_estimated": 146,
+        "size_coverage": 1.0,
+        "size_mae_px": 0.9795205479452048,
+        "size_median_relative_error": 0.014038095238095172,
+        "size_p95_relative_error": 0.041570512820512814,
+        "empirical_interval_coverage_among_estimates": 1.0
+      },
+      "Noto Sans CJK SC": {
+        "regions": 140,
+        "color_estimated": 140,
+        "color_coverage": 1.0,
+        "color_exact_rate_among_estimates": 1.0,
+        "color_max_channel_error_p95": 0.0,
+        "size_estimated": 139,
+        "size_coverage": 0.9928571428571429,
+        "size_mae_px": 0.5865467625899281,
+        "size_median_relative_error": 0.008641975308642011,
+        "size_p95_relative_error": 0.021140350877193036,
+        "empirical_interval_coverage_among_estimates": 1.0
+      },
+      "OPPO Sans": {
+        "regions": 215,
+        "color_estimated": 215,
+        "color_coverage": 1.0,
+        "color_exact_rate_among_estimates": 1.0,
+        "color_max_channel_error_p95": 0.0,
+        "size_estimated": 215,
+        "size_coverage": 1.0,
+        "size_mae_px": 0.2772093023255812,
+        "size_median_relative_error": 0.0043137254901960565,
+        "size_p95_relative_error": 0.012626086956521787,
+        "empirical_interval_coverage_among_estimates": 1.0
+      },
+      "PingFang SC": {
+        "regions": 186,
+        "color_estimated": 186,
+        "color_coverage": 1.0,
+        "color_exact_rate_among_estimates": 1.0,
+        "color_max_channel_error_p95": 0.0,
+        "size_estimated": 186,
+        "size_coverage": 1.0,
+        "size_mae_px": 0.489516129032258,
+        "size_median_relative_error": 0.007623529411764666,
+        "size_p95_relative_error": 0.017316053511705686,
+        "empirical_interval_coverage_among_estimates": 1.0
+      },
+      "SF Pro": {
+        "regions": 129,
+        "color_estimated": 129,
+        "color_coverage": 1.0,
+        "color_exact_rate_among_estimates": 1.0,
+        "color_max_channel_error_p95": 0.0,
+        "size_estimated": 129,
+        "size_coverage": 1.0,
+        "size_mae_px": 0.46736434108527153,
+        "size_median_relative_error": 0.00841269841269843,
+        "size_p95_relative_error": 0.024700854700854695,
+        "empirical_interval_coverage_among_estimates": 1.0
+      }
+    }
+  },
+  "parity": {
+    "schema": "flux-glyph-neural-pytorch-onnx-parity-v1",
+    "status": "passed",
+    "model_dir": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-font-screenshots-v1/neural",
+    "model_asset_sha256": {
+      "metadata": "65166dfcbcd07ed8bf8408667832578a903477b62a6d1eef3f66a3b0cd24dc91",
+      "checkpoint": "e31fcd9dfd55a09ec9a587e5b2f01dc2e4a71afa0b5f737c2a52a7f1536d40c7",
+      "onnx": "87c6510b2cd4b12440549d4d5962515240464a7a0359b4ad972bfca9644b09c9",
+      "selection": "31106bf64fa9719fd70e15abd77075a01333a517eb4fa8cdaaab1f04c44b9815"
+    },
+    "sample": {
+      "partition": "calibration",
+      "seed": 2026091231,
+      "sample_count": 128,
+      "array_rows": [
+        101,
+        139,
+        269,
+        614,
+        703,
+        875,
+        909,
+        912,
+        1071,
+        1236,
+        1269,
+        1275,
+        1411,
+        1438,
+        1485,
+        1838,
+        1954,
+        2365,
+        2394,
+        2414,
+        2428,
+        2603,
+        2700,
+        2870,
+        2894,
+        2917,
+        2925,
+        3034,
+        3199,
+        3203,
+        3462,
+        3466,
+        3527,
+        3615,
+        3782,
+        3785,
+        3912,
+        4224,
+        4525,
+        4709,
+        4723,
+        4740,
+        4802,
+        4860,
+        4926,
+        5174,
+        5330,
+        5622,
+        5819,
+        5879,
+        5888,
+        5987,
+        6099,
+        6139,
+        6168,
+        6208,
+        6243,
+        6427,
+        6508,
+        6537,
+        6739,
+        6835,
+        6926,
+        7032,
+        7036,
+        7200,
+        7203,
+        7352,
+        7392,
+        7521,
+        7592,
+        7640,
+        7683,
+        7693,
+        7851,
+        7861,
+        8058,
+        8114,
+        8169,
+        8217,
+        8262,
+        8391,
+        8469,
+        8583,
+        8653,
+        8710,
+        8730,
+        8868,
+        8948,
+        8955,
+        9134,
+        9208,
+        9297,
+        9461,
+        9538,
+        9620,
+        9837,
+        9839,
+        9943,
+        9952,
+        9990,
+        10079,
+        10100,
+        10108,
+        10208,
+        10315,
+        10334,
+        10412,
+        10444,
+        10566,
+        10571,
+        10664,
+        10696,
+        10735,
+        10898,
+        10952,
+        10971,
+        11026,
+        11137,
+        11166,
+        11175,
+        11184,
+        11267,
+        11498,
+        11778,
+        11864,
+        11910,
+        11978
+      ],
+      "script_counts": {
+        "latin": 64,
+        "han": 64
+      },
+      "family_counts": {
+        "HarmonyOS Sans SC": 24,
+        "Noto Sans CJK SC": 13,
+        "PingFang SC": 12,
+        "MiSans": 24,
+        "OPPO Sans": 23,
+        "SF Pro": 10,
+        "Alipay Number": 11,
+        "Helvetica": 11
+      },
+      "manifest_sha256": "5b954591aa95b3a75187440571ec9d10bcafbc5a03e65b065d7d9397cb434372",
+      "metadata_sha256": "5a4ed69d9060a8d88737d145d1a4c014c5c210baaa1275880b50ee2c1c738b82",
+      "glyphs_sha256": "0e6e9f5afec0f1014d9abb12840e7994b8589585f902dfef4bddd2c9e85401ab",
+      "input_float32_sha256": "5a42308057742dcdf0939a88c34f1e7842ed49125432b4f03d1c440ce64dcef4",
+      "test_partition_opened": false
+    },
+    "families": [
+      "HarmonyOS Sans SC",
+      "MiSans",
+      "Noto Sans CJK SC",
+      "OPPO Sans",
+      "PingFang SC",
+      "SF Pro",
+      "Helvetica",
+      "Alipay Number"
+    ],
+    "scripts": {
+      "han": [
+        "HarmonyOS Sans SC",
+        "MiSans",
+        "Noto Sans CJK SC",
+        "OPPO Sans",
+        "PingFang SC"
+      ],
+      "latin": [
+        "HarmonyOS Sans SC",
+        "MiSans",
+        "OPPO Sans",
+        "SF Pro",
+        "Helvetica",
+        "Alipay Number"
+      ]
+    },
+    "frozen_gates": {
+      "han": {
+        "min_score": 0.5,
+        "min_margin": 0.01
+      },
+      "latin": {
+        "min_score": 0.5,
+        "min_margin": 0.01
+      }
+    },
+    "frozen_temperature": {
+      "han": 0.5,
+      "latin": 0.5
+    },
+    "engines": {
+      "torch": {
+        "engine": "pytorch",
+        "version": "2.8.0",
+        "device": "cpu",
+        "checkpoint_families": [
+          "HarmonyOS Sans SC",
+          "MiSans",
+          "Noto Sans CJK SC",
+          "OPPO Sans",
+          "PingFang SC",
+          "SF Pro",
+          "Helvetica",
+          "Alipay Number"
+        ],
+        "output_families": [
+          "HarmonyOS Sans SC",
+          "MiSans",
+          "Noto Sans CJK SC",
+          "OPPO Sans",
+          "PingFang SC",
+          "SF Pro",
+          "Helvetica",
+          "Alipay Number"
+        ],
+        "checkpoint_rows_in_output_order": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "checkpoint_state_sha256": "eef3c2418d828c3603adb31d9728bccf868fd23cd1c997ec5ae1747e3753fd0a",
+        "input_float32_sha256": "5a42308057742dcdf0939a88c34f1e7842ed49125432b4f03d1c440ce64dcef4"
+      },
+      "ort": {
+        "engine": "onnxruntime",
+        "version": "1.23.2",
+        "providers": [
+          "CPUExecutionProvider"
+        ],
+        "output_families": [
+          "HarmonyOS Sans SC",
+          "MiSans",
+          "Noto Sans CJK SC",
+          "OPPO Sans",
+          "PingFang SC",
+          "SF Pro",
+          "Helvetica",
+          "Alipay Number"
+        ],
+        "runtime_source_sha256": "0ff1867758c38df5254ae5ef96e9f4ce5e0bfa08f31a82df30e96b1ebec0eac6",
+        "input_float32_sha256": "5a42308057742dcdf0939a88c34f1e7842ed49125432b4f03d1c440ce64dcef4"
+      }
+    },
+    "comparison": {
+      "raw_logits": {
+        "max_abs": 0.00034999847412109375,
+        "mean_abs": 3.57608505510143e-05,
+        "p99_abs": 0.0001872873306274414
+      },
+      "scripts": {
+        "han": {
+          "rows": 64,
+          "passed": true,
+          "centered_logits": {
+            "max_abs": 0.00033283233642578125,
+            "mean_abs": 4.32528555393219e-05,
+            "p99_abs": 0.00020381927490234378
+          },
+          "probabilities": {
+            "max_abs": 1.1980340068218354e-05,
+            "mean_abs": 1.3993731056331876e-07,
+            "p99_abs": 5.872878718866667e-06
+          },
+          "top1_mismatches": 0,
+          "frozen_gate_decision_mismatches": 0,
+          "torch_reason_counts": {
+            "neural_family_candidate": 64
+          },
+          "ort_reason_counts": {
+            "neural_family_candidate": 64
+          },
+          "mismatch_details": []
+        },
+        "latin": {
+          "rows": 64,
+          "passed": true,
+          "centered_logits": {
+            "max_abs": 0.000537872314453125,
+            "mean_abs": 6.089918315410614e-05,
+            "p99_abs": 0.00032684326171875024
+          },
+          "probabilities": {
+            "max_abs": 3.602182880399485e-05,
+            "mean_abs": 7.919228917395519e-07,
+            "p99_abs": 2.308864079508792e-05
+          },
+          "top1_mismatches": 0,
+          "frozen_gate_decision_mismatches": 0,
+          "torch_reason_counts": {
+            "neural_family_candidate": 64
+          },
+          "ort_reason_counts": {
+            "neural_family_candidate": 64
+          },
+          "mismatch_details": []
+        }
+      },
+      "passed": true,
+      "decision_level": "individual preprocessed calibration glyph; deployed ranking and gate code",
+      "criteria": {
+        "script_top1_mismatches": 0,
+        "frozen_gate_decision_mismatches": 0,
+        "max_probability_abs_error": 0.0001,
+        "raw_logit_allclose_required": false
+      }
+    },
+    "test_partition_opened": false,
+    "training_or_selection_performed": false,
+    "scope": "Export/runtime parity on fixed preprocessed calibration glyphs, not an accuracy estimate."
+  },
+  "legacy_regression": {
+    "metrics": {
+      "overall": {
+        "total": 67,
+        "correct": 47,
+        "wrong": 11,
+        "abstention": 9,
+        "correct_candidates": 42,
+        "correct_rejections": 5,
+        "font_name_correct": 42,
+        "wrong_font_names": 11,
+        "accepted": 53,
+        "ocr_exact": 67
+      },
+      "by_script": {
+        "han": {
+          "total": 36,
+          "correct": 25,
+          "wrong": 6,
+          "abstention": 5,
+          "correct_candidates": 25,
+          "correct_rejections": 0,
+          "font_name_correct": 25,
+          "wrong_font_names": 6,
+          "accepted": 31,
+          "ocr_exact": 36
+        },
+        "latin": {
+          "total": 31,
+          "correct": 22,
+          "wrong": 5,
+          "abstention": 4,
+          "correct_candidates": 17,
+          "correct_rejections": 5,
+          "font_name_correct": 17,
+          "wrong_font_names": 5,
+          "accepted": 22,
+          "ocr_exact": 31
+        }
+      },
+      "by_cohort": {
+        "android_font_references": {
+          "total": 36,
+          "correct": 27,
+          "wrong": 5,
+          "abstention": 4,
+          "correct_candidates": 27,
+          "correct_rejections": 0,
+          "font_name_correct": 27,
+          "wrong_font_names": 5,
+          "accepted": 32,
+          "ocr_exact": 36
+        },
+        "application_font_reference": {
+          "total": 3,
+          "correct": 2,
+          "wrong": 0,
+          "abstention": 1,
+          "correct_candidates": 2,
+          "correct_rejections": 0,
+          "font_name_correct": 2,
+          "wrong_font_names": 0,
+          "accepted": 2,
+          "ocr_exact": 3
+        },
+        "ios_font_references": {
+          "total": 14,
+          "correct": 13,
+          "wrong": 0,
+          "abstention": 1,
+          "correct_candidates": 13,
+          "correct_rejections": 0,
+          "font_name_correct": 13,
+          "wrong_font_names": 0,
+          "accepted": 13,
+          "ocr_exact": 14
+        },
+        "other_or_negative_font_references": {
+          "total": 14,
+          "correct": 5,
+          "wrong": 6,
+          "abstention": 3,
+          "correct_candidates": 0,
+          "correct_rejections": 5,
+          "font_name_correct": 0,
+          "wrong_font_names": 6,
+          "accepted": 6,
+          "ocr_exact": 14
+        }
+      },
+      "by_family": {
+        "Alipay Number": {
+          "total": 3,
+          "correct": 2,
+          "wrong": 0,
+          "abstention": 1,
+          "correct_candidates": 2,
+          "correct_rejections": 0,
+          "font_name_correct": 2,
+          "wrong_font_names": 0,
+          "accepted": 2,
+          "ocr_exact": 3
+        },
+        "HarmonyOS Sans SC": {
+          "total": 10,
+          "correct": 6,
+          "wrong": 4,
+          "abstention": 0,
+          "correct_candidates": 6,
+          "correct_rejections": 0,
+          "font_name_correct": 6,
+          "wrong_font_names": 4,
+          "accepted": 10,
+          "ocr_exact": 10
+        },
+        "Helvetica": {
+          "total": 4,
+          "correct": 4,
+          "wrong": 0,
+          "abstention": 0,
+          "correct_candidates": 4,
+          "correct_rejections": 0,
+          "font_name_correct": 4,
+          "wrong_font_names": 0,
+          "accepted": 4,
+          "ocr_exact": 4
+        },
+        "MiSans": {
+          "total": 10,
+          "correct": 10,
+          "wrong": 0,
+          "abstention": 0,
+          "correct_candidates": 10,
+          "correct_rejections": 0,
+          "font_name_correct": 10,
+          "wrong_font_names": 0,
+          "accepted": 10,
+          "ocr_exact": 10
+        },
+        "Noto Sans CJK SC": {
+          "total": 6,
+          "correct": 3,
+          "wrong": 1,
+          "abstention": 2,
+          "correct_candidates": 3,
+          "correct_rejections": 0,
+          "font_name_correct": 3,
+          "wrong_font_names": 1,
+          "accepted": 4,
+          "ocr_exact": 6
+        },
+        "OPPO Sans": {
+          "total": 10,
+          "correct": 8,
+          "wrong": 0,
+          "abstention": 2,
+          "correct_candidates": 8,
+          "correct_rejections": 0,
+          "font_name_correct": 8,
+          "wrong_font_names": 0,
+          "accepted": 8,
+          "ocr_exact": 10
+        },
+        "PingFang SC": {
+          "total": 6,
+          "correct": 6,
+          "wrong": 0,
+          "abstention": 0,
+          "correct_candidates": 6,
+          "correct_rejections": 0,
+          "font_name_correct": 6,
+          "wrong_font_names": 0,
+          "accepted": 6,
+          "ocr_exact": 6
+        },
+        "SF Pro": {
+          "total": 4,
+          "correct": 3,
+          "wrong": 0,
+          "abstention": 1,
+          "correct_candidates": 3,
+          "correct_rejections": 0,
+          "font_name_correct": 3,
+          "wrong_font_names": 0,
+          "accepted": 3,
+          "ocr_exact": 4
+        },
+        "Songti SC": {
+          "total": 6,
+          "correct": 0,
+          "wrong": 3,
+          "abstention": 3,
+          "correct_candidates": 0,
+          "correct_rejections": 0,
+          "font_name_correct": 0,
+          "wrong_font_names": 3,
+          "accepted": 3,
+          "ocr_exact": 6
+        },
+        "unknown_negative": {
+          "total": 8,
+          "correct": 5,
+          "wrong": 3,
+          "abstention": 0,
+          "correct_candidates": 0,
+          "correct_rejections": 5,
+          "font_name_correct": 0,
+          "wrong_font_names": 3,
+          "accepted": 3,
+          "ocr_exact": 8
+        }
+      },
+      "by_positive_negative": {
+        "negative": {
+          "total": 14,
+          "correct": 5,
+          "wrong": 6,
+          "abstention": 3,
+          "correct_candidates": 0,
+          "correct_rejections": 5,
+          "font_name_correct": 0,
+          "wrong_font_names": 6,
+          "accepted": 6,
+          "ocr_exact": 14
+        },
+        "positive": {
+          "total": 53,
+          "correct": 42,
+          "wrong": 5,
+          "abstention": 6,
+          "correct_candidates": 42,
+          "correct_rejections": 0,
+          "font_name_correct": 42,
+          "wrong_font_names": 5,
+          "accepted": 47,
+          "ocr_exact": 53
+        }
+      },
+      "han": {
+        "ios": {
+          "total": 6,
+          "correct": 6,
+          "wrong": 0,
+          "abstention": 0,
+          "correct_candidates": 6,
+          "correct_rejections": 0,
+          "font_name_correct": 6,
+          "wrong_font_names": 0,
+          "accepted": 6,
+          "ocr_exact": 6
+        },
+        "android": {
+          "total": 24,
+          "correct": 19,
+          "wrong": 3,
+          "abstention": 2,
+          "correct_candidates": 19,
+          "correct_rejections": 0,
+          "font_name_correct": 19,
+          "wrong_font_names": 3,
+          "accepted": 22,
+          "ocr_exact": 24
+        }
+      },
+      "latin": {
+        "positive": {
+          "total": 23,
+          "correct": 17,
+          "wrong": 2,
+          "abstention": 4,
+          "correct_candidates": 17,
+          "correct_rejections": 0,
+          "font_name_correct": 17,
+          "wrong_font_names": 2,
+          "accepted": 19,
+          "ocr_exact": 23
+        },
+        "negative": {
+          "total": 8,
+          "correct": 5,
+          "wrong": 3,
+          "abstention": 0,
+          "correct_candidates": 0,
+          "correct_rejections": 5,
+          "font_name_correct": 0,
+          "wrong_font_names": 3,
+          "accepted": 3,
+          "ocr_exact": 8
+        }
+      }
+    },
+    "scope": "controlled frozen rendered inputs only; no real-device font truth or device inference",
+    "thresholds_modified": false
+  },
+  "api": {
+    "transport": "FastAPI TestClient in-process HTTP; no external server",
+    "model": "r15-ios-screenshots-v1",
+    "cases": [
+      {
+        "page_id": "ios-scene-00030",
+        "regions": 11,
+        "sizes": 9,
+        "colors": 11,
+        "font_method": "neural_network"
+      },
+      {
+        "page_id": "ios-scene-00039",
+        "regions": 12,
+        "sizes": 8,
+        "colors": 12,
+        "font_method": "neural_network"
+      },
+      {
+        "page_id": "ios-scene-00044",
+        "regions": 10,
+        "sizes": 9,
+        "colors": 10,
+        "font_method": "neural_network"
+      }
+    ]
+  },
+  "browser": {
+    "result": "passed",
+    "realHttpInference": true,
+    "model": "r15-ios-screenshots-v1",
+    "browserErrors": []
+  },
+  "checks": {
+    "runtime_pytest_passed": 255,
+    "torch_training_unittests_passed": 7,
+    "browser_layouts": 4
+  },
+  "artifacts": {
+    "native_capture_labels_sha256": "9d82c85d284a5a7c5a377325523e5105f2edddcf8022d8bf80a2a816ac5a9b10",
+    "capture_protocol_sha256": "2c932ebfa1c36b573ecfcc9dde1124684a2870e8d1d229bc0d27046a146c29cd",
+    "neural_onnx_sha256": "87c6510b2cd4b12440549d4d5962515240464a7a0359b4ad972bfca9644b09c9",
+    "size_metrics_sha256": "562ac40cc336b8056e568bcab1133f6961da599b7cb2b1c3195a83dc338467e0",
+    "full_e2e_report_sha256": "84c3f5e79d5e7b3902b47feefeb5353717ab28f9865c11f96d511a9ee81d26ab"
+  },
+  "runtime_status": {
+    "local_docker_image": "flux-glyph:ios-local",
+    "model_version": "r15-ios-screenshots-v1",
+    "port": 9000,
+    "root_r14_preserved": true,
+    "remote_deployment_performed": false
+  }
+}

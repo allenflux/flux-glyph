@@ -1,33 +1,108 @@
 # 模型交付约定
 
-模型与网站/API 独立版本化。服务器只加载当前选定的包，不在线扩字或训练。默认加载 `models/`，若存在 `models/ACTIVE.json` 则使用其安全相对路径 `path`，如 `releases/experiment-002`。
+模型与网站/API 独立版本化。服务器加载当前选定的完整包，只执行推理。默认目录为 `models/`；若存在 `models/ACTIVE.json`，则读取其中安全相对路径 `path`，例如 `releases/r16-ios-region-v1`。也可以通过 `FLUX_MODEL_DIR` 指定其他完整包目录。
 
-完整包至少包含：
+R16 的默认流程为 PP 文字区域检测 → 区域字体 CNN／字号回归 → 原图颜色测量。保留文字位置检测，不进行文字识读；模型是否启用取决于所选完整包的清单。单独放入 ONNX 文件不会启用新算法。R16 设计、数据来源和实际验证见 [区域字体模型](ios-region-font.md)，本文不声明部署或训练已经完成。
 
-- `MANIFEST.json`：`files` 数组，每项 `path`、`bytes`、`sha256`；可选 `version`。
-- `pp/paddle_ocr_delivery.contract.json`、`pp/onnx/paddle_ocr_{det,rec,cls}.onnx`、`pp/charset/ppocr_keys_v1.txt`。
-- `font/metadata.json`、`font/GATES.json`、metadata 指定的紧凑字形档案。
+## R16 完整网站模型包
 
-当前 PP 契约是 RGB 输入、DB 区域检测、PP REC 6625 类 CTC 输出。改变字典、预处理或输出形状时，必须一起更新相应运行时代码并验收；替换任意 ONNX 并不自动兼容。
+完整包包含以下受清单校验的文件：
 
-中文参考库现有 1194 字，新增的 208 字包含「浏、览」，原 986 字的 NPY 字节及索引不变。
+| 文件 | 用途 |
+|---|---|
+| `MANIFEST.json` | 版本、模型方法及文件清单；每项含 `path`、`bytes`、`sha256` |
+| `pp/onnx/paddle_ocr_det.onnx` | 从完整截图定位文字区域 |
+| `pp/paddle_ocr_delivery.contract.json` | PP 检测输入与预处理配置 |
+| `region_neural/metadata.json` | 字体类别顺序、区域模型契约、温度和门槛 |
+| `region_neural/<model.path>` | 字体分类与字号回归双输出 ONNX |
 
-当前中文档案 schema 为 `flux-glyph-r13-compact-v1`。每个汉字一个 NPY 成员，数组为 `[31,3,32,32] uint8`，对应 metadata 的 `font_ids` 顺序及字号 `[20,28,44]`。预处理为固定背景归一化、墨迹提取、64 像素字形、uint8、高斯模糊 1、缩放 32；读取后按原有 float64 归一化规则匹配。档案不是有损压缩的浮点权重。
+`scripts/package_region.py` 仅复制检测模型、检测配置及区域模型／元数据，不复制 PP REC／CLS、识字字典、中文／Latin 参考档案或历史 `style/size_metrics.json`。颜色算法属于推理代码，随网站/API 一起部署。
 
-运行时只读取受校验的模型和数组（NPY 禁止 pickle）；不执行模型包中的 Python 脚本。更换算法时应升级 `algorithm_version` 和兼容代码。压缩优化须证明得分和预期输出没有发生不受控变化。
+模型 metadata 使用：
+
+- `schema: flux-glyph-region-font-v1`、`algorithm: region-cnn64x256-v1`。
+- `families` 指定输出类别顺序；类别数为 `C`，不能用操作系统默认字体猜标签。
+- `model: {path, sha256}` 指向同目录单个 ONNX 文件。
+- `temperature` 和 `gates.min_score`、`gates.min_margin`、`gates.min_patch_agreement` 控制候选门槛。
+- `max_size_relative_spread` 限制不同图块字号估计的差异。
+
+ONNX 输入 `tiles` 为 float32 `[N,1,64,256]`，批次数动态；输出顺序固定为 `logits [N,C]`、`log_em_ratio [N]`，均为 float32。输入是文字区域的图块，预处理保留字形比例、估计局部背景、提取墨迹并按高度缩放；长区域形成多个窗口。不能直接将原图任意拉伸至输入大小，也不传入 OCR 文本、字符下标或人工 script。
+
+推理使用校验后的 ONNX 字节与单线程 CPU ONNX Runtime。区域分类先对每块应用温度 softmax，再聚合字体分数；只有分数、前两名差值和片段一致性达到门槛时，才输出 `candidate` 字体名。否则保留 `uncertain` 和具体原因，包括低分数、候选接近、片段不一致、过长、低质量或不均匀背景。
+
+输出 `font_method`、`font.method` 为 `region_neural_network`，`font.scope` 为 `Detected text region`。`ocr_performed` 为 false，`text` 为 null／空字符串，`ocr_confidence` 为 null，`glyphs` 为空。候选使用 `{family, score}`，另有 `margin`、`patch_agreement`，不再输出参考距离。分数不是实际准确率，也不保证所有未知字体会被拒绝。
+
+字号回归结合原图尺度输出 `text_style.font_size_px_estimate`，单位为截图像素，不是 iOS pt 或检测框高度。R16 的 `font_size_px_interval` 为 null；文字颜色为原图中的可见 `#RRGGBB`。无可靠估计时相应字段为 null，`size`／`color` 给出状态原因。模型不恢复原始透明度，也不依据字体名推断设备或截图真伪。
+
+## 重建、导入与回退
+
+R16 字体权重和元数据保留目录为 `models/experiments/ios-region-v1`；完整网站包输出目录为 `artifacts/ios-region-font-v1/bundle`。准备好权重后，在装有项目依赖的环境运行：
+
+```sh
+PYTHONPATH=src python scripts/package_region.py \
+  --region models/experiments/ios-region-v1 \
+  --output artifacts/ios-region-font-v1/bundle \
+  --version r16-ios-region-v1
+```
+
+`--base` 默认使用根目录 `models` 的当前活动包，从中提取检测模型。输出目录必须为新目录；打包时校验源模型及最终包，并做运行时兼容检查，不重新训练。
+
+```sh
+python scripts/model_release.py \
+  --model-root artifacts/ios-region-font-v1/bundle export \
+  --output artifacts/flux-glyph-r16-ios-region-v1.zip
+python scripts/model_release.py install \
+  artifacts/flux-glyph-r16-ios-region-v1.zip --version r16-ios-region-v1
+# 安装/激活后重启；同时更新代码时重建镜像
+docker compose up -d --build
+# 回退根目录内保留的原始包
+python scripts/model_release.py activate bundled
+docker compose restart api
+```
+
+导出 ZIP 只包含 MANIFEST 和清单指定文件。导入先验证安全路径、SHA、文件大小及运行时兼容性，再激活新目录；旧目录保留。切换后须重启进程，防止同一进程混用不同版本。包中的 Python 文件不作为网站推理代码执行；算法契约变更须同时交付配套运行时代码。
+
+`compose.yaml` 挂载根目录 `models/`，可通过其中的 ACTIVE 选择版本；历史 `compose.ios.yaml` 指向 R15 的 `artifacts/ios-font-screenshots-v1/bundle`，不是 R16 路径。
+
+## 单独下载的字体推理工具包
+
+`GET /api/models/font` 返回当前区域模型的信息，包括 `available`、`version`、`families`、`input_shape`、`download_url`、`bytes`、`sha256`、`ocr_required: false`、`usage`。未加载区域模型时 `available` 为 false，`GET /api/models/font/download` 返回 404。
+
+下载 ZIP 包含字体 ONNX、`metadata.json`、`inference.py`、`text_style.py`、`predict.py`、`requirements.txt`、README 和 `SHA256.json`。它不含检测模型、用户上传图片、环境文件或训练数据，不能替代上面的完整网站包直接导入。
+
+解压后，在其目录运行：
+
+```sh
+pip install -r requirements.txt
+python predict.py text-region.png
+```
+
+输入一张文字区域裁图，脚本执行包内预处理并返回字体、字号和颜色；完整截图请先通过网站/API 定位。也可调用 `inference.RegionFontClassifier`，元数据与 ONNX 必须保持在同一目录。推理仅需 ONNX Runtime、NumPy、Pillow，不需要 PyTorch 或 OCR。
+
+ZIP 包含逐文件 SHA256 清单；API 返回整个 ZIP 的 SHA256，下载响应同时带 `X-Model-SHA256`。首次生成工具包时再次核验模型字节，之后该服务实例缓存已核验的 ZIP；磁盘文件后续变化不会混入已有下载内容，模型切换须重启。
+
+两路模型接口继承现有 API 的访问令牌保护：网页使用解锁 Cookie，程序使用 `Authorization: Bearer YOUR_TOKEN`，不支持将令牌放在下载 URL 中。
 
 ## 精度验收
 
-冻结版本与测试集后，再统计：字体名已知样本的总正确率、已输出字体结果的准确率、输出覆盖率、按字体/字号/背景的错误和待确认数。真实截图应有逐框字体标签；状态栏推测、旧模型输出或截图真假标签不是字体真值。
+冻结权重、门槛与测试集后，分别统计检测匹配、漏检、多余框，字体名正确／错误／待确认，以及字号、颜色的误差和可输出数量。字体真值须由原生绘制字体证据或可信人工标注支持；状态栏推测、旧模型输出和截图真假标签不是字体标签。
 
-本地模型导出使用 `scripts/model_release.py export`。ZIP 只包含模型清单指定文件；导入先核对每个 SHA、文件大小及兼容性，然后激活新目录。`activate bundled` 可回退项目自带版本。导入和切换后需要重启 API，避免同一进程混用不同模型。
+R16 不执行文字识读，评测不能把空 text 当作 OCR 失败再混入字体准确率。受控 iOS Simulator 截图的成绩应明确采集域，不能扩展为第三方 App、真机或未知字体的准确率。历史 R14／R15 的字形或识字依赖评测保留原口径，不归入 R16 成绩。
 
-## R14 数字／英文参考库
+## 历史兼容：R14 参考字库
 
-新包另含 `latin/metadata.json`、`latin/GATES.json`、`latin/references.zip`，均须列入根 MANIFEST。schema 为 `flux-glyph-latin-candidates-v1`，每字符 `[17,3,32,32] uint8`，字号 20/32/48；62 个 ASCII 字母数字、6 家族。`face_characters` 标明逐字面覆盖，Alipay Number 不覆盖英文字母，其缺字参考为零，不能用于字母匹配。
+未声明 `region_neural/` 的旧包继续走历史加载逻辑。R14 完整包包括 PP DET／REC／CLS、字符字典、`font/metadata.json`、`font/GATES.json` 及紧凑字形档案；可选 `latin/metadata.json`、`latin/GATES.json` 和 `latin/references.zip`。这些文件须列入根 MANIFEST。
 
-加载器验证档案成员集合、NPY 头、类型、形状、覆盖与元数据／门槛哈希；数字结果永远是候选或待确认，不进入苹方 supported 门槛。旧包未声明 Latin 文件时仍可加载，仅保留中文能力，不能读取磁盘上未列入 MANIFEST 的 Latin 文件。
+中文档案 schema 为 `flux-glyph-r13-compact-v1`，每个汉字 NPY 数组 `[31,3,32,32] uint8`，对应字体样式及字号 `[20,28,44]`。Latin schema 为 `flux-glyph-latin-candidates-v1`，逐字符数组 `[17,3,32,32] uint8`，字号 `[20,32,48]`。加载器检查成员、NPY 头、形状、覆盖和哈希，禁止 pickle。旧包返回 `{family, distance}`，适用旧苹方 `supported` 或其他字体候选规则。
 
-中文半像素对齐只用于字体候选排名；苹方原校准距离和 supported 门槛保持不变。`font_evidence.views/subset_views` 保留原校准距离，`candidate_views/candidate_method` 描述行候选使用的对齐方法。
+旧 PP 契约包括 RGB 输入、DB 检测及 PP REC 6625 类 CTC 识字；替换字典、预处理或输出形状须同步更新对应历史运行时代码。参考库构建依赖本地源字体，但服务端不需要 macOS、CoreText、Swift 或 fontTools。
 
-`extend_font_references.py` 为 macOS 离线扩字工具，依赖 CoreText 和提供的源字体清单；`build_latin_references.py` 用本地校验字体离线构建数字／英文库。源字体不随模型打包，服务端不依赖 macOS、Swift、fontTools 或在线下载。新模型需连同本轮代码部署，复制完整项目后执行 `docker compose up -d --build`。
+历史结果和方法见 [移动字体改进](mobile-font-improvements.md)、[中文精度报告](accuracy-report.md)。
+
+## 历史兼容：R15 单字字体 CNN
+
+旧 CNN 包声明 `neural/metadata.json` 及单个 ONNX，schema 为 `flux-glyph-neural-font-v1`、algorithm 为 `glyph-cnn64-v1`。输入 `glyphs` 为 float32 `[N,1,64,64]`，输出 `logits [N,C]`；元数据包含中文／Latin 分类范围、温度、分数与差值门槛。
+
+该旧流程需要 OCR 与原像素分字，同字重复先平均，再对不同字符等权平均；分字不完整、低识字置信度或低模型分数会待确认。结果方法为 `neural_network`。旧截图训练包还可声明 `style/size_metrics.json`，由训练字形建立字号比例。
+
+这些规则仅描述历史兼容，不用于 R16 的区域 CNN。历史来源和成绩见 [iOS 单字截图训练](ios-screenshot-training.md)、[历史截图评测](ios-screenshot-results.md)、[更早合成实验](neural-font-training.md)。

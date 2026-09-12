@@ -1,0 +1,76 @@
+{
+  "version": "r16-ios-region-v1",
+  "model_sha256": "9fde0988dd6e0fe52fb8cacbdd96d1456eabf01ce3a4b431de9ebfd982f3d304",
+  "training_export_superseded": "da9866834921b43886d86d662d3f95056b3affe119c31b6c7abc2190554672de",
+  "stable_export": {
+    "groupnorm_lowering": "reshape_centered_mean_square_variance_v1",
+    "frozen_parameters_unchanged": true,
+    "reduction_dtype": "float64",
+    "original_onnx_sha256": "da9866834921b43886d86d662d3f95056b3affe119c31b6c7abc2190554672de",
+    "checkpoint_sha256": "fe9e73936941e07c255df50e7798a277beaa9f4a7c9f87dbf2dfcc9bbc8c67b2",
+    "export_source_sha256": "07f1d4964201d651af7066ed8e9ae8e6b13efd3ac4c8e3cc94de70e206e9b56a",
+    "parity_reference": "original torch.nn.GroupNorm, unchanged tolerances"
+  },
+  "parity_passed": true,
+  "end_to_end": {
+    "truth_regions": 1097,
+    "detected": 1097,
+    "missed": 0,
+    "detection_recall": 1.0,
+    "font_accepted": 911,
+    "font_name_correct": 891,
+    "wrong_font_names": 20,
+    "font_abstained_after_detection": 186,
+    "font_accuracy_all_truth": 0.8122151321786691,
+    "font_accuracy_detected": 0.8122151321786691,
+    "font_precision_among_accepted": 0.9780461031833151,
+    "font_coverage_detected": 0.8304466727438469,
+    "style": {
+      "size_available": 911,
+      "size_coverage_all_truth": 0.8304466727438469,
+      "size_within_tolerance": 908,
+      "size_mae_px": 1.0521405049396257,
+      "size_mean_relative_error": 0.018264627891757566,
+      "size_intervals_available": 0,
+      "size_intervals_cover_native": 0,
+      "color_available": 1096,
+      "color_coverage_all_truth": 0.9990884229717412,
+      "color_within_tolerance": 1096,
+      "color_mean_max_channel_error": 0.0
+    },
+    "predictions": 1097,
+    "false_positives": 0,
+    "false_positive_named_fonts": 0,
+    "detection_precision": 1.0
+  },
+  "font_download": {
+    "available": true,
+    "format": "ONNX",
+    "version": "r16-ios-region-v1",
+    "families": [
+      "HarmonyOS Sans SC",
+      "MiSans",
+      "Noto Sans CJK SC",
+      "OPPO Sans",
+      "PingFang SC",
+      "SF Pro",
+      "Helvetica",
+      "Alipay Number"
+    ],
+    "input_shape": [
+      null,
+      1,
+      64,
+      256
+    ],
+    "download_url": "/api/models/font/download",
+    "bytes": 1361627,
+    "sha256": "53cf7bac5ebab4ec3f94f9b15dd92e97ed366d9736c8e6bdfe16c3448918253a",
+    "ocr_required": false,
+    "usage": {
+      "install": "pip install -r requirements.txt",
+      "predict": "python predict.py text-region.png"
+    }
+  },
+  "experimental": true
+}

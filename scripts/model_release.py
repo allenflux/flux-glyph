@@ -15,7 +15,7 @@ def safe_version(value):
 def validate_runtime(directory):
     from flux_glyph.pipeline import FontPipeline
     engine=FontPipeline(directory,cache_characters=1)
-    engine.bank.archive.close()
+    if engine.bank:engine.bank.archive.close()
     if engine.latin_bank:engine.latin_bank.archive.close()
 
 

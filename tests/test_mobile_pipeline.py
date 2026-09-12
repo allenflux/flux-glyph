@@ -133,3 +133,24 @@ def test_legacy_bundle_without_latin_keeps_chinese_pipeline_usable(monkeypatch,t
     assert result['regions'][0]['font']['status']=='supported'
     assert result['regions'][0]['font']['family']=='PingFang SC'
     assert classified_han==list('中文') and calls==[]
+
+
+@pytest.mark.parametrize('confidence',[.99,.79])
+def test_text_style_uses_original_pixels_and_only_accepted_script_families(monkeypatch,tmp_path,confidence):
+    calls=[]
+    style={'font_size_px_estimate':38.2,'font_size_px_interval':[36.,40.],
+           'text_color_hex':'#123456','size':{'status':'estimated'},'color':{'status':'estimated'}}
+    def measure(image,glyphs,**kwargs):
+        calls.append((image.copy(),deepcopy(glyphs),kwargs))
+        return deepcopy(style)
+    monkeypatch.setattr(pipeline_module,'estimate_text_style',measure)
+    result,_,source,_,_=run_region(monkeypatch,tmp_path,'中12文',confidence=confidence,rotation=180)
+    image,glyphs,options=calls[0]
+    np.testing.assert_array_equal(np.asarray(image),np.asarray(source))
+    assert options['family'] is None
+    assert options['region_bbox']==result['regions'][0]['source_bbox']
+    assert [g['family_candidate'] for g in glyphs]==(
+        ['PingFang SC','SF Pro','SF Pro','PingFang SC'] if confidence>=.8 else [None]*4)
+    assert result['regions'][0]['text_style']==style
+    from flux_glyph.api import public_result
+    assert public_result(result['id'],result)['regions'][0]['text_style']==style

@@ -17,12 +17,13 @@ from pathlib import Path
 from urllib.parse import unquote
 
 from fastapi import FastAPI,Request,HTTPException
-from fastapi.responses import FileResponse,JSONResponse
+from fastapi.responses import FileResponse,JSONResponse,Response
 from fastapi.staticfiles import StaticFiles
 from starlette.datastructures import UploadFile
 from python_multipart.exceptions import MultipartParseError
 from PIL import Image,UnidentifiedImageError
 from .pipeline import FontPipeline,ROOT,save_json
+from .model_download import font_kit
 
 MAX_BYTES=int(os.getenv('FLUX_MAX_UPLOAD_MB','8'))*1024*1024
 MAX_PIXELS=int(os.getenv('FLUX_MAX_PIXELS','12000000'))
@@ -50,10 +51,12 @@ def public_result(identifier,result):
     for reg in result['regions']:
         glyphs=[{k:g.get(k) for k in ('character','index','status','reason','family_candidate','candidates','source_bbox','source_rotation_degrees')} |
                 ({'crop_url':prefix+g['crop_file']} if g.get('crop_file') else {}) for g in reg['glyphs']]
-        regions.append({k:reg.get(k) for k in ('id','quad','text','font','detector_bbox','source_bbox','ocr_confidence')} |
+        regions.append({k:reg.get(k) for k in ('id','quad','text','font','text_style','detector_bbox','source_bbox','ocr_confidence')} |
                        {'glyphs':glyphs,'crop_url':prefix+reg['crop_file']})
     return {k:result[k] for k in ('id','width','height','summary','timing_seconds','model_version','source_sha256','font_scope','font_identity_verified','device_inference_performed')} | {
         'regions':regions,'image_url':prefix+'original.png','annotated_preview_url':prefix+'annotated.png',
+        'font_method':result.get('font_method','reference_matching'),
+        'ocr_performed':result.get('ocr_performed',True),
         'annotated_image_url':f'/api/jobs/{identifier}/image','download_json_url':f'/api/jobs/{identifier}/json'}
 
 
@@ -233,6 +236,21 @@ async def authenticate(request:Request):
     if not TOKEN or not isinstance(provided,str) or not hmac.compare_digest(provided.encode('utf-8'),TOKEN.encode('utf-8')):raise HTTPException(401,'令牌不正确。')
     response=JSONResponse({'ok':True});response.set_cookie('flux_token',TOKEN,httponly=True,samesite='strict',secure=request.url.scheme=='https',max_age=43200)
     return response
+
+
+@app.get('/api/models/font')
+def current_font_model():
+    bundle=font_kit(app.state.jobs.engine)
+    return bundle[0] if bundle else {'available':False,'format':'ONNX'}
+
+
+@app.get('/api/models/font/download')
+def download_font_model():
+    bundle=font_kit(app.state.jobs.engine)
+    if bundle is None:raise HTTPException(404,'当前模型不提供独立区域字体下载包。')
+    return Response(bundle[1],media_type='application/zip',headers={
+        'Content-Disposition':'attachment; filename="flux-glyph-font-onnx.zip"',
+        'X-Model-SHA256':bundle[0]['sha256']})
 
 
 async def payload_from(request,filename=None):

@@ -10,34 +10,44 @@
 
   const messages = {
     zh: {
-      regionsTitle: '文字区域', fontDetailTitle: '字体详情', closeDetail: '收起详情', cropTitle: '原图裁字', fontConclusionTitle: '字体判断',
-      tagline: '上传截图，查看每个文字区域的字体结果与原图证据。', language: '语言', apiExample: 'API 示例',
+      fontModelTitle: '字体模型', downloadModel: '下载字体模型', fontModelHelp: '下载后可在本地输入文字区域裁图，识别字体并估计字号、颜色。',
+      modelLoading: '正在读取模型信息…', modelUnavailable: '字体模型暂未提供下载。', modelLoadFailed: '暂时无法读取模型信息，请稍后刷新。', modelLocked: '解锁访问后可下载模型。',
+      modelAvailable: '{version} · {size}', modelFamilies: '可识别字体：{families}', modelUsageHelp: '解压下载包，在解压目录安装依赖并运行：', modelUsageDocs: '模型使用说明',
+      regionsTitle: '文字区域', fontDetailTitle: '字体详情', closeDetail: '收起详情', cropTitle: '原图区域裁图', fontConclusionTitle: '字体判断',
+      tagline: '上传截图，识别字体、估计字号与文字颜色。', language: '语言', apiExample: 'API 示例',
       unlockTitle: '解锁访问', unlockHelp: '此服务需要访问令牌。令牌只在本次页面会话中用于设置安全 Cookie，不会保存在浏览器存储中。', tokenPlaceholder: '输入访问令牌', unlock: '解锁',
-      uploadTitle: '上传图片', uploadHelp: '支持 PNG、JPG、WebP。分别识别中文、数字与英文字体；混排文字分开给出候选。', dropPrompt: '选择图片或拖入这里', noFile: '尚未选择图片', start: '开始识别', downloadPng: '下载标注 PNG',
+      uploadTitle: '上传图片', uploadHelp: '支持 PNG、JPG、WebP。直接分析文字区域的外观，查看字体候选、字号和颜色。', dropPrompt: '选择图片或拖入这里', noFile: '尚未选择图片', start: '开始识别', downloadPng: '下载标注 PNG',
       waiting: '等待上传', selected: '已选择 {name}，等待开始识别', creating: '正在创建任务…', queued: '排队中…', running: '正在识别…', complete: '识别完成', failed: '识别失败', pollFailed: '轮询失败：{message}', reconnecting: '连接暂时中断，{seconds} 秒后继续查询当前任务…', jobGone: '任务已不存在，请再次开始识别。', authRequired: '登录已失效，请重新解锁。', chooseImage: '请选择单张图片',
-      preparing: '正在准备图片…', detecting: '正在框选文字区域…', recognizing: '正在识读文字…', matching: '正在匹配字体…', annotating: '正在生成字体标注图片…', finalizing: '正在整理结果…', progressLabel: '阶段进度', progressCount: '{current}/{total}', queuePosition: '排队第 {position} 位，前方 {ahead} 个任务', queueNext: '即将开始处理', busy: '当前排队任务较多，请稍后再试。图片仍保留，可直接再次开始识别。', invalidImage: '图片无法读取。请上传 8 MB 内、1200 万像素内的 PNG、JPG 或 WebP 静态图。', imageTooLarge: '图片超过 8 MB 上传限制，请选择较小的图片。', uploadFailed: '任务创建失败，请检查连接后再次开始识别。', restarted: '服务已重启，请再次开始识别。',
-      resultsTitle: '识别结果', detailEmpty: '点击图片中的文字框或区域列表查看字体证据。', noRegions: '未检测到文字区域。请使用清晰、未裁切的截图重试。', originalAlt: '后端已校正方向的原图', overlayLabel: '检测到的文字区域', regionLabel: '文字区域 {id}', cropAlt: '所选文字区域裁图', glyphAlt: '单字 {character}',
+      preparing: '正在准备图片…', detecting: '正在框选文字区域…', recognizing: '正在分析区域…', classifying: '正在识别字体…', matching: '正在识别字体…', annotating: '正在生成字体标注图片…', finalizing: '正在整理结果…', progressLabel: '阶段进度', progressCount: '{current}/{total}', queuePosition: '排队第 {position} 位，前方 {ahead} 个任务', queueNext: '即将开始处理', busy: '当前排队任务较多，请稍后再试。图片仍保留，可直接再次开始识别。', invalidImage: '图片无法读取。请上传 8 MB 内、1200 万像素内的 PNG、JPG 或 WebP 静态图。', imageTooLarge: '图片超过 8 MB 上传限制，请选择较小的图片。', uploadFailed: '任务创建失败，请检查连接后再次开始识别。', restarted: '服务已重启，请再次开始识别。',
+      resultsTitle: '识别结果', detailEmpty: '点击图片中的文字框或区域列表查看字体证据。', noRegions: '未检测到文字区域。请使用清晰、未裁切的截图重试。', originalAlt: '后端已校正方向的原图', overlayLabel: '检测到的文字区域', regionLabel: '文字区域 {id}', cropAlt: '所选文字区域裁图', thumbnailAlt: '{id} 原图区域', cropUnavailable: '暂无裁图',
       copyJson: '复制 JSON', copied: 'JSON 已复制', copyFailed: '无法自动复制，请在 JSON 区域中手动选择复制。', jsonLabel: '格式化 JSON',
-      ocrTitle: 'OCR 文字', copyOcr: '复制全文', ocrCopied: 'OCR 全文已复制', ocrCopyFailed: '无法自动复制，请手动选择文字。', ocrHelp: 'OCR 置信度描述文字识读可靠性；字体标签是单独的字体结论。', ocrEmpty: '没有识读出非空文字。', ocrLines: '{count} 行文字', ocrConfidence: 'OCR 置信度 {value}', ocrConfidenceUnknown: 'OCR 置信度 —', fontConclusion: '字体：{value}', legendLabel: '字体结论图例',
+      legendLabel: '字体结论图例',
       detected: '检测 {count}', chinese: '中文 {count}', pingfang: '苹方支持 {count}', seconds: '{count} 秒',
       fontCandidates: '字体候选 {count}', scopeLatin: '此结论仅针对框内数字和英文字母；标点、图标不参与字体判断。', scopeMixed: '混排文字按中文与数字／英文分别匹配；上方结论针对中文部分。', chinesePart: '中文部分', latinPart: '数字／英文部分',
-      supported: '支持', candidate: '候选', uncertain: '待确认', outOfScope: '字体未覆盖', unknownText: '未识别文字', unknownFont: '待确认', noReason: '没有进一步说明', scopeNote: '此结论仅针对框内中文，不能据此推断数字和英文字体。', topDistances: 'Top 3 原始距离（距离不是概率）', glyphEvidence: '原图单字证据',
+      regionScope: '此结果针对当前文字区域的整体外观。', neuralMethod: '神经网络', neuralIdentified: '已识别 {count}', topScores: 'Top 3 模型分数（分数不是实际准确率）',
+      estimatedSize: '估计字号', textColor: '文字颜色', styleUnknown: '待确认', styleNote: '字号按截图像素估计；颜色为截图中的可见颜色。', sizeRange: '估计范围 {low}–{high} px',
+      supported: '支持', candidate: '候选', uncertain: '待确认', outOfScope: '字体未覆盖', unknownText: '未识别文字', unknownFont: '待确认', noReason: '没有进一步说明', scopeNote: '此结论仅针对框内中文，不能据此推断数字和英文字体。', topDistances: 'Top 3 原始距离（距离不是概率）',
       modelVersion: '模型版本：{version}', healthUnavailable: '服务状态暂不可用', unlocked: '已解锁，可以上传图片', authError: '令牌无效或服务拒绝访问，请重试。',
       apiHelp: '上传支付宝图片，完成后直接返回字体识别 JSON。', apiAsync: '使用 ?wait=false 先返回任务 ID，再轮询 GET /api/jobs/{id}。仍兼容 POST /api/predict?wait=true。', apiDocs: '完整 API 说明'
     },
     en: {
+      fontModelTitle: 'Font model', downloadModel: 'Download font model', fontModelHelp: 'Run the model locally on a cropped text region to identify its font and estimate size and color.',
+      modelLoading: 'Loading model information…', modelUnavailable: 'The font model is not available for download yet.', modelLoadFailed: 'Model information is unavailable. Refresh the page to try again.', modelLocked: 'Unlock access to download the model.',
+      modelAvailable: '{version} · {size}', modelFamilies: 'Font families: {families}', modelUsageHelp: 'Extract the download, then install dependencies and run these commands in its directory:', modelUsageDocs: 'Model usage guide',
       regionsTitle: 'Text regions', fontDetailTitle: 'Font details', closeDetail: 'Hide details', cropTitle: 'Source crop', fontConclusionTitle: 'Font result',
-      tagline: 'Upload a screenshot to inspect font results and source evidence for each text region.', language: 'Language', apiExample: 'API examples',
+      tagline: 'Upload a screenshot to identify fonts, estimated sizes, and text colors.', language: 'Language', apiExample: 'API examples',
       unlockTitle: 'Unlock access', unlockHelp: 'This service requires an access token. It is used only to set a secure cookie for this page session and is never saved in browser storage.', tokenPlaceholder: 'Enter access token', unlock: 'Unlock',
-      uploadTitle: 'Upload image', uploadHelp: 'Supports PNG, JPG, and WebP. Chinese, numeric, and Latin fonts are matched separately within mixed text.', dropPrompt: 'Choose an image or drop it here', noFile: 'No image selected', start: 'Start recognition', downloadPng: 'Download annotated PNG',
+      uploadTitle: 'Upload image', uploadHelp: 'Supports PNG, JPG, and WebP. Analyze the appearance of each text region to estimate its font, size, and color.', dropPrompt: 'Choose an image or drop it here', noFile: 'No image selected', start: 'Start recognition', downloadPng: 'Download annotated PNG',
       waiting: 'Waiting for an image', selected: '{name} selected. Ready to start.', creating: 'Creating job…', queued: 'Waiting in queue…', running: 'Recognizing…', complete: 'Recognition complete', failed: 'Recognition failed', pollFailed: 'Status check failed: {message}', reconnecting: 'Connection interrupted. Checking this job again in {seconds} seconds…', jobGone: 'This job is no longer available. Start recognition again.', authRequired: 'Your access session expired. Unlock the service again.', chooseImage: 'Please choose one image',
-      preparing: 'Preparing image…', detecting: 'Detecting text regions…', recognizing: 'Reading text…', matching: 'Matching fonts…', annotating: 'Generating annotated image…', finalizing: 'Finalizing results…', progressLabel: 'Stage progress', progressCount: '{current}/{total}', queuePosition: 'Queue position {position} · {ahead} job(s) ahead', queueNext: 'Starting soon', busy: 'The queue is currently full. Try again shortly; your selected image is still ready.', invalidImage: 'The image could not be read. Upload a static PNG, JPG, or WebP under 8 MB and 12 megapixels.', imageTooLarge: 'The image exceeds the 8 MB upload limit. Choose a smaller image.', uploadFailed: 'The job could not be created. Check your connection and start recognition again.', restarted: 'The service restarted before this job finished. Start recognition again.',
-      resultsTitle: 'Recognition results', detailEmpty: 'Select a box in the image or a region in the list to inspect its font evidence.', noRegions: 'No text regions were found. Try a clear, uncropped screenshot.', originalAlt: 'Source image with orientation corrected by the server', overlayLabel: 'Detected text regions', regionLabel: 'Text region {id}', cropAlt: 'Crop of the selected text region', glyphAlt: 'Glyph {character}',
+      preparing: 'Preparing image…', detecting: 'Detecting text regions…', recognizing: 'Analyzing regions…', classifying: 'Identifying fonts…', matching: 'Identifying fonts…', annotating: 'Generating annotated image…', finalizing: 'Finalizing results…', progressLabel: 'Stage progress', progressCount: '{current}/{total}', queuePosition: 'Queue position {position} · {ahead} job(s) ahead', queueNext: 'Starting soon', busy: 'The queue is currently full. Try again shortly; your selected image is still ready.', invalidImage: 'The image could not be read. Upload a static PNG, JPG, or WebP under 8 MB and 12 megapixels.', imageTooLarge: 'The image exceeds the 8 MB upload limit. Choose a smaller image.', uploadFailed: 'The job could not be created. Check your connection and start recognition again.', restarted: 'The service restarted before this job finished. Start recognition again.',
+      resultsTitle: 'Recognition results', detailEmpty: 'Select a box in the image or a region in the list to inspect its font evidence.', noRegions: 'No text regions were found. Try a clear, uncropped screenshot.', originalAlt: 'Source image with orientation corrected by the server', overlayLabel: 'Detected text regions', regionLabel: 'Text region {id}', cropAlt: 'Crop of the selected text region', thumbnailAlt: 'Source region {id}', cropUnavailable: 'Crop unavailable',
       copyJson: 'Copy JSON', copied: 'JSON copied', copyFailed: 'Automatic copy failed. Select the formatted JSON and copy it manually.', jsonLabel: 'Formatted JSON',
-      ocrTitle: 'OCR text', copyOcr: 'Copy all', ocrCopied: 'OCR text copied', ocrCopyFailed: 'Automatic copy failed. Select the text manually.', ocrHelp: 'OCR confidence measures text-reading reliability; the font label is a separate conclusion.', ocrEmpty: 'No non-empty text was recognized.', ocrLines: '{count} text lines', ocrConfidence: 'OCR confidence {value}', ocrConfidenceUnknown: 'OCR confidence —', fontConclusion: 'Font: {value}', legendLabel: 'Font conclusion legend',
+      legendLabel: 'Font conclusion legend',
       detected: 'Detected {count}', chinese: 'Chinese {count}', pingfang: 'PingFang supported {count}', seconds: '{count} sec',
       fontCandidates: 'Font candidates {count}', scopeLatin: 'This verdict covers digits and Latin letters only; punctuation and icons are not classified.', scopeMixed: 'Chinese and numeric/Latin text are matched separately. The main verdict covers Chinese glyphs.', chinesePart: 'Chinese text', latinPart: 'Numeric / Latin text',
-      supported: 'Supported', candidate: 'Candidate', uncertain: 'Review', outOfScope: 'Font out of scope', unknownText: 'Unrecognized text', unknownFont: 'Review needed', noReason: 'No further explanation is available.', scopeNote: 'This verdict covers Chinese glyphs only and does not determine numeric or Latin fonts.', topDistances: 'Top 3 raw distances (distance is not probability)', glyphEvidence: 'Source glyph evidence',
+      regionScope: 'This result describes the appearance of the selected text region.', neuralMethod: 'Neural network', neuralIdentified: 'Identified {count}', topScores: 'Top 3 model scores (scores are not measured accuracy)',
+      estimatedSize: 'Estimated size', textColor: 'Text color', styleUnknown: 'Uncertain', styleNote: 'Size is estimated in screenshot pixels; color is the visible color in the screenshot.', sizeRange: 'Estimated range {low}–{high} px',
+      supported: 'Supported', candidate: 'Candidate', uncertain: 'Review', outOfScope: 'Font out of scope', unknownText: 'Unrecognized text', unknownFont: 'Review needed', noReason: 'No further explanation is available.', scopeNote: 'This verdict covers Chinese glyphs only and does not determine numeric or Latin fonts.', topDistances: 'Top 3 raw distances (distance is not probability)',
       modelVersion: 'Model version: {version}', healthUnavailable: 'Service status is unavailable', unlocked: 'Unlocked. You can upload an image.', authError: 'The token is invalid or the service refused access. Try again.',
       apiHelp: 'Upload a payment screenshot and receive font-recognition JSON when processing completes.', apiAsync: 'Use ?wait=false to receive a job ID first, then poll GET /api/jobs/{id}. POST /api/predict?wait=true remains supported.', apiDocs: 'Full API documentation'
     }
@@ -56,6 +66,8 @@
   let latestSnapshot = null;
   let pollFailures = 0;
   let reconnectState = null;
+  let modelInfo = null;
+  let modelLoadState = 'modelLoading';
 
   function loadLanguage() {
     try { return localStorage.getItem('flux-glyph-language') === 'en' ? 'en' : 'zh'; } catch (_) { return 'zh'; }
@@ -101,13 +113,9 @@
     $('json-output').textContent = '';
     $('copy-json').disabled = true;
     $('copy-status').textContent = '';
-    $('ocr-output').replaceChildren();
-    $('ocr-count').textContent = '';
-    $('copy-ocr').disabled = true;
-    $('ocr-copy-status').textContent = '';
     $('detail-panel').hidden = true;
     for (const id of ['regions', 'detail', 'overlay']) $(id).replaceChildren();
-    for (const node of [$('regions'), $('detail'), $('ocr-output'), document.querySelector('.viewer')]) node.scrollTop = 0;
+    for (const node of [$('regions'), $('detail'), document.querySelector('.viewer')]) node.scrollTop = 0;
     $('download-png').removeAttribute('href');
     $('download-png').setAttribute('aria-disabled', 'true');
   }
@@ -152,6 +160,7 @@
     const value = normalizeStageCode(code);
     if (/queue|pending/.test(value)) return 'queued';
     if (/load|prepare|orient|decode|upload/.test(value)) return 'preparing';
+    if (/classif|font|match/.test(value)) return 'matching';
     if (/detect|box|region/.test(value)) return 'detecting';
     if (/ocr|recogn|read|text/.test(value)) return 'recognizing';
     if (/font|match|glyph/.test(value)) return 'matching';
@@ -163,7 +172,7 @@
     if (/准备|加载|校正/.test(human)) return 'preparing';
     if (/框选|检测.*文字|文字区域/.test(human)) return 'detecting';
     if (/识读|识别文字/.test(human)) return 'recognizing';
-    if (/匹配字体/.test(human)) return 'matching';
+    if (/匹配字体|识别字体|分析字体/.test(human)) return 'matching';
     if (/标注|生成.*图片/.test(human)) return 'annotating';
     if (/整理|保存.*结果/.test(human)) return 'finalizing';
     if (/完成/.test(human)) return 'complete';
@@ -310,6 +319,7 @@
 
   const font = region => region.font || {label: '', status: 'uncertain', reason: '', candidates: []};
   const points = quad => (quad || []).map(point => point.join(',')).join(' ');
+  const isNeural = value => ['neural_network', 'region_neural_network'].includes(value.method || value.font_method);
   const statusKey = value => ({supported: 'supported', candidate: 'candidate', uncertain: 'uncertain', out_of_scope: 'outOfScope'})[value] || 'uncertain';
 
   function fontLabel(value) {
@@ -330,6 +340,20 @@
   };
 
   const reasonCodes = {
+    region_neural_family_candidate: {zh: '区域字体神经网络的模型分数与候选区分度达到当前门槛。', en: 'The region font network passes the current score and separation gates.'},
+    low_quality_region: {zh: '区域图像质量不足，字体待确认。', en: 'This region lacks sufficient image quality to identify a font.'},
+    nonuniform_region_background: {zh: '区域背景颜色不均匀，字体待确认。', en: 'The region background is not uniform; review is needed.'},
+    region_too_long: {zh: '文字区域过长，请裁出较短的文字区域后重试。', en: 'This text region is too long. Crop a shorter region and try again.'},
+    mixed_or_ambiguous_region: {zh: '区域内不同图像片段的字体判断不一致，暂未确认。', en: 'Different image patches within the region disagree on the font; review is needed.'},
+    neural_family_candidate: {zh: '字体神经网络的模型分数与候选区分度达到当前门槛。', en: 'The trained font network passes the current score and separation gates.'},
+    below_score_gate: {zh: '神经网络已有字体候选，但模型分数未达到确认门槛。', en: 'The neural network has candidates, but the model score is below the gate.'},
+    ambiguous_neural_families: {zh: '前两名字体的模型评分过于接近，暂未确认。', en: 'The top two font families have similar model scores; review is needed.'},
+    incomplete_segmentation: {zh: '部分字形未能可靠分出，神经网络结论待确认。', en: 'Some glyphs could not be segmented reliably; the neural verdict needs review.'},
+    low_quality_or_invalid_glyphs: {zh: '部分字形的图像质量不足，神经网络结论待确认。', en: 'Some glyph images lack sufficient quality for a neural verdict.'},
+    no_samples: {zh: '没有可用于字体判断的可靠字形。', en: 'No reliable glyphs are available for font classification.'},
+    sample_limit_exceeded: {zh: '该区域字数超出本次字体判断上限。', en: 'This region exceeds the font-classification glyph limit.'},
+    neural_inference_failed: {zh: '字体神经网络本次推理失败，请重试。', en: 'Font neural inference failed; retry the request.'},
+    invalid_neural_output: {zh: '字体神经网络输出异常，本次不作结论。', en: 'Font neural inference returned invalid output; no verdict is made.'},
     unsupported_script: {zh: '当前字库尚未覆盖该文字类型。', en: 'This script is not covered by the current font bank.'},
     stable_latin_family_candidate: {zh: '数字／英文字形通过距离与区分度门槛，且三种图像检查的候选一致。', en: 'Numeric/Latin glyphs pass distance and separation gates and agree across three image checks.'},
     insufficient_latin_evidence: {zh: '数字／英文字形证据不足，字体待确认。', en: 'There is insufficient numeric/Latin glyph evidence.'},
@@ -374,7 +398,6 @@
     $('copy-json').disabled = false;
     $('copy-status').textContent = '';
     renderResultText();
-    renderOcr();
     renderList();
     renderDetail();
     draw();
@@ -384,12 +407,12 @@
     if (!result) return;
     const summary = result.summary || {};
     const elapsed = result.timing_seconds?.total ?? result.timing_seconds;
+    const identified = (result.regions || []).filter(region => ['supported', 'candidate'].includes(font(region).status) && font(region).family).length;
     const parts = [
       {text: t('detected', {count: summary.detected_regions ?? result.regions?.length ?? 0}), tone: 'detected'},
-      {text: t('chinese', {count: summary.chinese_regions ?? '—'}), tone: 'candidate'},
-      {text: t('pingfang', {count: summary.pingfang_supported ?? '—'}), tone: 'supported'}
+      {text: t('neuralIdentified', {count: identified}), tone: 'supported'}
     ];
-    if (Number.isFinite(summary.other_candidates)) parts.push({text: t('fontCandidates', {count: summary.other_candidates}), tone: 'candidate'});
+    if (isNeural(result)) parts.push({text: t('neuralMethod'), tone: 'neutral'});
     if (Number.isFinite(elapsed)) parts.push({text: t('seconds', {count: Number(elapsed).toFixed(2)}), tone: 'neutral'});
     if (result.model_version) parts.push({text: result.model_version, tone: 'neutral'});
     $('summary').replaceChildren(...parts.map(part => {
@@ -423,6 +446,43 @@
     }
   }
 
+  function styleMetadata(region, detailed = false) {
+    const style = region.text_style;
+    if (!style) return null;
+    const root = document.createElement('span');
+    root.className = detailed ? 'text-style text-style-detail' : 'text-style';
+    const size = document.createElement('span');
+    size.className = 'text-size';
+    const px = style.font_size_px_estimate;
+    const sizeValue = Number.isFinite(px) && px > 0 ? `≈ ${px.toFixed(1).replace(/\.0$/, '')} px` : t('styleUnknown');
+    size.textContent = detailed || !Number.isFinite(px) || px <= 0 ? `${t('estimatedSize')}：${sizeValue}` : sizeValue;
+    size.setAttribute('aria-label', `${t('estimatedSize')} ${sizeValue}`);
+    const range = style.font_size_px_interval;
+    if (Array.isArray(range) && range.length === 2 && range.every(Number.isFinite)) {
+      size.title = t('sizeRange', {low: range[0].toFixed(1), high: range[1].toFixed(1)});
+    }
+    const color = document.createElement('span');
+    color.className = 'text-color';
+    const hex = typeof style.text_color_hex === 'string' && /^#[0-9a-f]{6}$/i.test(style.text_color_hex) ? style.text_color_hex.toUpperCase() : null;
+    if (detailed) color.append(`${t('textColor')}：`);
+    if (hex) {
+      const swatch = document.createElement('span');
+      swatch.className = 'color-swatch';
+      swatch.style.backgroundColor = hex;
+      swatch.setAttribute('aria-hidden', 'true');
+      color.append(swatch, hex);
+    } else color.append(detailed ? t('styleUnknown') : `${t('textColor')}：${t('styleUnknown')}`);
+    color.setAttribute('aria-label', `${t('textColor')} ${hex || t('styleUnknown')}`);
+    root.append(size, color);
+    if (detailed) {
+      const note = document.createElement('small');
+      note.className = 'text-style-note';
+      note.textContent = t('styleNote');
+      root.append(note);
+    }
+    return root;
+  }
+
   function renderList() {
     const root = $('regions');
     const previousScroll = root.scrollTop;
@@ -444,85 +504,32 @@
       const text = document.createElement('span');
       const strong = document.createElement('b');
       const small = document.createElement('small');
-      strong.textContent = region.text || t('unknownText');
+      strong.textContent = region.id;
       small.textContent = fontLabel(value);
       text.append(strong, small);
-      button.append(tag, text);
+      const style = styleMetadata(region);
+      if (style) text.append(style);
+      const thumbnail = document.createElement('span');
+      thumbnail.className = 'region-thumbnail';
+      if (region.crop_url) {
+        const image = new Image();
+        image.src = region.crop_url;
+        image.alt = t('thumbnailAlt', {id: region.id});
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        image.onerror = () => { thumbnail.textContent = t('cropUnavailable'); };
+        thumbnail.append(image);
+      } else thumbnail.textContent = t('cropUnavailable');
+      text.className = 'region-description';
+      const heading = document.createElement('span');
+      heading.className = 'region-heading';
+      text.replaceChild(heading, strong);
+      heading.append(strong, tag);
+      button.append(thumbnail, text);
       root.append(button);
     }
     root.scrollTop = previousScroll;
     if (focusedRegion != null) root.querySelector(`[data-region-id="${CSS.escape(String(focusedRegion))}"]`)?.focus({preventScroll: true});
-  }
-
-  function ocrRegions() {
-    return (result?.regions || []).filter(region => String(region.text ?? '').trim());
-  }
-
-  function ocrConfidence(region) {
-    if (region.ocr_confidence == null || region.ocr_confidence === '') return t('ocrConfidenceUnknown');
-    const confidence = Number(region.ocr_confidence);
-    if (!Number.isFinite(confidence)) return t('ocrConfidenceUnknown');
-    const percent = confidence <= 1 ? confidence * 100 : confidence;
-    return t('ocrConfidence', {value: `${Math.max(0, Math.min(100, percent)).toFixed(1)}%`});
-  }
-
-  function renderOcr() {
-    const root = $('ocr-output');
-    const previousScroll = root.scrollTop;
-    const focusedRegion = document.activeElement?.classList?.contains('ocr-row') ? document.activeElement.dataset.regionId : null;
-    root.replaceChildren();
-    const regions = ocrRegions();
-    $('ocr-count').textContent = t('ocrLines', {count: regions.length});
-    $('copy-ocr').disabled = regions.length === 0;
-    if (!regions.length) {
-      const empty = document.createElement('p');
-      empty.className = 'empty-state';
-      empty.textContent = t('ocrEmpty');
-      root.append(empty);
-      return;
-    }
-    for (const region of regions) {
-      const value = font(region);
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = `ocr-row ${value.status || 'uncertain'}${selected === region.id ? ' selected' : ''}`;
-      button.dataset.regionId = region.id;
-      button.setAttribute('aria-pressed', String(selected === region.id));
-      button.setAttribute('aria-controls', 'detail-panel');
-      button.setAttribute('aria-expanded', String(selected === region.id));
-      button.onclick = () => select(region.id, true);
-      const text = document.createElement('span');
-      text.className = 'ocr-text';
-      text.textContent = String(region.text);
-      const meta = document.createElement('span');
-      meta.className = 'ocr-meta';
-      const confidence = document.createElement('span');
-      confidence.className = 'ocr-confidence';
-      confidence.textContent = ocrConfidence(region);
-      const conclusion = document.createElement('span');
-      conclusion.className = 'ocr-font';
-      conclusion.textContent = t('fontConclusion', {value: value.family ? `${value.family} · ${t(statusKey(value.status))}` : fontLabel(value)});
-      meta.append(confidence, conclusion);
-      button.append(text, meta);
-      root.append(button);
-    }
-    root.scrollTop = previousScroll;
-    if (focusedRegion != null) root.querySelector(`[data-region-id="${CSS.escape(String(focusedRegion))}"]`)?.focus({preventScroll: true});
-  }
-
-  function glyphReason(glyph) {
-    const code = String(glyph.reason || glyph.status || '').toLowerCase();
-    const translations = language === 'zh' ? {
-      ok: '已提取原图字形', reference_character_absent: '字库暂未收录此字', no_low_ink_boundary: '字形相连，暂未可靠分开', low_confidence: '文字识读不稳定', low_ctc_token_confidence: '文字位置不确定', foreground_touches_roi_edge: '字形触及裁图边缘', edge: '字形触及裁图边缘', insufficient_ink: '笔画信息不足'
-    } : {
-      ok: 'Source glyph extracted', reference_character_absent: 'Character not yet in the reference library', no_low_ink_boundary: 'Connected glyphs could not be separated reliably', low_confidence: 'Text recognition is unstable', low_ctc_token_confidence: 'Character position is uncertain', foreground_touches_roi_edge: 'Glyph touches the crop edge', edge: 'Glyph touches the crop edge', insufficient_ink: 'Insufficient stroke information'
-    };
-    if (translations[code]) return translations[code];
-    if (/ctc_order_refined|connected_foreground_gaps/.test(code)) return translations.ok;
-    if (/(?:missing|invalid|outside).*ctc|ctc.*(?:missing|invalid|outside)/.test(code)) return language === 'zh' ? '文字位置不确定' : 'Character position is uncertain';
-    if (/edge|border/.test(code)) return translations.edge;
-    if (/insufficient.*ink|low.*ink/.test(code)) return translations.insufficient_ink;
-    return ({supported: translations.ok, candidate: language === 'zh' ? '字体候选待确认' : 'Font candidate needs review', uncertain: language === 'zh' ? '文字识读不稳定' : 'Text recognition is unstable', out_of_scope: language === 'zh' ? '字体库暂不支持' : 'Not supported by the font library'})[glyph.status] || t('noReason');
   }
 
   function renderDetail() {
@@ -555,7 +562,7 @@
       preview.append(image);
     }
     const title = document.createElement('h2');
-    title.textContent = region.text || t('unknownText');
+    title.textContent = region.id;
     const identity = document.createElement('p');
     const label = document.createElement('strong');
     label.id = 'font-label';
@@ -572,11 +579,10 @@
     reason.textContent = fontReason(value);
     const note = document.createElement('p');
     note.className = 'muted';
-    note.textContent = t(value.components?.length ? 'scopeMixed' : value.scope === 'Latin letters and digits only' ? 'scopeLatin' : 'scopeNote');
-    const confidence = document.createElement('p');
-    confidence.className = 'ocr-confidence';
-    confidence.textContent = ocrConfidence(region);
-    preview.append(title, confidence);
+    note.textContent = t(isNeural(value) || value.scope === 'Detected text region' ? 'regionScope' : value.components?.length ? 'scopeMixed' : value.scope === 'Latin letters and digits only' ? 'scopeLatin' : 'scopeNote');
+    preview.append(title);
+    const style = styleMetadata(region, true);
+    if (style) preview.append(style);
     verdict.append(identity, reason, note);
     for (const component of value.components || []) {
       const line = document.createElement('p');
@@ -592,44 +598,17 @@
       const distances = document.createElement('div');
       distances.className = 'dist';
       const heading = document.createElement('p');
-      heading.textContent = t('topDistances');
+      heading.textContent = t(isNeural(value) ? 'topScores' : 'topDistances');
       distances.append(heading);
       for (const candidate of value.candidates.slice(0, 3)) {
         const family = document.createElement('span');
         const distance = document.createElement('span');
         family.textContent = candidate.family;
-        distance.textContent = Number(candidate.distance).toFixed(4);
+        const number = isNeural(value) ? candidate.score : candidate.distance;
+        distance.textContent = Number.isFinite(number) ? number.toFixed(4) : '—';
         distances.append(family, distance);
       }
       verdict.append(distances);
-    }
-    if (region.glyphs?.length) {
-      const glyphSection = document.createElement('section');
-      glyphSection.className = 'detail-section detail-glyphs';
-      const heading = document.createElement('h3');
-      heading.textContent = t('glyphEvidence');
-      const grid = document.createElement('div');
-      grid.className = 'detail-glyph-grid';
-      glyphSection.append(heading, grid);
-      root.append(glyphSection);
-      for (const glyph of region.glyphs) {
-        const row = document.createElement('div');
-        row.className = 'glyph';
-        if (glyph.crop_url) {
-          const image = new Image();
-          image.src = glyph.crop_url;
-          image.alt = t('glyphAlt', {character: glyph.character});
-          row.append(image);
-        }
-        const text = document.createElement('span');
-        const strong = document.createElement('b');
-        const small = document.createElement('small');
-        strong.textContent = glyph.family_candidate ? `${glyph.character} · ${glyph.family_candidate}` : glyph.character;
-        small.textContent = glyphReason(glyph);
-        text.append(strong, small);
-        row.append(text);
-        grid.append(row);
-      }
     }
   }
 
@@ -648,7 +627,7 @@
     const changed = selected !== id;
     selected = id;
     // Keep the existing controls and their focus; only replace the detail pane.
-    for (const node of document.querySelectorAll('#overlay [data-region-id], #regions [data-region-id], #ocr-output [data-region-id]')) {
+    for (const node of document.querySelectorAll('#overlay [data-region-id], #regions [data-region-id]')) {
       const active = node.dataset.regionId === id;
       node.classList.toggle('selected', active);
       node.setAttribute('aria-pressed', String(active));
@@ -658,14 +637,14 @@
       renderDetail();
       $('detail').scrollTop = 0;
     }
-    for (const container of [$('regions'), $('ocr-output')]) revealInContainer(container, container.querySelector('.selected'));
+    revealInContainer($('regions'), $('regions').querySelector('.selected'));
     if (revealInImage) revealInContainer(document.querySelector('.viewer'), $('overlay').querySelector('.quad.selected'));
   }
 
   function closeDetail() {
     const control = $('regions').querySelector('.selected');
     selected = null;
-    for (const node of document.querySelectorAll('#overlay [data-region-id], #regions [data-region-id], #ocr-output [data-region-id]')) {
+    for (const node of document.querySelectorAll('#overlay [data-region-id], #regions [data-region-id]')) {
       node.classList.remove('selected');
       node.setAttribute('aria-pressed', 'false');
       node.setAttribute('aria-expanded', 'false');
@@ -703,19 +682,34 @@
     }
   }
 
-  async function copyOcr() {
-    const raw = ocrRegions().map(region => String(region.text)).join('\n');
-    if (!raw) return;
+  function renderFontModel() {
+    const download = $('download-model');
+    const available = modelInfo?.available === true && modelInfo.download_url === '/api/models/font/download';
+    download.setAttribute('aria-disabled', String(!available));
+    if (available) download.href = modelInfo.download_url;
+    else download.removeAttribute('href');
+    $('model-info').textContent = available ? t('modelAvailable', {
+      version: modelInfo.version || '—',
+      size: Number.isFinite(modelInfo.bytes) ? `${(modelInfo.bytes / 1048576).toFixed(1)} MB` : '—'
+    }) : t(modelLoadState);
+    const families = Array.isArray(modelInfo?.families) ? modelInfo.families.filter(value => typeof value === 'string') : [];
+    $('model-families').hidden = !available || !families.length;
+    $('model-families').textContent = t('modelFamilies', {families: families.join(' · ')});
+    const usage = modelInfo?.usage;
+    const hasUsage = available && typeof usage?.install === 'string' && typeof usage?.predict === 'string';
+    $('model-usage').hidden = !hasUsage;
+    $('model-usage-command').textContent = hasUsage ? `${usage.install}\n${usage.predict}` : '';
+  }
+
+  async function loadFontModel() {
     try {
-      if (navigator.clipboard?.writeText) {
-        try { await navigator.clipboard.writeText(raw); }
-        catch (_) { fallbackCopy(raw); }
-      } else fallbackCopy(raw);
-      $('ocr-copy-status').textContent = t('ocrCopied');
-    } catch (_) {
-      $('ocr-copy-status').textContent = t('ocrCopyFailed');
-      $('ocr-output').focus();
+      modelInfo = await api('/api/models/font');
+      modelLoadState = modelInfo.available === true ? 'modelLoadFailed' : 'modelUnavailable';
+    } catch (error) {
+      modelInfo = null;
+      modelLoadState = error.status === 401 || error.status === 403 ? 'modelLocked' : 'modelLoadFailed';
     }
+    renderFontModel();
   }
 
   async function health() {
@@ -739,6 +733,7 @@
       $('token').value = '';
       $('auth-panel').hidden = true;
       state('unlocked');
+      loadFontModel();
     } catch (_) {
       error.textContent = t('authError');
       error.hidden = false;
@@ -770,9 +765,9 @@
     else if (progressState) markProgressError($('error').textContent);
     if (latestSnapshot) updateQueue(latestSnapshot);
     if (reconnectState) state('reconnecting', false, reconnectState);
-    if (result) { renderResultText(); draw(); renderList(); renderOcr(); renderDetail(); }
+    if (result) { renderResultText(); draw(); renderList(); renderDetail(); }
+    renderFontModel();
     if ($('copy-status').textContent) $('copy-status').textContent = t($('copy-status').textContent === messages.zh.copied || $('copy-status').textContent === messages.en.copied ? 'copied' : 'copyFailed');
-    if ($('ocr-copy-status').textContent) $('ocr-copy-status').textContent = t($('ocr-copy-status').textContent === messages.zh.ocrCopied || $('ocr-copy-status').textContent === messages.en.ocrCopied ? 'ocrCopied' : 'ocrCopyFailed');
     if (persist) { try { localStorage.setItem('flux-glyph-language', language); } catch (_) {} }
   }
 
@@ -783,7 +778,6 @@
     if (button && button !== $('language') && $('language').contains(button)) applyLanguage(button.dataset.language);
   });
   $('copy-json').addEventListener('click', copyJson);
-  $('copy-ocr').addEventListener('click', copyOcr);
   $('close-detail').addEventListener('click', closeDetail);
   $('detail-panel').addEventListener('keydown', event => { if (event.key === 'Escape') closeDetail(); });
   $('file').onchange = event => setFile(event.target.files[0] || null);
@@ -808,5 +802,6 @@
 
   applyLanguage(language, false);
   health();
+  loadFontModel();
   window.FluxGlyphUI = {show, setFile, start, select, setLanguage: applyLanguage, get: () => ({file, job, result, selected, generation, language, snapshot: latestSnapshot, progress: latestSnapshot?.progress || null, queue: latestSnapshot ? {position: latestSnapshot.queue_position, ahead: latestSnapshot.queue_ahead, total: latestSnapshot.queue_total} : null})};
 })();

@@ -1,0 +1,83 @@
+{
+  "schema": "flux-glyph-neural-font-v1",
+  "algorithm": "glyph-cnn64-v1",
+  "families": [
+    "HarmonyOS Sans SC",
+    "MiSans",
+    "Noto Sans CJK SC",
+    "OPPO Sans",
+    "PingFang SC",
+    "SF Pro",
+    "Helvetica",
+    "Alipay Number"
+  ],
+  "scripts": {
+    "han": [
+      "HarmonyOS Sans SC",
+      "MiSans",
+      "Noto Sans CJK SC",
+      "OPPO Sans",
+      "PingFang SC"
+    ],
+    "latin": [
+      "HarmonyOS Sans SC",
+      "MiSans",
+      "OPPO Sans",
+      "SF Pro",
+      "Helvetica",
+      "Alipay Number"
+    ]
+  },
+  "model": {
+    "path": "model.onnx",
+    "sha256": "87c6510b2cd4b12440549d4d5962515240464a7a0359b4ad972bfca9644b09c9"
+  },
+  "temperature": {
+    "han": 0.5,
+    "latin": 0.5
+  },
+  "gates": {
+    "han": {
+      "min_score": 0.5,
+      "min_margin": 0.01
+    },
+    "latin": {
+      "min_score": 0.5,
+      "min_margin": 0.01
+    }
+  },
+  "preprocessing": {
+    "algorithm": "extract_glyphs-v1",
+    "shape": [
+      1,
+      64,
+      64
+    ],
+    "dtype": "float32"
+  },
+  "training": {
+    "data": "actual iOS Simulator screen captures of controlled native app scenes",
+    "source_kind": "ios_simulator_screenshot",
+    "selected_epoch": 19,
+    "selected_optimizer_steps": 4750,
+    "optimizer_steps_executed": 5000,
+    "data_manifest_sha256": "5b954591aa95b3a75187440571ec9d10bcafbc5a03e65b065d7d9397cb434372",
+    "selection_sha256": "31106bf64fa9719fd70e15abd77075a01333a517eb4fa8cdaaab1f04c44b9815",
+    "parent_sha256": "ac28462faa8c8ba2e3fa69b871389af0d12f31b00ec811457a85c331e91a7952",
+    "state_before_sha256": "3c4196e206d36889b08b3743f1ca24ba2f29a44fec44e3fabc03a99615105f0c",
+    "state_after_sha256": "eef3c2418d828c3603adb31d9728bccf868fd23cd1c997ec5ae1747e3753fd0a"
+  },
+  "calibration": {
+    "acceptance_precision_target": 0.97,
+    "minimum_accepted_rows": 20,
+    "gate_calibration_level": "complete_native_region",
+    "glyph_acceptance_precision_target_validated": false,
+    "gate_found": {
+      "han": true,
+      "latin": true
+    },
+    "fallback_gate_note": "No validated gate uses score=margin=1; this is not an unknown-font guarantee."
+  },
+  "release_status": "experimental",
+  "scope": "Known-font candidates evaluated on held-out controlled iOS Simulator screens; physical-device and unknown-font accuracy unestablished."
+}

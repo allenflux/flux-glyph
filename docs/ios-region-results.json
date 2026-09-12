@@ -1,0 +1,565 @@
+{
+  "version": "r16-ios-region-v1",
+  "local_url": "http://localhost:9000/",
+  "remote_deployment_performed": false,
+  "font_method": "region_neural_network",
+  "text_recognition_performed": false,
+  "locator": "PP DB text region detector",
+  "model_sha256": "9fde0988dd6e0fe52fb8cacbdd96d1456eabf01ce3a4b431de9ebfd982f3d304",
+  "export": {
+    "groupnorm_lowering": "reshape_centered_mean_square_variance_v1",
+    "frozen_parameters_unchanged": true,
+    "reduction_dtype": "float64",
+    "original_onnx_sha256": "da9866834921b43886d86d662d3f95056b3affe119c31b6c7abc2190554672de",
+    "checkpoint_sha256": "fe9e73936941e07c255df50e7798a277beaa9f4a7c9f87dbf2dfcc9bbc8c67b2",
+    "export_source_sha256": "07f1d4964201d651af7066ed8e9ae8e6b13efd3ac4c8e3cc94de70e206e9b56a",
+    "parity_reference": "original torch.nn.GroupNorm, unchanged tolerances"
+  },
+  "training": {
+    "source_counts": {
+      "train": 800,
+      "test": 100,
+      "calibration": 100
+    },
+    "regions": {
+      "train": 8807,
+      "calibration": 1112,
+      "test": 1097
+    },
+    "optimizer_steps_executed": 3000,
+    "selected_step": 3000,
+    "native_region_test": {
+      "regions": 1097,
+      "accuracy": 0.9389243391066545,
+      "macro_accuracy": 0.9544834458843175,
+      "families": {
+        "HarmonyOS Sans SC": {
+          "rows": 216,
+          "accuracy": 0.875
+        },
+        "MiSans": {
+          "rows": 146,
+          "accuracy": 0.9657534246575342
+        },
+        "Noto Sans CJK SC": {
+          "rows": 140,
+          "accuracy": 0.9571428571428572
+        },
+        "OPPO Sans": {
+          "rows": 215,
+          "accuracy": 0.9069767441860465
+        },
+        "PingFang SC": {
+          "rows": 186,
+          "accuracy": 0.9731182795698925
+        },
+        "SF Pro": {
+          "rows": 129,
+          "accuracy": 0.9767441860465116
+        },
+        "Helvetica": {
+          "rows": 53,
+          "accuracy": 0.9811320754716981
+        },
+        "Alipay Number": {
+          "rows": 12,
+          "accuracy": 1.0
+        }
+      },
+      "negative_log_likelihood": 0.19648021697581117,
+      "invalid_output_regions": 0,
+      "size": {
+        "rows": 1097,
+        "mae_px": 1.0386967195525643,
+        "mean_relative_error": 0.018095196056449818,
+        "within_10_percent": 0.9972652689152234,
+        "consistent_patch_rows": 1097,
+        "consistent_patch_mae_px": 1.0386967195525643,
+        "max_size_relative_spread": 0.2
+      },
+      "accepted": {
+        "regions": 914,
+        "correct": 895,
+        "wrong": 19,
+        "coverage": 0.8331814038286235,
+        "precision": 0.9792122538293216
+      },
+      "accepted_size": {
+        "regions": 914,
+        "coverage": 0.8331814038286235,
+        "mae_px": 1.047215061649452,
+        "mean_relative_error": 0.018183725779075892
+      }
+    }
+  },
+  "end_to_end": {
+    "pages": 100,
+    "overall": {
+      "truth_regions": 1097,
+      "detected": 1097,
+      "missed": 0,
+      "detection_recall": 1.0,
+      "font_accepted": 911,
+      "font_name_correct": 891,
+      "wrong_font_names": 20,
+      "font_abstained_after_detection": 186,
+      "font_accuracy_all_truth": 0.8122151321786691,
+      "font_accuracy_detected": 0.8122151321786691,
+      "font_precision_among_accepted": 0.9780461031833151,
+      "font_coverage_detected": 0.8304466727438469,
+      "style": {
+        "size_available": 911,
+        "size_coverage_all_truth": 0.8304466727438469,
+        "size_within_tolerance": 908,
+        "size_mae_px": 1.0521405049396257,
+        "size_mean_relative_error": 0.018264627891757566,
+        "size_intervals_available": 0,
+        "size_intervals_cover_native": 0,
+        "color_available": 1096,
+        "color_coverage_all_truth": 0.9990884229717412,
+        "color_within_tolerance": 1096,
+        "color_mean_max_channel_error": 0.0
+      },
+      "predictions": 1097,
+      "false_positives": 0,
+      "false_positive_named_fonts": 0,
+      "detection_precision": 1.0
+    },
+    "by_expected_family": {
+      "Alipay Number": {
+        "truth_regions": 12,
+        "detected": 12,
+        "missed": 0,
+        "detection_recall": 1.0,
+        "font_accepted": 12,
+        "font_name_correct": 12,
+        "wrong_font_names": 0,
+        "font_abstained_after_detection": 0,
+        "font_accuracy_all_truth": 1.0,
+        "font_accuracy_detected": 1.0,
+        "font_precision_among_accepted": 1.0,
+        "font_coverage_detected": 1.0,
+        "style": {
+          "size_available": 12,
+          "size_coverage_all_truth": 1.0,
+          "size_within_tolerance": 12,
+          "size_mae_px": 1.096666666666667,
+          "size_mean_relative_error": 0.01769686008143406,
+          "size_intervals_available": 0,
+          "size_intervals_cover_native": 0,
+          "color_available": 12,
+          "color_coverage_all_truth": 1.0,
+          "color_within_tolerance": 12,
+          "color_mean_max_channel_error": 0.0
+        }
+      },
+      "HarmonyOS Sans SC": {
+        "truth_regions": 216,
+        "detected": 216,
+        "missed": 0,
+        "detection_recall": 1.0,
+        "font_accepted": 156,
+        "font_name_correct": 149,
+        "wrong_font_names": 7,
+        "font_abstained_after_detection": 60,
+        "font_accuracy_all_truth": 0.6898148148148148,
+        "font_accuracy_detected": 0.6898148148148148,
+        "font_precision_among_accepted": 0.9551282051282052,
+        "font_coverage_detected": 0.7222222222222222,
+        "style": {
+          "size_available": 156,
+          "size_coverage_all_truth": 0.7222222222222222,
+          "size_within_tolerance": 156,
+          "size_mae_px": 0.7878846153846157,
+          "size_mean_relative_error": 0.014457109565374982,
+          "size_intervals_available": 0,
+          "size_intervals_cover_native": 0,
+          "color_available": 216,
+          "color_coverage_all_truth": 1.0,
+          "color_within_tolerance": 216,
+          "color_mean_max_channel_error": 0.0
+        }
+      },
+      "Helvetica": {
+        "truth_regions": 53,
+        "detected": 53,
+        "missed": 0,
+        "detection_recall": 1.0,
+        "font_accepted": 50,
+        "font_name_correct": 50,
+        "wrong_font_names": 0,
+        "font_abstained_after_detection": 3,
+        "font_accuracy_all_truth": 0.9433962264150944,
+        "font_accuracy_detected": 0.9433962264150944,
+        "font_precision_among_accepted": 1.0,
+        "font_coverage_detected": 0.9433962264150944,
+        "style": {
+          "size_available": 50,
+          "size_coverage_all_truth": 0.9433962264150944,
+          "size_within_tolerance": 50,
+          "size_mae_px": 1.6284000000000003,
+          "size_mean_relative_error": 0.029428195452809995,
+          "size_intervals_available": 0,
+          "size_intervals_cover_native": 0,
+          "color_available": 53,
+          "color_coverage_all_truth": 1.0,
+          "color_within_tolerance": 53,
+          "color_mean_max_channel_error": 0.0
+        }
+      },
+      "MiSans": {
+        "truth_regions": 146,
+        "detected": 146,
+        "missed": 0,
+        "detection_recall": 1.0,
+        "font_accepted": 135,
+        "font_name_correct": 131,
+        "wrong_font_names": 4,
+        "font_abstained_after_detection": 11,
+        "font_accuracy_all_truth": 0.8972602739726028,
+        "font_accuracy_detected": 0.8972602739726028,
+        "font_precision_among_accepted": 0.9703703703703703,
+        "font_coverage_detected": 0.9246575342465754,
+        "style": {
+          "size_available": 135,
+          "size_coverage_all_truth": 0.9246575342465754,
+          "size_within_tolerance": 135,
+          "size_mae_px": 1.0332592592592589,
+          "size_mean_relative_error": 0.01855012775082264,
+          "size_intervals_available": 0,
+          "size_intervals_cover_native": 0,
+          "color_available": 146,
+          "color_coverage_all_truth": 1.0,
+          "color_within_tolerance": 146,
+          "color_mean_max_channel_error": 0.0
+        }
+      },
+      "Noto Sans CJK SC": {
+        "truth_regions": 140,
+        "detected": 140,
+        "missed": 0,
+        "detection_recall": 1.0,
+        "font_accepted": 111,
+        "font_name_correct": 111,
+        "wrong_font_names": 0,
+        "font_abstained_after_detection": 29,
+        "font_accuracy_all_truth": 0.7928571428571428,
+        "font_accuracy_detected": 0.7928571428571428,
+        "font_precision_among_accepted": 1.0,
+        "font_coverage_detected": 0.7928571428571428,
+        "style": {
+          "size_available": 111,
+          "size_coverage_all_truth": 0.7928571428571428,
+          "size_within_tolerance": 111,
+          "size_mae_px": 0.7325225225225229,
+          "size_mean_relative_error": 0.012657370442058082,
+          "size_intervals_available": 0,
+          "size_intervals_cover_native": 0,
+          "color_available": 140,
+          "color_coverage_all_truth": 1.0,
+          "color_within_tolerance": 140,
+          "color_mean_max_channel_error": 0.0
+        }
+      },
+      "OPPO Sans": {
+        "truth_regions": 215,
+        "detected": 215,
+        "missed": 0,
+        "detection_recall": 1.0,
+        "font_accepted": 169,
+        "font_name_correct": 163,
+        "wrong_font_names": 6,
+        "font_abstained_after_detection": 46,
+        "font_accuracy_all_truth": 0.7581395348837209,
+        "font_accuracy_detected": 0.7581395348837209,
+        "font_precision_among_accepted": 0.9644970414201184,
+        "font_coverage_detected": 0.786046511627907,
+        "style": {
+          "size_available": 169,
+          "size_coverage_all_truth": 0.786046511627907,
+          "size_within_tolerance": 169,
+          "size_mae_px": 1.3064497041420107,
+          "size_mean_relative_error": 0.022868188157010538,
+          "size_intervals_available": 0,
+          "size_intervals_cover_native": 0,
+          "color_available": 215,
+          "color_coverage_all_truth": 1.0,
+          "color_within_tolerance": 215,
+          "color_mean_max_channel_error": 0.0
+        }
+      },
+      "PingFang SC": {
+        "truth_regions": 186,
+        "detected": 186,
+        "missed": 0,
+        "detection_recall": 1.0,
+        "font_accepted": 160,
+        "font_name_correct": 157,
+        "wrong_font_names": 3,
+        "font_abstained_after_detection": 26,
+        "font_accuracy_all_truth": 0.8440860215053764,
+        "font_accuracy_detected": 0.8440860215053764,
+        "font_precision_among_accepted": 0.98125,
+        "font_coverage_detected": 0.8602150537634409,
+        "style": {
+          "size_available": 160,
+          "size_coverage_all_truth": 0.8602150537634409,
+          "size_within_tolerance": 160,
+          "size_mae_px": 0.8533125000000001,
+          "size_mean_relative_error": 0.013693718769904769,
+          "size_intervals_available": 0,
+          "size_intervals_cover_native": 0,
+          "color_available": 185,
+          "color_coverage_all_truth": 0.9946236559139785,
+          "color_within_tolerance": 185,
+          "color_mean_max_channel_error": 0.0
+        }
+      },
+      "SF Pro": {
+        "truth_regions": 129,
+        "detected": 129,
+        "missed": 0,
+        "detection_recall": 1.0,
+        "font_accepted": 118,
+        "font_name_correct": 118,
+        "wrong_font_names": 0,
+        "font_abstained_after_detection": 11,
+        "font_accuracy_all_truth": 0.9147286821705426,
+        "font_accuracy_detected": 0.9147286821705426,
+        "font_precision_among_accepted": 1.0,
+        "font_coverage_detected": 0.9147286821705426,
+        "style": {
+          "size_available": 118,
+          "size_coverage_all_truth": 0.9147286821705426,
+          "size_within_tolerance": 115,
+          "size_mae_px": 1.3804237288135588,
+          "size_mean_relative_error": 0.023178310647677225,
+          "size_intervals_available": 0,
+          "size_intervals_cover_native": 0,
+          "color_available": 129,
+          "color_coverage_all_truth": 1.0,
+          "color_within_tolerance": 129,
+          "color_mean_max_channel_error": 0.0
+        }
+      }
+    },
+    "by_truth_script_for_reporting_only": {
+      "han": {
+        "truth_regions": 697,
+        "detected": 697,
+        "missed": 0,
+        "detection_recall": 1.0,
+        "font_accepted": 557,
+        "font_name_correct": 545,
+        "wrong_font_names": 12,
+        "font_abstained_after_detection": 140,
+        "font_accuracy_all_truth": 0.7819225251076041,
+        "font_accuracy_detected": 0.7819225251076041,
+        "font_precision_among_accepted": 0.9784560143626571,
+        "font_coverage_detected": 0.7991391678622669,
+        "style": {
+          "size_available": 557,
+          "size_coverage_all_truth": 0.7991391678622669,
+          "size_within_tolerance": 557,
+          "size_mae_px": 0.8342549371633757,
+          "size_mean_relative_error": 0.013941558621289046,
+          "size_intervals_available": 0,
+          "size_intervals_cover_native": 0,
+          "color_available": 696,
+          "color_coverage_all_truth": 0.9985652797704447,
+          "color_within_tolerance": 696,
+          "color_mean_max_channel_error": 0.0
+        }
+      },
+      "latin": {
+        "truth_regions": 400,
+        "detected": 400,
+        "missed": 0,
+        "detection_recall": 1.0,
+        "font_accepted": 354,
+        "font_name_correct": 346,
+        "wrong_font_names": 8,
+        "font_abstained_after_detection": 46,
+        "font_accuracy_all_truth": 0.865,
+        "font_accuracy_detected": 0.865,
+        "font_precision_among_accepted": 0.9774011299435028,
+        "font_coverage_detected": 0.885,
+        "style": {
+          "size_available": 354,
+          "size_coverage_all_truth": 0.885,
+          "size_within_tolerance": 351,
+          "size_mae_px": 1.3949717514124291,
+          "size_mean_relative_error": 0.025066745359698214,
+          "size_intervals_available": 0,
+          "size_intervals_cover_native": 0,
+          "color_available": 400,
+          "color_coverage_all_truth": 1.0,
+          "color_within_tolerance": 400,
+          "color_mean_max_channel_error": 0.0
+        }
+      }
+    }
+  },
+  "ocr_guard": {
+    "ocr_calls": 0,
+    "segmentation_calls": 0,
+    "glyph_classifier_calls": 0,
+    "pp_detector_sessions": 1,
+    "guard_installed": true
+  },
+  "e2e_report_sha256": "23ba16e7b913c6a9340778a825a4cbc0c2b07a3cc48b38176c7a670406a82f48",
+  "parity_passed": true,
+  "legacy_rendered_regression": {
+    "scope": "Historical rendered fixtures, not native iOS or physical-device test. Scores only single-region samples; detection mismatch remains separate. No threshold changes from this run.",
+    "counts": {
+      "wrong_name": 29,
+      "correct_name": 21,
+      "abstained_known": 9,
+      "detection_count_mismatch": 6,
+      "rejected_unknown": 2
+    },
+    "unknown_counts": {
+      "wrong_name": 11,
+      "rejected_unknown": 2,
+      "detection_count_mismatch": 1
+    },
+    "font_decision_changes": 0
+  },
+  "live": {
+    "health": {
+      "ok": true,
+      "model_version": "r16-ios-region-v1",
+      "max_upload_mb": 8,
+      "max_pixels": 12000000,
+      "workers": 1,
+      "queue_size": 8,
+      "authentication_required": false,
+      "running_jobs": 0,
+      "waiting_jobs": 0
+    },
+    "api": {
+      "id": "5723714231d44312a89b28145bfe5a99",
+      "summary": {
+        "detected_regions": 11,
+        "pingfang_supported": 0,
+        "other_candidates": 6,
+        "uncertain": 5,
+        "out_of_scope": 0,
+        "processing_limited_regions": 0
+      },
+      "timing_seconds": {
+        "detector": 0.12369875000149477,
+        "font_matching": 0.2234123339949292,
+        "total": 0.44637641699955566
+      },
+      "no_recognized_text": true
+    },
+    "download": {
+      "available": true,
+      "format": "ONNX",
+      "version": "r16-ios-region-v1",
+      "families": [
+        "HarmonyOS Sans SC",
+        "MiSans",
+        "Noto Sans CJK SC",
+        "OPPO Sans",
+        "PingFang SC",
+        "SF Pro",
+        "Helvetica",
+        "Alipay Number"
+      ],
+      "input_shape": [
+        null,
+        1,
+        64,
+        256
+      ],
+      "download_url": "/api/models/font/download",
+      "bytes": 1361627,
+      "sha256": "53cf7bac5ebab4ec3f94f9b15dd92e97ed366d9736c8e6bdfe16c3448918253a",
+      "ocr_required": false,
+      "usage": {
+        "install": "pip install -r requirements.txt",
+        "predict": "python predict.py text-region.png"
+      }
+    },
+    "zip_sha_verified": true,
+    "zip_files": [
+      "README.md",
+      "inference.py",
+      "metadata.json",
+      "model.onnx",
+      "predict.py",
+      "requirements.txt",
+      "text_style.py"
+    ],
+    "standalone_directory": "/var/folders/jc/dd31xd5x4cb_j8cbjw2knfc80000gn/T/flux-glyph-region-download-k14b4cl1",
+    "standalone_prediction": {
+      "font": {
+        "method": "region_neural_network",
+        "status": "candidate",
+        "family": "PingFang SC",
+        "candidates": [
+          {
+            "family": "PingFang SC",
+            "score": 0.9791447646227865
+          },
+          {
+            "family": "OPPO Sans",
+            "score": 0.00916591314158495
+          },
+          {
+            "family": "SF Pro",
+            "score": 0.007594974506342396
+          }
+        ],
+        "score": 0.9791447646227865,
+        "margin": 0.9699788514812016,
+        "patch_agreement": 1.0,
+        "reason_code": "region_neural_family_candidate",
+        "scope": "Detected text region",
+        "font_size_px_estimate": 66.79,
+        "size_relative_spread": 0.05758323103102128,
+        "ocr_performed": false,
+        "tile_count": 3,
+        "ink_height_px": 59
+      },
+      "text_style": {
+        "text_color_hex": "#111111",
+        "font_size_px_estimate": 66.79,
+        "font_size_px_interval": null,
+        "color": {
+          "status": "estimated",
+          "reason": "visible_region_core_pixels",
+          "method": "source_rgb_core_pixels",
+          "background_hex": "#FFFFFF",
+          "glyph_count": 0,
+          "sample_pixels": 9938,
+          "spread_rgb": 0.0,
+          "alpha_recovered": false
+        },
+        "size": {
+          "method": "region_neural_regression",
+          "unit": "source_image_px",
+          "status": "estimated"
+        }
+      },
+      "ocr_performed": false
+    },
+    "standalone_expected": {
+      "font_family": "PingFang SC",
+      "font_size_screen_px": 63,
+      "text_color_hex": "#111111FF"
+    },
+    "standalone_exit_code": 0,
+    "color_comparison": "Native opaque RRGGBBAA converted to RGB before comparison"
+  },
+  "verification": {
+    "pytest_passed": 320,
+    "torch_tests_passed": 14,
+    "real_desktop_mobile_browser": "passed",
+    "docker_health": "healthy",
+    "observed_container_memory_mib": 298
+  },
+  "scope": "Controlled native iOS Simulator pages; fixed previously used regression split, not fresh blind or physical-device data. Unknown and mixed-font handling not established."
+}

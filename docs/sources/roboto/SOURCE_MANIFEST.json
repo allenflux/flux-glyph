@@ -1,0 +1,79 @@
+{
+  "schema": "flux-glyph-public-font-source-download-v1",
+  "label_provenance": "Google Fonts font file family metadata and frozen upstream METADATA.pb; not inferred from screenshots",
+  "family": "Roboto",
+  "real_screenshot_count": 0,
+  "license_file": "OFL.txt",
+  "files": [
+    {
+      "file": "Roboto[wdth,wght].ttf",
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/neural-font-v1/downloads/roboto-google-fonts/Roboto[wdth,wght].ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c/ofl/roboto/Roboto%5Bwdth%2Cwght%5D.ttf",
+      "resolved_url": "https://raw.githubusercontent.com/google/fonts/1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c/ofl/roboto/Roboto%5Bwdth%2Cwght%5D.ttf",
+      "retrieved_at_utc": "2026-09-12T03:47:17.684893+00:00",
+      "bytes": 488584,
+      "sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+      "license": "SIL Open Font License 1.1",
+      "source_repository": "https://github.com/google/fonts",
+      "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c",
+      "kind": "source_font"
+    },
+    {
+      "file": "Roboto-Italic[wdth,wght].ttf",
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/neural-font-v1/downloads/roboto-google-fonts/Roboto-Italic[wdth,wght].ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c/ofl/roboto/Roboto-Italic%5Bwdth%2Cwght%5D.ttf",
+      "resolved_url": "https://raw.githubusercontent.com/google/fonts/1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c/ofl/roboto/Roboto-Italic%5Bwdth%2Cwght%5D.ttf",
+      "retrieved_at_utc": "2026-09-12T03:47:18.481182+00:00",
+      "bytes": 530944,
+      "sha256": "9725a847af6b460ffca162ae66d20dad48b01876137947180b42d7dcd7887182",
+      "license": "SIL Open Font License 1.1",
+      "source_repository": "https://github.com/google/fonts",
+      "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c",
+      "kind": "source_font"
+    },
+    {
+      "file": "OFL.txt",
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/neural-font-v1/downloads/roboto-google-fonts/OFL.txt",
+      "url": "https://raw.githubusercontent.com/google/fonts/1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c/ofl/roboto/OFL.txt",
+      "resolved_url": "https://raw.githubusercontent.com/google/fonts/1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c/ofl/roboto/OFL.txt",
+      "retrieved_at_utc": "2026-09-12T03:47:18.824464+00:00",
+      "bytes": 4394,
+      "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41",
+      "license": "SIL Open Font License 1.1",
+      "source_repository": "https://github.com/google/fonts",
+      "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c",
+      "kind": "provenance_or_license"
+    },
+    {
+      "file": "METADATA.pb",
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/neural-font-v1/downloads/roboto-google-fonts/METADATA.pb",
+      "url": "https://raw.githubusercontent.com/google/fonts/1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c/ofl/roboto/METADATA.pb",
+      "resolved_url": "https://raw.githubusercontent.com/google/fonts/1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c/ofl/roboto/METADATA.pb",
+      "retrieved_at_utc": "2026-09-12T03:47:19.182490+00:00",
+      "bytes": 1463,
+      "sha256": "6fef19da54fb62d152f0c7b21710e6849950db7ecf852ea29511c593dad462f0",
+      "license": "SIL Open Font License 1.1",
+      "source_repository": "https://github.com/google/fonts",
+      "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c",
+      "kind": "provenance_or_license"
+    },
+    {
+      "file": "DESCRIPTION.en_us.html",
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/neural-font-v1/downloads/roboto-google-fonts/DESCRIPTION.en_us.html",
+      "url": "https://raw.githubusercontent.com/google/fonts/1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c/ofl/roboto/DESCRIPTION.en_us.html",
+      "resolved_url": "https://raw.githubusercontent.com/google/fonts/1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c/ofl/roboto/DESCRIPTION.en_us.html",
+      "retrieved_at_utc": "2026-09-12T03:47:19.541413+00:00",
+      "bytes": 1039,
+      "sha256": "9661e854e12cb252cd74e206139cda0a42cc24daed01b25955451ee7571e4a6a",
+      "license": "SIL Open Font License 1.1",
+      "source_repository": "https://github.com/google/fonts",
+      "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c",
+      "kind": "provenance_or_license"
+    }
+  ],
+  "notes": [
+    "This is the Google Fonts distribution, not a capture from an Android device.",
+    "Rendering these fonts provides synthetic source-font labels only.",
+    "No user data was uploaded."
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "samples": 128,
+  "reports": [
+    {
+      "batch_size": 1,
+      "max_abs_error": 0.00013574957847595215,
+      "mean_abs_error": 6.817211215093266e-06,
+      "same_top1": true,
+      "scripts": {
+        "han": {
+          "max_score_error": 9.784803162965483e-06,
+          "same_top1": true,
+          "same_gate_decisions": true
+        },
+        "latin": {
+          "max_score_error": 4.1977031200873816e-06,
+          "same_top1": true,
+          "same_gate_decisions": true
+        }
+      }
+    },
+    {
+      "batch_size": 16,
+      "max_abs_error": 0.00013574957847595215,
+      "mean_abs_error": 6.817211215093266e-06,
+      "same_top1": true,
+      "scripts": {
+        "han": {
+          "max_score_error": 9.784803162965483e-06,
+          "same_top1": true,
+          "same_gate_decisions": true
+        },
+        "latin": {
+          "max_score_error": 4.1977031200873816e-06,
+          "same_top1": true,
+          "same_gate_decisions": true
+        }
+      }
+    },
+    {
+      "batch_size": 128,
+      "max_abs_error": 0.00013574957847595215,
+      "mean_abs_error": 6.817211215093266e-06,
+      "same_top1": true,
+      "scripts": {
+        "han": {
+          "max_score_error": 9.784803162965483e-06,
+          "same_top1": true,
+          "same_gate_decisions": true
+        },
+        "latin": {
+          "max_score_error": 4.1977031200873816e-06,
+          "same_top1": true,
+          "same_gate_decisions": true
+        }
+      }
+    }
+  ],
+  "initial_strict_allclose": {
+    "rtol": 0.0001,
+    "atol": 2e-05,
+    "passed": false,
+    "mismatched_elements": 6,
+    "elements": 1920
+  },
+  "verification": "128 calibration glyphs at batches 1/16/128: all class rankings top1 and score-gate decisions identical; max softmax error below 1e-5. Small float32 CPU backend differences retained above."
+}

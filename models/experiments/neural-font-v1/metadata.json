@@ -1,0 +1,94 @@
+{
+  "schema": "flux-glyph-neural-font-v1",
+  "algorithm": "glyph-cnn64-v1",
+  "model": {
+    "path": "model.onnx",
+    "sha256": "5b59de4f9061196d3a9f81ed431c5afc303ca3e49b41f96a8bf568c693415ab7"
+  },
+  "families": [
+    "Baoli SC",
+    "HarmonyOS Sans SC",
+    "Heiti SC",
+    "Hiragino Sans GB",
+    "Kaiti SC",
+    "MiSans",
+    "Noto Sans CJK SC",
+    "OPPO Sans",
+    "PingFang SC",
+    "Songti SC",
+    "Yuanti SC",
+    "SF Pro",
+    "Helvetica",
+    "Alipay Number",
+    "Roboto"
+  ],
+  "scripts": {
+    "han": [
+      "Baoli SC",
+      "HarmonyOS Sans SC",
+      "Heiti SC",
+      "Hiragino Sans GB",
+      "Kaiti SC",
+      "MiSans",
+      "Noto Sans CJK SC",
+      "OPPO Sans",
+      "PingFang SC",
+      "Songti SC",
+      "Yuanti SC"
+    ],
+    "latin": [
+      "HarmonyOS Sans SC",
+      "MiSans",
+      "OPPO Sans",
+      "SF Pro",
+      "Helvetica",
+      "Alipay Number",
+      "Roboto"
+    ]
+  },
+  "gates": {
+    "han": {
+      "min_score": 0.99,
+      "min_margin": 0.4
+    },
+    "latin": {
+      "min_score": 0.99,
+      "min_margin": 0.4
+    }
+  },
+  "temperature": {
+    "han": 2.0,
+    "latin": 2.0
+  },
+  "preprocessing": {
+    "algorithm": "extract_glyphs-v1",
+    "shape": [
+      1,
+      64,
+      64
+    ],
+    "dtype": "float32"
+  },
+  "training": {
+    "selected_epoch": 8,
+    "parent_sha256": "d6717c4620f1004fa35804af051c60c569565f8f13d47ba5e6c8cafa7cd71ebf",
+    "state_before_sha256": "f792dddcd5dab305531a2b44d4b042e4072c84c50444e38282bd8c4a4dc1e690",
+    "state_after_sha256": "3418faff640b5c387e25cf2b9ecec059b815653a09e32cbf9aff3c5b96f0ae02",
+    "data": "source-verified synthetic font renders",
+    "selected_optimizer_steps": 800,
+    "optimizer_steps_executed": 1200,
+    "previous_chinese_calibration_protection_passed": true,
+    "selection_sha256": "f6b92fe4043cec8342f278ad70b65bb3586053f7a8569b142c3f76e276ce67a1"
+  },
+  "scope": "Font-family candidates; real screenshot accuracy and unknown-font rejection not established.",
+  "release_status": "experimental",
+  "calibration": {
+    "acceptance_precision_target": 0.97,
+    "minimum_accepted_rows": 20,
+    "gate_found": {
+      "han": false,
+      "latin": false
+    },
+    "fallback_gate_note": "If gate_found=false, conservative fallback thresholds are unvalidated and do not demonstrate target precision."
+  }
+}

@@ -8,6 +8,7 @@ const path = require('path');
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const BASE_URL = process.env.FLUX_GLYPH_URL || 'http://127.0.0.1:9000';
+const EXPECTED_MODEL = process.env.FLUX_EXPECTED_MODEL || 'r16-ios-region-v1';
 const FIXTURE = path.resolve('tests/fixtures/ui_title_billing_details.png');
 const OUTPUT = path.resolve('docs/ui-validation');
 const CASES = [
@@ -204,7 +205,8 @@ async function switchLanguage(command, language) {
       progressAria: document.getElementById('progress-track').getAttribute('aria-valuetext'),
       queueStatus: document.getElementById('queue-status').textContent,
       fontReason: document.getElementById('font-reason')?.textContent || '',
-      glyphReason: document.querySelector('#detail .glyph small')?.textContent || '',
+      regionTitle: document.querySelector('.detail-preview h2')?.textContent || '',
+      regionCrop: Boolean(document.querySelector('.detail-preview .detail-image')),
       json: document.getElementById('json-output').textContent,
       ocr: (window.FluxGlyphUI.get().result?.regions || []).map(region => region.text),
     };
@@ -275,6 +277,16 @@ async function runCase(testCase) {
       await command('Network.emulateNetworkConditions', {offline: false, latency: 100, downloadThroughput: 5 * 1024 * 1024, uploadThroughput: 5 * 1024 * 1024, connectionType: 'wifi'});
       await command('Page.reload', {ignoreCache: true});
       await waitFor(command, "document.readyState === 'complete' && !!window.FluxGlyphUI", 'application load');
+      await waitFor(command, "document.getElementById('download-model')?.getAttribute('aria-disabled') === 'false'", 'available font model download card');
+      const fontModel = await evaluate(command, `(async () => {
+        const response=await fetch('/api/models/font'), info=await response.json(), link=document.getElementById('download-model');
+        return {status:response.status,info,href:link.getAttribute('href'),enabled:link.getAttribute('aria-disabled')==='false',
+          visibleVersion:document.getElementById('model-info').textContent,usage:document.getElementById('model-usage-command').textContent};
+      })()`, true);
+      assert(fontModel.status === 200 && fontModel.info.available && fontModel.info.version === EXPECTED_MODEL &&
+        fontModel.enabled && fontModel.href === '/api/models/font/download' && fontModel.visibleVersion.includes(EXPECTED_MODEL) &&
+        fontModel.info.ocr_required === false && fontModel.usage.includes('python predict.py text-region.png'),
+        `Font model download card differs from the active region model: ${JSON.stringify(fontModel)}`);
 
       const branding = await evaluate(command, `(async () => {
         const heading=document.querySelector('.page-heading h1'), icon=document.querySelector('link[rel="icon"]');
@@ -375,6 +387,8 @@ async function runCase(testCase) {
         const imageBounds = original.getBoundingClientRect(), overlayBounds = overlay.getBoundingClientRect(), layerBounds = document.querySelector('.image-layer').getBoundingClientRect();
         const visualBounds = document.querySelector('.result-visual').getBoundingClientRect(), jsonBounds = document.querySelector('.json-panel').getBoundingClientRect();
         return {job: state.job, regions: result.regions.length, polygons: overlay.querySelectorAll('polygon').length, selected: window.FluxGlyphUI.get().selected,
+          modelVersion:result.model_version,fontMethod:result.font_method,ocrPerformed:result.ocr_performed,
+          noTranscription:result.regions.every(region=>(region.text==null||region.text==='')&&region.ocr_confidence==null&&!(region.glyphs||[]).length),
           detailText: document.getElementById('detail').innerText, rawGlyphCode: /ctc_/i.test(document.getElementById('detail').innerText),
           crop: crop ? {width: crop.naturalWidth, height: crop.naturalHeight} : null,
           original: {width: original.naturalWidth, height: original.naturalHeight}, annotated: {width: annotated.naturalWidth, height: annotated.naturalHeight},
@@ -382,8 +396,8 @@ async function runCase(testCase) {
           pointsInside: [...overlay.querySelectorAll('polygon')].every(item => [...item.points].every(point => point.x >= 0 && point.y >= 0 && point.x <= result.width && point.y <= result.height)),
           aligned: Math.abs(imageBounds.left-overlayBounds.left)<.5 && Math.abs(imageBounds.top-overlayBounds.top)<.5 && Math.abs(imageBounds.width-overlayBounds.width)<.5 && Math.abs(imageBounds.height-overlayBounds.height)<.5 && Math.abs(layerBounds.width-imageBounds.width)<.5,
           scrollWidth: document.documentElement.scrollWidth, innerWidth, authHidden: document.getElementById('auth-panel').hidden, summary: document.getElementById('summary').textContent,
-          viewerFits: Math.abs(document.querySelector('.viewer').getBoundingClientRect().height-imageBounds.height)<1,
-          glyphFits: [...document.querySelectorAll('.glyph small')].every(item => item.scrollWidth <= item.clientWidth+1),
+          viewerFits: document.querySelector('.viewer').scrollWidth<=document.querySelector('.viewer').clientWidth+1,
+          regionCropsFit: [...document.querySelectorAll('.region-thumbnail')].every(item => item.scrollWidth <= item.clientWidth+1),
           headingFits: !document.querySelector('.dist p') || getComputedStyle(document.querySelector('.dist p')).gridColumnEnd === '-1',
           jsonText: document.getElementById('json-output').textContent, jsonExact: document.getElementById('json-output').textContent === JSON.stringify(result,null,2),
           ocr: result.regions.map(region => region.text), noDownloadJson: !document.getElementById('download-json'),
@@ -391,14 +405,17 @@ async function runCase(testCase) {
       })()`, true);
 
       assert(result.regions > 0 && result.regions === result.polygons && result.selected, `Region selection failed: ${JSON.stringify(result)}`);
-      assert(result.detailText.length > 10 && !result.rawGlyphCode && result.detailText.includes('已提取原图字形'), 'Localized font/glyph evidence is incomplete');
+      assert(result.modelVersion === EXPECTED_MODEL && result.fontMethod === 'region_neural_network' &&
+        result.ocrPerformed === false && result.noTranscription, 'Real inference must use the current region model without OCR');
+      assert(result.detailText.length > 10 && !result.rawGlyphCode, 'Localized region font detail is incomplete');
+      assert(await evaluate(command, "!!document.querySelector('.detail-preview .detail-image') && /^R[0-9]+$/.test(document.querySelector('.detail-preview h2').textContent) && !document.querySelector('.detail-glyphs,#ocr-output')"), 'Region detail must show its crop and ID without OCR or glyph panels');
       assert(result.crop?.width > 0 && result.crop?.height > 0, 'Selected crop did not render');
       assert(result.original.width === result.declared.width && result.original.height === result.declared.height, 'Source dimensions do not match result coordinates');
       assert(result.annotated.width === result.original.width && result.annotated.height === result.original.height && result.changedPixels > 0, 'Annotated image dimensions or pixels are invalid');
       assert(result.viewBox === `0 0 ${result.original.width} ${result.original.height}` && result.pointsInside && result.aligned, 'SVG source-coordinate alignment failed');
-      assert(result.scrollWidth <= result.innerWidth + 1 && result.viewerFits && result.glyphFits && result.headingFits, `Responsive content is clipped: ${JSON.stringify(result)}`);
+      assert(result.scrollWidth <= result.innerWidth + 1 && result.viewerFits && result.regionCropsFit && result.headingFits, `Responsive content is clipped: ${JSON.stringify(result)}`);
       assert(result.authHidden && result.jsonExact && result.noDownloadJson, 'Auth, JSON formatting, or legacy JSON-download contract failed');
-      assert(testCase.mobile ? result.layout.stacked : result.layout.sideBySide, `Result/JSON layout is wrong: ${JSON.stringify(result.layout)}`);
+      assert(result.layout.stacked, `JSON must follow the visual/detail sections at every width: ${JSON.stringify(result.layout)}`);
 
       // Force the insecure-context fallback path, click the real control, then restore clipboard access and inspect its exact contents.
       await evaluate(command, "Object.defineProperty(navigator,'clipboard',{configurable:true,value:undefined}); document.getElementById('copy-json').click(); true", false, true);
@@ -415,8 +432,8 @@ async function runCase(testCase) {
       assert(en.value === 'en' && en.pressed.en === 'true' && en.pressed.zh === 'false', `English language state is incorrect: ${JSON.stringify(en)}`);
       assert(en.uploadTitle === 'Upload image' && en.start === 'Start recognition' && en.resultTitle === 'Recognition results' && en.copyJson === 'Copy JSON' && en.downloadPng === 'Download annotated PNG', `English controls are not localized: ${JSON.stringify(en)}`);
       assert(en.status === 'Recognition complete' && en.progressLabel === 'Recognition complete', `English progress is not localized: ${JSON.stringify(en)}`);
-      assert(en.fontReason && !/[\u3400-\u9fff]/.test(en.fontReason) && en.glyphReason && !/[\u3400-\u9fff]/.test(en.glyphReason), `Selected reasons are not English: ${JSON.stringify(en)}`);
-      assert(en.json === result.jsonText && JSON.stringify(en.ocr) === JSON.stringify(result.ocr), 'Language switching changed raw JSON or OCR text');
+      assert(en.fontReason && !/[\u3400-\u9fff]/.test(en.fontReason) && en.regionCrop && /^R[0-9]+$/.test(en.regionTitle), `English region detail is incomplete: ${JSON.stringify(en)}`);
+      assert(en.json === result.jsonText && JSON.stringify(en.ocr) === JSON.stringify(result.ocr), 'Language switching changed raw JSON or original text fields');
       await evaluate(command, "document.getElementById('copy-json').click(); true", false, true);
       const copyEn = await waitFor(command, "document.getElementById('copy-status').textContent === 'JSON copied' && document.getElementById('copy-status').textContent", 'English copy confirmation');
       const clipboard = await evaluate(command, 'navigator.clipboard.readText()', true);
@@ -456,7 +473,7 @@ async function runCase(testCase) {
           const brand=document.querySelector('.page-heading h1');
           return document.readyState==='complete' && document.documentElement.lang==='en' && document.getElementById('language')?.dataset.language==='en' && heading && {lang:document.documentElement.lang,heading:heading.textContent,brand:brand.textContent,fontSize:getComputedStyle(brand).fontSize,footerAbsent:!document.querySelector('footer')};
         })()`, 'English API documentation inherited language preference');
-        assert(docsLocalization.heading === 'Submit an image' && docsLocalization.brand === 'Flux Glyph API' && docsLocalization.fontSize === '32px' && docsLocalization.footerAbsent,
+        assert(docsLocalization.heading === 'Download and run the font model' && docsLocalization.brand === 'Flux Glyph API' && docsLocalization.fontSize === '32px' && docsLocalization.footerAbsent,
           `API documentation branding or language is incorrect: ${JSON.stringify(docsLocalization)}`);
         await command('Emulation.setDeviceMetricsOverride', {width: 64, height: 64, deviceScaleFactor: 1, mobile: false});
         await command('Page.navigate', {url: `${BASE_URL}${branding.favicon.href}`});
@@ -470,9 +487,10 @@ async function runCase(testCase) {
       assert(applicationErrors.length === 0, `Browser errors: ${applicationErrors.join(' | ')}`);
       return {
         viewport: {width: testCase.width, height: testCase.height, mobile: testCase.mobile}, job: result.job, status: completion.status,
+        fontModel,modelVersion:result.modelVersion,fontMethod:result.fontMethod,ocrPerformed:result.ocrPerformed,noTranscription:result.noTranscription,
         progress: completion.progress, processing: processing ? {...processing, queueFillers: queueFillers.length, timeline: queueTimeline, reconnect} : null,
         regions: result.regions, original: result.original, annotated: result.annotated, changedPixels: result.changedPixels, crop: result.crop, viewBox: result.viewBox,
-        noHorizontalOverflow: true, viewerFitsImage: result.viewerFits, glyphEvidenceFits: result.glyphFits, candidateHeadingSpansColumns: result.headingFits,
+        noHorizontalOverflow: true, viewerFitsImage: result.viewerFits, regionCropThumbnailsFit: result.regionCropsFit, candidateHeadingSpansColumns: result.headingFits,
         selectedRegion: result.selected, summary: result.summary, layout: result.layout,
         json: {formattedExact: result.jsonExact, bytes: Buffer.byteLength(result.jsonText), legacyDownloadAbsent: result.noDownloadJson},
         clipboard: {fallback: copyZh, api: copyEn, exact: clipboard === fallbackClipboard && clipboard === result.jsonText},
@@ -498,6 +516,7 @@ async function runCase(testCase) {
   const health = await waitForServerIdle();
   assert(health.workers === 1, `Expected one worker, got ${health.workers}`);
   assert(health.queue_size >= 8, `Expected at least eight waiting slots, got ${health.queue_size}`);
+  assert(health.model_version === EXPECTED_MODEL, `Expected ${EXPECTED_MODEL}, got ${health.model_version}`);
   const cases = [];
   for (const testCase of CASES) {
     await waitForServerIdle();
@@ -509,11 +528,13 @@ async function runCase(testCase) {
       'real upload, one-worker FIFO queue position downshift, and asynchronous polling',
       'visible animated stage progress without false 100%, plus reduced-motion behavior',
       'Chinese/English switching during pending and completed states',
-      'result beside exact formatted JSON on desktop and stacked on mobile',
+      'region results followed by full-width exact formatted JSON on desktop and mobile',
+      'active R16 model download card, version, same-origin link, and standalone usage',
+      'real region inference returns no OCR text or single-character evidence',
       'exact full JSON copy through Clipboard API and insecure-context fallback',
       'no legacy JSON download control; original-size annotated PNG still downloads',
       'polygon selection, crop, font evidence, source coordinates, and pixel annotation',
-      'OCR text and raw JSON unchanged by localization',
+      'Original result fields and raw JSON unchanged by localization',
       'new selection and real upload error clear stale result/JSON controls',
       'desktop/mobile overflow and browser diagnostics',
       'responsive 40/32px Flux Glyph branding, no footer, and a loaded red/white SVG favicon',
