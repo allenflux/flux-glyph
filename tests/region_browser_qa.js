@@ -314,6 +314,70 @@ const server = http.createServer((req, res) => {
     assert(await evaluate('navigator.clipboard.readText()')===await evaluate('window.__rejectionUiJson'),'Rejection JSON clipboard changed '+language);
   }
   await evaluate("window.FluxGlyphUI.setLanguage('zh')");
+  const consensusChecks=[];
+  const verifierBase={method:'region_neural_network',status:'passed',family:'Helvetica',score:.94,
+    candidates:[{family:'Helvetica',score:.94},{family:'SF Pro',score:.04},{family:'Roboto',score:.02}]};
+  const consensusCases=[
+    {id:'consensus-disagree',kind:'disagree',status:'uncertain',family:null,reason_code:'neural_model_disagreement',
+      verifier:{...verifierBase,status:'disagreed'}},
+    {id:'consensus-disagree-weak',kind:'disagree',status:'uncertain',family:null,reason_code:'neural_model_disagreement',
+      verifier:{...verifierBase,status:'disagreed',score:.45,candidates:[{family:'Helvetica',score:.45},{family:'SF Pro',score:.44},{family:'Roboto',score:.11}]}},
+    {id:'consensus-unknown',kind:'unknown',status:'out_of_scope',family:'SF Pro',reason_code:'verifier_font_out_of_scope',
+      verifier:{...verifierBase,status:'out_of_scope',family:'Roboto',candidates:[{family:'Roboto',score:.99}]}},
+    {id:'consensus-invalid',kind:'invalid',status:'uncertain',family:'SF Pro',reason_code:'invalid_verifier_output',
+      verifier:{...verifierBase,status:'unavailable'}},
+    {id:'consensus-agree',kind:'agree',status:'candidate',family:'SF Pro',reason_code:'region_neural_family_candidate',
+      verifier:{...verifierBase,family:'SF Pro',candidates:[{family:'SF Pro',score:.94},{family:'Helvetica',score:.04},{family:'Roboto',score:.02}]}},
+    {id:'consensus-low',kind:'low',status:'uncertain',family:null,reason_code:'verifier_below_score_gate',
+      verifier:{...verifierBase,status:'below_gate',family:'SF Pro',score:.45,candidates:[{family:'SF Pro',score:.45},{family:'Helvetica',score:.44},{family:'Roboto',score:.11}]}}
+  ];
+  const consensusFixture={...fixture,id:'ui-consensus-only',regions:consensusCases.map(({id,kind,...font},i)=>({
+    ...regions[i],id,font:{method:'region_neural_network',scope:'Detected text region',score:.9998,
+      candidates:[{family:'SF Pro',score:.9998},{family:'Helvetica',score:.0002}],
+      rejection:{status:'passed',known_score:.99,min_known_score:.8},...font},
+    text_style:{font_size_px_estimate:kind==='low'?null:42,text_color_hex:'#224466',font_size_px_interval:null}
+  }))};
+  for(const [width,height] of [[1280,900],[320,700]]) for(const language of ['zh','en']) {
+    await command('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:false});
+    await evaluate('window.FluxGlyphUI.setLanguage('+JSON.stringify(language)+');window.__consensusFixture='+JSON.stringify(consensusFixture)+';window.FluxGlyphUI.show(window.__consensusFixture);window.__consensusJson=document.getElementById("json-output").textContent;');
+    for(const testCase of consensusCases) {
+      await evaluate('document.querySelector('+JSON.stringify('#regions [data-region-id="'+testCase.id+'"]')+').click()');
+      const state=await evaluate(`(() => {const row=document.querySelector('#regions .selected');return {
+        row:row.textContent,prediction:row.querySelector('.font-prediction').textContent,label:document.getElementById('font-label').textContent,
+        dual:[...document.querySelectorAll('.detail-verdict .font-consensus .font-score')].map(x=>x.textContent),
+        tables:[...document.querySelectorAll('.dist')].map(x=>x.textContent),reason:document.getElementById('font-reason').textContent,
+        rowSize:row.querySelector('.text-size')?.textContent??null,size:document.querySelector('.text-style-detail .text-size')?.textContent??null,
+        color:document.querySelector('.text-style-detail .text-color').textContent,status:row.className,
+        unchanged:document.getElementById('json-output').textContent===window.__consensusJson&&JSON.stringify(window.__consensusFixture,null,2)===window.__consensusJson,
+        overflow:document.documentElement.scrollWidth>innerWidth};})()`);
+      const context=testCase.id+'/'+width+'/'+language;
+      assert(state.unchanged&&!state.overflow,'Consensus JSON mutation or overflow '+context);
+      assert(state.color.includes('#224466')&&state.status.split(' ').includes(testCase.status),'Consensus lost status/color '+context);
+      if(testCase.kind==='disagree') {
+        assert(state.label===(language==='zh'?'字体存在分歧':'Font predictions disagree')&&state.prediction===state.label,'Disagreement needs prominent neutral label '+context);
+        assert(!/最接近|Closest match/.test(state.row+state.label),'Single closest font still implies confirmation '+context);
+        assert(state.dual.length===2&&state.dual[0].includes('SF Pro')&&state.dual[0].includes('0.9998')&&state.dual[1].includes('Helvetica')&&state.dual[1].includes(testCase.verifier.score.toFixed(4)),'Both networks need distinct scores '+context);
+        assert(state.tables.length===2&&state.tables[0].includes('0.9998')&&state.tables[1].includes(testCase.verifier.score.toFixed(4)),'Both Top 3 tables missing '+context);
+        assert(state.rowSize===null&&state.size===null,'Disagreement must suppress stale size '+context);
+        if(testCase.id==='consensus-disagree') {
+          await evaluate("document.getElementById('detail-panel').scrollIntoView({block:'start'})");
+          const shot=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
+          fs.writeFileSync(path.join(out,'consensus-'+width+'-'+language+'.png'),Buffer.from(shot.data,'base64'));
+        }
+      } else if(testCase.kind==='unknown'||testCase.kind==='invalid') {
+        const label=testCase.kind==='unknown'?(language==='zh'?'未知字体':'Unknown font'):(language==='zh'?'未生成评分':'No model score');
+        assert(state.label===label&&state.prediction===label,'Unknown/invalid verifier label differs '+context);
+        assert(!/SF Pro|Helvetica|Roboto|0\.9998/.test(state.row)&&state.tables.length===0&&state.dual.length===0,'Unknown/invalid verifier leaked named scores '+context);
+        assert(state.rowSize===null&&state.size===null,'Unknown/invalid verifier leaked size '+context);
+      } else {
+        assert(state.label.includes('SF Pro')&&state.tables.length===2,'Passed/low verifier scores missing '+context);
+        if(testCase.kind==='agree')assert(state.size.includes('42'),'Agreement lost primary size '+context);
+        else assert(state.reason.includes(language==='zh'?'复核网络':'verifier')&&!state.size.includes('42'),'Verifier gate reason or null size missing '+context);
+      }
+      consensusChecks.push({id:testCase.id,width,language,...state});
+    }
+  }
+  await evaluate("window.FluxGlyphUI.setLanguage('zh')");
   const availabilityChecks=[];
   for(const mode of ['unavailable','failed','locked']) {
     availability=mode;
@@ -354,7 +418,7 @@ const server = http.createServer((req, res) => {
   }
 
   assert(!diagnostics.length,'JS exceptions '+diagnostics.join());
-  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({kind:'mocked region-result browser UI only, not model accuracy',passed:true,reports,scoreChecks,rejectionChecks,availabilityChecks,sourceCompatibilityChecks,diagnostics},null,2));
+  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({kind:'mocked region-result browser UI only, not model accuracy',passed:true,reports,scoreChecks,rejectionChecks,consensusChecks,availabilityChecks,sourceCompatibilityChecks,diagnostics},null,2));
   console.log(JSON.stringify({passed:true,viewports:reports.map(x=>x.name),output:out}));
  } finally {if(socket)socket.close();chrome.kill('SIGTERM');await new Promise(resolve=>chrome.exitCode!==null?resolve():chrome.once('exit',resolve));server.close();fs.rmSync(profile,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

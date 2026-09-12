@@ -169,3 +169,78 @@ def test_packager_preserves_the_independent_rejection_file(monkeypatch,tmp_path)
     assert result['files']==5
     assert (output/'region_neural/rejection.onnx').read_bytes()==(base/'region_neural/rejection.onnx').read_bytes()
     assert verify_bundle(output)['version']=='r19-rejection-test'
+
+
+def consensus_bundle(root):
+    metadata=rejection_bundle(root)
+    directory=root/'region_neural'
+    (directory/'verifier.onnx').write_bytes(b'independent verifier model')
+    metadata['algorithm']='region-cnn64x256-consensus-v3'
+    metadata['verifier']={'schema':'flux-glyph-region-verifier-v1','algorithm':'region-font-verifier-cnn64x256-v1',
+        'model':{'path':'verifier.onnx','sha256':file_sha(directory/'verifier.onnx')},
+        'families':['SF Pro','Roboto','PingFang'],'temperature':.75,
+        'gates':{'min_score':.7,'min_margin':.1,'min_patch_agreement':.7},
+        'base_model_sha256':metadata['model']['sha256']}
+    (directory/'metadata.json').write_text(json.dumps(metadata))
+    from scripts.package_models import write_models_manifest
+    write_models_manifest(root)
+    return metadata
+
+
+@pytest.mark.parametrize('fault',['omitted','wrong_sha','v2','no_rejection'])
+def test_consensus_bundle_is_closed_over_all_three_models(tmp_path,fault):
+    metadata=consensus_bundle(tmp_path)
+    assert len(verify_bundle(tmp_path)['files'])==6
+    from scripts.package_models import write_models_manifest
+    if fault=='omitted':
+        manifest=json.loads((tmp_path/'MANIFEST.json').read_text())
+        manifest['files']=[row for row in manifest['files'] if row['path']!='region_neural/verifier.onnx']
+        (tmp_path/'MANIFEST.json').write_text(json.dumps(manifest))
+    else:
+        if fault=='wrong_sha':metadata['verifier']['model']['sha256']='0'*64
+        elif fault=='v2':metadata['algorithm']='region-cnn64x256-rejection-v2'
+        else:metadata.pop('rejection')
+        (tmp_path/'region_neural/metadata.json').write_text(json.dumps(metadata))
+        write_models_manifest(tmp_path)
+    with pytest.raises(ValueError):verify_bundle(tmp_path)
+
+
+def test_packager_copies_verifier_and_binds_all_three_models(monkeypatch,tmp_path):
+    import importlib
+    from pathlib import Path
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1]/'scripts'))
+    packager=importlib.import_module('scripts.package_region')
+    base=tmp_path/'base'
+    metadata=consensus_bundle(base)
+    monkeypatch.setattr(packager,'load_active',lambda _:(base,'r19-test',{}))
+    monkeypatch.setattr(packager,'RegionFontClassifier',lambda _:
+        SimpleNamespace(meta=metadata,rejection_meta=metadata['rejection'],verifier_meta=metadata['verifier']))
+    monkeypatch.setattr(packager,'validate_runtime',lambda path:verify_bundle(path))
+    output=tmp_path/'output'
+    result=packager.package(base,base/'region_neural',output,'r20-consensus-test')
+    assert result['files']==6 and verify_bundle(output)['version']=='r20-consensus-test'
+    assert (output/'region_neural/verifier.onnx').read_bytes()==(base/'region_neural/verifier.onnx').read_bytes()
+
+
+@pytest.mark.parametrize('reason,status,label',[('neural_model_disagreement','uncertain','字体存在分歧'),
+    ('verifier_font_out_of_scope','out_of_scope','未知字体')])
+def test_verifier_prediction_is_preserved_with_color_and_no_size(monkeypatch,tmp_path,reason,status,label):
+    from PIL import ImageDraw
+    write_bundle(tmp_path)
+    box=dict(source_bbox=[10,10,100,40],quad=[[10,10],[100,10],[100,40],[10,40]],score=.99)
+    monkeypatch.setattr(module,'PPRegionDetector',lambda _:SimpleNamespace(detect=lambda _:[box]))
+    verifier={'status':'disagreed' if status=='uncertain' else 'out_of_scope','family':None,
+              'candidates':[],'score':None,'method':'region_neural_network'}
+    result=dict(status=status,family=None,candidates=[],score=None,reason_code=reason,
+                font_size_px_estimate=None,verifier=verifier)
+    monkeypatch.setattr(module,'RegionFontClassifier',lambda _:SimpleNamespace(predict=lambda _:result))
+    engine=module.FontPipeline(tmp_path)
+    source=Image.new('RGB',(120,60),'white')
+    ImageDraw.Draw(source).rectangle((20,18,90,32),fill='#154A6F')
+    path=tmp_path/'source.png';source.save(path)
+    output=engine.run(path,tmp_path/'output','test-consensus')
+    region=output['regions'][0]
+    assert region['font']['verifier']==verifier and region['font']['label']==label
+    assert region['font']['family'] is region['text_style']['font_size_px_estimate'] is None
+    assert region['text_style']['text_color_hex']=='#154A6F'
+    assert output['summary']['out_of_scope']==int(status=='out_of_scope')

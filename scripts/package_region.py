@@ -29,6 +29,7 @@ def package(base,region,output,version):
         (temp/'region_neural').mkdir()
         filenames=['metadata.json',classifier.meta['model']['path']]
         if classifier.rejection_meta is not None:filenames.append(classifier.rejection_meta['model']['path'])
+        if getattr(classifier,'verifier_meta',None) is not None:filenames.append(classifier.verifier_meta['model']['path'])
         for name in filenames:
             shutil.copyfile(Path(region)/name,temp/'region_neural'/name)
         manifest=write_models_manifest(temp)

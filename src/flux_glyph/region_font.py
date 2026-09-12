@@ -13,6 +13,7 @@ from PIL import Image
 SCHEMA = 'flux-glyph-region-font-v1'
 ALGORITHM = 'region-cnn64x256-v1'
 REJECTION_ALGORITHM = 'region-cnn64x256-rejection-v2'
+CONSENSUS_ALGORITHM = 'region-cnn64x256-consensus-v3'
 MAX_TILES = 8
 MAX_PIXELS = 4_000_000
 
@@ -82,11 +83,13 @@ def _number(value, low, high):
 def rejection_metadata(metadata):
     """Validate the optional gate; v1 never silently ignores a rejection model."""
     algorithm = metadata.get('algorithm')
+    if algorithm != CONSENSUS_ALGORITHM and 'verifier' in metadata:
+        raise ValueError('Verifier models require the v3 region algorithm')
     if algorithm == ALGORITHM:
         if 'rejection' in metadata:
             raise ValueError('Rejection models require the v2 region algorithm')
         return None
-    if algorithm != REJECTION_ALGORITHM:
+    if algorithm not in (REJECTION_ALGORITHM, CONSENSUS_ALGORITHM):
         raise ValueError('Invalid region model contract')
     value = metadata.get('rejection')
     if (not isinstance(value, dict) or value.get('schema') != 'flux-glyph-region-rejection-v1'
@@ -112,6 +115,50 @@ def rejection_metadata(metadata):
     return result
 
 
+def verifier_metadata(metadata):
+    """A v3 verifier is mandatory and bound to the unchanged primary model."""
+    if metadata.get('algorithm') != CONSENSUS_ALGORITHM:
+        if 'verifier' in metadata:
+            raise ValueError('Verifier models require the v3 region algorithm')
+        return None
+    value = metadata.get('verifier')
+    if not isinstance(value, dict):
+        raise ValueError('Missing region verifier metadata')
+    families, primary = value.get('families'), metadata.get('families')
+    gates = value.get('gates')
+    if (value.get('schema') != 'flux-glyph-region-verifier-v1'
+            or value.get('algorithm') != 'region-font-verifier-cnn64x256-v1'
+            or not isinstance(families, list) or not 2 <= len(families) <= 64
+            or any(not isinstance(f, str) or not 1 <= len(f) <= 80 for f in families)
+            or len(set(families)) != len(families) or not isinstance(primary, list)
+            or any(f not in families for f in primary)
+            or value.get('base_model_sha256') != metadata.get('model', {}).get('sha256')
+            or not _number(value.get('temperature'), .01, 100) or not isinstance(gates, dict)
+            or any(not _number(gates.get(k), 0, 1) for k in ('min_score', 'min_margin', 'min_patch_agreement'))):
+        raise ValueError('Invalid region verifier metadata')
+    model = value.get('model')
+    name = model.get('path') if isinstance(model, dict) else None
+    digest = model.get('sha256') if isinstance(model, dict) else None
+    if (not isinstance(name, str) or Path(name).name != name or '\\' in name or not name.endswith('.onnx')
+            or name in (metadata.get('model', {}).get('path'), metadata.get('rejection', {}).get('model', {}).get('path'))
+            or not isinstance(digest, str) or len(digest) != 64 or any(c not in '0123456789abcdef' for c in digest)):
+        raise ValueError('Invalid region verifier model path or SHA')
+    result = {key: value[key] for key in ('schema', 'algorithm', 'families', 'base_model_sha256', 'temperature')}
+    result['gates'] = {key: gates[key] for key in ('min_score', 'min_margin', 'min_patch_agreement')}
+    result['model'] = {'path': name, 'sha256': digest}
+    return result
+
+
+def _gate_reason(scores, gates):
+    if scores['patch_agreement'] < gates['min_patch_agreement']:
+        return 'mixed_or_ambiguous_region'
+    if scores['score'] < gates['min_score']:
+        return 'below_score_gate'
+    if scores['margin'] <= 1e-8 or scores['margin'] < gates['min_margin']:
+        return 'ambiguous_neural_families'
+    return None
+
+
 class RegionFontClassifier:
     def __init__(self, directory):
         self.directory = Path(directory)
@@ -120,9 +167,10 @@ class RegionFontClassifier:
             raise ValueError('Region metadata exceeds size limit')
         self.meta = json.loads(path.read_text())
         m = self.meta
-        if m.get('schema') != SCHEMA or m.get('algorithm') not in (ALGORITHM, REJECTION_ALGORITHM):
+        if m.get('schema') != SCHEMA or m.get('algorithm') not in (ALGORITHM, REJECTION_ALGORITHM, CONSENSUS_ALGORITHM):
             raise ValueError('Invalid region model contract')
         self.rejection_meta = rejection_metadata(m)
+        self.verifier_meta = verifier_metadata(m)
         self.families = m.get('families')
         if (not isinstance(self.families, list) or not 2 <= len(self.families) <= 64
                 or any(not isinstance(f, str) or not 1 <= len(f) <= 80 for f in self.families)
@@ -185,6 +233,27 @@ class RegionFontClassifier:
                     or outputs[0].name != 'known_logits' or outputs[0].type != 'tensor(float)'
                     or len(outputs[0].shape) != 2 or isinstance(outputs[0].shape[0], int) or outputs[0].shape[1] != 2):
                 raise ValueError('Region rejection ONNX input/output contract differs')
+        self.verifier_session = None
+        if self.verifier_meta is not None:
+            model = self.verifier_meta['model']
+            path = self.directory / model['path']
+            if (not path.resolve().is_relative_to(self.directory.resolve()) or not path.is_file()
+                    or path.stat().st_size > 64 * 1024 * 1024):
+                raise ValueError('Region verifier model is missing or exceeds bounds')
+            data = path.read_bytes()
+            if hashlib.sha256(data).hexdigest() != model['sha256']:
+                raise ValueError('Region verifier model SHA differs')
+            self.verifier_session = ort.InferenceSession(data, sess_options=options, providers=['CPUExecutionProvider'])
+            inputs, outputs = self.verifier_session.get_inputs(), self.verifier_session.get_outputs()
+            if (len(inputs) != 1 or inputs[0].name != 'tiles' or inputs[0].type != 'tensor(float)'
+                    or len(inputs[0].shape) != 4 or isinstance(inputs[0].shape[0], int)
+                    or inputs[0].shape[1:] != [1, 64, 256] or len(outputs) != 2
+                    or [o.name for o in outputs] != ['logits', 'log_em_ratio']
+                    or any(o.type != 'tensor(float)' for o in outputs)
+                    or len(outputs[0].shape) != 2 or isinstance(outputs[0].shape[0], int)
+                    or outputs[0].shape[1] != len(self.verifier_meta['families'])
+                    or len(outputs[1].shape) != 1 or isinstance(outputs[1].shape[0], int)):
+                raise ValueError('Region verifier ONNX input/output contract differs')
 
     def predict(self, image):
         prepared = preprocess_region(image)
@@ -194,6 +263,10 @@ class RegionFontClassifier:
                   'font_size_px_estimate': None, 'size_relative_spread': None,
                   'ocr_performed': False, 'tile_count': prepared.get('tile_count', 0)}
         rejection = getattr(self, 'rejection_meta', None)
+        verifier = getattr(self, 'verifier_meta', None)
+        if verifier is not None:
+            result['verifier'] = {'method': 'region_neural_network', 'status': 'unavailable', 'family': None,
+                                  'candidates': [], 'score': None, 'margin': None, 'patch_agreement': None}
         if rejection is not None:
             result['rejection'] = {'method': 'neural_network', 'status': 'unavailable', 'known_score': None,
                                    'min_known_score': rejection['min_known_score']}
@@ -221,17 +294,54 @@ class RegionFontClassifier:
             if rejected:
                 return {**result, 'status': 'out_of_scope', 'reason_code': 'unknown_font_rejected',
                         'ink_height_px': prepared['ink_height_px']}
-        logits, ratios = self.session.run(['logits', 'log_em_ratio'], {'tiles': prepared['tiles']})
+        try:
+            outputs = self.session.run(['logits', 'log_em_ratio'], {'tiles': prepared['tiles']})
+        except Exception:
+            return {**result, 'reason_code': 'invalid_neural_output'}
+        if (not isinstance(outputs, (list, tuple)) or len(outputs) != 2
+                or any(not isinstance(value, np.ndarray) or value.dtype != np.float32 for value in outputs)):
+            return {**result, 'reason_code': 'invalid_neural_output'}
+        logits, ratios = outputs
         if (logits.shape != (len(prepared['tiles']), len(self.families))
                 or ratios.shape != (len(prepared['tiles']),) or not np.isfinite(logits).all()
                 or not np.isfinite(ratios).all() or np.any(np.abs(ratios) > 3)):
             return {**result, 'reason_code': 'invalid_neural_output'}
         scores = aggregate_predictions(logits, ratios, temperature=self.meta['temperature'])
+        if verifier is not None:
+            try:
+                outputs = self.verifier_session.run(['logits', 'log_em_ratio'], {'tiles': prepared['tiles']})
+            except Exception:
+                return {**result, 'reason_code': 'invalid_verifier_output'}
+            if (not isinstance(outputs, (list, tuple)) or len(outputs) != 2
+                    or any(not isinstance(value, np.ndarray) or value.dtype != np.float32 for value in outputs)
+                    or outputs[0].shape != (len(prepared['tiles']), len(verifier['families']))
+                    or outputs[1].shape != (len(prepared['tiles']),)
+                    or any(not np.isfinite(value).all() for value in outputs)):
+                return {**result, 'reason_code': 'invalid_verifier_output'}
+            # The verifier's size output is unused: only the primary estimates size.
+            verified = aggregate_predictions(outputs[0], np.zeros(len(outputs[0]), dtype=np.float32),
+                                              temperature=verifier['temperature'])
+            verifier_reason = _gate_reason(verified, verifier['gates'])
+            family = verifier['families'][int(verified['order'][0])]
+            if family not in self.families and verifier_reason is None:
+                result['verifier']['status'] = 'out_of_scope'
+                return {**result, 'status': 'out_of_scope', 'reason_code': 'verifier_font_out_of_scope',
+                        'ink_height_px': prepared['ink_height_px']}
+            result['verifier'].update(status='passed' if verifier_reason is None else 'below_gate', family=family,
+                                      reason_code=verifier_reason,
+                                      candidates=[{'family': verifier['families'][int(i)], 'score': float(verified['probabilities'][i])}
+                                                  for i in verified['order'][:3]],
+                                      **{k: verified[k] for k in ('score', 'margin', 'patch_agreement')})
         result.update({k: scores[k] for k in ('score', 'margin', 'patch_agreement', 'size_relative_spread')})
         result['candidates'] = [{'family': self.families[int(i)], 'score': float(scores['probabilities'][i])}
                                 for i in scores['order'][:3]]
         gate = self.meta['gates']
-        if scores['patch_agreement'] < gate['min_patch_agreement']:
+        if verifier is not None and result['verifier']['family'] != result['candidates'][0]['family']:
+            result['verifier']['status'] = 'disagreed'
+            result['reason_code'] = 'neural_model_disagreement'
+        elif verifier is not None and verifier_reason is not None:
+            result['reason_code'] = 'verifier_' + verifier_reason
+        elif scores['patch_agreement'] < gate['min_patch_agreement']:
             result['reason_code'] = 'mixed_or_ambiguous_region'
         elif scores['score'] < gate['min_score']:
             result['reason_code'] = 'below_score_gate'

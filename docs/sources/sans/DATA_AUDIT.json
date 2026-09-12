@@ -1,0 +1,51 @@
+{
+  "schema": "flux-glyph-sans-native-data-audit-v1",
+  "passed": true,
+  "manifest_sha256": "14208278ff920dbd42299a4cd67685e33cc5c9eee14f78891430e746618db02f",
+  "scene_sources_sha256": "d6c5b6983d42f3f5d43067b7715c3a834f1c74cf9300314639ec807b52a6cf44",
+  "scenes_sha256": "72c907f98aa1c9b51530e3096e1ca027d2047d3ca13065ccbbbdff76fed0ed11",
+  "labels_sha256": "46be5e66787f2d650da710407910af4a653fa8b07ea44f51e5f1d810258c4501",
+  "preparer_sha256": "92d11fe1b6c2a5640360a5be0e2eefa6ad17d9baaaae85476d9c68c2ea0e2d15",
+  "same_renderer_controlled_native_data": true,
+  "android_native_rendering_validated": false,
+  "user_pixels_used": false,
+  "old_test_pixels_used_for_training": false,
+  "old_normalized_text_overlap": 0,
+  "native_rejections": 0,
+  "native_verified_regions": 5040,
+  "preprocessing_exclusions": [
+    {
+      "region_id": "ios-sans-v1-calibration-0005-r04",
+      "split": "calibration",
+      "family": "HarmonyOS Sans SC",
+      "font_face": "HarmonyOS_Sans_SC_Thin",
+      "font_size_points": 14,
+      "reason": "existing_preprocess_region_rejected"
+    },
+    {
+      "region_id": "ios-sans-v1-train-0061-r10",
+      "split": "train",
+      "family": "HarmonyOS Sans SC",
+      "font_face": "HarmonyOS_Sans_SC_Thin",
+      "font_size_points": 14,
+      "reason": "existing_preprocess_region_rejected"
+    }
+  ],
+  "max_preprocessing_exclusion_fraction_per_split": 0.005,
+  "regions_by_split": {
+    "train": 3599,
+    "calibration": 719,
+    "test": 720
+  },
+  "families": [
+    "HarmonyOS Sans SC",
+    "MiSans",
+    "Noto Sans CJK SC",
+    "OPPO Sans",
+    "PingFang",
+    "SF Pro",
+    "Helvetica",
+    "Alipay Number",
+    "Roboto"
+  ]
+}

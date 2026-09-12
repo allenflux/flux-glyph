@@ -31,6 +31,10 @@ assert(css.includes('.font-prediction') && css.includes('.font-score'), 'predict
 for (const label of ['未知字体', 'Unknown font', 'unknown_font_rejected', 'invalid_rejection_output']) {
   assert(js.includes(label), `missing explicit unknown-font presentation: ${label}`);
 }
+for (const label of ['字体存在分歧', 'Font predictions disagree', 'neural_model_disagreement', 'verifier_font_out_of_scope',
+  'invalid_verifier_output', '主网络', 'Primary network', '复核网络', 'Verifier network']) {
+  assert(js.includes(label), `missing explicit consensus presentation: ${label}`);
+}
 for (const id of ['font-model', 'download-model', 'refresh-model', 'model-info', 'model-families', 'model-label-note', 'model-usage-command']) {
   assert(new RegExp(`id=["']${id}["']`).test(html), `missing standalone model control: #${id}`);
 }

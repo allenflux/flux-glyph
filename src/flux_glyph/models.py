@@ -47,17 +47,19 @@ def verify_bundle(directory):
         if (not isinstance(name,str) or PurePosixPath(name).name!=name or '\\' in name
                 or not name.endswith('.onnx')):raise ValueError('Invalid region model path')
         required.add('region_neural/'+name)
-        if metadata.get('algorithm')=='region-cnn64x256-rejection-v2' or 'rejection' in metadata:
-            from .region_font import rejection_metadata
+        if (metadata.get('algorithm') in ('region-cnn64x256-rejection-v2','region-cnn64x256-consensus-v3')
+                or 'rejection' in metadata or 'verifier' in metadata):
+            from .region_font import rejection_metadata,verifier_metadata
             rejection=rejection_metadata(metadata)
-            if rejection is not None:
-                required.add('region_neural/'+rejection['model']['path'])
-                entries={row['path']:row for row in rows}
-                for declared in (model,rejection['model']):
-                    entry=entries.get('region_neural/'+declared['path'])
-                    if entry is None:raise ValueError('Region bundle lacks required rejection files')
-                    if entry['sha256']!=declared.get('sha256'):
-                        raise ValueError('Region bundle model metadata SHA differs')
+            verifier=verifier_metadata(metadata)
+            declared_models=[model]+[value['model'] for value in (rejection,verifier) if value is not None]
+            entries={row['path']:row for row in rows}
+            for declared in declared_models:
+                required.add('region_neural/'+declared['path'])
+                entry=entries.get('region_neural/'+declared['path'])
+                if entry is None:raise ValueError('Region bundle lacks required rejection or verifier files')
+                if entry['sha256']!=declared.get('sha256'):
+                    raise ValueError('Region bundle model metadata SHA differs')
         if not required.issubset(paths):raise ValueError('Region bundle lacks required files')
         return manifest
     required={'font/metadata.json','font/GATES.json','pp/onnx/paddle_ocr_det.onnx','pp/onnx/paddle_ocr_rec.onnx','pp/onnx/paddle_ocr_cls.onnx','pp/charset/ppocr_keys_v1.txt','pp/paddle_ocr_delivery.contract.json'}

@@ -1,0 +1,40 @@
+{
+  "schema": "flux-glyph-models-v2",
+  "files": [
+    {
+      "path": "pp/onnx/paddle_ocr_det.onnx",
+      "sha256": "69ce850fec741a2a4568c7c924bb025c9d4f1129e5f96ab428c799ccc5ef2275",
+      "bytes": 4729474
+    },
+    {
+      "path": "pp/paddle_ocr_delivery.contract.json",
+      "sha256": "3457279d02acb449b6844cfa132687585b3bedc1f3e6736fdb539adc6edb9b2a",
+      "bytes": 7851
+    },
+    {
+      "path": "region_neural/metadata.json",
+      "sha256": "a15f04565937aa48c7504a7dbd9974622f013cd8234cd101a83b5ccf34b8845e",
+      "bytes": 11488
+    },
+    {
+      "path": "region_neural/model.onnx",
+      "sha256": "bff569708afbb127222885539914942f9d958f46c8c11bfb9ace80784f70916b",
+      "bytes": 1466065
+    },
+    {
+      "path": "region_neural/rejection.onnx",
+      "sha256": "be196ed06b7376fac935d03be3b46bec385f7c0182a85556a2cdd81c61bea594",
+      "bytes": 1496157
+    },
+    {
+      "path": "region_neural/verifier.onnx",
+      "sha256": "3615ebf13c187b3953d53a247018d553fc55c7760b76037edeec224de29b03c0",
+      "bytes": 1466581
+    }
+  ],
+  "source_note": "Detector and trained region font/size CNN; no text recognizer, dictionary, glyph segmenter or reference bank.",
+  "version": "r20-font-consensus-v1",
+  "base_version": "r19-font-unknown-rejection-v1",
+  "font_method": "region_neural_network",
+  "ocr_performed": false
+}

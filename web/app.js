@@ -27,8 +27,9 @@
       legendLabel: '字体结论图例',
       detected: '检测 {count}', chinese: '中文 {count}', pingfang: '苹方支持 {count}', seconds: '{count} 秒',
       fontCandidates: '字体候选 {count}', scopeLatin: '此结论仅针对框内数字和英文字母；标点、图标不参与字体判断。', scopeMixed: '混排文字按中文与数字／英文分别匹配；上方结论针对中文部分。', chinesePart: '中文部分', latinPart: '数字／英文部分',
-      regionScope: '此结果针对当前文字区域的整体外观。', neuralMethod: '神经网络', neuralIdentified: '已识别 {count}', topScores: 'Top 3 模型分数（分数不是实际准确率）',
+      regionScope: '此结果针对当前文字区域的整体外观，不能据此确认手机系统。', neuralMethod: '神经网络', neuralIdentified: '已识别 {count}', topScores: 'Top 3 模型分数（分数不是实际准确率）',
       closestFont: '最接近：{family}', modelScore: '模型评分 {score}', noModelScore: '未生成评分',
+      fontDisagreement: '字体存在分歧', primaryModel: '主网络', verifierModel: '复核网络',
       rejectedFont: '未知字体', colorOnlyNote: '颜色为截图中的可见颜色。',
       estimatedSize: '估计字号', textColor: '文字颜色', styleUnknown: '待确认', styleNote: '字号按截图像素估计；颜色为截图中的可见颜色。', sizeRange: '估计范围 {low}–{high} px',
       supported: '支持', candidate: '候选', uncertain: '待确认', outOfScope: '字体未覆盖', unknownText: '未识别文字', unknownFont: '待确认', noReason: '没有进一步说明', scopeNote: '此结论仅针对框内中文，不能据此推断数字和英文字体。', topDistances: 'Top 3 原始距离（距离不是概率）',
@@ -53,8 +54,9 @@
       legendLabel: 'Font conclusion legend',
       detected: 'Detected {count}', chinese: 'Chinese {count}', pingfang: 'PingFang supported {count}', seconds: '{count} sec',
       fontCandidates: 'Font candidates {count}', scopeLatin: 'This verdict covers digits and Latin letters only; punctuation and icons are not classified.', scopeMixed: 'Chinese and numeric/Latin text are matched separately. The main verdict covers Chinese glyphs.', chinesePart: 'Chinese text', latinPart: 'Numeric / Latin text',
-      regionScope: 'This result describes the appearance of the selected text region.', neuralMethod: 'Neural network', neuralIdentified: 'Identified {count}', topScores: 'Top 3 model scores (scores are not measured accuracy)',
+      regionScope: 'This result describes the selected text region and does not establish the phone’s operating system.', neuralMethod: 'Neural network', neuralIdentified: 'Identified {count}', topScores: 'Top 3 model scores (scores are not measured accuracy)',
       closestFont: 'Closest match: {family}', modelScore: 'Model score {score}', noModelScore: 'No model score',
+      fontDisagreement: 'Font predictions disagree', primaryModel: 'Primary network', verifierModel: 'Verifier network',
       rejectedFont: 'Unknown font', colorOnlyNote: 'Color is the visible color in the screenshot.',
       estimatedSize: 'Estimated size', textColor: 'Text color', styleUnknown: 'Uncertain', styleNote: 'Size is estimated in screenshot pixels; color is the visible color in the screenshot.', sizeRange: 'Estimated range {low}–{high} px',
       supported: 'Supported', candidate: 'Candidate', uncertain: 'Review', outOfScope: 'Font out of scope', unknownText: 'Unrecognized text', unknownFont: 'Review needed', noReason: 'No further explanation is available.', scopeNote: 'This verdict covers Chinese glyphs only and does not determine numeric or Latin fonts.', topDistances: 'Top 3 raw distances (distance is not probability)',
@@ -334,7 +336,7 @@
   const statusKey = value => ({supported: 'supported', candidate: 'candidate', uncertain: 'uncertain', out_of_scope: 'outOfScope'})[value] || 'uncertain';
 
   function rejectionReason(value) {
-    const reasons = ['unknown_font_rejected', 'invalid_rejection_output'];
+    const reasons = ['unknown_font_rejected', 'invalid_rejection_output', 'verifier_font_out_of_scope', 'invalid_verifier_output'];
     if (reasons.includes(value.reason_code)) return value.reason_code;
     if (reasons.includes(value.reason)) return value.reason;
     if (value.rejection?.status === 'rejected') return 'unknown_font_rejected';
@@ -347,6 +349,21 @@
     return null;
   }
 
+  const hasDisagreement = value => value.reason_code === 'neural_model_disagreement' || value.verifier?.status === 'disagreed';
+
+  function consensusScores(value) {
+    const node = document.createElement('div');
+    node.className = 'font-consensus';
+    for (const [key, model] of [['primaryModel', value], ['verifierModel', value.verifier || {}]]) {
+      const candidate = scoredCandidates(model)[0];
+      const line = document.createElement('p');
+      line.className = 'font-score';
+      line.textContent = `${t(key)}：${candidate ? `${candidate.family} · ${t('modelScore', {score: candidate.score.toFixed(4)})}` : t('noModelScore')}`;
+      node.append(line);
+    }
+    return node;
+  }
+
   function scoredCandidates(value) {
     if (rejectionReason(value) || !isNeural(value) || !Array.isArray(value.candidates)) return [];
     // Sort a filtered copy for display; preserve the server verdict and JSON.
@@ -357,7 +374,8 @@
 
   function fontLabel(value) {
     const rejected = rejectionReason(value);
-    if (rejected) return t(rejected === 'unknown_font_rejected' ? 'rejectedFont' : 'noModelScore');
+    if (rejected) return t(['unknown_font_rejected', 'verifier_font_out_of_scope'].includes(rejected) ? 'rejectedFont' : 'noModelScore');
+    if (hasDisagreement(value)) return t('fontDisagreement');
     if (value.family) return value.status === 'candidate' ? `${value.family}${language === 'zh' ? '（候选）' : ' (candidate)'}` : value.family;
     return t(statusKey(value.status) === 'outOfScope' ? 'outOfScope' : 'unknownFont');
   }
@@ -377,6 +395,12 @@
   const reasonCodes = {
     unknown_font_rejected: {zh: '当前模型无法识别该字体，已保留原图区域供查看。', en: 'The model does not recognize this font. The source crop is retained for review.'},
     invalid_rejection_output: {zh: '字体判断结果异常，暂不能确认字体。请重试。', en: 'The font check returned an invalid result. Retry to identify this font.'},
+    verifier_font_out_of_scope: {zh: '复核网络判断该字体不在主模型覆盖范围内，保留原图供查看。', en: 'The verifier places this font outside the primary model coverage. The source crop is retained.'},
+    invalid_verifier_output: {zh: '字体复核结果异常，本次不确认字体或字号。请重试。', en: 'The font verifier returned invalid output. No font or size is confirmed; retry the request.'},
+    neural_model_disagreement: {zh: '两个字体网络的候选不同，暂不确认字体或字号；下方展示各自的类别相对分数，分数不是准确率。', en: 'The two font networks predict different families. Font and size remain unconfirmed; each score is relative to that network’s classes, not measured accuracy.'},
+    verifier_below_score_gate: {zh: '复核网络的模型分数未达到门槛，字体和字号待确认。', en: 'The verifier score is below its gate; font and size remain unconfirmed.'},
+    verifier_ambiguous_neural_families: {zh: '复核网络的前两名字体过于接近，字体和字号待确认。', en: 'The verifier’s top two font scores are too close; font and size remain unconfirmed.'},
+    verifier_mixed_or_ambiguous_region: {zh: '复核网络对区域内不同片段的判断不一致，字体和字号待确认。', en: 'The verifier disagrees across image patches; font and size remain unconfirmed.'},
     region_neural_family_candidate: {zh: '区域字体神经网络的模型分数与候选区分度达到当前门槛。', en: 'The region font network passes the current score and separation gates.'},
     low_quality_region: {zh: '区域图像质量不足，字体待确认。', en: 'This region lacks sufficient image quality to identify a font.'},
     nonuniform_region_background: {zh: '区域背景颜色不均匀，字体待确认。', en: 'The region background is not uniform; review is needed.'},
@@ -488,7 +512,7 @@
     if (!style) return null;
     const root = document.createElement('span');
     root.className = detailed ? 'text-style text-style-detail' : 'text-style';
-    const rejected = rejectionReason(font(region));
+    const rejected = rejectionReason(font(region)) || hasDisagreement(font(region));
     if (!rejected) {
       const size = document.createElement('span');
       size.className = 'text-size';
@@ -548,9 +572,10 @@
       const small = document.createElement('small');
       strong.textContent = region.id;
       small.className = isNeural(value) ? 'font-prediction' : '';
-      small.textContent = rejectionReason(value) ? fontLabel(value) : prediction ? t('closestFont', {family: prediction.family}) : isNeural(value) ? t('noModelScore') : fontLabel(value);
+      small.textContent = rejectionReason(value) || hasDisagreement(value) ? fontLabel(value) : prediction ? t('closestFont', {family: prediction.family}) : isNeural(value) ? t('noModelScore') : fontLabel(value);
       text.append(strong, small);
-      if (prediction) {
+      if (hasDisagreement(value) && !rejectionReason(value)) text.append(consensusScores(value));
+      else if (prediction) {
         const score = document.createElement('span');
         score.className = 'font-score';
         score.textContent = t('modelScore', {score: prediction.score.toFixed(4)});
@@ -617,7 +642,7 @@
     const identity = document.createElement('p');
     const label = document.createElement('strong');
     label.id = 'font-label';
-    label.textContent = rejectionReason(value) ? fontLabel(value) : prediction ? t('closestFont', {family: prediction.family}) : isNeural(value) ? t('noModelScore') : value.family || fontLabel(value);
+    label.textContent = rejectionReason(value) || hasDisagreement(value) ? fontLabel(value) : prediction ? t('closestFont', {family: prediction.family}) : isNeural(value) ? t('noModelScore') : value.family || fontLabel(value);
     identity.append(label);
     const badge = document.createElement('span');
     badge.className = `tag ${value.status || 'uncertain'}`;
@@ -633,7 +658,8 @@
     const style = styleMetadata(region, true);
     if (style) preview.append(style);
     verdict.append(identity);
-    if (prediction) {
+    if (hasDisagreement(value) && !rejectionReason(value)) verdict.append(consensusScores(value));
+    else if (prediction) {
       const score = document.createElement('p');
       score.id = 'font-score';
       score.className = 'font-score';
@@ -655,7 +681,7 @@
       const distances = document.createElement('div');
       distances.className = 'dist';
       const heading = document.createElement('p');
-      heading.textContent = t(isNeural(value) ? 'topScores' : 'topDistances');
+      heading.textContent = `${hasDisagreement(value) ? `${t('primaryModel')} · ` : ''}${t(isNeural(value) ? 'topScores' : 'topDistances')}`;
       distances.append(heading);
       for (const candidate of candidates.slice(0, 3)) {
         const family = document.createElement('span');
@@ -666,6 +692,24 @@
         distances.append(family, distance);
       }
       verdict.append(distances);
+    }
+    if (!rejectionReason(value) && value.verifier) {
+      const verifiedCandidates = scoredCandidates(value.verifier);
+      if (verifiedCandidates.length) {
+        const table = document.createElement('div');
+        table.className = 'dist verifier-scores';
+        const heading = document.createElement('p');
+        heading.textContent = `${t('verifierModel')} · ${t('topScores')}`;
+        table.append(heading);
+        for (const candidate of verifiedCandidates.slice(0, 3)) {
+          const family = document.createElement('span');
+          const score = document.createElement('span');
+          family.textContent = candidate.family;
+          score.textContent = candidate.score.toFixed(4);
+          table.append(family, score);
+        }
+        verdict.append(table);
+      }
     }
   }
 

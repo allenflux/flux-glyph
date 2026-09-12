@@ -238,3 +238,62 @@ def test_authenticated_rejection_download_serves_the_full_two_model_kit(monkeypa
         assert info['available'] is True and info['unknown_font_rejection'] is True
         assert response.status_code==200 and info['sha256']==sha(response.content)
         assert {'model.onnx','rejection.onnx'}.issubset(zip_files(response.content))
+
+
+def fake_consensus_engine(directory):
+    engine=fake_rejection_engine(directory)
+    metadata=engine.region_neural.meta
+    weights=b'independent nine-class verifier ONNX stand-in'
+    (directory/'verifier.onnx').write_bytes(weights)
+    metadata['algorithm']='region-cnn64x256-consensus-v3'
+    metadata['verifier']={'schema':'flux-glyph-region-verifier-v1','algorithm':'region-font-verifier-cnn64x256-v1',
+        'model':{'path':'verifier.onnx','sha256':sha(weights)},'families':metadata['families']+['Roboto'],
+        'temperature':.75,'gates':dict(metadata['gates']),'base_model_sha256':metadata['model']['sha256']}
+    return engine
+
+
+def test_consensus_kit_includes_all_three_models_without_private_training_provenance(tmp_path):
+    engine=fake_consensus_engine(tmp_path/'model')
+    expected=json.loads(json.dumps(engine.region_neural.meta['verifier']))
+    engine.region_neural.meta['verifier']['training']={'source':'/private/verifier-train'}
+    engine.region_neural.meta['verifier']['gates']['private_note']='/private/cal'
+    info,payload=font_kit(engine)
+    files=zip_files(payload)
+    assert len(files)==10 and files['verifier.onnx']==(engine.region_neural.directory/'verifier.onnx').read_bytes()
+    assert json.loads(files['metadata.json'])['verifier']==expected
+    assert info['font_consensus_verification'] is True and info['unknown_font_rejection'] is True
+    assert 'Roboto' not in info['families']
+    assert json.loads(files['SHA256.json'])=={key:sha(value) for key,value in files.items() if key!='SHA256.json'}
+    assert all(b'/private/verifier-train' not in value and b'/private/cal' not in value for value in files.values())
+    assert '三个 ONNX'.encode() in files['README.md'] and '不表示主模型支持命名'.encode() in files['README.md']
+    assert b'neural_model_disagreement' in files['inference.py']
+
+
+@pytest.mark.parametrize('fault',['missing','changed','wrong_sha','missing_metadata','v1','v2'])
+def test_consensus_download_never_omits_or_ignores_required_verifier(tmp_path,fault):
+    engine=fake_consensus_engine(tmp_path/'model')
+    metadata=engine.region_neural.meta
+    if fault=='missing':(engine.region_neural.directory/'verifier.onnx').unlink()
+    elif fault=='changed':(engine.region_neural.directory/'verifier.onnx').write_bytes(b'wrong verifier')
+    elif fault=='wrong_sha':metadata['verifier']['model']['sha256']='0'*64
+    elif fault=='missing_metadata':metadata.pop('verifier')
+    elif fault=='v1':metadata['algorithm']='region-cnn64x256-v1'
+    else:metadata['algorithm']='region-cnn64x256-rejection-v2'
+    with pytest.raises(ValueError):font_kit(engine)
+    assert not hasattr(engine,'_font_download')
+
+
+def test_consensus_download_auth_and_verified_cache_include_third_model(monkeypatch,tmp_path):
+    engine=fake_consensus_engine(tmp_path/'model')
+    monkeypatch.setattr(api,'FontPipeline',lambda *a,**k:engine)
+    monkeypatch.setattr(api,'DATA',tmp_path/'uploads')
+    monkeypatch.setattr(api,'TOKEN','consensus-test-token')
+    with TestClient(api.app) as client:
+        assert client.get('/api/models/font/download').status_code==401
+        headers={'Authorization':'Bearer consensus-test-token'}
+        info=client.get('/api/models/font',headers=headers).json()
+        response=client.get(info['download_url'],headers=headers)
+        assert info['font_consensus_verification'] is True and info['sha256']==sha(response.content)
+        assert {'model.onnx','rejection.onnx','verifier.onnx'}.issubset(zip_files(response.content))
+        (engine.region_neural.directory/'verifier.onnx').write_bytes(b'later unverified verifier')
+        assert client.get(info['download_url'],headers=headers).content==response.content

@@ -334,8 +334,10 @@ class FontPipeline:
                         {'status':'uncertain','family':None,'candidates':[],'reason_code':'too_many_regions'})
             font={k:prediction.get(k) for k in ('status','family','candidates','score','margin','patch_agreement','reason_code','font_family_variants')}
             if 'rejection' in prediction:font['rejection']=prediction['rejection']
+            if 'verifier' in prediction:font['verifier']=prediction['verifier']
             font.update(method='region_neural_network',scope='Detected text region',font_identity_verified=False,
-                        label=font['family'] or ('未知字体' if font['reason_code']=='unknown_font_rejected' else '待确认'),reason=font['reason_code'])
+                        label=font['family'] or ('未知字体' if font['reason_code'] in ('unknown_font_rejected','verifier_font_out_of_scope')
+                                               else '字体存在分歧' if font['reason_code']=='neural_model_disagreement' else '待确认'),reason=font['reason_code'])
             style=estimate_text_style(image,[],region_bbox=bounds) if i<self.max_regions else None
             if style is not None:
                 size=prediction.get('font_size_px_estimate')

@@ -4,7 +4,7 @@ import io
 import json
 from pathlib import Path
 import zipfile
-from .region_font import rejection_metadata
+from .region_font import rejection_metadata, verifier_metadata
 
 PREDICT = '''import argparse,json
 from pathlib import Path
@@ -49,6 +49,17 @@ def font_kit(engine):
         if hashlib.sha256(rejection_bytes).hexdigest()!=rejection['model']['sha256']:
             raise ValueError('Rejection model changed after serving startup')
         metadata['rejection']=rejection
+    verifier=verifier_metadata(model.meta)
+    verifier_bytes=None
+    if verifier is not None:
+        verifier_path=model.directory/verifier['model']['path']
+        if (not verifier_path.resolve().is_relative_to(model.directory.resolve())
+                or not verifier_path.is_file() or verifier_path.stat().st_size>64*1024*1024):
+            raise ValueError('Verifier model is missing or exceeds bounds')
+        verifier_bytes=verifier_path.read_bytes()
+        if hashlib.sha256(verifier_bytes).hexdigest()!=verifier['model']['sha256']:
+            raise ValueError('Verifier model changed after serving startup')
+        metadata['verifier']=verifier
     requirements='numpy==2.2.6\npillow==12.3.0\nonnxruntime==1.23.2\n'
     readme=f'''# 字体识别 ONNX / Font recognition\n\n模型版本：{engine.version}\n\n直接输入一行或一个文字区域的图片，不需要 OCR、文字内容或字符切分。完整截图请先定位并裁出文字区域。\n\n```sh\npython -m venv .venv\n# macOS / Linux: source .venv/bin/activate\n# Windows: .venv\\Scripts\\activate\npip install -r requirements.txt\npython predict.py text-region.png\n```\n\nPython 3.10+。推理只需 ONNX Runtime、NumPy、Pillow，不需要 PyTorch。\n\n模型 ONNX 输入 tiles 为 float32 [N,1,64,256]；输出 logits [N,{len(model.families)}] 与 log_em_ratio [N]。必须使用 inference.py 中 preprocess_region 的比例保留、背景归一化和图块处理，并按 metadata.json 中的类别顺序和门槛解析。不要直接拉伸原图送入模型。\n\n输出 font.family 为字体候选，证据不足则为 null；候选分数不是实际准确率。font_size_px_estimate 为截图中的像素字号估计，不是 iOS pt；text_color_hex 为可见颜色。\n\n训练来源是 iOS Simulator 中受控原生页面的实际截图；未训练字体和混合字体仍可能误判。\n\n## Python API\n\n```python\nfrom pathlib import Path\nfrom PIL import Image\nfrom inference import RegionFontClassifier\nmodel = RegionFontClassifier(Path("."))\nresult = model.predict(Image.open("text-region.png").convert("RGB"))\nprint(result["family"], result["font_size_px_estimate"])\n```\n'''
     readme += '\n字体列表既包含系统字体，也包含应用自带字体；Alipay Number 是应用字体，不是 iOS 系统字体。字体来源记录在 metadata.json 的 font_sources 中（有记录的版本）。\n'
@@ -56,12 +67,16 @@ def font_kit(engine):
         readme += '\n本版 PingFang 表示苹方字体族，覆盖 SC／TC／HK 的原生简繁体样本。多个地区字体存在相同字形，图片没有足够信息时不宣称能区分地区版本；对应原生名称见 font_label_groups。\n'
     if rejection is not None:
         readme += '\n本包还包含独立的未知字体拒识神经网络。使用相同区域图块，输出 known_logits [N,2]，类别顺序 unknown、known；先按 metadata.json 中的温度与门槛判断覆盖情况。拒识时不输出字体名称、命名候选或字号，仍可测量原图颜色。类别相对分数与覆盖检测分数均不是实测准确率。两个 ONNX 必须一起保留，不得绕过拒识模型。\n'
+    if verifier is not None:
+        readme += '\n本版另含独立字体复核网络，输入同一组图块，输出 logits 与 log_em_ratio；只用它的 logits 复核字体，字号仍来自主网络。三个 ONNX 必须一起保留。通过未知字体检查后，两网赢家相同且各自达到门槛才输出字体与字号。分歧时 font.family 与字号为 null，font.candidates 和 font.verifier.candidates 展示双方类别相对分数。复核网络中的额外竞争类（如 Roboto）达到门槛时仅用于拒绝主网络未覆盖的字体，不表示主模型支持命名这些额外字体。\n'
     folder=Path(__file__).parent
     files={name:weights,'metadata.json':(json.dumps(metadata,ensure_ascii=False,indent=2)+'\n').encode(),
            'inference.py':(folder/'region_font.py').read_bytes(),'text_style.py':(folder/'text_style.py').read_bytes(),
            'predict.py':PREDICT.encode(),'requirements.txt':requirements.encode(),'README.md':readme.encode()}
     if rejection is not None:
         files[rejection['model']['path']]=rejection_bytes
+    if verifier is not None:
+        files[verifier['model']['path']]=verifier_bytes
     files['SHA256.json']=(json.dumps({key:hashlib.sha256(value).hexdigest() for key,value in files.items()},indent=2)+'\n').encode()
     stream=io.BytesIO()
     with zipfile.ZipFile(stream,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
@@ -74,6 +89,7 @@ def font_kit(engine):
           'input_shape':[None,1,64,256],'download_url':'/api/models/font/download','bytes':len(data),
           'sha256':hashlib.sha256(data).hexdigest(),'ocr_required':False,
           'unknown_font_rejection':rejection is not None,
+          'font_consensus_verification':verifier is not None,
           'usage':{'install':'pip install -r requirements.txt','predict':'python predict.py text-region.png'}}
     engine._font_download=(info,data)
     return engine._font_download

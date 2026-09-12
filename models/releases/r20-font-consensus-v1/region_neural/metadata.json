@@ -1,0 +1,216 @@
+{
+  "schema": "flux-glyph-region-font-v1",
+  "algorithm": "region-cnn64x256-consensus-v3",
+  "families": [
+    "HarmonyOS Sans SC",
+    "MiSans",
+    "Noto Sans CJK SC",
+    "OPPO Sans",
+    "PingFang",
+    "SF Pro",
+    "Helvetica",
+    "Alipay Number"
+  ],
+  "model": {
+    "path": "model.onnx",
+    "sha256": "bff569708afbb127222885539914942f9d958f46c8c11bfb9ace80784f70916b"
+  },
+  "font_label_groups": {
+    "PingFang": [
+      "PingFang SC",
+      "PingFang TC",
+      "PingFang HK"
+    ]
+  },
+  "font_sources": {
+    "HarmonyOS Sans SC": [
+      "asset"
+    ],
+    "MiSans": [
+      "asset"
+    ],
+    "Noto Sans CJK SC": [
+      "asset"
+    ],
+    "OPPO Sans": [
+      "asset"
+    ],
+    "PingFang": [
+      "system"
+    ],
+    "SF Pro": [
+      "system"
+    ],
+    "Helvetica": [
+      "system"
+    ],
+    "Alipay Number": [
+      "asset"
+    ]
+  },
+  "temperature": 0.5,
+  "gates": {
+    "min_score": 0.5,
+    "min_margin": 0.01,
+    "min_patch_agreement": 0.7
+  },
+  "max_size_relative_spread": 0.2,
+  "preprocessing": {
+    "function": "preprocess_region",
+    "shape": [
+      1,
+      64,
+      256
+    ],
+    "dtype": "float32",
+    "max_tiles": 8,
+    "source_sha256": "6e9ce2c812be94e41e0ca492c7555c671a5bd9d6bed34bec83200076f2202a25"
+  },
+  "size": {
+    "target": "log(font_size_screen_px/ink_height_px)",
+    "valid_log_ratio_range": [
+      -3,
+      3
+    ],
+    "aggregation": "exp(median(log_em_ratio))",
+    "spread": "(p90_ratio-p10_ratio)/exp(median(log_em_ratio))"
+  },
+  "aggregation": "mean_softmax_probability_across_patches",
+  "ocr_required": false,
+  "script_input_required": false,
+  "training": {
+    "data_manifest_sha256": "ed75b831c6132284ad8e908f6a34723b0e0c1380a8a18be62dfbeefffdd35022",
+    "source_kind": "ios_simulator_screenshot",
+    "optimizer_steps_executed": 4000,
+    "selected_step": 4000,
+    "parent_sha256": "fe9e73936941e07c255df50e7798a277beaa9f4a7c9f87dbf2dfcc9bbc8c67b2",
+    "state_after_sha256": "a60a5fc62cabf69c7f07c5a3505e0715054d7848f413938a1f6ad16ff1836146",
+    "selection_sha256": "de412bde37cad2363b4024d607a4a919c2fe462c15cd820a67127110ce3c6d2c"
+  },
+  "calibration": {
+    "gate_found": true,
+    "target_region_precision": 0.97
+  },
+  "release_status": "experimental",
+  "scope": "Image-only font/size CNN with independent learned known/unknown rejection; no OCR text input.",
+  "export": {
+    "groupnorm_lowering": "reshape_centered_mean_square_variance_v1",
+    "frozen_parameters_unchanged": true,
+    "reduction_dtype": "float64",
+    "original_onnx_sha256": "dc19ddf18356653191c59e9d217cdb176c68b8a33404a07442d3d2db5f1cb528",
+    "checkpoint_sha256": "aeda192187c90fa3e59afc23d879d8eda8d8f9fd987895bfd0d0d120c884649a",
+    "export_source_sha256": "07f1d4964201d651af7066ed8e9ae8e6b13efd3ac4c8e3cc94de70e206e9b56a",
+    "parity_reference": "original torch.nn.GroupNorm, unchanged tolerances"
+  },
+  "rejection": {
+    "schema": "flux-glyph-region-rejection-v1",
+    "algorithm": "region-known-unknown-cnn64x256-v1",
+    "model": {
+      "path": "rejection.onnx",
+      "sha256": "be196ed06b7376fac935d03be3b46bec385f7c0182a85556a2cdd81c61bea594"
+    },
+    "labels": [
+      "unknown",
+      "known"
+    ],
+    "known_families": [
+      "HarmonyOS Sans SC",
+      "MiSans",
+      "Noto Sans CJK SC",
+      "OPPO Sans",
+      "PingFang",
+      "SF Pro",
+      "Helvetica",
+      "Alipay Number"
+    ],
+    "base_model_sha256": "bff569708afbb127222885539914942f9d958f46c8c11bfb9ace80784f70916b",
+    "aggregation": "mean_softmax_known_probability",
+    "temperature": 1.0,
+    "min_known_score": 0.9339949198909202,
+    "training": {
+      "selection_sha256": "91ad68f2b414c48900db45e1cccdd54f42fb88bd708fcb7f0ba9995a56ff45aa",
+      "checkpoint_sha256": "aba826022b6c65b11abe794bdb702a36b8857de36771cf0a354040aac33b5e34",
+      "optimizer_steps_executed": 2000,
+      "selected_step": 2000,
+      "data_manifest_sha256": "18e8f3238b1e2a9be62e7502d432624987c08e158579348a17209dc0e6cd3e02",
+      "source_kind": "ios_simulator_screenshot",
+      "anchor_manifest_sha256": "ed75b831c6132284ad8e908f6a34723b0e0c1380a8a18be62dfbeefffdd35022",
+      "calibration_decisions_sha256": "f6456f9bc483d804f17ce6510f9b3c44f15c2fd0f11e7bd452cb5636e498a87d",
+      "primary_font_size_parameters_changed": false,
+      "unknown_test_read_for_selection": false,
+      "supplement_manifest_sha256": "0f4bc3cab09aacde67d363d201238568417702b2935320b93ba5094bdc1200af",
+      "warm_start_rejection_sha256": "2f0eb5284a03c86d7c9384851261ba4fb6e8bd1fea1a9078b7756b97d85af178",
+      "warm_start_selection_sha256": "144edc93db997e0ada7fdd7c0b20d1d4497bdfeb0ae34c98aab1cb5cfef49956",
+      "strategy_source_sha256": "409725c7efb13817023e945ff76f00bb9ec1bca7c098194e3390890850445fbd"
+    },
+    "scope": "Learned unknown-font rejection from native controlled scenes; not universal unknown-font detection or Android device validation."
+  },
+  "verifier": {
+    "schema": "flux-glyph-region-verifier-v1",
+    "algorithm": "region-font-verifier-cnn64x256-v1",
+    "model": {
+      "path": "verifier.onnx",
+      "sha256": "3615ebf13c187b3953d53a247018d553fc55c7760b76037edeec224de29b03c0"
+    },
+    "families": [
+      "HarmonyOS Sans SC",
+      "MiSans",
+      "Noto Sans CJK SC",
+      "OPPO Sans",
+      "PingFang",
+      "SF Pro",
+      "Helvetica",
+      "Alipay Number",
+      "Roboto"
+    ],
+    "temperature": 1.0,
+    "gates": {
+      "min_score": 0.5,
+      "min_margin": 0.01,
+      "min_patch_agreement": 0.6666666666666666
+    },
+    "base_model_sha256": "bff569708afbb127222885539914942f9d958f46c8c11bfb9ace80784f70916b",
+    "training": {
+      "selection_sha256": "8079aa5ef0db4ab0dcbe0a54a2cf06a52193c84c59bef56d57c17b335fde76b2",
+      "checkpoint_sha256": "23d35cad72c891c6352a49a863bb815dc54f882e72aacb03ad5961ed6bc07014",
+      "selection_schema": "flux-glyph-sans-blocking-calibration-v1",
+      "optimizer_steps_in_selection_stage": 0,
+      "weights_unchanged_in_selection_stage": true,
+      "native_data_and_views": {
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/views-v1/MANIFEST.json": "3e8b1146f28e65250b5f9c556b9b386ab9f3ca8980936fd5b7413c47959b007b",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/views-v1/train/MANIFEST.json": "afc7801a8d35423b11a28d2436dbf0818162cbd135bbc5832c56009873ac5c00",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/views-v1/calibration/MANIFEST.json": "623e64378ab907dd90b533560696ef019076d5cfb09dd8a49faa252e97b43830",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/ios-hant-region-v1/region/model.pth": "aeda192187c90fa3e59afc23d879d8eda8d8f9fd987895bfd0d0d120c884649a",
+        "/Users/allenflux/PycharmProjects/flux-glyph/models/releases/r19-font-unknown-rejection-v1/region_neural/metadata.json": "de41c516e75821c6d1293cfe1ea288592a8797f08cbd33e1251a8e51f9dfff3f",
+        "/Users/allenflux/PycharmProjects/flux-glyph/models/releases/r19-font-unknown-rejection-v1/region_neural/model.onnx": "bff569708afbb127222885539914942f9d958f46c8c11bfb9ace80784f70916b",
+        "/Users/allenflux/PycharmProjects/flux-glyph/models/releases/r19-font-unknown-rejection-v1/region_neural/rejection.onnx": "be196ed06b7376fac935d03be3b46bec385f7c0182a85556a2cdd81c61bea594",
+        "/Users/allenflux/PycharmProjects/flux-glyph/training/train_sans_verifier.py": "323b61d443108d44a0af53063bbeaf45a7c6b621d8eb13969fb3831cfdcd7342",
+        "/Users/allenflux/PycharmProjects/flux-glyph/training/prepare_sans_views.py": "2020bc357e31051c4b75bb5987d39b3bd9fc761943d3cf8b9ac604e72df35215",
+        "/Users/allenflux/PycharmProjects/flux-glyph/training/region_network.py": "aeca98a74d495942efebe9f82b2ef7b05cc8aafa60696e6ff7430b50eec4dbf2",
+        "/Users/allenflux/PycharmProjects/flux-glyph/training/network.py": "ce52a705cecb29cd5a024fb5a8ec5d05a710c9bedc0998c870b366f2ff763f22",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/run-v1/SELECTION.json": "634dc6492a246356415d94a5b99f446d5773b628429542590b6c4677683f5c10",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/run-v1/verifier.pth": "263099880565e7f37a05cc25bfe875ecfc2c71ce35962c45d3474ef987cc5d72",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/run-v1/CALIBRATION_DECISIONS.json": "29b3784ff4086964b31bcb55390144b33358dc33afce4bbd6e2622d7dc225850",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/run-v1/BASELINE.json": "ce6d17ffa6debbf581bd33473c3ce3a70cada7cce18a5c471b1d466cd7c1da9c",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/run-v1/POLICY.json": "bd913bfe406bee1914f343cd6de276d594a26111eeffafd274ef189f1c53b72d",
+        "/Users/allenflux/PycharmProjects/flux-glyph/training/continue_sans_verifier.py": "ee190cc2e2b4d7807404d02e86bb0140639146e97667e5be2779b4f9683a06ea",
+        "/Users/allenflux/PycharmProjects/flux-glyph/training/train_regions.py": "22ebda5259096110041a82aa8740e62eb3a8a719533ac32728fbdf7095646380",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/run-v2/SELECTION.json": "974bcfa0e7df8d4d6c5760d333b9c2f3b47d156b5c38ce0c98e894f7bda703ab",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/run-v2/POLICY.json": "c5a4a7f96658d59454d9ea1da12e6e0340dfe8911e9afd0975a98d12d37b6f9d",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/run-v2/BASELINE.json": "ce6d17ffa6debbf581bd33473c3ce3a70cada7cce18a5c471b1d466cd7c1da9c",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/run-v2/CALIBRATION_DECISIONS.json": "d7bf75325c6d317fe768952672d47572a69f306f1849c578f22e5e655055d0e9",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/run-v2/verifier.pth": "af339537fb3e6e2e1d72cb0a9f7ca6754ee91c0790440d47202699d3c4fe5a18",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/views-v1/calibration/metadata.json": "f7d715eae0da5794d555a2fe58ebb37732151e89503339a059ef41c9dfa6b514",
+        "/Users/allenflux/PycharmProjects/flux-glyph/training/calibrate_sans_verifier.py": "f68554560c0b89a3ed215c78c8d06b3283eeb2fbf5893447e935d7af097c2d9d",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/calibration-v1/SELECTION.json": "4b2712c81d27ccd9f64b61537696822d5d4fc5428650d913a4ef2414cde8f83b",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/calibration-v1/POLICY.json": "155a6c742754b3649f23b0198eec2841f6b81914309c42253d1cb6df305df779",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/calibration-v1/BASELINE.json": "ce6d17ffa6debbf581bd33473c3ce3a70cada7cce18a5c471b1d466cd7c1da9c",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/calibration-v1/CALIBRATION_DECISIONS.json": "d7bf75325c6d317fe768952672d47572a69f306f1849c578f22e5e655055d0e9",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/calibration-v1/GRID.json": "5942dd44365519692b70994cbf37e34f362d3b0778584f687e6860eb8b812e6e",
+        "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/font-sans-v1/calibration-v1/FAILED.json": "4a294e6fedefd12c4a7eef1d8aa123d298015cb02d5730d485ed8860b663e17f",
+        "/Users/allenflux/PycharmProjects/flux-glyph/training/calibrate_sans_blocking.py": "d449b6420fec03c2a73b78a432a379f26358b9212cb0859e4b9bd1284c8763e2"
+      },
+      "test_used_for_training": false
+    }
+  }
+}
