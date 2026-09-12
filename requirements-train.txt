@@ -1,9 +1,9 @@
 # Optional offline training environment; production uses requirements.lock.
-torch==2.8.0
+torch==2.13.0
 numpy==2.2.6
 Pillow==12.3.0
-fonttools==4.59.2
-onnx==1.19.0
+fonttools==4.60.2
+onnx==1.22.0
 onnxruntime==1.23.2
-protobuf==6.32.1
+protobuf==6.33.5
 ml_dtypes==0.5.3
