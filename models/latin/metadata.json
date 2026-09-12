@@ -1,0 +1,300 @@
+{
+  "schema": "flux-glyph-latin-candidates-v1",
+  "algorithm_version": "latin-aspect28-blur060-v1",
+  "dtype": "uint8",
+  "sizes": [
+    20,
+    32,
+    48
+  ],
+  "font_ids": [
+    "sfpro_17_regular",
+    "sfpro_17_semibold",
+    "sfpro_17_bold",
+    "sfpro_48_regular",
+    "sfpro_48_semibold",
+    "sfpro_48_bold",
+    "helvetica_regular",
+    "helvetica_bold",
+    "harmonyos_bold",
+    "harmonyos_medium",
+    "harmonyos_regular",
+    "misans_bold",
+    "misans_regular",
+    "oppo_bold",
+    "oppo_medium",
+    "oppo_regular",
+    "alipay_number_regular"
+  ],
+  "face_family": {
+    "sfpro_17_regular": "SF Pro",
+    "sfpro_17_semibold": "SF Pro",
+    "sfpro_17_bold": "SF Pro",
+    "sfpro_48_regular": "SF Pro",
+    "sfpro_48_semibold": "SF Pro",
+    "sfpro_48_bold": "SF Pro",
+    "helvetica_regular": "Helvetica",
+    "helvetica_bold": "Helvetica",
+    "harmonyos_bold": "HarmonyOS Sans SC",
+    "harmonyos_medium": "HarmonyOS Sans SC",
+    "harmonyos_regular": "HarmonyOS Sans SC",
+    "misans_bold": "MiSans",
+    "misans_regular": "MiSans",
+    "oppo_bold": "OPPO Sans",
+    "oppo_medium": "OPPO Sans",
+    "oppo_regular": "OPPO Sans",
+    "alipay_number_regular": "Alipay Number"
+  },
+  "characters": {
+    "0": "latin_0030.npy",
+    "1": "latin_0031.npy",
+    "2": "latin_0032.npy",
+    "3": "latin_0033.npy",
+    "4": "latin_0034.npy",
+    "5": "latin_0035.npy",
+    "6": "latin_0036.npy",
+    "7": "latin_0037.npy",
+    "8": "latin_0038.npy",
+    "9": "latin_0039.npy",
+    "A": "latin_0041.npy",
+    "B": "latin_0042.npy",
+    "C": "latin_0043.npy",
+    "D": "latin_0044.npy",
+    "E": "latin_0045.npy",
+    "F": "latin_0046.npy",
+    "G": "latin_0047.npy",
+    "H": "latin_0048.npy",
+    "I": "latin_0049.npy",
+    "J": "latin_004A.npy",
+    "K": "latin_004B.npy",
+    "L": "latin_004C.npy",
+    "M": "latin_004D.npy",
+    "N": "latin_004E.npy",
+    "O": "latin_004F.npy",
+    "P": "latin_0050.npy",
+    "Q": "latin_0051.npy",
+    "R": "latin_0052.npy",
+    "S": "latin_0053.npy",
+    "T": "latin_0054.npy",
+    "U": "latin_0055.npy",
+    "V": "latin_0056.npy",
+    "W": "latin_0057.npy",
+    "X": "latin_0058.npy",
+    "Y": "latin_0059.npy",
+    "Z": "latin_005A.npy",
+    "a": "latin_0061.npy",
+    "b": "latin_0062.npy",
+    "c": "latin_0063.npy",
+    "d": "latin_0064.npy",
+    "e": "latin_0065.npy",
+    "f": "latin_0066.npy",
+    "g": "latin_0067.npy",
+    "h": "latin_0068.npy",
+    "i": "latin_0069.npy",
+    "j": "latin_006A.npy",
+    "k": "latin_006B.npy",
+    "l": "latin_006C.npy",
+    "m": "latin_006D.npy",
+    "n": "latin_006E.npy",
+    "o": "latin_006F.npy",
+    "p": "latin_0070.npy",
+    "q": "latin_0071.npy",
+    "r": "latin_0072.npy",
+    "s": "latin_0073.npy",
+    "t": "latin_0074.npy",
+    "u": "latin_0075.npy",
+    "v": "latin_0076.npy",
+    "w": "latin_0077.npy",
+    "x": "latin_0078.npy",
+    "y": "latin_0079.npy",
+    "z": "latin_007A.npy"
+  },
+  "face_characters": {
+    "sfpro_17_regular": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "sfpro_17_semibold": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "sfpro_17_bold": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "sfpro_48_regular": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "sfpro_48_semibold": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "sfpro_48_bold": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "helvetica_regular": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "helvetica_bold": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "harmonyos_bold": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "harmonyos_medium": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "harmonyos_regular": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "misans_bold": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "misans_regular": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "oppo_bold": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "oppo_medium": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "oppo_regular": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    "alipay_number_regular": "0123456789"
+  },
+  "shape": [
+    17,
+    3,
+    32,
+    32
+  ],
+  "archive": "references.zip",
+  "archive_sha256": "7c5211317ebf50b42ba458cd2677e9436c294593482d2ba37e05633678a83e2f",
+  "source_paths_embedded": false,
+  "sources": {
+    "sfpro_17_regular": {
+      "basename": "SFNS.ttf",
+      "sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "postscript_name": ".SFNS-Regular",
+      "face_index": 0,
+      "variations": [
+        100,
+        17,
+        400,
+        400
+      ]
+    },
+    "sfpro_17_semibold": {
+      "basename": "SFNS.ttf",
+      "sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "postscript_name": ".SFNS-Regular",
+      "face_index": 0,
+      "variations": [
+        100,
+        17,
+        400,
+        600
+      ]
+    },
+    "sfpro_17_bold": {
+      "basename": "SFNS.ttf",
+      "sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "postscript_name": ".SFNS-Regular",
+      "face_index": 0,
+      "variations": [
+        100,
+        17,
+        400,
+        700
+      ]
+    },
+    "sfpro_48_regular": {
+      "basename": "SFNS.ttf",
+      "sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "postscript_name": ".SFNS-Regular",
+      "face_index": 0,
+      "variations": [
+        100,
+        48,
+        400,
+        400
+      ]
+    },
+    "sfpro_48_semibold": {
+      "basename": "SFNS.ttf",
+      "sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "postscript_name": ".SFNS-Regular",
+      "face_index": 0,
+      "variations": [
+        100,
+        48,
+        400,
+        600
+      ]
+    },
+    "sfpro_48_bold": {
+      "basename": "SFNS.ttf",
+      "sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "postscript_name": ".SFNS-Regular",
+      "face_index": 0,
+      "variations": [
+        100,
+        48,
+        400,
+        700
+      ]
+    },
+    "helvetica_regular": {
+      "basename": "Helvetica.ttc",
+      "sha256": "25eceb458d4baf628ee0b6a135a9f8ac5ec7b2826646720834bd2bf00dfc825a",
+      "postscript_name": "Helvetica",
+      "face_index": 0,
+      "variations": []
+    },
+    "helvetica_bold": {
+      "basename": "Helvetica.ttc",
+      "sha256": "25eceb458d4baf628ee0b6a135a9f8ac5ec7b2826646720834bd2bf00dfc825a",
+      "postscript_name": "Helvetica-Bold",
+      "face_index": 1,
+      "variations": []
+    },
+    "harmonyos_bold": {
+      "basename": "HarmonyOS_Sans_SC_Bold.ttf",
+      "sha256": "43a424b85e47fb53a17b3b32026a71801f86f8e022ca6798d186b47d39fa5f01",
+      "postscript_name": "HarmonyOS_Sans_SC_Bold",
+      "face_index": 0,
+      "variations": []
+    },
+    "harmonyos_medium": {
+      "basename": "HarmonyOS_Sans_SC_Medium.ttf",
+      "sha256": "6ed1553edccddc48eb27ff25d134a4a715cf54211238d4840b3038576cba1944",
+      "postscript_name": "HarmonyOS_Sans_SC_Medium",
+      "face_index": 0,
+      "variations": []
+    },
+    "harmonyos_regular": {
+      "basename": "HarmonyOS_Sans_SC_Regular.ttf",
+      "sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "postscript_name": "HarmonyOS_Sans_SC",
+      "face_index": 0,
+      "variations": []
+    },
+    "misans_bold": {
+      "basename": "MiSans-Bold.ttf",
+      "sha256": "d0c1d327952ed935e86fb78a97a6c182b44f2c2b08777326786b1f8b26d1fe1e",
+      "postscript_name": "MiSans-Bold",
+      "face_index": 0,
+      "variations": []
+    },
+    "misans_regular": {
+      "basename": "MiSans-Regular.ttf",
+      "sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "postscript_name": "MiSans-Regular",
+      "face_index": 0,
+      "variations": []
+    },
+    "oppo_bold": {
+      "basename": "OPPOSans-Bold.ttf",
+      "sha256": "28c4079cf203b619cc6c6a5d1185b1a1128e8e91ea431df6b2d025b55ebad99a",
+      "postscript_name": "OPPOSans-Bold",
+      "face_index": 0,
+      "variations": []
+    },
+    "oppo_medium": {
+      "basename": "OPPOSans-Medium.ttf",
+      "sha256": "337431511cecde0d0e05df1b8814d226b1f0f936436bf6d119317e62b0ea2a96",
+      "postscript_name": "OPPOSans-Medium",
+      "face_index": 0,
+      "variations": []
+    },
+    "oppo_regular": {
+      "basename": "OPPOSans-Regular.ttf",
+      "sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "postscript_name": "OPPOSans",
+      "face_index": 0,
+      "variations": []
+    },
+    "alipay_number_regular": {
+      "basename": "AlipayNumber-Regular.ttf",
+      "sha256": "6074082d8cb92e175184b177e28335e0171f3ddfb2b5818d7853295f7fb0fada",
+      "postscript_name": "AlipayNumber-Regular",
+      "face_index": 0,
+      "variations": []
+    }
+  },
+  "gates": {
+    "path": "GATES.json",
+    "sha256": "a09c1733a0d8f1c80c3b66d79ae11ecc49f0b05b9d0aa928e9349e806a5d76a9"
+  },
+  "builder": {
+    "script": "build_latin_references.py",
+    "pillow_version": "12.3.0",
+    "source_manifest_sha256": "8cf0910c19d77e04897d7bd3fc5289a82ef99aa59bc554b078a24eb653f351b1"
+  }
+}

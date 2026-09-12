@@ -39,6 +39,26 @@ def vector(image):
     return normalize_raster(a) if a is not None else None
 
 
+def aligned_query_vectors(z):
+    """Compare half-pixel translations without cutting off edge strokes.
+
+    Integer centering of a tight glyph at different native pixel sizes leaves
+    a small phase offset after the 32px resize.  Fractional translation handles
+    that nuisance without changing stroke width or the reference archive.  The
+    one-pixel border participates in normalization even though reference ink
+    is zero there; moving ink beyond the original canvas must not erase it.
+    """
+    padded=np.pad(z.reshape(32,32),1)
+    translated=[]
+    for dy in (-1,0,1):
+        vertical=padded if dy==0 else (padded+np.roll(padded,dy,axis=0))*.5
+        for dx in (-1,0,1):
+            shifted=vertical if dx==0 else (vertical+np.roll(vertical,dx,axis=1))*.5
+            norm=np.sqrt(np.einsum('ij,ij->',shifted,shifted,optimize=False))
+            translated.append((shifted[1:-1,1:-1]/norm).reshape(-1))
+    return np.stack(translated)
+
+
 def _load_reference_member(archive,name):
     try:
         info=archive.getinfo(name)
@@ -142,20 +162,23 @@ class CompactFontBank:
         self.cache[char]=vectors;self.loads+=1
         return vectors
 
-    def distances(self,char,z):
+    def distances(self,char,z,*,align=False):
         if z is None:
             return None
         refs=self.references(char)
         if refs is None:
             return None
+        if align:
+            queries=aligned_query_vectors(z)
+            return 1-np.einsum('fsn,kn->fsk',refs,queries,optimize=False).max(axis=(1,2))
         return np.asarray([float(np.min(1-np.einsum('ij,j->i',face,z,optimize=False))) for face in refs])
 
-    def match(self,samples):
+    def match(self,samples,*,align=False):
         if not samples:
             return {'status':'failed','reason':'no_samples'}
         by=defaultdict(list)
         for sample in samples:
-            c=sample['character'];distance=self.distances(c,vector(sample['image']))
+            c=sample['character'];distance=self.distances(c,vector(sample['image']),align=align)
             if distance is None:
                 return {'status':'failed','reason':'bad_query_or_missing_reference'}
             by[c].append(distance)
@@ -189,6 +212,11 @@ def score_font(bank,samples,complete):
     gate=bank.gates.get(str(n));pf='PingFang SC'
     def unique(m):return m.get('status')=='ok' and m.get('leading_family_ties')==[pf]
     accepted=bool(complete and gate and all(unique(full[k]) and unique(sub[k]) and sub[k]['family_scores'][pf]<=gate['max_distance'] and sub[k]['margin_to_next_family']>=gate['min_margin'] for k in variants))
-    stable=bool(complete and all(v.get('status')=='ok' and len(v.get('leading_family_ties',[]))==1 for v in full.values()) and len({v.get('family_candidate') for v in full.values()})==1)
-    return {'accepted_pingfang':accepted,'family':full['identity'].get('family_candidate') if stable else None,
-            'candidates':rank(full['identity']),'views':full,'subset_views':sub,'complete':complete,'gate':gate}
+    # The calibrated PingFang decision above must continue to use the frozen
+    # distance. Alignment is a separate family-candidate comparison, and still
+    # requires complete segmentation and agreement in all three image views.
+    candidate_views=full if accepted else {key:bank.match(xs,align=True) for key,xs in variants.items()}
+    stable=bool(complete and all(v.get('status')=='ok' and len(v.get('leading_family_ties',[]))==1 for v in candidate_views.values()) and len({v.get('family_candidate') for v in candidate_views.values()})==1)
+    return {'accepted_pingfang':accepted,'family':candidate_views['identity'].get('family_candidate') if stable else None,
+            'candidates':rank(candidate_views['identity']),'views':full,'subset_views':sub,'complete':complete,'gate':gate,
+            'candidate_views':candidate_views,'candidate_method':'blur32' if accepted else 'blur32_half_pixel_alignment'}

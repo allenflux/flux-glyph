@@ -1,38 +1,39 @@
 {
   "schema": "flux-glyph-controlled-font-e2e-report-v1",
-  "evaluated_at_utc": "2026-09-11T13:35:05.551078+00:00",
+  "evaluated_at_utc": "2026-09-12T03:17:13.259400+00:00",
   "claim_scope": "controlled synthetic end-to-end only; no real Alipay screenshot font truth",
   "uncertain_counted_as_correct": false,
   "strict_correct_definition": "detected selected region + exact OCR + every expected Han glyph segmented ok + each source bbox covers >=90% of the known rendered ink bbox and stays within its character cell (+/-2 px) + accepted family + exact expected family",
   "protocol_sha256": "2e99954e033b207784ee652b530e62bb1db738cb6c63a892ca8b78cf764cc7af",
   "generated_manifest_sha256": "70b6a15d913905478211e6062bb29505696de002700b050d8c190c17cdc4c094",
-  "model_version": "r13-pp-ink-v1-b2ff7910",
-  "model_bundle_manifest_sha256": "c0b3dd875b0cbe7983f9b2e829cabff0788f297a6e26cada6a8ec1d6f6321f39",
+  "model_version": "r14-mobile-fonts-v1",
+  "model_bundle_manifest_sha256": "d9ff0097be11d0748c23bdd87b22b74cf0fb0c9d6ba079eb381483659dda5ae4",
   "runtime_code_sha256": {
-    "pipeline.py": "b578c9d4686b96fc44b028621ddd32711a3cac1414c12fa5142bf8fae3021623",
+    "pipeline.py": "a7cccb38fe567945c6e0e9b26d38b1150612469f168feacbba013c578384f378",
     "ppocr.py": "46e6b470bb0cc5820a363a5977de1ff70381a28f819f287913034dc2f3328fa9",
-    "segmentation.py": "0632dcd970664b08c8e61a22b61d5b55be44ed680f79fb79308054e8e7b42d2b",
-    "font_matcher.py": "0990157442d7d7fa65f3f96d17b1a6e87d56d3998bd12fba34857913711829dc",
+    "segmentation.py": "9e981576cd1e24e9b9318e9632bc9f91dada9afa3170f59a637aaf5c17cb7604",
+    "font_matcher.py": "2345f1e8f7bc1be8d4d55dc78709c0d99442730720fb90d023296c1db3ec0298",
     "detection.py": "858e5b80f45887ee766d390458d279d65ac18f0413ad43cbe87e58f72c4a3ded",
     "foreground.py": "7d6fda017441facc47453bdc71642c07d2f998cab568978d08bf7cf8640eafde",
     "glyph_preprocess.py": "0b9c215f7666ce8c9a335cb966f5b3f5552935eee65e0c7bb6177fbcdb008782",
-    "models.py": "56245755ba49473ee2a20c0f1ff2e04c676843d69ea2a3ffcb4f131f75619c8f"
+    "models.py": "fcb7952092874db4ee18080799b7aebbd048da235e8df1ecee4991a564a8af90",
+    "latin_matcher.py": "4280c6d08776e9456926486942151c6234191639bc122a18cdd81fa8ed075ecb"
   },
   "metrics": {
     "overall": {
       "total": 36,
-      "accepted": 28,
-      "font_name_correct": 27,
-      "strict_correct": 26,
-      "accepted_precision": 0.964286,
-      "strict_evidence_complete_precision": 0.928571,
-      "coverage": 0.777778,
-      "total_name_correct_rate": 0.75,
-      "total_correct_rate": 0.722222,
+      "accepted": 30,
+      "font_name_correct": 30,
+      "strict_correct": 29,
+      "accepted_precision": 1.0,
+      "strict_evidence_complete_precision": 0.966667,
+      "coverage": 0.833333,
+      "total_name_correct_rate": 0.833333,
+      "total_correct_rate": 0.805556,
       "ocr_exact_rate": 1.0,
       "segmentation_status_ok_rate": 0.972222,
       "segmentation_complete_rate": 0.944444,
-      "oracle_match_correct_rate": 0.722222
+      "oracle_match_correct_rate": 0.916667
     },
     "by_family": {
       "HarmonyOS Sans SC": {
@@ -48,22 +49,22 @@
         "ocr_exact_rate": 1.0,
         "segmentation_status_ok_rate": 1.0,
         "segmentation_complete_rate": 1.0,
-        "oracle_match_correct_rate": 0.5
+        "oracle_match_correct_rate": 0.833333
       },
       "MiSans": {
         "total": 6,
-        "accepted": 3,
-        "font_name_correct": 3,
-        "strict_correct": 3,
+        "accepted": 5,
+        "font_name_correct": 5,
+        "strict_correct": 5,
         "accepted_precision": 1.0,
         "strict_evidence_complete_precision": 1.0,
-        "coverage": 0.5,
-        "total_name_correct_rate": 0.5,
-        "total_correct_rate": 0.5,
+        "coverage": 0.833333,
+        "total_name_correct_rate": 0.833333,
+        "total_correct_rate": 0.833333,
         "ocr_exact_rate": 1.0,
         "segmentation_status_ok_rate": 1.0,
         "segmentation_complete_rate": 1.0,
-        "oracle_match_correct_rate": 0.666667
+        "oracle_match_correct_rate": 1.0
       },
       "Noto Sans CJK SC": {
         "total": 6,
@@ -83,17 +84,17 @@
       "OPPO Sans": {
         "total": 6,
         "accepted": 3,
-        "font_name_correct": 2,
-        "strict_correct": 2,
-        "accepted_precision": 0.666667,
-        "strict_evidence_complete_precision": 0.666667,
+        "font_name_correct": 3,
+        "strict_correct": 3,
+        "accepted_precision": 1.0,
+        "strict_evidence_complete_precision": 1.0,
         "coverage": 0.5,
-        "total_name_correct_rate": 0.333333,
-        "total_correct_rate": 0.333333,
+        "total_name_correct_rate": 0.5,
+        "total_correct_rate": 0.5,
         "ocr_exact_rate": 1.0,
         "segmentation_status_ok_rate": 1.0,
         "segmentation_complete_rate": 1.0,
-        "oracle_match_correct_rate": 0.166667
+        "oracle_match_correct_rate": 0.666667
       },
       "PingFang SC": {
         "total": 6,
@@ -130,8 +131,8 @@
       "detection_miss": 0,
       "ocr_or_region_selection": 0,
       "segmentation": 2,
-      "font_abstention": 7,
-      "font_mismatch": 1
+      "font_abstention": 5,
+      "font_mismatch": 0
     },
     "non_pingfang_false_pingfang_accepts": 0,
     "non_pingfang_cases": 30,
@@ -313,10 +314,10 @@
         ]
       },
       "timing_seconds": {
-        "detector": 0.0659153750166297,
-        "ocr": 0.02256725006736815,
-        "font_matching": 0.024257499957457185,
-        "total": 0.12027212511748075
+        "detector": 0.05959029099904001,
+        "ocr": 0.020159208914265037,
+        "font_matching": 0.016610875027254224,
+        "total": 0.10180508298799396
       }
     },
     {
@@ -494,10 +495,10 @@
         ]
       },
       "timing_seconds": {
-        "detector": 0.0678248330950737,
-        "ocr": 0.02342370804399252,
-        "font_matching": 0.013955957954749465,
-        "total": 0.10972045897506177
+        "detector": 0.05793145811185241,
+        "ocr": 0.019855958176776767,
+        "font_matching": 0.011526833986863494,
+        "total": 0.09302091598510742
       }
     },
     {
@@ -733,10 +734,10 @@
         ]
       },
       "timing_seconds": {
-        "detector": 0.06216554110869765,
-        "ocr": 0.02349270787090063,
-        "font_matching": 0.01805666694417596,
-        "total": 0.10796345886774361
+        "detector": 0.056308666011318564,
+        "ocr": 0.019873375073075294,
+        "font_matching": 0.013993124943226576,
+        "total": 0.09405008400790393
       }
     },
     {
@@ -914,10 +915,10 @@
         ]
       },
       "timing_seconds": {
-        "detector": 0.06281399982981384,
-        "ocr": 0.02259783400222659,
-        "font_matching": 0.012575249886140227,
-        "total": 0.10248250002041459
+        "detector": 0.054928958183154464,
+        "ocr": 0.019789916928857565,
+        "font_matching": 0.010363291949033737,
+        "total": 0.08887133304961026
       }
     },
     {
@@ -1124,10 +1125,10 @@
         ]
       },
       "timing_seconds": {
-        "detector": 0.06225045910105109,
-        "ocr": 0.022856625029817224,
-        "font_matching": 0.017365540843456984,
-        "total": 0.1076238329987973
+        "detector": 0.05577349988743663,
+        "ocr": 0.027840999886393547,
+        "font_matching": 0.019914042204618454,
+        "total": 0.10855379211716354
       }
     },
     {
@@ -1334,10 +1335,10 @@
         ]
       },
       "timing_seconds": {
-        "detector": 0.06149895815178752,
-        "ocr": 0.02214937494136393,
-        "font_matching": 0.015949334017932415,
-        "total": 0.10439016716554761
+        "detector": 0.055060792015865445,
+        "ocr": 0.01971370796673,
+        "font_matching": 0.01246795803308487,
+        "total": 0.09111983282491565
       }
     },
     {
@@ -1484,15 +1485,15 @@
       "candidates": [
         {
           "family": "Noto Sans CJK SC",
-          "distance": 0.04084894493232738
-        },
-        {
-          "family": "Yuanti SC",
-          "distance": 0.057162981346275926
+          "distance": 0.017828463442721904
         },
         {
           "family": "MiSans",
-          "distance": 0.07129034495326339
+          "distance": 0.03510755884550615
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.03907334854251765
         }
       ],
       "oracle_match": {
@@ -1502,23 +1503,23 @@
         "candidates": [
           {
             "family": "Noto Sans CJK SC",
-            "distance": 0.04084894493232738
-          },
-          {
-            "family": "Yuanti SC",
-            "distance": 0.057162981346275926
+            "distance": 0.017828463442721904
           },
           {
             "family": "MiSans",
-            "distance": 0.07129034495326339
+            "distance": 0.03510755884550615
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.03907334854251765
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.0649841669946909,
-        "ocr": 0.021227417048066854,
-        "font_matching": 0.009609832894057035,
-        "total": 0.10097749996930361
+        "detector": 0.05488587496802211,
+        "ocr": 0.0197156248614192,
+        "font_matching": 0.01439775014296174,
+        "total": 0.09288108395412564
       }
     },
     {
@@ -1665,15 +1666,15 @@
       "candidates": [
         {
           "family": "Noto Sans CJK SC",
-          "distance": 0.026871811690269365
+          "distance": 0.021747794545761423
         },
         {
           "family": "PingFang SC",
-          "distance": 0.05548674171682513
+          "distance": 0.038363703267510985
         },
         {
-          "family": "HarmonyOS Sans SC",
-          "distance": 0.07496446518635042
+          "family": "Hiragino Sans GB",
+          "distance": 0.05763496607883142
         }
       ],
       "oracle_match": {
@@ -1683,23 +1684,23 @@
         "candidates": [
           {
             "family": "Noto Sans CJK SC",
-            "distance": 0.026871811690269365
+            "distance": 0.021747794545761423
           },
           {
             "family": "PingFang SC",
-            "distance": 0.05548674171682513
+            "distance": 0.038363703267510985
           },
           {
-            "family": "HarmonyOS Sans SC",
-            "distance": 0.07496446518635042
+            "family": "Hiragino Sans GB",
+            "distance": 0.05763496607883142
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05770758306607604,
-        "ocr": 0.020984291099011898,
-        "font_matching": 0.009863500017672777,
-        "total": 0.09319133288227022
+        "detector": 0.05460466584190726,
+        "ocr": 0.019709791988134384,
+        "font_matching": 0.015068624867126346,
+        "total": 0.09360262495465577
       }
     },
     {
@@ -1904,15 +1905,15 @@
       "candidates": [
         {
           "family": "Noto Sans CJK SC",
-          "distance": 0.039954225239023165
-        },
-        {
-          "family": "MiSans",
-          "distance": 0.08094319042177671
+          "distance": 0.02477974817599275
         },
         {
           "family": "PingFang SC",
-          "distance": 0.0835187342751113
+          "distance": 0.04722043511902
+        },
+        {
+          "family": "Hiragino Sans GB",
+          "distance": 0.05326926702531224
         }
       ],
       "oracle_match": {
@@ -1922,23 +1923,23 @@
         "candidates": [
           {
             "family": "Noto Sans CJK SC",
-            "distance": 0.039954225239023165
-          },
-          {
-            "family": "MiSans",
-            "distance": 0.08094319042177671
+            "distance": 0.02477974817599275
           },
           {
             "family": "PingFang SC",
-            "distance": 0.0835187342751113
+            "distance": 0.04722043511902
+          },
+          {
+            "family": "Hiragino Sans GB",
+            "distance": 0.05326926702531224
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05767558398656547,
-        "ocr": 0.02095687505789101,
-        "font_matching": 0.012282792013138533,
-        "total": 0.09527483396232128
+        "detector": 0.054861375130712986,
+        "ocr": 0.01977658295072615,
+        "font_matching": 0.020290583139285445,
+        "total": 0.09895062493160367
       }
     },
     {
@@ -2085,15 +2086,15 @@
       "candidates": [
         {
           "family": "Noto Sans CJK SC",
-          "distance": 0.03100045863224582
+          "distance": 0.016817250418718677
         },
         {
           "family": "PingFang SC",
-          "distance": 0.057594168720696615
+          "distance": 0.031391420530123504
         },
         {
-          "family": "Hiragino Sans GB",
-          "distance": 0.07603201375444285
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.04443840018270165
         }
       ],
       "oracle_match": {
@@ -2103,23 +2104,23 @@
         "candidates": [
           {
             "family": "Noto Sans CJK SC",
-            "distance": 0.03100045863224582
+            "distance": 0.016817250418718677
           },
           {
             "family": "PingFang SC",
-            "distance": 0.057594168720696615
+            "distance": 0.031391420530123504
           },
           {
-            "family": "Hiragino Sans GB",
-            "distance": 0.07603201375444285
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.04443840018270165
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05768454214558005,
-        "ocr": 0.02087375009432435,
-        "font_matching": 0.009780999971553683,
-        "total": 0.09282950009219348
+        "detector": 0.05468162498436868,
+        "ocr": 0.01979016582481563,
+        "font_matching": 0.015169207938015461,
+        "total": 0.09379108296707273
       }
     },
     {
@@ -2295,15 +2296,15 @@
       "candidates": [
         {
           "family": "Noto Sans CJK SC",
-          "distance": 0.027022076100572723
+          "distance": 0.013277283932547745
         },
         {
           "family": "PingFang SC",
-          "distance": 0.06387598089593578
+          "distance": 0.03547734942303904
         },
         {
           "family": "HarmonyOS Sans SC",
-          "distance": 0.10004734591500446
+          "distance": 0.06118751955280621
         }
       ],
       "oracle_match": {
@@ -2313,23 +2314,23 @@
         "candidates": [
           {
             "family": "Noto Sans CJK SC",
-            "distance": 0.039943384660863536
+            "distance": 0.014436419988142334
           },
           {
             "family": "PingFang SC",
-            "distance": 0.06622811684129655
+            "distance": 0.03846977545668686
           },
           {
             "family": "HarmonyOS Sans SC",
-            "distance": 0.08892218016104163
+            "distance": 0.05173705106934769
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05803729104809463,
-        "ocr": 0.021102583035826683,
-        "font_matching": 0.01211695815436542,
-        "total": 0.09587333304807544
+        "detector": 0.054337124805897474,
+        "ocr": 0.019849957898259163,
+        "font_matching": 0.0185091660823673,
+        "total": 0.09693316696211696
       }
     },
     {
@@ -2505,15 +2506,15 @@
       "candidates": [
         {
           "family": "Noto Sans CJK SC",
-          "distance": 0.05706637588605934
+          "distance": 0.020735202857702827
+        },
+        {
+          "family": "PingFang SC",
+          "distance": 0.03754772970697915
         },
         {
           "family": "HarmonyOS Sans SC",
-          "distance": 0.08429807924047865
-        },
-        {
-          "family": "MiSans",
-          "distance": 0.08770188556517258
+          "distance": 0.04652300655116588
         }
       ],
       "oracle_match": {
@@ -2523,23 +2524,23 @@
         "candidates": [
           {
             "family": "Noto Sans CJK SC",
-            "distance": 0.05706637588605934
+            "distance": 0.020735202857702827
+          },
+          {
+            "family": "PingFang SC",
+            "distance": 0.03754772970697915
           },
           {
             "family": "HarmonyOS Sans SC",
-            "distance": 0.08429807924047865
-          },
-          {
-            "family": "MiSans",
-            "distance": 0.08770188556517258
+            "distance": 0.04652300655116588
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.0576428750064224,
-        "ocr": 0.0210313331335783,
-        "font_matching": 0.010968792019411922,
-        "total": 0.09415450016967952
+        "detector": 0.05468016699887812,
+        "ocr": 0.02008787519298494,
+        "font_matching": 0.017503167036920786,
+        "total": 0.09636595821939409
       }
     },
     {
@@ -2677,50 +2678,50 @@
           "reason": "ctc_order_refined_by_connected_foreground_gaps"
         }
       ],
-      "status": "uncertain",
-      "accepted": false,
-      "predicted_family": null,
-      "font_name_correct": false,
-      "correct": false,
-      "failure_stage": "font_abstention",
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "HarmonyOS Sans SC",
+      "font_name_correct": true,
+      "correct": true,
+      "failure_stage": null,
       "candidates": [
         {
           "family": "HarmonyOS Sans SC",
-          "distance": 0.032193452431552805
+          "distance": 0.014376072315756716
         },
         {
           "family": "OPPO Sans",
-          "distance": 0.03415411334904736
+          "distance": 0.02141271715705989
         },
         {
           "family": "MiSans",
-          "distance": 0.035834512565171756
+          "distance": 0.021709359572479242
         }
       ],
       "oracle_match": {
-        "family": null,
-        "correct": false,
+        "family": "HarmonyOS Sans SC",
+        "correct": true,
         "accepted_pingfang": false,
         "candidates": [
           {
             "family": "HarmonyOS Sans SC",
-            "distance": 0.032193452431552805
+            "distance": 0.014376072315756716
           },
           {
             "family": "OPPO Sans",
-            "distance": 0.03415411334904736
+            "distance": 0.02141271715705989
           },
           {
             "family": "MiSans",
-            "distance": 0.035834512565171756
+            "distance": 0.021709359572479242
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05821124999783933,
-        "ocr": 0.02144258306361735,
-        "font_matching": 0.00949195888824761,
-        "total": 0.09308725013397634
+        "detector": 0.05579241691157222,
+        "ocr": 0.02119729109108448,
+        "font_matching": 0.015572583070024848,
+        "total": 0.09652641718275845
       }
     },
     {
@@ -2867,41 +2868,41 @@
       "candidates": [
         {
           "family": "HarmonyOS Sans SC",
-          "distance": 0.024027313228863922
+          "distance": 0.012677254585139242
         },
         {
           "family": "PingFang SC",
-          "distance": 0.03188269840373814
+          "distance": 0.022987941661057665
         },
         {
           "family": "MiSans",
-          "distance": 0.053278786426928626
+          "distance": 0.028433576645679776
         }
       ],
       "oracle_match": {
-        "family": null,
-        "correct": false,
+        "family": "HarmonyOS Sans SC",
+        "correct": true,
         "accepted_pingfang": false,
         "candidates": [
           {
             "family": "HarmonyOS Sans SC",
-            "distance": 0.024027313228863922
+            "distance": 0.012677254585139242
           },
           {
             "family": "PingFang SC",
-            "distance": 0.03188269840373814
+            "distance": 0.022987941661057665
           },
           {
             "family": "MiSans",
-            "distance": 0.053278786426928626
+            "distance": 0.028433576645679776
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05796962487511337,
-        "ocr": 0.020982292015105486,
-        "font_matching": 0.010000708978623152,
-        "total": 0.09369416697882116
+        "detector": 0.05652295798063278,
+        "ocr": 0.020134291844442487,
+        "font_matching": 0.015164457960054278,
+        "total": 0.09610054083168507
       }
     },
     {
@@ -3106,15 +3107,15 @@
       "candidates": [
         {
           "family": "HarmonyOS Sans SC",
-          "distance": 0.030092188498982524
+          "distance": 0.015169656373871335
         },
         {
           "family": "MiSans",
-          "distance": 0.03579528978884224
+          "distance": 0.02557061270942912
         },
         {
           "family": "PingFang SC",
-          "distance": 0.05439835311586947
+          "distance": 0.03575977856673598
         }
       ],
       "oracle_match": {
@@ -3124,23 +3125,23 @@
         "candidates": [
           {
             "family": "HarmonyOS Sans SC",
-            "distance": 0.030092188498982524
+            "distance": 0.015169656373871335
           },
           {
             "family": "MiSans",
-            "distance": 0.03579528978884224
+            "distance": 0.02557061270942912
           },
           {
             "family": "PingFang SC",
-            "distance": 0.05439835311586947
+            "distance": 0.03575977856673598
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05770249990746379,
-        "ocr": 0.02095029200427234,
-        "font_matching": 0.012215375201776624,
-        "total": 0.09531487501226366
+        "detector": 0.05526779196225107,
+        "ocr": 0.020400125067681074,
+        "font_matching": 0.02081808401271701,
+        "total": 0.10064662504009902
       }
     },
     {
@@ -3278,50 +3279,50 @@
           "reason": "ctc_order_refined_by_connected_foreground_gaps"
         }
       ],
-      "status": "candidate",
-      "accepted": true,
-      "predicted_family": "HarmonyOS Sans SC",
-      "font_name_correct": true,
-      "correct": true,
-      "failure_stage": null,
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "font_name_correct": false,
+      "correct": false,
+      "failure_stage": "font_abstention",
       "candidates": [
         {
-          "family": "HarmonyOS Sans SC",
-          "distance": 0.03071761460422101
-        },
-        {
           "family": "MiSans",
-          "distance": 0.03923109151341811
+          "distance": 0.02093677858409365
         },
         {
-          "family": "PingFang SC",
-          "distance": 0.04133935343436579
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.022610446247972094
+        },
+        {
+          "family": "OPPO Sans",
+          "distance": 0.0256683001727335
         }
       ],
       "oracle_match": {
-        "family": "HarmonyOS Sans SC",
-        "correct": true,
+        "family": null,
+        "correct": false,
         "accepted_pingfang": false,
         "candidates": [
           {
-            "family": "HarmonyOS Sans SC",
-            "distance": 0.03071761460422101
-          },
-          {
             "family": "MiSans",
-            "distance": 0.03923109151341811
+            "distance": 0.02093677858409365
           },
           {
-            "family": "PingFang SC",
-            "distance": 0.04133935343436579
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.022610446247972094
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.0256683001727335
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05725045897997916,
-        "ocr": 0.020899834111332893,
-        "font_matching": 0.01003320887684822,
-        "total": 0.0927646248601377
+        "detector": 0.05583924986422062,
+        "ocr": 0.01950695808045566,
+        "font_matching": 0.015409916872158647,
+        "total": 0.09483737498521805
       }
     },
     {
@@ -3497,15 +3498,15 @@
       "candidates": [
         {
           "family": "HarmonyOS Sans SC",
-          "distance": 0.02960389650668511
+          "distance": 0.012307497469300576
         },
         {
           "family": "MiSans",
-          "distance": 0.045505370450165096
+          "distance": 0.023950347225420176
         },
         {
           "family": "PingFang SC",
-          "distance": 0.05188563245792175
+          "distance": 0.032050061791398486
         }
       ],
       "oracle_match": {
@@ -3515,23 +3516,23 @@
         "candidates": [
           {
             "family": "HarmonyOS Sans SC",
-            "distance": 0.02960389650668511
+            "distance": 0.012307497469300576
           },
           {
             "family": "MiSans",
-            "distance": 0.045505370450165096
+            "distance": 0.023950347225420176
           },
           {
             "family": "PingFang SC",
-            "distance": 0.05188563245792175
+            "distance": 0.032050061791398486
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05798545898869634,
-        "ocr": 0.021038209088146687,
-        "font_matching": 0.011910208035260439,
-        "total": 0.09574379096738994
+        "detector": 0.056556500028818846,
+        "ocr": 0.02012000000104308,
+        "font_matching": 0.019338875077664852,
+        "total": 0.10058158403262496
       }
     },
     {
@@ -3707,41 +3708,41 @@
       "candidates": [
         {
           "family": "HarmonyOS Sans SC",
-          "distance": 0.035433250427504136
+          "distance": 0.0168119913143991
         },
         {
           "family": "MiSans",
-          "distance": 0.04537993305875558
+          "distance": 0.026561008362269913
         },
         {
           "family": "PingFang SC",
-          "distance": 0.05806882129061315
+          "distance": 0.03545452394516346
         }
       ],
       "oracle_match": {
-        "family": null,
-        "correct": false,
+        "family": "HarmonyOS Sans SC",
+        "correct": true,
         "accepted_pingfang": false,
         "candidates": [
           {
             "family": "HarmonyOS Sans SC",
-            "distance": 0.035433250427504136
+            "distance": 0.0168119913143991
           },
           {
             "family": "MiSans",
-            "distance": 0.04537993305875558
+            "distance": 0.026561008362269913
           },
           {
             "family": "PingFang SC",
-            "distance": 0.05806882129061315
+            "distance": 0.03545452394516346
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.057300416054204106,
-        "ocr": 0.02113704103976488,
-        "font_matching": 0.010680624982342124,
-        "total": 0.0936745828948915
+        "detector": 0.05584612488746643,
+        "ocr": 0.02018479211255908,
+        "font_matching": 0.0173034998588264,
+        "total": 0.09750983398407698
       }
     },
     {
@@ -3879,50 +3880,50 @@
           "reason": "ctc_order_refined_by_connected_foreground_gaps"
         }
       ],
-      "status": "uncertain",
-      "accepted": false,
-      "predicted_family": null,
-      "font_name_correct": false,
-      "correct": false,
-      "failure_stage": "font_abstention",
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "MiSans",
+      "font_name_correct": true,
+      "correct": true,
+      "failure_stage": null,
       "candidates": [
         {
-          "family": "HarmonyOS Sans SC",
-          "distance": 0.021747635800972775
+          "family": "MiSans",
+          "distance": 0.00745222543615201
         },
         {
-          "family": "MiSans",
-          "distance": 0.022301246422988974
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.017034795660490015
         },
         {
           "family": "OPPO Sans",
-          "distance": 0.031095598312966377
+          "distance": 0.02228184813881673
         }
       ],
       "oracle_match": {
-        "family": "HarmonyOS Sans SC",
-        "correct": false,
+        "family": "MiSans",
+        "correct": true,
         "accepted_pingfang": false,
         "candidates": [
           {
-            "family": "HarmonyOS Sans SC",
-            "distance": 0.021747635800972775
+            "family": "MiSans",
+            "distance": 0.00745222543615201
           },
           {
-            "family": "MiSans",
-            "distance": 0.022301246422988974
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.017034795660490015
           },
           {
             "family": "OPPO Sans",
-            "distance": 0.031095598312966377
+            "distance": 0.02228184813881673
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05744595779106021,
-        "ocr": 0.020709333010017872,
-        "font_matching": 0.00952637498266995,
-        "total": 0.09164241678081453
+        "detector": 0.05629666685126722,
+        "ocr": 0.020744957961142063,
+        "font_matching": 0.015323250088840723,
+        "total": 0.09650400001555681
       }
     },
     {
@@ -4069,15 +4070,15 @@
       "candidates": [
         {
           "family": "MiSans",
-          "distance": 0.037611632899060776
+          "distance": 0.012353267378063582
         },
         {
           "family": "OPPO Sans",
-          "distance": 0.05987005831080794
+          "distance": 0.031068728425815734
         },
         {
-          "family": "PingFang SC",
-          "distance": 0.06455858405099163
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.03162539551893623
         }
       ],
       "oracle_match": {
@@ -4087,23 +4088,23 @@
         "candidates": [
           {
             "family": "MiSans",
-            "distance": 0.037611632899060776
+            "distance": 0.012353267378063582
           },
           {
             "family": "OPPO Sans",
-            "distance": 0.05987005831080794
+            "distance": 0.031068728425815734
           },
           {
-            "family": "PingFang SC",
-            "distance": 0.06455858405099163
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.03162539551893623
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.0574525420088321,
-        "ocr": 0.020990791963413358,
-        "font_matching": 0.010069207986816764,
-        "total": 0.09306083410046995
+        "detector": 0.05554574984125793,
+        "ocr": 0.019721999997273088,
+        "font_matching": 0.014821958960965276,
+        "total": 0.09409458306618035
       }
     },
     {
@@ -4308,15 +4309,15 @@
       "candidates": [
         {
           "family": "MiSans",
-          "distance": 0.013612936487784425
+          "distance": 0.0064506638075435925
         },
         {
           "family": "HarmonyOS Sans SC",
-          "distance": 0.027462451621001544
+          "distance": 0.018249287141484494
         },
         {
           "family": "OPPO Sans",
-          "distance": 0.033938836376024926
+          "distance": 0.02152420549776583
         }
       ],
       "oracle_match": {
@@ -4326,23 +4327,23 @@
         "candidates": [
           {
             "family": "MiSans",
-            "distance": 0.013612936487784425
+            "distance": 0.0064506638075435925
           },
           {
             "family": "HarmonyOS Sans SC",
-            "distance": 0.027462451621001544
+            "distance": 0.018249287141484494
           },
           {
             "family": "OPPO Sans",
-            "distance": 0.033938836376024926
+            "distance": 0.02152420549776583
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05758641613647342,
-        "ocr": 0.02089216699823737,
-        "font_matching": 0.01227325014770031,
-        "total": 0.09498316701501608
+        "detector": 0.05458304099738598,
+        "ocr": 0.01992466696538031,
+        "font_matching": 0.02345133386552334,
+        "total": 0.10186583292670548
       }
     },
     {
@@ -4480,24 +4481,24 @@
           "reason": "ctc_order_refined_by_connected_foreground_gaps"
         }
       ],
-      "status": "uncertain",
-      "accepted": false,
-      "predicted_family": null,
-      "font_name_correct": false,
-      "correct": false,
-      "failure_stage": "font_abstention",
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "MiSans",
+      "font_name_correct": true,
+      "correct": true,
+      "failure_stage": null,
       "candidates": [
         {
           "family": "MiSans",
-          "distance": 0.027888465042804456
-        },
-        {
-          "family": "HarmonyOS Sans SC",
-          "distance": 0.02791738570900054
+          "distance": 0.0077137184546632875
         },
         {
           "family": "OPPO Sans",
-          "distance": 0.036042583959359165
+          "distance": 0.024085276929336347
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.024723564395641245
         }
       ],
       "oracle_match": {
@@ -4507,23 +4508,23 @@
         "candidates": [
           {
             "family": "MiSans",
-            "distance": 0.027888465042804456
-          },
-          {
-            "family": "HarmonyOS Sans SC",
-            "distance": 0.02791738570900054
+            "distance": 0.0077137184546632875
           },
           {
             "family": "OPPO Sans",
-            "distance": 0.036042583959359165
+            "distance": 0.024085276929336347
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.024723564395641245
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05801345920190215,
-        "ocr": 0.021130874985828996,
-        "font_matching": 0.009793625213205814,
-        "total": 0.09324433305300772
+        "detector": 0.05482279206626117,
+        "ocr": 0.02029124996624887,
+        "font_matching": 0.016089458018541336,
+        "total": 0.09559495793655515
       }
     },
     {
@@ -4699,15 +4700,15 @@
       "candidates": [
         {
           "family": "MiSans",
-          "distance": 0.03116633699817235
+          "distance": 0.013289001709769521
         },
         {
           "family": "HarmonyOS Sans SC",
-          "distance": 0.036542421107208
+          "distance": 0.022715735548037186
         },
         {
           "family": "PingFang SC",
-          "distance": 0.039111002907676884
+          "distance": 0.03263194275435179
         }
       ],
       "oracle_match": {
@@ -4717,23 +4718,23 @@
         "candidates": [
           {
             "family": "MiSans",
-            "distance": 0.03116633699817235
+            "distance": 0.013289001709769521
           },
           {
             "family": "HarmonyOS Sans SC",
-            "distance": 0.036542421107208
+            "distance": 0.022715735548037186
           },
           {
             "family": "PingFang SC",
-            "distance": 0.039111002907676884
+            "distance": 0.03263194275435179
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05919962516054511,
-        "ocr": 0.021100958110764623,
-        "font_matching": 0.011879624798893929,
-        "total": 0.10288941697217524
+        "detector": 0.05569374980404973,
+        "ocr": 0.020227374974638224,
+        "font_matching": 0.019049334106966853,
+        "total": 0.09912099991925061
       }
     },
     {
@@ -4909,41 +4910,41 @@
       "candidates": [
         {
           "family": "MiSans",
-          "distance": 0.02237478616665245
+          "distance": 0.011243939967225414
         },
         {
           "family": "OPPO Sans",
-          "distance": 0.024678885708408215
+          "distance": 0.018743989638525194
         },
         {
           "family": "HarmonyOS Sans SC",
-          "distance": 0.031721849288897944
+          "distance": 0.020634151624893217
         }
       ],
       "oracle_match": {
-        "family": null,
-        "correct": false,
+        "family": "MiSans",
+        "correct": true,
         "accepted_pingfang": false,
         "candidates": [
           {
             "family": "MiSans",
-            "distance": 0.02237478616665245
+            "distance": 0.011243939967225414
           },
           {
             "family": "OPPO Sans",
-            "distance": 0.024678885708408215
+            "distance": 0.018743989638525194
           },
           {
             "family": "HarmonyOS Sans SC",
-            "distance": 0.031721849288897944
+            "distance": 0.020634151624893217
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05720224999822676,
-        "ocr": 0.020959084155038,
-        "font_matching": 0.010936375008895993,
-        "total": 0.09319983306340873
+        "detector": 0.05665037501603365,
+        "ocr": 0.020648624980822206,
+        "font_matching": 0.017502040835097432,
+        "total": 0.09863745816983283
       }
     },
     {
@@ -5081,24 +5082,24 @@
           "reason": "ctc_order_refined_by_connected_foreground_gaps"
         }
       ],
-      "status": "candidate",
-      "accepted": true,
-      "predicted_family": "HarmonyOS Sans SC",
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
       "font_name_correct": false,
       "correct": false,
-      "failure_stage": "font_mismatch",
+      "failure_stage": "font_abstention",
       "candidates": [
         {
-          "family": "HarmonyOS Sans SC",
-          "distance": 0.02483040973572198
-        },
-        {
           "family": "MiSans",
-          "distance": 0.025494179943128192
+          "distance": 0.01100926116141382
         },
         {
           "family": "OPPO Sans",
-          "distance": 0.028747598458073786
+          "distance": 0.012477210179504789
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.0138499946409113
         }
       ],
       "oracle_match": {
@@ -5107,24 +5108,24 @@
         "accepted_pingfang": false,
         "candidates": [
           {
-            "family": "HarmonyOS Sans SC",
-            "distance": 0.02483040973572198
-          },
-          {
             "family": "MiSans",
-            "distance": 0.025494179943128192
+            "distance": 0.01100926116141382
           },
           {
             "family": "OPPO Sans",
-            "distance": 0.028747598458073786
+            "distance": 0.012477210179504789
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.0138499946409113
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05774624994955957,
-        "ocr": 0.021019625011831522,
-        "font_matching": 0.009301166981458664,
-        "total": 0.0923069161362946
+        "detector": 0.059055249905213714,
+        "ocr": 0.022570000030100346,
+        "font_matching": 0.01874966686591506,
+        "total": 0.10434262501075864
       }
     },
     {
@@ -5271,15 +5272,15 @@
       "candidates": [
         {
           "family": "OPPO Sans",
-          "distance": 0.012560545190920647
+          "distance": 0.010487070283583616
         },
         {
           "family": "MiSans",
-          "distance": 0.01932529403143976
+          "distance": 0.014558442923376297
         },
         {
           "family": "HarmonyOS Sans SC",
-          "distance": 0.03574191079026068
+          "distance": 0.017703830721536584
         }
       ],
       "oracle_match": {
@@ -5289,23 +5290,23 @@
         "candidates": [
           {
             "family": "OPPO Sans",
-            "distance": 0.012560545190920647
+            "distance": 0.010487070283583616
           },
           {
             "family": "MiSans",
-            "distance": 0.01932529403143976
+            "distance": 0.014558442923376297
           },
           {
             "family": "HarmonyOS Sans SC",
-            "distance": 0.03574191079026068
+            "distance": 0.017703830721536584
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05807733302935958,
-        "ocr": 0.020971667021512985,
-        "font_matching": 0.009457625215873122,
-        "total": 0.09274762496352196
+        "detector": 0.05590216699056327,
+        "ocr": 0.019919666927307844,
+        "font_matching": 0.015051875030621886,
+        "total": 0.09508512495085597
       }
     },
     {
@@ -5510,41 +5511,41 @@
       "candidates": [
         {
           "family": "MiSans",
-          "distance": 0.013110344047434866
-        },
-        {
-          "family": "HarmonyOS Sans SC",
-          "distance": 0.01996343263413917
+          "distance": 0.011098510485969215
         },
         {
           "family": "OPPO Sans",
-          "distance": 0.020874643685048027
+          "distance": 0.013702445011750553
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.014084605966215599
         }
       ],
       "oracle_match": {
-        "family": "MiSans",
+        "family": null,
         "correct": false,
         "accepted_pingfang": false,
         "candidates": [
           {
             "family": "MiSans",
-            "distance": 0.013110344047434866
-          },
-          {
-            "family": "HarmonyOS Sans SC",
-            "distance": 0.01996343263413917
+            "distance": 0.011098510485969215
           },
           {
             "family": "OPPO Sans",
-            "distance": 0.020874643685048027
+            "distance": 0.013702445011750553
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.014084605966215599
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.056438166880980134,
-        "ocr": 0.02101129200309515,
-        "font_matching": 0.012346875155344605,
-        "total": 0.09360720799304545
+        "detector": 0.054459291975945234,
+        "ocr": 0.019844667054712772,
+        "font_matching": 0.019769249949604273,
+        "total": 0.09782662498764694
       }
     },
     {
@@ -5682,50 +5683,50 @@
           "reason": "ctc_order_refined_by_connected_foreground_gaps"
         }
       ],
-      "status": "uncertain",
-      "accepted": false,
-      "predicted_family": null,
-      "font_name_correct": false,
-      "correct": false,
-      "failure_stage": "font_abstention",
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "OPPO Sans",
+      "font_name_correct": true,
+      "correct": true,
+      "failure_stage": null,
       "candidates": [
         {
-          "family": "HarmonyOS Sans SC",
-          "distance": 0.020532078818746052
+          "family": "OPPO Sans",
+          "distance": 0.007431266887636845
         },
         {
-          "family": "OPPO Sans",
-          "distance": 0.021095289619550872
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.013034267536114252
         },
         {
           "family": "MiSans",
-          "distance": 0.024802479909975084
+          "distance": 0.014251371829940185
         }
       ],
       "oracle_match": {
-        "family": null,
-        "correct": false,
+        "family": "OPPO Sans",
+        "correct": true,
         "accepted_pingfang": false,
         "candidates": [
           {
-            "family": "HarmonyOS Sans SC",
-            "distance": 0.020532078818746052
+            "family": "OPPO Sans",
+            "distance": 0.007431266887636845
           },
           {
-            "family": "OPPO Sans",
-            "distance": 0.021095289619550872
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.013034267536114252
           },
           {
             "family": "MiSans",
-            "distance": 0.024802479909975084
+            "distance": 0.014251371829940185
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.057753958040848374,
-        "ocr": 0.020917792106047273,
-        "font_matching": 0.009927916107699275,
-        "total": 0.09283116715960205
+        "detector": 0.05464962520636618,
+        "ocr": 0.019678875105455518,
+        "font_matching": 0.015251500066369772,
+        "total": 0.09364058286882937
       }
     },
     {
@@ -5892,50 +5893,50 @@
           "reason": "ctc_order_refined_by_connected_foreground_gaps"
         }
       ],
-      "status": "candidate",
-      "accepted": true,
-      "predicted_family": "OPPO Sans",
-      "font_name_correct": true,
-      "correct": true,
-      "failure_stage": null,
+      "status": "uncertain",
+      "accepted": false,
+      "predicted_family": null,
+      "font_name_correct": false,
+      "correct": false,
+      "failure_stage": "font_abstention",
       "candidates": [
         {
           "family": "OPPO Sans",
-          "distance": 0.01817450859172638
-        },
-        {
-          "family": "HarmonyOS Sans SC",
-          "distance": 0.019102047700974456
+          "distance": 0.013059617468766294
         },
         {
           "family": "MiSans",
-          "distance": 0.027159864651096766
+          "distance": 0.013445389335129
+        },
+        {
+          "family": "HarmonyOS Sans SC",
+          "distance": 0.014320233410638882
         }
       ],
       "oracle_match": {
-        "family": null,
-        "correct": false,
+        "family": "OPPO Sans",
+        "correct": true,
         "accepted_pingfang": false,
         "candidates": [
           {
             "family": "OPPO Sans",
-            "distance": 0.01817450859172638
-          },
-          {
-            "family": "HarmonyOS Sans SC",
-            "distance": 0.019102047700974456
+            "distance": 0.013059617468766294
           },
           {
             "family": "MiSans",
-            "distance": 0.027159864651096766
+            "distance": 0.013445389335129
+          },
+          {
+            "family": "HarmonyOS Sans SC",
+            "distance": 0.014320233410638882
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.057844792027026415,
-        "ocr": 0.02109204209409654,
-        "font_matching": 0.011760791996493936,
-        "total": 0.09518108400516212
+        "detector": 0.05467070802114904,
+        "ocr": 0.019708417123183608,
+        "font_matching": 0.018697166116908193,
+        "total": 0.09698712499812245
       }
     },
     {
@@ -6102,50 +6103,50 @@
           "reason": "ctc_order_refined_by_connected_foreground_gaps"
         }
       ],
-      "status": "uncertain",
-      "accepted": false,
-      "predicted_family": null,
-      "font_name_correct": false,
-      "correct": false,
-      "failure_stage": "font_abstention",
+      "status": "candidate",
+      "accepted": true,
+      "predicted_family": "OPPO Sans",
+      "font_name_correct": true,
+      "correct": true,
+      "failure_stage": null,
       "candidates": [
         {
-          "family": "MiSans",
-          "distance": 0.025213397046309916
+          "family": "OPPO Sans",
+          "distance": 0.01011838413829993
         },
         {
-          "family": "OPPO Sans",
-          "distance": 0.025426013947169167
+          "family": "MiSans",
+          "distance": 0.014298604051002051
         },
         {
           "family": "HarmonyOS Sans SC",
-          "distance": 0.028342254684932365
+          "distance": 0.015247695309347442
         }
       ],
       "oracle_match": {
-        "family": null,
-        "correct": false,
+        "family": "OPPO Sans",
+        "correct": true,
         "accepted_pingfang": false,
         "candidates": [
           {
-            "family": "MiSans",
-            "distance": 0.025213397046309916
+            "family": "OPPO Sans",
+            "distance": 0.01011838413829993
           },
           {
-            "family": "OPPO Sans",
-            "distance": 0.025426013947169167
+            "family": "MiSans",
+            "distance": 0.014298604051002051
           },
           {
             "family": "HarmonyOS Sans SC",
-            "distance": 0.028342254684932365
+            "distance": 0.015247695309347442
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05771908303722739,
-        "ocr": 0.02076295902952552,
-        "font_matching": 0.010587250115349889,
-        "total": 0.09324416588060558
+        "detector": 0.05557887512259185,
+        "ocr": 0.019823583075776696,
+        "font_matching": 0.01713841687887907,
+        "total": 0.09656466613523662
       }
     },
     {
@@ -6292,15 +6293,15 @@
       "candidates": [
         {
           "family": "Songti SC",
-          "distance": 0.059751483766078445
+          "distance": 0.028278044161892668
         },
         {
           "family": "Heiti SC",
-          "distance": 0.10856268510770978
+          "distance": 0.06959636610913786
         },
         {
-          "family": "PingFang SC",
-          "distance": 0.1282986712279239
+          "family": "OPPO Sans",
+          "distance": 0.08702849436882465
         }
       ],
       "oracle_match": {
@@ -6310,23 +6311,23 @@
         "candidates": [
           {
             "family": "Songti SC",
-            "distance": 0.059751483766078445
+            "distance": 0.028278044161892668
           },
           {
             "family": "Heiti SC",
-            "distance": 0.10856268510770978
+            "distance": 0.06959636610913786
           },
           {
-            "family": "PingFang SC",
-            "distance": 0.1282986712279239
+            "family": "OPPO Sans",
+            "distance": 0.08702849436882465
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.0575143750756979,
-        "ocr": 0.020990291144698858,
-        "font_matching": 0.009171208133921027,
-        "total": 0.09183641709387302
+        "detector": 0.05544891697354615,
+        "ocr": 0.0199731660541147,
+        "font_matching": 0.014676457969471812,
+        "total": 0.09421987482346594
       }
     },
     {
@@ -6473,15 +6474,15 @@
       "candidates": [
         {
           "family": "Songti SC",
-          "distance": 0.030533490459439955
+          "distance": 0.017787317028530703
         },
         {
           "family": "Heiti SC",
-          "distance": 0.12262068688578387
+          "distance": 0.08494404759035909
         },
         {
-          "family": "Hiragino Sans GB",
-          "distance": 0.12869681026412677
+          "family": "PingFang SC",
+          "distance": 0.10129014149492019
         }
       ],
       "oracle_match": {
@@ -6491,23 +6492,23 @@
         "candidates": [
           {
             "family": "Songti SC",
-            "distance": 0.030533490459439955
+            "distance": 0.017787317028530703
           },
           {
             "family": "Heiti SC",
-            "distance": 0.12262068688578387
+            "distance": 0.08494404759035909
           },
           {
-            "family": "Hiragino Sans GB",
-            "distance": 0.12869681026412677
+            "family": "PingFang SC",
+            "distance": 0.10129014149492019
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05751749989576638,
-        "ocr": 0.020756749901920557,
-        "font_matching": 0.009977958863601089,
-        "total": 0.0926650408655405
+        "detector": 0.05541120795533061,
+        "ocr": 0.02039191615767777,
+        "font_matching": 0.015806041890755296,
+        "total": 0.09572062501683831
       }
     },
     {
@@ -6712,15 +6713,15 @@
       "candidates": [
         {
           "family": "Songti SC",
-          "distance": 0.036656357267339845
+          "distance": 0.023601183681477494
         },
         {
           "family": "Heiti SC",
-          "distance": 0.10030097325161341
+          "distance": 0.07677245551078692
         },
         {
-          "family": "PingFang SC",
-          "distance": 0.14046503616059736
+          "family": "OPPO Sans",
+          "distance": 0.10797226657853061
         }
       ],
       "oracle_match": {
@@ -6730,23 +6731,23 @@
         "candidates": [
           {
             "family": "Songti SC",
-            "distance": 0.036656357267339845
+            "distance": 0.023601183681477494
           },
           {
             "family": "Heiti SC",
-            "distance": 0.10030097325161341
+            "distance": 0.07677245551078692
           },
           {
-            "family": "PingFang SC",
-            "distance": 0.14046503616059736
+            "family": "OPPO Sans",
+            "distance": 0.10797226657853061
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05758649995550513,
-        "ocr": 0.021022917004302144,
-        "font_matching": 0.012353750178590417,
-        "total": 0.09515050007030368
+        "detector": 0.05540062487125397,
+        "ocr": 0.019806999946013093,
+        "font_matching": 0.019937874982133508,
+        "total": 0.09915741696022451
       }
     },
     {
@@ -6893,15 +6894,15 @@
       "candidates": [
         {
           "family": "Songti SC",
-          "distance": 0.04476731011450061
+          "distance": 0.020535863982384217
         },
         {
           "family": "Heiti SC",
-          "distance": 0.13087511035218696
+          "distance": 0.08362007311489592
         },
         {
           "family": "PingFang SC",
-          "distance": 0.13482445588011924
+          "distance": 0.09716331567158487
         }
       ],
       "oracle_match": {
@@ -6911,23 +6912,23 @@
         "candidates": [
           {
             "family": "Songti SC",
-            "distance": 0.04950291066138626
+            "distance": 0.019272675976521936
           },
           {
             "family": "Heiti SC",
-            "distance": 0.12989902558182773
+            "distance": 0.0853165944313442
           },
           {
             "family": "PingFang SC",
-            "distance": 0.14632503955582032
+            "distance": 0.10062048716204164
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05780220800079405,
-        "ocr": 0.02096920902840793,
-        "font_matching": 0.010118332924321294,
-        "total": 0.09338529221713543
+        "detector": 0.05449583404697478,
+        "ocr": 0.019822999835014343,
+        "font_matching": 0.0153305409476161,
+        "total": 0.09364604111760855
       }
     },
     {
@@ -7103,15 +7104,15 @@
       "candidates": [
         {
           "family": "Songti SC",
-          "distance": 0.0379617832362326
+          "distance": 0.020264254539778516
         },
         {
           "family": "Heiti SC",
-          "distance": 0.14813957776587042
+          "distance": 0.0962176663690957
         },
         {
           "family": "MiSans",
-          "distance": 0.1512970791902917
+          "distance": 0.1117788049627135
         }
       ],
       "oracle_match": {
@@ -7121,23 +7122,23 @@
         "candidates": [
           {
             "family": "Songti SC",
-            "distance": 0.0379617832362326
+            "distance": 0.020264254539778516
           },
           {
             "family": "Heiti SC",
-            "distance": 0.14813957776587042
+            "distance": 0.0962176663690957
           },
           {
             "family": "MiSans",
-            "distance": 0.1512970791902917
+            "distance": 0.1117788049627135
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05766504188068211,
-        "ocr": 0.02088600001297891,
-        "font_matching": 0.01219858299009502,
-        "total": 0.09529337496496737
+        "detector": 0.054681875044479966,
+        "ocr": 0.019868624862283468,
+        "font_matching": 0.01925741694867611,
+        "total": 0.09792479197494686
       }
     },
     {
@@ -7303,15 +7304,15 @@
       "candidates": [
         {
           "family": "Songti SC",
-          "distance": 0.06236925161876868
+          "distance": 0.035988064781990826
         },
         {
           "family": "MiSans",
-          "distance": 0.1291231898028604
+          "distance": 0.08556720378077842
         },
         {
-          "family": "OPPO Sans",
-          "distance": 0.1431854119063354
+          "family": "Heiti SC",
+          "distance": 0.08935475576578329
         }
       ],
       "oracle_match": {
@@ -7321,51 +7322,51 @@
         "candidates": [
           {
             "family": "Songti SC",
-            "distance": 0.05258724811819384
-          },
-          {
-            "family": "OPPO Sans",
-            "distance": 0.1375929350701935
+            "distance": 0.029135780594256165
           },
           {
             "family": "Heiti SC",
-            "distance": 0.14144079871615392
+            "distance": 0.08646432434752231
+          },
+          {
+            "family": "OPPO Sans",
+            "distance": 0.09413383207635653
           }
         ]
       },
       "timing_seconds": {
-        "detector": 0.05738404183648527,
-        "ocr": 0.020620000082999468,
-        "font_matching": 0.006378541002050042,
-        "total": 0.08846037508919835
+        "detector": 0.05852854182012379,
+        "ocr": 0.021350790979340672,
+        "font_matching": 0.011593749979510903,
+        "total": 0.09549487521871924
       }
     }
   ],
   "comparison_to_pre_segmentation_fix": {
     "accepted_precision": {
       "before": 0.904762,
-      "after": 0.964286,
-      "delta": 0.059524
+      "after": 1.0,
+      "delta": 0.095238
     },
     "strict_evidence_complete_precision": {
       "before": 0.666667,
-      "after": 0.928571,
-      "delta": 0.261904
+      "after": 0.966667,
+      "delta": 0.3
     },
     "coverage": {
       "before": 0.583333,
-      "after": 0.777778,
-      "delta": 0.194445
+      "after": 0.833333,
+      "delta": 0.25
     },
     "total_name_correct_rate": {
       "before": 0.527778,
-      "after": 0.75,
-      "delta": 0.222222
+      "after": 0.833333,
+      "delta": 0.305555
     },
     "total_correct_rate": {
       "before": 0.388889,
-      "after": 0.722222,
-      "delta": 0.333333
+      "after": 0.805556,
+      "delta": 0.416667
     },
     "ocr_exact_rate": {
       "before": 1.0,
@@ -7384,10 +7385,9 @@
     }
   },
   "failure_montage_cases": [
-    "harmonyos_regular--white_png_26",
-    "misans_regular--white_png_26",
+    "harmonyos_regular--blue_jpeg82_36",
+    "misans_regular--white_jpeg74_24",
     "oppo_regular--white_png_26",
-    "oppo_regular--blue_png_28",
     "negative_songti_regular--white_png_26"
   ]
 }

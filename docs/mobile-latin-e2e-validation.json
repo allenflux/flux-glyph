@@ -1,0 +1,1740 @@
+{
+  "schema": "flux-glyph-mobile-latin-end-to-end-v1",
+  "scope": "Frozen Pillow-rendered native-pixel fixtures on a white canvas; full detector/OCR/segmentation/matcher; not real-device accuracy.",
+  "model_version": "r14-mobile-fonts-v1",
+  "manifest_sha256": "d9ff0097be11d0748c23bdd87b22b74cf0fb0c9d6ba079eb381483659dda5ae4",
+  "latin_archive_sha256": "7c5211317ebf50b42ba458cd2677e9436c294593482d2ba37e05633678a83e2f",
+  "fixture_manifest_sha256": "9d9bd3572134b0654072dfc92c9435a887ab80049fb71c96a7879d98911d9731",
+  "canvas_size": [
+    750,
+    300
+  ],
+  "paste_top": 125,
+  "fixture_resizing_used": false,
+  "oracle_boxes_or_tokens_used": false,
+  "thresholds_modified": false,
+  "decision": "Correct positive requires complete OCR ignoring whitespace, at least one detection, and all detected regions returning the expected candidate family. Any wrong named family or supported claim is wrong; remaining positives are unconfirmed. Negative cases are correct rejections only when no candidate is named.",
+  "positive_cases": 23,
+  "positive_correct_candidates": 19,
+  "positive_wrong_candidates": 0,
+  "positive_unconfirmed": 4,
+  "negative_cases": 8,
+  "negative_false_candidates": 0,
+  "negative_correct_rejections": 8,
+  "exact_ocr_cases_ignoring_whitespace": 31,
+  "by_family": {
+    "SF Pro": {
+      "correct_candidate": 3,
+      "unconfirmed": 1
+    },
+    "Helvetica": {
+      "correct_candidate": 4
+    },
+    "HarmonyOS Sans SC": {
+      "correct_candidate": 3,
+      "unconfirmed": 1
+    },
+    "MiSans": {
+      "correct_candidate": 4
+    },
+    "OPPO Sans": {
+      "correct_candidate": 3,
+      "unconfirmed": 1
+    },
+    "Alipay Number": {
+      "correct_candidate": 2,
+      "unconfirmed": 1
+    },
+    "unknown_negative": {
+      "correct_rejection": 8
+    }
+  },
+  "cases": [
+    {
+      "id": "sfpro_17_semibold_38_0",
+      "expected_text": "-100.00",
+      "expected_family": "SF Pro",
+      "fixture_sha256": "e00677c2e99f0dc4420a78499f6765f9b45a1bb04bcc307b2d6799233f9fa5c2",
+      "source_font_sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "canvas_sha256": "7678983a335e90019cbe45737704828d487dae2bc757da7c63a12064b5085c96",
+      "placement": [
+        293,
+        125,
+        164,
+        45
+      ],
+      "ocr_text": "-100.00",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "SF Pro"
+      ],
+      "regions": [
+        {
+          "text": "-100.00",
+          "ocr_confidence": 0.9999025804655892,
+          "status": "candidate",
+          "family": "SF Pro",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "SF Pro",
+              "distance": 0.0040624141693115234
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.01905381679534912
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.045244842767715454
+            }
+          ],
+          "source_bbox": [
+            298,
+            124,
+            453,
+            171
+          ],
+          "glyph_statuses": {
+            "ok": 5
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/sfpro_17_semibold_38_0/result.json",
+      "elapsed_seconds": 0.07789454190060496
+    },
+    {
+      "id": "sfpro_17_semibold_38_1",
+      "expected_text": "22:43",
+      "expected_family": "SF Pro",
+      "fixture_sha256": "3216778fba6ff7a2f8b98ee642db0e50516ccf82d05619a839ca2259577975ca",
+      "source_font_sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "canvas_sha256": "99b8691b68ddb6c6bdbbf33cba911bd36b743e5a72eec6ca9d914d602319874c",
+      "placement": [
+        312,
+        125,
+        126,
+        45
+      ],
+      "ocr_text": "22:43",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "SF Pro"
+      ],
+      "regions": [
+        {
+          "text": "22:43",
+          "ocr_confidence": 0.9997539043426513,
+          "status": "candidate",
+          "family": "SF Pro",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "SF Pro",
+              "distance": 0.009352047927677631
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.04204307124018669
+            },
+            {
+              "family": "Alipay Number",
+              "distance": 0.07233623415231705
+            }
+          ],
+          "source_bbox": [
+            317,
+            126,
+            435,
+            170
+          ],
+          "glyph_statuses": {
+            "ok": 4
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/sfpro_17_semibold_38_1/result.json",
+      "elapsed_seconds": 0.06798762502148747
+    },
+    {
+      "id": "sfpro_17_semibold_38_2",
+      "expected_text": "2026-08-01 22:43:11",
+      "expected_family": "SF Pro",
+      "fixture_sha256": "4e52280da415ca7822450b1a29da59b39e31e1947f66cbb24501984b58122275",
+      "source_font_sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "canvas_sha256": "79f555714d5d7aaf6f5411eb5f16646fb360fc1a4baf71405efbf36252164639",
+      "placement": [
+        169,
+        125,
+        411,
+        45
+      ],
+      "ocr_text": "2026-08-0122:43:11",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "unconfirmed",
+      "candidate_families": [],
+      "regions": [
+        {
+          "text": "2026-08-0122:43:11",
+          "ocr_confidence": 0.9988160762521956,
+          "status": "uncertain",
+          "family": null,
+          "reason": "latin_segmentation_incomplete",
+          "candidates": [
+            {
+              "family": "SF Pro",
+              "distance": 0.006898547988384962
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.03764529898762703
+            },
+            {
+              "family": "OPPO Sans",
+              "distance": 0.06669540703296661
+            }
+          ],
+          "source_bbox": [
+            180,
+            132,
+            572,
+            165
+          ],
+          "glyph_statuses": {
+            "uncertain": 1,
+            "ok": 13
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/sfpro_17_semibold_38_2/result.json",
+      "elapsed_seconds": 0.08347445796243846
+    },
+    {
+      "id": "sfpro_17_semibold_38_3",
+      "expected_text": "Safari",
+      "expected_family": "SF Pro",
+      "fixture_sha256": "dec6e33caadd9d4fe2d369827e861a3d137075a31a7a4c39497bf2e8eadac425",
+      "source_font_sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "canvas_sha256": "f99f72e459969066a5c3543d31a688d64581abf6036d711ae735d6caed412338",
+      "placement": [
+        311,
+        125,
+        128,
+        47
+      ],
+      "ocr_text": "Safari",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "SF Pro"
+      ],
+      "regions": [
+        {
+          "text": "Safari",
+          "ocr_confidence": 0.9994752705097198,
+          "status": "candidate",
+          "family": "SF Pro",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "SF Pro",
+              "distance": 0.009388255886733532
+            },
+            {
+              "family": "OPPO Sans",
+              "distance": 0.03361023589968681
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.04182138293981552
+            }
+          ],
+          "source_bbox": [
+            315,
+            126,
+            438,
+            174
+          ],
+          "glyph_statuses": {
+            "ok": 6
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/sfpro_17_semibold_38_3/result.json",
+      "elapsed_seconds": 0.06621854100376368
+    },
+    {
+      "id": "helvetica_bold_38_0",
+      "expected_text": "-100.00",
+      "expected_family": "Helvetica",
+      "fixture_sha256": "f5cb21844bc83352e187f19b0c467cccd781742d18b1eba820b3b6a964e1496a",
+      "source_font_sha256": "25eceb458d4baf628ee0b6a135a9f8ac5ec7b2826646720834bd2bf00dfc825a",
+      "canvas_sha256": "b0e9712fa4229ad6173109891caacb82d6d84b7758ae9ffdf7f1a6ebe19117a1",
+      "placement": [
+        302,
+        125,
+        145,
+        43
+      ],
+      "ocr_text": "-100.00",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "Helvetica"
+      ],
+      "regions": [
+        {
+          "text": "-100.00",
+          "ocr_confidence": 0.9999140756470817,
+          "status": "candidate",
+          "family": "Helvetica",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "Helvetica",
+              "distance": 0.008641451597213745
+            },
+            {
+              "family": "MiSans",
+              "distance": 0.03149864077568054
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.03389185667037964
+            }
+          ],
+          "source_bbox": [
+            306,
+            127,
+            443,
+            166
+          ],
+          "glyph_statuses": {
+            "ok": 5
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/helvetica_bold_38_0/result.json",
+      "elapsed_seconds": 0.06538508296944201
+    },
+    {
+      "id": "helvetica_bold_38_1",
+      "expected_text": "22:43",
+      "expected_family": "Helvetica",
+      "fixture_sha256": "f36b9924ea87e55fbfd21938988c11df28f6635b1b6013251a08ec772a3d5bdf",
+      "source_font_sha256": "25eceb458d4baf628ee0b6a135a9f8ac5ec7b2826646720834bd2bf00dfc825a",
+      "canvas_sha256": "00c9d6e17c7910f5531de49ec0a34521dc3e1557e3737c3be66de579aa8735bd",
+      "placement": [
+        318,
+        125,
+        113,
+        43
+      ],
+      "ocr_text": "22:43",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "Helvetica"
+      ],
+      "regions": [
+        {
+          "text": "22:43",
+          "ocr_confidence": 0.9995737195014953,
+          "status": "candidate",
+          "family": "Helvetica",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "Helvetica",
+              "distance": 0.006684005260467529
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.028323909267783165
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.06218888238072395
+            }
+          ],
+          "source_bbox": [
+            323,
+            127,
+            428,
+            168
+          ],
+          "glyph_statuses": {
+            "ok": 4
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/helvetica_bold_38_1/result.json",
+      "elapsed_seconds": 0.0648678329307586
+    },
+    {
+      "id": "helvetica_bold_38_2",
+      "expected_text": "2026-08-01 22:43:11",
+      "expected_family": "Helvetica",
+      "fixture_sha256": "e3c7e0ba8b827fd1f641be4e3356580e13461d807b93e0f7114d2a84c0a668f7",
+      "source_font_sha256": "25eceb458d4baf628ee0b6a135a9f8ac5ec7b2826646720834bd2bf00dfc825a",
+      "canvas_sha256": "b0a027beba72b1769ae8356f9763be9c5aa7883a4daec8f423c156aca8b34d3e",
+      "placement": [
+        188,
+        125,
+        373,
+        43
+      ],
+      "ocr_text": "2026-08-01 22:43:11",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "Helvetica"
+      ],
+      "regions": [
+        {
+          "text": "2026-08-01 22:43:11",
+          "ocr_confidence": 0.9957860080819381,
+          "status": "candidate",
+          "family": "Helvetica",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "Helvetica",
+              "distance": 0.006589293479919434
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.02824731357395649
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.05852328985929489
+            }
+          ],
+          "source_bbox": [
+            196,
+            127,
+            551,
+            167
+          ],
+          "glyph_statuses": {
+            "ok": 14
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/helvetica_bold_38_2/result.json",
+      "elapsed_seconds": 0.07517441711388528
+    },
+    {
+      "id": "helvetica_bold_38_3",
+      "expected_text": "Safari",
+      "expected_family": "Helvetica",
+      "fixture_sha256": "4ac5ae999079303f387fd6b9cb342ecf393967fa693ff01e34511546153192ff",
+      "source_font_sha256": "25eceb458d4baf628ee0b6a135a9f8ac5ec7b2826646720834bd2bf00dfc825a",
+      "canvas_sha256": "f45084eb2752554266678977d0eaf7ac12bb67e91ddfa82f95d8dec04b4985c0",
+      "placement": [
+        314,
+        125,
+        122,
+        43
+      ],
+      "ocr_text": "Safari",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "Helvetica"
+      ],
+      "regions": [
+        {
+          "text": "Safari",
+          "ocr_confidence": 0.9996109008789062,
+          "status": "candidate",
+          "family": "Helvetica",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "Helvetica",
+              "distance": 0.007436180021613836
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.021864378824830055
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.05263622850179672
+            }
+          ],
+          "source_bbox": [
+            319,
+            126,
+            434,
+            170
+          ],
+          "glyph_statuses": {
+            "ok": 6
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/helvetica_bold_38_3/result.json",
+      "elapsed_seconds": 0.06624287483282387
+    },
+    {
+      "id": "harmonyos_regular_38_0",
+      "expected_text": "-100.00",
+      "expected_family": "HarmonyOS Sans SC",
+      "fixture_sha256": "48ab73ade817f52cc9db99ec071cd0337b5a31b9de9bde20cf4c8bc198218184",
+      "source_font_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "canvas_sha256": "14cd76497ba025363679cbc9989004d90cff4417176c068ce255bd20d17cb982",
+      "placement": [
+        299,
+        125,
+        152,
+        44
+      ],
+      "ocr_text": "-100.00",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "HarmonyOS Sans SC"
+      ],
+      "regions": [
+        {
+          "text": "-100.00",
+          "ocr_confidence": 0.9997913241386414,
+          "status": "candidate",
+          "family": "HarmonyOS Sans SC",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.0014278292655944824
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.03483021259307861
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.046414196491241455
+            }
+          ],
+          "source_bbox": [
+            303,
+            124,
+            447,
+            170
+          ],
+          "glyph_statuses": {
+            "ok": 5
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/harmonyos_regular_38_0/result.json",
+      "elapsed_seconds": 0.06733283284120262
+    },
+    {
+      "id": "harmonyos_regular_38_1",
+      "expected_text": "22:43",
+      "expected_family": "HarmonyOS Sans SC",
+      "fixture_sha256": "1622e2c3b970b961e37b9a6f1660c404b55f9096e7df493009bf1e283b8c942e",
+      "source_font_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "canvas_sha256": "1eb2267e08aa33814b8d81bbc5236d827598fd9f46c4c4a48ce3d53e8ed4fe34",
+      "placement": [
+        318,
+        125,
+        114,
+        44
+      ],
+      "ocr_text": "22:43",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "HarmonyOS Sans SC"
+      ],
+      "regions": [
+        {
+          "text": "22:43",
+          "ocr_confidence": 0.9996271371841431,
+          "status": "candidate",
+          "family": "HarmonyOS Sans SC",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.022869905456900597
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.05641840025782585
+            },
+            {
+              "family": "Alipay Number",
+              "distance": 0.07436708360910416
+            }
+          ],
+          "source_bbox": [
+            323,
+            127,
+            428,
+            169
+          ],
+          "glyph_statuses": {
+            "ok": 4
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/harmonyos_regular_38_1/result.json",
+      "elapsed_seconds": 0.0663326249923557
+    },
+    {
+      "id": "harmonyos_regular_38_2",
+      "expected_text": "2026-08-01 22:43:11",
+      "expected_family": "HarmonyOS Sans SC",
+      "fixture_sha256": "52df3aa744f5528a920230348c87be82e027d1a6395385d559ed167a8b6153ee",
+      "source_font_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "canvas_sha256": "6981754f8cec30afd1b39c67e58fe956496d5a3b3d18636a8c88e7708ef7081a",
+      "placement": [
+        180,
+        125,
+        390,
+        44
+      ],
+      "ocr_text": "2026-08-01 22:43:11",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "HarmonyOS Sans SC"
+      ],
+      "regions": [
+        {
+          "text": "2026-08-01 22:43:11",
+          "ocr_confidence": 0.9986172694908945,
+          "status": "candidate",
+          "family": "HarmonyOS Sans SC",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.012811277993023396
+            },
+            {
+              "family": "Alipay Number",
+              "distance": 0.06399350613355637
+            },
+            {
+              "family": "MiSans",
+              "distance": 0.06865788996219635
+            }
+          ],
+          "source_bbox": [
+            188,
+            129,
+            561,
+            168
+          ],
+          "glyph_statuses": {
+            "ok": 14
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/harmonyos_regular_38_2/result.json",
+      "elapsed_seconds": 0.07900958298705518
+    },
+    {
+      "id": "harmonyos_regular_38_3",
+      "expected_text": "Safari",
+      "expected_family": "HarmonyOS Sans SC",
+      "fixture_sha256": "cfe6df680d17aa3a8d51d38022835009c445b416c1b807568cb05bb7f7b662ca",
+      "source_font_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "canvas_sha256": "c1824e9914b3cb7dfad8421dd81cb987b601819503f0570fb0908822c21fa638",
+      "placement": [
+        317,
+        125,
+        116,
+        46
+      ],
+      "ocr_text": "Safari",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "unconfirmed",
+      "candidate_families": [],
+      "regions": [
+        {
+          "text": "Safari",
+          "ocr_confidence": 0.9999585747718811,
+          "status": "uncertain",
+          "family": null,
+          "reason": "unstable_latin_family",
+          "candidates": [
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.03165565803647041
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.04642609506845474
+            },
+            {
+              "family": "OPPO Sans",
+              "distance": 0.046708621084690094
+            }
+          ],
+          "source_bbox": [
+            321,
+            128,
+            432,
+            172
+          ],
+          "glyph_statuses": {
+            "ok": 6
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/harmonyos_regular_38_3/result.json",
+      "elapsed_seconds": 0.08790433313697577
+    },
+    {
+      "id": "misans_regular_38_0",
+      "expected_text": "-100.00",
+      "expected_family": "MiSans",
+      "fixture_sha256": "94ebff060d1a1c1027adf5c065305685787bbee0bc8751c022a7752722c9bd56",
+      "source_font_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "canvas_sha256": "be0fde7548db9a52d022473161ae82408bd58a95add988ca045742d1dfede4cf",
+      "placement": [
+        298,
+        125,
+        153,
+        46
+      ],
+      "ocr_text": "-100.00",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "MiSans"
+      ],
+      "regions": [
+        {
+          "text": "-100.00",
+          "ocr_confidence": 0.9997873902320862,
+          "status": "candidate",
+          "family": "MiSans",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "MiSans",
+              "distance": 0.013628959655761719
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.04212471842765808
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.0601574182510376
+            }
+          ],
+          "source_bbox": [
+            302,
+            124,
+            447,
+            172
+          ],
+          "glyph_statuses": {
+            "ok": 5
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/misans_regular_38_0/result.json",
+      "elapsed_seconds": 0.08309433283284307
+    },
+    {
+      "id": "misans_regular_38_1",
+      "expected_text": "22:43",
+      "expected_family": "MiSans",
+      "fixture_sha256": "32716b67c7dcd05e6a9e7641d2be14703c6e48ff868225ec85bf5d78f2a6eeb2",
+      "source_font_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "canvas_sha256": "9ef4bca885fc62058efa05ba77f6494b6d80be3376553cd24f79ba92267cb9fa",
+      "placement": [
+        318,
+        125,
+        114,
+        46
+      ],
+      "ocr_text": "22:43",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "MiSans"
+      ],
+      "regions": [
+        {
+          "text": "22:43",
+          "ocr_confidence": 0.9991911292076111,
+          "status": "candidate",
+          "family": "MiSans",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "MiSans",
+              "distance": 0.015490789897739887
+            },
+            {
+              "family": "OPPO Sans",
+              "distance": 0.09408169984817505
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.10894014686346054
+            }
+          ],
+          "source_bbox": [
+            322,
+            126,
+            429,
+            171
+          ],
+          "glyph_statuses": {
+            "ok": 4
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/misans_regular_38_1/result.json",
+      "elapsed_seconds": 0.07967329095117748
+    },
+    {
+      "id": "misans_regular_38_2",
+      "expected_text": "2026-08-01 22:43:11",
+      "expected_family": "MiSans",
+      "fixture_sha256": "df4429a4decee7cd414c3359de67ca649efa5426a03fab66b9fc3f2fbff56f65",
+      "source_font_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "canvas_sha256": "6d1e24798a8538fcb28576e8efafb12582e1a7f02fd7f8c1ea9eaee85a7f56fa",
+      "placement": [
+        187,
+        125,
+        375,
+        46
+      ],
+      "ocr_text": "2026-08-01 22:43:11",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "MiSans"
+      ],
+      "regions": [
+        {
+          "text": "2026-08-01 22:43:11",
+          "ocr_confidence": 0.9989539824034038,
+          "status": "candidate",
+          "family": "MiSans",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "MiSans",
+              "distance": 0.013959484174847603
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.07747006416320801
+            },
+            {
+              "family": "OPPO Sans",
+              "distance": 0.08716781437397003
+            }
+          ],
+          "source_bbox": [
+            195,
+            130,
+            556,
+            169
+          ],
+          "glyph_statuses": {
+            "ok": 14
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/misans_regular_38_2/result.json",
+      "elapsed_seconds": 0.10098204109817743
+    },
+    {
+      "id": "misans_regular_38_3",
+      "expected_text": "Safari",
+      "expected_family": "MiSans",
+      "fixture_sha256": "8a88f97f35c8f9d0f6ba5968df93ccdb888ae6c8d4ad02145900f788d89f906e",
+      "source_font_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "canvas_sha256": "9a4797ba663ce5ad50bbf9804eb42a136615e3e03584d4777238766f1794788f",
+      "placement": [
+        317,
+        125,
+        115,
+        46
+      ],
+      "ocr_text": "Safari",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "MiSans"
+      ],
+      "regions": [
+        {
+          "text": "Safari",
+          "ocr_confidence": 0.9999225934346517,
+          "status": "candidate",
+          "family": "MiSans",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "MiSans",
+              "distance": 0.018611501902341843
+            },
+            {
+              "family": "OPPO Sans",
+              "distance": 0.0423106774687767
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.044326961040496826
+            }
+          ],
+          "source_bbox": [
+            317,
+            123,
+            433,
+            175
+          ],
+          "glyph_statuses": {
+            "ok": 6
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/misans_regular_38_3/result.json",
+      "elapsed_seconds": 0.08487212494947016
+    },
+    {
+      "id": "oppo_regular_38_0",
+      "expected_text": "-100.00",
+      "expected_family": "OPPO Sans",
+      "fixture_sha256": "4f5e19156c0fce23a989094627a701e90559d32277ac26525f621b708cff0382",
+      "source_font_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "canvas_sha256": "ab57e3b44166f83dc865b95775810bd0b817353b3eef8ef7353a9e4460136491",
+      "placement": [
+        301,
+        125,
+        147,
+        47
+      ],
+      "ocr_text": "-100.00",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "OPPO Sans"
+      ],
+      "regions": [
+        {
+          "text": "-100.00",
+          "ocr_confidence": 0.9998008183070591,
+          "status": "candidate",
+          "family": "OPPO Sans",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "OPPO Sans",
+              "distance": 0.002352595329284668
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.03433024883270264
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.035413384437561035
+            }
+          ],
+          "source_bbox": [
+            307,
+            126,
+            444,
+            171
+          ],
+          "glyph_statuses": {
+            "ok": 5
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/oppo_regular_38_0/result.json",
+      "elapsed_seconds": 0.07724733394570649
+    },
+    {
+      "id": "oppo_regular_38_1",
+      "expected_text": "22:43",
+      "expected_family": "OPPO Sans",
+      "fixture_sha256": "4ac84b2490c7fe20c243a8233b6e25994be11f6d76976cdcb87d822d92a45baf",
+      "source_font_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "canvas_sha256": "083d2723c4e93ba20e41325638d62fb3527bc77bfe9ee5a15113d7405e526087",
+      "placement": [
+        318,
+        125,
+        114,
+        47
+      ],
+      "ocr_text": "22:43",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "OPPO Sans"
+      ],
+      "regions": [
+        {
+          "text": "22:43",
+          "ocr_confidence": 0.9996608257293701,
+          "status": "candidate",
+          "family": "OPPO Sans",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "OPPO Sans",
+              "distance": 0.004811545368283987
+            },
+            {
+              "family": "MiSans",
+              "distance": 0.13163228332996368
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.13503794372081757
+            }
+          ],
+          "source_bbox": [
+            321,
+            125,
+            430,
+            173
+          ],
+          "glyph_statuses": {
+            "ok": 4
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/oppo_regular_38_1/result.json",
+      "elapsed_seconds": 0.07651537493802607
+    },
+    {
+      "id": "oppo_regular_38_2",
+      "expected_text": "2026-08-01 22:43:11",
+      "expected_family": "OPPO Sans",
+      "fixture_sha256": "02ef9666434260f98aedc7f4e3d905ff15a8363b1b4fd230ebd8e7ad93d30443",
+      "source_font_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "canvas_sha256": "12f95b17e459c6c831a93f6c55d68147b77e4890baf611b3044245fc7741dab4",
+      "placement": [
+        192,
+        125,
+        365,
+        47
+      ],
+      "ocr_text": "2026-08-01 22:43:11",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "unconfirmed",
+      "candidate_families": [],
+      "regions": [
+        {
+          "text": "2026-08-01 22:43:11",
+          "ocr_confidence": 0.9930729520948309,
+          "status": "uncertain",
+          "family": null,
+          "reason": "latin_segmentation_incomplete",
+          "candidates": [
+            {
+              "family": "OPPO Sans",
+              "distance": 0.0035461869556456804
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.08089061826467514
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.08623486012220383
+            }
+          ],
+          "source_bbox": [
+            202,
+            128,
+            548,
+            168
+          ],
+          "glyph_statuses": {
+            "uncertain": 1,
+            "ok": 13
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/oppo_regular_38_2/result.json",
+      "elapsed_seconds": 0.08757558302022517
+    },
+    {
+      "id": "oppo_regular_38_3",
+      "expected_text": "Safari",
+      "expected_family": "OPPO Sans",
+      "fixture_sha256": "c3bffdce6346901445feac5eb21f4fd97617fb65a462e8177178a917224ab372",
+      "source_font_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "canvas_sha256": "23615c4de5c400dddf518515cf201c2658d0118efe99edb6d33c586fc7aa0f0b",
+      "placement": [
+        317,
+        125,
+        116,
+        47
+      ],
+      "ocr_text": "Safari",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "OPPO Sans"
+      ],
+      "regions": [
+        {
+          "text": "Safari",
+          "ocr_confidence": 0.9998796085516611,
+          "status": "candidate",
+          "family": "OPPO Sans",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "OPPO Sans",
+              "distance": 0.013769757933914661
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.036698244512081146
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.0429547056555748
+            }
+          ],
+          "source_bbox": [
+            321,
+            127,
+            432,
+            172
+          ],
+          "glyph_statuses": {
+            "ok": 6
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/oppo_regular_38_3/result.json",
+      "elapsed_seconds": 0.0774820412043482
+    },
+    {
+      "id": "alipay_number_regular_38_0",
+      "expected_text": "-100.00",
+      "expected_family": "Alipay Number",
+      "fixture_sha256": "828d69e55632b7cc6ce995295a96d0674075454a591a6a95dc381cac2693ac2b",
+      "source_font_sha256": "6074082d8cb92e175184b177e28335e0171f3ddfb2b5818d7853295f7fb0fada",
+      "canvas_sha256": "47c0ed011a7e2a79157da7541279e30af5e2171a64388de78844d505710a5b12",
+      "placement": [
+        302,
+        125,
+        146,
+        45
+      ],
+      "ocr_text": "-100.00",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "Alipay Number"
+      ],
+      "regions": [
+        {
+          "text": "-100.00",
+          "ocr_confidence": 0.9994875192642212,
+          "status": "candidate",
+          "family": "Alipay Number",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "Alipay Number",
+              "distance": 0.02227574586868286
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.038965314626693726
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.08061909675598145
+            }
+          ],
+          "source_bbox": [
+            310,
+            127,
+            444,
+            168
+          ],
+          "glyph_statuses": {
+            "ok": 5
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/alipay_number_regular_38_0/result.json",
+      "elapsed_seconds": 0.07669420912861824
+    },
+    {
+      "id": "alipay_number_regular_38_1",
+      "expected_text": "22:43",
+      "expected_family": "Alipay Number",
+      "fixture_sha256": "a8a3b2c06b409523834b5f399994047dd765318337a4a8b0f771a0e7679d8d6e",
+      "source_font_sha256": "6074082d8cb92e175184b177e28335e0171f3ddfb2b5818d7853295f7fb0fada",
+      "canvas_sha256": "f8009488ca06dc0325d51385db38cf45d9bb300ae9dad5b9e3cfe91735be967d",
+      "placement": [
+        320,
+        125,
+        109,
+        45
+      ],
+      "ocr_text": "22:43",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_candidate",
+      "candidate_families": [
+        "Alipay Number"
+      ],
+      "regions": [
+        {
+          "text": "22:43",
+          "ocr_confidence": 0.9973554611206055,
+          "status": "candidate",
+          "family": "Alipay Number",
+          "reason": "stable_latin_family_candidate",
+          "candidates": [
+            {
+              "family": "Alipay Number",
+              "distance": 0.017168164253234863
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.06778689473867416
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.06815135478973389
+            }
+          ],
+          "source_bbox": [
+            325,
+            127,
+            427,
+            169
+          ],
+          "glyph_statuses": {
+            "ok": 4
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/alipay_number_regular_38_1/result.json",
+      "elapsed_seconds": 0.07253674999810755
+    },
+    {
+      "id": "alipay_number_regular_38_2",
+      "expected_text": "2026-08-01 22:43:11",
+      "expected_family": "Alipay Number",
+      "fixture_sha256": "2068ff7cce6cd201a60664a3e422a47543a9d367e4d62583d32945bda70ec1dd",
+      "source_font_sha256": "6074082d8cb92e175184b177e28335e0171f3ddfb2b5818d7853295f7fb0fada",
+      "canvas_sha256": "a2114411a0cc4466f526f84357b40a09018c580285882fa50866d6540b483508",
+      "placement": [
+        192,
+        125,
+        365,
+        45
+      ],
+      "ocr_text": "2026-08-01 22:43:11",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "unconfirmed",
+      "candidate_families": [],
+      "regions": [
+        {
+          "text": "2026-08-01 22:43:11",
+          "ocr_confidence": 0.9886390723680195,
+          "status": "uncertain",
+          "family": null,
+          "reason": "latin_segmentation_incomplete",
+          "candidates": [
+            {
+              "family": "Alipay Number",
+              "distance": 0.019135279580950737
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.05092452093958855
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.09243214875459671
+            }
+          ],
+          "source_bbox": [
+            202,
+            131,
+            548,
+            164
+          ],
+          "glyph_statuses": {
+            "uncertain": 1,
+            "ok": 13
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/alipay_number_regular_38_2/result.json",
+      "elapsed_seconds": 0.08488425007089972
+    },
+    {
+      "id": "negative_times_38_0",
+      "expected_text": "-100.00",
+      "expected_family": null,
+      "fixture_sha256": "bfb7c6f1711f84444807618a1605f1f098ca376acae024857dc09bd27f8ecdc2",
+      "source_font_sha256": "20e3dc89912f4b37f2c29add764855164efafb4c66ca32551d9eb52c7411c7c7",
+      "canvas_sha256": "64134a457f862126762ca48eaedea5917a136f3f42230fb507cc9a98f2166325",
+      "placement": [
+        308,
+        125,
+        134,
+        41
+      ],
+      "ocr_text": "-100.00",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_rejection",
+      "candidate_families": [],
+      "regions": [
+        {
+          "text": "-100.00",
+          "ocr_confidence": 0.9999212622642517,
+          "status": "uncertain",
+          "family": null,
+          "reason": "latin_font_outside_reference_gate",
+          "candidates": [
+            {
+              "family": "MiSans",
+              "distance": 0.20180898904800415
+            },
+            {
+              "family": "OPPO Sans",
+              "distance": 0.23327124118804932
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.24127799272537231
+            }
+          ],
+          "source_bbox": [
+            312,
+            126,
+            439,
+            165
+          ],
+          "glyph_statuses": {
+            "ok": 5
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/negative_times_38_0/result.json",
+      "elapsed_seconds": 0.06781350006349385
+    },
+    {
+      "id": "negative_times_38_1",
+      "expected_text": "22:43",
+      "expected_family": null,
+      "fixture_sha256": "79632ac443aba63a008217faa7ce24553626a93e706969aab8bdd17bd3ade08b",
+      "source_font_sha256": "20e3dc89912f4b37f2c29add764855164efafb4c66ca32551d9eb52c7411c7c7",
+      "canvas_sha256": "6441e042e22434e95cfb4230bac295a86b445349b2104a563148eb4239833ece",
+      "placement": [
+        323,
+        125,
+        103,
+        41
+      ],
+      "ocr_text": "22:43",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_rejection",
+      "candidate_families": [],
+      "regions": [
+        {
+          "text": "22:43",
+          "ocr_confidence": 0.9986668944358825,
+          "status": "uncertain",
+          "family": null,
+          "reason": "latin_font_outside_reference_gate",
+          "candidates": [
+            {
+              "family": "Alipay Number",
+              "distance": 0.12128287553787231
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.12549841403961182
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.14275366067886353
+            }
+          ],
+          "source_bbox": [
+            326,
+            126,
+            422,
+            168
+          ],
+          "glyph_statuses": {
+            "ok": 4
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/negative_times_38_1/result.json",
+      "elapsed_seconds": 0.06673183315433562
+    },
+    {
+      "id": "negative_times_38_2",
+      "expected_text": "2026-08-01 22:43:11",
+      "expected_family": null,
+      "fixture_sha256": "2921455cbf91b9defd1325bea39a73a530c6427fd1ca757df1356c96fbafd531",
+      "source_font_sha256": "20e3dc89912f4b37f2c29add764855164efafb4c66ca32551d9eb52c7411c7c7",
+      "canvas_sha256": "f1e6c7051fbf497093bdfe2a364bc8bac7a77a7d4093eb66d589a3cde52f29ab",
+      "placement": [
+        205,
+        125,
+        340,
+        41
+      ],
+      "ocr_text": "2026-08-01 22:43:11",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_rejection",
+      "candidate_families": [],
+      "regions": [
+        {
+          "text": "2026-08-01 22:43:11",
+          "ocr_confidence": 0.9991744411619086,
+          "status": "uncertain",
+          "family": null,
+          "reason": "latin_segmentation_incomplete",
+          "candidates": [
+            {
+              "family": "MiSans",
+              "distance": 0.15832529962062836
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.16915304958820343
+            },
+            {
+              "family": "Alipay Number",
+              "distance": 0.18336939811706543
+            }
+          ],
+          "source_bbox": [
+            214,
+            131,
+            535,
+            161
+          ],
+          "glyph_statuses": {
+            "uncertain": 1,
+            "ok": 13
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/negative_times_38_2/result.json",
+      "elapsed_seconds": 0.08180179190821946
+    },
+    {
+      "id": "negative_times_38_3",
+      "expected_text": "Safari",
+      "expected_family": null,
+      "fixture_sha256": "29dd9d55c2bd47249b5563ca66c11729414846223be0edba12deb24ba38fd799",
+      "source_font_sha256": "20e3dc89912f4b37f2c29add764855164efafb4c66ca32551d9eb52c7411c7c7",
+      "canvas_sha256": "0c177bbdcc03251c1b9bc1d1e5a0b7903fbce884c7c5b3b86034c9d56185cc53",
+      "placement": [
+        321,
+        125,
+        108,
+        42
+      ],
+      "ocr_text": "Safari",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_rejection",
+      "candidate_families": [],
+      "regions": [
+        {
+          "text": "Safari",
+          "ocr_confidence": 0.999916007121404,
+          "status": "uncertain",
+          "family": null,
+          "reason": "latin_segmentation_incomplete",
+          "candidates": [
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.12346780300140381
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.14096295833587646
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.15296578407287598
+            }
+          ],
+          "source_bbox": [
+            324,
+            125,
+            427,
+            169
+          ],
+          "glyph_statuses": {
+            "ok": 1,
+            "uncertain": 5
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/negative_times_38_3/result.json",
+      "elapsed_seconds": 0.06659904099069536
+    },
+    {
+      "id": "negative_courier_38_0",
+      "expected_text": "-100.00",
+      "expected_family": null,
+      "fixture_sha256": "3b4bff16a9019609a38f1fd5c68eb9ac914a799951ad22097abbe2ab54326029",
+      "source_font_sha256": "449a068ddd88f179b50b4d6dbb86aa08a30981148b510d5cc30d4ff0cb29e9a6",
+      "canvas_sha256": "47389d1a37356d0845d4273eb865a2263e94c5bc22e59838a7324d16db6143fa",
+      "placement": [
+        286,
+        125,
+        177,
+        40
+      ],
+      "ocr_text": "-100.00",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_rejection",
+      "candidate_families": [],
+      "regions": [
+        {
+          "text": "-100.00",
+          "ocr_confidence": 0.998231555734362,
+          "status": "uncertain",
+          "family": null,
+          "reason": "latin_font_outside_reference_gate",
+          "candidates": [
+            {
+              "family": "MiSans",
+              "distance": 0.2493147850036621
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.26517826318740845
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.26541897654533386
+            }
+          ],
+          "source_bbox": [
+            292,
+            127,
+            454,
+            161
+          ],
+          "glyph_statuses": {
+            "ok": 5
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/negative_courier_38_0/result.json",
+      "elapsed_seconds": 0.06683100014925003
+    },
+    {
+      "id": "negative_courier_38_1",
+      "expected_text": "22:43",
+      "expected_family": null,
+      "fixture_sha256": "20abc3469914fe3826f7149601f94970a840e693e11b0baa48f6cd4920ac46c1",
+      "source_font_sha256": "449a068ddd88f179b50b4d6dbb86aa08a30981148b510d5cc30d4ff0cb29e9a6",
+      "canvas_sha256": "a169b7468908b7ac3320e83d4c0085156c5069e21d4820669a2678732c493300",
+      "placement": [
+        309,
+        125,
+        131,
+        40
+      ],
+      "ocr_text": "22:43",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_rejection",
+      "candidate_families": [],
+      "regions": [
+        {
+          "text": "22:43",
+          "ocr_confidence": 0.9974125385284424,
+          "status": "uncertain",
+          "family": null,
+          "reason": "latin_font_outside_reference_gate",
+          "candidates": [
+            {
+              "family": "SF Pro",
+              "distance": 0.07471837848424911
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.07496938854455948
+            },
+            {
+              "family": "Helvetica",
+              "distance": 0.0783020481467247
+            }
+          ],
+          "source_bbox": [
+            314,
+            125,
+            434,
+            164
+          ],
+          "glyph_statuses": {
+            "ok": 4
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/negative_courier_38_1/result.json",
+      "elapsed_seconds": 0.06517712492495775
+    },
+    {
+      "id": "negative_courier_38_2",
+      "expected_text": "2026-08-01 22:43:11",
+      "expected_family": null,
+      "fixture_sha256": "666088ad1b99a9f606b04eedb262387ba7495c3c57af336f14b17ad37741f8e7",
+      "source_font_sha256": "449a068ddd88f179b50b4d6dbb86aa08a30981148b510d5cc30d4ff0cb29e9a6",
+      "canvas_sha256": "e2ef40cdd8317e699ff8ed9ea56033f3d814426e7cf39fd0c9d9ae5e157fac5e",
+      "placement": [
+        148,
+        125,
+        453,
+        40
+      ],
+      "ocr_text": "2026-08-01 22:43:11",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_rejection",
+      "candidate_families": [],
+      "regions": [
+        {
+          "text": "2026-08-01 22:43:11",
+          "ocr_confidence": 0.9765185400059349,
+          "status": "uncertain",
+          "family": null,
+          "reason": "latin_font_outside_reference_gate",
+          "candidates": [
+            {
+              "family": "Helvetica",
+              "distance": 0.12678304314613342
+            },
+            {
+              "family": "SF Pro",
+              "distance": 0.1317371279001236
+            },
+            {
+              "family": "Alipay Number",
+              "distance": 0.14864186942577362
+            }
+          ],
+          "source_bbox": [
+            158,
+            131,
+            590,
+            161
+          ],
+          "glyph_statuses": {
+            "ok": 14
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/negative_courier_38_2/result.json",
+      "elapsed_seconds": 0.09145154198631644
+    },
+    {
+      "id": "negative_courier_38_3",
+      "expected_text": "Safari",
+      "expected_family": null,
+      "fixture_sha256": "4f6733a375a888062422712a0a7d4af3fabf35cdbf0929d41046477d7c59ac68",
+      "source_font_sha256": "449a068ddd88f179b50b4d6dbb86aa08a30981148b510d5cc30d4ff0cb29e9a6",
+      "canvas_sha256": "e32444b59c342bd7413e5d0da5d4b1b28a15dddf0218735328f07147f48698da",
+      "placement": [
+        298,
+        125,
+        154,
+        43
+      ],
+      "ocr_text": "Safari",
+      "ocr_exact_ignoring_whitespace": true,
+      "detected_regions": 1,
+      "outcome": "correct_rejection",
+      "candidate_families": [],
+      "regions": [
+        {
+          "text": "Safari",
+          "ocr_confidence": 0.9998543163140615,
+          "status": "uncertain",
+          "family": null,
+          "reason": "unstable_latin_family",
+          "candidates": [
+            {
+              "family": "SF Pro",
+              "distance": 0.19354848563671112
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "distance": 0.19382384419441223
+            },
+            {
+              "family": "OPPO Sans",
+              "distance": 0.19771984219551086
+            }
+          ],
+          "source_bbox": [
+            303,
+            127,
+            447,
+            169
+          ],
+          "glyph_statuses": {
+            "ok": 6
+          }
+        }
+      ],
+      "result_file": "artifacts/mobile-coverage/end-to-end/latin-wl3bdk19/negative_courier_38_3/result.json",
+      "elapsed_seconds": 0.06867108307778835
+    }
+  ]
+}

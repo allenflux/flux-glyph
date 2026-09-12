@@ -204,7 +204,7 @@ def write_models_manifest(models_root: Path) -> dict:
         raise ValueError("A complete bundle needs pp/ and font/ directories")
     # Never sweep ACTIVE.json, old releases, or unrelated local files into a
     # bundle. Selection and historical versions belong to the deployment host.
-    assets = [p for folder in ("pp", "font") for p in (models_root / folder).rglob("*")
+    assets = [p for folder in ("pp", "font", "latin") for p in (models_root / folder).rglob("*")
               if p.is_file() and not p.name.startswith(".")]
     for path in sorted(assets):
         files.append({"path": str(path.relative_to(models_root)), "sha256": sha256(path), "bytes": path.stat().st_size})

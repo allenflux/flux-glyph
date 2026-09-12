@@ -1053,7 +1053,215 @@
     "验": "cjk_9A8C.npy",
     "鸣": "cjk_9E23.npy",
     "鸥": "cjk_9E25.npy",
-    "麻": "cjk_9EBB.npy"
+    "麻": "cjk_9EBB.npy",
+    "七": "cjk_4E03.npy",
+    "世": "cjk_4E16.npy",
+    "么": "cjk_4E48.npy",
+    "乙": "cjk_4E59.npy",
+    "事": "cjk_4E8B.npy",
+    "以": "cjk_4EE5.npy",
+    "件": "cjk_4EF6.npy",
+    "休": "cjk_4F11.npy",
+    "估": "cjk_4F30.npy",
+    "作": "cjk_4F5C.npy",
+    "供": "cjk_4F9B.npy",
+    "俏": "cjk_4FCF.npy",
+    "俗": "cjk_4FD7.npy",
+    "光": "cjk_5149.npy",
+    "兰": "cjk_5170.npy",
+    "共": "cjk_5171.npy",
+    "典": "cjk_5178.npy",
+    "冕": "cjk_5195.npy",
+    "军": "cjk_519B.npy",
+    "刘": "cjk_5218.npy",
+    "剪": "cjk_526A.npy",
+    "勤": "cjk_52E4.npy",
+    "勿": "cjk_52FF.npy",
+    "协": "cjk_534F.npy",
+    "受": "cjk_53D7.npy",
+    "变": "cjk_53D8.npy",
+    "同": "cjk_540C.npy",
+    "启": "cjk_542F.npy",
+    "咨": "cjk_54A8.npy",
+    "哈": "cjk_54C8.npy",
+    "哎": "cjk_54CE.npy",
+    "哥": "cjk_54E5.npy",
+    "啰": "cjk_5570.npy",
+    "嘴": "cjk_5634.npy",
+    "嚣": "cjk_56A3.npy",
+    "园": "cjk_56ED.npy",
+    "围": "cjk_56F4.npy",
+    "圩": "cjk_5729.npy",
+    "圳": "cjk_5733.npy",
+    "坎": "cjk_574E.npy",
+    "基": "cjk_57FA.npy",
+    "堡": "cjk_5821.npy",
+    "塔": "cjk_5854.npy",
+    "壮": "cjk_58EE.npy",
+    "处": "cjk_5904.npy",
+    "央": "cjk_592E.npy",
+    "奇": "cjk_5947.npy",
+    "奥": "cjk_5965.npy",
+    "女": "cjk_5973.npy",
+    "如": "cjk_5982.npy",
+    "姝": "cjk_59DD.npy",
+    "娱": "cjk_5A31.npy",
+    "字": "cjk_5B57.npy",
+    "客": "cjk_5BA2.npy",
+    "寒": "cjk_5BD2.npy",
+    "將": "cjk_5C07.npy",
+    "尹": "cjk_5C39.npy",
+    "尾": "cjk_5C3E.npy",
+    "崖": "cjk_5D16.npy",
+    "币": "cjk_5E01.npy",
+    "帛": "cjk_5E1B.npy",
+    "庆": "cjk_5E86.npy",
+    "序": "cjk_5E8F.npy",
+    "座": "cjk_5EA7.npy",
+    "庭": "cjk_5EAD.npy",
+    "弟": "cjk_5F1F.npy",
+    "录": "cjk_5F55.npy",
+    "彭": "cjk_5F6D.npy",
+    "往": "cjk_5F80.npy",
+    "徐": "cjk_5F90.npy",
+    "怡": "cjk_6021.npy",
+    "意": "cjk_610F.npy",
+    "憨": "cjk_61A8.npy",
+    "我": "cjk_6211.npy",
+    "才": "cjk_624D.npy",
+    "护": "cjk_62A4.npy",
+    "拼": "cjk_62FC.npy",
+    "按": "cjk_6309.npy",
+    "挥": "cjk_6325.npy",
+    "撑": "cjk_6491.npy",
+    "旁": "cjk_65C1.npy",
+    "早": "cjk_65E9.npy",
+    "昇": "cjk_6607.npy",
+    "昌": "cjk_660C.npy",
+    "晓": "cjk_6653.npy",
+    "晚": "cjk_665A.npy",
+    "普": "cjk_666E.npy",
+    "条": "cjk_6761.npy",
+    "松": "cjk_677E.npy",
+    "枫": "cjk_67AB.npy",
+    "栋": "cjk_680B.npy",
+    "树": "cjk_6811.npy",
+    "棵": "cjk_68F5.npy",
+    "橙": "cjk_6A59.npy",
+    "欢": "cjk_6B22.npy",
+    "欣": "cjk_6B23.npy",
+    "欲": "cjk_6B32.npy",
+    "此": "cjk_6B64.npy",
+    "武": "cjk_6B66.npy",
+    "母": "cjk_6BCD.npy",
+    "永": "cjk_6C38.npy",
+    "求": "cjk_6C42.npy",
+    "汉": "cjk_6C49.npy",
+    "沃": "cjk_6C83.npy",
+    "沐": "cjk_6C90.npy",
+    "沣": "cjk_6CA3.npy",
+    "河": "cjk_6CB3.npy",
+    "泽": "cjk_6CFD.npy",
+    "洪": "cjk_6D2A.npy",
+    "浏": "cjk_6D4F.npy",
+    "浙": "cjk_6D59.npy",
+    "浮": "cjk_6D6E.npy",
+    "浴": "cjk_6D74.npy",
+    "深": "cjk_6DF1.npy",
+    "湯": "cjk_6E6F.npy",
+    "溯": "cjk_6EAF.npy",
+    "滴": "cjk_6EF4.npy",
+    "澳": "cjk_6FB3.npy",
+    "炸": "cjk_70B8.npy",
+    "然": "cjk_7136.npy",
+    "熟": "cjk_719F.npy",
+    "燕": "cjk_71D5.npy",
+    "父": "cjk_7236.npy",
+    "独": "cjk_72EC.npy",
+    "猜": "cjk_731C.npy",
+    "瑄": "cjk_7444.npy",
+    "由": "cjk_7531.npy",
+    "界": "cjk_754C.npy",
+    "留": "cjk_7559.npy",
+    "疑": "cjk_7591.npy",
+    "疣": "cjk_75A3.npy",
+    "疼": "cjk_75BC.npy",
+    "痴": "cjk_75F4.npy",
+    "皮": "cjk_76AE.npy",
+    "盈": "cjk_76C8.npy",
+    "盖": "cjk_76D6.npy",
+    "磊": "cjk_78CA.npy",
+    "祈": "cjk_7948.npy",
+    "种": "cjk_79CD.npy",
+    "程": "cjk_7A0B.npy",
+    "究": "cjk_7A76.npy",
+    "突": "cjk_7A81.npy",
+    "站": "cjk_7AD9.npy",
+    "符": "cjk_7B26.npy",
+    "第": "cjk_7B2C.npy",
+    "筑": "cjk_7B51.npy",
+    "答": "cjk_7B54.npy",
+    "箸": "cjk_7BB8.npy",
+    "粤": "cjk_7CA4.npy",
+    "粮": "cjk_7CAE.npy",
+    "维": "cjk_7EF4.npy",
+    "综": "cjk_7EFC.npy",
+    "缺": "cjk_7F3A.npy",
+    "罩": "cjk_7F69.npy",
+    "置": "cjk_7F6E.npy",
+    "翠": "cjk_7FE0.npy",
+    "翼": "cjk_7FFC.npy",
+    "老": "cjk_8001.npy",
+    "肯": "cjk_80AF.npy",
+    "胜": "cjk_80DC.npy",
+    "胶": "cjk_80F6.npy",
+    "膳": "cjk_81B3.npy",
+    "芳": "cjk_82B3.npy",
+    "荣": "cjk_8363.npy",
+    "莞": "cjk_839E.npy",
+    "葡": "cjk_8461.npy",
+    "蔬": "cjk_852C.npy",
+    "虎": "cjk_864E.npy",
+    "虞": "cjk_865E.npy",
+    "虾": "cjk_867E.npy",
+    "被": "cjk_88AB.npy",
+    "袭": "cjk_88AD.npy",
+    "裝": "cjk_88DD.npy",
+    "覆": "cjk_8986.npy",
+    "覺": "cjk_89BA.npy",
+    "览": "cjk_89C8.npy",
+    "让": "cjk_8BA9.npy",
+    "议": "cjk_8BAE.npy",
+    "识": "cjk_8BC6.npy",
+    "谁": "cjk_8C01.npy",
+    "谢": "cjk_8C22.npy",
+    "赎": "cjk_8D4E.npy",
+    "赠": "cjk_8D60.npy",
+    "越": "cjk_8D8A.npy",
+    "轻": "cjk_8F7B.npy",
+    "输": "cjk_8F93.npy",
+    "达": "cjk_8FBE.npy",
+    "迁": "cjk_8FC1.npy",
+    "迈": "cjk_8FC8.npy",
+    "适": "cjk_9002.npy",
+    "配": "cjk_914D.npy",
+    "酸": "cjk_9178.npy",
+    "野": "cjk_91CE.npy",
+    "鉴": "cjk_9274.npy",
+    "钮": "cjk_94AE.npy",
+    "链": "cjk_94FE.npy",
+    "锐": "cjk_9510.npy",
+    "问": "cjk_95EE.npy",
+    "闲": "cjk_95F2.npy",
+    "际": "cjk_9645.npy",
+    "陌": "cjk_964C.npy",
+    "难": "cjk_96BE.npy",
+    "零": "cjk_96F6.npy",
+    "需": "cjk_9700.npy",
+    "食": "cjk_98DF.npy",
+    "馆": "cjk_9986.npy",
+    "鸡": "cjk_9E21.npy",
+    "鹦": "cjk_9E66.npy"
   },
   "shape": [
     31,
@@ -1068,11 +1276,687 @@
     44
   ],
   "archive": "references.npz.zip",
-  "archive_sha256": "6d355c542efbca8965c144956d40c3476a4bd1a7a42646f94de315c49a6b72d5",
+  "archive_sha256": "53cad8c16b9601cc28d825e223e4dcc03808d375e1b37b290e6311be2158f487",
   "source_manifest_sha256": "f1c9d9f438642c8a6e4ec5a03c7c02e9d6dce0001e61212291c764ff78a3ca54",
   "source_paths_embedded": false,
   "gates": {
     "path": "GATES.json",
     "sha256": "2961f7894ac29c10dc275fd10ede903b65f98fdf5e610db562212b88aa35342e"
-  }
+  },
+  "extensions": [
+    {
+      "characters": "七世么乙事以件休估作供俏俗光兰共典冕军刘剪勤勿协受变同启咨哈哎哥啰嘴嚣园围圩圳坎基堡塔壮处央奇奥女如姝娱字客寒將尹尾崖币帛庆序座庭弟录彭往徐怡意憨我才护拼按挥撑旁早昇昌晓晚普条松枫栋树棵橙欢欣欲此武母永求汉沃沐沣河泽洪浏浙浮浴深湯溯滴澳炸然熟燕父独猜瑄由界留疑疣疼痴皮盈盖磊祈种程究突站符第筑答箸粤粮维综缺罩置翠翼老肯胜胶膳芳荣莞葡蔬虎虞虾被袭裝覆覺览让议识谁谢赎赠越轻输达迁迈适配酸野鉴钮链锐问闲际陌难零需食馆鸡鹦",
+      "source_manifest_sha256": "8cf0910c19d77e04897d7bd3fc5289a82ef99aa59bc554b078a24eb653f351b1",
+      "character_list_sha256": "6b8de477326b0fe128c1fa0231bc99c23f193c36c02a23890b5ffaeb45767283",
+      "sources": [
+        {
+          "font_id": "harmonyos_bold",
+          "postscript_name": "HarmonyOS_Sans_SC_Bold",
+          "source_sha256": "43a424b85e47fb53a17b3b32026a71801f86f8e022ca6798d186b47d39fa5f01",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "harmonyos_medium",
+          "postscript_name": "HarmonyOS_Sans_SC_Medium",
+          "source_sha256": "6ed1553edccddc48eb27ff25d134a4a715cf54211238d4840b3038576cba1944",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "harmonyos_regular",
+          "postscript_name": "HarmonyOS_Sans_SC",
+          "source_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "heiti_light",
+          "postscript_name": "STHeitiSC-Light",
+          "source_sha256": "a57b0316cc0544f682b8fb9855e14ade79ae77340ef6a01ba9210e25b4c5a5b7",
+          "face_index": 1,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "heiti_medium",
+          "postscript_name": "STHeitiSC-Medium",
+          "source_sha256": "f8fa4a63e2cf500e98e64d4c73260daaba049306cf85dec9e3729bc285b7d645",
+          "face_index": 1,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "hiragino_w3",
+          "postscript_name": "HiraginoSansGB-W3",
+          "source_sha256": "f887295caf2881cab9554b14c5ab4c9ee624c3895599da152ec37416b5aefae0",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "hiragino_w6",
+          "postscript_name": "HiraginoSansGB-W6",
+          "source_sha256": "f887295caf2881cab9554b14c5ab4c9ee624c3895599da152ec37416b5aefae0",
+          "face_index": 2,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "misans_bold",
+          "postscript_name": "MiSans-Bold",
+          "source_sha256": "d0c1d327952ed935e86fb78a97a6c182b44f2c2b08777326786b1f8b26d1fe1e",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "misans_regular",
+          "postscript_name": "MiSans-Regular",
+          "source_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "negative_songti_regular",
+          "postscript_name": "STSongti-SC-Regular",
+          "source_sha256": "6873ac2ccab5c2e74d87d6b690f3773098dd6a6238805363a3b3567f2caf6f47",
+          "face_index": 6,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "noto_bold",
+          "postscript_name": "NotoSansCJKsc-Bold",
+          "source_sha256": "b5f0d1a190a7f9b43c310a8850630af12553df32c4c050543f9059732d9b4c0a",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "noto_medium",
+          "postscript_name": "NotoSansCJKsc-Medium",
+          "source_sha256": "ca094f6b0001fb048ca39ddd797a0cdb0179e1e55c6561e111c49c3e6a61d7b7",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "noto_regular",
+          "postscript_name": "NotoSansCJKsc-Regular",
+          "source_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "oppo_bold",
+          "postscript_name": "OPPOSans-Bold",
+          "source_sha256": "28c4079cf203b619cc6c6a5d1185b1a1128e8e91ea431df6b2d025b55ebad99a",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "oppo_medium",
+          "postscript_name": "OPPOSans-Medium",
+          "source_sha256": "337431511cecde0d0e05df1b8814d226b1f0f936436bf6d119317e62b0ea2a96",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "oppo_regular",
+          "postscript_name": "OPPOSans",
+          "source_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "pingfang_21.0d1e1_light",
+          "postscript_name": "PingFangSC-Light",
+          "source_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+          "face_index": 15,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "pingfang_21.0d1e1_medium",
+          "postscript_name": "PingFangSC-Medium",
+          "source_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+          "face_index": 7,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "pingfang_21.0d1e1_regular",
+          "postscript_name": "PingFangSC-Regular",
+          "source_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+          "face_index": 3,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "pingfang_21.0d1e1_semibold",
+          "postscript_name": "PingFangSC-Semibold",
+          "source_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+          "face_index": 11,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "pingfang_display_light",
+          "postscript_name": ".PingFangUIDisplaySC-Light",
+          "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+          "face_index": 5,
+          "variation_coordinates": [
+            500.0,
+            300.0,
+            500.0
+          ]
+        },
+        {
+          "font_id": "pingfang_display_medium",
+          "postscript_name": ".PingFangUIDisplaySC-Medium",
+          "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+          "face_index": 5,
+          "variation_coordinates": [
+            500.0,
+            500.0,
+            500.0
+          ]
+        },
+        {
+          "font_id": "pingfang_display_regular",
+          "postscript_name": ".PingFangUIDisplaySC-Regular",
+          "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+          "face_index": 5,
+          "variation_coordinates": [
+            500.0,
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "font_id": "pingfang_display_semibold",
+          "postscript_name": ".PingFangUIDisplaySC-Semibold",
+          "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+          "face_index": 5,
+          "variation_coordinates": [
+            500.0,
+            600.0,
+            500.0
+          ]
+        },
+        {
+          "font_id": "pingfang_text_light",
+          "postscript_name": ".PingFangUITextSC-Light",
+          "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+          "face_index": 0,
+          "variation_coordinates": [
+            500.0,
+            300.0,
+            500.0
+          ]
+        },
+        {
+          "font_id": "pingfang_text_medium",
+          "postscript_name": ".PingFangUITextSC-Medium",
+          "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+          "face_index": 0,
+          "variation_coordinates": [
+            500.0,
+            500.0,
+            500.0
+          ]
+        },
+        {
+          "font_id": "pingfang_text_regular",
+          "postscript_name": ".PingFangUITextSC-Regular",
+          "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+          "face_index": 0,
+          "variation_coordinates": [
+            500.0,
+            400.0,
+            500.0
+          ]
+        },
+        {
+          "font_id": "pingfang_text_semibold",
+          "postscript_name": ".PingFangUITextSC-Semibold",
+          "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+          "face_index": 0,
+          "variation_coordinates": [
+            500.0,
+            600.0,
+            500.0
+          ]
+        },
+        {
+          "font_id": "unknown_baoli_regular",
+          "postscript_name": "STBaoliSC-Regular",
+          "source_sha256": "63bf43fc567d4d28d66e64b904a72f9c2cebd3e3e594cfa37d801a441128bab8",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "unknown_kaiti_regular",
+          "postscript_name": "STKaitiSC-Regular",
+          "source_sha256": "cfd20ab9514ad926699811cdfc92963478adc65b370965657b56dd1338686570",
+          "face_index": 0,
+          "variation_coordinates": null
+        },
+        {
+          "font_id": "unknown_yuanti_regular",
+          "postscript_name": "STYuanti-SC-Regular",
+          "source_sha256": "e0fb2845cce6b1e83cbe503afb1e587acfbd9e6737e2662d7e5eb8f9e9d56be2",
+          "face_index": 0,
+          "variation_coordinates": null
+        }
+      ],
+      "previous_archive_sha256": "6d355c542efbca8965c144956d40c3476a4bd1a7a42646f94de315c49a6b72d5",
+      "preservation": {
+        "existing_members_verified_unchanged": 986,
+        "existing_member_hashes_sha256": "066da57ddd18a88bdb5db6a897d7b12865b3e258584b478dd2368994310eaa5e"
+      },
+      "renderer": "CoreText exact source URL/PostScript; sizes 20/28/44; unchanged blur32 preprocessing",
+      "render_report": {
+        "fonts": [
+          {
+            "actual_postscript_name": "HarmonyOS_Sans_SC_Bold",
+            "font_id": "harmonyos_bold",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "43a424b85e47fb53a17b3b32026a71801f86f8e022ca6798d186b47d39fa5f01",
+            "source_basename": "HarmonyOS_Sans_SC_Bold.ttf",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "HarmonyOS_Sans_SC_Medium",
+            "font_id": "harmonyos_medium",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "6ed1553edccddc48eb27ff25d134a4a715cf54211238d4840b3038576cba1944",
+            "source_basename": "HarmonyOS_Sans_SC_Medium.ttf",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "HarmonyOS_Sans_SC",
+            "font_id": "harmonyos_regular",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+            "source_basename": "HarmonyOS_Sans_SC_Regular.ttf",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "STHeitiSC-Light",
+            "font_id": "heiti_light",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "a57b0316cc0544f682b8fb9855e14ade79ae77340ef6a01ba9210e25b4c5a5b7",
+            "source_basename": "STHeiti Light.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "STHeitiSC-Medium",
+            "font_id": "heiti_medium",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "f8fa4a63e2cf500e98e64d4c73260daaba049306cf85dec9e3729bc285b7d645",
+            "source_basename": "STHeiti Medium.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "HiraginoSansGB-W3",
+            "font_id": "hiragino_w3",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "f887295caf2881cab9554b14c5ab4c9ee624c3895599da152ec37416b5aefae0",
+            "source_basename": "Hiragino Sans GB.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "HiraginoSansGB-W6",
+            "font_id": "hiragino_w6",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "f887295caf2881cab9554b14c5ab4c9ee624c3895599da152ec37416b5aefae0",
+            "source_basename": "Hiragino Sans GB.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "MiSans-Bold",
+            "font_id": "misans_bold",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "d0c1d327952ed935e86fb78a97a6c182b44f2c2b08777326786b1f8b26d1fe1e",
+            "source_basename": "MiSans-Bold.ttf",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "MiSans-Regular",
+            "font_id": "misans_regular",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+            "source_basename": "MiSans-Regular.ttf",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "STSongti-SC-Regular",
+            "font_id": "negative_songti_regular",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "6873ac2ccab5c2e74d87d6b690f3773098dd6a6238805363a3b3567f2caf6f47",
+            "source_basename": "Songti.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "NotoSansCJKsc-Bold",
+            "font_id": "noto_bold",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "b5f0d1a190a7f9b43c310a8850630af12553df32c4c050543f9059732d9b4c0a",
+            "source_basename": "NotoSansCJKsc-Bold.otf",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "NotoSansCJKsc-Medium",
+            "font_id": "noto_medium",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "ca094f6b0001fb048ca39ddd797a0cdb0179e1e55c6561e111c49c3e6a61d7b7",
+            "source_basename": "NotoSansCJKsc-Medium.otf",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "NotoSansCJKsc-Regular",
+            "font_id": "noto_regular",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+            "source_basename": "NotoSansCJKsc-Regular.otf",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "OPPOSans-Bold",
+            "font_id": "oppo_bold",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "28c4079cf203b619cc6c6a5d1185b1a1128e8e91ea431df6b2d025b55ebad99a",
+            "source_basename": "OPPOSans-Bold.ttf",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "OPPOSans-Medium",
+            "font_id": "oppo_medium",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "337431511cecde0d0e05df1b8814d226b1f0f936436bf6d119317e62b0ea2a96",
+            "source_basename": "OPPOSans-Medium.ttf",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "OPPOSans",
+            "font_id": "oppo_regular",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+            "source_basename": "OPPOSans-Regular.ttf",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "PingFangSC-Light",
+            "font_id": "pingfang_21.0d1e1_light",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+            "source_basename": "PingFang.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "PingFangSC-Medium",
+            "font_id": "pingfang_21.0d1e1_medium",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+            "source_basename": "PingFang.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "PingFangSC-Regular",
+            "font_id": "pingfang_21.0d1e1_regular",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+            "source_basename": "PingFang.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "PingFangSC-Semibold",
+            "font_id": "pingfang_21.0d1e1_semibold",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+            "source_basename": "PingFang.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": ".PingFangUIDisplaySC-Light",
+            "font_id": "pingfang_display_light",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+            "source_basename": "PingFangUI.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": ".PingFangUIDisplaySC-Medium",
+            "font_id": "pingfang_display_medium",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+            "source_basename": "PingFangUI.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": ".PingFangUIDisplaySC-Regular",
+            "font_id": "pingfang_display_regular",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+            "source_basename": "PingFangUI.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": ".PingFangUIDisplaySC-Semibold",
+            "font_id": "pingfang_display_semibold",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+            "source_basename": "PingFangUI.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": ".PingFangUITextSC-Light",
+            "font_id": "pingfang_text_light",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+            "source_basename": "PingFangUI.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": ".PingFangUITextSC-Medium",
+            "font_id": "pingfang_text_medium",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+            "source_basename": "PingFangUI.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": ".PingFangUITextSC-Regular",
+            "font_id": "pingfang_text_regular",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+            "source_basename": "PingFangUI.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": ".PingFangUITextSC-Semibold",
+            "font_id": "pingfang_text_semibold",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "13b201d63324db59de86956c11c46d1f0ad9ac0aeaa0b9d035c012a794062db7",
+            "source_basename": "PingFangUI.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "STBaoliSC-Regular",
+            "font_id": "unknown_baoli_regular",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "63bf43fc567d4d28d66e64b904a72f9c2cebd3e3e594cfa37d801a441128bab8",
+            "source_basename": "Baoli.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "STKaitiSC-Regular",
+            "font_id": "unknown_kaiti_regular",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "cfd20ab9514ad926699811cdfc92963478adc65b370965657b56dd1338686570",
+            "source_basename": "Kaiti.ttc",
+            "source_url_verified": true
+          },
+          {
+            "actual_postscript_name": "STYuanti-SC-Regular",
+            "font_id": "unknown_yuanti_regular",
+            "glyph_count": 208,
+            "sizes": [
+              20,
+              28,
+              44
+            ],
+            "source_sha256": "e0fb2845cce6b1e83cbe503afb1e587acfbd9e6737e2662d7e5eb8f9e9d56be2",
+            "source_basename": "Yuanti.ttc",
+            "source_url_verified": true
+          }
+        ],
+        "operating_system": "Version 26.5.1 (Build 25F80)",
+        "renderer": "CoreText exact source URL/PostScript; process registration"
+      },
+      "renderer_sha256": "156c902613b0d41f2ede385f2c96b963a71e8f3ecd6e71e500b88207f686f2a2",
+      "builder_sha256": "53af7092fa97127428d0328d617ab6d816a539e846f79bdc836e715af7ed8c15",
+      "selection": "Previously uncovered characters from the 100-image functional corpus; not font ground truth"
+    }
+  ]
 }

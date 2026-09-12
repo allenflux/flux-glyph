@@ -42,6 +42,16 @@ def verify_bundle(directory):
     meta=json.loads((root/'font/metadata.json').read_text());archive=meta.get('archive') if isinstance(meta,dict) else None
     if not isinstance(archive,str) or PurePosixPath(archive).name!=archive:raise ValueError('Invalid font archive path')
     required.add('font/'+archive)
+    if any(path.startswith('latin/') for path in paths):
+        if 'latin/metadata.json' not in paths:raise ValueError('Model bundle lacks Latin metadata')
+        latin=json.loads((root/'latin/metadata.json').read_text())
+        latin_archive=latin.get('archive') if isinstance(latin,dict) else None
+        gates=latin.get('gates',{}) if isinstance(latin,dict) else {}
+        gate_path=gates.get('path') if isinstance(gates,dict) else None
+        for name in (latin_archive,gate_path):
+            if not isinstance(name,str) or not name or PurePosixPath(name).name!=name or '\\' in name:
+                raise ValueError('Invalid Latin asset path')
+            required.add('latin/'+name)
     if not required.issubset(paths):raise ValueError('Model bundle lacks required files')
     return manifest
 

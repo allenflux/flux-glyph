@@ -1,0 +1,15 @@
+{
+  "method": "latin-aspect28-blur060-v1",
+  "output": "candidate_only",
+  "gates": {
+    "2": {
+      "max_distance": 0.03,
+      "min_margin": 0.003
+    },
+    "3": {
+      "max_distance": 0.04,
+      "min_margin": 0.0015
+    }
+  },
+  "scope": "Conservative candidate gates; no platform certification or real-device accuracy claim."
+}

@@ -187,7 +187,7 @@ async def lifespan(app):
 
 
 app=FastAPI(title='Flux Glyph API',version='1.0.0',lifespan=lifespan,docs_url=None,redoc_url=None,
-            description='上传支付宝截图，检测文字区域，识别中文字体候选并下载标注图片。')
+            description='上传支付宝截图，检测文字区域，分别识别中文、数字与英文字体候选并下载标注图片。')
 
 
 @app.exception_handler(HTTPException)

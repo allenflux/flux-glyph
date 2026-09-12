@@ -1,0 +1,3846 @@
+{
+  "scope": "Held-out Pillow render sizes with oracle character boxes. Not real-device or OCR end-to-end accuracy.",
+  "cases": [
+    {
+      "id": "sfpro_17_semibold_38_0",
+      "expected_family": "SF Pro",
+      "text": "-100.00",
+      "size": 38,
+      "status": "candidate",
+      "family": "SF Pro",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "SF Pro",
+      "source_sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "image": "sfpro_17_semibold_38_0.png",
+      "image_sha256": "e00677c2e99f0dc4420a78499f6765f9b45a1bb04bcc307b2d6799233f9fa5c2",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              8,
+              22,
+              27,
+              37
+            ]
+          },
+          {
+            "index": 1,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              26,
+              8,
+              45,
+              37
+            ]
+          },
+          {
+            "index": 2,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              44,
+              7,
+              70,
+              38
+            ]
+          },
+          {
+            "index": 3,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              69,
+              7,
+              95,
+              38
+            ]
+          },
+          {
+            "index": 4,
+            "character": ".",
+            "status": "ok",
+            "bbox": [
+              94,
+              29,
+              107,
+              37
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              106,
+              7,
+              132,
+              38
+            ]
+          },
+          {
+            "index": 6,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              131,
+              7,
+              157,
+              38
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "sfpro_17_semibold_38_1",
+      "expected_family": "SF Pro",
+      "text": "22:43",
+      "size": 38,
+      "status": "candidate",
+      "family": "SF Pro",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "SF Pro",
+      "source_sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "image": "sfpro_17_semibold_38_1.png",
+      "image_sha256": "3216778fba6ff7a2f8b98ee642db0e50516ccf82d05619a839ca2259577975ca",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              33,
+              37
+            ]
+          },
+          {
+            "index": 1,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              32,
+              7,
+              57,
+              37
+            ]
+          },
+          {
+            "index": 2,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              56,
+              15,
+              69,
+              37
+            ]
+          },
+          {
+            "index": 3,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              68,
+              8,
+              94,
+              37
+            ]
+          },
+          {
+            "index": 4,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              93,
+              7,
+              119,
+              38
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "sfpro_17_semibold_38_2",
+      "expected_family": "SF Pro",
+      "text": "2026-08-01 22:43:11",
+      "size": 38,
+      "status": "candidate",
+      "family": "SF Pro",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "SF Pro",
+      "source_sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "image": "sfpro_17_semibold_38_2.png",
+      "image_sha256": "4e52280da415ca7822450b1a29da59b39e31e1947f66cbb24501984b58122275",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              33,
+              37
+            ]
+          },
+          {
+            "index": 1,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              32,
+              7,
+              58,
+              38
+            ]
+          },
+          {
+            "index": 2,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              57,
+              7,
+              82,
+              37
+            ]
+          },
+          {
+            "index": 3,
+            "character": "6",
+            "status": "ok",
+            "bbox": [
+              81,
+              7,
+              107,
+              38
+            ]
+          },
+          {
+            "index": 4,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              106,
+              22,
+              125,
+              37
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              124,
+              7,
+              150,
+              38
+            ]
+          },
+          {
+            "index": 6,
+            "character": "8",
+            "status": "ok",
+            "bbox": [
+              149,
+              7,
+              175,
+              38
+            ]
+          },
+          {
+            "index": 7,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              174,
+              22,
+              193,
+              37
+            ]
+          },
+          {
+            "index": 8,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              192,
+              7,
+              218,
+              38
+            ]
+          },
+          {
+            "index": 9,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              217,
+              8,
+              236,
+              37
+            ]
+          },
+          {
+            "index": 10,
+            "character": " ",
+            "status": "ok",
+            "bbox": [
+              235,
+              35,
+              246,
+              37
+            ]
+          },
+          {
+            "index": 11,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              245,
+              7,
+              270,
+              37
+            ]
+          },
+          {
+            "index": 12,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              269,
+              7,
+              294,
+              37
+            ]
+          },
+          {
+            "index": 13,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              293,
+              15,
+              306,
+              37
+            ]
+          },
+          {
+            "index": 14,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              305,
+              8,
+              331,
+              37
+            ]
+          },
+          {
+            "index": 15,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              330,
+              7,
+              356,
+              38
+            ]
+          },
+          {
+            "index": 16,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              355,
+              15,
+              368,
+              37
+            ]
+          },
+          {
+            "index": 17,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              367,
+              8,
+              386,
+              37
+            ]
+          },
+          {
+            "index": 18,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              385,
+              8,
+              404,
+              37
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "sfpro_17_semibold_38_3",
+      "expected_family": "SF Pro",
+      "text": "Safari",
+      "size": 38,
+      "status": "candidate",
+      "family": "SF Pro",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "SF Pro",
+      "source_sha256": "2bfd40dc72e6759e248f82a52a40d551338979fffc9b5c070e685b4b7ad19e66",
+      "image": "sfpro_17_semibold_38_3.png",
+      "image_sha256": "dec6e33caadd9d4fe2d369827e861a3d137075a31a7a4c39497bf2e8eadac425",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "S",
+            "status": "ok",
+            "bbox": [
+              8,
+              9,
+              34,
+              40
+            ]
+          },
+          {
+            "index": 1,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              33,
+              16,
+              57,
+              39
+            ]
+          },
+          {
+            "index": 2,
+            "character": "f",
+            "status": "ok",
+            "bbox": [
+              56,
+              8,
+              72,
+              39
+            ]
+          },
+          {
+            "index": 3,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              71,
+              16,
+              95,
+              39
+            ]
+          },
+          {
+            "index": 4,
+            "character": "r",
+            "status": "ok",
+            "bbox": [
+              94,
+              16,
+              111,
+              39
+            ]
+          },
+          {
+            "index": 5,
+            "character": "i",
+            "status": "ok",
+            "bbox": [
+              110,
+              7,
+              121,
+              39
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "helvetica_bold_38_0",
+      "expected_family": "Helvetica",
+      "text": "-100.00",
+      "size": 38,
+      "status": "uncertain",
+      "family": null,
+      "reason": "unstable_latin_family",
+      "top_ranked_family": "Helvetica",
+      "source_sha256": "25eceb458d4baf628ee0b6a135a9f8ac5ec7b2826646720834bd2bf00dfc825a",
+      "image": "helvetica_bold_38_0.png",
+      "image_sha256": "f5cb21844bc83352e187f19b0c467cccd781742d18b1eba820b3b6a964e1496a",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              8,
+              21,
+              22,
+              36
+            ]
+          },
+          {
+            "index": 1,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              21,
+              7,
+              43,
+              36
+            ]
+          },
+          {
+            "index": 2,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              42,
+              7,
+              64,
+              36
+            ]
+          },
+          {
+            "index": 3,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              63,
+              7,
+              85,
+              36
+            ]
+          },
+          {
+            "index": 4,
+            "character": ".",
+            "status": "ok",
+            "bbox": [
+              84,
+              28,
+              96,
+              36
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              95,
+              7,
+              117,
+              36
+            ]
+          },
+          {
+            "index": 6,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              116,
+              7,
+              138,
+              36
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "helvetica_bold_38_1",
+      "expected_family": "Helvetica",
+      "text": "22:43",
+      "size": 38,
+      "status": "candidate",
+      "family": "Helvetica",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "Helvetica",
+      "source_sha256": "25eceb458d4baf628ee0b6a135a9f8ac5ec7b2826646720834bd2bf00dfc825a",
+      "image": "helvetica_bold_38_1.png",
+      "image_sha256": "f36b9924ea87e55fbfd21938988c11df28f6635b1b6013251a08ec772a3d5bdf",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              30,
+              36
+            ]
+          },
+          {
+            "index": 1,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              29,
+              7,
+              51,
+              36
+            ]
+          },
+          {
+            "index": 2,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              50,
+              14,
+              64,
+              36
+            ]
+          },
+          {
+            "index": 3,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              63,
+              7,
+              85,
+              36
+            ]
+          },
+          {
+            "index": 4,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              84,
+              7,
+              106,
+              36
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "helvetica_bold_38_2",
+      "expected_family": "Helvetica",
+      "text": "2026-08-01 22:43:11",
+      "size": 38,
+      "status": "candidate",
+      "family": "Helvetica",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "Helvetica",
+      "source_sha256": "25eceb458d4baf628ee0b6a135a9f8ac5ec7b2826646720834bd2bf00dfc825a",
+      "image": "helvetica_bold_38_2.png",
+      "image_sha256": "e3c7e0ba8b827fd1f641be4e3356580e13461d807b93e0f7114d2a84c0a668f7",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              30,
+              36
+            ]
+          },
+          {
+            "index": 1,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              29,
+              7,
+              51,
+              36
+            ]
+          },
+          {
+            "index": 2,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              50,
+              7,
+              72,
+              36
+            ]
+          },
+          {
+            "index": 3,
+            "character": "6",
+            "status": "ok",
+            "bbox": [
+              71,
+              7,
+              93,
+              36
+            ]
+          },
+          {
+            "index": 4,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              92,
+              21,
+              106,
+              36
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              105,
+              7,
+              127,
+              36
+            ]
+          },
+          {
+            "index": 6,
+            "character": "8",
+            "status": "ok",
+            "bbox": [
+              126,
+              7,
+              148,
+              36
+            ]
+          },
+          {
+            "index": 7,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              147,
+              21,
+              161,
+              36
+            ]
+          },
+          {
+            "index": 8,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              160,
+              7,
+              182,
+              36
+            ]
+          },
+          {
+            "index": 9,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              181,
+              7,
+              203,
+              36
+            ]
+          },
+          {
+            "index": 10,
+            "character": " ",
+            "status": "ok",
+            "bbox": [
+              202,
+              34,
+              214,
+              36
+            ]
+          },
+          {
+            "index": 11,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              213,
+              7,
+              235,
+              36
+            ]
+          },
+          {
+            "index": 12,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              234,
+              7,
+              256,
+              36
+            ]
+          },
+          {
+            "index": 13,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              255,
+              14,
+              269,
+              36
+            ]
+          },
+          {
+            "index": 14,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              268,
+              7,
+              290,
+              36
+            ]
+          },
+          {
+            "index": 15,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              289,
+              7,
+              311,
+              36
+            ]
+          },
+          {
+            "index": 16,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              310,
+              14,
+              324,
+              36
+            ]
+          },
+          {
+            "index": 17,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              323,
+              7,
+              345,
+              36
+            ]
+          },
+          {
+            "index": 18,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              344,
+              7,
+              366,
+              36
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "helvetica_bold_38_3",
+      "expected_family": "Helvetica",
+      "text": "Safari",
+      "size": 38,
+      "status": "uncertain",
+      "family": null,
+      "reason": "latin_font_outside_reference_gate",
+      "top_ranked_family": "Helvetica",
+      "source_sha256": "25eceb458d4baf628ee0b6a135a9f8ac5ec7b2826646720834bd2bf00dfc825a",
+      "image": "helvetica_bold_38_3.png",
+      "image_sha256": "4ac5ae999079303f387fd6b9cb342ecf393967fa693ff01e34511546153192ff",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "S",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              34,
+              36
+            ]
+          },
+          {
+            "index": 1,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              33,
+              14,
+              55,
+              36
+            ]
+          },
+          {
+            "index": 2,
+            "character": "f",
+            "status": "ok",
+            "bbox": [
+              54,
+              7,
+              68,
+              36
+            ]
+          },
+          {
+            "index": 3,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              67,
+              14,
+              89,
+              36
+            ]
+          },
+          {
+            "index": 4,
+            "character": "r",
+            "status": "ok",
+            "bbox": [
+              88,
+              14,
+              104,
+              36
+            ]
+          },
+          {
+            "index": 5,
+            "character": "i",
+            "status": "ok",
+            "bbox": [
+              103,
+              7,
+              115,
+              36
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "harmonyos_regular_38_0",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "-100.00",
+      "size": 38,
+      "status": "candidate",
+      "family": "HarmonyOS Sans SC",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "HarmonyOS Sans SC",
+      "source_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "image": "harmonyos_regular_38_0.png",
+      "image_sha256": "48ab73ade817f52cc9db99ec071cd0337b5a31b9de9bde20cf4c8bc198218184",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              8,
+              21,
+              27,
+              37
+            ]
+          },
+          {
+            "index": 1,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              26,
+              7,
+              49,
+              37
+            ]
+          },
+          {
+            "index": 2,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              48,
+              7,
+              71,
+              37
+            ]
+          },
+          {
+            "index": 3,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              70,
+              7,
+              93,
+              37
+            ]
+          },
+          {
+            "index": 4,
+            "character": ".",
+            "status": "ok",
+            "bbox": [
+              92,
+              31,
+              101,
+              37
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              100,
+              7,
+              123,
+              37
+            ]
+          },
+          {
+            "index": 6,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              122,
+              7,
+              145,
+              37
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "harmonyos_regular_38_1",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "22:43",
+      "size": 38,
+      "status": "candidate",
+      "family": "HarmonyOS Sans SC",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "HarmonyOS Sans SC",
+      "source_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "image": "harmonyos_regular_38_1.png",
+      "image_sha256": "1622e2c3b970b961e37b9a6f1660c404b55f9096e7df493009bf1e283b8c942e",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              31,
+              37
+            ]
+          },
+          {
+            "index": 1,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              30,
+              7,
+              53,
+              37
+            ]
+          },
+          {
+            "index": 2,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              52,
+              15,
+              63,
+              37
+            ]
+          },
+          {
+            "index": 3,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              62,
+              7,
+              85,
+              37
+            ]
+          },
+          {
+            "index": 4,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              84,
+              7,
+              107,
+              37
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "harmonyos_regular_38_2",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "2026-08-01 22:43:11",
+      "size": 38,
+      "status": "candidate",
+      "family": "HarmonyOS Sans SC",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "HarmonyOS Sans SC",
+      "source_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "image": "harmonyos_regular_38_2.png",
+      "image_sha256": "52df3aa744f5528a920230348c87be82e027d1a6395385d559ed167a8b6153ee",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              31,
+              37
+            ]
+          },
+          {
+            "index": 1,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              30,
+              7,
+              53,
+              37
+            ]
+          },
+          {
+            "index": 2,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              52,
+              7,
+              75,
+              37
+            ]
+          },
+          {
+            "index": 3,
+            "character": "6",
+            "status": "ok",
+            "bbox": [
+              74,
+              7,
+              97,
+              37
+            ]
+          },
+          {
+            "index": 4,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              96,
+              21,
+              115,
+              37
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              114,
+              7,
+              137,
+              37
+            ]
+          },
+          {
+            "index": 6,
+            "character": "8",
+            "status": "ok",
+            "bbox": [
+              136,
+              7,
+              159,
+              37
+            ]
+          },
+          {
+            "index": 7,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              158,
+              21,
+              177,
+              37
+            ]
+          },
+          {
+            "index": 8,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              176,
+              7,
+              199,
+              37
+            ]
+          },
+          {
+            "index": 9,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              198,
+              7,
+              221,
+              37
+            ]
+          },
+          {
+            "index": 10,
+            "character": " ",
+            "status": "ok",
+            "bbox": [
+              220,
+              35,
+              231,
+              37
+            ]
+          },
+          {
+            "index": 11,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              230,
+              7,
+              253,
+              37
+            ]
+          },
+          {
+            "index": 12,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              252,
+              7,
+              275,
+              37
+            ]
+          },
+          {
+            "index": 13,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              274,
+              15,
+              285,
+              37
+            ]
+          },
+          {
+            "index": 14,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              284,
+              7,
+              307,
+              37
+            ]
+          },
+          {
+            "index": 15,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              306,
+              7,
+              329,
+              37
+            ]
+          },
+          {
+            "index": 16,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              328,
+              15,
+              339,
+              37
+            ]
+          },
+          {
+            "index": 17,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              338,
+              7,
+              361,
+              37
+            ]
+          },
+          {
+            "index": 18,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              360,
+              7,
+              383,
+              37
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "harmonyos_regular_38_3",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "Safari",
+      "size": 38,
+      "status": "uncertain",
+      "family": null,
+      "reason": "latin_font_outside_reference_gate",
+      "top_ranked_family": "HarmonyOS Sans SC",
+      "source_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "image": "harmonyos_regular_38_3.png",
+      "image_sha256": "cfe6df680d17aa3a8d51d38022835009c445b416c1b807568cb05bb7f7b662ca",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "S",
+            "status": "ok",
+            "bbox": [
+              8,
+              9,
+              31,
+              39
+            ]
+          },
+          {
+            "index": 1,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              30,
+              17,
+              52,
+              39
+            ]
+          },
+          {
+            "index": 2,
+            "character": "f",
+            "status": "ok",
+            "bbox": [
+              51,
+              7,
+              67,
+              39
+            ]
+          },
+          {
+            "index": 3,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              65,
+              17,
+              87,
+              39
+            ]
+          },
+          {
+            "index": 4,
+            "character": "r",
+            "status": "ok",
+            "bbox": [
+              86,
+              17,
+              102,
+              39
+            ]
+          },
+          {
+            "index": 5,
+            "character": "i",
+            "status": "ok",
+            "bbox": [
+              100,
+              9,
+              109,
+              39
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "misans_regular_38_0",
+      "expected_family": "MiSans",
+      "text": "-100.00",
+      "size": 38,
+      "status": "candidate",
+      "family": "MiSans",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "MiSans",
+      "source_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "image": "misans_regular_38_0.png",
+      "image_sha256": "94ebff060d1a1c1027adf5c065305685787bbee0bc8751c022a7752722c9bd56",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              8,
+              19,
+              26,
+              38
+            ]
+          },
+          {
+            "index": 1,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              25,
+              7,
+              41,
+              38
+            ]
+          },
+          {
+            "index": 2,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              40,
+              7,
+              65,
+              39
+            ]
+          },
+          {
+            "index": 3,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              64,
+              7,
+              89,
+              39
+            ]
+          },
+          {
+            "index": 4,
+            "character": ".",
+            "status": "ok",
+            "bbox": [
+              88,
+              32,
+              98,
+              38
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              97,
+              7,
+              122,
+              39
+            ]
+          },
+          {
+            "index": 6,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              121,
+              7,
+              146,
+              39
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "misans_regular_38_1",
+      "expected_family": "MiSans",
+      "text": "22:43",
+      "size": 38,
+      "status": "candidate",
+      "family": "MiSans",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "MiSans",
+      "source_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "image": "misans_regular_38_1.png",
+      "image_sha256": "32716b67c7dcd05e6a9e7641d2be14703c6e48ff868225ec85bf5d78f2a6eeb2",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              31,
+              38
+            ]
+          },
+          {
+            "index": 1,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              30,
+              7,
+              53,
+              38
+            ]
+          },
+          {
+            "index": 2,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              52,
+              15,
+              62,
+              38
+            ]
+          },
+          {
+            "index": 3,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              61,
+              7,
+              84,
+              38
+            ]
+          },
+          {
+            "index": 4,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              83,
+              7,
+              107,
+              39
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "misans_regular_38_2",
+      "expected_family": "MiSans",
+      "text": "2026-08-01 22:43:11",
+      "size": 38,
+      "status": "candidate",
+      "family": "MiSans",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "MiSans",
+      "source_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "image": "misans_regular_38_2.png",
+      "image_sha256": "df4429a4decee7cd414c3359de67ca649efa5426a03fab66b9fc3f2fbff56f65",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              31,
+              38
+            ]
+          },
+          {
+            "index": 1,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              30,
+              7,
+              55,
+              39
+            ]
+          },
+          {
+            "index": 2,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              54,
+              7,
+              77,
+              38
+            ]
+          },
+          {
+            "index": 3,
+            "character": "6",
+            "status": "ok",
+            "bbox": [
+              76,
+              7,
+              99,
+              39
+            ]
+          },
+          {
+            "index": 4,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              98,
+              19,
+              116,
+              38
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              115,
+              7,
+              140,
+              39
+            ]
+          },
+          {
+            "index": 6,
+            "character": "8",
+            "status": "ok",
+            "bbox": [
+              139,
+              7,
+              164,
+              39
+            ]
+          },
+          {
+            "index": 7,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              163,
+              19,
+              181,
+              38
+            ]
+          },
+          {
+            "index": 8,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              180,
+              7,
+              205,
+              39
+            ]
+          },
+          {
+            "index": 9,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              204,
+              7,
+              220,
+              38
+            ]
+          },
+          {
+            "index": 10,
+            "character": " ",
+            "status": "ok",
+            "bbox": [
+              219,
+              36,
+              231,
+              38
+            ]
+          },
+          {
+            "index": 11,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              230,
+              7,
+              253,
+              38
+            ]
+          },
+          {
+            "index": 12,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              252,
+              7,
+              275,
+              38
+            ]
+          },
+          {
+            "index": 13,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              274,
+              15,
+              284,
+              38
+            ]
+          },
+          {
+            "index": 14,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              283,
+              7,
+              306,
+              38
+            ]
+          },
+          {
+            "index": 15,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              305,
+              7,
+              329,
+              39
+            ]
+          },
+          {
+            "index": 16,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              328,
+              15,
+              338,
+              38
+            ]
+          },
+          {
+            "index": 17,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              337,
+              7,
+              353,
+              38
+            ]
+          },
+          {
+            "index": 18,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              352,
+              7,
+              368,
+              38
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "misans_regular_38_3",
+      "expected_family": "MiSans",
+      "text": "Safari",
+      "size": 38,
+      "status": "candidate",
+      "family": "MiSans",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "MiSans",
+      "source_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "image": "misans_regular_38_3.png",
+      "image_sha256": "8a88f97f35c8f9d0f6ba5968df93ccdb888ae6c8d4ad02145900f788d89f906e",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "S",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              32,
+              39
+            ]
+          },
+          {
+            "index": 1,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              31,
+              15,
+              52,
+              39
+            ]
+          },
+          {
+            "index": 2,
+            "character": "f",
+            "status": "ok",
+            "bbox": [
+              51,
+              7,
+              65,
+              38
+            ]
+          },
+          {
+            "index": 3,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              64,
+              15,
+              85,
+              39
+            ]
+          },
+          {
+            "index": 4,
+            "character": "r",
+            "status": "ok",
+            "bbox": [
+              84,
+              15,
+              99,
+              38
+            ]
+          },
+          {
+            "index": 5,
+            "character": "i",
+            "status": "ok",
+            "bbox": [
+              98,
+              7,
+              108,
+              38
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "oppo_regular_38_0",
+      "expected_family": "OPPO Sans",
+      "text": "-100.00",
+      "size": 38,
+      "status": "candidate",
+      "family": "OPPO Sans",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "OPPO Sans",
+      "source_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "image": "oppo_regular_38_0.png",
+      "image_sha256": "4f5e19156c0fce23a989094627a701e90559d32277ac26525f621b708cff0382",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              8,
+              24,
+              22,
+              39
+            ]
+          },
+          {
+            "index": 1,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              21,
+              7,
+              37,
+              39
+            ]
+          },
+          {
+            "index": 2,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              36,
+              7,
+              61,
+              40
+            ]
+          },
+          {
+            "index": 3,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              60,
+              7,
+              85,
+              40
+            ]
+          },
+          {
+            "index": 4,
+            "character": ".",
+            "status": "ok",
+            "bbox": [
+              84,
+              32,
+              92,
+              40
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              91,
+              7,
+              116,
+              40
+            ]
+          },
+          {
+            "index": 6,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              115,
+              7,
+              140,
+              40
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "oppo_regular_38_1",
+      "expected_family": "OPPO Sans",
+      "text": "22:43",
+      "size": 38,
+      "status": "candidate",
+      "family": "OPPO Sans",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "OPPO Sans",
+      "source_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "image": "oppo_regular_38_1.png",
+      "image_sha256": "4ac84b2490c7fe20c243a8233b6e25994be11f6d76976cdcb87d822d92a45baf",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              31,
+              39
+            ]
+          },
+          {
+            "index": 1,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              30,
+              7,
+              53,
+              39
+            ]
+          },
+          {
+            "index": 2,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              52,
+              16,
+              62,
+              40
+            ]
+          },
+          {
+            "index": 3,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              61,
+              7,
+              85,
+              39
+            ]
+          },
+          {
+            "index": 4,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              84,
+              7,
+              107,
+              40
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "oppo_regular_38_2",
+      "expected_family": "OPPO Sans",
+      "text": "2026-08-01 22:43:11",
+      "size": 38,
+      "status": "candidate",
+      "family": "OPPO Sans",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "OPPO Sans",
+      "source_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "image": "oppo_regular_38_2.png",
+      "image_sha256": "02ef9666434260f98aedc7f4e3d905ff15a8363b1b4fd230ebd8e7ad93d30443",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              31,
+              39
+            ]
+          },
+          {
+            "index": 1,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              30,
+              7,
+              55,
+              40
+            ]
+          },
+          {
+            "index": 2,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              54,
+              7,
+              77,
+              39
+            ]
+          },
+          {
+            "index": 3,
+            "character": "6",
+            "status": "ok",
+            "bbox": [
+              76,
+              7,
+              100,
+              40
+            ]
+          },
+          {
+            "index": 4,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              99,
+              24,
+              113,
+              39
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              112,
+              7,
+              137,
+              40
+            ]
+          },
+          {
+            "index": 6,
+            "character": "8",
+            "status": "ok",
+            "bbox": [
+              136,
+              7,
+              160,
+              40
+            ]
+          },
+          {
+            "index": 7,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              159,
+              24,
+              173,
+              39
+            ]
+          },
+          {
+            "index": 8,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              172,
+              7,
+              197,
+              40
+            ]
+          },
+          {
+            "index": 9,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              196,
+              7,
+              212,
+              39
+            ]
+          },
+          {
+            "index": 10,
+            "character": " ",
+            "status": "ok",
+            "bbox": [
+              211,
+              37,
+              221,
+              39
+            ]
+          },
+          {
+            "index": 11,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              220,
+              7,
+              243,
+              39
+            ]
+          },
+          {
+            "index": 12,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              242,
+              7,
+              265,
+              39
+            ]
+          },
+          {
+            "index": 13,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              264,
+              16,
+              274,
+              40
+            ]
+          },
+          {
+            "index": 14,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              273,
+              7,
+              297,
+              39
+            ]
+          },
+          {
+            "index": 15,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              296,
+              7,
+              319,
+              40
+            ]
+          },
+          {
+            "index": 16,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              318,
+              16,
+              328,
+              40
+            ]
+          },
+          {
+            "index": 17,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              327,
+              7,
+              343,
+              39
+            ]
+          },
+          {
+            "index": 18,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              342,
+              7,
+              358,
+              39
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "oppo_regular_38_3",
+      "expected_family": "OPPO Sans",
+      "text": "Safari",
+      "size": 38,
+      "status": "candidate",
+      "family": "OPPO Sans",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "OPPO Sans",
+      "source_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "image": "oppo_regular_38_3.png",
+      "image_sha256": "c3bffdce6346901445feac5eb21f4fd97617fb65a462e8177178a917224ab372",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "S",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              34,
+              40
+            ]
+          },
+          {
+            "index": 1,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              33,
+              16,
+              54,
+              40
+            ]
+          },
+          {
+            "index": 2,
+            "character": "f",
+            "status": "ok",
+            "bbox": [
+              53,
+              7,
+              67,
+              39
+            ]
+          },
+          {
+            "index": 3,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              66,
+              16,
+              87,
+              40
+            ]
+          },
+          {
+            "index": 4,
+            "character": "r",
+            "status": "ok",
+            "bbox": [
+              86,
+              16,
+              101,
+              39
+            ]
+          },
+          {
+            "index": 5,
+            "character": "i",
+            "status": "ok",
+            "bbox": [
+              100,
+              7,
+              109,
+              39
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "alipay_number_regular_38_0",
+      "expected_family": "Alipay Number",
+      "text": "-100.00",
+      "size": 38,
+      "status": "candidate",
+      "family": "Alipay Number",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "Alipay Number",
+      "source_sha256": "6074082d8cb92e175184b177e28335e0171f3ddfb2b5818d7853295f7fb0fada",
+      "image": "alipay_number_regular_38_0.png",
+      "image_sha256": "828d69e55632b7cc6ce995295a96d0674075454a591a6a95dc381cac2693ac2b",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              8,
+              20,
+              32,
+              37
+            ]
+          },
+          {
+            "index": 1,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              31,
+              7,
+              48,
+              37
+            ]
+          },
+          {
+            "index": 2,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              47,
+              7,
+              68,
+              38
+            ]
+          },
+          {
+            "index": 3,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              67,
+              7,
+              88,
+              38
+            ]
+          },
+          {
+            "index": 4,
+            "character": ".",
+            "status": "ok",
+            "bbox": [
+              87,
+              30,
+              99,
+              37
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              98,
+              7,
+              119,
+              38
+            ]
+          },
+          {
+            "index": 6,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              118,
+              7,
+              139,
+              38
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "alipay_number_regular_38_1",
+      "expected_family": "Alipay Number",
+      "text": "22:43",
+      "size": 38,
+      "status": "candidate",
+      "family": "Alipay Number",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "Alipay Number",
+      "source_sha256": "6074082d8cb92e175184b177e28335e0171f3ddfb2b5818d7853295f7fb0fada",
+      "image": "alipay_number_regular_38_1.png",
+      "image_sha256": "a8a3b2c06b409523834b5f399994047dd765318337a4a8b0f771a0e7679d8d6e",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              29,
+              37
+            ]
+          },
+          {
+            "index": 1,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              28,
+              7,
+              49,
+              37
+            ]
+          },
+          {
+            "index": 2,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              48,
+              13,
+              60,
+              37
+            ]
+          },
+          {
+            "index": 3,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              59,
+              7,
+              82,
+              38
+            ]
+          },
+          {
+            "index": 4,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              81,
+              7,
+              102,
+              38
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "alipay_number_regular_38_2",
+      "expected_family": "Alipay Number",
+      "text": "2026-08-01 22:43:11",
+      "size": 38,
+      "status": "candidate",
+      "family": "Alipay Number",
+      "reason": "stable_latin_family_candidate",
+      "top_ranked_family": "Alipay Number",
+      "source_sha256": "6074082d8cb92e175184b177e28335e0171f3ddfb2b5818d7853295f7fb0fada",
+      "image": "alipay_number_regular_38_2.png",
+      "image_sha256": "2068ff7cce6cd201a60664a3e422a47543a9d367e4d62583d32945bda70ec1dd",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              29,
+              37
+            ]
+          },
+          {
+            "index": 1,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              28,
+              7,
+              49,
+              38
+            ]
+          },
+          {
+            "index": 2,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              48,
+              7,
+              69,
+              37
+            ]
+          },
+          {
+            "index": 3,
+            "character": "6",
+            "status": "ok",
+            "bbox": [
+              68,
+              7,
+              88,
+              38
+            ]
+          },
+          {
+            "index": 4,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              87,
+              20,
+              111,
+              37
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              110,
+              7,
+              131,
+              38
+            ]
+          },
+          {
+            "index": 6,
+            "character": "8",
+            "status": "ok",
+            "bbox": [
+              130,
+              7,
+              151,
+              38
+            ]
+          },
+          {
+            "index": 7,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              150,
+              20,
+              174,
+              37
+            ]
+          },
+          {
+            "index": 8,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              173,
+              7,
+              194,
+              38
+            ]
+          },
+          {
+            "index": 9,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              193,
+              7,
+              210,
+              37
+            ]
+          },
+          {
+            "index": 10,
+            "character": " ",
+            "status": "ok",
+            "bbox": [
+              209,
+              35,
+              222,
+              37
+            ]
+          },
+          {
+            "index": 11,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              221,
+              7,
+              242,
+              37
+            ]
+          },
+          {
+            "index": 12,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              241,
+              7,
+              262,
+              37
+            ]
+          },
+          {
+            "index": 13,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              261,
+              13,
+              273,
+              37
+            ]
+          },
+          {
+            "index": 14,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              272,
+              7,
+              295,
+              38
+            ]
+          },
+          {
+            "index": 15,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              294,
+              7,
+              315,
+              38
+            ]
+          },
+          {
+            "index": 16,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              314,
+              13,
+              326,
+              37
+            ]
+          },
+          {
+            "index": 17,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              325,
+              7,
+              342,
+              37
+            ]
+          },
+          {
+            "index": 18,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              341,
+              7,
+              358,
+              37
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "negative_times_38_0",
+      "expected_family": null,
+      "text": "-100.00",
+      "size": 38,
+      "status": "uncertain",
+      "family": null,
+      "reason": "unstable_latin_family",
+      "top_ranked_family": "MiSans",
+      "source_sha256": "20e3dc89912f4b37f2c29add764855164efafb4c66ca32551d9eb52c7411c7c7",
+      "image": "negative_times_38_0.png",
+      "image_sha256": "bfb7c6f1711f84444807618a1605f1f098ca376acae024857dc09bd27f8ecdc2",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              8,
+              23,
+              22,
+              34
+            ]
+          },
+          {
+            "index": 1,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              21,
+              7,
+              41,
+              34
+            ]
+          },
+          {
+            "index": 2,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              40,
+              7,
+              60,
+              34
+            ]
+          },
+          {
+            "index": 3,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              59,
+              7,
+              79,
+              34
+            ]
+          },
+          {
+            "index": 4,
+            "character": ".",
+            "status": "ok",
+            "bbox": [
+              78,
+              29,
+              89,
+              34
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              88,
+              7,
+              108,
+              34
+            ]
+          },
+          {
+            "index": 6,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              107,
+              7,
+              127,
+              34
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "negative_times_38_1",
+      "expected_family": null,
+      "text": "22:43",
+      "size": 38,
+      "status": "uncertain",
+      "family": null,
+      "reason": "latin_font_outside_reference_gate",
+      "top_ranked_family": "Alipay Number",
+      "source_sha256": "20e3dc89912f4b37f2c29add764855164efafb4c66ca32551d9eb52c7411c7c7",
+      "image": "negative_times_38_1.png",
+      "image_sha256": "79632ac443aba63a008217faa7ce24553626a93e706969aab8bdd17bd3ade08b",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              28,
+              34
+            ]
+          },
+          {
+            "index": 1,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              27,
+              7,
+              47,
+              34
+            ]
+          },
+          {
+            "index": 2,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              46,
+              15,
+              58,
+              34
+            ]
+          },
+          {
+            "index": 3,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              57,
+              7,
+              77,
+              34
+            ]
+          },
+          {
+            "index": 4,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              76,
+              7,
+              96,
+              34
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "negative_times_38_2",
+      "expected_family": null,
+      "text": "2026-08-01 22:43:11",
+      "size": 38,
+      "status": "uncertain",
+      "family": null,
+      "reason": "unstable_latin_family",
+      "top_ranked_family": "MiSans",
+      "source_sha256": "20e3dc89912f4b37f2c29add764855164efafb4c66ca32551d9eb52c7411c7c7",
+      "image": "negative_times_38_2.png",
+      "image_sha256": "2921455cbf91b9defd1325bea39a73a530c6427fd1ca757df1356c96fbafd531",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              28,
+              34
+            ]
+          },
+          {
+            "index": 1,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              27,
+              7,
+              47,
+              34
+            ]
+          },
+          {
+            "index": 2,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              46,
+              7,
+              66,
+              34
+            ]
+          },
+          {
+            "index": 3,
+            "character": "6",
+            "status": "ok",
+            "bbox": [
+              65,
+              7,
+              85,
+              34
+            ]
+          },
+          {
+            "index": 4,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              84,
+              23,
+              98,
+              34
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              97,
+              7,
+              117,
+              34
+            ]
+          },
+          {
+            "index": 6,
+            "character": "8",
+            "status": "ok",
+            "bbox": [
+              116,
+              7,
+              136,
+              34
+            ]
+          },
+          {
+            "index": 7,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              135,
+              23,
+              149,
+              34
+            ]
+          },
+          {
+            "index": 8,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              148,
+              7,
+              168,
+              34
+            ]
+          },
+          {
+            "index": 9,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              167,
+              7,
+              187,
+              34
+            ]
+          },
+          {
+            "index": 10,
+            "character": " ",
+            "status": "ok",
+            "bbox": [
+              186,
+              32,
+              197,
+              34
+            ]
+          },
+          {
+            "index": 11,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              196,
+              7,
+              216,
+              34
+            ]
+          },
+          {
+            "index": 12,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              215,
+              7,
+              235,
+              34
+            ]
+          },
+          {
+            "index": 13,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              234,
+              15,
+              246,
+              34
+            ]
+          },
+          {
+            "index": 14,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              245,
+              7,
+              265,
+              34
+            ]
+          },
+          {
+            "index": 15,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              264,
+              7,
+              284,
+              34
+            ]
+          },
+          {
+            "index": 16,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              283,
+              15,
+              295,
+              34
+            ]
+          },
+          {
+            "index": 17,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              294,
+              7,
+              314,
+              34
+            ]
+          },
+          {
+            "index": 18,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              313,
+              7,
+              333,
+              34
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "negative_times_38_3",
+      "expected_family": null,
+      "text": "Safari",
+      "size": 38,
+      "status": "uncertain",
+      "family": null,
+      "reason": "latin_font_outside_reference_gate",
+      "top_ranked_family": "SF Pro",
+      "source_sha256": "20e3dc89912f4b37f2c29add764855164efafb4c66ca32551d9eb52c7411c7c7",
+      "image": "negative_times_38_3.png",
+      "image_sha256": "29dd9d55c2bd47249b5563ca66c11729414846223be0edba12deb24ba38fd799",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "S",
+            "status": "ok",
+            "bbox": [
+              8,
+              8,
+              30,
+              35
+            ]
+          },
+          {
+            "index": 1,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              29,
+              16,
+              47,
+              35
+            ]
+          },
+          {
+            "index": 2,
+            "character": "f",
+            "status": "ok",
+            "bbox": [
+              46,
+              7,
+              62,
+              35
+            ]
+          },
+          {
+            "index": 3,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              59,
+              16,
+              77,
+              35
+            ]
+          },
+          {
+            "index": 4,
+            "character": "r",
+            "status": "ok",
+            "bbox": [
+              76,
+              16,
+              90,
+              35
+            ]
+          },
+          {
+            "index": 5,
+            "character": "i",
+            "status": "ok",
+            "bbox": [
+              89,
+              7,
+              101,
+              35
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "negative_courier_38_0",
+      "expected_family": null,
+      "text": "-100.00",
+      "size": 38,
+      "status": "uncertain",
+      "family": null,
+      "reason": "latin_font_outside_reference_gate",
+      "top_ranked_family": "MiSans",
+      "source_sha256": "449a068ddd88f179b50b4d6dbb86aa08a30981148b510d5cc30d4ff0cb29e9a6",
+      "image": "negative_courier_38_0.png",
+      "image_sha256": "3b4bff16a9019609a38f1fd5c68eb9ac914a799951ad22097abbe2ab54326029",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              8,
+              21,
+              32,
+              33
+            ]
+          },
+          {
+            "index": 1,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              31,
+              7,
+              55,
+              33
+            ]
+          },
+          {
+            "index": 2,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              54,
+              7,
+              78,
+              33
+            ]
+          },
+          {
+            "index": 3,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              77,
+              7,
+              101,
+              33
+            ]
+          },
+          {
+            "index": 4,
+            "character": ".",
+            "status": "ok",
+            "bbox": [
+              100,
+              24,
+              124,
+              33
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              123,
+              7,
+              147,
+              33
+            ]
+          },
+          {
+            "index": 6,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              146,
+              7,
+              170,
+              33
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "negative_courier_38_1",
+      "expected_family": null,
+      "text": "22:43",
+      "size": 38,
+      "status": "uncertain",
+      "family": null,
+      "reason": "unstable_latin_family",
+      "top_ranked_family": "SF Pro",
+      "source_sha256": "449a068ddd88f179b50b4d6dbb86aa08a30981148b510d5cc30d4ff0cb29e9a6",
+      "image": "negative_courier_38_1.png",
+      "image_sha256": "20abc3469914fe3826f7149601f94970a840e693e11b0baa48f6cd4920ac46c1",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              32,
+              33
+            ]
+          },
+          {
+            "index": 1,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              31,
+              7,
+              55,
+              33
+            ]
+          },
+          {
+            "index": 2,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              54,
+              14,
+              78,
+              33
+            ]
+          },
+          {
+            "index": 3,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              77,
+              7,
+              101,
+              33
+            ]
+          },
+          {
+            "index": 4,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              100,
+              7,
+              124,
+              33
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "negative_courier_38_2",
+      "expected_family": null,
+      "text": "2026-08-01 22:43:11",
+      "size": 38,
+      "status": "uncertain",
+      "family": null,
+      "reason": "unstable_latin_family",
+      "top_ranked_family": "Helvetica",
+      "source_sha256": "449a068ddd88f179b50b4d6dbb86aa08a30981148b510d5cc30d4ff0cb29e9a6",
+      "image": "negative_courier_38_2.png",
+      "image_sha256": "666088ad1b99a9f606b04eedb262387ba7495c3c57af336f14b17ad37741f8e7",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              8,
+              7,
+              32,
+              33
+            ]
+          },
+          {
+            "index": 1,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              31,
+              7,
+              55,
+              33
+            ]
+          },
+          {
+            "index": 2,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              54,
+              7,
+              78,
+              33
+            ]
+          },
+          {
+            "index": 3,
+            "character": "6",
+            "status": "ok",
+            "bbox": [
+              77,
+              7,
+              101,
+              33
+            ]
+          },
+          {
+            "index": 4,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              100,
+              21,
+              124,
+              33
+            ]
+          },
+          {
+            "index": 5,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              123,
+              7,
+              147,
+              33
+            ]
+          },
+          {
+            "index": 6,
+            "character": "8",
+            "status": "ok",
+            "bbox": [
+              146,
+              7,
+              170,
+              33
+            ]
+          },
+          {
+            "index": 7,
+            "character": "-",
+            "status": "ok",
+            "bbox": [
+              169,
+              21,
+              193,
+              33
+            ]
+          },
+          {
+            "index": 8,
+            "character": "0",
+            "status": "ok",
+            "bbox": [
+              192,
+              7,
+              216,
+              33
+            ]
+          },
+          {
+            "index": 9,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              215,
+              7,
+              239,
+              33
+            ]
+          },
+          {
+            "index": 10,
+            "character": " ",
+            "status": "ok",
+            "bbox": [
+              238,
+              31,
+              262,
+              33
+            ]
+          },
+          {
+            "index": 11,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              261,
+              7,
+              285,
+              33
+            ]
+          },
+          {
+            "index": 12,
+            "character": "2",
+            "status": "ok",
+            "bbox": [
+              284,
+              7,
+              308,
+              33
+            ]
+          },
+          {
+            "index": 13,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              307,
+              14,
+              331,
+              33
+            ]
+          },
+          {
+            "index": 14,
+            "character": "4",
+            "status": "ok",
+            "bbox": [
+              330,
+              7,
+              354,
+              33
+            ]
+          },
+          {
+            "index": 15,
+            "character": "3",
+            "status": "ok",
+            "bbox": [
+              353,
+              7,
+              377,
+              33
+            ]
+          },
+          {
+            "index": 16,
+            "character": ":",
+            "status": "ok",
+            "bbox": [
+              376,
+              14,
+              400,
+              33
+            ]
+          },
+          {
+            "index": 17,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              399,
+              7,
+              423,
+              33
+            ]
+          },
+          {
+            "index": 18,
+            "character": "1",
+            "status": "ok",
+            "bbox": [
+              422,
+              7,
+              446,
+              33
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    },
+    {
+      "id": "negative_courier_38_3",
+      "expected_family": null,
+      "text": "Safari",
+      "size": 38,
+      "status": "uncertain",
+      "family": null,
+      "reason": "unstable_latin_family",
+      "top_ranked_family": "SF Pro",
+      "source_sha256": "449a068ddd88f179b50b4d6dbb86aa08a30981148b510d5cc30d4ff0cb29e9a6",
+      "image": "negative_courier_38_3.png",
+      "image_sha256": "4f6733a375a888062422712a0a7d4af3fabf35cdbf0929d41046477d7c59ac68",
+      "segmentation": {
+        "characters": [
+          {
+            "index": 0,
+            "character": "S",
+            "status": "ok",
+            "bbox": [
+              8,
+              11,
+              32,
+              36
+            ]
+          },
+          {
+            "index": 1,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              31,
+              16,
+              55,
+              35
+            ]
+          },
+          {
+            "index": 2,
+            "character": "f",
+            "status": "ok",
+            "bbox": [
+              54,
+              9,
+              78,
+              35
+            ]
+          },
+          {
+            "index": 3,
+            "character": "a",
+            "status": "ok",
+            "bbox": [
+              77,
+              16,
+              101,
+              35
+            ]
+          },
+          {
+            "index": 4,
+            "character": "r",
+            "status": "ok",
+            "bbox": [
+              100,
+              16,
+              124,
+              35
+            ]
+          },
+          {
+            "index": 5,
+            "character": "i",
+            "status": "ok",
+            "bbox": [
+              123,
+              7,
+              147,
+              35
+            ]
+          }
+        ],
+        "diagnostics": {
+          "oracle_boxes": true,
+          "source": "Pillow glyph advances"
+        }
+      }
+    }
+  ]
+}

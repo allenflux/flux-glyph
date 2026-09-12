@@ -8,6 +8,7 @@ from PIL import Image,ImageOps,ImageDraw,ImageFont
 from .ppocr import PPRegionDetector,PPReader
 from .segmentation import segment_characters
 from .font_matcher import CompactFontBank,han,rank,score_font
+from .latin_matcher import CompactLatinBank,latin_character
 from .models import load_active
 
 ROOT=Path(__file__).resolve().parents[2]
@@ -48,6 +49,35 @@ class FontPipeline:
         self.directory,self.version,self.manifest=load_active(model_dir)
         self.detector=PPRegionDetector(self.directory/'pp');self.reader=PPReader(self.directory/'pp')
         self.bank=CompactFontBank(self.directory/'font',cache_characters);self.max_regions=max_regions
+        self.latin_bank=(CompactLatinBank(self.directory/'latin',cache_characters)
+                         if any(row['path']=='latin/metadata.json' for row in self.manifest['files']) else None)
+
+    def latin_result(self,oriented,reading,region,output,rotation):
+        """Keep numeric/Latin evidence independent of the Chinese family verdict."""
+        scored=self.latin_bank.score(oriented,reading['text'],reading.get('tokens',[]),reading.get('metadata'))
+        status='candidate' if scored['status']=='candidate' else 'uncertain'
+        if scored['status']=='unsupported_script':status='out_of_scope'
+        code=scored['reason']
+        if reading['confidence']<.8:
+            status='uncertain';code='text_unreliable'
+        family=scored['family'] if status=='candidate' else None
+        value={'status':status,'label':family+'（候选）' if family else STATUSES[status],
+               'family':family,'reason':code,'reason_code':code,'candidates':scored['candidates'],
+               'scope':'Latin letters and digits only','font_identity_verified':False,
+               'character_indices':[i for i,c in enumerate(reading['text']) if latin_character(c)]}
+        glyphs=[]
+        for item in scored['glyphs']:
+            glyph={k:item[k] for k in ('character','index','status','reason')}
+            glyph.update(family_candidate=None,source_rotation_degrees=rotation)
+            if item['status']=='ok' and item.get('bbox'):
+                l,t,r,b=item['bbox'];name=f'{region["id"]}-{item["index"]:03d}.png'
+                oriented.crop((l,t,r,b)).save(output/'glyphs'/name)
+                glyph['crop_file']='glyphs/'+name
+                source_box=[oriented.width-r,oriented.height-b,oriented.width-l,oriented.height-t] if rotation else [l,t,r,b]
+                x0,y0,_,_=region['source_bbox']
+                glyph['source_bbox']=[source_box[0]+x0,source_box[1]+y0,source_box[2]+x0,source_box[3]+y0]
+            glyphs.append(glyph)
+        return value,glyphs,scored
 
     def run(self,source,output,identifier,progress=lambda stage:None):
         def report(code,message,percent=None,current=None,total=None):
@@ -108,11 +138,22 @@ class FontPipeline:
             reading=readings[index];text=reading['text'];region['text']=text;region['ocr_confidence']=reading['confidence']
             if not text:
                 region['font']={**base,'reason':'文字未可靠读出，或文字行超出长度限制。'};regions.append(region);continue
-            if not any(han(c) for c in text):
-                region['font']={**base,'status':'out_of_scope','label':'暂不支持','reason':'当前模型识别中文字体，数字和英文保留框。'};regions.append(region);continue
-            rotation=reading['metadata']['orientation_degrees']
+            has_han=any(han(c) for c in text)
+            rotation=reading.get('metadata',{}).get('orientation_degrees',0)
             oriented=crop.transpose(Image.Transpose.ROTATE_180) if rotation==180 else crop
-            segments=segment_characters(oriented,text,reading['tokens'],metadata=reading['metadata'])
+            latin=None
+            if getattr(self,'latin_bank',None) and any(latin_character(c) for c in text):
+                latin=self.latin_result(oriented,reading,region,output,rotation)
+            if not has_han:
+                if latin:
+                    region.update(font=latin[0],glyphs=latin[1],font_evidence=latin[2]['evidence'],
+                                  segmentation=latin[2]['segmentation'],ocr=reading)
+                else:
+                    region['font']={**base,'status':'out_of_scope','label':'暂不支持','reason':'当前字库尚未覆盖该文字类型。',
+                                    'reason_code':'unsupported_script','scope':'No covered characters'}
+                regions.append(region);continue
+            segments=(latin[2].get('segmentation') if latin else None) or segment_characters(
+                oriented,text,reading['tokens'],metadata=reading['metadata'])
             samples=[];glyphs=[];missing=[];all_usable=True
             for char in segments['characters']:
                 c=char['character']
@@ -147,6 +188,13 @@ class FontPipeline:
             region.update(font={**base,'status':status,'label':label,'family':family if status in ('supported','candidate') else None,'reason':reason,'candidates':scored['candidates'],
                                  'unsupported_characters':sorted(set(missing))},glyphs=glyphs,
                           segmentation=segments,ocr=reading,font_evidence=scored)
+            if latin:
+                # The primary verdict remains explicitly scoped to Han. Mixed
+                # lines can use a different font for Latin letters and digits.
+                region['font']['components']=[
+                    {**region['font'],'character_indices':[i for i,c in enumerate(text) if han(c)]},latin[0]]
+                region['glyphs']=sorted(glyphs+latin[1],key=lambda item:item['index'])
+                region['latin_font_evidence']=latin[2]['evidence']
             regions.append(region)
         match_seconds=time.perf_counter()-mark
         report('annotating','正在生成字体标注图片',percent(recognized+len(boxes)))
@@ -155,12 +203,18 @@ class FontPipeline:
         result={'id':identifier,'width':image.width,'height':image.height,'regions':regions,'model_version':self.version,
                 'summary':{'detected_regions':len(regions),'chinese_regions':sum(any(han(c) for c in r['text']) for r in regions),
                            'pingfang_supported':counts['supported'],'other_candidates':counts['candidate'],'uncertain':counts['uncertain'],'out_of_scope':counts['out_of_scope'],
+                           'latin_regions':sum(any(latin_character(c) for c in r['text']) for r in regions),
+                           'latin_candidates':sum((r['font'].get('scope')=='Latin letters and digits only' and r['font']['status']=='candidate') or
+                                                  any(c.get('scope')=='Latin letters and digits only' and c['status']=='candidate'
+                                                      for c in r['font'].get('components',[])) for r in regions),
                            'processing_limited_regions':max(0,len(regions)-self.max_regions)},
                 'timing_seconds':{'detector':det_seconds,'ocr':rec_seconds,'font_matching':match_seconds,'total':time.perf_counter()-started},
-                'source_sha256':sha(source),'font_scope':'Chinese font family candidates; 986 known Han characters; numeric/Latin fonts unsupported',
+                'source_sha256':sha(source),'font_scope':f'Chinese font family candidates; {len(getattr(self.bank,"entries",{}))} known Han characters; '+
+                    ('independent Latin/digit candidates' if getattr(self,'latin_bank',None) else 'numeric/Latin reference bank unavailable'),
                 'pipeline':'PP DB + PP REC + original-pixel ink character localization + frozen font references',
                 'font_identity_verified':False,'device_inference_performed':False,
-                'linux_segmentation_accuracy_validated':False,'font_cache_bytes':self.bank.cache_bytes}
+                'linux_segmentation_accuracy_validated':False,'font_cache_bytes':self.bank.cache_bytes+
+                    (self.latin_bank.cache_bytes if getattr(self,'latin_bank',None) else 0)}
         save_json(output/'result.json',result)
         report('finalizing','正在整理识别结果',percent(work_total-1))
         return result

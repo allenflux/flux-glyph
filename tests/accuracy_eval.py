@@ -392,7 +392,7 @@ def markdown(report: dict[str, Any]) -> str:
         lines.append(f"| {family} | {item['accepted_precision']} | {item['strict_evidence_complete_precision']} | {item['coverage']} | {item['total_name_correct_rate']} | {item['total_correct_rate']} | {item['ocr_exact_rate']} | {item['segmentation_status_ok_rate']} | {item['segmentation_complete_rate']} | {item['oracle_match_correct_rate']} | {item['font_name_correct']}/{item['strict_correct']}/{item['accepted']}/{item['total']} |")
     if "comparison_to_pre_segmentation_fix" in report:
         comparison = report["comparison_to_pre_segmentation_fix"]
-        lines += ["", "## 分字修复前后", "",
+        lines += ["", "## 与最初分字修复前基线比较", "",
                   "| 指标 | 修复前 | 修复后 | delta |", "|---|---:|---:|---:|"]
         for key, item in comparison.items():
             lines.append(f"| {key} | {item['before']} | {item['after']} | {item['delta']:+.6f} |")
@@ -488,7 +488,7 @@ def evaluate() -> dict[str, Any]:
         "model_bundle_manifest_sha256": digest(ROOT / "models" / "MANIFEST.json"),
         "runtime_code_sha256": {name: digest(ROOT / "src" / "flux_glyph" / name)
                                 for name in ("pipeline.py", "ppocr.py", "segmentation.py", "font_matcher.py",
-                                             "detection.py", "foreground.py", "glyph_preprocess.py", "models.py")},
+                                             "detection.py", "foreground.py", "glyph_preprocess.py", "models.py", "latin_matcher.py")},
         "metrics": summarize(rows),
         "cases": rows,
     }

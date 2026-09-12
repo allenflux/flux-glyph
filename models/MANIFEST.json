@@ -13,13 +13,28 @@
     },
     {
       "path": "font/metadata.json",
-      "sha256": "b2ff7910baa755790b64964c3cb55e1024719a512704cefa1fd9759e0c0ab7cf",
-      "bytes": 29342
+      "sha256": "c3d9b5ed2d7ede8c64378b09f600ba132ef5b6eba377ad740cf240a82efe6b25",
+      "bytes": 59617
     },
     {
       "path": "font/references.npz.zip",
-      "sha256": "6d355c542efbca8965c144956d40c3476a4bd1a7a42646f94de315c49a6b72d5",
-      "bytes": 68077821
+      "sha256": "53cad8c16b9601cc28d825e223e4dcc03808d375e1b37b290e6311be2158f487",
+      "bytes": 82799769
+    },
+    {
+      "path": "latin/GATES.json",
+      "sha256": "a09c1733a0d8f1c80c3b66d79ae11ecc49f0b05b9d0aa928e9349e806a5d76a9",
+      "bytes": 337
+    },
+    {
+      "path": "latin/metadata.json",
+      "sha256": "748ab653eb2ea2cfb53e6063ff7f7373240088d18ca3f8cc8e4370d789a80406",
+      "bytes": 9383
+    },
+    {
+      "path": "latin/references.zip",
+      "sha256": "7c5211317ebf50b42ba458cd2677e9436c294593482d2ba37e05633678a83e2f",
+      "bytes": 1229763
     },
     {
       "path": "pp/charset/ppocr_keys_v1.txt",
@@ -47,5 +62,6 @@
       "bytes": 7851
     }
   ],
-  "source_note": "user-supplied PP ONNX plus frozen R13 reference rasters compacted without new neural training"
+  "source_note": "PP ONNX; original R13 Han references plus 208 source-verified Han characters and a separate Latin/digit candidate bank",
+  "version": "r14-mobile-fonts-v1"
 }

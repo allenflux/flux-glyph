@@ -1,0 +1,5353 @@
+{
+  "schema": "flux-glyph-half-pixel-candidate-validation-v1",
+  "evaluated_at_utc": "2026-09-12T03:11:09.148638+00:00",
+  "scope": "controlled oracle glyph crops only; not real screenshots or end-to-end accuracy",
+  "frozen_screenshot_inputs_modified": false,
+  "candidate_decision": "Complete crops and unique same-family winner across all three image views; abstention is incorrect.",
+  "pingfang_gates_modified": false,
+  "texts": [
+    "支付宝账户",
+    "交易信息查询",
+    "银行卡管理",
+    "支付服务安全",
+    "手机号码验证",
+    "生活缴费中心"
+  ],
+  "sizes": [
+    19,
+    23,
+    29,
+    35,
+    41,
+    47
+  ],
+  "palettes": [
+    [
+      [
+        255,
+        255,
+        255
+      ],
+      [
+        30,
+        30,
+        30
+      ]
+    ],
+    [
+      [
+        20,
+        100,
+        210
+      ],
+      [
+        255,
+        255,
+        255
+      ]
+    ]
+  ],
+  "font_sources": [
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "source_sha256": "9ff3ce9439fe285cdabb46f9ceb46b1ac58f1ca07e6f4a764e8286db621a0af9",
+      "postscript_name": "PingFangSC-Regular"
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "source_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "postscript_name": "NotoSansCJKsc-Regular"
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "source_sha256": "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+      "postscript_name": "HarmonyOS_Sans_SC"
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "source_sha256": "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+      "postscript_name": "MiSans-Regular"
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "source_sha256": "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3",
+      "postscript_name": "OPPOSans"
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "source_sha256": "6873ac2ccab5c2e74d87d6b690f3773098dd6a6238805363a3b3567f2caf6f47",
+      "postscript_name": "STSongti-SC-Regular"
+    }
+  ],
+  "font_matcher_sha256": "2345f1e8f7bc1be8d4d55dc78709c0d99442730720fb90d023296c1db3ec0298",
+  "counts": {
+    "legacy": {
+      "PingFang SC": {
+        "total": 72,
+        "correct": 71,
+        "wrong": 0,
+        "abstention": 1
+      },
+      "Noto Sans CJK SC": {
+        "total": 72,
+        "correct": 63,
+        "wrong": 0,
+        "abstention": 9
+      },
+      "HarmonyOS Sans SC": {
+        "total": 72,
+        "correct": 46,
+        "wrong": 3,
+        "abstention": 23
+      },
+      "MiSans": {
+        "total": 72,
+        "correct": 64,
+        "wrong": 0,
+        "abstention": 8
+      },
+      "OPPO Sans": {
+        "total": 72,
+        "correct": 41,
+        "wrong": 4,
+        "abstention": 27
+      },
+      "Songti SC": {
+        "total": 72,
+        "correct": 69,
+        "wrong": 0,
+        "abstention": 3
+      }
+    },
+    "aligned": {
+      "PingFang SC": {
+        "total": 72,
+        "correct": 72,
+        "wrong": 0,
+        "abstention": 0
+      },
+      "Noto Sans CJK SC": {
+        "total": 72,
+        "correct": 70,
+        "wrong": 0,
+        "abstention": 2
+      },
+      "HarmonyOS Sans SC": {
+        "total": 72,
+        "correct": 63,
+        "wrong": 1,
+        "abstention": 8
+      },
+      "MiSans": {
+        "total": 72,
+        "correct": 62,
+        "wrong": 0,
+        "abstention": 10
+      },
+      "OPPO Sans": {
+        "total": 72,
+        "correct": 57,
+        "wrong": 0,
+        "abstention": 15
+      },
+      "Songti SC": {
+        "total": 72,
+        "correct": 69,
+        "wrong": 0,
+        "abstention": 3
+      }
+    }
+  },
+  "cases": [
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付宝账户",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "f91d59a744903d4b5d6819326b951b9cd2366af8d96f9bd72b44e180669722b7",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付宝账户",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "7cce7e3570a793aa3de5002fed84181f9e4cb9dbc85b00352c8a99ce4d7e6833",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付宝账户",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "fb8959b7a28d2b8be4e54e908580bbb5ddd1b83cf6c1c3f61fff924f00085f0d",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付宝账户",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "5e881bb50264dc6a0ec77dd52b8a79047ad6a778366939b2d7525eb512e6c669",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付宝账户",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "e74b3aec3f725f3a9ae2fe0e33d579996d419312653597271c7f3007daabf176",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付宝账户",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "f3af4be5d3c4442f9d4fb5694baf13aba04245f7a24e5a84808bd4d2cdf8c8de",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付宝账户",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "f77baee5afa870192c88e9591200328508eec4dfd96cb7472f236dbf8f0d1581",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付宝账户",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "189af134049473dd6b06cde80f2f61a54f59474d5294d920462226663352844e",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付宝账户",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "9a3f8a2dbf61759d604d389b989340ab68f6cd54707ad96c0a096aab21e8d8f2",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付宝账户",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "735e116b8219a978ad84e8348e33f12110a03112511326cbf875c5b1fc67fd0b",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付宝账户",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "9430242517cebe0460b536f1d4098b75e306d34132c6f1e0eb74a3604039a203",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付宝账户",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "92dd1b59476b9a922d12206c474727c448234ef215883c42cefe58c9d460c0a7",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "交易信息查询",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "4a8f3b8a4e033aefc542e3d47fe4b848233d0a942f582bf9af764ca778e87239",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "交易信息查询",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "7188da55e545fb9973638eceff31f5edaf737ea1440dc75048a9298d93a1c928",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "交易信息查询",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "e261866b1dd0fa5830b2333b0fe55c3e434a85c869e852311257f13a0d59b5f4",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "交易信息查询",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "8d1d06d13a62e3e238ba0faec158a6bf6e6a58b1ce1aac025c00bc7d2d8e7a5c",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "交易信息查询",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "7adaf3fdd9b19624d3283109207b6c4949094d6a6c33679186a79de86788d9d8",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "交易信息查询",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "23756e201ed250120a83ae5c9aa3a310cba770c6955679740f2d50b9a8ba70b1",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "交易信息查询",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "3b5c226e10dcf9873f9208c4d9a39c8d021d886c8c181368dc4d8cd010544710",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "交易信息查询",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "aa01956e5e5e954c12d6f392a7e01e39c70bc3905db799fb1772551e1c9492a0",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "交易信息查询",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "70235fbb5dac62224b851105d9109fd784fecf6035a072a9954443b322236b29",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "交易信息查询",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "d6374b6778b8ca7b2c1f9c1b062938ab8415c20836932af1568e004716e3a00c",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "交易信息查询",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "b8847a8144ac8b96b4bdcd739d450b5574151c1ee507785e97f069db41056e2c",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "交易信息查询",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "815447e883f6ac20078f4b907640aaa23a420fc0874f1fb290fe5f93002a6355",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "银行卡管理",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "fe7d7b093a425cda6c6817fb9470818597c3144dd9d4c6834576a2f8f1287e8b",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "银行卡管理",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "5ba9e10e167ef7a5197cf2857fbf19239304201e44df30b39210350eb205e945",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "银行卡管理",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "b9c879603dfbcc0ed030cb432203f073f74f09676c64a1028beb7c791b6b9317",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "银行卡管理",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "d08dd4e0abdc7e2d84f9abf154fb12cb4d3c7dd2ead411fb002d6910f7c6d71c",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "银行卡管理",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "126580ac442fb1e7b81d7ff2d17c8b67a5f32d9aba12d94541a49a69b2ab04ef",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "银行卡管理",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "03c554326f4c3d29eba024961cfb3dcec7696706bf54c38d8ccf21291110a517",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "银行卡管理",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "b1783f460a32aeddc720004433a8847cf8d54c8e55735e0c00ad723c23c8e899",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "银行卡管理",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "328371c35ed54404b7dce03e0d8aa1c3b38493a7f0b5d8b4bed620fd26d3460b",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "银行卡管理",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "117e3401d38fdfaeb9a908fc69d1b6db6002848106662c035d2e0870fec26e56",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "银行卡管理",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "1d1c6f334f028701b851360b03887acc8bac04af7d29c58225c34ee5c55081a8",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "银行卡管理",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "b06285862b15bd30b299cee01cab82cae82f8e50075d4b17b7c6a2ee41484214",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "银行卡管理",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "f0096159a60eefeb7182787d3037e7203a97beb1df90b97444116c9a2ff2f18c",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付服务安全",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "6c0c002a2c8e1aca2bc98195bba648ad0ad8d5bb814757fb431e6dbcff7e8df1",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付服务安全",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "5ba5b556bf2aaa47f411c14a761cb82db7687e4d44bf990ae474030342b44d5d",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付服务安全",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "c6129068b5f7523ef8f9d764e67b2699f9d6ca512d6b07d5e0bed55d80d9e53c",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付服务安全",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "3f265899dd171ac93a1fa09adbf193d88be15b4644a9cf985ad0a1d639aabf37",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付服务安全",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "b3f32235ed6d36b125ed3946d4376c4e61a71ce28d64759307f9bac5ddcbc78b",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付服务安全",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "48570e3f7dd669cf0d32cd117c5fa3cd4fef24e0dd5fa733c2a22b16831f677f",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付服务安全",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "bb600d3805f60922af70a1e8c5df5c2594d021abdd79537b649bc645a3965a6d",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付服务安全",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "9adc87ddc19848d4c1770be17cd8b6e1cfd7a3d31e7dc5c672f9fcf1930af2da",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付服务安全",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "9247c27fe22d3cb2482de55441381182ae196b7586baea67e927ecd1ee39b0cd",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付服务安全",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "d41a827b05abd32315b3c5cc0f33a9e48c1e6c1d6de36d6ebf7c50e936ad81b6",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付服务安全",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "4e65539e586425cb2f40d5ab31096f2c42404edb412c3df9ec6dcaf3b3f36023",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "支付服务安全",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "b6ba1fbf29cc45ceb9f8b3a0d3a6a94ed257266e6b31e0899df0b0e4e4a87a0d",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "手机号码验证",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "a9bcd442e49aee79348d5b0994842c088a2fe806b89d8fe392a7c49ad4deee6f",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "手机号码验证",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "f7d72041758302f8f2a7e52424e1a9e3109906f674036dbe4b1452a61897c102",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "手机号码验证",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "920258aa3d8a87741cb598f74a37874cd5b0a6fad51d27809f1b2f0bda0c2c29",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "手机号码验证",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "7ab33cc472ad81c5d7445c62e71ea236b07c645a9f72154355755a56794e606f",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "手机号码验证",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "60b3dcd95008b45478c00bf2b07521923b6dc3f57b3c61093ed309483f22b816",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "手机号码验证",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "2b2aef230d71fd23eaf12d99a5d65624b96b6a4e387c05f69fb38b7a961e9e77",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "手机号码验证",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "fe077ff9865d4b86d15db4c55154642e3914bba52d1c90b1f8187a5873742886",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "手机号码验证",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "65f73143ac2c88455b379ad86d8b592786d32cbb15cdd56d0297389143e2a98f",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "手机号码验证",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "a17efbcf3f5822814101677580fb423ca594448af373c145d21776534e5750e9",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "手机号码验证",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "404f294f5893d1f1627b3580e225137f52b034befe7b4043ae9584214424a9d2",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "手机号码验证",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "38c2ddd2e320346f2e43bb5b0172c8da6aa0eae24bfcf919175b4deaae9731c8",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "手机号码验证",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "7bb7e8a01fa3e0574c6b04570f97761bf5ab2a8f40731e1594285565bc56fa04",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "生活缴费中心",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "e1eea63f597b94cd9432fa86b3f312214bc8c656c1b00e952d5270bfbe6a4566",
+      "predictions": {
+        "legacy": null,
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "生活缴费中心",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "4b8021eebed6ff4f7d478ea34015d49f8ecb10b81164563e38acbabbc8b2643f",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "生活缴费中心",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "df804c3924977e987e01cd895aef5205db1be9f5129b5ff7465bbd4ebd55e7f6",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "生活缴费中心",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "f3cd57785e18fc620eaac3774f2f45c8319bd8cf658af0f660519cb75abee2d4",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "生活缴费中心",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "227895fe6d95a2bf756e03dfd194b610bb3ebaf47354eeda771f21dc4a3b9c01",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "生活缴费中心",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "4d90e308990cfc0e1ae9c3cde2e618b23e13172d937ec6d83e48f8302f46c2ac",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "生活缴费中心",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "63e96b544367248e3c8470899219c04e783d6791fd7fce029aa35254f64e533e",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "生活缴费中心",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "87f592a29f51fe52fa09cbd1f5d5f09f8e0d9096e3cdc2ee8d1de1f4b97dc1c8",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "生活缴费中心",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "0d1166c52ef0471e5627488f82d20ef439771a3ba08758e8e6cc256b98e1f462",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "生活缴费中心",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "5553fee8b47a1e454fe54520d6f4215b56e41aca35373d0460aa7355588ca5cb",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "生活缴费中心",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "8671292ad477b5bfa8e24873a376db901a8c3cb1b25c0698c0a8848d305d8422",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "pingfang_21.0d1e1_regular",
+      "expected_family": "PingFang SC",
+      "text": "生活缴费中心",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "6e093ea0fc51f31559c05ff04913a219de25fc21ee9a6b60de6f5f37844338db",
+      "predictions": {
+        "legacy": "PingFang SC",
+        "aligned": "PingFang SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付宝账户",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "1d36f7bf3429f75f7ab12ac6fc5b507622d37d5528e47ad0000c7a2512778ef3",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付宝账户",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "0d7a9890cda02ddfce2e4c86e45ea5d21736dad863802c603972bcd3808915a0",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付宝账户",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "c7393161422d645b83234109e63d230d2c34cae1b0b2bd8c4a9c8c3f66bf8b9a",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付宝账户",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "356b4dad2d4d379dbee7c9829661134aec07bcc250c86dfbaa1ed6ae334ef127",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付宝账户",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "f5bd45b6f00e1d22abfe5dcaeffc958945c19855b43f12d19cb88e8d70ebd5df",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付宝账户",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "04514f0dd78af6cb961c94c1dc2ad08164abb9a7a3d97f1131f3c5eb9674fe78",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付宝账户",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "6a05199ef2c006b64823d846d5473baa391f70a8f1a53e5444d888f6af1dbc12",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付宝账户",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "31f277f0944cbb08230f023fee2d118369fc0e9251621b521af959949534c4fb",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付宝账户",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "f921e84815fa6b3d1899d9be01881d6dbdc4f615849cb3a2d9fb8b391bdc1fc5",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付宝账户",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "6d6ac475a6849dee220c848502be7f5e1fd11f2c193d775e98b9cbd7bffec73d",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付宝账户",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "ea9b9493f189c1f2eb9223a6db04b7433f71b69fdf9a7b9e3e422e2a4169bd2e",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付宝账户",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "855d1cb3a72c465173853e3a9a7425042d686f17c73ac963eb0eaa73a47cbf5a",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "交易信息查询",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "3284a499e947ffe2527bcc65ef2667ca9109bb8ac96cd737645d438820cd53b7",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "交易信息查询",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "495724af009be9933e3a70ca610d47d8569d67ccc63f696ab685c044771523de",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "交易信息查询",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "93da5b1ffb427de657fb4e6f9927ad7e0b89a0313884d73fb1e59290a7f72180",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "交易信息查询",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "5260a3ab55210a6dd2c93c4cbc66958aa6dec12622cc0536ce20886825554887",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "交易信息查询",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "8d20073c37d3d7377c8c6ef38ce87915ad84b24f270af9dca852f246ebaf2ffa",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "交易信息查询",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "c5188672a1a55dcdad216350d3654948c090865484c9ece31e60975d82ab5cfe",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "交易信息查询",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "e67b5802d42daeaa91d9f5c2c2aedac055ea8f6b0a1c9bb406d39f8ca7fe69cb",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "交易信息查询",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "3f54829d4b00f2f85c1b5b07e2ab26aaa345d5a1f90e13c0a07186eaeeae1819",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "交易信息查询",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "ab799b5f4cf394d2c840eed105055c6eaec736dcc686d1a0c64adb32006ea8b2",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "交易信息查询",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "71e934ef069a34a7bfaeed4a6a51a5ed628459717b2193f04f8fb46fe0cd36d0",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "交易信息查询",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "dd8072356abee6fad3c6a833ce4c71ddcf9fc1b9941ae84a9b543d31f465cc36",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "交易信息查询",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "f7f8a488ef440bc3f33065a9fe39de76d4d4bec60f00cdb457f06397f0b58ed8",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "银行卡管理",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "04a00e602aa55567aeb7f681163e782ca3484873dfbe4c13d0e7bd73e3c56b83",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "银行卡管理",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "bb99fe397fe8c5c6c88747269bc94d9c9fb918c2d157106b183c33e2bbb63caa",
+      "predictions": {
+        "legacy": null,
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "银行卡管理",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "aeb9277da01dc026e1b2bb20e01c5a6eef3ccf97f2e823d9bf0da76f604b6021",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "银行卡管理",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "8a59055a3794c5d4da9dfb88443159363f6fee7603f126813782995358dca6c9",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "银行卡管理",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "572411fc410ec9614a65e9e78552fbadcdc5e67a131050e2eb6128a0f53c7e94",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "银行卡管理",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "b240e139405dd0c498e5778e39d8433c46c44999919121f33dcbe5b630d40260",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "银行卡管理",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "4292afb57d63aa38d2b784eda6757af0054f99796cc7665b49285530b9a75f3e",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "银行卡管理",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "22729fee00edaa5b9f30c8683b6bcf016c493427c41a0e6bff972b0538643575",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "银行卡管理",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "87c56d715ccbdc9771ee8eadad295b9a95d428667ce9fdc36fc1394e906a9a63",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "银行卡管理",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "58d53796c04338561b3234bfba3c6b6c6916b848bf1560b5d8c85375c21c4326",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "银行卡管理",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "21cd5f07f112ae828bf4167cbb7852212657976135b820d6a15d83a1e23c72b2",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "银行卡管理",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "1521dcbe18fdbc2e84030146ba2c8c5970ba89c0a341ad4da289b483f6466808",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付服务安全",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "257eced93ccc07e801111b19a885bf6744fcbbcfa03d8193026ca4c87998a717",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付服务安全",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "4f086335dc2f72f3e0cfdaff859d5fc4f9e0cf552c440ce95f052325c67d7f74",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付服务安全",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "4ed4ad363ca0c8fdaff0fa9e59c61b56b12698b80a4b645a44679b114a1a8ec1",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付服务安全",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "0335578db4cde969d875b5addb783526b5bba2c07e6f823419fa9704645945bb",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付服务安全",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "9a496a46ccb0710b5092898f7ff0abe645e446e6b281dc249d15417fe9061366",
+      "predictions": {
+        "legacy": null,
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付服务安全",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "a51da0ab9771a895ccd882c1550171eaa9bf48d23333c3688521f0ab747d134b",
+      "predictions": {
+        "legacy": null,
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付服务安全",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "90e9594864310cfd45009b0165189fca40025bfe537919ddfd6d53e15151db45",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付服务安全",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "354e7a03c9a8c58ce690aec4410a8d521362db51d0bfd85a2eb4f9d36a7134f7",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付服务安全",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "84e497c77dff3b64fdffded1148c6c6083c3aa2f8ffadaefc1a72e907f3a787b",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付服务安全",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "a46d8776e686c7ce34347c11b812e81efd89435261a9f9f2af9668b611cc22cd",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付服务安全",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "7177197a3cfeceb9ad6180395bf415136229c0da9f7c8dc429d8461c25a1f959",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "支付服务安全",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "cd00db33b10a7bae6cb38d6e79ad3d9ab2ea1454795c47afa102c8fb132b4f77",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "手机号码验证",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "f0bbe7bcafe394cc0b4ed3ae5f396261dc91d148fe7520e667d3dd7bda8f2026",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "手机号码验证",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "636ee2409c4186c990f91b953b7fafd25dce0aa3fe82f25c49828e0cdfb5ebf3",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "手机号码验证",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "7d9e2b64313cc4c3ff7f789ca9d9bda59f44f6b86df3aaec28a8dde14ba52d70",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "手机号码验证",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "8512f5eec546536bc1604cdfe3d2ac4dd30b0cba3a60387be056c1086c982c97",
+      "predictions": {
+        "legacy": null,
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "手机号码验证",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "7daf86ecdb5722ba2e57745bd221b381fd6c2939f3cd78cdf884267ea2df8ec3",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "手机号码验证",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "9c81061557ddbb2598d492c1ca0e45c6b94616e2d4279b6f2c76f2d6dd8e24b6",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "手机号码验证",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "3cb07addeba23c8dfc621650d0a94ae4e3ab899340b3f7f7e343b5e14b860b5c",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "手机号码验证",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "706f45e295ed34db99456b7179cd9f948f7c30daf2118038ca3739a6e437e462",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "手机号码验证",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "1f7dee7867f91a0b8659b6c1b368b455825be9a2ff43de40f483afa955bcc906",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "手机号码验证",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "7c24b7f04224b930e296e12e9493a2665adfaa32c17d87301d89011af43fd1a2",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "手机号码验证",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "1b098f9d931fc3b896d4f60bd506471f73420cbf3c450bfd6035d96b93ca30a9",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "手机号码验证",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "7ba948aa5621b7c0894c8b1b1bef0a871a906941895d998035b314c22d0a5676",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "生活缴费中心",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "43dcffa044595c2ffd996e10ad72ebe26fd485f1214c5fca07a81432b100cbcc",
+      "predictions": {
+        "legacy": null,
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "生活缴费中心",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "ba93bbe4c640040bd660c467f52aeec4672a61bd99909eea66b78383474fb66e",
+      "predictions": {
+        "legacy": null,
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "生活缴费中心",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "5d4f82ef73b717efffd1b119744ae948e6e6bab7c6221df460d088053fbf0a80",
+      "predictions": {
+        "legacy": null,
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "生活缴费中心",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "7eabb362973a4185780b01dd57dcf946b33ef52ca85ccf2799d7f78f86614a42",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "生活缴费中心",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "f70200c0b4f4df704658dcbb59fe19c653cd3404f52bc66ad261553bfed0bd95",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "生活缴费中心",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "9a6d38b8bf5a51034ee1e5912f092ece1158442b3e7eba91eca70c7c0c84bc5b",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "生活缴费中心",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "f6a13e177ef6adcc416dd550633a55995e10b0dc5aded723934c9bc18e09b120",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "生活缴费中心",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "819211bd466d6f884734487a9df09e32e3de0a29008e5530dbf348f0f16ce2ca",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "生活缴费中心",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "b9afed4ff4bf045368f0ae4e356104c44c15c47e381414c661f6e2dc24e6c0c0",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "生活缴费中心",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "4f2e6d6a2759940b1bd306c828717174921330855fcec7f4a80c4b867149df43",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "生活缴费中心",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "88346525ebdd48f65018b0c75dea7a16a78e29a9ca06883bf2b1e37c514323b5",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "noto_regular",
+      "expected_family": "Noto Sans CJK SC",
+      "text": "生活缴费中心",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "427c0198239625390114a1e19cbc442fcd27f540cb527f70b865dc0f03aade61",
+      "predictions": {
+        "legacy": "Noto Sans CJK SC",
+        "aligned": "Noto Sans CJK SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付宝账户",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "af97c1f070e45706b85c74df14cbb92b1fef40a198d4ad158ed2c79319f954b3",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付宝账户",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "1d2d03a0a2dfb05b8bafc67808a26791de4a905ccb488e5e83e74441f92e7878",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付宝账户",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "c803860fb7287e8495b5d1d0ac904e3ce449c2c011eb71f7fb0a35c55c377254",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付宝账户",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "751f43aa9c3081481b8f4a5c96fc1e3f90a67ead42ac3f3d3665100358c19b8a",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付宝账户",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "7886889d792d4f7bf73365794f222aba0d3cbb028f8761d3f36bab269de95b74",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付宝账户",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "64478e871ed928e1f7923f1401b389eec90131c6d94c8cce7af4dbf110db2e28",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付宝账户",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "1e3ae92b6515ba50eacaaaaf020672886bce1bceb79a0c1ecf2912756c6579ed",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付宝账户",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "33a80e2771ce0ac4b9c06afa407e465c05c345c421eb7f90f07ef82f8038c062",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付宝账户",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "ca66b2708bdea62d7697be2875e51cc7221eba6a215c5cc738c7db7f1b2edbb3",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付宝账户",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "b82a53638dd1ebac264b839c4b00ceac5293f960081e7d034d73be9a8b1e4899",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付宝账户",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "16f18b38f8c42bac546bfeccce3c89847645b532559e6131e98c42c61e5e4607",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付宝账户",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "fd2501ec25ec66234ca621f7c5157099602d1d285ea20313e12e4abb1613bc21",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "交易信息查询",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "53f516689a415e4cd268d53fb89254096056b811cbd5273f5fb99b5fd37caa92",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "交易信息查询",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "06c97c843f1c31703b620b74014bd83ac6148fbfdbf39051922ff11cd2143163",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "交易信息查询",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "472fde11e2d487a7b5af38cbaf87325db2f0f14746e1721d7dd53313fda5326f",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "交易信息查询",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "bd1720ca55420078e36a40ce6a1173655ab69c6023dca5df0d5e1aade6c05d2b",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "交易信息查询",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "deb160114583f34da36c6044862bfe1f472ad2b12aadf5fe14d48c0a8dcae8ca",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "交易信息查询",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "49f5bf9badf86948506082796349b5c24f9b4286a8797dff6159e57297344f72",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "交易信息查询",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "e7e3ee4f9f9a9b3b90785a6dfaf75e79a8d48697517c47848c063537d6aa63bb",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "交易信息查询",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "7d4aa246e44099dc6a511c23599018faee8bdfca58d941baa3d323320558ba81",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "交易信息查询",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "fc692428661ab3bef7f569463efccf084c120446667ecd9a107bcda9dfec60ec",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "交易信息查询",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "2d1040645bd6dc40c9d3d79a1593daae3033b01a6027a7d53668c788d4caf366",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "交易信息查询",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "3d53a8292c75ab11dcd94abbd34e1d0c50820ec66bce74f2b71310f235cea5ac",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "交易信息查询",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "4aaa95e600e3530a6d42f6428939ae13e8af9a80937c88795e2c739b56dd1fde",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "银行卡管理",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "0667e0e6ffc2a20ab750c9b74c4af75b9d7ca64fe424920cd8ebb368b7d63faf",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "银行卡管理",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "34ba813d331a8421a1da1ba590b8ac49fcc08b09046c87c0238725bdbe9b8806",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "银行卡管理",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "41163be5e2c87cda985ff94cde5b88886aac20126ae814fc3b7274f1d00cdbb7",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "银行卡管理",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "17b326007b6ceb43c2793e113da7833cf682ee4c646e8cf007342f85e8f97571",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "银行卡管理",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "636ff7d74509c98a4bc7aea7a2fcfeda3133b2da0abffe52b3b880a1ca85e321",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "银行卡管理",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "a158971b2456bea158a31d98b9a09b8d70e34c439df8648a1d63a2b8ae55d812",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "银行卡管理",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "ee76a364aaa5eb4f439350b80ca83a6d1456a99482aaca2c063a7716ed700d7f",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "银行卡管理",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "9ae714e5099b8b10db3b69e9c06f6795765161ab82ba20a7b2c3c61aff8c0f07",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "银行卡管理",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "1a2b08192d80768a26ae0e57b137540cfaf0e888f829b5f66fbd16838e30d573",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "银行卡管理",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "8d4e67b965d20c4e975920b661f3b7bbe6fed38302057e1557a13192ea3d1f64",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "银行卡管理",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "53d8c679477b2a65fa101a5e242a90d437426f6be54c238771acdf44e4a0e0f1",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "银行卡管理",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "eb7933a807a7d48f49ac647525661ed6eb9ee8cae7616c50c063f6c6eb560a2d",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付服务安全",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "121e1ebb370ef88d431b5404c738d407d560035beb8c4e1c2565482056e13e0f",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付服务安全",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "4e14df9a6a8724ef83ff1f59b6c6534b2edb326f0c7b160291101abbed37df55",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付服务安全",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "6d4e0f192f4d907cba72ee3f935a36e0a289592d8f258cc1a7daf4b04972c6c5",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付服务安全",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "8c6a96b6ce1c0590bf8906862269381714310887ef925a69ee503ab82b95e127",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付服务安全",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "6a3773b5182f98a88bfc05481077aa680feb9ffa4f216a468684fee58e682be5",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付服务安全",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "eecc68534d118e6f7d9bbb9305ed9ccf9e239b956b339366bc3683bc15476f41",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付服务安全",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "df839c784b717d419a068e3beda205b841e6afbdf8575d7453e92489c5b03f1f",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付服务安全",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "c6898d00b233f3aa3ce751ac1cd0e0cb18c02d8095d07346e27289f49a9de034",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付服务安全",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "befaf981e33d95c753cf88ab3167f40baa832c15e9171b1785f0d1d93c5bde4f",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付服务安全",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "92176b015c3ee2ccb756ad3832517279c6de22fbab850ca6a62342a76e73159b",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付服务安全",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "338a9eac33047d5321b3358933fe97ef3c7dc3060fd3b67a42bb00393bf4f635",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "支付服务安全",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "155b13705b66a493ac53058bc8adf255c0571ced4fd84c974a8585aa7b0950d7",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "手机号码验证",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "4befaf07d32aebcb3d126ff1fd52ed004a95d33b5415e5c8d7fa2c9f59ddd976",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "手机号码验证",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "30db15170c14da847b9d65a2bfeb547dccdeae416cce4b59720b5cac2262cc62",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "手机号码验证",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "d298230310362796e20906e1d717766b18bd8f7325c76c45433a9f25e756620e",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "手机号码验证",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "09ab2558cd2b4210a95daf59c2b8cbd368e0594eb8564213550e06ab606de61e",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "手机号码验证",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "aa425e72add8557857f2d5f2bf1d5b9e3157dbe7f647d2b1bf449ad69ed1f306",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "手机号码验证",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "aeac9d6ff606660a5a02b7deafe7d025e8df81c05dce17be77f1fe6f0f4bf77c",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "手机号码验证",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "3cc810a86a92a707bf4a54b5c962d98a04d7c58281fefa39903409949ff7d5a7",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "手机号码验证",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "a8681f2e127df9df4f8d4f8de5bcf2c2f724de08e8ed17beaecbad891bdf9a88",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "手机号码验证",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "ae26685b8830cbfcd4422871dd56f6667be5a398461dfffb37727fdc8f9a0f03",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "手机号码验证",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "a0c13bbe790e2147811cc687a2cf4e822465eed0def7f5bdd19fb60bfd81e290",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "手机号码验证",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "4b52c532fe1b89559b53dbc58aae4be81d921f2cb41c9f74485e293d6028ceee",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "手机号码验证",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "b97ddb0cdf2ac6b15a381933470ba1730e03595035bde6f9145904f381bc4d69",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "生活缴费中心",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "c3fd643396846e899367c77257e5fd548d5425ec0a7e3871b7d44d7ea93c814e",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "生活缴费中心",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "78f4da2b10b02fca6bab2cc39c0c032d9afb6f70aacd3b8302fe380e0ba209b1",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "生活缴费中心",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "0d2b812f77a84ac0c547f77d09d01421ae352f5702802391546b6bd22bcf04bc",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "生活缴费中心",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "03ae74fba5491889b22169fac5ded265113a05e940005270a1660446f2b2f15d",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "生活缴费中心",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "d8aa531729df0d7b9a31557c2b3dfd9b6ab97baf88629d2b7504f2d655146402",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "生活缴费中心",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "cbb50c505d419d2ede81468fb90ccbe14205014a3c4ccd6f0b921c0932e5a3d4",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "生活缴费中心",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "b01a45237b8bc39bf4ae6b3b6cda7d045fdabe60184e2eaa088da8d94b965287",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "生活缴费中心",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "a2ae05c16e3ab5d54cfb77ba8c4cff1f67df8f98d79c2bded373098ffe95a9dc",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "生活缴费中心",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "f5f13ab84c8c148f739da88a7821a89b1a3bceb2514614eb0a96327c55779a3f",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "生活缴费中心",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "58252804b0ffa9088b13b6f6af9ff300973f9571a38cc0f4373fb2483670d5e2",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "生活缴费中心",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "93b925e03bd23acfd3a19d482d59afc69c4affee68c518950d20777294ad8b0d",
+      "predictions": {
+        "legacy": "HarmonyOS Sans SC",
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "harmonyos_regular",
+      "expected_family": "HarmonyOS Sans SC",
+      "text": "生活缴费中心",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "1525150bc3b74dd8fd88c9036e762930156457bb3cbaab33d6e2c19b64d87dcf",
+      "predictions": {
+        "legacy": null,
+        "aligned": "HarmonyOS Sans SC"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付宝账户",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "92020d2c5704c603c87abf016080efc29782ded36c220601a8123c6632df61d0",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付宝账户",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "127f0286648a2e9b026b85cc85b1e92bd586c164a31fbc978ad6a27e693ad51b",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付宝账户",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "ad72b28458c6b49595a36979a34ca3cff521b7c189dbaffb7972d0e884e3e196",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付宝账户",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "edb358257b8f38b032dccb313ed9cc9d5cccf8495bca2dcda397b556795ede95",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付宝账户",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "c0de8a6a536a98d42b31bd8609f5ecec42519be50abcc9a18629b0251a707c9f",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付宝账户",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "d0309f28f666a9dfa27fd284ac3074e3d09001fa652e9bc7f9a9441c01284fe5",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付宝账户",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "035ff7479bba43356203093799e5e602700877e7752fca6117d066f072ef7e1e",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付宝账户",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "23beff236ef47d014357e2de0df72d7b031a3a1880dd1933d605ffa5def92504",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付宝账户",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "dd1463b4c676f6deb8d3b3ee56cdbfe4fc6e403de88f957447ac6f5044e1ef44",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付宝账户",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "ace6fe59360efd04a1a3632ce34979c54a27ed3a751288dcde54d3cbfeb2ba8a",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付宝账户",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "83abebf2df42181d79a99c4ea73decb2efe9212a52145626f255d9316fdafed9",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付宝账户",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "650e7ce4d417462b0d2c2b4f835c275eeae5bc698bb8b30a887d8537c217b5cf",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "交易信息查询",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "1c65f3ac57f95d3823922383b44495cc6b88a1c0e5ee682ab77767b548e87fa2",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "交易信息查询",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "3b40841fe096f8817430505f06e7fa49e68e30a31f6ba730b3c0fd4b454acb43",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "交易信息查询",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "a9292889428bcaaaab23f3c52bd397829c472d9134d93c46601a2a2bb45d9962",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "交易信息查询",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "033b741348d11248507bde9a41c5ca7ddc2c9849ca380440e0e3e31166cb84f2",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "交易信息查询",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "837069ac06f2e6ff76c02e18701c258ee221aa8b270a1da4c1e41dc7c028d4d1",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "交易信息查询",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "0ef2e69b1785bf736f379a294ae504825dd9f319824d9cd28caeaa70b629cffd",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "交易信息查询",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "043fc3d88778a32797ae43d653d2dff8cd240c4d565ede6b2ea5e7946c113cf3",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "交易信息查询",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "11f00058cc5ffcfed9166a1752f22093495e07295503c94b35eccfc12203727b",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "交易信息查询",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "2dad67e7e135387981896c9dd417ebad3804018b9ac4a0aced8d41a9d5a4a03a",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "交易信息查询",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "aec14389b48832c9adafd5c3f4d8d87156977489b894cb5c8ba4270a4a902554",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "交易信息查询",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "aab1712fb6d9683c2e7a6275da507b2ed1a8ba05538feaa6ee72729917f03a27",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "交易信息查询",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "1ca2541fff35c7b38972ded082436a4b656fa80f0296771723eb365479404ef4",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "银行卡管理",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "f10ace2d3554bfc5c6e8508bd660be0629fa0c0c80e9b39d1192c69069045c1c",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "银行卡管理",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "b47444930261070ffe60a2e9b0693d5fe9deccdaf82f04e85d13da3478e59c47",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "银行卡管理",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "41b3b66016c74a3eb0c161d9cef268521d33466775afdd9e3ad4d63f7b77104d",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "银行卡管理",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "baec70cd068844726e0056cf19635e6560c05c9c6c2516672125742ea2e44132",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "银行卡管理",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "2d1b1dc76d412cf0a5b8eb98ff8f4215166c2fb5910d5ba4048a062aeca6e65d",
+      "predictions": {
+        "legacy": null,
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "银行卡管理",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "50b52a1f3a07745c0277bc269849b705dfa9a8d0a6bc2403f31143c92067055c",
+      "predictions": {
+        "legacy": null,
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "银行卡管理",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "b7bc359e97f35c20d9fe5787c8571ac2bf770abc4b4ee8d5151e7a80accda779",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "银行卡管理",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "29b64cfd31b34c2960ced300add929c7fcb802ccbb4d30f9f0742451d3cc4be2",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "银行卡管理",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "970502dd4c5f5b0c1252e7e0ff543d202e7c7500a2fd4e04cd84b2b04a011e7e",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "银行卡管理",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "34a3e57422dfe405c428c85fc0f46b6147a1549a86c46f04456a3e425cf72eaf",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "银行卡管理",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "ae45a58c0448201105bbee3723341d6e3aa5f1f2692c8aba63a015a6fa181677",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "银行卡管理",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "fed7b731d000029d2e4e14b9763caf674b187d93e96ab13f7ce503a262ee8b60",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付服务安全",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "555cffde3d8a1fec662976e456086d712c4e95dc54bfa5d3acdf07e9397c3bc3",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付服务安全",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "3df3f51fa913c803fcd4ea0c86c0633cfd7a6e26c6b9cc0cc5400f870d04ab83",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付服务安全",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "24be5b81661db90d8b8e29b34cc4492a1c6d4cfbcf584408904e7e386d6d43a2",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付服务安全",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "56168c6a9f5954bf96403e0e5cac47a5bb7e1551112a0daba015f42f830a2db5",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付服务安全",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "9a471406f5a38af3032ec1bd3ddd89fa9e9bc3612081525f223fad29f2e4d349",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付服务安全",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "5fef07d1edd54f314948a05945aa61e06f63afc9ff14befd183549da0c27636e",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付服务安全",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "90353150089af51e4b9b20a82471e74df7a598edbf06118cfa2b499d7250335d",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付服务安全",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "091387bc89ca4cc1cce9d563ee44a3205fe77d411e088e3600356084358351ce",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付服务安全",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "1efa015678fe157d414dc48b5e1ecdbf01a2815d5b457bb41735f087c14b24db",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付服务安全",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "c03f3d41897524fd4b7a0094908537929eb281ce08899b25217a5b47fdad57c7",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付服务安全",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "7eb11e85420eb96bd7082ec30673af08aa963301b160fbeb507fb8a43f6d7bc3",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "支付服务安全",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "1f96c260d5fe3a6e598954668f719526ecef812d2c94a5cc0196fa0991f78afc",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "手机号码验证",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "95f279380384eb445a69211fdbbd1ef60d4b3ad3912dcdb0daeefcd66d262ab6",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "手机号码验证",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "9426f4c22499f5396111d3cf1ab508607473343e0d4ec74a86d2fd973c2313cc",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "手机号码验证",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "26aa329de9bc7ef2070d2381c67f882f5167e8182662a42a30853d255b26b427",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "手机号码验证",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "786008645d33b45f33c5994f417c8f3a457adec1482250722a2017138465049f",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "手机号码验证",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "fa4439e73f735b38a544f299610f351ae1d2ec2952a2331a411d60f01fe50504",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "手机号码验证",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "a0679e2ffd12d949879451eee8aa432837c7ee28c5fc3d431d9a1cd9ee1ff51f",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "手机号码验证",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "bf20f6680a9147b39ae0b2456c2a10ef1619483547896c0438621c8dde0f1a6a",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "手机号码验证",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "f4039c705d97512d01d799346c4627f72819b06cfccee177af83ffd5c908aad8",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "手机号码验证",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "0ca7c31ce12e20e411dd07faec0734d5c6c15e446692c25ae253bad2ff55c8b3",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "手机号码验证",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "a63265e3a01bfccf08d1cce64ca17129258c5e569104b781d112a962bac3f28a",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "手机号码验证",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "94ac6ff07734341cbc858e85d46230901352c4ffd41229c1069f58eb5272adb2",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "手机号码验证",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "f0d99cccd955361b34e883ce664d62853a55e9bbf3ebdc248603fc5f2a169544",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "生活缴费中心",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "c86a5872a268ad4fe48bf424a163747ed1adfe0bca197236531de354c14d6503",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "生活缴费中心",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "1637a7913635c4b4b71f7331800a5aab29cf7613ae816dd6a60277074f1f815e",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "生活缴费中心",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "860ad3b0c98db96aa24146ae4d10b19e57984c92d8de0b7f693cf0669e31b5ce",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "生活缴费中心",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "c38a5bb65bce09db0e418354f714cfcda7123ca6a48356ac4b9d3734b903313b",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "生活缴费中心",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "26224ffaba6241bf911dd8de3b6a5aa398c53a595e34ab59885408bba350fe62",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "生活缴费中心",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "e4f06deab3a88ffd17d62a2f932adf84ec0d198e9019f67bbfb82a9f7366e067",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "生活缴费中心",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "c55c85a459c37fbd28ed9631062bd11e05c603972e3562eb34b97c329b9d8ab0",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "生活缴费中心",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "0fe4022e6c72c5ace678f03ef390758e6f1fca1833c1ceec8e5a24507b78c14f",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "生活缴费中心",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "4f17822a6be0c5ffd46d54d4925bf70996d613a78d43fe40a7e0aae685bf7a2c",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "生活缴费中心",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "a27fdb4245c058bc928e71a84750a01d8764547bf91612c237fdb2ad07417013",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "生活缴费中心",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "5b7859dac51fcf8c7126720088b92771745317a12b49872cbd5ddaaaa29f525f",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "misans_regular",
+      "expected_family": "MiSans",
+      "text": "生活缴费中心",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "378f8d3cce9d045c89409dfaadfcd3e202e6a273161f6675b4ef1c0691e8406e",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "MiSans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付宝账户",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "8186c5daff997692ecfb312bbb44d73e783f37a240679a57e83ceced94db19b6",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付宝账户",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "11622e204195550ec69afaa7b3a05622f56568e9ea4f0266a6bf0da1aae42a47",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付宝账户",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "6e022c677afcb1cdc1187ae2a33c9f6d46bcee528c6d1179a0e3f935f51587ef",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付宝账户",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "4f592641370496cd65733d34ad89dd983837422c37488edb92a23728c6442c89",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付宝账户",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "c54e50303bf43d66c6de7c501bb324382569c624e6eeaae3eb059e693fe82098",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付宝账户",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "32e70d4ae6945f4b0d02aae41d44800af603d6b6114a698affd636045123deba",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付宝账户",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "05b857179df2fd92087b2fb225c17d5edd1155384c567aafc74473f243bdc7c9",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付宝账户",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "f71ad33b89e484ff4767d01259d636638937b166553d432dcd141c151c56c88a",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付宝账户",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "9ff4760f77071f14d9e8de52991d7fe50aac197ffe96bef0610df96870b53682",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付宝账户",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "5e265d0a3272830e72f80c7f72b556b21caad00964963c1be79cd49aef4d2ad4",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付宝账户",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "47f7c3dbb16eee984d0504d747a63172eb90d6df56626beaecb00432a1ea1eca",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付宝账户",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "0af01e43086f9bf6d94aca9961c1f306929cc5ac2936e6f065254d691dd5e94e",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "交易信息查询",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "0b1600f06b67708e646bd99bd0973fa5ffdccce417d7ca77157b59c1d07fb565",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "交易信息查询",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "44de2ebaf6ec205b6b7cef0cade8e19dece1d0c37d51d178bbd3985ad25f0ec0",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "交易信息查询",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "fd5473dcb66a44daa208410f82840507324ce982082195514728cd3375b1c4d6",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "交易信息查询",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "46594cafad27afbb29832a9d809a143858683ebcd0b4f9ec69866760d1cb925e",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "交易信息查询",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "8ded0e2650bb2e3a45a982850ab8708e8b6edcf65f6ee30217fbff6f07f2b76c",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "交易信息查询",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "372339bba8a00aadcd8e3735b71220826b943af50fe3e9aee61d37944717f937",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "交易信息查询",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "0c6c6ca49a3341f750d433a62415ef1653e027da8517ff5bf101eea2f3693d78",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "交易信息查询",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "816cb6a41de9b5c8f6c6c480b8aec9340a9d7f21f643c5b5263b34534e286328",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "交易信息查询",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "beb457ab0e0e5f25f461e003be16caba41a87674444fac44dce49d392a828b20",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "交易信息查询",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "b73fde8ac97f318b4297af6f6ab2ea91731601a06c3ff32dd88493a26fdcb1d1",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "交易信息查询",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "d322e6e42f18df1fc2bb18e737269985a059b91eeb2984b1fe03856bf92b34c9",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "交易信息查询",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "c6e882cd5f26a8c835a94b2050fc01d971df0ed123d7bea9ed5accea0f7930de",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "银行卡管理",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "ff9769c2b2bc10811f0685f8182d484c8d219a2f760d8acb58dd1854b17df777",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "银行卡管理",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "e2741a7b2c1494eb9d4505de2150e27a94a7c9196ccb5de56a6307e5eb3adf07",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "银行卡管理",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "54eb33f4ac9686ea87767af41971ff0f4e13093de18a0ca15368b9ac40ffd4d8",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "银行卡管理",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "3be14f3d76392f9ca9068b6f68f2ebf74514c5f2cc9c79d8d90c45362eef2161",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "银行卡管理",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "589b1de9f58979edd42db7c5da44eda118e265a9eee6f7549a8e0b23a4a86c6d",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "银行卡管理",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "93db57c5a2d7391c9e568a7508087c065ecd88c22f863d4e6d780796de84d691",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "银行卡管理",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "6d90d429f3056ccfbe23d36eaf107e7759866675a2b001f01a60b393285ed10e",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "银行卡管理",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "2780f292d84fd56a2248d4ce3f2c9691fde8c61c774bf3840e215972bd2d99e0",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "银行卡管理",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "819e4fedd87c4e85d9a5e74a5f3bcca03b656854442108cc3e1b488a9e1aa276",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "银行卡管理",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "46d612aafc5031f1534573c4b19357d994fa20cc1cdd64ae59513f9ef9d67934",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "银行卡管理",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "f0187673f2e506e8cb37fb905ba5d32bde4f8eae49f23ec15a5f3980d550c1a9",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "银行卡管理",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "14c50a163c0d0d4ce061a260f8123beb05e95dff050b50e67fc2442627bf3306",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付服务安全",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "257c3c57a2eb42166306a58a6c375f984668fb147610e5a518098c78845274d9",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付服务安全",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "a9a05dc340516d15a7f3b000258cba775815bfb8674eab58136ff1fbf88cf17b",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付服务安全",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "27d99584c04c84c8d0ff1ed72ab6cfff16c7338dfd92e06692638c5ae22b1465",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付服务安全",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "44c081b233681703754571b637c23fa7e0fc3b08145c87b9deac86ff32ee98f6",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付服务安全",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "3dfc1db36873ccf7c30c574f050293a6ca7c051ac4621e69fb57ddddf8f4ad88",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付服务安全",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "145f0a77b4ae99705af51ba1afd9842431915ce26457e659b48657aa8f146f74",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付服务安全",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "6bcfd8d504bb6072f4da8e949dc1ae316662fe646bdf669bd6ce1847dd412fe0",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付服务安全",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "fbd92caefbb68a3cdf454956843f109d109baf3b638ed04d0db5dadf37513e0f",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付服务安全",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "5b12f024309678d25d527fac8df80dd9e46b83a302f742ce83bf0c718f27ff2a",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付服务安全",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "824a15cd07822c0d335ea78ae4257e58e4ff0cedd9b15972937c62dbf5d47a0d",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付服务安全",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "7e974bac9f9c88be0e849d66e78a06373c618480666224224c37dbff53fa2209",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "支付服务安全",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "ce8454fd96c13fb92884305bcf6dc52ad60107e92a2e38a2a88f71e3ce0ea9d7",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "手机号码验证",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "e3eaee7ce9bfae82bbfb0945caa27d0c8d0f4c4c6eb893841fe932ca9e24dcf0",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "手机号码验证",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "ffdb22de07a0edefc33ee669076b66aabae320621dcba8f4decb88ada7d02d1d",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "手机号码验证",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "5b80c240c4c6f82e1a29a316ad648c924f23b34a773895c33230556fea222130",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "手机号码验证",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "81a4babf44a826e1360874fba1983713909267bdcdccc2d76c46a46dfbcbab7c",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "手机号码验证",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "06ea7c402bf07f81827eb5d173defd5d52e1c14a6529d623e55e974620121cc3",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "手机号码验证",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "209354a2b410b0628da9388c0d097b5ee2a0b5c76daaa6e27a501c907e307ebd",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "手机号码验证",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "59ce9541c1f6025d19affd954f120b6fbe3b8aa36a4fdf1ed5a4855937647712",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "手机号码验证",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "fcc8f8304fb438d8442e7d4e5e93a9a862d52cdd0904cafd21be7a457643e78b",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "手机号码验证",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "93952660063d3687dd0f7bd1f042faa089b0cca8b58d9659b21acceb45838202",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "手机号码验证",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "b1c1089405fc440fffd0cf05d2661871f9566a7633bc2d18d97a51c8d1b71131",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "手机号码验证",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "cad3b9bd3b19962973e6d3a6289823771f5c77c4625c8d722310c1b980388a90",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "手机号码验证",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "a03f221a6b788d0744692ea5e86d71a35a7a53f38b6d8096de5bf76800481b6a",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "生活缴费中心",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "2abba14bcf1d29b642c21a23eed15156e7cabfe82d50714dc9095c47b9c79381",
+      "predictions": {
+        "legacy": null,
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "生活缴费中心",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "54da04cbd53abcd4848de239e7a6fae379be89374ee8e08b0072bd01acb24574",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "生活缴费中心",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "506be4e193e07931b36960b4a700b4e69f4148f38cfaac249062320bf39009c5",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "生活缴费中心",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "f97f277617f8c6175f1afd7a2f423887ec3d13895a9b31998e892a0191ede1f6",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "生活缴费中心",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "850a339e20d8e2e53dbd71e880d184edce4410043698d2558fa1c2c9161232bc",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "生活缴费中心",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "8f30f1a9dc46c67d7d462579e30d0ca53360f708dedc94356e4fc2b28d29fc5a",
+      "predictions": {
+        "legacy": "MiSans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "生活缴费中心",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "5a92f10e3783206c7ae7ec771c403750efe249daafe0d8de800a85fd9ee907a4",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "生活缴费中心",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "b7ea9a8c16fca3bc535097f7d00e3db0dc094238fdb443b5227edac3976bc0a9",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "生活缴费中心",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "a60ce4218b50e1aa3cce8551e7105b0a15f8c6064591d356771b1b795892996d",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "生活缴费中心",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "17ac86cb39df8db7d0387ab433f23e88674e7fab8db3d18d5ce43199cb91491f",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "生活缴费中心",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "54972c9aca223808658b310db1eefc4914aa5aad5d676c1d11d59d6d1f71bb9d",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "oppo_regular",
+      "expected_family": "OPPO Sans",
+      "text": "生活缴费中心",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "c03da9b59ded7489714dbb7d62c451e7c7ee7276b75b676b7b0c34c3888db889",
+      "predictions": {
+        "legacy": "OPPO Sans",
+        "aligned": "OPPO Sans"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付宝账户",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "3222ec4fba3ea2e1080d023dde08b7a8b635eaa2813286a0d2fde1a1e8e1c61f",
+      "predictions": {
+        "legacy": null,
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付宝账户",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "a6beb425db0d902bc745566dc469d25e5c035294221a39407df5ff495e855455",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付宝账户",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "8af2821cffd80f0bbc2daebd7c8fba0a667f3d7638607e1f82582a76667c429f",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付宝账户",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "9de7f977be22329c6bb218a66b856c04391b40c3a07a985b1d1dae35144fb2c1",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付宝账户",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "ba1eb831817918b585dd0a7d0c7625bcfa809570b734937f623f176dbb9a43de",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付宝账户",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "211134c6dfc72f544e389d38207e44ce71798fe035ba9d9bf38de7c5ef96b48b",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付宝账户",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "18f851e1ee56d07e6959bcb36748520bb8e00461972fd4168fa899971831cf98",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付宝账户",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "7f817482f383dd4e30df6dc8539043eeb27b77e66563c5f7fa5e53726aa61c36",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付宝账户",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "888344a78a1a97a760223c4eb481fcfbd703e40bf96ee5078e342bbf0aa2cff3",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付宝账户",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "282db8dd8adf9ea0540e6ec7f60aed219255e3e5b6a31f07ade2b7aa2ac98d27",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付宝账户",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "5be395cb1e2a42b98167e9507630248e311cc4c3914b6268c0de5835f95f789b",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付宝账户",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "5e19789e4ed8004d07be622855619502aeb5e3b78cb1d6d0a46501a3406f96ef",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "交易信息查询",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "be6b2e81015355b6dcc066e1c75cde32768952c54afde3fc7a6ea396a7ded39b",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "交易信息查询",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "4fa396a511023490b248930cd9aabf14f2ae50c6c2f5e095ceba44d2a05d3fba",
+      "predictions": {
+        "legacy": null,
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "交易信息查询",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "0886444ed4485c888da063e35513d6a70f4440fdc20ea91fbad4cf1c389d783f",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "交易信息查询",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "1b7ec5224aaf799c99bb0baaa7691d9e32d15d3e26286e46b3b922f81fb5e186",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "交易信息查询",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "5efb37417ec3eaf35fcc3c717b9e8272a3a4bf05385cc91637bef17aec08849b",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "交易信息查询",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "fac459ff3bfe51e53181f4799fd95bcc74d55b602b1dfd08c396dcf1d9ef5637",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "交易信息查询",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "b284016944ff887c66397d74c1accbc43b99d640debf4de5a6105f84d1e20087",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "交易信息查询",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "10e211cd0587ded31eec8ebcfac962f8744c749dc49020566a3484b04aa9e692",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "交易信息查询",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "7c0d3f7435cc1ce955b2c02e54f18cfa0d191913f1dfc76d5cfc7fb5a12f1296",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "交易信息查询",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "b5f167cdec8128e059c589aed82fb59e105d59d6bd8153ff70b4baec877c5f50",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "交易信息查询",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "3f2b6021b7f8c2faaecfc8bc4dd40acc769f464771bafe7ccd6f0cfb978fcdf2",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "交易信息查询",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "2c2cc5f83091e76463eff03b5153485fa47501b85346bc7fb61b8f59901928ee",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "银行卡管理",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "e3bce6dd4f8212813154a282855a298da40d3705b019f20ba7749e5e6ae7e4ac",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "银行卡管理",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "b930d1ffd0744b530c6dd19865ca9301744b1e99cc57761573f5c4caa849a0b5",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "银行卡管理",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "a89bdf99b00dc01409f4b0c572f7f52815ccb6834aee10714bb7410716bc1859",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "银行卡管理",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "7f82b37f62aeb3d7ae2a6b0c6b92f0effe5daa0ae9ad73e78e1b420999c148ce",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "银行卡管理",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "ac0863755184598e76dc3cac3cfbb00a5ea9c8aec8f251813ec450a69b7d7de9",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "银行卡管理",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "bc9687056e37e02293488bb35e8af34b74ca5d318002cc78ac20e1f020425897",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "银行卡管理",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "d42ef896b6087b48c5f407bdc81dd3762b9159aa6ff72186d1178c0dfc283893",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "银行卡管理",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "d85e8d28b42e4d67c908664c6d91f23b7a1d98839c991aaee3c68436ec83f507",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "银行卡管理",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "596618eeeec8c202b2b7f971a6a05342fa9895d4da071988450a403e85c49437",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "银行卡管理",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "2154b0865e9cb1914577e4b74ed62601660be1d6ef5e0a561e86f778780860b0",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "银行卡管理",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "182e9c6d80b2593b43e5130822c1592ff8876b9a173b5ce8e8d11367c8fb09c6",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "银行卡管理",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "b493719e4d79f18784990d10fde585d03fa24cfd37e723710964bd8925d312a5",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付服务安全",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "6ae5789ef754017252553cf2dd6bb13e2d6bb2d6e3aabf9ab4357c787de241c1",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付服务安全",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "83035d3ad4853cd28efe083d87d78ae559580d8db07361553c64b8b9be2a4ce9",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付服务安全",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "e29d92ecdd3b868edae77a4c4fe75ca045192ef51d8c7287aa87656b2c266a19",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付服务安全",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "b8a5d75879cd9fb0c7f301130a9d70d85bb807033f3bce4879c8c379321295be",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付服务安全",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "0e82b618a1d89b921545803662b08871aec74974d060899b85c55fb1dd46bfb8",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付服务安全",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "46f81507137e84ad58bf739a53be53d0b79a09cb23b8ba86c2ae616e47cdda9a",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付服务安全",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "0dd811148448a50480b879c002138f5a46b64fa3efa9f372005fda04f8d8bdf9",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付服务安全",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "cdb78636a2a7a1ee1aeac374783db6472d35ef4ebf18586ae1848fe04bf6a20d",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付服务安全",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "a4a75eb105af176ae7ff22a1f3dd3e37776f5b0700e4de8c7a4c5101cd93a915",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付服务安全",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "a99ce299ab4b0757063637348f8ef9406477050a7609ae90feca32e74eab905c",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付服务安全",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "4e5a20e878735358b5f400b1f69fff42194d1307745b955b21df5591607344ae",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "支付服务安全",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "e3ce9264ea57896bccb76c1823826bc2b889fff4e695e43f4db3a8adf4526ec3",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "手机号码验证",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "334e2467be1070e7298da79f7b3185e086693d39a627c5253948c53710081b46",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": null
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "手机号码验证",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "fe57a340d0f0d5eed71f752309a61bfdc35c93c06c46cf98e1dc8899273604e8",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "手机号码验证",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "4f8bfa7fa6a817ce29bb0dab586eb8c2b86f8402e8ff8fdb111927a3525bb26f",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "手机号码验证",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "05b968728cf7e0649b309b5fe954cbfabb3f43584b0903f919ba87654240b37f",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "手机号码验证",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "96e72ba50e93d9172fe57cb0d81c36b93ac3c3a1224b671e97f24aed2e26a247",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "手机号码验证",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "d8bccc9bd6145bb063c1f5c432950f391f7586a6d92c413362627db95ca66864",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "手机号码验证",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "524ca342b800481b376a803aa415b2c85a00c0f59233ef6122ea1f4019e08e00",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "手机号码验证",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "68909757f7bb5f134cab17552179e234988b74bf77a814b2f032eaa0c5c983d6",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "手机号码验证",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "cfa619ede4d5d74c378e8f149bc4ab2324171c413a8297b4d6523e101a8b2a2e",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "手机号码验证",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "5876f0aeb528b2cf101cf9aad580675322fe8703b54fb069272e061e28ef9527",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "手机号码验证",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "9db081c98becb6cca20354fb12d74584477e81fa7191be1e424f24f3fe92ca38",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "手机号码验证",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "3e9f65827f1e53b07261b504d4a9cf4964a6e491576a3d645e654ad119b976e9",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "生活缴费中心",
+      "size": 19,
+      "palette": 0,
+      "glyph_pixels_sha256": "15223462a21a8eace2c3d330d4b9d153ac598ace6c6d5f464945062c7c6767e2",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "生活缴费中心",
+      "size": 19,
+      "palette": 1,
+      "glyph_pixels_sha256": "9c350fb363e346aa8696738cedfb690ced70d3e8d210531c2f76e6ac6e0405d3",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "生活缴费中心",
+      "size": 23,
+      "palette": 0,
+      "glyph_pixels_sha256": "8eff0770c33ff64ee1f559d9f04dec6f8fcaf8cbffba4d29c4d752880347e3da",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "生活缴费中心",
+      "size": 23,
+      "palette": 1,
+      "glyph_pixels_sha256": "2fc6f575cee697cbd5aa793a21332e74a2376a43e1df78d098dee708691f2a8c",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "生活缴费中心",
+      "size": 29,
+      "palette": 0,
+      "glyph_pixels_sha256": "dadc89b862eeaef8b82519cd1ff737328ae1f10d798209c6d1708c29954f8da7",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "生活缴费中心",
+      "size": 29,
+      "palette": 1,
+      "glyph_pixels_sha256": "d291dc608743fd771ecbe079a7f67f8120553152b36c2a846adf6a45824a0194",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "生活缴费中心",
+      "size": 35,
+      "palette": 0,
+      "glyph_pixels_sha256": "46d2fef92d593cd8f6baded505d6b0dcec4266974b16ba14de23fab8a2a7bcbe",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "生活缴费中心",
+      "size": 35,
+      "palette": 1,
+      "glyph_pixels_sha256": "19e873c65d0a6d0f73507c6fb6361fb632a2c1bd6429427b93f9ed3b2f653832",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "生活缴费中心",
+      "size": 41,
+      "palette": 0,
+      "glyph_pixels_sha256": "4bb4910dd4c9e842e4e78f53a4926d25ba6dc9dbc13a43dae400ec3490b5808f",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "生活缴费中心",
+      "size": 41,
+      "palette": 1,
+      "glyph_pixels_sha256": "ef03b3db0599ddcecf2f409305b9d926f08c33ffede4938c003a0bf1901a3e12",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "生活缴费中心",
+      "size": 47,
+      "palette": 0,
+      "glyph_pixels_sha256": "4c28f20cbf41ae1f3a04bdc5fb359866cbd3f47901437f81ee48282edfe6bc15",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    },
+    {
+      "font_id": "negative_songti_regular",
+      "expected_family": "Songti SC",
+      "text": "生活缴费中心",
+      "size": 47,
+      "palette": 1,
+      "glyph_pixels_sha256": "e31359187175528caa5a1904268b183d60413f9da566699f39d40d4d38d19e5b",
+      "predictions": {
+        "legacy": "Songti SC",
+        "aligned": "Songti SC"
+      }
+    }
+  ]
+}
