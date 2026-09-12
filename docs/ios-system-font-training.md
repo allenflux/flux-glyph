@@ -38,3 +38,23 @@ python training/train_regions.py \
 先前仅放宽系统字体图块一致率的候选已被拒绝：原生回归中系统字体正确命名由 518 增至 539，但整体错误由 1 增至 2；历史样例也新增 Noto Sans 被误认成 PingFang。该候选未上线，线上判定继续使用原 R17。上述失败是改为实际本地微调的原因。
 
 训练与验证记录保存在 `artifacts/ios-system-finetune-v1/`；运行前的 `REGRESSION_PROTOCOL.json` 固定数据哈希、父模型、训练方案和验收规则。最终结果以同目录报告为准。受控模拟器回归结果不能代表所有真机、第三方应用或未知字体的识别率。
+
+## 本地微调结果与权重平均
+
+上述 4,000 步已在本地 MPS 完成，用时约 285 秒，8,744 个训练区域全部被采样。最终权重在校准集上的系统字体正确命名从 524 增至 530，整体正确命名从 1,014 增至 1,031，错误数量仍为 2。但新增 18 个正确结果的同时，丢失了 1 个原本正确的结果，因此没有检查点符合预设发布条件。原训练记录为 `NO_PROMOTABLE_CHECKPOINT`，没有打开测试数组或发布这版权重。
+
+另行预声明一次权重平均实验：仅使用原 R17 和本轮最终 `last-trained.pth`，按 `新权重 = (1−α)×R17 + α×训练末轮` 生成候选，包括字号头。固定 `α` 为 `0.05、0.1、0.2、0.35、0.5、0.75、1`；不扫描其他训练步数、不细化网格。只用校准集按同样严格的条件选择一次，完全同分时选择较小的 α。推理仍只运行一个区域字体神经网络。
+
+该实验没有额外训练步骤：来源模型实际训练了 4,000 步，平均操作本身执行 0 步优化器更新。只有校准合格后才导出 ONNX 并执行独立数值校验和固定截图回归；原失败报告保持不变。
+
+```sh
+python training/average_system_finetune.py \
+  --source-run artifacts/ios-system-finetune-v1/run \
+  --data artifacts/ios-hant-region-v1/data \
+  --output artifacts/ios-system-average-v1/run --device mps \
+  --regression-protocol artifacts/ios-system-average-v1/REGRESSION_PROTOCOL.json
+```
+
+平均实验在固定网格中选择了 `α=0.75`。校准集系统字体正确命名从 524 增至 530，整体正确命名从 1,014 增至 1,030，错误数仍为 2，原有正确结果全部保留。独立 ONNX 校验覆盖 64 个校准区域、179 个图块以及 1／7／32／128 四种 batch，两个原始输出和最终聚合判定均通过原定容差。
+
+平均实验记录位于 `artifacts/ios-system-average-v1/`。校准集再次使用和既有测试复用都需要在最终结果中保留说明；校准合格本身不代表已经达到发布条件。
