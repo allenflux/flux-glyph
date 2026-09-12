@@ -28,6 +28,9 @@ for (const hook of ['font-prediction', 'font-score', 'font-label', 'font-reason'
   assert(js.includes(hook), `missing stable neural prediction display hook: ${hook}`);
 }
 assert(css.includes('.font-prediction') && css.includes('.font-score'), 'prediction and score must have responsive presentation styles');
+for (const label of ['未知字体', 'Unknown font', 'unknown_font_rejected', 'invalid_rejection_output']) {
+  assert(js.includes(label), `missing explicit unknown-font presentation: ${label}`);
+}
 for (const id of ['font-model', 'download-model', 'refresh-model', 'model-info', 'model-families', 'model-label-note', 'model-usage-command']) {
   assert(new RegExp(`id=["']${id}["']`).test(html), `missing standalone model control: #${id}`);
 }

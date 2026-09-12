@@ -29,6 +29,7 @@
       fontCandidates: '字体候选 {count}', scopeLatin: '此结论仅针对框内数字和英文字母；标点、图标不参与字体判断。', scopeMixed: '混排文字按中文与数字／英文分别匹配；上方结论针对中文部分。', chinesePart: '中文部分', latinPart: '数字／英文部分',
       regionScope: '此结果针对当前文字区域的整体外观。', neuralMethod: '神经网络', neuralIdentified: '已识别 {count}', topScores: 'Top 3 模型分数（分数不是实际准确率）',
       closestFont: '最接近：{family}', modelScore: '模型评分 {score}', noModelScore: '未生成评分',
+      rejectedFont: '未知字体', colorOnlyNote: '颜色为截图中的可见颜色。',
       estimatedSize: '估计字号', textColor: '文字颜色', styleUnknown: '待确认', styleNote: '字号按截图像素估计；颜色为截图中的可见颜色。', sizeRange: '估计范围 {low}–{high} px',
       supported: '支持', candidate: '候选', uncertain: '待确认', outOfScope: '字体未覆盖', unknownText: '未识别文字', unknownFont: '待确认', noReason: '没有进一步说明', scopeNote: '此结论仅针对框内中文，不能据此推断数字和英文字体。', topDistances: 'Top 3 原始距离（距离不是概率）',
       modelVersion: '模型版本：{version}', healthUnavailable: '服务状态暂不可用', unlocked: '已解锁，可以上传图片', authError: '令牌无效或服务拒绝访问，请重试。',
@@ -54,6 +55,7 @@
       fontCandidates: 'Font candidates {count}', scopeLatin: 'This verdict covers digits and Latin letters only; punctuation and icons are not classified.', scopeMixed: 'Chinese and numeric/Latin text are matched separately. The main verdict covers Chinese glyphs.', chinesePart: 'Chinese text', latinPart: 'Numeric / Latin text',
       regionScope: 'This result describes the appearance of the selected text region.', neuralMethod: 'Neural network', neuralIdentified: 'Identified {count}', topScores: 'Top 3 model scores (scores are not measured accuracy)',
       closestFont: 'Closest match: {family}', modelScore: 'Model score {score}', noModelScore: 'No model score',
+      rejectedFont: 'Unknown font', colorOnlyNote: 'Color is the visible color in the screenshot.',
       estimatedSize: 'Estimated size', textColor: 'Text color', styleUnknown: 'Uncertain', styleNote: 'Size is estimated in screenshot pixels; color is the visible color in the screenshot.', sizeRange: 'Estimated range {low}–{high} px',
       supported: 'Supported', candidate: 'Candidate', uncertain: 'Review', outOfScope: 'Font out of scope', unknownText: 'Unrecognized text', unknownFont: 'Review needed', noReason: 'No further explanation is available.', scopeNote: 'This verdict covers Chinese glyphs only and does not determine numeric or Latin fonts.', topDistances: 'Top 3 raw distances (distance is not probability)',
       modelVersion: 'Model version: {version}', healthUnavailable: 'Service status is unavailable', unlocked: 'Unlocked. You can upload an image.', authError: 'The token is invalid or the service refused access. Try again.',
@@ -331,8 +333,22 @@
   const isNeural = value => ['neural_network', 'region_neural_network'].includes(value.method || value.font_method);
   const statusKey = value => ({supported: 'supported', candidate: 'candidate', uncertain: 'uncertain', out_of_scope: 'outOfScope'})[value] || 'uncertain';
 
+  function rejectionReason(value) {
+    const reasons = ['unknown_font_rejected', 'invalid_rejection_output'];
+    if (reasons.includes(value.reason_code)) return value.reason_code;
+    if (reasons.includes(value.reason)) return value.reason;
+    if (value.rejection?.status === 'rejected') return 'unknown_font_rejected';
+    if (value.rejection?.status === 'unavailable') {
+      // Preprocessing can stop before the rejection network runs. Preserve
+      // that actionable reason while still withholding font names and size.
+      const preprocessing = ['low_quality_region', 'nonuniform_region_background', 'region_too_long', 'too_many_regions'];
+      return preprocessing.includes(value.reason_code) ? value.reason_code : 'invalid_rejection_output';
+    }
+    return null;
+  }
+
   function scoredCandidates(value) {
-    if (!isNeural(value) || !Array.isArray(value.candidates)) return [];
+    if (rejectionReason(value) || !isNeural(value) || !Array.isArray(value.candidates)) return [];
     // Sort a filtered copy for display; preserve the server verdict and JSON.
     return value.candidates.filter(candidate => candidate && typeof candidate.family === 'string'
       && candidate.family.trim() && Number.isFinite(candidate.score) && candidate.score >= 0 && candidate.score <= 1)
@@ -340,6 +356,8 @@
   }
 
   function fontLabel(value) {
+    const rejected = rejectionReason(value);
+    if (rejected) return t(rejected === 'unknown_font_rejected' ? 'rejectedFont' : 'noModelScore');
     if (value.family) return value.status === 'candidate' ? `${value.family}${language === 'zh' ? '（候选）' : ' (candidate)'}` : value.family;
     return t(statusKey(value.status) === 'outOfScope' ? 'outOfScope' : 'unknownFont');
   }
@@ -357,6 +375,8 @@
   };
 
   const reasonCodes = {
+    unknown_font_rejected: {zh: '当前模型无法识别该字体，已保留原图区域供查看。', en: 'The model does not recognize this font. The source crop is retained for review.'},
+    invalid_rejection_output: {zh: '字体判断结果异常，暂不能确认字体。请重试。', en: 'The font check returned an invalid result. Retry to identify this font.'},
     region_neural_family_candidate: {zh: '区域字体神经网络的模型分数与候选区分度达到当前门槛。', en: 'The region font network passes the current score and separation gates.'},
     low_quality_region: {zh: '区域图像质量不足，字体待确认。', en: 'This region lacks sufficient image quality to identify a font.'},
     nonuniform_region_background: {zh: '区域背景颜色不均匀，字体待确认。', en: 'The region background is not uniform; review is needed.'},
@@ -393,7 +413,7 @@
 
   function fontReason(value) {
     const reason = String(value.reason || '');
-    const coded = reasonCodes[value.reason_code] || reasonCodes[reason];
+    const coded = reasonCodes[rejectionReason(value)] || reasonCodes[value.reason_code] || reasonCodes[reason];
     if (coded) return coded[language];
     if (!reason) return t('noReason');
     if (language === 'zh') return reason;
@@ -424,7 +444,7 @@
     if (!result) return;
     const summary = result.summary || {};
     const elapsed = result.timing_seconds?.total ?? result.timing_seconds;
-    const identified = (result.regions || []).filter(region => ['supported', 'candidate'].includes(font(region).status) && font(region).family).length;
+    const identified = (result.regions || []).filter(region => !rejectionReason(font(region)) && ['supported', 'candidate'].includes(font(region).status) && font(region).family).length;
     const parts = [
       {text: t('detected', {count: summary.detected_regions ?? result.regions?.length ?? 0}), tone: 'detected'},
       {text: t('neuralIdentified', {count: identified}), tone: 'supported'}
@@ -468,15 +488,19 @@
     if (!style) return null;
     const root = document.createElement('span');
     root.className = detailed ? 'text-style text-style-detail' : 'text-style';
-    const size = document.createElement('span');
-    size.className = 'text-size';
-    const px = style.font_size_px_estimate;
-    const sizeValue = Number.isFinite(px) && px > 0 ? `≈ ${px.toFixed(1).replace(/\.0$/, '')} px` : t('styleUnknown');
-    size.textContent = detailed || !Number.isFinite(px) || px <= 0 ? `${t('estimatedSize')}：${sizeValue}` : sizeValue;
-    size.setAttribute('aria-label', `${t('estimatedSize')} ${sizeValue}`);
-    const range = style.font_size_px_interval;
-    if (Array.isArray(range) && range.length === 2 && range.every(Number.isFinite)) {
-      size.title = t('sizeRange', {low: range[0].toFixed(1), high: range[1].toFixed(1)});
+    const rejected = rejectionReason(font(region));
+    if (!rejected) {
+      const size = document.createElement('span');
+      size.className = 'text-size';
+      const px = style.font_size_px_estimate;
+      const sizeValue = Number.isFinite(px) && px > 0 ? `≈ ${px.toFixed(1).replace(/\.0$/, '')} px` : t('styleUnknown');
+      size.textContent = detailed || !Number.isFinite(px) || px <= 0 ? `${t('estimatedSize')}：${sizeValue}` : sizeValue;
+      size.setAttribute('aria-label', `${t('estimatedSize')} ${sizeValue}`);
+      const range = style.font_size_px_interval;
+      if (Array.isArray(range) && range.length === 2 && range.every(Number.isFinite)) {
+        size.title = t('sizeRange', {low: range[0].toFixed(1), high: range[1].toFixed(1)});
+      }
+      root.append(size);
     }
     const color = document.createElement('span');
     color.className = 'text-color';
@@ -490,11 +514,11 @@
       color.append(swatch, hex);
     } else color.append(detailed ? t('styleUnknown') : `${t('textColor')}：${t('styleUnknown')}`);
     color.setAttribute('aria-label', `${t('textColor')} ${hex || t('styleUnknown')}`);
-    root.append(size, color);
+    root.append(color);
     if (detailed) {
       const note = document.createElement('small');
       note.className = 'text-style-note';
-      note.textContent = t('styleNote');
+      note.textContent = t(rejected ? 'colorOnlyNote' : 'styleNote');
       root.append(note);
     }
     return root;
@@ -524,7 +548,7 @@
       const small = document.createElement('small');
       strong.textContent = region.id;
       small.className = isNeural(value) ? 'font-prediction' : '';
-      small.textContent = prediction ? t('closestFont', {family: prediction.family}) : isNeural(value) ? t('noModelScore') : fontLabel(value);
+      small.textContent = rejectionReason(value) ? fontLabel(value) : prediction ? t('closestFont', {family: prediction.family}) : isNeural(value) ? t('noModelScore') : fontLabel(value);
       text.append(strong, small);
       if (prediction) {
         const score = document.createElement('span');
@@ -567,7 +591,7 @@
       return;
     }
     const value = font(region);
-    const candidates = isNeural(value) ? scoredCandidates(value) : Array.isArray(value.candidates) ? value.candidates : [];
+    const candidates = rejectionReason(value) ? [] : isNeural(value) ? scoredCandidates(value) : Array.isArray(value.candidates) ? value.candidates : [];
     const prediction = isNeural(value) ? candidates[0] : null;
     root.className = 'detail-content';
     root.replaceChildren();
@@ -593,7 +617,7 @@
     const identity = document.createElement('p');
     const label = document.createElement('strong');
     label.id = 'font-label';
-    label.textContent = prediction ? t('closestFont', {family: prediction.family}) : isNeural(value) ? t('noModelScore') : value.family || fontLabel(value);
+    label.textContent = rejectionReason(value) ? fontLabel(value) : prediction ? t('closestFont', {family: prediction.family}) : isNeural(value) ? t('noModelScore') : value.family || fontLabel(value);
     identity.append(label);
     const badge = document.createElement('span');
     badge.className = `tag ${value.status || 'uncertain'}`;
@@ -617,7 +641,7 @@
       verdict.append(score);
     }
     verdict.append(reason, note);
-    for (const component of value.components || []) {
+    for (const component of rejectionReason(value) ? [] : value.components || []) {
       const line = document.createElement('p');
       const heading = document.createElement('strong');
       heading.textContent = `${t(component.scope === 'Latin letters and digits only' ? 'latinPart' : 'chinesePart')} · ${fontLabel(component)}`;

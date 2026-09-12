@@ -41,11 +41,23 @@ def verify_bundle(directory):
     if any(path.startswith('region_neural/') for path in paths):
         required={'region_neural/metadata.json','pp/onnx/paddle_ocr_det.onnx','pp/paddle_ocr_delivery.contract.json'}
         if not required.issubset(paths):raise ValueError('Region bundle lacks required files')
-        model=json.loads((root/'region_neural/metadata.json').read_text()).get('model',{})
+        metadata=json.loads((root/'region_neural/metadata.json').read_text())
+        model=metadata.get('model',{})
         name=model.get('path')
         if (not isinstance(name,str) or PurePosixPath(name).name!=name or '\\' in name
                 or not name.endswith('.onnx')):raise ValueError('Invalid region model path')
         required.add('region_neural/'+name)
+        if metadata.get('algorithm')=='region-cnn64x256-rejection-v2' or 'rejection' in metadata:
+            from .region_font import rejection_metadata
+            rejection=rejection_metadata(metadata)
+            if rejection is not None:
+                required.add('region_neural/'+rejection['model']['path'])
+                entries={row['path']:row for row in rows}
+                for declared in (model,rejection['model']):
+                    entry=entries.get('region_neural/'+declared['path'])
+                    if entry is None:raise ValueError('Region bundle lacks required rejection files')
+                    if entry['sha256']!=declared.get('sha256'):
+                        raise ValueError('Region bundle model metadata SHA differs')
         if not required.issubset(paths):raise ValueError('Region bundle lacks required files')
         return manifest
     required={'font/metadata.json','font/GATES.json','pp/onnx/paddle_ocr_det.onnx','pp/onnx/paddle_ocr_rec.onnx','pp/onnx/paddle_ocr_cls.onnx','pp/charset/ppocr_keys_v1.txt','pp/paddle_ocr_delivery.contract.json'}

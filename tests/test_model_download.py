@@ -172,3 +172,69 @@ def test_api_does_not_send_changed_model_as_a_successful_zip(monkeypatch, tmp_pa
         response = client.get('/api/models/font/download')
         assert response.status_code == 500 and response.headers.get('Content-Type') != 'application/zip'
         assert b'invalid modified weights' not in response.content
+
+
+def fake_rejection_engine(directory):
+    engine=fake_engine(directory)
+    meta=engine.region_neural.meta
+    weights=b'independent known/unknown ONNX stand-in'
+    (directory/'rejection.onnx').write_bytes(weights)
+    meta['algorithm']='region-cnn64x256-rejection-v2'
+    meta['rejection']={'schema':'flux-glyph-region-rejection-v1','algorithm':'region-known-unknown-cnn64x256-v1',
+        'model':{'path':'rejection.onnx','sha256':sha(weights)},'labels':['unknown','known'],
+        'known_families':meta['families'].copy(),'base_model_sha256':meta['model']['sha256'],
+        'aggregation':'mean_softmax_known_probability','temperature':1.25,'min_known_score':.8}
+    return engine
+
+
+def test_rejection_kit_contains_complete_independent_model_metadata_and_runtime(tmp_path):
+    engine=fake_rejection_engine(tmp_path/'model')
+    original=json.loads(json.dumps(engine.region_neural.meta['rejection']))
+    engine.region_neural.meta['rejection']['training_source']='/private/unknown-captures'
+    engine.region_neural.meta['rejection']['model']['private_path']='/private/checkpoint'
+    info,payload=font_kit(engine)
+    files=zip_files(payload)
+    assert len(files)==9 and files['rejection.onnx']==(engine.region_neural.directory/'rejection.onnx').read_bytes()
+    metadata=json.loads(files['metadata.json'])
+    assert metadata['rejection']==original
+    assert metadata['algorithm']=='region-cnn64x256-rejection-v2'
+    assert info['unknown_font_rejection'] is True
+    checksums=json.loads(files['SHA256.json'])
+    assert checksums=={name:sha(content) for name,content in files.items() if name!='SHA256.json'}
+    assert all(b'/private/unknown-captures' not in content and b'/private/checkpoint' not in content for content in files.values())
+    assert b'known_logits' in files['inference.py'] and '两个 ONNX'.encode() in files['README.md']
+    assert len(files['requirements.txt'].decode().splitlines())==3
+
+
+@pytest.mark.parametrize('problem',['missing','changed','wrong_sha','v1_silent_ignore'])
+def test_download_cannot_drop_or_replace_the_rejection_gate(tmp_path,problem):
+    engine=fake_rejection_engine(tmp_path/'model')
+    if problem=='missing':(engine.region_neural.directory/'rejection.onnx').unlink()
+    elif problem=='changed':(engine.region_neural.directory/'rejection.onnx').write_bytes(b'wrong gate')
+    elif problem=='wrong_sha':engine.region_neural.meta['rejection']['model']['sha256']='0'*64
+    else:engine.region_neural.meta['algorithm']='region-cnn64x256-v1'
+    with pytest.raises(ValueError):font_kit(engine)
+    assert not hasattr(engine,'_font_download')
+
+
+def test_verified_rejection_download_cache_pins_both_models(tmp_path):
+    engine=fake_rejection_engine(tmp_path/'model')
+    first=font_kit(engine)
+    (engine.region_neural.directory/'rejection.onnx').write_bytes(b'later unverified model')
+    assert font_kit(engine) is first
+    assert zip_files(first[1])['rejection.onnx']!=b'later unverified model'
+
+
+def test_authenticated_rejection_download_serves_the_full_two_model_kit(monkeypatch,tmp_path):
+    engine=fake_rejection_engine(tmp_path/'model')
+    monkeypatch.setattr(api,'FontPipeline',lambda *a,**k:engine)
+    monkeypatch.setattr(api,'DATA',tmp_path/'uploads')
+    monkeypatch.setattr(api,'TOKEN','rejection-test-token')
+    with TestClient(api.app) as client:
+        assert client.get('/api/models/font/download').status_code==401
+        headers={'Authorization':'Bearer rejection-test-token'}
+        info=client.get('/api/models/font',headers=headers).json()
+        response=client.get(info['download_url'],headers=headers)
+        assert info['available'] is True and info['unknown_font_rejection'] is True
+        assert response.status_code==200 and info['sha256']==sha(response.content)
+        assert {'model.onnx','rejection.onnx'}.issubset(zip_files(response.content))

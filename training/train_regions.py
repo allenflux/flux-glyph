@@ -11,6 +11,7 @@ Prepare with the inference environment; train with the standalone torch env:
 from __future__ import annotations
 
 import argparse
+import ast
 from collections import Counter, defaultdict
 import hashlib
 import json
@@ -220,8 +221,31 @@ def prepare(captures, output, *, group_pingfang=False, test_history='reused'):
         return manifest
 
 
+def verify_preprocessing_snapshot(expected_sha, snapshot):
+    """Keep old data immutable when inference-only code surrounding preprocessing changes."""
+    snapshot = Path(snapshot)
+    require(snapshot.is_file() and sha(snapshot) == expected_sha, 'original preprocessing snapshot differs')
+
+    def contract(path):
+        tree = ast.parse(Path(path).read_text())
+        selected = []
+        for node in tree.body:
+            if isinstance(node, (ast.Import, ast.ImportFrom)):
+                selected.append(ast.dump(node, include_attributes=False))
+            elif isinstance(node, ast.FunctionDef) and node.name == 'preprocess_region':
+                selected.append(ast.dump(node, include_attributes=False))
+            elif isinstance(node, ast.Assign) and any(isinstance(target, ast.Name) and target.id in
+                                                      ('MAX_TILES', 'MAX_PIXELS') for target in node.targets):
+                selected.append(ast.dump(node, include_attributes=False))
+        require(len(selected) >= 3, 'incomplete preprocessing contract')
+        return selected
+
+    require(contract(snapshot) == contract(ROOT / 'src/flux_glyph/region_font.py'),
+            'current region preprocessing differs from the immutable data snapshot')
+
+
 class RegionData:
-    def __init__(self, directory):
+    def __init__(self, directory, *, preprocessing_snapshot=None):
         self.directory = Path(directory).resolve()
         self.manifest_path = self.directory / 'MANIFEST.json'
         self.manifest_sha = sha(self.manifest_path)
@@ -234,7 +258,10 @@ class RegionData:
                 and m.get('text_features_used') is False and m.get('script_features_used') is False
                 and m.get('character_segmentation_performed') is False, 'region dataset includes OCR/text/script inputs')
         require(set(m['splits']) == set(SPLITS), 'three fixed region splits are required')
-        require(m['preprocessing']['source_sha256'] == sha(ROOT / 'src/flux_glyph/region_font.py'), 'region preprocessing code differs')
+        if preprocessing_snapshot is None:
+            require(m['preprocessing']['source_sha256'] == sha(ROOT / 'src/flux_glyph/region_font.py'), 'region preprocessing code differs')
+        else:
+            verify_preprocessing_snapshot(m['preprocessing']['source_sha256'], preprocessing_snapshot)
         require(m['preprocessing']['shape'] == [1, 64, 256], 'region tensor geometry differs')
         self.families = m['families']
         from training.region_labels import validate_groups, region_families

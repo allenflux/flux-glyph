@@ -4,17 +4,19 @@
 
 网站和 API 使用 **9000** 端口。保留 PP 的文字区域检测模型用于定位；字体 CNN 直接处理区域图像，不读取文字内容，不需要字符切分或人工选择中文／英文。独立字体模型也可以下载到本地使用。
 
-## R17 简繁体、英文与数字字体模型
+## R19 字体识别与未知字体拒识
 
-当前流程是：**原图 → 文字区域检测 → 区域字体 CNN 与字号回归 → 原图颜色测量**。字体判断使用训练后的网络权重。候选包含模型分数；`uncertain` 表示当前结果未通过门槛。
+当前流程是：**原图 → 文字区域检测 → 未知字体拒识 CNN → 区域字体 CNN 与字号回归 → 原图颜色测量**。两个网络都处理区域像素。被拒识的字体显示“未知字体”，不返回命名候选或字号，仍保留颜色；普通候选保留模型分数。
 
-本地 Docker 和线上 `http://allenflux.tech:9000/` 已使用 `r17-ios-hant-region-v1`，模型下载位于上传区上方。以 `/api/health` 的 `model_version`、结果中的 `font_method: region_neural_network` 及所选模型包为准。训练在本地执行，经过验证的代码和模型通过 Git 的 `main` 分支更新到服务器。
+默认模型为 `r19-font-unknown-rejection-v1`，模型下载位于上传区上方。实际运行版本以 `/api/health` 的 `model_version` 为准。训练在本地执行，经过验证的代码和模型通过 Git 的 `main` 分支更新到服务器。
+
+R19 在保留 R17 主字体和字号模型的基础上训练独立拒识网络。固定留出的 360 个未知字体区域拒识 290 个（80.6%），新旧测试来源的 1,464 个已知区域误拒 2 个；相似无衬线字体仍可能漏判。用户示例中的安卓手写裁图已不再误报苹方。详见 [拒识结果](docs/font-unknown-rejection-results.md) 和 [采集训练说明](docs/font-unknown-rejection.md)。
 
 R17 使用新采集的 1,000 张原生 iOS Simulator 截图继续训练，包含简体、繁体、英文和数字。八个字体输出中，PingFang 表示苹方字体族，覆盖原生 SC／TC／HK，不宣称能从相同字形区分地区版本。SF Pro、PingFang 和 Helvetica 来自系统；Alipay Number 及其余类别由采集应用加载，**Alipay Number 不是 iOS 系统字体**。来源写入元数据和下载说明。
 
-系统字体的本地微调方式与发布条件见 [系统字体优先训练](docs/ios-system-font-training.md)。候选在固定回归中的系统字体正确数由 518 增至 527，但有旧正确结果退为待确认，未通过预设保留条件；已保存候选供审阅，当前活动模型仍为 R17。详见 [优化回归结果](docs/ios-system-font-results.md)。
+此前系统字体的本地微调方式与发布条件见 [系统字体优先训练](docs/ios-system-font-training.md)。该候选有旧正确结果退为待确认，未通过当时保留条件，因此未激活；R19 主分类权重仍沿用 R17。详见 [此前优化回归](docs/ios-system-font-results.md)。
 
-新固定测试的 100 张完整截图、1,104 个区域中，1,013 个字体名正确、1 个错误、90 个待确认；没有漏检或额外框。已输出名称的准确率为 99.90%，返回名称的覆盖率为 91.85%。这些是受控模拟器成绩，不能推广到任意 App、真机或未知字体。详见 [R17 验证报告](docs/ios-traditional-results.md)、[采集证据](docs/ios-traditional-capture.md) 和 [训练流程](docs/ios-traditional-training.md)。
+原 R17 固定测试有 100 张完整截图、1,104 个区域，字体正确 1,013 个、错误 1 个、待确认 90 个。R19 同集回归为正确 1,011 个、错误 1 个、弃权 92 个，新增的两处弃权为未知字体误拒；两版均没有漏检或额外框。这些是受控模拟器成绩，不能推广到任意 App、真机或未知字体。历史基线见 [R17 验证报告](docs/ios-traditional-results.md)、[采集证据](docs/ios-traditional-capture.md) 和 [训练流程](docs/ios-traditional-training.md)。
 
 默认模型由随源码提供的 `models/ACTIVE.json` 选择，所需完整包在 `models/releases/`，因此标准 Docker Compose 部署也能提供字体模型下载。根目录历史 R14 文件保留用于回退。
 
@@ -31,7 +33,7 @@ PYTHONPATH=src .venv/bin/python scripts/package_region.py \
 
 ## 下载字体模型并单独使用
 
-网页顶部的“字体模型”卡片显示当前可下载模型的版本、文件大小和下载按钮；“本地使用方式”包含字体来源及运行命令。下载包包含字体 ONNX、`metadata.json`、`inference.py`、`text_style.py`、`predict.py`、`requirements.txt`、README 和 SHA256 清单，不包含用户上传图片。服务更新后可点“刷新状态”重新获取下载信息。
+网页顶部的“字体模型”卡片显示当前可下载模型的版本、文件大小和下载按钮；“本地使用方式”包含字体来源及运行命令。R19 下载包包含字体/字号 ONNX、拒识 ONNX、`metadata.json`、`inference.py`、`text_style.py`、`predict.py`、`requirements.txt`、README 和 SHA256 清单，不包含用户上传图片。服务更新后可点“刷新状态”重新获取下载信息。
 
 解压 ZIP 后，在其目录安装依赖并运行：
 
@@ -46,6 +48,8 @@ python predict.py text-region.png
 输入应是一行或一个文字区域的裁图。脚本返回字体候选、像素字号估计及可见颜色，不要求文字内容；完整截图可交给网站/API 自动定位区域。Python 3.10+，推理依赖 ONNX Runtime、NumPy、Pillow，不需要 PyTorch。
 
 模型输入 `tiles` 为 float32 `[N,1,64,256]`；两个输出是 `logits [N,C]` 和 `log_em_ratio [N]`。必须使用包内 `preprocess_region` 保留比例、归一化背景并生成图块，再按元数据里的类别顺序、温度和门槛聚合；不要把整张截图直接拉伸成模型输入。`predict.py` 已完成这些步骤。
+
+R19 先运行独立的 `rejection.onnx`，相同输入，输出 `known_logits [N,2]`（unknown、known）。两个 ONNX 必须一起保留，使用包内脚本即可完成拒识与分类。元数据算法为 `region-cnn64x256-rejection-v2`，旧版推理代码不能忽略拒识模型后运行。
 
 ```sh
 curl http://localhost:9000/api/models/font
@@ -96,9 +100,9 @@ docker compose -f compose.yaml -f compose.ios.yaml up -d --build
 - 区域过长、图像质量不足或背景颜色不均匀。
 - 区域超出本次处理数量上限。
 
-只要有有效的神经网络评分，区域列表和详情就直接展示“最接近：字体名”及原始模型评分（例如 `0.6559`），包括尚未通过确认门槛的区域。原状态、颜色和未确认原因仍保留；没有有效输出时显示“未生成评分”。这项展示不改变模型、门槛、字号估计或已识别数量。
+通过未知字体检查并有有效分类评分时，区域列表和详情展示“最接近：字体名”及原始模型评分（例如 `0.6559`），包括尚未通过原分类确认门槛的区域。被拒识时显示“未知字体”，不展示命名候选；原状态和原因保留，没有有效输出时显示“未生成评分”。
 
-未通过门槛时 API 的 `font.family` 仍为 null，可从 `font.candidates` 查看评分最高的预测。页面不改写返回或复制的 JSON。分数是已知类别间的模型评分，不是实际准确率；未知字体也可能得到高分并误判。历史参考模型仍显示原始距离，不将距离换算成神经网络评分。字体名不能用于确定手机系统、设备或截图真伪。绿色 `supported` 及灰色 `out_of_scope` 保留用于历史结果兼容。
+未通过原分类门槛时 API 的 `font.family` 为 null，可从 `font.candidates` 查看评分最高的预测；拒识网络拦截时 `font.candidates` 为空，`font.rejection` 保留覆盖检查结果。页面不改写返回或复制的 JSON。分数不是实际准确率；漏过拒识的未知字体仍可能得到高分类分数。字体名不能用于确定手机系统、设备或截图真伪。灰色 `out_of_scope` 用于未知字体和历史结果兼容。
 
 `text_style.font_size_px_estimate` 是输入截图中的像素字号估计，**不是 iOS pt，也不是检测框高度**。区域模型的 `font_size_px_interval` 为 null，不将图块差异伪装成置信区间。`text_color_hex` 是可见 `#RRGGBB` 颜色；缺少可靠结果时字段为 null，`size`、`color` 说明状态和原因。缩放截图会改变像素字号；颜色测量不恢复原始透明度。
 

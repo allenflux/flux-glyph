@@ -90,3 +90,82 @@ def test_region_constructor_and_run_never_use_ocr_or_reference_banks(monkeypatch
         assert region['text'] is None and region['ocr_performed'] is False and region['glyphs'] == []
         with Image.open(tmp_path / 'output' / region['crop_file']) as crop:
             np.testing.assert_array_equal(np.asarray(crop), np.asarray(source.crop(region['source_bbox'])))
+
+
+def rejection_bundle(root):
+    import hashlib
+    write_bundle(root)
+    directory=root/'region_neural'
+    weights=b'independent rejection model'
+    (directory/'rejection.onnx').write_bytes(weights)
+    model={'path':'model.onnx','sha256':file_sha(directory/'model.onnx')}
+    metadata={'schema':'flux-glyph-region-font-v1','algorithm':'region-cnn64x256-rejection-v2',
+              'families':['PingFang','SF Pro'],'model':model}
+    metadata['rejection']={'schema':'flux-glyph-region-rejection-v1','algorithm':'region-known-unknown-cnn64x256-v1',
+        'model':{'path':'rejection.onnx','sha256':hashlib.sha256(weights).hexdigest()},'labels':['unknown','known'],
+        'known_families':metadata['families'].copy(),'base_model_sha256':model['sha256'],
+        'aggregation':'mean_softmax_known_probability','temperature':1.,'min_known_score':.8}
+    (directory/'metadata.json').write_text(json.dumps(metadata))
+    from scripts.package_models import write_models_manifest
+    write_models_manifest(root)
+    return metadata
+
+
+def test_v2_manifest_must_close_over_both_declared_onnx_models(tmp_path):
+    rejection_bundle(tmp_path)
+    assert len(verify_bundle(tmp_path)['files'])==5
+    manifest=json.loads((tmp_path/'MANIFEST.json').read_text())
+    manifest['files']=[row for row in manifest['files'] if row['path']!='region_neural/rejection.onnx']
+    (tmp_path/'MANIFEST.json').write_text(json.dumps(manifest))
+    with pytest.raises(ValueError,match='lacks'):verify_bundle(tmp_path)
+
+
+def test_rejection_metadata_cannot_claim_another_weight_digest_than_manifest(tmp_path):
+    metadata=rejection_bundle(tmp_path)
+    metadata['rejection']['model']['sha256']='0'*64
+    (tmp_path/'region_neural/metadata.json').write_text(json.dumps(metadata))
+    from scripts.package_models import write_models_manifest
+    write_models_manifest(tmp_path)
+    with pytest.raises(ValueError,match='SHA differs'):verify_bundle(tmp_path)
+
+
+def test_unknown_region_keeps_color_but_no_font_size_and_counts_out_of_scope(monkeypatch,tmp_path):
+    from PIL import ImageDraw
+    write_bundle(tmp_path)
+    box=dict(source_bbox=[10,10,100,40],quad=[[10,10],[100,10],[100,40],[10,40]],score=.99)
+    monkeypatch.setattr(module,'PPRegionDetector',lambda _:SimpleNamespace(detect=lambda _:[box]))
+    rejection=dict(method='neural_network',status='rejected',known_score=.01,min_known_score=.8)
+    unknown=dict(status='out_of_scope',family=None,candidates=[],score=None,margin=None,patch_agreement=None,
+                 reason_code='unknown_font_rejected',font_size_px_estimate=None,rejection=rejection)
+    monkeypatch.setattr(module,'RegionFontClassifier',lambda _:SimpleNamespace(predict=lambda _:unknown))
+    engine=module.FontPipeline(tmp_path)
+    source=Image.new('RGB',(120,60),'white')
+    ImageDraw.Draw(source).rectangle((20,18,90,32),fill='#154A6F')
+    source_path=tmp_path/'source.png';source.save(source_path)
+    result=engine.run(source_path,tmp_path/'output','test-rejected')
+    region=result['regions'][0]
+    assert region['font']['rejection']==rejection and region['font']['label']=='未知字体'
+    assert region['font']['family'] is None and region['font']['candidates']==[]
+    assert result['summary']['out_of_scope']==1 and result['summary']['other_candidates']==0
+    assert region['text_style']['text_color_hex']=='#154A6F'
+    assert region['text_style']['font_size_px_estimate'] is region['text_style']['font_size_px_interval'] is None
+    assert region['text_style']['size']['status']=='unavailable'
+    assert result['ocr_performed'] is False
+
+
+def test_packager_preserves_the_independent_rejection_file(monkeypatch,tmp_path):
+    import importlib
+    from pathlib import Path
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1]/'scripts'))
+    package_module=importlib.import_module('scripts.package_region')
+    base=tmp_path/'base'
+    metadata=rejection_bundle(base)
+    monkeypatch.setattr(package_module,'load_active',lambda _:(base,'r17-test',{}))
+    monkeypatch.setattr(package_module,'RegionFontClassifier',lambda _:
+        SimpleNamespace(meta=metadata,rejection_meta=metadata['rejection']))
+    monkeypatch.setattr(package_module,'validate_runtime',lambda path:verify_bundle(path))
+    output=tmp_path/'output'
+    result=package_module.package(base,base/'region_neural',output,'r19-rejection-test')
+    assert result['files']==5
+    assert (output/'region_neural/rejection.onnx').read_bytes()==(base/'region_neural/rejection.onnx').read_bytes()
+    assert verify_bundle(output)['version']=='r19-rejection-test'

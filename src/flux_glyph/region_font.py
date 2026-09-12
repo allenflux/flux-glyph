@@ -12,6 +12,7 @@ from PIL import Image
 
 SCHEMA = 'flux-glyph-region-font-v1'
 ALGORITHM = 'region-cnn64x256-v1'
+REJECTION_ALGORITHM = 'region-cnn64x256-rejection-v2'
 MAX_TILES = 8
 MAX_PIXELS = 4_000_000
 
@@ -78,6 +79,39 @@ def _number(value, low, high):
     return type(value) in (int, float) and math.isfinite(value) and low <= value <= high
 
 
+def rejection_metadata(metadata):
+    """Validate the optional gate; v1 never silently ignores a rejection model."""
+    algorithm = metadata.get('algorithm')
+    if algorithm == ALGORITHM:
+        if 'rejection' in metadata:
+            raise ValueError('Rejection models require the v2 region algorithm')
+        return None
+    if algorithm != REJECTION_ALGORITHM:
+        raise ValueError('Invalid region model contract')
+    value = metadata.get('rejection')
+    if (not isinstance(value, dict) or value.get('schema') != 'flux-glyph-region-rejection-v1'
+            or value.get('algorithm') != 'region-known-unknown-cnn64x256-v1'
+            or value.get('labels') != ['unknown', 'known']
+            or value.get('known_families') != metadata.get('families')
+            or value.get('base_model_sha256') != metadata.get('model', {}).get('sha256')
+            or value.get('aggregation') != 'mean_softmax_known_probability'
+            or not _number(value.get('temperature'), .01, 100)
+            or not _number(value.get('min_known_score'), 0, 1)):
+        raise ValueError('Invalid region rejection metadata')
+    model = value.get('model')
+    name = model.get('path') if isinstance(model, dict) else None
+    digest = model.get('sha256') if isinstance(model, dict) else None
+    if (not isinstance(name, str) or Path(name).name != name or '\\' in name or not name.endswith('.onnx')
+            or name == metadata.get('model', {}).get('path')
+            or not isinstance(digest, str) or len(digest) != 64 or any(c not in '0123456789abcdef' for c in digest)):
+        raise ValueError('Invalid region rejection model path or SHA')
+    # Training provenance is retained in the full bundle, not the public kit.
+    result = {key: value[key] for key in ('schema', 'algorithm', 'labels', 'known_families',
+                                         'base_model_sha256', 'aggregation', 'temperature', 'min_known_score')}
+    result['model'] = {'path': name, 'sha256': digest}
+    return result
+
+
 class RegionFontClassifier:
     def __init__(self, directory):
         self.directory = Path(directory)
@@ -86,8 +120,9 @@ class RegionFontClassifier:
             raise ValueError('Region metadata exceeds size limit')
         self.meta = json.loads(path.read_text())
         m = self.meta
-        if m.get('schema') != SCHEMA or m.get('algorithm') != ALGORITHM:
+        if m.get('schema') != SCHEMA or m.get('algorithm') not in (ALGORITHM, REJECTION_ALGORITHM):
             raise ValueError('Invalid region model contract')
+        self.rejection_meta = rejection_metadata(m)
         self.families = m.get('families')
         if (not isinstance(self.families, list) or not 2 <= len(self.families) <= 64
                 or any(not isinstance(f, str) or not 1 <= len(f) <= 80 for f in self.families)
@@ -132,6 +167,24 @@ class RegionFontClassifier:
                 or len(outputs[0].shape) != 2 or outputs[0].shape[1] != len(self.families)
                 or len(outputs[1].shape) != 1):
             raise ValueError('Region ONNX input/output contract differs')
+        self.rejection_session = None
+        if self.rejection_meta is not None:
+            rejection_model = self.rejection_meta['model']
+            rejection_path = self.directory / rejection_model['path']
+            if (not rejection_path.resolve().is_relative_to(self.directory.resolve())
+                    or not rejection_path.is_file() or rejection_path.stat().st_size > 64 * 1024 * 1024):
+                raise ValueError('Region rejection model is missing or exceeds bounds')
+            rejection_bytes = rejection_path.read_bytes()
+            if hashlib.sha256(rejection_bytes).hexdigest() != rejection_model['sha256']:
+                raise ValueError('Region rejection model SHA differs')
+            self.rejection_session = ort.InferenceSession(rejection_bytes, sess_options=options, providers=['CPUExecutionProvider'])
+            inputs, outputs = self.rejection_session.get_inputs(), self.rejection_session.get_outputs()
+            if (len(inputs) != 1 or inputs[0].name != 'tiles' or inputs[0].type != 'tensor(float)'
+                    or len(inputs[0].shape) != 4 or isinstance(inputs[0].shape[0], int)
+                    or inputs[0].shape[1:] != [1, 64, 256] or len(outputs) != 1
+                    or outputs[0].name != 'known_logits' or outputs[0].type != 'tensor(float)'
+                    or len(outputs[0].shape) != 2 or isinstance(outputs[0].shape[0], int) or outputs[0].shape[1] != 2):
+                raise ValueError('Region rejection ONNX input/output contract differs')
 
     def predict(self, image):
         prepared = preprocess_region(image)
@@ -140,10 +193,34 @@ class RegionFontClassifier:
                   'reason_code': prepared['reason'], 'scope': 'Detected text region',
                   'font_size_px_estimate': None, 'size_relative_spread': None,
                   'ocr_performed': False, 'tile_count': prepared.get('tile_count', 0)}
+        rejection = getattr(self, 'rejection_meta', None)
+        if rejection is not None:
+            result['rejection'] = {'method': 'neural_network', 'status': 'unavailable', 'known_score': None,
+                                   'min_known_score': rejection['min_known_score']}
         if prepared['status'] != 'ok':
             return result
         if not prepared['whole_width_covered']:
             return {**result,'reason_code':'region_too_long'}
+        if rejection is not None:
+            # This independent network runs before naming a font. Failure must
+            # never fall through to a confident score among the eight classes.
+            try:
+                outputs = self.rejection_session.run(['known_logits'], {'tiles': prepared['tiles']})
+            except Exception:
+                return {**result, 'reason_code': 'invalid_rejection_output'}
+            if (not isinstance(outputs, (list, tuple)) or len(outputs) != 1
+                    or not isinstance(outputs[0], np.ndarray) or outputs[0].dtype != np.float32
+                    or outputs[0].shape != (len(prepared['tiles']), 2) or not np.isfinite(outputs[0]).all()):
+                return {**result, 'reason_code': 'invalid_rejection_output'}
+            logits = outputs[0].astype(np.float64)
+            probabilities = np.exp((logits - logits.max(axis=1, keepdims=True)) / rejection['temperature'])
+            probabilities /= probabilities.sum(axis=1, keepdims=True)
+            known_score = float(probabilities[:, 1].mean())
+            rejected = known_score < rejection['min_known_score']
+            result['rejection'].update(status='rejected' if rejected else 'passed', known_score=known_score)
+            if rejected:
+                return {**result, 'status': 'out_of_scope', 'reason_code': 'unknown_font_rejected',
+                        'ink_height_px': prepared['ink_height_px']}
         logits, ratios = self.session.run(['logits', 'log_em_ratio'], {'tiles': prepared['tiles']})
         if (logits.shape != (len(prepared['tiles']), len(self.families))
                 or ratios.shape != (len(prepared['tiles']),) or not np.isfinite(logits).all()

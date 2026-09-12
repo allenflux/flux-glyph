@@ -1,0 +1,35 @@
+{
+  "schema": "flux-glyph-models-v2",
+  "files": [
+    {
+      "path": "pp/onnx/paddle_ocr_det.onnx",
+      "sha256": "69ce850fec741a2a4568c7c924bb025c9d4f1129e5f96ab428c799ccc5ef2275",
+      "bytes": 4729474
+    },
+    {
+      "path": "pp/paddle_ocr_delivery.contract.json",
+      "sha256": "3457279d02acb449b6844cfa132687585b3bedc1f3e6736fdb539adc6edb9b2a",
+      "bytes": 7851
+    },
+    {
+      "path": "region_neural/metadata.json",
+      "sha256": "de41c516e75821c6d1293cfe1ea288592a8797f08cbd33e1251a8e51f9dfff3f",
+      "bytes": 4890
+    },
+    {
+      "path": "region_neural/model.onnx",
+      "sha256": "bff569708afbb127222885539914942f9d958f46c8c11bfb9ace80784f70916b",
+      "bytes": 1466065
+    },
+    {
+      "path": "region_neural/rejection.onnx",
+      "sha256": "be196ed06b7376fac935d03be3b46bec385f7c0182a85556a2cdd81c61bea594",
+      "bytes": 1496157
+    }
+  ],
+  "source_note": "Detector and trained region font/size CNN; no text recognizer, dictionary, glyph segmenter or reference bank.",
+  "version": "r19-font-unknown-rejection-v1",
+  "base_version": "r17-ios-hant-region-v1",
+  "font_method": "region_neural_network",
+  "ocr_performed": false
+}

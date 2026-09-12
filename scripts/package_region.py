@@ -27,7 +27,9 @@ def package(base,region,output,version):
             path=temp/relative;path.parent.mkdir(parents=True,exist_ok=True)
             shutil.copyfile(selected/relative,path)
         (temp/'region_neural').mkdir()
-        for name in ('metadata.json',classifier.meta['model']['path']):
+        filenames=['metadata.json',classifier.meta['model']['path']]
+        if classifier.rejection_meta is not None:filenames.append(classifier.rejection_meta['model']['path'])
+        for name in filenames:
             shutil.copyfile(Path(region)/name,temp/'region_neural'/name)
         manifest=write_models_manifest(temp)
         manifest.update(version=version,base_version=base_version,font_method='region_neural_network',ocr_performed=False,

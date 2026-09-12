@@ -15,7 +15,7 @@ from .text_style import SizeMetrics,estimate_text_style
 from .models import load_active
 
 ROOT=Path(__file__).resolve().parents[2]
-STATUSES={'supported':'支持','candidate':'候选','uncertain':'待确认','out_of_scope':'不支持'}
+STATUSES={'supported':'支持','candidate':'候选','uncertain':'待确认','out_of_scope':'字体未覆盖'}
 
 
 def save_json(path,value):
@@ -333,8 +333,9 @@ class FontPipeline:
             prediction=(self.region_neural.predict(crop) if i<self.max_regions else
                         {'status':'uncertain','family':None,'candidates':[],'reason_code':'too_many_regions'})
             font={k:prediction.get(k) for k in ('status','family','candidates','score','margin','patch_agreement','reason_code','font_family_variants')}
+            if 'rejection' in prediction:font['rejection']=prediction['rejection']
             font.update(method='region_neural_network',scope='Detected text region',font_identity_verified=False,
-                        label=font['family'] or '待确认',reason=font['reason_code'])
+                        label=font['family'] or ('未知字体' if font['reason_code']=='unknown_font_rejected' else '待确认'),reason=font['reason_code'])
             style=estimate_text_style(image,[],region_bbox=bounds) if i<self.max_regions else None
             if style is not None:
                 size=prediction.get('font_size_px_estimate')
@@ -356,7 +357,7 @@ class FontPipeline:
         counts=Counter(r['font']['status'] for r in regions)
         result={'id':identifier,'width':image.width,'height':image.height,'regions':regions,'model_version':self.version,
                 'summary':{'detected_regions':len(regions),'pingfang_supported':0,'other_candidates':counts['candidate'],
-                           'uncertain':counts['uncertain'],'out_of_scope':0,
+                           'uncertain':counts['uncertain'],'out_of_scope':counts['out_of_scope'],
                            'processing_limited_regions':max(0,len(regions)-self.max_regions)},
                 'timing_seconds':{'detector':det_seconds,'font_matching':match_seconds,'total':time.perf_counter()-started},
                 'source_sha256':sha(source),'font_scope':'Detected text regions; no text recognition',

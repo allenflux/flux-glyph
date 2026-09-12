@@ -54,6 +54,32 @@ const scoreUiCases = [
 const scoreFixture = {...fixture,id:'ui-score-fixture-only',regions:scoreUiCases.map(({id,expected,...font},i)=>({
   ...regions[i],id,font:{method:'region_neural_network',scope:'Detected text region',...font}
 }))};
+const residualCandidates = [{family:'PingFang',score:.9998},{family:'SF Pro',score:.0002}];
+const rejectionUiCases = [
+  {id:'unknown-clean',kind:'unknown',status:'out_of_scope',family:null,score:null,candidates:[],
+    reason_code:'unknown_font_rejected',rejection:{method:'neural_network',status:'rejected',known_score:.12,min_known_score:.8}},
+  {id:'unknown-residual',kind:'unknown',status:'out_of_scope',family:'PingFang',score:.9998,candidates:residualCandidates,
+    components:[{family:'PingFang',status:'candidate',scope:'Latin letters and digits only'}],
+    reason_code:'unknown_font_rejected',rejection:{method:'neural_network',status:'rejected',known_score:.12,min_known_score:.8}},
+  {id:'unknown-status-only',kind:'unknown',status:'candidate',family:'PingFang',score:.9998,candidates:residualCandidates,
+    reason_code:'below_score_gate',rejection:{method:'neural_network',status:'rejected',known_score:.12,min_known_score:.8}},
+  {id:'invalid-status-only',kind:'invalid',status:'uncertain',family:'PingFang',score:.9998,candidates:residualCandidates,
+    reason_code:'below_score_gate',rejection:{method:'neural_network',status:'unavailable',known_score:null,min_known_score:.8}},
+  {id:'invalid-reason-priority',kind:'invalid',status:'uncertain',family:'PingFang',score:.9998,candidates:residualCandidates,
+    reason_code:'invalid_rejection_output',rejection:{method:'neural_network',status:'rejected',known_score:null,min_known_score:.8}},
+  {id:'unknown-reason-priority',kind:'unknown',status:'out_of_scope',family:'PingFang',score:.9998,candidates:residualCandidates,
+    reason_code:'unknown_font_rejected',rejection:{method:'neural_network',status:'passed',known_score:1,min_known_score:.8}},
+  {id:'known-passed',kind:'known',status:'candidate',family:'PingFang',score:.9,
+    candidates:[{family:'PingFang',score:.9},{family:'SF Pro',score:.07},{family:'MiSans',score:.03}],
+    reason_code:'region_neural_family_candidate',rejection:{method:'neural_network',status:'passed',known_score:.99,min_known_score:.8}},
+  {id:'known-legacy-v1',kind:'known',status:'candidate',family:'SF Pro',score:.87,
+    candidates:[{family:'SF Pro',score:.87},{family:'PingFang',score:.1},{family:'MiSans',score:.03}],reason_code:'region_neural_family_candidate'}
+];
+const rejectionFixture = {...fixture,id:'ui-rejection-fixture-only',regions:rejectionUiCases.map(({id,kind,...font},i)=>({
+  ...regions[i],id,font:{method:'region_neural_network',scope:'Detected text region',font_size_px_estimate:i===0?null:42,...font},
+  text_style:{font_size_px_estimate:i===0?null:42,font_size_px_interval:i===0?null:[40,44],text_color_hex:'#224466',
+    size:{status:i===0?'unavailable':'estimated'},color:{status:'estimated'}}
+}))};
 let availability = 'available';
 const groupedFonts = {families:['PingFang','SF Pro','Alipay Number','MiSans'],
   font_sources:{PingFang:['system'],'SF Pro':['system'],'Alipay Number':['asset'],MiSans:['asset']},
@@ -131,6 +157,14 @@ const server = http.createServer((req, res) => {
     await evaluate('window.FluxGlyphUI.setLanguage("zh");window.FluxGlyphUI.show('+JSON.stringify(value)+');document.querySelector("#regions .region").click()');
     const explanation=await evaluate('document.getElementById("font-reason").textContent');
     assert(explanation.includes(phrase)&&!explanation.includes('切分'),'Missing specific region uncertainty reason '+code);
+  }
+  for(const code of ['low_quality_region','nonuniform_region_background','region_too_long','too_many_regions']) {
+    const value={...fixture,regions:[{...regions[0],font:{...regions[0].font,status:'uncertain',family:null,reason_code:code,
+      rejection:{method:'neural_network',status:'unavailable',known_score:null,min_known_score:.8}}}]};
+    await evaluate('window.FluxGlyphUI.show('+JSON.stringify(value)+');document.querySelector("#regions .region").click()');
+    const state=await evaluate('({reason:document.getElementById("font-reason").textContent,label:document.getElementById("font-label").textContent,scores:document.querySelectorAll(".font-score,.dist").length,size:document.querySelectorAll(".text-size").length})');
+    assert(state.reason.includes(code==='too_many_regions'?'文字区域过多':reasonCases[code]),'Preprocessing reason must survive an unavailable rejection check: '+code);
+    assert(state.label==='未生成评分'&&state.scores===0&&state.size===0,'Unavailable preprocessing must not leak candidate names, scores or size: '+code);
   }
   const scoreChecks=[];
   const statusLabels={zh:{uncertain:'待确认',candidate:'候选',supported:'支持'},en:{uncertain:'Review',candidate:'Candidate',supported:'Supported'}};
@@ -215,6 +249,71 @@ const server = http.createServer((req, res) => {
     assert(await evaluate('navigator.clipboard.readText()')===await evaluate('window.__scoreUiJson'),'Copying the score fixture changed original JSON in '+language);
   }
   await evaluate("window.FluxGlyphUI.setLanguage('zh')");
+  const rejectionChecks=[];
+  await evaluate(`window.__rejectionUiResult=${JSON.stringify(rejectionFixture)};window.__rejectionUiJson=JSON.stringify(window.__rejectionUiResult,null,2);window.FluxGlyphUI.show(window.__rejectionUiResult)`);
+  for(const language of ['zh','en']) {
+    await evaluate(`window.FluxGlyphUI.setLanguage(${JSON.stringify(language)});document.getElementById('close-detail').click();document.getElementById('regions').scrollIntoView({block:'start'})`);
+    const state=await evaluate(`(() => ({accepted:document.querySelector('#summary .summary-chip.supported').textContent,
+      rows:[...document.querySelectorAll('#regions .region')].map(row=>({id:row.dataset.regionId,
+        prediction:row.querySelector('.font-prediction').textContent,score:row.querySelector('.font-score')?.textContent??null,
+        status:row.querySelector('.tag').textContent,statusClass:row.querySelector('.tag').className,
+        statusColor:getComputedStyle(row.querySelector('.tag')).color,overlayClass:document.querySelector('#overlay [data-region-id="'+row.dataset.regionId+'"]').getAttribute('class'),
+        size:row.querySelector('.text-size')?.textContent??null,color:row.querySelector('.text-color').textContent,
+        crop:row.querySelector('.region-thumbnail img').getAttribute('src'),description:row.querySelector('.region-description').textContent
+      })),overflow:document.documentElement.scrollWidth>innerWidth
+    }))()`);
+    assert(state.accepted===(language==='zh'?'已识别 2':'Identified 2'),'Rejected predictions must not enter the accepted count, even with stale family/status fields');
+    assert(!state.overflow,'Rejection list overflows 320px in '+language);
+    const screen=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
+    fs.writeFileSync(path.join(out,'unknown-small-mobile-'+language+'-list.png'),Buffer.from(screen.data,'base64'));
+    for(const [index,testCase] of rejectionUiCases.entries()) {
+      const row=state.rows[index];const context=testCase.id+' / '+language;
+      const known=testCase.kind==='known';
+      const label=known?(language==='zh'?'最接近：':'Closest match: ')+testCase.family:
+        testCase.kind==='unknown'?(language==='zh'?'未知字体':'Unknown font'):(language==='zh'?'未生成评分':'No model score');
+      const score=known?(language==='zh'?'模型评分 ':'Model score ')+testCase.score.toFixed(4):null;
+      const tag=testCase.status==='out_of_scope'?(language==='zh'?'字体未覆盖':'Font out of scope'):statusLabels[language][testCase.status];
+      const color=testCase.status==='out_of_scope'?'rgb(107, 114, 128)':statusColors[testCase.status];
+      assert(row.id===testCase.id&&row.prediction===label&&row.score===score,'Rejection/known list identity differs '+context);
+      assert(row.status===tag&&row.statusClass==='tag '+testCase.status&&row.statusColor===color&&row.overlayClass.split(' ').includes(testCase.status),'Backend status or color changed '+context);
+      assert(row.color.includes('#224466')&&row.crop==='/fixture/crop.png','Rejection must retain crop and visible color '+context);
+      assert(known?row.size?.includes('42'):row.size===null,'Rejected/unavailable regions must have no displayed font size '+context);
+      if(!known)assert(!/PingFang|SF Pro|0\.9998/.test(row.description),'Residual closed-set scores leaked a named font '+context);
+      await evaluate('document.querySelector('+JSON.stringify('#regions [data-region-id="'+testCase.id+'"]')+').click()');
+      await wait("document.querySelector('.detail-image').complete&&document.querySelector('.detail-image').naturalWidth>0");
+      const detail=await evaluate(`(() => ({label:document.getElementById('font-label').textContent,
+        score:document.getElementById('font-score')?.textContent??null,status:document.querySelector('.detail-verdict .tag').textContent,
+        statusClass:document.querySelector('.detail-verdict .tag').className,
+        top:[...document.querySelectorAll('.dist > span')].map(item=>item.textContent),
+        reason:document.getElementById('font-reason').textContent,verdict:document.querySelector('.detail-verdict').textContent,
+        size:document.querySelector('.text-style-detail .text-size')?.textContent??null,
+        color:document.querySelector('.text-style-detail .text-color').textContent,
+        crop:document.querySelector('.detail-image').getAttribute('src'),overflow:document.documentElement.scrollWidth>innerWidth,
+        unchanged:document.getElementById('json-output').textContent===window.__rejectionUiJson&&JSON.stringify(window.__rejectionUiResult,null,2)===window.__rejectionUiJson
+      }))()`);
+      assert(detail.label===label&&detail.score===score&&detail.status===tag&&detail.statusClass===row.statusClass,'Rejection list/detail contract differs '+context);
+      assert(detail.color.includes('#224466')&&detail.crop==='/fixture/crop.png','Rejection detail lost source/color '+context);
+      assert(known?detail.size?.includes('42'):detail.size===null,'Rejection detail leaked font size '+context);
+      if(known)assert(JSON.stringify(detail.top)===JSON.stringify(testCase.candidates.flatMap(item=>[item.family,item.score.toFixed(4)])),'Known/legacy Top 3 changed '+context);
+      else {
+        assert(detail.top.length===0&&!/PingFang|SF Pro|0\.9998/.test(detail.verdict),'Rejected/unavailable detail must suppress every named candidate/component '+context);
+        const reason=testCase.kind==='unknown'?(language==='zh'?'当前模型无法识别':'does not recognize'):(language==='zh'?'判断结果异常':'invalid result');
+        assert(detail.reason.includes(reason),'Unknown/invalid rejection reason must take priority '+context);
+      }
+      assert(!detail.overflow&&detail.unchanged,'Rejection UI overflow or raw JSON mutation '+context);
+      if(index===1||index===4||index===6) {
+        await evaluate("document.getElementById('detail-panel').scrollIntoView({block:'start'})");
+        const screenshot=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
+        const kind=index===1?'detail':index===4?'invalid':'known';
+        fs.writeFileSync(path.join(out,'unknown-small-mobile-'+language+'-'+kind+'.png'),Buffer.from(screenshot.data,'base64'));
+      }
+      rejectionChecks.push({language,id:testCase.id,list:row,detail});
+    }
+    await evaluate("document.getElementById('copy-json').click()");
+    await wait('document.getElementById("copy-status").textContent.includes('+JSON.stringify(language==='zh'?'已复制':'copied')+')');
+    assert(await evaluate('navigator.clipboard.readText()')===await evaluate('window.__rejectionUiJson'),'Rejection JSON clipboard changed '+language);
+  }
+  await evaluate("window.FluxGlyphUI.setLanguage('zh')");
   const availabilityChecks=[];
   for(const mode of ['unavailable','failed','locked']) {
     availability=mode;
@@ -255,7 +354,7 @@ const server = http.createServer((req, res) => {
   }
 
   assert(!diagnostics.length,'JS exceptions '+diagnostics.join());
-  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({kind:'mocked region-result browser UI only, not model accuracy',passed:true,reports,scoreChecks,availabilityChecks,sourceCompatibilityChecks,diagnostics},null,2));
+  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({kind:'mocked region-result browser UI only, not model accuracy',passed:true,reports,scoreChecks,rejectionChecks,availabilityChecks,sourceCompatibilityChecks,diagnostics},null,2));
   console.log(JSON.stringify({passed:true,viewports:reports.map(x=>x.name),output:out}));
  } finally {if(socket)socket.close();chrome.kill('SIGTERM');await new Promise(resolve=>chrome.exitCode!==null?resolve():chrome.once('exit',resolve));server.close();fs.rmSync(profile,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

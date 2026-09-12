@@ -1,0 +1,1208 @@
+{
+  "version": "r19-font-unknown-rejection-v1",
+  "primary_font_size_onnx_unchanged": true,
+  "training": {
+    "main_source": {
+      "train": {
+        "regions": 2880,
+        "tiles": 7530,
+        "family_counts": {
+          "Alipay Number": 180,
+          "SF Pro": 180,
+          "Kaiti SC": 207,
+          "Courier": 409,
+          "Times": 410,
+          "MiSans": 180,
+          "Noto Sans CJK SC": 180,
+          "Helvetica": 180,
+          "PingFang": 180,
+          "Songti SC": 207,
+          "OPPO Sans": 180,
+          "HanziPen SC": 207,
+          "HarmonyOS Sans SC": 180
+        },
+        "label_counts": {
+          "1": 1440,
+          "0": 1440
+        },
+        "array": {
+          "path": "train/tiles.npy",
+          "sha256": "63ba373962e843aa395f5607604294c57e2647fd2106fc157069574f358485e5"
+        },
+        "metadata": {
+          "path": "train/metadata.json",
+          "sha256": "ddf0dd81dbd669041df20191ad449f3f7d110e8cf867876ac1745b24f6d3d90f"
+        }
+      },
+      "calibration": {
+        "regions": 720,
+        "tiles": 1937,
+        "family_counts": {
+          "MiSans": 45,
+          "HarmonyOS Sans SC": 45,
+          "Lucida Grande": 96,
+          "Baoli SC": 84,
+          "Weibei SC": 84,
+          "Comic Sans MS": 96,
+          "Alipay Number": 45,
+          "Noto Sans CJK SC": 45,
+          "SF Pro": 45,
+          "OPPO Sans": 45,
+          "PingFang": 45,
+          "Helvetica": 45
+        },
+        "label_counts": {
+          "1": 360,
+          "0": 360
+        },
+        "array": {
+          "path": "calibration/tiles.npy",
+          "sha256": "6c334c54379ea29de8764883a8cd4edb4ed55fa63d0a4c917230477d63ea5c05"
+        },
+        "metadata": {
+          "path": "calibration/metadata.json",
+          "sha256": "d87c1d322a420f0dde4f13fabf96024377aee6ee014a4a01b4f43536178d895c"
+        }
+      },
+      "test": {
+        "regions": 720,
+        "tiles": 1946,
+        "family_counts": {
+          "Wawati SC": 75,
+          "MiSans": 45,
+          "Helvetica": 45,
+          "Seravek": 106,
+          "HarmonyOS Sans SC": 45,
+          "OPPO Sans": 45,
+          "Chalkboard": 105,
+          "SF Pro": 45,
+          "Noto Sans CJK SC": 45,
+          "Libian SC": 74,
+          "PingFang": 45,
+          "Alipay Number": 45
+        },
+        "label_counts": {
+          "0": 360,
+          "1": 360
+        },
+        "array": {
+          "path": "test/tiles.npy",
+          "sha256": "5efece1e5c531a2a15fff763757b4f357d82ee66947dd6fc63ccb5f53789f7d0"
+        },
+        "metadata": {
+          "path": "test/metadata.json",
+          "sha256": "25ad06718926d73f7e1acd1817fed45cbd25bc529f61042ab82ab5ec307111bc"
+        }
+      }
+    },
+    "supplement": {
+      "train": {
+        "regions": 720,
+        "tiles": 1864,
+        "label_counts": {
+          "0": 360,
+          "1": 360
+        },
+        "family_counts": {
+          "Apple Chancery": 120,
+          "Helvetica": 60,
+          "Bradley Hand": 120,
+          "Noteworthy": 120,
+          "SF Pro": 60,
+          "MiSans": 60,
+          "Alipay Number": 60,
+          "OPPO Sans": 60,
+          "HarmonyOS Sans SC": 60
+        },
+        "array": {
+          "path": "train/tiles.npy",
+          "sha256": "591d0cca73d2ce2aa3c9ef537797d0b669e27a10db306dec086a1ce80b4bda4c"
+        },
+        "metadata": {
+          "path": "train/metadata.json",
+          "sha256": "ae4647849b9574b49c103b9892b7615798b6feec4f550b5ef9bcd9798001b0a0"
+        }
+      }
+    },
+    "selected": {
+      "step": 2000,
+      "loss": 0.05767891928553581,
+      "min_known_score": 0.9339949198909202,
+      "metrics": {
+        "known": 1453,
+        "known_rejected": 4,
+        "known_false_rejection_rate": 0.0027529249827942187,
+        "unknown": 360,
+        "unknown_rejected": 336,
+        "unknown_recall": 0.9333333333333333,
+        "by_domain": {
+          "new_native": {
+            "known": 360,
+            "known_rejected": 1,
+            "known_false_rejection_rate": 0.002777777777777778,
+            "unknown": 360,
+            "unknown_rejected": 336,
+            "unknown_recall": 0.9333333333333333
+          },
+          "r17_native": {
+            "known": 1093,
+            "known_rejected": 3,
+            "known_false_rejection_rate": 0.0027447392497712718,
+            "unknown": 0,
+            "unknown_rejected": 0,
+            "unknown_recall": null
+          }
+        },
+        "by_family": {
+          "Alipay Number": {
+            "known": 58,
+            "known_rejected": 0,
+            "known_false_rejection_rate": 0.0,
+            "unknown": 0,
+            "unknown_rejected": 0,
+            "unknown_recall": null
+          },
+          "Baoli SC": {
+            "known": 0,
+            "known_rejected": 0,
+            "known_false_rejection_rate": null,
+            "unknown": 84,
+            "unknown_rejected": 79,
+            "unknown_recall": 0.9404761904761905
+          },
+          "Comic Sans MS": {
+            "known": 0,
+            "known_rejected": 0,
+            "known_false_rejection_rate": null,
+            "unknown": 96,
+            "unknown_rejected": 95,
+            "unknown_recall": 0.9895833333333334
+          },
+          "HarmonyOS Sans SC": {
+            "known": 211,
+            "known_rejected": 3,
+            "known_false_rejection_rate": 0.014218009478672985,
+            "unknown": 0,
+            "unknown_rejected": 0,
+            "unknown_recall": null
+          },
+          "Helvetica": {
+            "known": 97,
+            "known_rejected": 1,
+            "known_false_rejection_rate": 0.010309278350515464,
+            "unknown": 0,
+            "unknown_rejected": 0,
+            "unknown_recall": null
+          },
+          "Lucida Grande": {
+            "known": 0,
+            "known_rejected": 0,
+            "known_false_rejection_rate": null,
+            "unknown": 96,
+            "unknown_rejected": 78,
+            "unknown_recall": 0.8125
+          },
+          "MiSans": {
+            "known": 157,
+            "known_rejected": 0,
+            "known_false_rejection_rate": 0.0,
+            "unknown": 0,
+            "unknown_rejected": 0,
+            "unknown_recall": null
+          },
+          "Noto Sans CJK SC": {
+            "known": 135,
+            "known_rejected": 0,
+            "known_false_rejection_rate": 0.0,
+            "unknown": 0,
+            "unknown_rejected": 0,
+            "unknown_recall": null
+          },
+          "OPPO Sans": {
+            "known": 214,
+            "known_rejected": 0,
+            "known_false_rejection_rate": 0.0,
+            "unknown": 0,
+            "unknown_rejected": 0,
+            "unknown_recall": null
+          },
+          "PingFang": {
+            "known": 407,
+            "known_rejected": 0,
+            "known_false_rejection_rate": 0.0,
+            "unknown": 0,
+            "unknown_rejected": 0,
+            "unknown_recall": null
+          },
+          "SF Pro": {
+            "known": 174,
+            "known_rejected": 0,
+            "known_false_rejection_rate": 0.0,
+            "unknown": 0,
+            "unknown_rejected": 0,
+            "unknown_recall": null
+          },
+          "Weibei SC": {
+            "known": 0,
+            "known_rejected": 0,
+            "known_false_rejection_rate": null,
+            "unknown": 84,
+            "unknown_rejected": 84,
+            "unknown_recall": 1.0
+          }
+        },
+        "system": {
+          "known": 678,
+          "known_rejected": 1,
+          "known_false_rejection_rate": 0.0014749262536873156,
+          "unknown": 0,
+          "unknown_rejected": 0,
+          "unknown_recall": null
+        }
+      }
+    },
+    "optimizer_steps_executed": [
+      4000,
+      2000
+    ],
+    "selected_parent_step": 3500,
+    "selected_final_step": 2000,
+    "training_local_only": true
+  },
+  "heldout_region_test": {
+    "passed": true,
+    "checks": {
+      "unknown_recall": true,
+      "known_retention_by_domain": true,
+      "system_retention": true,
+      "primary_onnx_unchanged": true,
+      "unknown_families_disjoint": true
+    },
+    "metrics": {
+      "known": 1464,
+      "known_rejected": 2,
+      "known_false_rejection_rate": 0.001366120218579235,
+      "unknown": 360,
+      "unknown_rejected": 290,
+      "unknown_recall": 0.8055555555555556,
+      "by_domain": {
+        "new_native": {
+          "known": 360,
+          "known_rejected": 0,
+          "known_false_rejection_rate": 0.0,
+          "unknown": 360,
+          "unknown_rejected": 290,
+          "unknown_recall": 0.8055555555555556
+        },
+        "r17_native": {
+          "known": 1104,
+          "known_rejected": 2,
+          "known_false_rejection_rate": 0.0018115942028985507,
+          "unknown": 0,
+          "unknown_rejected": 0,
+          "unknown_recall": null
+        }
+      },
+      "by_family": {
+        "Alipay Number": {
+          "known": 58,
+          "known_rejected": 0,
+          "known_false_rejection_rate": 0.0,
+          "unknown": 0,
+          "unknown_rejected": 0,
+          "unknown_recall": null
+        },
+        "Chalkboard": {
+          "known": 0,
+          "known_rejected": 0,
+          "known_false_rejection_rate": null,
+          "unknown": 105,
+          "unknown_rejected": 98,
+          "unknown_recall": 0.9333333333333333
+        },
+        "HarmonyOS Sans SC": {
+          "known": 215,
+          "known_rejected": 0,
+          "known_false_rejection_rate": 0.0,
+          "unknown": 0,
+          "unknown_rejected": 0,
+          "unknown_recall": null
+        },
+        "Helvetica": {
+          "known": 96,
+          "known_rejected": 1,
+          "known_false_rejection_rate": 0.010416666666666666,
+          "unknown": 0,
+          "unknown_rejected": 0,
+          "unknown_recall": null
+        },
+        "Libian SC": {
+          "known": 0,
+          "known_rejected": 0,
+          "known_false_rejection_rate": null,
+          "unknown": 74,
+          "unknown_rejected": 74,
+          "unknown_recall": 1.0
+        },
+        "MiSans": {
+          "known": 158,
+          "known_rejected": 0,
+          "known_false_rejection_rate": 0.0,
+          "unknown": 0,
+          "unknown_rejected": 0,
+          "unknown_recall": null
+        },
+        "Noto Sans CJK SC": {
+          "known": 138,
+          "known_rejected": 0,
+          "known_false_rejection_rate": 0.0,
+          "unknown": 0,
+          "unknown_rejected": 0,
+          "unknown_recall": null
+        },
+        "OPPO Sans": {
+          "known": 213,
+          "known_rejected": 0,
+          "known_false_rejection_rate": 0.0,
+          "unknown": 0,
+          "unknown_rejected": 0,
+          "unknown_recall": null
+        },
+        "PingFang": {
+          "known": 411,
+          "known_rejected": 1,
+          "known_false_rejection_rate": 0.0024330900243309003,
+          "unknown": 0,
+          "unknown_rejected": 0,
+          "unknown_recall": null
+        },
+        "SF Pro": {
+          "known": 175,
+          "known_rejected": 0,
+          "known_false_rejection_rate": 0.0,
+          "unknown": 0,
+          "unknown_rejected": 0,
+          "unknown_recall": null
+        },
+        "Seravek": {
+          "known": 0,
+          "known_rejected": 0,
+          "known_false_rejection_rate": null,
+          "unknown": 106,
+          "unknown_rejected": 50,
+          "unknown_recall": 0.4716981132075472
+        },
+        "Wawati SC": {
+          "known": 0,
+          "known_rejected": 0,
+          "known_false_rejection_rate": null,
+          "unknown": 75,
+          "unknown_rejected": 68,
+          "unknown_recall": 0.9066666666666666
+        }
+      },
+      "system": {
+        "known": 682,
+        "known_rejected": 2,
+        "known_false_rejection_rate": 0.002932551319648094,
+        "unknown": 0,
+        "unknown_rejected": 0,
+        "unknown_recall": null
+      }
+    },
+    "comparison": {
+      "new_native": {
+        "before": {
+          "known_top_candidate_shown": 360,
+          "known_accepted_correct": 333,
+          "known_accepted_wrong": 1,
+          "unknown_top_candidate_shown": 360,
+          "unknown_accepted_as_known": 224
+        },
+        "after": {
+          "known_top_candidate_shown": 360,
+          "known_accepted_correct": 333,
+          "known_accepted_wrong": 1,
+          "unknown_top_candidate_shown": 70,
+          "unknown_accepted_as_known": 61
+        }
+      },
+      "r17_native": {
+        "before": {
+          "known_top_candidate_shown": 1104,
+          "known_accepted_correct": 1016,
+          "known_accepted_wrong": 1,
+          "unknown_top_candidate_shown": 0,
+          "unknown_accepted_as_known": 0
+        },
+        "after": {
+          "known_top_candidate_shown": 1102,
+          "known_accepted_correct": 1014,
+          "known_accepted_wrong": 1,
+          "unknown_top_candidate_shown": 0,
+          "unknown_accepted_as_known": 0
+        }
+      },
+      "system": {
+        "before": {
+          "known_top_candidate_shown": 682,
+          "known_accepted_correct": 648,
+          "known_accepted_wrong": 1,
+          "unknown_top_candidate_shown": 0,
+          "unknown_accepted_as_known": 0
+        },
+        "after": {
+          "known_top_candidate_shown": 680,
+          "known_accepted_correct": 646,
+          "known_accepted_wrong": 1,
+          "unknown_top_candidate_shown": 0,
+          "unknown_accepted_as_known": 0
+        }
+      }
+    },
+    "scope": "Native labeled region crops; new held-out unknown families in controlled iOS scenes plus reused R17 known regression. Not a detector or Android-native evaluation."
+  },
+  "heldout_full_screenshots": {
+    "metrics": {
+      "regions": 720,
+      "detected": 720,
+      "known": 360,
+      "known_rejected": 0,
+      "known_accepted_correct": 332,
+      "known_accepted_wrong": 1,
+      "unknown": 360,
+      "unknown_rejected": 290,
+      "unknown_named_candidates": 70,
+      "unknown_accepted_as_known": 61
+    },
+    "by_family": {
+      "Alipay Number": {
+        "regions": 45,
+        "detected": 45,
+        "known": 45,
+        "known_rejected": 0,
+        "known_accepted_correct": 45,
+        "known_accepted_wrong": 0,
+        "unknown": 0,
+        "unknown_rejected": 0,
+        "unknown_named_candidates": 0,
+        "unknown_accepted_as_known": 0
+      },
+      "Chalkboard": {
+        "regions": 105,
+        "detected": 105,
+        "known": 0,
+        "known_rejected": 0,
+        "known_accepted_correct": 0,
+        "known_accepted_wrong": 0,
+        "unknown": 105,
+        "unknown_rejected": 98,
+        "unknown_named_candidates": 7,
+        "unknown_accepted_as_known": 5
+      },
+      "HarmonyOS Sans SC": {
+        "regions": 45,
+        "detected": 45,
+        "known": 45,
+        "known_rejected": 0,
+        "known_accepted_correct": 40,
+        "known_accepted_wrong": 0,
+        "unknown": 0,
+        "unknown_rejected": 0,
+        "unknown_named_candidates": 0,
+        "unknown_accepted_as_known": 0
+      },
+      "Helvetica": {
+        "regions": 45,
+        "detected": 45,
+        "known": 45,
+        "known_rejected": 0,
+        "known_accepted_correct": 44,
+        "known_accepted_wrong": 0,
+        "unknown": 0,
+        "unknown_rejected": 0,
+        "unknown_named_candidates": 0,
+        "unknown_accepted_as_known": 0
+      },
+      "Libian SC": {
+        "regions": 74,
+        "detected": 74,
+        "known": 0,
+        "known_rejected": 0,
+        "known_accepted_correct": 0,
+        "known_accepted_wrong": 0,
+        "unknown": 74,
+        "unknown_rejected": 74,
+        "unknown_named_candidates": 0,
+        "unknown_accepted_as_known": 0
+      },
+      "MiSans": {
+        "regions": 45,
+        "detected": 45,
+        "known": 45,
+        "known_rejected": 0,
+        "known_accepted_correct": 40,
+        "known_accepted_wrong": 0,
+        "unknown": 0,
+        "unknown_rejected": 0,
+        "unknown_named_candidates": 0,
+        "unknown_accepted_as_known": 0
+      },
+      "Noto Sans CJK SC": {
+        "regions": 45,
+        "detected": 45,
+        "known": 45,
+        "known_rejected": 0,
+        "known_accepted_correct": 37,
+        "known_accepted_wrong": 0,
+        "unknown": 0,
+        "unknown_rejected": 0,
+        "unknown_named_candidates": 0,
+        "unknown_accepted_as_known": 0
+      },
+      "OPPO Sans": {
+        "regions": 45,
+        "detected": 45,
+        "known": 45,
+        "known_rejected": 0,
+        "known_accepted_correct": 41,
+        "known_accepted_wrong": 1,
+        "unknown": 0,
+        "unknown_rejected": 0,
+        "unknown_named_candidates": 0,
+        "unknown_accepted_as_known": 0
+      },
+      "PingFang": {
+        "regions": 45,
+        "detected": 45,
+        "known": 45,
+        "known_rejected": 0,
+        "known_accepted_correct": 42,
+        "known_accepted_wrong": 0,
+        "unknown": 0,
+        "unknown_rejected": 0,
+        "unknown_named_candidates": 0,
+        "unknown_accepted_as_known": 0
+      },
+      "SF Pro": {
+        "regions": 45,
+        "detected": 45,
+        "known": 45,
+        "known_rejected": 0,
+        "known_accepted_correct": 43,
+        "known_accepted_wrong": 0,
+        "unknown": 0,
+        "unknown_rejected": 0,
+        "unknown_named_candidates": 0,
+        "unknown_accepted_as_known": 0
+      },
+      "Seravek": {
+        "regions": 106,
+        "detected": 106,
+        "known": 0,
+        "known_rejected": 0,
+        "known_accepted_correct": 0,
+        "known_accepted_wrong": 0,
+        "unknown": 106,
+        "unknown_rejected": 50,
+        "unknown_named_candidates": 56,
+        "unknown_accepted_as_known": 51
+      },
+      "Wawati SC": {
+        "regions": 75,
+        "detected": 75,
+        "known": 0,
+        "known_rejected": 0,
+        "known_accepted_correct": 0,
+        "known_accepted_wrong": 0,
+        "unknown": 75,
+        "unknown_rejected": 68,
+        "unknown_named_candidates": 7,
+        "unknown_accepted_as_known": 5
+      }
+    },
+    "false_positives": 0,
+    "ocr_guard": {
+      "ocr_calls": 0,
+      "segmentation_calls": 0,
+      "glyph_classifier_calls": 0,
+      "pp_detector_sessions": 1,
+      "guard_installed": true
+    },
+    "scope": "Whole screenshots, geometry pairing only; held-out unknown font families in native controlled iOS scenes. Not Android-device validation."
+  },
+  "r17_full_screenshot_regression": {
+    "before": {
+      "truth_regions": 1104,
+      "detected": 1104,
+      "missed": 0,
+      "detection_recall": 1.0,
+      "font_accepted": 1014,
+      "font_name_correct": 1013,
+      "wrong_font_names": 1,
+      "font_abstained_after_detection": 90,
+      "font_accuracy_all_truth": 0.917572463768116,
+      "font_accuracy_detected": 0.917572463768116,
+      "font_precision_among_accepted": 0.9990138067061144,
+      "font_coverage_detected": 0.9184782608695652,
+      "font_coverage_all_truth": 0.9184782608695652,
+      "wrong_font_rate_all_truth": 0.0009057971014492754,
+      "pending_after_detection": 90,
+      "pending_rate_detected": 0.08152173913043478,
+      "style": {
+        "size_available": 1014,
+        "size_coverage_all_truth": 0.9184782608695652,
+        "size_within_tolerance": 1014,
+        "size_mae_px": 0.7568047337278097,
+        "size_mean_relative_error": 0.013087716614008003,
+        "size_intervals_available": 0,
+        "size_intervals_cover_native": 0,
+        "color_available": 1104,
+        "color_coverage_all_truth": 1.0,
+        "color_within_tolerance": 1104,
+        "color_mean_max_channel_error": 0.0
+      },
+      "predictions": 1104,
+      "false_positives": 0,
+      "false_positive_named_fonts": 0,
+      "detection_precision": 1.0
+    },
+    "after": {
+      "truth_regions": 1104,
+      "detected": 1104,
+      "missed": 0,
+      "detection_recall": 1.0,
+      "font_accepted": 1012,
+      "font_name_correct": 1011,
+      "wrong_font_names": 1,
+      "font_abstained_after_detection": 92,
+      "font_accuracy_all_truth": 0.9157608695652174,
+      "font_accuracy_detected": 0.9157608695652174,
+      "font_precision_among_accepted": 0.9990118577075099,
+      "font_coverage_detected": 0.9166666666666666,
+      "font_coverage_all_truth": 0.9166666666666666,
+      "wrong_font_rate_all_truth": 0.0009057971014492754,
+      "pending_after_detection": 92,
+      "pending_rate_detected": 0.08333333333333333,
+      "style": {
+        "size_available": 1012,
+        "size_coverage_all_truth": 0.9166666666666666,
+        "size_within_tolerance": 1012,
+        "size_mae_px": 0.7549308300395245,
+        "size_mean_relative_error": 0.01305913128606752,
+        "size_intervals_available": 0,
+        "size_intervals_cover_native": 0,
+        "color_available": 1104,
+        "color_coverage_all_truth": 1.0,
+        "color_within_tolerance": 1104,
+        "color_mean_max_channel_error": 0.0
+      },
+      "predictions": 1104,
+      "false_positives": 0,
+      "false_positive_named_fonts": 0,
+      "detection_precision": 1.0
+    },
+    "old_correct_new_rejected": [
+      {
+        "source_id": "ios:ios-ios-hant-v1-scene-00621",
+        "region_id": "ios-hant-v1-scene-00621-r02",
+        "native_family": "PingFang HK",
+        "before": "PingFang",
+        "after_status": "out_of_scope",
+        "reason": "unknown_font_rejected"
+      },
+      {
+        "source_id": "ios:ios-ios-hant-v1-scene-00825",
+        "region_id": "ios-hant-v1-scene-00825-r01",
+        "native_family": "Helvetica",
+        "before": "Helvetica",
+        "after_status": "out_of_scope",
+        "reason": "unknown_font_rejected"
+      }
+    ],
+    "new_wrong_accepted_font_names": 0,
+    "test_history": "reused"
+  },
+  "user_preview_regression": {
+    "scope": "User UI preview crops only; exact font names unverified; not training or calibration.",
+    "records": [
+      {
+        "name": "android_handwritten_bill",
+        "before": {
+          "method": "region_neural_network",
+          "status": "candidate",
+          "family": "PingFang",
+          "candidates": [
+            {
+              "family": "PingFang",
+              "score": 0.9431190182684465
+            },
+            {
+              "family": "SF Pro",
+              "score": 0.05639012988192493
+            },
+            {
+              "family": "Noto Sans CJK SC",
+              "score": 0.000489879653766945
+            }
+          ],
+          "score": 0.9431190182684465,
+          "margin": 0.8867288883865215,
+          "patch_agreement": 1.0,
+          "reason_code": "region_neural_family_candidate",
+          "scope": "Detected text region",
+          "font_size_px_estimate": 53.54,
+          "size_relative_spread": 0.0,
+          "ocr_performed": false,
+          "tile_count": 1,
+          "font_family_variants": [
+            "PingFang SC",
+            "PingFang TC",
+            "PingFang HK"
+          ],
+          "ink_height_px": 50
+        },
+        "after": {
+          "method": "region_neural_network",
+          "status": "out_of_scope",
+          "family": null,
+          "candidates": [],
+          "score": null,
+          "margin": null,
+          "patch_agreement": null,
+          "reason_code": "unknown_font_rejected",
+          "scope": "Detected text region",
+          "font_size_px_estimate": null,
+          "size_relative_spread": null,
+          "ocr_performed": false,
+          "tile_count": 1,
+          "rejection": {
+            "method": "neural_network",
+            "status": "rejected",
+            "known_score": 0.008791823612589664,
+            "min_known_score": 0.9339949198909202
+          },
+          "ink_height_px": 50
+        },
+        "style": {
+          "text_color_hex": "#333333",
+          "font_size_px_estimate": null,
+          "font_size_px_interval": null,
+          "color": {
+            "status": "estimated",
+            "reason": "visible_region_core_pixels",
+            "method": "source_rgb_core_pixels",
+            "background_hex": "#F5F5F5",
+            "glyph_count": 0,
+            "sample_pixels": 1109,
+            "spread_rgb": 9.0,
+            "alpha_recovered": false
+          },
+          "size": {
+            "status": "unavailable",
+            "reason": "font_family_unconfirmed",
+            "method": "source-rgb-ink-height-v1",
+            "unit": "source_image_px",
+            "family_assumed": null,
+            "glyph_count": 0,
+            "interval_kind": "empirical_rendering_range"
+          }
+        }
+      },
+      {
+        "name": "android_handwritten_name",
+        "before": {
+          "method": "region_neural_network",
+          "status": "candidate",
+          "family": "PingFang",
+          "candidates": [
+            {
+              "family": "PingFang",
+              "score": 0.994150446182665
+            },
+            {
+              "family": "SF Pro",
+              "score": 0.005849517173259693
+            },
+            {
+              "family": "Noto Sans CJK SC",
+              "score": 3.664407515353924e-08
+            }
+          ],
+          "score": 0.994150446182665,
+          "margin": 0.9883009290094054,
+          "patch_agreement": 1.0,
+          "reason_code": "region_neural_family_candidate",
+          "scope": "Detected text region",
+          "font_size_px_estimate": 45.88,
+          "size_relative_spread": 0.01333147772908867,
+          "ocr_performed": false,
+          "tile_count": 2,
+          "font_family_variants": [
+            "PingFang SC",
+            "PingFang TC",
+            "PingFang HK"
+          ],
+          "ink_height_px": 42
+        },
+        "after": {
+          "method": "region_neural_network",
+          "status": "out_of_scope",
+          "family": null,
+          "candidates": [],
+          "score": null,
+          "margin": null,
+          "patch_agreement": null,
+          "reason_code": "unknown_font_rejected",
+          "scope": "Detected text region",
+          "font_size_px_estimate": null,
+          "size_relative_spread": null,
+          "ocr_performed": false,
+          "tile_count": 2,
+          "rejection": {
+            "method": "neural_network",
+            "status": "rejected",
+            "known_score": 0.008152377678968429,
+            "min_known_score": 0.9339949198909202
+          },
+          "ink_height_px": 42
+        },
+        "style": {
+          "text_color_hex": "#373737",
+          "font_size_px_estimate": null,
+          "font_size_px_interval": null,
+          "color": {
+            "status": "estimated",
+            "reason": "visible_region_core_pixels",
+            "method": "source_rgb_core_pixels",
+            "background_hex": "#FFFFFF",
+            "glyph_count": 0,
+            "sample_pixels": 409,
+            "spread_rgb": 8.0,
+            "alpha_recovered": false
+          },
+          "size": {
+            "status": "unavailable",
+            "reason": "font_family_unconfirmed",
+            "method": "source-rgb-ink-height-v1",
+            "unit": "source_image_px",
+            "family_assumed": null,
+            "glyph_count": 0,
+            "interval_kind": "empirical_rendering_range"
+          }
+        }
+      },
+      {
+        "name": "ios_bill_title",
+        "before": {
+          "method": "region_neural_network",
+          "status": "candidate",
+          "family": "PingFang",
+          "candidates": [
+            {
+              "family": "PingFang",
+              "score": 0.9697422361647898
+            },
+            {
+              "family": "Noto Sans CJK SC",
+              "score": 0.030141236185284796
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "score": 0.00011572450720937824
+            }
+          ],
+          "score": 0.9697422361647898,
+          "margin": 0.9396009999795051,
+          "patch_agreement": 1.0,
+          "reason_code": "region_neural_family_candidate",
+          "scope": "Detected text region",
+          "font_size_px_estimate": 55.88,
+          "size_relative_spread": 0.0,
+          "ocr_performed": false,
+          "tile_count": 1,
+          "font_family_variants": [
+            "PingFang SC",
+            "PingFang TC",
+            "PingFang HK"
+          ],
+          "ink_height_px": 52
+        },
+        "after": {
+          "method": "region_neural_network",
+          "status": "candidate",
+          "family": "PingFang",
+          "candidates": [
+            {
+              "family": "PingFang",
+              "score": 0.9697422361647898
+            },
+            {
+              "family": "Noto Sans CJK SC",
+              "score": 0.030141236185284796
+            },
+            {
+              "family": "HarmonyOS Sans SC",
+              "score": 0.00011572450720937824
+            }
+          ],
+          "score": 0.9697422361647898,
+          "margin": 0.9396009999795051,
+          "patch_agreement": 1.0,
+          "reason_code": "region_neural_family_candidate",
+          "scope": "Detected text region",
+          "font_size_px_estimate": 55.88,
+          "size_relative_spread": 0.0,
+          "ocr_performed": false,
+          "tile_count": 1,
+          "rejection": {
+            "method": "neural_network",
+            "status": "passed",
+            "known_score": 0.993004434219121,
+            "min_known_score": 0.9339949198909202
+          },
+          "font_family_variants": [
+            "PingFang SC",
+            "PingFang TC",
+            "PingFang HK"
+          ],
+          "ink_height_px": 52
+        },
+        "style": {
+          "text_color_hex": "#000000",
+          "font_size_px_estimate": null,
+          "font_size_px_interval": null,
+          "color": {
+            "status": "estimated",
+            "reason": "visible_region_core_pixels",
+            "method": "source_rgb_core_pixels",
+            "background_hex": "#F5F5F5",
+            "glyph_count": 0,
+            "sample_pixels": 3255,
+            "spread_rgb": 6.0,
+            "alpha_recovered": false
+          },
+          "size": {
+            "status": "unavailable",
+            "reason": "font_family_unconfirmed",
+            "method": "source-rgb-ink-height-v1",
+            "unit": "source_image_px",
+            "family_assumed": null,
+            "glyph_count": 0,
+            "interval_kind": "empirical_rendering_range"
+          }
+        }
+      },
+      {
+        "name": "ios_bill_body",
+        "before": {
+          "method": "region_neural_network",
+          "status": "candidate",
+          "family": "PingFang",
+          "candidates": [
+            {
+              "family": "PingFang",
+              "score": 0.9843618591064098
+            },
+            {
+              "family": "MiSans",
+              "score": 0.01563120966566673
+            },
+            {
+              "family": "SF Pro",
+              "score": 4.0563992192450945e-06
+            }
+          ],
+          "score": 0.9843618591064098,
+          "margin": 0.968730649440743,
+          "patch_agreement": 1.0,
+          "reason_code": "region_neural_family_candidate",
+          "scope": "Detected text region",
+          "font_size_px_estimate": 55.41,
+          "size_relative_spread": 0.0,
+          "ocr_performed": false,
+          "tile_count": 1,
+          "font_family_variants": [
+            "PingFang SC",
+            "PingFang TC",
+            "PingFang HK"
+          ],
+          "ink_height_px": 52
+        },
+        "after": {
+          "method": "region_neural_network",
+          "status": "candidate",
+          "family": "PingFang",
+          "candidates": [
+            {
+              "family": "PingFang",
+              "score": 0.9843618591064098
+            },
+            {
+              "family": "MiSans",
+              "score": 0.01563120966566673
+            },
+            {
+              "family": "SF Pro",
+              "score": 4.0563992192450945e-06
+            }
+          ],
+          "score": 0.9843618591064098,
+          "margin": 0.968730649440743,
+          "patch_agreement": 1.0,
+          "reason_code": "region_neural_family_candidate",
+          "scope": "Detected text region",
+          "font_size_px_estimate": 55.41,
+          "size_relative_spread": 0.0,
+          "ocr_performed": false,
+          "tile_count": 1,
+          "rejection": {
+            "method": "neural_network",
+            "status": "passed",
+            "known_score": 0.9876600137070465,
+            "min_known_score": 0.9339949198909202
+          },
+          "font_family_variants": [
+            "PingFang SC",
+            "PingFang TC",
+            "PingFang HK"
+          ],
+          "ink_height_px": 52
+        },
+        "style": {
+          "text_color_hex": "#333333",
+          "font_size_px_estimate": null,
+          "font_size_px_interval": null,
+          "color": {
+            "status": "estimated",
+            "reason": "visible_region_core_pixels",
+            "method": "source_rgb_core_pixels",
+            "background_hex": "#F5F5F5",
+            "glyph_count": 0,
+            "sample_pixels": 2086,
+            "spread_rgb": 7.0,
+            "alpha_recovered": false
+          },
+          "size": {
+            "status": "unavailable",
+            "reason": "font_family_unconfirmed",
+            "method": "source-rgb-ink-height-v1",
+            "unit": "source_image_px",
+            "family_assumed": null,
+            "glyph_count": 0,
+            "interval_kind": "empirical_rendering_range"
+          }
+        }
+      }
+    ]
+  },
+  "download_validation": {
+    "passed": true,
+    "info": {
+      "available": true,
+      "format": "ONNX",
+      "version": "r19-font-unknown-rejection-v1",
+      "families": [
+        "HarmonyOS Sans SC",
+        "MiSans",
+        "Noto Sans CJK SC",
+        "OPPO Sans",
+        "PingFang",
+        "SF Pro",
+        "Helvetica",
+        "Alipay Number"
+      ],
+      "font_label_groups": {
+        "PingFang": [
+          "PingFang SC",
+          "PingFang TC",
+          "PingFang HK"
+        ]
+      },
+      "font_sources": {
+        "HarmonyOS Sans SC": [
+          "asset"
+        ],
+        "MiSans": [
+          "asset"
+        ],
+        "Noto Sans CJK SC": [
+          "asset"
+        ],
+        "OPPO Sans": [
+          "asset"
+        ],
+        "PingFang": [
+          "system"
+        ],
+        "SF Pro": [
+          "system"
+        ],
+        "Helvetica": [
+          "system"
+        ],
+        "Alipay Number": [
+          "asset"
+        ]
+      },
+      "input_shape": [
+        null,
+        1,
+        64,
+        256
+      ],
+      "download_url": "/api/models/font/download",
+      "bytes": 2740615,
+      "sha256": "980e093af7001a8adabbe0acbf700c13edfde627be6db3de538823f67c0d81bd",
+      "ocr_required": false,
+      "unknown_font_rejection": true,
+      "usage": {
+        "install": "pip install -r requirements.txt",
+        "predict": "python predict.py text-region.png"
+      }
+    },
+    "file_count": 9,
+    "file_sha256": {
+      "model.onnx": "bff569708afbb127222885539914942f9d958f46c8c11bfb9ace80784f70916b",
+      "metadata.json": "a58d34c47178b75c3c6a6609882ddc38a6dfe288820425a4fcc6044a81e3679e",
+      "inference.py": "9723f7e2e8dc1e04644274bedd299e7e71d17d86c32396cd1dedae7bceb5e1ba",
+      "text_style.py": "12c6e880aa68c42c0242679205e4e8bdb2331d511be99134430e65a6c1a8b650",
+      "predict.py": "97032b969a08a1c6ab1db174505593f4f22f1afd8ace25b3c59b4945f4859279",
+      "requirements.txt": "051a1dc6cb4fce1cc78bfdafd4c4fd3d8325d1058a3b897505b044afd0ade30a",
+      "README.md": "8ce02ee26108f9b832965bf57c1759694eea472fd5402c38ecf0ea2b763b26b7",
+      "rejection.onnx": "be196ed06b7376fac935d03be3b46bec385f7c0182a85556a2cdd81c61bea594"
+    },
+    "standalone_dependencies": [
+      "numpy",
+      "Pillow",
+      "onnxruntime"
+    ]
+  },
+  "parity": {
+    "passed": true,
+    "calibration_decisions_identical": true,
+    "calibration_regions": 1813,
+    "reference": "original PyTorch GroupNorm",
+    "test_read": false
+  },
+  "evidence": {
+    "data-v1/MANIFEST.json": "18e8f3238b1e2a9be62e7502d432624987c08e158579348a17209dc0e6cd3e02",
+    "supplement-data-v2/MANIFEST.json": "0f4bc3cab09aacde67d363d201238568417702b2935320b93ba5094bdc1200af",
+    "run-e2e-v1/SELECTION.json": "144edc93db997e0ada7fdd7c0b20d1d4497bdfeb0ae34c98aab1cb5cfef49956",
+    "run-augmented-v1/SELECTION.json": "91ad68f2b414c48900db45e1cccdd54f42fb88bd708fcb7f0ba9995a56ff45aa",
+    "run-augmented-v1/PARITY.json": "cc7dfaa520a4132b2e7d0290361940a9ee1b3d1efb5bdf4a5eeab7482ba3908c",
+    "FROZEN.json": "69135e877be8e8447e66554b69a49ed63af9ab94d656f8dc7e864abbe12da1c0",
+    "TEST.json": "2440832f67902e0b5a8f946a2446c9542de221faf54eecbb19bfe26e3c981506",
+    "e2e-unknown-v1/report.json": "f94df79f13239f53fba89846f135dea2606e23f516925eca1a407b8d12cc1484",
+    "e2e-r17-v1/report.json": "edad9f14510be2d71a42a4af5ccd4b7d32b07ed761a17b87a756780f589b7d7d",
+    "user-regression/INPUTS.json": "de7291009a8d50f3f7fca8a77e11e72f3df05f21943d5594eb654b1a44ca2807",
+    "user-regression/RESULTS.json": "d7a980617a0eb61e437cd4ff889be9fd142ff3a9e8b7f95b80551a1fdd0894f9",
+    "download-validation/REPORT.json": "91794dbb157bf2b3d081b9b5cdd22ac062ee43e06b3c8c4d9f98f91b161e7525"
+  },
+  "limitations": [
+    "Controlled native iOS Simulator scenes, not Android-native or physical-device evaluation.",
+    "Rejects 290/360 held-out unknown font regions; 70 still display named candidates, mainly Seravek.",
+    "Two formerly correct native iOS regions are now unknown; model scores are not empirical accuracy.",
+    "User UI crop font identities are unverified and are qualitative checks only."
+  ]
+}
