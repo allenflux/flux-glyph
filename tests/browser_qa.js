@@ -12,6 +12,8 @@ const BASE_URL = process.env.FLUX_GLYPH_URL || 'http://127.0.0.1:9000';
 const PINNED_MODEL = process.env.FLUX_EXPECTED_MODEL || null;
 const FIXTURE = path.resolve('tests/fixtures/ui_title_billing_details.png');
 const OUTPUT = path.resolve(process.env.FLUX_QA_OUTPUT || 'docs/ui-validation');
+const UNCERTAIN_FIXTURE = process.env.FLUX_QA_UNCERTAIN_FIXTURE ? path.resolve(process.env.FLUX_QA_UNCERTAIN_FIXTURE) : null;
+const UNCERTAIN_REGION = process.env.FLUX_QA_UNCERTAIN_REGION || null;
 const CASES = [
   {name: 'desktop', width: 1280, height: 900, mobile: false, forceQueue: true},
   {name: 'mobile', width: 390, height: 844, mobile: true, forceQueue: false},
@@ -239,6 +241,71 @@ function assertFontSourceLabels(info, snapshot, language) {
     const phrase = language === 'zh' ? '苹方覆盖简体／繁体，未细分地区版本' : 'regional variants are not classified separately';
     assert(snapshot.fontLabelNote.text.includes(phrase), `Missing localized grouped PingFang scope: ${JSON.stringify(snapshot.fontLabelNote)}`);
   }
+}
+
+async function checkRealUncertainScore(command, fileNode, testCase, activeVersion) {
+  await command('DOM.setFileInputFiles', {nodeId: fileNode.nodeId, files: [UNCERTAIN_FIXTURE]});
+  await waitFor(command, `document.getElementById('filename').textContent===${JSON.stringify(path.basename(UNCERTAIN_FIXTURE))} && !document.getElementById('start').disabled`, 'uncertain source file selection');
+  await evaluate(command, "document.getElementById('start').click(); true");
+  await waitFor(command, `(() => {
+    if (!document.getElementById('error').hidden) throw Error(document.getElementById('error').textContent);
+    return !!window.FluxGlyphUI.get().result;
+  })()`, 'real uncertain screenshot result');
+  const server = await evaluate(command, `(async () => {
+    const job=window.FluxGlyphUI.get().job, response=await fetch('/api/jobs/'+encodeURIComponent(job));
+    if (!response.ok) throw Error('Could not verify original server result');
+    const data=await response.json(), result=data.result;
+    const requested=${JSON.stringify(UNCERTAIN_REGION)};
+    const region=requested ? result.regions.find(item=>item.id===requested) : result.regions.find(item=>item.font?.status==='uncertain' && item.font.family===null && item.font.candidates?.some(c=>typeof c.family==='string' && c.family.trim() && Number.isFinite(c.score) && c.score>=0 && c.score<=1));
+    if (!region) throw Error('Fixture did not produce the requested uncertain region');
+    return {job,regionId:region.id,font:region.font,sourceSha256:result.source_sha256,modelVersion:result.model_version,
+      method:result.font_method,ocrPerformed:result.ocr_performed,
+      accepted:result.regions.filter(item=>['supported','candidate'].includes(item.font?.status)&&item.font.family).length};
+  })()`, true);
+  assert(server.modelVersion === activeVersion && server.method === 'region_neural_network' && server.ocrPerformed === false,
+    'Uncertain source must run through the same active region network');
+  assert(server.font.status === 'uncertain' && server.font.family === null && server.font.method === 'region_neural_network',
+    `The real fixture must retain an unconfirmed server verdict: ${JSON.stringify(server.font)}`);
+  const top = server.font.candidates.filter(candidate => typeof candidate.family === 'string' && candidate.family.trim()
+    && Number.isFinite(candidate.score) && candidate.score >= 0 && candidate.score <= 1).sort((a,b)=>b.score-a.score)[0];
+  assert(top, 'The real uncertain fixture must have a valid neural score');
+  const checks = [], screenshots = {};
+  for (const language of ['zh','en']) {
+    await switchLanguage(command, language);
+    await evaluate(command, `document.querySelector(${JSON.stringify('#regions [data-region-id="'+server.regionId+'"]')}).click(); true`);
+    await waitFor(command, "document.querySelector('.detail-preview .detail-image')?.complete && document.querySelector('.detail-preview .detail-image').naturalWidth>0", 'real uncertain region crop');
+    const displayed = await evaluate(command, `(() => {
+      const state=window.FluxGlyphUI.get(), row=document.querySelector(${JSON.stringify('#regions [data-region-id="'+server.regionId+'"]')}),
+        raw=document.getElementById('json-output').textContent, parsed=JSON.parse(raw);
+      return {listLabel:row.querySelector('.font-prediction')?.textContent,listScore:row.querySelector('.font-score')?.textContent,
+        detailLabel:document.getElementById('font-label').textContent,detailScore:document.getElementById('font-score')?.textContent,
+        listStatus:row.querySelector('.tag').textContent,detailStatus:document.querySelector('.detail-verdict .tag').textContent,
+        listClass:row.className,detailStatusClass:document.querySelector('.detail-verdict .tag').className,
+        reason:document.getElementById('font-reason').textContent,
+        accepted:document.querySelector('#summary .summary-chip.supported').textContent,
+        jsonFont:parsed.regions.find(region=>region.id===${JSON.stringify(server.regionId)}).font,
+        jsonExact:raw===JSON.stringify(state.result,null,2),noOverflow:document.documentElement.scrollWidth<=innerWidth+1};
+    })()`);
+    const name = (language === 'zh' ? '最接近：' : 'Closest match: ') + top.family;
+    const score = (language === 'zh' ? '模型评分 ' : 'Model score ') + top.score.toFixed(4);
+    const status = language === 'zh' ? '待确认' : 'Review';
+    assert(displayed.listLabel === name && displayed.detailLabel === name && displayed.listScore === score && displayed.detailScore === score,
+      `Real uncertain font name and four-decimal score differ from server candidates: ${JSON.stringify(displayed)}`);
+    assert(displayed.listStatus === status && displayed.detailStatus === status && displayed.listClass.split(' ').includes('uncertain') && displayed.detailStatusClass === 'tag uncertain',
+      'Displaying a prediction must not promote the real uncertain status');
+    assert(displayed.jsonExact && JSON.stringify(displayed.jsonFont) === JSON.stringify(server.font) && displayed.jsonFont.family === null && displayed.reason,
+      'The real server font JSON, null family and uncertainty reason must remain intact');
+    assert(displayed.accepted === (language === 'zh' ? '已识别 ' : 'Identified ') + server.accepted && displayed.noOverflow,
+      'Uncertain score display must not change accepted counts or overflow the viewport');
+    checks.push({language,...displayed});
+    await evaluate(command, "document.getElementById('detail-panel').scrollIntoView({block:'start'}); true");
+    const shot = await command('Page.captureScreenshot', {format:'png',captureBeyondViewport:false});
+    const filename = `browser_${testCase.name}_uncertain_${language}.png`;
+    fs.writeFileSync(path.join(OUTPUT,filename),Buffer.from(shot.data,'base64'));
+    screenshots[language]=path.relative(process.cwd(),path.join(OUTPUT,filename));
+  }
+  await switchLanguage(command, 'zh');
+  return {input:UNCERTAIN_FIXTURE,...server,top,checks,screenshots};
 }
 
 async function stopProcess(child) {
@@ -508,6 +575,7 @@ async function runCase(testCase, activeVersion) {
       const pngPath = await waitForDownload(downloadDirectory, priorDownloads, 'annotated PNG download');
       const downloadedPng = fs.readFileSync(pngPath), dimensions = pngDimensions(downloadedPng);
       assert(dimensions.width === result.original.width && dimensions.height === result.original.height, 'Downloaded annotated PNG changed dimensions');
+      const uncertainScore = UNCERTAIN_FIXTURE ? await checkRealUncertainScore(command, fileNode, testCase, activeVersion) : null;
 
       // A new file and a real rejected upload must clear prior results and never show false completion.
       await command('DOM.setFileInputFiles', {nodeId: fileNode.nodeId, files: [badFixture]});
@@ -552,7 +620,7 @@ async function runCase(testCase, activeVersion) {
         progress: completion.progress, processing: processing ? {...processing, queueFillers: queueFillers.length, timeline: queueTimeline, reconnect} : null,
         regions: result.regions, original: result.original, annotated: result.annotated, changedPixels: result.changedPixels, crop: result.crop, viewBox: result.viewBox,
         noHorizontalOverflow: true, viewerFitsImage: result.viewerFits, regionCropThumbnailsFit: result.regionCropsFit, candidateHeadingSpansColumns: result.headingFits,
-        selectedRegion: result.selected, summary: result.summary, layout: result.layout, textStyle: result.textStyle,
+        selectedRegion: result.selected, summary: result.summary, layout: result.layout, textStyle: result.textStyle, uncertainScore,
         json: {formattedExact: result.jsonExact, bytes: Buffer.byteLength(result.jsonText), legacyDownloadAbsent: result.noDownloadJson},
         clipboard: {fallback: copyZh, api: copyEn, exact: clipboard === fallbackClipboard && clipboard === result.jsonText},
         localization: {chinese: {uploadTitle: zh.uploadTitle, resultTitle: zh.resultTitle, progress: zh.progressLabel, fontReason: zh.fontReason, fontSources: zh.fontSources, fontLabelNote: zh.fontLabelNote}, english: {uploadTitle: en.uploadTitle, resultTitle: en.resultTitle, progress: en.progressLabel, fontReason: en.fontReason, fontSources: en.fontSources, fontLabelNote: en.fontLabelNote}, ocrUnchanged: true, rawJsonUnchanged: true},
@@ -571,7 +639,7 @@ async function runCase(testCase, activeVersion) {
 }
 
 (async () => {
-  for (const required of [CHROME, FIXTURE]) assert(fs.existsSync(required), `Required QA file not found: ${required}`);
+  for (const required of [CHROME, FIXTURE, UNCERTAIN_FIXTURE].filter(Boolean)) assert(fs.existsSync(required), `Required QA file not found: ${required}`);
   queueSource = createSyntheticQueueFixture();
   fs.mkdirSync(OUTPUT, {recursive: true});
   const health = await waitForServerIdle();
@@ -587,7 +655,7 @@ async function runCase(testCase, activeVersion) {
     cases.push(await runCase(testCase, activeVersion));
   }
   const report = {
-    result: 'passed', testedAt: new Date().toISOString(), baseUrl: BASE_URL, health,
+    result: 'passed', testedAt: new Date().toISOString(), baseUrl: BASE_URL, health, realUncertainScoreChecked: Boolean(UNCERTAIN_FIXTURE),
     checks: [
       'real upload, one-worker FIFO queue position downshift, and asynchronous polling',
       'visible animated stage progress without false 100%, plus reduced-motion behavior',

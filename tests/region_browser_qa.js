@@ -26,6 +26,34 @@ const original = '<svg xmlns="http://www.w3.org/2000/svg" width="750" height="98
 const fixture = {id:'ui-fixture-only',width:750,height:980,image_url:'/fixture/original.svg',
   annotated_image_url:'/fixture/crop.png',summary:{detected_regions:regions.length},timing_seconds:{total:1.25},
   model_version:'ui-fixture-region-model',font_method:'region_neural_network',ocr_performed:false,regions};
+// Deliberately unsorted and contradictory candidates check presentation only.
+// Neither the selected display name nor its score may rewrite the server result.
+const scoreUiCases = [
+  {id:'score-low',status:'uncertain',family:null,reason_code:'below_score_gate',
+    candidates:[{family:'MiSans',score:.3441},{family:'',score:.99},{family:'PingFang',score:.6559}],
+    expected:[['PingFang','0.6559'],['MiSans','0.3441']]},
+  {id:'score-patch-conflict',status:'uncertain',family:null,reason_code:'mixed_or_ambiguous_region',
+    candidates:[{family:'SF Pro',score:.89},{family:'MiSans',score:.11}],expected:[['SF Pro','0.8900'],['MiSans','0.1100']]},
+  {id:'score-zero',method:'neural_network',status:'uncertain',family:null,reason_code:'below_score_gate',score:.9999,
+    candidates:[{family:'SF Pro',score:0}],expected:[['SF Pro','0.0000']]},
+  {id:'score-invalid',status:'uncertain',family:'Stale family',reason_code:'invalid_neural_output',score:1,distance:.0001,
+    candidates:[{family:'NaN score',score:NaN},{family:'Infinite score',score:Infinity},{family:'Null score',score:null},
+      {family:'String score',score:'0.9999'},{family:'Negative score',score:-.01},{family:'Excessive score',score:1.01},
+      {family:'Missing score'},{family:'',score:1},{family:'   ',score:1},{family:42,score:1},{family:null,score:1},null],expected:[]},
+  {id:'score-family-conflict',status:'candidate',family:'MiSans',reason_code:'region_neural_family_candidate',
+    candidates:[{family:'MiSans',score:.07},{family:'PingFang',score:.92},{family:'SF Pro',score:.01}],
+    expected:[['PingFang','0.9200'],['MiSans','0.0700'],['SF Pro','0.0100']]},
+  {id:'score-tie',method:'neural_network',status:'uncertain',family:null,reason_code:'ambiguous_neural_families',
+    candidates:[{family:'Fourth',score:.05},{family:'First tie',score:.5},{family:'Third',score:.1},{family:'Second tie',score:.5}],
+    expected:[['First tie','0.5000'],['Second tie','0.5000'],['Third','0.1000']]},
+  {id:'score-legacy',method:'reference_matching',status:'supported',family:'Legacy Reference',reason_code:'pingfang_supported',
+    candidates:[{family:'Legacy Reference',distance:.0066,score:.01},{family:'Other reference',distance:.0162,score:.99}],
+    expected:[['Legacy Reference','0.0066'],['Other reference','0.0162']]},
+  {id:'score-absent',status:'uncertain',family:null,reason_code:'no_samples',score:.88,distance:.0001,candidates:[],expected:[]}
+];
+const scoreFixture = {...fixture,id:'ui-score-fixture-only',regions:scoreUiCases.map(({id,expected,...font},i)=>({
+  ...regions[i],id,font:{method:'region_neural_network',scope:'Detected text region',...font}
+}))};
 let availability = 'available';
 const groupedFonts = {families:['PingFang','SF Pro','Alipay Number','MiSans'],
   font_sources:{PingFang:['system'],'SF Pro':['system'],'Alipay Number':['asset'],MiSans:['asset']},
@@ -104,6 +132,89 @@ const server = http.createServer((req, res) => {
     const explanation=await evaluate('document.getElementById("font-reason").textContent');
     assert(explanation.includes(phrase)&&!explanation.includes('切分'),'Missing specific region uncertainty reason '+code);
   }
+  const scoreChecks=[];
+  const statusLabels={zh:{uncertain:'待确认',candidate:'候选',supported:'支持'},en:{uncertain:'Review',candidate:'Candidate',supported:'Supported'}};
+  const statusColors={uncertain:'rgb(173, 98, 0)',candidate:'rgb(35, 90, 180)',supported:'rgb(20, 128, 74)'};
+  const scoreReasons={
+    below_score_gate:{zh:'模型分数未达到确认门槛',en:'model score is below the gate'},
+    mixed_or_ambiguous_region:{zh:'不同图像片段的字体判断不一致',en:'Different image patches within the region disagree'},
+    invalid_neural_output:{zh:'输出异常',en:'invalid output'},
+    region_neural_family_candidate:{zh:'达到当前门槛',en:'passes the current score and separation gates'},
+    ambiguous_neural_families:{zh:'模型评分过于接近',en:'similar model scores'},
+    pingfang_supported:{zh:'逐字候选一致',en:'agree across character candidates'},
+    no_samples:{zh:'没有可用于字体判断',en:'No reliable glyphs'}
+  };
+  await command('Emulation.setDeviceMetricsOverride',{width:320,height:700,deviceScaleFactor:1,mobile:false});
+  // JSON cannot encode NaN or Infinity. Restore these two deliberate in-memory
+  // malformed-result cases before showing the same result object to the UI.
+  await evaluate(`(() => {
+    window.__scoreUiResult=${JSON.stringify(scoreFixture)};
+    window.__scoreUiResult.regions[3].font.candidates[0].score=NaN;
+    window.__scoreUiResult.regions[3].font.candidates[1].score=Infinity;
+    window.__scoreUiJson=JSON.stringify(window.__scoreUiResult,null,2);
+    window.FluxGlyphUI.show(window.__scoreUiResult);
+  })()`);
+  for(const language of ['zh','en']) {
+    await evaluate(`window.FluxGlyphUI.setLanguage(${JSON.stringify(language)});document.getElementById('close-detail').click();document.getElementById('regions').scrollIntoView({block:'start'})`);
+    const state=await evaluate(`(() => ({
+      rows:[...document.querySelectorAll('#regions .region')].map(row=>({
+        id:row.dataset.regionId,prediction:row.querySelector('.font-prediction')?.textContent??null,
+        label:row.querySelector('.region-description > small')?.textContent??null,
+        score:row.querySelector('.font-score')?.textContent??null,
+        status:row.querySelector('.tag').textContent,statusClass:row.querySelector('.tag').className,
+        color:getComputedStyle(row.querySelector('.tag')).color,classes:row.className,
+        overlay:document.querySelector('#overlay [data-region-id="'+row.dataset.regionId+'"]').getAttribute('class')
+      })),accepted:document.querySelector('#summary .summary-chip.supported').textContent,
+      overflow:document.documentElement.scrollWidth>innerWidth
+    }))()`);
+    assert(!state.overflow,'Score list overflows 320px in '+language);
+    assert(state.accepted===(language==='zh'?'已识别 2':'Identified 2'),'Displaying neural predictions must not inflate accepted count: '+language);
+    const listScreen=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
+    fs.writeFileSync(path.join(out,'score-small-mobile-'+language+'-list.png'),Buffer.from(listScreen.data,'base64'));
+    for(const [index,testCase] of scoreUiCases.entries()) {
+      const row=state.rows[index];const neural=testCase.method!=='reference_matching';
+      const prediction=neural&&testCase.expected.length?testCase.expected[0]:null;
+      const expectedLabel=prediction?(language==='zh'?'最接近：':'Closest match: ')+prediction[0]:neural?(language==='zh'?'未生成评分':'No model score'):testCase.family;
+      const expectedScore=prediction?(language==='zh'?'模型评分 ':'Model score ')+prediction[1]:null;
+      const context=testCase.id+' / '+language;
+      assert(row.id===testCase.id&&row.label===expectedLabel,'Incorrect list prediction '+context+': '+row.label);
+      assert(row.prediction===(neural?expectedLabel:null),'Legacy labels must not be neural predictions '+context);
+      assert(row.score===expectedScore,'Incorrect list model score '+context+': '+row.score);
+      assert(row.status===statusLabels[language][testCase.status]&&row.statusClass==='tag '+testCase.status,'List status changed '+context);
+      assert(row.color===statusColors[testCase.status]&&row.classes.split(' ').includes(testCase.status)&&row.overlay.split(' ').includes(testCase.status),'Original status color/class changed '+context);
+      await evaluate('document.querySelector('+JSON.stringify('#regions [data-region-id="'+testCase.id+'"]')+').click()');
+      const detail=await evaluate(`(() => ({label:document.getElementById('font-label').textContent,
+        score:document.getElementById('font-score')?.textContent??null,
+        status:document.querySelector('.detail-verdict .tag').textContent,
+        statusClass:document.querySelector('.detail-verdict .tag').className,
+        color:getComputedStyle(document.querySelector('.detail-verdict .tag')).color,
+        reason:document.getElementById('font-reason').textContent,
+        topHeading:document.querySelector('.dist > p')?.textContent??null,
+        top:[...document.querySelectorAll('.dist > span')].map(span=>span.textContent),
+        overflow:document.documentElement.scrollWidth>innerWidth,
+        rawUnchanged:document.getElementById('json-output').textContent===window.__scoreUiJson&&JSON.stringify(window.__scoreUiResult,null,2)===window.__scoreUiJson,
+        nonfiniteUnchanged:Number.isNaN(window.__scoreUiResult.regions[3].font.candidates[0].score)&&window.__scoreUiResult.regions[3].font.candidates[1].score===Infinity
+      }))()`);
+      assert(detail.label===expectedLabel&&detail.score===expectedScore,'List/detail prediction or score differ '+context);
+      assert(detail.status===row.status&&detail.statusClass===row.statusClass&&detail.color===row.color,'Detail must retain the real verdict, including absent-family cases '+context);
+      assert(detail.reason.includes(scoreReasons[testCase.reason_code][language]),'Original reason changed '+context);
+      assert(JSON.stringify(detail.top)===JSON.stringify(testCase.expected.flat()),'Top 3 must use valid stable score order, or unchanged legacy distances '+context+': '+detail.top.join());
+      if(testCase.expected.length)assert(detail.topHeading.includes(neural?(language==='zh'?'模型分数':'model scores'):(language==='zh'?'原始距离':'raw distances')),'Wrong Top 3 quantity label '+context);
+      else assert(detail.topHeading===null,'Invalid scores must not produce a Top 3 table '+context);
+      assert(!detail.overflow,'Score detail overflows 320px '+context);
+      assert(detail.rawUnchanged&&detail.nonfiniteUnchanged,'Rendering/sorting/language changed original result '+context);
+      if(index===0||testCase.id==='score-invalid') {
+        await evaluate("document.querySelector('.detail-verdict').scrollIntoView({block:'start'})");
+        const screenshot=await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
+        fs.writeFileSync(path.join(out,'score-small-mobile-'+language+'-'+(index===0?'detail':'no-score')+'.png'),Buffer.from(screenshot.data,'base64'));
+      }
+      scoreChecks.push({language,id:testCase.id,list:row,detail});
+    }
+    await evaluate("document.getElementById('copy-json').click()");
+    await wait('document.getElementById("copy-status").textContent.includes('+JSON.stringify(language==='zh'?'已复制':'copied')+')');
+    assert(await evaluate('navigator.clipboard.readText()')===await evaluate('window.__scoreUiJson'),'Copying the score fixture changed original JSON in '+language);
+  }
+  await evaluate("window.FluxGlyphUI.setLanguage('zh')");
   const availabilityChecks=[];
   for(const mode of ['unavailable','failed','locked']) {
     availability=mode;
@@ -144,7 +255,7 @@ const server = http.createServer((req, res) => {
   }
 
   assert(!diagnostics.length,'JS exceptions '+diagnostics.join());
-  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({kind:'mocked region-result browser UI only, not model accuracy',passed:true,reports,availabilityChecks,sourceCompatibilityChecks,diagnostics},null,2));
+  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({kind:'mocked region-result browser UI only, not model accuracy',passed:true,reports,scoreChecks,availabilityChecks,sourceCompatibilityChecks,diagnostics},null,2));
   console.log(JSON.stringify({passed:true,viewports:reports.map(x=>x.name),output:out}));
  } finally {if(socket)socket.close();chrome.kill('SIGTERM');await new Promise(resolve=>chrome.exitCode!==null?resolve():chrome.once('exit',resolve));server.close();fs.rmSync(profile,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

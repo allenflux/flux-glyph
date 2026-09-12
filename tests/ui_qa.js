@@ -21,6 +21,13 @@ assert(!/function (?:renderOcr|copyOcr|ocrConfidence|glyphReason)\(/.test(js), '
 assert(js.includes('strong.textContent = region.id') && js.includes('title.textContent = region.id'), 'region titles must use IDs without recognized text');
 assert(js.includes("thumbnail.className = 'region-thumbnail'") && css.includes('.region-thumbnail img'), 'region crops must be visible in the list');
 assert(js.includes('candidate.score') && js.includes('isNeural(value)'), 'region neural candidates must show model scores');
+for (const label of ['最接近：', 'Closest match:', '模型评分', 'Model score', '未生成评分', 'No model score']) {
+  assert(js.includes(label), `missing bilingual neural prediction presentation: ${label}`);
+}
+for (const hook of ['font-prediction', 'font-score', 'font-label', 'font-reason']) {
+  assert(js.includes(hook), `missing stable neural prediction display hook: ${hook}`);
+}
+assert(css.includes('.font-prediction') && css.includes('.font-score'), 'prediction and score must have responsive presentation styles');
 for (const id of ['font-model', 'download-model', 'refresh-model', 'model-info', 'model-families', 'model-label-note', 'model-usage-command']) {
   assert(new RegExp(`id=["']${id}["']`).test(html), `missing standalone model control: #${id}`);
 }
