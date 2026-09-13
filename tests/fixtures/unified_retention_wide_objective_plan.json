@@ -1,0 +1,134 @@
+{
+  "schema": "flux-glyph-wide-transfer-plan-v1",
+  "rationale": "Measured TRAIN errors remain for near fonts, while original R21 unknown knowledge is stronger than b08. Test greater feature capacity and explicit retention of both offline teachers, without changing inference gates.",
+  "source_initializer_sha256": "b08c0e20e98835e55094debedcad495d579d478b8f793aa733601383bec87763",
+  "teacher_cache_sha256": "04e9f19a525f9b681f2f86d46bfcb2c2cad30e7e178a3858c68b4575f2b1d8ea",
+  "r21_inference_report_sha256": "4dc5fe667621f04567a6b89ce7e0f2695f04678defe742148db060fa07b5aa84",
+  "objective": {
+    "family_cross_entropy_label_smoothing": 0.03,
+    "native_core_weighting": {
+      "families": [
+        "PingFang",
+        "SF Pro",
+        "Helvetica"
+      ],
+      "split": "train",
+      "domain": "ios",
+      "view": "native",
+      "weight": 2.0,
+      "other_weight": 1.0,
+      "denominator": 96,
+      "size_loss_weighted": false,
+      "inference_rule": false
+    },
+    "unknown_loss_weight": 1.0,
+    "ce_denominator": 96,
+    "size_smooth_l1_weight": 0.2,
+    "size_loss_weighted": false,
+    "teacher_logits_used": true,
+    "second_model_resident": false,
+    "teacher_mask": "Selected same-tile TRAIN teacher argmax equals true target; known=b08, unknown=R21",
+    "teacher_cache_deployed": false,
+    "all_parameters_trained": true,
+    "inference_rules_changed": false,
+    "training_inputs": [
+      "image_tiles"
+    ],
+    "class_prior_weighting": false,
+    "unknown_floor_supervision": {
+      "minimum_unknown_probability": 0.5,
+      "loss": "relu(softplus(-unknown_log_odds) - log(2))",
+      "log_odds": "z_unknown - logsumexp(z_named)",
+      "applies_to": "TRAIN rows whose true class is __unknown__",
+      "named_conditional_distribution_target": null,
+      "known_label_smoothing": 0.03,
+      "labels_unchanged": true,
+      "inference_rule": false,
+      "penalizes_confidence_above_floor": false
+    },
+    "teacher_kl_weight": 2.0,
+    "teacher_temperature": 1.0,
+    "teacher_policy": {
+      "named_targets": "b08 frozen source-balanced CNN",
+      "unknown_target": "R21 frozen unified CNN",
+      "selection_input": "true TRAIN target only",
+      "mask": "selected same-tile teacher argmax equals true TRAIN target",
+      "temperature": 1.0,
+      "kl_weight": 2.0,
+      "offline_teacher_count": 2,
+      "teacher_models_resident_during_optimizer": 0,
+      "teacher_models_deployed": 0,
+      "inference_routing": false
+    },
+    "teacher_kl_reduction": "Mean eligible KL(teacher || student); differentiable zero if empty",
+    "teacher_distribution_kl": true
+  },
+  "teacher_policy": {
+    "named_targets": "b08 frozen source-balanced CNN",
+    "unknown_target": "R21 frozen unified CNN",
+    "selection_input": "true TRAIN target only",
+    "mask": "selected same-tile teacher argmax equals true TRAIN target",
+    "temperature": 1.0,
+    "kl_weight": 2.0,
+    "offline_teacher_count": 2,
+    "teacher_models_resident_during_optimizer": 0,
+    "teacher_models_deployed": 0,
+    "inference_routing": false
+  },
+  "steps": 6000,
+  "eval_every": 6000,
+  "seed": 2026091414,
+  "runtime": {
+    "temperature": 1.0,
+    "gates": {
+      "min_score": 0.7,
+      "min_margin": 0.01,
+      "min_patch_agreement": 0.6666666666666666
+    },
+    "max_size_relative_spread": 0.2
+  },
+  "acceptance_plan_sha256": "b82283b54b5e47f4639b0df62231544c0419f6299d10820d86dca96ef24094ff",
+  "checkpoint_selection": "fixed final step 6000, no intermediate candidate selection",
+  "calibration_used_in_prior_development": true,
+  "blind_test": false,
+  "new_training_started": false,
+  "single_cause_claim": false,
+  "architecture": "region-cnn64x256-unified-wide-v1",
+  "widening": {
+    "source_widths": [
+      32,
+      48,
+      64,
+      64,
+      192,
+      128
+    ],
+    "new_widths": [
+      64,
+      96,
+      128,
+      128,
+      384,
+      256
+    ],
+    "groupnorm_groups": 16,
+    "initialization": "Net2Wider whole-group duplication with nonuniform incoming splits",
+    "train_transfer_check": {
+      "tiles_per_partition": 128,
+      "batch_size": 32,
+      "atol": 0.0003,
+      "rtol": 0.0003
+    }
+  },
+  "design_changes": [
+    "Double hidden CNN widths with function-preserving GroupNorm-aware Net2Wider initialization.",
+    "Use b08 for named TRAIN targets and R21 for unknown TRAIN targets; eligible full-distribution KL.",
+    "Train one fixed final 6000-step schedule with the same native sampler and runtime gates."
+  ],
+  "data_sources": "same original, new unknown, and paired known TRAIN sources; labels unchanged",
+  "research_reference": {
+    "title": "Net2Net: Accelerating Learning via Knowledge Transfer",
+    "url": "https://arxiv.org/abs/1511.05641",
+    "use": "Function-preserving widening; GroupNorm adaptation is this implementation, not a measured result from the paper."
+  }
+}

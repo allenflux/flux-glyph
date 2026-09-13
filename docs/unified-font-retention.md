@@ -2,7 +2,7 @@
 
 本轮针对联合模型中 PingFang 的实际识别退化，在本地继续训练同一个字体／字号 CNN。仍为 24 个具名字体加未知类、一个字体 ONNX；不选择平台、不增加第二个推理网络。本轮尝试在模型参数中修复，推理门槛保持 R21 原值。
 
-**当前状态：十二轮训练及两次固定参数平均均未通过，没有可晋级权重；已停止继续基于同一 CAL 追加训练变体。** 所有已评估候选都未满足全部保留条件，未晋级或部署。线上仍为 R21；计划版本 `r22-unified-font-retention-v1-preview` 尚未发布。网站实际版本以 `/api/health`、`/api/models/font` 为准。[R21 历史训练与评估](unified-font-training.md)保持原样。
+**前一阶段结果：十二轮训练及两次固定参数平均均未通过，没有可晋级权重。** 该阶段结束后停止了继续调整相同损失的尝试。用户要求继续修复后，新的训练诊断与网络结构实验另记于[模型容量修复记录](unified-font-capacity-repair.md)。本页保留前一阶段的完整结果。线上仍为 R21；计划版本 `r22-unified-font-retention-v1-preview` 尚未发布。网站实际版本以 `/api/health`、`/api/models/font` 为准。[R21 历史训练与评估](unified-font-training.md)保持原样。
 
 ## 已确认的问题
 

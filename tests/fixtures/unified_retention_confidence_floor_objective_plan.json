@@ -1,0 +1,71 @@
+{
+  "schema": "flux-glyph-confidence-floor-plan-v1",
+  "rationale": "Training losses should not reduce already-correct confidence merely for exceeding a soft target or teacher distribution.",
+  "source_initializer_sha256": "b08c0e20e98835e55094debedcad495d579d478b8f793aa733601383bec87763",
+  "teacher_cache_sha256": "04e9f19a525f9b681f2f86d46bfcb2c2cad30e7e178a3858c68b4575f2b1d8ea",
+  "data": "unchanged three verified TRAIN sources, same fixed class/source sampler",
+  "objective": {
+    "family_cross_entropy_label_smoothing": 0.03,
+    "native_core_weighting": {
+      "families": [
+        "PingFang",
+        "SF Pro",
+        "Helvetica"
+      ],
+      "split": "train",
+      "domain": "ios",
+      "view": "native",
+      "weight": 2.0,
+      "other_weight": 1.0,
+      "denominator": 96,
+      "size_loss_weighted": false,
+      "inference_rule": false
+    },
+    "unknown_loss_weight": 1.0,
+    "ce_denominator": 96,
+    "size_smooth_l1_weight": 0.2,
+    "size_loss_weighted": false,
+    "teacher_logits_used": true,
+    "second_model_resident": false,
+    "teacher_mask": "TRAIN same-tile frozen b08 argmax equals true target, including all known classes and unknown",
+    "teacher_cache_deployed": false,
+    "all_parameters_trained": true,
+    "inference_rules_changed": false,
+    "training_inputs": [
+      "image_tiles"
+    ],
+    "class_prior_weighting": false,
+    "unknown_floor_supervision": {
+      "minimum_unknown_probability": 0.5,
+      "loss": "relu(softplus(-unknown_log_odds) - log(2))",
+      "log_odds": "z_unknown - logsumexp(z_named)",
+      "applies_to": "TRAIN rows whose true class is __unknown__",
+      "named_conditional_distribution_target": null,
+      "known_label_smoothing": 0.03,
+      "labels_unchanged": true,
+      "inference_rule": false,
+      "penalizes_confidence_above_floor": false
+    },
+    "teacher_confidence_floor_weight": 2.0,
+    "teacher_confidence_floor_reduction": "Mean eligible relu(log teacher_true_probability - log student_true_probability); differentiable zero if empty",
+    "teacher_distribution_kl": false
+  },
+  "steps": 3000,
+  "eval_every": 3000,
+  "seed": 2026091413,
+  "runtime": {
+    "temperature": 1.0,
+    "gates": {
+      "min_score": 0.7,
+      "min_margin": 0.01,
+      "min_patch_agreement": 0.6666666666666666
+    },
+    "max_size_relative_spread": 0.2
+  },
+  "acceptance_plan_sha256": "b82283b54b5e47f4639b0df62231544c0419f6299d10820d86dca96ef24094ff",
+  "checkpoint_selection": "fixed final step 3000, no intermediate candidate selection",
+  "calibration_used_in_prior_development": true,
+  "blind_test": false,
+  "new_training_started": false,
+  "single_cause_claim": false
+}
