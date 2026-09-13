@@ -1,0 +1,1036 @@
+#!/usr/bin/env python3
+"""Export one face-balanced wide CNN with verified merged known TRAIN provenance."""
+from __future__ import annotations
+
+import copy
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import sys
+import numpy as np
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path[:0] = [str(ROOT), str(ROOT/'src'), str(ROOT/'training')]
+from train_regions import require, sha, dump, state_sha
+from train_unified_retention import FIXED_RUNTIME, evaluate_outputs, retention_rank
+from export_unified_retention_core import (compare_runtime_outputs, require_fixed_runtime,
+    calibration_metadata, checked_file, cached_evaluation, strip_artifacts)
+
+ARCHITECTURE = 'region-cnn64x256-unified-wide-v1'
+SCHEMA = 'flux-glyph-unified-retention-onnx-parity-v1'
+GROUPS = ('trunk', 'style', 'family_head', 'size_head')
+RESIDUAL_PREFIX = 'residual_family_head.'
+
+
+def source_entry(entry, bindings):
+    require(isinstance(entry, dict) and set(entry) == {'path', 'sha256'}, 'Incomplete adapter source identity')
+    path = (ROOT/entry['path']).resolve()
+    require(path.is_file() and sha(path) == entry['sha256'] == bindings.get(str(path)), 'Adapter source binding differs')
+    return path
+
+
+def validate_objective_plan(selection, retention_plan_path):
+    """Validate the pretraining objective audit separately from CAL acceptance."""
+    import train_unified_retention_face_balanced as trainer
+    path = source_entry(selection['objective_plan'], selection['bindings'])
+    cache_path = source_entry(selection['known_cache'], selection['bindings'])
+    return trainer.read_objective_plan(path, sha(retention_plan_path), sha(cache_path))
+
+
+def validate_checkpoint(checkpoint, selection, selection_sha256):
+    state = checkpoint['state_dict']
+    require(checkpoint.get('families') == selection['families'] and checkpoint.get('architecture') == ARCHITECTURE
+            and checkpoint.get('selection_sha256') == selection_sha256
+            and state_sha(state) == selection['state_after_sha256'] != selection['initial_state_sha256']
+            and not any(key.startswith(RESIDUAL_PREFIX) for key in state), 'Selected full-CNN identity differs')
+    for name in GROUPS:
+        group = {key: value for key, value in state.items() if key.startswith(name+'.')}
+        require(group and state_sha(group) == selection['selected_parameter_groups_sha256'][name]
+                != selection['initial_parameter_groups_sha256'][name], 'Selected full-CNN group was not trained: '+name)
+
+
+def reconstruct_widened_initializer(checkpoint, selection):
+    """Rebuild the exact initial wide state from the immutable narrow b08 checkpoint."""
+    import train_unified_retention_face_balanced as trainer
+    from region_network import RegionFontClassifier
+    from wide_region_network import widen_region_model
+    require(checkpoint.get('families') == selection['families']
+            and checkpoint.get('architecture') == trainer.narrow.ARCHITECTURE
+            and checkpoint.get('selection_sha256') == selection['student_initializer']['selection']['sha256']
+            and state_sha(checkpoint['state_dict']) == selection['student_initializer']['state_sha256']
+            == selection['named_teacher_state_sha256'], 'Wrong narrow b08 widening source')
+    source = RegionFontClassifier(25).cpu().eval();source.load_state_dict(checkpoint['state_dict'], strict=True)
+    source_before = state_sha(source.state_dict())
+    widened, report = widen_region_model(source, seed=trainer.SEED)
+    require(state_sha(source.state_dict()) == source_before
+            and report == selection['widening']
+            and state_sha(widened.state_dict()) == selection['initial_state_sha256'],
+            'Deterministic widened initializer or source immutability differs')
+    for name in GROUPS:
+        group = {key: value for key, value in widened.state_dict().items() if key.startswith(name+'.')}
+        require(state_sha(group) == selection['initial_parameter_groups_sha256'][name],
+                'Initial widened parameter group differs: '+name)
+    return widened
+
+
+def validate_fixed_final_selection(selection):
+    """Require the sole final-step CAL record; CAL never chooses among checkpoints."""
+    history = selection['history']
+    require([row['step'] for row in history] == [6000]
+            and selection['checkpoint_selection'] ==
+                'Fixed final step 6000; no intermediate CAL inference or checkpoint search'
+            and selection['selected'] == history[0]
+            and selection['selected']['promotion_allowed'] is True
+            and selection['selected']['metrics']['passed'] is selection['passed'],
+            'Wide-transfer selection must be the sole fixed final checkpoint')
+    return history
+
+
+def validate_widening_record(selection):
+    """Validate TRAIN-only Net2Wider evidence without importing Torch."""
+    widening = selection.get('widening', {})
+    parity = selection.get('widening_parity', {})
+    require(widening.get('schema') == 'flux-glyph-wide-region-transfer-v1'
+            and widening.get('seed') == 2026091414 and widening.get('family_count') == 25
+            and widening.get('function_preserving_initialization') is True
+            and widening.get('single_encoder') is True and widening.get('score_merging') is False
+            and widening.get('source_widths') == [32, 48, 64, 64, 192, 128]
+            and widening.get('widened_widths') == [64, 96, 128, 128, 384, 256]
+            and widening.get('source_groupnorm_groups') == 8
+            and widening.get('widened_groupnorm_groups') == 16
+            and widening.get('pool_shape') == [4, 4]
+            and widening.get('widened_parameters', 0) > widening.get('source_parameters', 0) > 0,
+            'Function-preserving wide architecture evidence differs')
+    require(parity.get('passed') is True and parity.get('train_tiles') == 384
+            and parity.get('source_state_sha256') == selection['named_teacher_state_sha256']
+            and parity.get('wide_state_sha256') == selection['initial_state_sha256']
+            and parity.get('source_parameters_unchanged') is True
+            and parity.get('wide_parameters_unchanged') is True
+            and parity.get('optimizer_steps') == 0
+            and all(parity.get(key) is False for key in ('calibration_read', 'development_read', 'test_read')),
+            'TRAIN-only widened initializer parity differs')
+    return widening, parity
+
+
+def validate_student_initializer(selection):
+    """Validate the narrow b08 source and named teacher separately from widened state."""
+    import train_unified_retention_face_balanced as trainer
+    identity = selection['student_initializer']; bindings = selection['bindings']
+    require(set(identity) == {'checkpoint', 'selection', 'training_freeze', 'state_sha256',
+        'parameter_groups_sha256', 'selected_step', 'optimizer_steps_executed'}
+        and identity['selected_step'] == 1500 and identity['optimizer_steps_executed'] == 3000,
+        'Incomplete prior-student identity or optimizer history')
+    path = source_entry(identity['checkpoint'], bindings); folder = path.parent
+    selection_path = source_entry(identity['selection'], bindings)
+    protocol_path = source_entry(identity['training_freeze'], bindings)
+    require(sha(path) == trainer.STUDENT_CHECKPOINT_SHA and sha(selection_path) == trainer.STUDENT_SELECTION_SHA
+            and selection_path == folder/'SELECTION.json' and protocol_path == folder/'TRAINING_FREEZE.json',
+            'Wrong source-balanced student initializer')
+    previous = trainer.read(selection_path); protocol = trainer.read(protocol_path); report = trainer.read(folder/'report.json')
+    require(previous.get('schema') == 'flux-glyph-unified-retention-source-balanced-selection-v1'
+            and protocol.get('schema') == 'flux-glyph-unified-retention-source-balanced-protocol-v1'
+            and previous['objective_variant'] == trainer.previous.OBJECTIVE_VARIANT
+            and previous['objective'] == trainer.previous.OBJECTIVE and previous['fixed_runtime'] == FIXED_RUNTIME
+            and sha(protocol_path) == previous['training_protocol_sha256']
+            and all(previous.get(key) == value for key, value in protocol.items() if key != 'schema')
+            and previous['optimizer_steps_executed'] == 3000
+            and [row['step'] for row in previous['history']] == list(range(500, 3001, 500))
+            and previous['selected'] == max(previous['history'], key=retention_rank)
+            and previous['selected']['step'] == 1500 and previous['promotion_allowed'] is False
+            and report.get('status') == 'NO_PROMOTABLE_CHECKPOINT' and report.get('optimizer_steps_executed') == 3000
+            and report.get('selected_step') == 1500 and report.get('selected_checkpoint_sha256') == trainer.STUDENT_CHECKPOINT_SHA
+            and report.get('last_checkpoint_sha256') == previous['history'][-1]['artifacts']['checkpoint']['sha256']
+            and trainer.read(folder/'NO_PROMOTABLE_CHECKPOINT.json') == report
+            and all(document.get(key) is False for document in (previous, protocol, report)
+                    for key in ('test_read', 'development_holdout_read')),
+            'Prior student completion, original ranking or frozen TRAIN scope differs')
+    require(all(selection[key] == previous[key] for key in ('families', 'base_checkpoint', 'base_selection',
+        'base_state_sha256', 'cache_manifest', 'supplement_data', 'supplement_cache', 'data_manifest_sha256',
+        'retention_plan', 'parent_metadata', 'parent_checkpoint', 'parent_selection_sha256'))
+        and identity['state_sha256'] == previous['state_after_sha256'] == selection['named_teacher_state_sha256']
+        and identity['parameter_groups_sha256'] == previous['selected_parameter_groups_sha256']
+        and previous['initial_state_sha256'] == selection['base_state_sha256']
+        and selection['initial_state_sha256'] == selection['state_before_sha256'] != identity['state_sha256']
+        and selection['named_teacher_identity'] == identity
+        and selection['historical_core_caches_used_for_training'] is False
+        and all(bindings.get(path) == digest for path, digest in previous['bindings'].items()),
+        'Student/b08 teacher initialization or historical source closure differs')
+    for field in ('initial_parameter_groups_sha256', 'selected_parameter_groups_sha256', 'final_parameter_groups_sha256'):
+        require(set(previous[field]) == set(GROUPS) and all(isinstance(digest, str) and len(digest) == 64
+            for digest in previous[field].values()), 'Missing prior-student full-CNN group identity')
+    require(all(previous[field][group] != previous['initial_parameter_groups_sha256'][group]
+        for field in ('selected_parameter_groups_sha256', 'final_parameter_groups_sha256') for group in GROUPS),
+        'A prior-student parameter group was not trained')
+    for record in previous['history']:
+        directory = f"checkpoints/step{record['step']:05d}"
+        require_fixed_runtime(record)
+        require(set(record['artifacts']) == {'checkpoint', 'outputs', 'decisions', 'metrics'}, 'Incomplete student source history')
+        for key, name in [('checkpoint', 'model.pth'), ('outputs', 'CALIBRATION_OUTPUTS.npz'),
+                          ('decisions', 'CALIBRATION_DECISIONS.json'), ('metrics', 'METRICS.json')]:
+            item = checked_file(folder, record['artifacts'][key], directory+'/'+name)
+            require(bindings.get(str(item)) == sha(item), 'Unbound original student step evidence')
+            if key == 'metrics':require(trainer.read(item) == strip_artifacts(record), 'Student source metrics changed')
+    for name in ('report.json', 'NO_PROMOTABLE_CHECKPOINT.json', 'SAMPLING.json', 'TRAINING_COUNTS.json',
+                 'CALIBRATION_OUTPUTS.npz', 'CALIBRATION_DECISIONS.json'):
+        require(bindings.get(str(folder/name)) == sha(folder/name), 'Unbound original student evidence: '+name)
+    for key, name, field in [('outputs', 'CALIBRATION_OUTPUTS.npz', 'calibration_outputs_sha256'),
+                            ('decisions', 'CALIBRATION_DECISIONS.json', 'calibration_decisions_sha256')]:
+        require(sha(folder/name) == previous[field] == previous['selected']['artifacts'][key]['sha256'],
+                'Source student cached CAL does not belong to its selected checkpoint')
+    return previous
+
+
+def validate(run, data):
+    """Read-only source/CAL-cache validation; imports no Torch and reads no holdout."""
+    import train_unified_retention_face_balanced as trainer
+    run, data = Path(run).resolve(), Path(data).resolve()
+    selection = trainer.read(run/'SELECTION.json')
+    require(selection.get('schema') == 'flux-glyph-unified-retention-wide-face-balanced-selection-v1'
+            and selection.get('architecture') == ARCHITECTURE and selection.get('promotion_allowed') is True
+            and not (run/'NO_PROMOTABLE_CHECKPOINT.json').exists(), 'Adapter has no promotable frozen checkpoint')
+    protocol = trainer.read(run/'TRAINING_FREEZE.json')
+    require(protocol.get('schema') == 'flux-glyph-unified-retention-wide-face-balanced-protocol-v1'
+            and sha(run/'TRAINING_FREEZE.json') == selection['training_protocol_sha256']
+            and all(selection.get(key) == value for key, value in protocol.items() if key != 'schema'),
+            'Adapter protocol and selection differ')
+    require(all(key not in document for document in (selection, protocol)
+                for key in ('soft_unknown_supervision', 'unknown_binary_supervision')),
+            'Obsolete unknown supervision metadata cannot describe wide-transfer training')
+    expected = {'architecture': ARCHITECTURE, 'objective_variant': trainer.OBJECTIVE_VARIANT,
+        'objective': trainer.OBJECTIVE, 'sampling': trainer.SAMPLING, 'fixed_runtime': FIXED_RUNTIME,
+        'unknown_floor_supervision': trainer.UNKNOWN_FLOOR_SUPERVISION,
+        'design_changes': trainer.DESIGN_CHANGES, 'single_change_causal_attribution': False,
+        'steps': 6000, 'eval_every': 6000, 'batch_size': 96, 'learning_rate': 2e-5, 'minimum_learning_rate': 2e-6,
+        'weight_decay': 1e-4, 'gradient_clip_norm': 5., 'seed': 2026091414,
+        'base_selected_step': 1000, 'core_optimizer_steps_executed': 1500,
+        'source_optimizer_steps_executed': 3000, 'source_selected_step': 1500, 'optimizer_steps_executed': 6000,
+        'frozen_groups': [], 'trainable_groups': list(GROUPS), 'all_parameters_trained': True,
+        'base_frozen': False, 'size_head_frozen': False, 'residual_head_trained': False,
+        'teacher_logits_used': True, 'second_model_resident': False,
+        'teacher_optimizer_steps': 0, 'teacher_cache_deployed': False,
+        'teacher_policy': trainer.TEACHER_POLICY, 'offline_teacher_count': 2,
+        'teacher_models_resident_during_optimizer': 0,
+        'historical_core_caches_used_for_training': False,
+        'historical_known_data_used_for_sampling': False, 'historical_known_cache_used_for_optimizer': False,
+        'known_cache_kind': 'merged_known_b08_logits',
+        'named_teacher_cache_used_partitions': ['original', 'supplement'],
+        'unknown_teacher_used_partitions': ['original', 'supplement'],
+        'feature_cache_reused': False, 'teacher_cache_reused': True, 'cached_feature_extraction_performed': False,
+        'training_inputs': ['image_tiles'],
+        'calibration_execution': 'Current complete CNN forward over all original CAL image tiles; current learned size head.',
+        'model_count': 1, 'encoder_count': 1, 'platform_routing': False, 'score_merging': False,
+        'test_read': False, 'development_holdout_read': False, 'runtime_gates_searched': False,
+        'checkpoint_selection': 'Fixed final step 6000; no intermediate CAL inference or checkpoint search',
+        'calibration_reused_for_prior_development': True}
+    require(all(protocol.get(key) == value for key, value in expected.items())
+            and protocol.get('training_device') in ('cpu', 'mps') and type(selection.get('passed')) is bool
+            and selection['calibration_passed'] is selection['passed'], 'Full-CNN training or cached-teacher contract differs')
+    for field in ('initial_parameter_groups_sha256', 'selected_parameter_groups_sha256', 'final_parameter_groups_sha256'):
+        require(set(selection[field]) == set(GROUPS) and all(isinstance(value, str) and len(value) == 64
+                for value in selection[field].values()), 'Incomplete full-CNN group evidence')
+    require(all(selection['initial_parameter_groups_sha256'][name] != selection[field][name]
+                for field in ('selected_parameter_groups_sha256', 'final_parameter_groups_sha256') for name in GROUPS),
+            'Every selected and final CNN parameter group must have trained')
+    bindings = selection['bindings']; trainer.core.verify_bindings(bindings)
+    base_path = source_entry(selection['base_checkpoint'], bindings)
+    base_selection_path = source_entry(selection['base_selection'], bindings)
+    require(sha(base_path) == trainer.BASE_CHECKPOINT_SHA and sha(base_selection_path) == trainer.BASE_SELECTION_SHA
+            and base_selection_path == base_path.parent/'SELECTION.json', 'Wrong historical core checkpoint')
+    base = trainer.read(base_selection_path)
+    require(base.get('schema') == 'flux-glyph-unified-retention-selection-v1'
+            and base['selected']['step'] == 1000 and base['optimizer_steps_executed'] == 1500
+            and base['promotion_allowed'] is False and base['test_read'] is False and base['development_holdout_read'] is False
+            and base['state_after_sha256'] == selection['base_state_sha256'] != selection['named_teacher_state_sha256']
+            and base['families'] == selection['families'] and len(selection['families']) == 25
+            and len(set(selection['families'])) == 25 and selection['families'].count('__unknown__') == 1
+            and all(bindings.get(path) == digest for path, digest in base['bindings'].items()),
+            'Adapter base state, classes or source closure differ')
+    student = validate_student_initializer(selection)
+    source_inheritance = {'all_family_rows_inherited': True, 'all_parameters_inherited': True,
+        'all_parameters_trainable': True, 'source_state_sha256': student['state_after_sha256'],
+        'family_count': 25, 'new_random_output_rows': 0}
+    require(selection['inheritance'] == {'kind': 'function_preserving_width_doubling',
+            'source_inheritance': source_inheritance, 'source_state_sha256': student['state_after_sha256'],
+            'initial_state_sha256': selection['initial_state_sha256']}, 'Wide-CNN parent inheritance differs')
+    validate_widening_record(selection)
+    require_fixed_runtime(base['selected'])
+    plan_path = source_entry(selection['retention_plan'], bindings)
+    require(base['retention_plan']['sha256'] == sha(plan_path), 'Adapter retention conditions changed')
+    plan = trainer.core.read_plan(plan_path, data, (ROOT/base['parent_checkpoint']['path']).resolve())
+    require(len(plan['constraints']) == 46, 'Original 46 acceptance constraints changed')
+    validate_objective_plan(selection, plan_path)
+    cal = calibration_metadata(data)
+    require(cal['manifest_sha256'] == selection['data_manifest_sha256'] == base['data_manifest_sha256']
+            and cal['families'] == selection['families'] == plan['families'], 'Adapter data root or class order differs')
+    for key in ('parent_metadata', 'parent_checkpoint', 'parent_selection_sha256'):
+        require(selection[key] == base[key], 'Adapter parent provenance differs')
+    parent_metadata = source_entry(selection['parent_metadata'], bindings)
+    required = [ROOT/name for name in ('training/train_unified_retention_face_balanced.py',
+        'training/retention_dual_teacher_loss.py', 'training/retention_confidence_floor_loss.py',
+        'training/train_unified_retention_confidence_floor.py', 'training/cache_unified_student_teacher.py',
+        'training/retention_paired_known_sampler.py',
+        'training/prepare_unified_known_supplement.py', 'training/cache_unified_known_supplement.py',
+        'training/train_unified_retention_source_balanced.py', 'training/retention_source_balanced_sampler.py',
+        'training/retention_supplement_sampler.py',
+        'training/prepare_unified_unknown_supplement.py', 'training/cache_unified_unknown_supplement.py',
+        'training/train_unified_retention_adapter.py', 'training/retention_adapter_network.py',
+        'training/train_unified_retention_core.py', 'training/train_unified_retention.py', 'training/train_unified_regions.py',
+        'training/prepare_unified_regions.py', 'training/region_network.py', 'training/network.py', 'training/train_regions.py',
+        'training/wide_region_network.py', 'training/retention_r21_teacher_cache.py',
+        'training/merge_unified_weight_pairs.py', 'training/cache_unified_weight_teacher.py',
+        'training/retention_face_balanced_sampler.py',
+        'training/evaluate_unified_retention_face_balanced.py', 'src/flux_glyph/unified_font.py', 'src/flux_glyph/region_font.py')]
+    required += [data/'MANIFEST.json', base_path.parent/'TRAINING_FREEZE.json',
+                 base_path.parent/'CALIBRATION_OUTPUTS.npz', base_path.parent/'CALIBRATION_DECISIONS.json', parent_metadata]
+    source_partitions = {}
+    for split in ('train', 'calibration'):
+        part_path = data/split/'MANIFEST.json'; part = trainer.read(part_path); required.append(part_path)
+        require(part['split'] == split and part['families'] == selection['families']
+                and part['root_manifest_sha256'] == cal['manifest_sha256'], 'Adapter source partition differs')
+        for name in ('metadata', 'array'):
+            path = (data/split/part[name]['path']).resolve()
+            require(path.parent == data/split and bindings.get(str(path)) == part[name]['sha256'], 'Adapter requested data path is unbound')
+            required.append(path)
+        source_partitions[split] = {'partition_sha256': sha(part_path), 'tile_count': part['tiles'],
+            'rows': part['metadata'], 'tiles': part['array'],
+            'order': 'Exact prepared tile array order; rows retain tile_start and tile_count.'}
+    require(all(bindings.get(str(path.resolve())) == sha(path) for path in required), 'Missing exact adapter source binding')
+    cache_path = source_entry(selection['cache_manifest'], bindings)
+    require(sha(cache_path) == trainer.CACHE_MANIFEST_SHA, 'Supplement run changed the original core feature cache')
+    cache_manifest = trainer.read(cache_path)
+    identity = cache_manifest['identity']
+    require(identity['architecture'] == 'region-cnn64x256-residual-head-v1'
+            and identity['base_checkpoint'] == selection['base_checkpoint']
+            and identity['base_state_sha256'] == selection['base_state_sha256'] and identity['families'] == selection['families']
+            and identity['data_manifest_sha256'] == selection['data_manifest_sha256']
+            and identity['partitions'] == source_partitions and identity['test_read'] is False
+            and identity['development_holdout_read'] is False
+            and all(bindings.get(path) == digest for path, digest in identity['bindings'].items()), 'Frozen feature cache input identity differs')
+    cache, cache_manifest = trainer.load_cache(cache_path.parent, identity)
+    freeze = trainer.read(cache_path.parent/'CACHE_FREEZE.json')
+    require(freeze['schema'] == 'flux-glyph-retention-adapter-cache-freeze-v1' and freeze['optimizer_steps_executed'] == 0
+            and freeze['feature_device'] == protocol['feature_device']
+            and bindings.get(str(cache_path.parent/'CACHE_FREEZE.json')) == sha(cache_path.parent/'CACHE_FREEZE.json'),
+            'Feature extraction provenance differs')
+    for partition in cache_manifest['partitions'].values():
+        for entry in partition.values():source_entry({'path': str(cache_path.parent/entry['path']), 'sha256': entry['sha256']}, bindings)
+    baseline, outputs, _ = evaluate_outputs(cache['calibration']['base_logits'], cache['calibration']['log_em_ratio'], cal, plan, 0)
+    require(set(selection['baseline_bindings']) == {'BASELINE.json', 'BASELINE_CALIBRATION_DECISIONS.json',
+            'STUDENT_BASELINE.json', 'STUDENT_BASELINE_CALIBRATION_DECISIONS.json'}
+            and all(sha(run/name) == digest for name, digest in selection['baseline_bindings'].items())
+            and trainer.read(run/'BASELINE.json') == baseline
+            and trainer.read(run/'BASELINE_CALIBRATION_DECISIONS.json') == {'families': selection['families'], 'records': outputs},
+            'Adapter baseline does not reproduce the frozen base cache')
+    student_run = source_entry(selection['student_initializer']['checkpoint'], bindings).parent
+    with np.load(student_run/'CALIBRATION_OUTPUTS.npz', allow_pickle=False) as initial:
+        student_baseline, student_outputs, _ = evaluate_outputs(initial['logits'], initial['log_em_ratio'], cal, plan, 0)
+    require(sha(student_run/'CALIBRATION_OUTPUTS.npz') == student['calibration_outputs_sha256']
+            and trainer.read(run/'STUDENT_BASELINE.json') == student_baseline
+            and trainer.read(run/'STUDENT_BASELINE_CALIBRATION_DECISIONS.json') == {'families': selection['families'], 'records': student_outputs},
+            'Student baseline does not reproduce its own selected CNN cached CAL outputs')
+    history = validate_fixed_final_selection(selection)
+    for record in history:
+        directory = f"checkpoints/step{record['step']:05d}"
+        require(set(record['artifacts']) == {'checkpoint', 'outputs', 'decisions', 'metrics'}, 'Incomplete adapter step evidence')
+        paths = {key: checked_file(run, record['artifacts'][key], directory+'/'+name) for key, name in
+            [('checkpoint', 'model.pth'), ('outputs', 'CALIBRATION_OUTPUTS.npz'),
+             ('decisions', 'CALIBRATION_DECISIONS.json'), ('metrics', 'METRICS.json')]}
+        actual, _, _ = cached_evaluation(paths['outputs'], paths['decisions'], cal, plan, record['step'])
+        require(actual == strip_artifacts(record) == trainer.read(paths['metrics']), 'Adapter CAL metrics do not reproduce cached outputs')
+    for key, name, field in [('outputs', 'CALIBRATION_OUTPUTS.npz', 'calibration_outputs_sha256'),
+                            ('decisions', 'CALIBRATION_DECISIONS.json', 'calibration_decisions_sha256')]:
+        require(sha(run/name) == selection[field] == selection['selected']['artifacts'][key]['sha256'], 'Selected adapter CAL bytes differ')
+    validate_supplement(selection, data)
+    validate_training_teacher(selection, data)
+    validate_counts(run, selection, data)
+    return selection
+
+
+def validate_supplement(selection, data):
+    """Validate bound extra TRAIN metadata/cache without re-running an encoder."""
+    from collections import Counter
+    import train_unified_retention_face_balanced as trainer
+    bindings = selection['bindings']
+    data_path = source_entry(selection['supplement_data'], bindings)
+    cache_path = source_entry(selection['supplement_cache'], bindings)
+    require(sha(data_path) == trainer.SUPPLEMENT_MANIFEST_SHA and sha(cache_path) == trainer.SUPPLEMENT_CACHE_SHA,
+            'Extra native TRAIN data or feature cache differs from the fixed supplement')
+    arrays, cache = trainer.load_supplement_cache(cache_path.parent)
+    identity = cache['identity']; manifest = trainer.read(data_path)
+    require(identity['data_manifest'] == selection['supplement_data']
+            and identity['base_checkpoint'] == selection['base_checkpoint']
+            and identity['base_selection'] == selection['base_selection']
+            and identity['base_state_sha256'] == selection['base_state_sha256']
+            and identity['old_cache_manifest'] == selection['cache_manifest']
+            and identity['families'] == manifest['families'] == selection['families']
+            and identity['partition']['split'] == 'train'
+            and all(bindings.get(path) == digest for path, digest in identity['bindings'].items()),
+            'Supplement was not derived from the same frozen base and separate TRAIN source')
+    for name in ('data_manifest', 'preparation_freeze', 'partition_manifest', 'old_cache_manifest', 'old_cache_freeze'):
+        source_entry(identity[name], bindings)
+    source_entry({'path': str(cache_path.parent/'CACHE_FREEZE.json'), 'sha256': cache['cache_freeze_sha256']}, bindings)
+    for item in cache['partitions']['train'].values():
+        source_entry({'path': str((cache_path.parent/item['path']).resolve()), 'sha256': item['sha256']}, bindings)
+    part_path = Path(identity['partition_manifest']['path']); part = trainer.read(part_path)
+    for key in ('metadata', 'array'):
+        source_entry({'path': str((part_path.parent/part[key]['path']).resolve()), 'sha256': part[key]['sha256']}, bindings)
+    new_rows = trainer.read(part_path.parent/part['metadata']['path'])
+    require(len(new_rows) == part['views'] == identity['partition']['region_count']
+            and len(arrays['features']) == part['tiles'] == identity['partition']['tile_count']
+            and all(row.get('split') == 'train' and row.get('family') == '__unknown__' and row.get('target') == 24
+                and row.get('domain') == 'android' and row.get('native_font_verified') is True
+                and row.get('source_font_family') in trainer.NEW_SOURCES for row in new_rows)
+            and set(row['source_font_family'] for row in new_rows) == set(trainer.NEW_SOURCES),
+            'Supplement contains a non-TRAIN or unverified/unmapped negative')
+    original_part = trainer.read(Path(data)/'train/MANIFEST.json')
+    original_rows = trainer.read(Path(data)/'train'/original_part['metadata']['path'])
+    original_regions = {(row['source_id'], row['region_id']) for row in original_rows}
+    new_regions = {(row['source_id'], row['region_id']) for row in new_rows}
+    require(not original_regions & new_regions, 'Supplement overlaps an original TRAIN source region')
+    known_rows, known_part = validate_known_supplement(selection, original_rows, new_rows)
+    known_regions = {(row['source_id'], row['region_id']) for row in known_rows}
+    expected = {'original_views': len(original_rows), 'supplement_views': len(new_rows),
+        'known_supplement_views': len(known_rows), 'combined_views': len(original_rows)+len(new_rows)+len(known_rows),
+        'original_native_regions': len(original_regions), 'supplement_native_regions': len(new_regions),
+        'known_supplement_native_regions': len(known_regions),
+        'combined_native_regions': len(original_regions)+len(new_regions)+len(known_regions),
+        'original_tiles': original_part['tiles'], 'supplement_tiles': part['tiles'],
+        'known_supplement_tiles': known_part['tiles'], 'combined_tiles': original_part['tiles']+part['tiles']+known_part['tiles'],
+        'calibration_unchanged': True, 'derived_views_are_correlated': True}
+    require(selection['training_data_counts'] == expected, 'Supplement dataset population counts differ')
+
+
+def validate_known_supplement(selection, original_rows, unknown_rows):
+    """Validate historical known witnesses and the actual merged named TRAIN input."""
+    import train_unified_retention_face_balanced as trainer
+    import export_unified_retention_wide as historical
+    from merge_unified_weight_pairs import load_merged
+    from cache_unified_weight_teacher import load_cache as load_weight_cache
+    bindings = selection['bindings']
+    historical_selection = {**selection,
+        'known_data': selection['historical_known_data'],
+        'known_cache': selection['historical_known_cache']}
+    historical.validate_known_supplement(historical_selection, original_rows, unknown_rows)
+    data_path = source_entry(selection['known_data'], bindings)
+    cache_path = source_entry(selection['known_cache'], bindings)
+    objective = trainer.read(source_entry(selection['objective_plan'], bindings))
+    require(selection.get('known_cache_kind') == 'merged_known_b08_logits'
+            and sha(data_path) == trainer.WEIGHT_PAIRS_MANIFEST_SHA
+            and sha(cache_path) == objective['weight_teacher_cache_manifest_sha256'],
+            'Merged known data and recomputed b08 cache differ from the frozen weight trial')
+    merged = load_merged(data_path.parent)
+    replay_bindings = dict(bindings)
+    arrays, manifest, identity = load_weight_cache(cache_path.parent, merged,
+        selection['named_teacher_identity'], replay_bindings)
+    require(identity == selection['known_cache'] == selection['merged_known_teacher_cache']
+            and manifest['identity']['inference_device'] == 'mps'
+            and all(bindings.get(path) == digest for path, digest in replay_bindings.items())
+            and merged['families'] == selection['families']
+            and merged['manifest_sha256'] == sha(data_path)
+            and arrays['base_logits'].shape == (4820, 25)
+            and len(merged['rows']) == 2880 and merged['partition']['native_regions'] == 720,
+            'Actual merged pixels and named teacher provenance differ')
+    rows, part = merged['rows'], merged['partition']
+    old = {(row['source_id'], row['region_id']) for row in original_rows}
+    paired = {(row['source_id'], row['region_id']): row for row in unknown_rows}
+    require(not {(row['source_id'], row['region_id']) for row in rows}.intersection(old | set(paired)),
+            'Merged paired known images overlap an original TRAIN source')
+    for row in rows:
+        require(row['family'] in trainer.KNOWN_FAMILIES and row['target'] == selection['families'].index(row['family'])
+                and row['split'] == row['original_split'] == 'train' and row['native_font_verified'] is True,
+                'Merged named TRAIN labels or verification changed')
+        pair = row['pair_evidence']; counterpart = paired.get((pair['source_id'], pair['region_id']))
+        require(counterpart is not None and counterpart['family'] == pair['training_family'] == '__unknown__'
+                and counterpart['source_font_family'] == pair['font_family']
+                and counterpart['normalized_text_sha256'] == pair['normalized_text_sha256'] == row['normalized_text_sha256']
+                and counterpart['source_sha256'] == pair['source_image_sha256']
+                and counterpart['proof'] == pair['source_proof'] and counterpart['proof_sha256'] == pair['source_proof_sha256'],
+                'Merged known/unknown pair does not reference the bound unknown TRAIN truth')
+    return rows, part
+
+
+def validate_teacher_mix(mix, partitions):
+    """Allow single-target partitions while requiring both teachers in the union."""
+    require(set(mix) == set(partitions)
+            and all(item.get('tiles') == item.get('named_teacher_tiles', 0) + item.get('unknown_teacher_tiles', 0)
+                    and item.get('named_teacher_tiles', -1) >= 0
+                    and item.get('unknown_teacher_tiles', -1) >= 0
+                    and all(isinstance(item.get(key), str) and len(item[key]) == 64
+                            for key in ('logits_sha256', 'labels_sha256')) for item in mix.values())
+            and sum(item['named_teacher_tiles'] for item in mix.values()) > 0
+            and sum(item['unknown_teacher_tiles'] for item in mix.values()) > 0,
+            'True-target teacher mixture evidence differs')
+
+
+def validate_training_teacher(selection, data):
+    """Require b08 named logits and distinct pinned R21 unknown logits."""
+    import train_unified_retention_face_balanced as trainer
+    import retention_r21_teacher_cache as r21
+    from cache_unified_student_teacher import load_cache, PARTITIONS, ORDER
+    bindings = selection['bindings']; path = source_entry(selection['named_teacher_cache'], bindings)
+    require(isinstance(trainer.TEACHER_CACHE_SHA, str) and sha(path) == trainer.TEACHER_CACHE_SHA
+            and selection['named_teacher_identity'] == selection['student_initializer']
+            and selection['named_teacher_state_sha256'] == selection['named_teacher_identity']['state_sha256']
+            != selection['initial_state_sha256']
+            and selection['historical_core_caches_used_for_training'] is False,
+            'Named TRAIN logits must come from narrow b08, not widened or historical core weights')
+    arrays, manifest = load_cache(path.parent)
+    identity = manifest['identity']
+    require(identity['teacher'] == selection['named_teacher_identity'] and identity['families'] == selection['families']
+            and identity['teacher_logits_recomputed'] is True and identity['historical_logits_reused'] is False
+            and all(bindings.get(name) == digest for name, digest in identity['bindings'].items()),
+            'Recomputed TRAIN teacher provenance or source closure differs')
+    roots = {'original': Path(data).resolve(),
+        'supplement': source_entry(selection['supplement_data'], bindings).parent,
+        'known': source_entry(selection['historical_known_data'], bindings).parent}
+    total = 0
+    for name in PARTITIONS:
+        descriptor = identity['partitions'][name]; root = roots[name]
+        manifest_path = root/'MANIFEST.json'; part_path = root/'train/MANIFEST.json'; part = trainer.read(part_path)
+        require(descriptor['data_manifest'] == {'path': str(manifest_path), 'sha256': sha(manifest_path)}
+                and descriptor['partition_manifest'] == {'path': str(part_path), 'sha256': sha(part_path)}
+                and descriptor['split'] == part['split'] == 'train' and part['families'] == selection['families']
+                and descriptor['region_count'] == part['views'] and descriptor['tile_count'] == part['tiles']
+                and descriptor['shape'] == part['shape'] and descriptor['order'] == ORDER,
+                'Teacher logical partition does not match the actual bound TRAIN dataset')
+        for output, field in (('rows', 'metadata'), ('tiles', 'array')):
+            expected = {'path': str((root/'train'/part[field]['path']).resolve()), 'sha256': part[field]['sha256']}
+            require(descriptor[output] == expected, 'Teacher TRAIN row or tile order changed')
+            source_entry(expected, bindings)
+        require(arrays[name]['base_logits'].shape == (part['tiles'], 25), 'Teacher output tile count differs')
+        item = manifest['partitions'][name]['base_logits']
+        source_entry({'path': str(path.parent/item['path']), 'sha256': item['sha256']}, bindings)
+        total += part['tiles']
+    require(identity['total_tiles'] == total == 137230,
+            'Historical named teacher cache must retain its exact original three-source TRAIN union')
+    source_entry({'path': str(path.parent/'CACHE_FREEZE.json'), 'sha256': manifest['cache_freeze_sha256']}, bindings)
+    unknown = selection.get('unknown_teacher_identity', {})
+    require(unknown.get('state_sha256') == r21.STATE_SHA
+            and unknown['state_sha256'] not in (selection['named_teacher_state_sha256'], selection['base_state_sha256'])
+            and unknown.get('inference_report', {}).get('sha256') == trainer.R21_REPORT_SHA
+            and unknown.get('selection_policy') == trainer.TEACHER_POLICY
+            and selection.get('teacher_policy') == trainer.TEACHER_POLICY
+            and selection.get('offline_teacher_count') == 2
+            and selection.get('teacher_models_resident_during_optimizer') == 0,
+            'Pinned R21 unknown teacher or two-offline-teacher policy differs')
+    for entry in (unknown.get('checkpoint'), unknown.get('selection'), unknown.get('inference_report'),
+                  unknown.get('inference_freeze')):
+        source_entry(entry, bindings)
+    mix = selection.get('teacher_mix', {})
+    validate_teacher_mix(mix, PARTITIONS)
+    datasets = {'original': trainer.core.load_split(roots['original'], 'train'),
+        'supplement': trainer.load_supplement(roots['supplement']),
+        'known': trainer.load_known(roots['known'])}
+    replay_bindings = dict(bindings)
+    r21_arrays, r21_identity = r21.load_r21_train_logits(datasets, replay_bindings)
+    replay_mix = {}
+    for name, dataset in datasets.items():
+        targets = np.concatenate([np.full(row['tile_count'], row['target'], dtype=np.int64)
+                                  for row in dataset['rows']])
+        mask = targets == selection['families'].index('__unknown__')
+        values = np.where(mask[:, None], r21_arrays[name], arrays[name]['base_logits'])
+        replay_mix[name] = {'tiles': len(values), 'named_teacher_tiles': int((~mask).sum()),
+            'unknown_teacher_tiles': int(mask.sum()),
+            'logits_sha256': hashlib.sha256(values.tobytes()).hexdigest(),
+            'labels_sha256': hashlib.sha256(targets.tobytes()).hexdigest()}
+    historical_replay_mix = copy.deepcopy(replay_mix)
+    from merge_unified_weight_pairs import load_merged
+    from cache_unified_weight_teacher import load_cache as load_weight_cache
+    merged = load_merged(source_entry(selection['known_data'], bindings).parent)
+    named, merged_manifest, merged_identity = load_weight_cache(
+        source_entry(selection['known_cache'], bindings).parent, merged,
+        selection['named_teacher_identity'], replay_bindings)
+    targets = np.concatenate([np.full(row['tile_count'], row['target'], dtype=np.int64) for row in merged['rows']])
+    require((targets != 24).all() and named['base_logits'].shape == (len(targets), 25)
+            and selection['named_teacher_cache_used_partitions'] == ['original', 'supplement']
+            and selection['unknown_teacher_used_partitions'] == ['original', 'supplement']
+            and selection['known_cache_kind'] == 'merged_known_b08_logits'
+            and merged_identity == selection['known_cache'],
+            'Merged named data must use only its actual recomputed b08 teacher')
+    replay_mix['known'] = {'tiles': len(targets), 'named_teacher_tiles': len(targets), 'unknown_teacher_tiles': 0,
+        'logits_sha256': hashlib.sha256(named['base_logits'].tobytes()).hexdigest(),
+        'labels_sha256': hashlib.sha256(targets.tobytes()).hexdigest()}
+    require(r21_identity == unknown and historical_replay_mix == selection.get('historical_teacher_mix')
+            and all(bindings.get(name) == digest for name, digest in replay_bindings.items())
+            and replay_mix == mix and sum(part['tiles'] for part in replay_mix.values())
+                == selection['training_data_counts']['combined_tiles']
+            and all(r21_arrays[name].shape == arrays[name]['base_logits'].shape for name in PARTITIONS),
+            'Actual old/merged TRAIN teacher assignment or tile order differs')
+    return manifest
+
+
+def source_order_from_train(data, selection):
+    """Derive the source cycle from bound TRAIN metadata, without opening pixels."""
+    import train_unified_retention_face_balanced as trainer
+    folder = Path(data).resolve()/'train'
+    part_path = folder/'MANIFEST.json'; part = trainer.read(part_path)
+    require(part.get('split') == 'train' and part.get('families') == selection['families']
+            and selection['bindings'].get(str(part_path)) == sha(part_path), 'Unbound original TRAIN partition')
+    path = (folder/part['metadata']['path']).resolve()
+    require(path.parent == folder and selection['bindings'].get(str(path)) == part['metadata']['sha256'] == sha(path),
+            'Unbound original TRAIN source metadata')
+    rows = trainer.read(path); original = set()
+    for row in rows:
+        require(row.get('split') == 'train' and row.get('family') in selection['families']
+                and type(row.get('target')) is int and row['target'] == selection['families'].index(row['family']),
+                'Source-cycle derivation encountered invalid TRAIN labels')
+        if row['family'] == '__unknown__':
+            source = row.get('source_font_family')
+            require(isinstance(source, str) and source and row.get('domain') in ('ios', 'android'),
+                    'Unknown TRAIN source identity is missing')
+            original.add(source)
+    require(len(original) == 9 and not original.intersection(trainer.NEW_SOURCES),
+            'Expected nine original TRAIN unknown sources disjoint from the supplement')
+    order = sorted(original.union(trainer.NEW_SOURCES))
+    trainer.expected_unknown_counts(order, 0)
+    return order
+
+
+def replay_known_teacher_indices(counts, rows, logits):
+    """Recompute merged face exposure and b08 eligibility from sampled tile indices."""
+    from collections import Counter
+    require(isinstance(rows, list) and rows and isinstance(logits, np.ndarray)
+            and logits.dtype == np.float32 and logits.ndim == 2 and logits.shape == (4820, 25)
+            and bool(np.isfinite(logits).all()), 'Merged b08 replay tensors differ')
+    tile_rows = [None]*len(logits); offset = 0
+    expected_targets = {'LXGW WenKai': 10, 'WenQuanYi Micro Hei': 11}
+    expected_faces = {'LXGW WenKai': {'LXGWWenKai-Light', 'LXGWWenKai-Medium',
+        'LXGWWenKai-Regular'}, 'WenQuanYi Micro Hei': {'WenQuanYiMicroHei'}}
+    for row in rows:
+        count = row.get('tile_count'); target = row.get('target')
+        require(row.get('tile_start') == offset and type(count) is int and 1 <= count <= 8
+                and offset+count <= len(tile_rows) and target == expected_targets.get(row.get('family'))
+                and row.get('font_face') in expected_faces.get(row.get('family'), set())
+                and row.get('split') == row.get('original_split') == 'train'
+                and row.get('native_font_verified') is True,
+                'Merged row order or true label differs during sampled-index replay')
+        tile_rows[offset:offset+count] = [row]*count; offset += count
+    require(offset == len(tile_rows) and all(row is not None for row in tile_rows),
+            'Merged rows do not claim every b08 teacher tile')
+    histogram = counts.get('known_teacher_tile_index_counts')
+    require(isinstance(histogram, list) and histogram, 'Missing merged known sampled-index counts')
+    face_rows = Counter(); eligible_rows = Counter(); seen = set(); total = 0
+    for item in histogram:
+        index, count = item.get('tile_index'), item.get('rows')
+        require(type(index) is int and 0 <= index < len(tile_rows) and index not in seen
+                and type(count) is int and count > 0,
+                'Merged known sampled-index histogram is invalid')
+        seen.add(index); total += count; row = tile_rows[index]
+        key = (row['family'], row['font_face']); face_rows[key] += count
+        if int(np.argmax(logits[index])) == row['target']: eligible_rows[key] += count
+    reported = counts.get('known_supplement_face_rows')
+    require(isinstance(reported, list), 'Missing merged known face/mask counts')
+    expected = {(row.get('family'), row.get('font_face')):
+        (row.get('rows'), row.get('eligible_rows')) for row in reported}
+    require(len(expected) == len(reported) and total == 12000
+            and expected == {key:(value,eligible_rows[key]) for key,value in face_rows.items()},
+            'Sampled merged face totals or same-tile b08 eligibility differ')
+    return {'sampled_rows': total, 'unique_teacher_tiles': len(seen),
+        'teacher_cache_tiles': len(logits),
+        'face_rows': [{'family':family,'font_face':face,'rows':face_rows[(family,face)],
+            'eligible_rows':eligible_rows[(family,face)]} for family,face in sorted(face_rows)],
+        'teacher': 'b08', 'unknown_teacher_rows': 0, 'true_target_labels': True}
+
+
+def expected_family_counts(families, sampling, steps):
+    """Derive the fixed replay's family quotas from its slot allocations."""
+    from collections import Counter
+    named = [family for family in families if family != '__unknown__']
+    anchors = sampling.get('original_eight_families')
+    require(type(steps) is int and steps > 0 and len(families) == 25
+            and len(named) == 24 and len(set(families)) == 25
+            and isinstance(anchors, list) and len(anchors) == len(set(anchors)) == 8
+            and set(anchors) <= set(named)
+            and type(sampling.get('unknown')) is int and sampling['unknown'] > 0
+            and (sampling.get('base_known', 0)+sampling.get('known_supplement', 0)) % len(named) == 0
+            and sampling.get('ios_native_sfpro_helvetica', 0) % 2 == 0
+            and sampling.get('ios_native_original_eight', 0) % len(anchors) == 0,
+            'Face-balanced family quota inputs differ')
+    per_named = (sampling['base_known']+sampling['known_supplement'])//len(named)
+    counts = Counter({family: per_named*steps for family in named})
+    counts['__unknown__'] = sampling['unknown']*steps
+    counts['PingFang'] += sampling['ios_native_pingfang']*steps
+    system = sampling['ios_native_sfpro_helvetica']//2*steps
+    counts['SF Pro'] += system; counts['Helvetica'] += system
+    anchor = sampling['ios_native_original_eight']//len(anchors)*steps
+    for family in anchors:counts[family] += anchor
+    require(sum(counts.values()) == sampling['batch_size']*steps,
+            'Derived face-balanced family quotas do not fill every batch')
+    return dict(counts)
+
+
+def validate_counts(run, selection, data):
+    from collections import Counter
+    import train_unified_retention_face_balanced as trainer
+    run = Path(run)
+    require(sha(run/'SAMPLING.json') == selection['sampling_sha256']
+            and sha(run/'TRAINING_COUNTS.json') == selection['training_counts_sha256'], 'Full-CNN training counts changed')
+    sampling = trainer.read(run/'SAMPLING.json'); counts = trainer.read(run/'TRAINING_COUNTS.json')
+    trainer.validate_sampling_report(sampling, 6000)
+    require(all(key not in document for document in (counts, sampling)
+                for key in ('soft_unknown_supervision', 'unknown_binary_supervision')),
+            'Obsolete unknown supervision metadata in wide-transfer evidence')
+    trainer.validate_training_counts(counts, selection['families'], 6000)
+    order = source_order_from_train(data, selection)
+    expected_unknown = trainer.expected_unknown_counts(order, 96000)
+    expected_new = {source: expected_unknown[source] for source in trainer.NEW_SOURCES}
+    new_total = sum(expected_new.values()); old_unknown = 96000-new_total
+    require(selection.get('unknown_source_order') == counts['unknown_source_order'] == sampling.get('unknown_source_order') == order
+            and sampling.get('unknown_source_rows') == expected_unknown and sampling.get('unknown_rows') == 96000,
+            'Reported unknown cycle differs from the bound TRAIN source families')
+    require(counts.get('teacher_mask_verified_against_same_tile_argmax') is True,
+            'TRAIN masks must use same-tile selected-teacher argmax against truth')
+    slots = {key: trainer.SAMPLING[key]*6000 for key in ('base_known', 'known_supplement',
+        'ios_native_pingfang', 'ios_native_sfpro_helvetica', 'ios_native_original_eight')}
+    slots.update(base_unknown=old_unknown, supplement_unknown=new_total)
+    families = expected_family_counts(selection['families'], trainer.SAMPLING, 6000)
+    require(sampling['schema'] == 'flux-glyph-retention-face-balanced-sampling-v1'
+            and sampling.get('source_balanced') is True
+            and sampling['slots'] == slots and sampling['base']['known_rows'] == 276000
+            and sampling['base']['unknown_rows'] == old_unknown and sampling['supplement_source_rows'] == expected_new
+            and sampling['proposal_rows_discarded'] == 0 and sampling['test_read'] is False
+            and sampling['development_holdout_read'] is False
+            and counts['family_rows'] == sampling['family_rows'] == families
+            and counts['domain_rows'] == sampling['domain_rows']
+            and counts['supplement_rows'] == new_total and counts['original_rows'] == 564000-new_total
+            and counts['supplement_source_rows'] == expected_new
+            and sampling.get('known_supplement_rows') == counts['known_supplement_rows'] == 12000
+            and sampling.get('known_supplement_source_rows') == counts['known_supplement_source_rows'] == dict.fromkeys(trainer.KNOWN_FAMILIES, 6000)
+            and sampling.get('known_class_prior_changed') is False,
+            'Full-CNN original/supplement replay populations differ')
+    actual = {}
+    for row in sampling['source_rows']:
+        key = (row['domain'], row['source_font_family'], row['target_family'])
+        require(key not in actual and type(row['rows']) is int and row['rows'] > 0, 'Invalid actual sampler source accounting')
+        actual[key] = row['rows']
+    sources = {(row['domain'], row['source_font_family'], row['target_family']): row['rows']
+               for row in counts['source_target_rows']}
+    require(actual == sources and all(sources.get(('android', source, '__unknown__')) == expected_new[source] for source in trainer.NEW_SOURCES)
+            and all(type(n) is int and n >= 0 for group in ('view_rows', 'supplement_view_rows', 'known_supplement_view_rows') for n in sampling[group].values())
+            and sum(sampling['view_rows'].values()) == 576000
+            and set(sampling['view_rows']) <= set(trainer.SAMPLING['supplement_view_weights'])
+            and set(sampling['supplement_view_rows']) <= set(trainer.SAMPLING['supplement_view_weights'])
+            and sum(sampling['supplement_view_rows'].values()) == new_total
+            and all(n <= sampling['view_rows'].get(view, 0) for view, n in sampling['supplement_view_rows'].items()),
+            'Full-CNN teacher/source accounting differs from actual sampled examples')
+    part_path = source_entry(selection['known_data'], selection['bindings']).parent/'train/MANIFEST.json'
+    part = trainer.read(part_path); path = (part_path.parent/part['metadata']['path']).resolve()
+    require(path.parent == part_path.parent and selection['bindings'].get(str(part_path)) == sha(part_path)
+            and selection['bindings'].get(str(path)) == part['metadata']['sha256'] == sha(path),
+            'Known supplement count evidence is not bound to prepared TRAIN rows')
+    known_rows = trainer.read(path)
+    keys = {(row['source_id'], row['region_id'], row['view'], row['family']) for row in known_rows}
+    require(len(keys) == len(known_rows) and all((row['source_id'], row['region_id'], row['view'], row['family']) in keys
+            for row in counts['known_supplement_region_rows']), 'Counted known sample is absent from the actual paired TRAIN data')
+    views = Counter()
+    for row in counts['known_supplement_region_rows']:views[row['view']] += row['rows']
+    require(dict(views) == sampling['known_supplement_view_rows'] and sum(views.values()) == 12000
+            and set(views) <= set(trainer.SAMPLING['supplement_view_weights'])
+            and all(value <= sampling['view_rows'].get(view, 0) for view, value in views.items()),
+            'Known supplement view counts differ from the exact actual TRAIN regions')
+    from merge_unified_weight_pairs import load_merged
+    from cache_unified_weight_teacher import load_cache as load_weight_cache
+    merged = load_merged(source_entry(selection['known_data'], selection['bindings']).parent)
+    cache, _, identity = load_weight_cache(
+        source_entry(selection['known_cache'], selection['bindings']).parent, merged,
+        selection['named_teacher_identity'], dict(selection['bindings']))
+    require(identity == selection['known_cache'], 'Merged sampled-index replay cache identity differs')
+    return replay_known_teacher_indices(counts, merged['rows'], cache['base_logits'])
+
+
+def validate_compact_teacher_provenance(selection):
+    """Require compact historical/actual identities without copying cache source closures."""
+    for key in ('historical_known_data', 'historical_known_cache', 'known_data', 'known_cache',
+                'merged_known_teacher_cache', 'named_teacher_cache'):
+        item = selection.get(key)
+        require(isinstance(item, dict) and set(item) == {'path', 'sha256'}
+                and isinstance(item['path'], str) and item['path']
+                and isinstance(item['sha256'], str) and len(item['sha256']) == 64,
+                'Compact TRAIN data/cache identity differs: '+key)
+    require(selection['known_cache'] == selection['merged_known_teacher_cache']
+            and selection.get('historical_known_data_used_for_sampling') is False
+            and selection.get('historical_known_cache_used_for_optimizer') is False
+            and selection.get('named_teacher_cache_used_partitions') == ['original', 'supplement']
+            and selection.get('unknown_teacher_used_partitions') == ['original', 'supplement']
+            and selection.get('known_cache_kind') == 'merged_known_b08_logits'
+            and selection.get('teacher_mix', {}).get('known', {}).get('tiles') == 4820
+            and selection['teacher_mix']['known'].get('named_teacher_tiles') == 4820
+            and selection['teacher_mix']['known'].get('unknown_teacher_tiles') == 0,
+            'Historical and merged known teacher scopes differ')
+    validate_teacher_mix(selection['teacher_mix'], ('original', 'supplement', 'known'))
+    validate_teacher_mix(selection['historical_teacher_mix'], ('original', 'supplement', 'known'))
+
+
+def training_metadata(selection):
+    validate_compact_teacher_provenance(selection)
+    keys = ('historical_known_data', 'historical_known_cache', 'known_cache_kind',
+        'historical_known_data_used_for_sampling', 'historical_known_cache_used_for_optimizer',
+        'named_teacher_cache_used_partitions', 'unknown_teacher_used_partitions',
+        'objective_variant', 'objective', 'unknown_floor_supervision', 'sampling', 'unknown_source_order',
+        'design_changes', 'single_change_causal_attribution', 'supplement_data', 'supplement_cache', 'known_data', 'known_cache',
+        'student_initializer', 'named_teacher_identity', 'named_teacher_cache', 'named_teacher_state_sha256',
+        'unknown_teacher_identity', 'teacher_policy', 'teacher_mix', 'historical_teacher_mix',
+        'merged_known_teacher_cache', 'widening', 'widening_parity',
+        'offline_teacher_count', 'teacher_models_resident_during_optimizer',
+        'historical_core_caches_used_for_training', 'training_data_counts',
+        'objective_plan',
+        'base_checkpoint', 'base_selection', 'base_state_sha256', 'cache_manifest', 'initial_state_sha256',
+        'state_before_sha256', 'state_after_sha256',
+        'initial_parameter_groups_sha256', 'selected_parameter_groups_sha256', 'final_parameter_groups_sha256',
+        'training_counts_sha256', 'optimizer_steps_executed', 'source_optimizer_steps_executed', 'source_selected_step',
+        'base_selected_step', 'core_optimizer_steps_executed', 'training_device')
+    return {**{key: copy.deepcopy(selection[key]) for key in keys}, 'selected_step': selection['selected']['step'],
+        'all_parameters_trained': True, 'base_frozen': False, 'size_head_frozen': False, 'residual_head_trained': False,
+        'trainable_parameter_groups': list(GROUPS), 'frozen_parameter_groups': [],
+        'model_count': 1, 'encoder_count': 1, 'teacher_logits_used': True, 'second_model_resident': False,
+        'teacher_mask_verified_against_same_tile_argmax': True, 'teacher_distribution_kl': True,
+        'checkpoint_selection': selection['checkpoint_selection'],
+        'calibration_reused_for_prior_development': selection['calibration_reused_for_prior_development'],
+        'teacher_optimizer_steps': 0, 'teacher_cache_deployed': False, 'teacher_in_deployed_model': False,
+        'feature_cache_reused': False, 'teacher_cache_reused': True, 'training_inputs': ['image_tiles'],
+        'ocr_text_used': False, 'platform_routing': False, 'score_merging': False,
+        'development_holdout_is_blind_test': False}
+
+
+def metadata_for_export(selection, cal, parent_metadata, model_sha256, checkpoint_sha256,
+                        selection_sha256, runtime_record):
+    require(selection['promotion_allowed'] is True and runtime_record['promotion_allowed'] is True,
+            'A failed full-CNN candidate cannot be exported')
+    require_fixed_runtime(runtime_record); measured = runtime_record['metrics']
+    return {'schema': 'flux-glyph-unified-region-font-v1', 'algorithm': 'unified-region-cnn64x256-v1',
+        'font_mode': 'unified', 'data_kind': 'native_mobile_screenshots', 'network_architecture': ARCHITECTURE,
+        'model': {'path': 'model.onnx', 'sha256': model_sha256}, 'families': selection['families'],
+        **copy.deepcopy(FIXED_RUNTIME), 'font_label_groups': cal['manifest']['font_label_groups'],
+        'font_sources': copy.deepcopy(parent_metadata.get('font_sources', {})),
+        'release_tier': 'experimental', 'stable_validation_passed': False, 'test_passed': False,
+        'validation': {'kind': 'full_cnn_face_balanced_wide_transfer_calibration_only_at_export',
+            'calibration_passed': measured['passed'], 'retention_promotion_allowed': True,
+            'retention_plan_sha256': selection['retention_plan']['sha256'],
+            'fixed_runtime': copy.deepcopy(FIXED_RUNTIME), 'retention_checks': runtime_record['retention_checks'],
+            'retention_populations': {name: {key: population[key] for key in
+                ('views', 'named', 'correct_named', 'wrong_named', 'known_correct_coverage', 'named_precision', 'unknown_not_named_rate')}
+                for name, population in runtime_record['retention_populations'].items()},
+            'named_precision': measured['named_precision'], 'known_correct_coverage': measured['known_correct_coverage'],
+            'unknown_not_named_rate': measured['unknown_not_named_rate'], 'original_stable_calibration_checks': measured['checks'],
+            'model_count': 1, 'encoder_count': 1, 'teacher_in_deployed_model': False, 'platform_routing': False,
+            'scores_are_correctness_probabilities': False, 'blind_test_performed': False, 'development_holdout_evaluated': False},
+        'training': {**training_metadata(selection), 'selection_sha256': selection_sha256, 'checkpoint_sha256': checkpoint_sha256,
+            'data_manifest_sha256': selection['data_manifest_sha256'], 'retention_plan_sha256': selection['retention_plan']['sha256'],
+            'fixed_runtime': copy.deepcopy(FIXED_RUNTIME)}}
+
+
+def build_parity_report(selection, selection_sha256, checkpoint_sha256, model_sha256, metadata_sha256,
+                        source_bindings, calibration_bindings, maximum, max_size_px,
+                        calibration_regions, calibration_tiles, batches, measured):
+    """Build the exact persisted export parity record without model or data access."""
+    require(selection.get('training_device') in ('cpu', 'mps'), 'Missing training device provenance')
+    validate_compact_teacher_provenance(selection)
+    return {'schema': SCHEMA, 'passed': True, 'promotion_allowed': True, 'font_model_count': 1, 'encoder_count': 1,
+    'output_family_count': 25, 'network_architecture': ARCHITECTURE, 'selection_sha256': selection_sha256,
+    'historical_known_data': copy.deepcopy(selection['historical_known_data']),
+    'historical_known_cache': copy.deepcopy(selection['historical_known_cache']),
+    'historical_known_data_used_for_sampling': selection['historical_known_data_used_for_sampling'],
+    'historical_known_cache_used_for_optimizer': selection['historical_known_cache_used_for_optimizer'],
+    'known_cache_kind': selection['known_cache_kind'],
+    'named_teacher_cache_used_partitions': copy.deepcopy(selection['named_teacher_cache_used_partitions']),
+    'unknown_teacher_used_partitions': copy.deepcopy(selection['unknown_teacher_used_partitions']),
+    'supplement_data': copy.deepcopy(selection['supplement_data']),
+    'supplement_cache': copy.deepcopy(selection['supplement_cache']),
+    'known_data': copy.deepcopy(selection['known_data']), 'known_cache': copy.deepcopy(selection['known_cache']),
+    'student_initializer': copy.deepcopy(selection['student_initializer']),
+    'named_teacher_identity': copy.deepcopy(selection['named_teacher_identity']),
+    'named_teacher_cache': copy.deepcopy(selection['named_teacher_cache']),
+    'named_teacher_state_sha256': selection['named_teacher_state_sha256'],
+    'unknown_teacher_identity': copy.deepcopy(selection['unknown_teacher_identity']),
+    'teacher_policy': copy.deepcopy(selection['teacher_policy']),
+    'teacher_mix': copy.deepcopy(selection['teacher_mix']),
+    'historical_teacher_mix': copy.deepcopy(selection['historical_teacher_mix']),
+    'merged_known_teacher_cache': copy.deepcopy(selection['merged_known_teacher_cache']),
+    'widening': copy.deepcopy(selection['widening']),
+    'widening_parity': copy.deepcopy(selection['widening_parity']),
+    'offline_teacher_count': 2, 'teacher_models_resident_during_optimizer': 0,
+    'historical_core_caches_used_for_training': selection['historical_core_caches_used_for_training'],
+    'training_device': selection['training_device'],
+    'source_optimizer_steps_executed': selection['source_optimizer_steps_executed'],
+    'source_selected_step': selection['source_selected_step'],
+    'core_optimizer_steps_executed': selection['core_optimizer_steps_executed'],
+    'base_selected_step': selection['base_selected_step'],
+    'training_data_counts': copy.deepcopy(selection['training_data_counts']),
+    'checkpoint_sha256': checkpoint_sha256, 'model_sha256': model_sha256, 'metadata_sha256': metadata_sha256,
+    'source_bindings': copy.deepcopy(source_bindings), 'calibration_bindings': copy.deepcopy(calibration_bindings), 'fixed_runtime': FIXED_RUNTIME,
+    'retention_plan_sha256': selection['retention_plan']['sha256'], 'runtime_gates_changed': False,
+    'objective_plan': copy.deepcopy(selection['objective_plan']),
+    'base_checkpoint': selection['base_checkpoint'], 'base_selection': selection['base_selection'],
+    'base_state_sha256': selection['base_state_sha256'], 'cache_manifest': selection['cache_manifest'],
+    'all_parameters_trained': True, 'base_frozen': False, 'size_head_frozen': False, 'residual_head_trained': False,
+    'initial_state_sha256': selection['initial_state_sha256'],
+    'state_before_sha256': selection['state_before_sha256'], 'state_after_sha256': selection['state_after_sha256'],
+    'objective_variant': selection['objective_variant'], 'objective': copy.deepcopy(selection['objective']),
+    'training_counts_sha256': selection['training_counts_sha256'],
+    'unknown_floor_supervision': copy.deepcopy(selection['unknown_floor_supervision']),
+    'sampling': copy.deepcopy(selection['sampling']),
+    'unknown_source_order': copy.deepcopy(selection['unknown_source_order']),
+    'design_changes': copy.deepcopy(selection['design_changes']),
+    'single_change_causal_attribution': selection['single_change_causal_attribution'],
+    'initial_parameter_groups_sha256': copy.deepcopy(selection['initial_parameter_groups_sha256']),
+    'selected_parameter_groups_sha256': copy.deepcopy(selection['selected_parameter_groups_sha256']),
+    'final_parameter_groups_sha256': copy.deepcopy(selection['final_parameter_groups_sha256']),
+    'teacher_logits_used': True, 'teacher_distribution_kl': True,
+    'teacher_mask_verified_against_same_tile_argmax': True,
+    'checkpoint_selection': selection['checkpoint_selection'],
+    'calibration_reused_for_prior_development': selection['calibration_reused_for_prior_development'],
+    'second_model_resident': False, 'teacher_optimizer_steps': 0,
+    'teacher_cache_deployed': False, 'teacher_in_deployed_model': False,
+    'feature_cache_reused': False, 'teacher_cache_reused': True,
+    'export_parameters_unchanged': True, 'original_torch_groupnorm_reference': True,
+    'teacher_cache_unchanged': True, 'named_teacher_cache_unchanged': True,
+    'unknown_teacher_cache_unchanged': True, 'teacher_mix_reproduced': True,
+    'widened_initializer_reconstructed': True, 'narrow_initializer_unchanged': True,
+    'cached_training_outputs_reproduce_selected_metrics': True, 'cached_full_model_runtime_parity_passed': True,
+    'calibration_font_decisions_identical': True, 'calibration_runtime_reasons_identical': True,
+    'calibration_size_availability_identical': True, 'calibration_size_values_close': True,
+    'calibration_scores_close': True, 'max_absolute_errors': maximum, 'max_size_pixel_error': max_size_px,
+    'calibration_regions': calibration_regions, 'calibration_tiles': calibration_tiles, 'batch_checks': batches,
+    'frozen_retention_summary': strip_artifacts(selection['selected']), 'runtime_retention_summary': measured,
+    'runtime_calibration_metrics': measured['metrics'], 'test_read': False, 'development_holdout_read': False,
+    'user_images_read': False, 'training_cache_in_deployed_model': False}
+
+
+def export(args):
+    import torch
+    import onnx
+    import onnxruntime as ort
+    import train_unified_retention_face_balanced as trainer
+    from wide_region_network import WideRegionFontClassifier
+    from export_region_stable import replace_groupnorm
+    from prepare_unified_regions import load_split
+    from train_unified_regions import region_outputs
+    from flux_glyph.unified_font import UnifiedFontClassifier
+    run, data, output = (Path(value).resolve() for value in (args.run, args.data, args.output))
+    require(not output.exists() and not (run/'PARITY.json').exists(), 'Preserve earlier adapter export attempts')
+    selection = validate(run, data); selection_sha = sha(run/'SELECTION.json'); checkpoint_sha = sha(run/'model.pth')
+    sources = {str((ROOT/name).resolve()): sha(ROOT/name) for name in
+        ('training/export_unified_retention_face_balanced.py', 'training/train_unified_retention_face_balanced.py',
+         'training/retention_dual_teacher_loss.py', 'training/retention_confidence_floor_loss.py',
+         'training/train_unified_retention_confidence_floor.py',
+         'training/evaluate_unified_retention_face_balanced.py', 'training/wide_region_network.py',
+         'training/retention_r21_teacher_cache.py',
+         'training/merge_unified_weight_pairs.py', 'training/cache_unified_weight_teacher.py',
+         'training/retention_face_balanced_sampler.py',
+         'training/cache_unified_student_teacher.py',
+         'training/retention_paired_known_sampler.py', 'training/train_unified_retention_source_balanced.py',
+         'training/prepare_unified_known_supplement.py', 'training/cache_unified_known_supplement.py',
+         'training/retention_source_balanced_sampler.py',
+         'training/retention_supplement_sampler.py', 'training/prepare_unified_unknown_supplement.py',
+         'training/cache_unified_unknown_supplement.py', 'training/train_unified_retention_adapter.py',
+         'training/retention_adapter_network.py', 'training/export_unified_retention_core.py',
+         'training/export_unified_regions.py', 'training/export_region_stable.py',
+         'src/flux_glyph/unified_font.py', 'src/flux_glyph/region_font.py')}
+    evidence = dict(selection['bindings'])
+    for name in ('SELECTION.json', 'TRAINING_FREEZE.json', 'model.pth', 'CALIBRATION_OUTPUTS.npz',
+                 'CALIBRATION_DECISIONS.json', 'BASELINE.json', 'BASELINE_CALIBRATION_DECISIONS.json',
+                 'STUDENT_BASELINE.json', 'STUDENT_BASELINE_CALIBRATION_DECISIONS.json',
+                 'SAMPLING.json', 'TRAINING_COUNTS.json'):
+        evidence[str(run/name)] = sha(run/name)
+    for record in selection['history']:
+        for entry in record['artifacts'].values():evidence[str(run/entry['path'])] = entry['sha256']
+    checkpoint = torch.load(run/'model.pth', map_location='cpu', weights_only=True)
+    validate_checkpoint(checkpoint, selection, selection_sha)
+    step = torch.load(run/selection['selected']['artifacts']['checkpoint']['path'], map_location='cpu', weights_only=True)
+    require(step['architecture'] == ARCHITECTURE and step['families'] == selection['families']
+            and step['step'] == selection['selected']['step'] and step['training_protocol_sha256'] == selection['training_protocol_sha256']
+            and state_sha(step['state_dict']) == selection['state_after_sha256'], 'Final adapter differs from the selected saved checkpoint')
+    base = torch.load((ROOT/selection['base_checkpoint']['path']).resolve(), map_location='cpu', weights_only=True)
+    require(base['selection_sha256'] == selection['base_selection']['sha256'] and base['families'] == selection['families']
+            and base['architecture'] == trainer.core.ARCHITECTURE
+            and state_sha(base['state_dict']) == selection['base_state_sha256'], 'Historical core CNN state differs')
+    initial = torch.load((ROOT/selection['student_initializer']['checkpoint']['path']).resolve(), map_location='cpu', weights_only=True)
+    require(initial.get('families') == selection['families'] and initial.get('architecture') == trainer.narrow.ARCHITECTURE
+            and initial.get('selection_sha256') == selection['student_initializer']['selection']['sha256']
+            and state_sha(initial['state_dict']) == selection['student_initializer']['state_sha256']
+            == selection['named_teacher_state_sha256'] != selection['initial_state_sha256']
+            and selection['named_teacher_identity'] == selection['student_initializer'],
+            'Narrow b08 initializer and named teacher identity differ')
+    reconstructed = reconstruct_widened_initializer(initial, selection)
+    last = torch.load(run/selection['history'][-1]['artifacts']['checkpoint']['path'], map_location='cpu', weights_only=True)
+    require(last['step'] == 6000 and last['architecture'] == ARCHITECTURE and last['families'] == selection['families']
+            and last['training_protocol_sha256'] == selection['training_protocol_sha256'], 'Final full-CNN step identity differs')
+    for name in GROUPS:
+        group = {key: value for key, value in last['state_dict'].items() if key.startswith(name+'.')}
+        require(group and state_sha(group) == selection['final_parameter_groups_sha256'][name], 'Final full-CNN group differs')
+    reference = WideRegionFontClassifier(25).cpu().eval(); reference.load_state_dict(checkpoint['state_dict'], strict=True)
+    require(not any(name.startswith(RESIDUAL_PREFIX) for name in reference.state_dict())
+            and sum(isinstance(module, torch.nn.GroupNorm) for module in reference.modules()) == 4,
+            'Full-CNN reference must retain one original four-GroupNorm encoder and no residual head')
+    converted = copy.deepcopy(reference)
+    require(replace_groupnorm(converted, high_precision=True) == 4
+            and state_sha(converted.state_dict()) == selection['state_after_sha256'], 'GroupNorm lowering changed adapter parameters')
+    cal = load_split(data, 'calibration')
+    plan = trainer.core.read_plan((ROOT/selection['retention_plan']['path']).resolve(), data, (ROOT/selection['parent_checkpoint']['path']).resolve())
+    torch.set_num_threads(4); output.mkdir(parents=True); model_path = output/'model.onnx'
+    torch.onnx.export(converted, torch.zeros(2, 1, 64, 256), model_path, input_names=['tiles'],
+        output_names=['logits', 'log_em_ratio'], dynamic_axes={'tiles': {0: 'batch'}, 'logits': {0: 'batch'}, 'log_em_ratio': {0: 'batch'}},
+        opset_version=17, dynamo=False)
+    onnx.checker.check_model(onnx.load(model_path))
+    options = ort.SessionOptions(); options.intra_op_num_threads = options.inter_op_num_threads = 1
+    session = ort.InferenceSession(str(model_path), sess_options=options, providers=['CPUExecutionProvider'])
+    actual_logits, actual_sizes, reference_logits, reference_sizes = [], [], [], []
+    maximum = {'logits': 0., 'size': 0.}
+    with torch.inference_mode():
+        for start in range(0, len(cal['tiles']), 128):
+            block = np.array(cal['tiles'][start:start+128], copy=True); stop = start+len(block)
+            logits_tensor, sizes_tensor = reference(torch.from_numpy(block))
+            logits, sizes = logits_tensor.numpy(), sizes_tensor.numpy()
+            out, size = session.run(['logits', 'log_em_ratio'], {'tiles': block})
+            for key, observed, expected in [('logits', out, logits), ('size', size, sizes)]:
+                np.testing.assert_allclose(observed, expected, atol=2e-4, rtol=2e-4)
+                maximum[key] = max(maximum[key], float(np.max(np.abs(observed-expected))))
+            actual_logits.append(out); actual_sizes.append(size); reference_logits.append(logits); reference_sizes.append(sizes)
+    actual_logits, actual_sizes = np.concatenate(actual_logits), np.concatenate(actual_sizes)
+    reference_logits, reference_sizes = np.concatenate(reference_logits), np.concatenate(reference_sizes)
+    with np.load(run/'CALIBRATION_OUTPUTS.npz', allow_pickle=False) as saved:
+        np.testing.assert_allclose(reference_logits, saved['logits'], atol=3e-4, rtol=3e-4)
+        np.testing.assert_allclose(reference_sizes, saved['log_em_ratio'], atol=3e-4, rtol=3e-4)
+        cached_outputs = region_outputs(saved['logits'], saved['log_em_ratio'], cal['rows'], 1.)
+    actual = region_outputs(actual_logits, actual_sizes, cal['rows'], 1.)
+    expected = region_outputs(reference_logits, reference_sizes, cal['rows'], 1.)
+    max_size_px = max(compare_runtime_outputs(actual, other, cal['rows'], selection['families']) for other in (expected, cached_outputs))
+    measured, _, _ = evaluate_outputs(actual_logits, actual_sizes, cal, plan, selection['selected']['step'])
+    require(measured['promotion_allowed'] is True
+            and len(measured['retention_checks']) == 46
+            and measured['retention_checks'] == selection['selected']['retention_checks']
+            and measured['metrics']['checks'] == selection['selected']['metrics']['checks']
+            and measured['metrics']['passed'] is selection['passed']
+            and all(measured['metrics'][key] == selection['selected']['metrics'][key]
+                    for key in ('named', 'correct_named', 'wrong_named', 'unknown_wrongly_named')),
+            'Actual complete ONNX changed retention or stable CAL acceptance')
+    indices = np.unique(np.linspace(0, len(cal['tiles'])-1, min(256, len(cal['tiles']))).astype(int))
+    samples = np.array(cal['tiles'][indices], copy=True); batches = []
+    for count in (1, 7, 32, 128):
+        values = [session.run(['logits', 'log_em_ratio'], {'tiles': samples[start:start+count]})
+                  for start in range(0, len(samples), count)]
+        out, size = np.concatenate([value[0] for value in values]), np.concatenate([value[1] for value in values])
+        require(out.dtype == size.dtype == np.float32 and out.shape == (len(samples), 25) and size.shape == (len(samples),)
+                and np.isfinite(out).all() and np.isfinite(size).all(), 'Invalid dynamic adapter output')
+        np.testing.assert_allclose(out, reference_logits[indices], atol=2e-4, rtol=2e-4)
+        np.testing.assert_allclose(size, reference_sizes[indices], atol=2e-4, rtol=2e-4)
+        batches.append({'batch_size': count, 'samples': len(samples), 'passed': True, 'font_and_size_checked': True})
+    parent_meta = trainer.read((ROOT/selection['parent_metadata']['path']).resolve())
+    metadata = metadata_for_export(selection, cal, parent_meta, sha(model_path), checkpoint_sha, selection_sha, measured)
+    dump(output/'metadata.json', metadata); UnifiedFontClassifier(output)
+    require(validate(run, data) == selection and all(sha(path) == digest for path, digest in {**sources, **evidence}.items())
+            and state_sha(reference.state_dict()) == state_sha(converted.state_dict()) == selection['state_after_sha256'],
+            'Adapter evidence or weights changed during export')
+    report = build_parity_report(selection, selection_sha, checkpoint_sha, sha(model_path),
+        sha(output/'metadata.json'), sources, evidence, maximum, max_size_px, len(cal['rows']),
+        len(cal['tiles']), batches, measured)
+    dump(run/'PARITY.json', report)
+    print(json.dumps({'passed': True, 'promotion_allowed': True, 'model_sha256': report['model_sha256'],
+                      'calibration_regions': len(cal['rows']), 'maximum_errors': maximum}), flush=True)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    for name in ('run', 'data', 'output'):parser.add_argument('--'+name, type=Path, required=True)
+    export(parser.parse_args())
