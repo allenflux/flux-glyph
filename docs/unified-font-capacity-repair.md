@@ -1,6 +1,6 @@
 # 统一字体模型的容量与字重修复
 
-加宽、文楷字重均衡、类别间距辅助三轮单一字体／字号 CNN 均已在本地完成 6,000 步，分别通过 41、43、45／46 项校准验收。后续单向教师约束轮也完成 6,000 步，通过 40／46 项，仍未导出或部署。线上仍为 `r21-unified-font-v1-preview`。文楷增权轮已完成 6,000 步并通过 45／46 项；文楷已达标，微米黑仍差 5 个样本达标，正在继续修复。本阶段继续保留 24 个具名字体和未知类、同一套 46 项校准验收条件和 18 项开发回归条件；模型输入仍只有图像块。
+当前仓库发布包为实验版 `r22-unified-font-retention-v1-preview`。微米黑恢复轮已完成本地 MPS 固定 6,000 步，原 46 项 retention 条件、18 项重复开发回归、单 ONNX 全量字体／字号一致性和动态批次检查均已通过，本地 Docker 下载与独立 CLI 交付验证也已完成。CAL 和开发集都已被复用，不是盲测；通用稳定验收未通过，TEST 未执行，模型仍为实验版。实际服务版本以 `/api/health` 与 `/api/models/font` 为准。本阶段继续保留 24 个具名字体和未知类；模型输入仍只有图像块。
 
 ## 已完成的损失实验
 
@@ -99,6 +99,16 @@
 
 结果记录 `artifacts/unified-font-v3/WENKAI_RECOVERY_TRIAL_RESULT.json` 的 SHA-256 为 `2fd81bb22e107b6a61eabf689c045f93ddf234d6c2a3358b2dfb3435030e7fef`。后续保持这项文楷改动，只给真实 TRAIN 微米黑样本增加四分之一份平滑交叉熵，使其权重从 1 到 1.25。12 个实际 TRAIN 批次的梯度检查通过：新增项只改变预定微米黑行的分类梯度，文楷、其他类别、完整教师 KL、字号和类别间距辅助项在同样权重下保持原值及梯度。
 
-微米黑恢复轮方案 SHA-256 为 `d8a6f96275a77f6909a43df569be585c71481e6af6519325af346f46066bad35`，已在本机 MPS 启动另一轮固定 6,000 步训练，尚无新结果。
+微米黑恢复轮方案 SHA-256 为 `d8a6f96275a77f6909a43df569be585c71481e6af6519325af346f46066bad35`。本轮已在本机 MPS 完成固定 6,000 步训练，原 46 项 retention 条件全部通过。文楷正确命名为 456／868，微米黑为 209／868；原生 PingFang 锚点为 350／362、SF Pro 为 127／129、Helvetica 为 52／52，三组误命名均为 0。shared PingFang、SF Pro、Helvetica 正确命名分别为 1,413、697、434，也都超过计划参考线。
+
+这些参考线需要和原始 R21 数字分开解释。文楷覆盖率为 52.5346%，仍比 raw R21 低 2.1890 个百分点，但高于计划允许的下限 0.8111 个百分点；微米黑覆盖率为 24.0783%，比 raw R21 低 0.4608 个百分点，但高于允许下限 2.5392 个百分点。shared PingFang 的计划下限 1,372 来自计划注明的更强 R20 参考，而 raw R21 为 1,217；不能把所有计划参考线都直接写成 raw R21。整体、iOS、Android 的命名精度和已知覆盖相对 raw R21 均有提高，但 iOS 未知误命名由 40 增至 49，仍是限制。
+
+本轮复用了已经被多轮开发使用的 CAL，结果不是盲测。`promotion_allowed` 表示 46 项 retention 通过；通用 `passed` 和 `calibration_passed` 仍为 false，不能表述为通用稳定验收通过。试验结果记录 `artifacts/unified-font-v3/MICRO_RECOVERY_TRIAL_RESULT.json` 的 SHA-256 为 `4541e7ed83d28633727cb98719edf612e7c63186e5da8c7962b5656ae18fad05`，权重 SHA-256 为 `53d73321c109825014fca96435f08a8c7a01ec6fe2abefa727855e1500d94c42`。
+
+导出的单 ONNX SHA-256 为 `a8aadf20ecf175b824618142b8bb3dafb9148c099046f83e161150c90b3d655b`，已经通过全量字体／字号一致性和批次 1、7、32、128 的动态批次检查。随后重复执行的开发回归 18／18 项全部通过，报告 `artifacts/unified-font-v3/run-wide-micro-recovery-v1/DEVELOPMENT_REGRESSION.json` 的 SHA-256 为 `af6ad00930131ecdf53083a5d3ce836fb4904de15c61f1f072c8bfc7b7f77c22`。相对 R21 开发基线，整体已知正确覆盖由 51.6571% 提高到 53.6966%，但命名精度由 96.4881% 回退到 96.3408%，未知不命名率由 98.3607% 回退到 96.9945%；这些回退都在预先规定的允许范围内。Android 也呈现覆盖提高、精度和未知拒绝回退的取舍，iOS 覆盖提高且精度与未知拒绝保持原水平，因此不能概括为所有指标全面提高。
+
+开发回归使用的是同一组受控区域和相关视图，历史初始化可能见过其中图片，不是盲测，也没有用于选择训练检查点。报告继续标记 `stable_validation_passed=false` 和 `test_passed=false`。
+
+实验版发布包 `r22-unified-font-retention-v1-preview` 已完成本地 Docker 交付验证。验证使用两张固定 TRAIN 页面，分别核对 API、直接调用和干净独立 CLI，共 6 组字体、字号与颜色结果一致；下载包内只含一个字体 ONNX。本地交付报告 `artifacts/unified-font-v3/delivery-micro-recovery-v1/REPORT.json` 的 SHA-256 为 `e5b27e69eb3d7ba1350c6cb9e96469878c2d7c4d65446639ce392b469334b771`。这些固定 TRAIN 页面只验证打包和调用链一致性，不是新的准确率评估。实际服务版本以 `/api/health` 与 `/api/models/font` 为准。
 
 另一个按真实类别／其他类别分解的教师损失通过了独立数值检查，但没有加入本轮训练；其思路参考 [Decoupled Knowledge Distillation](https://arxiv.org/abs/2203.08679)，本项目的单向变体尚无字体识别效果证据。

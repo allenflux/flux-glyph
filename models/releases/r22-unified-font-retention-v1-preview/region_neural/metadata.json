@@ -1,0 +1,2345 @@
+{
+  "schema": "flux-glyph-unified-region-font-v1",
+  "algorithm": "unified-region-cnn64x256-v1",
+  "font_mode": "unified",
+  "data_kind": "native_mobile_screenshots",
+  "network_architecture": "region-cnn64x256-unified-wide-v1",
+  "model": {
+    "path": "model.onnx",
+    "sha256": "a8aadf20ecf175b824618142b8bb3dafb9148c099046f83e161150c90b3d655b"
+  },
+  "families": [
+    "HarmonyOS Sans SC",
+    "MiSans",
+    "Noto Sans CJK SC",
+    "OPPO Sans",
+    "PingFang",
+    "SF Pro",
+    "Helvetica",
+    "Alipay Number",
+    "Roboto",
+    "Noto Serif CJK SC",
+    "LXGW WenKai",
+    "WenQuanYi Micro Hei",
+    "ZCOOL KuaiLe",
+    "ZCOOL XiaoWei",
+    "ZCOOL QingKe HuangYou",
+    "Ma Shan Zheng",
+    "FandolHei",
+    "FandolKai",
+    "FandolSong",
+    "Long Cang",
+    "Zhi Mang Xing",
+    "Kaiti SC",
+    "Songti SC",
+    "HanziPen SC",
+    "__unknown__"
+  ],
+  "temperature": 1.0,
+  "gates": {
+    "min_score": 0.7,
+    "min_margin": 0.01,
+    "min_patch_agreement": 0.6666666666666666
+  },
+  "max_size_relative_spread": 0.2,
+  "font_label_groups": {
+    "PingFang": [
+      "PingFang SC",
+      "PingFang TC",
+      "PingFang HK"
+    ],
+    "Noto Sans CJK SC": [
+      "Noto Sans CJK SC",
+      "Source Han Sans SC"
+    ],
+    "Noto Serif CJK SC": [
+      "Noto Serif CJK SC",
+      "Source Han Serif SC"
+    ]
+  },
+  "font_sources": {
+    "HarmonyOS Sans SC": [
+      "asset"
+    ],
+    "MiSans": [
+      "asset"
+    ],
+    "Noto Sans CJK SC": [
+      "asset"
+    ],
+    "OPPO Sans": [
+      "asset"
+    ],
+    "PingFang": [
+      "system"
+    ],
+    "SF Pro": [
+      "system"
+    ],
+    "Helvetica": [
+      "system"
+    ],
+    "Alipay Number": [
+      "asset"
+    ],
+    "Roboto": [
+      "asset"
+    ],
+    "Noto Serif CJK SC": [
+      "asset"
+    ],
+    "LXGW WenKai": [
+      "asset"
+    ],
+    "WenQuanYi Micro Hei": [
+      "asset"
+    ],
+    "ZCOOL KuaiLe": [
+      "asset"
+    ],
+    "ZCOOL XiaoWei": [
+      "asset"
+    ],
+    "ZCOOL QingKe HuangYou": [
+      "asset"
+    ],
+    "Ma Shan Zheng": [
+      "asset"
+    ],
+    "FandolHei": [
+      "asset"
+    ],
+    "FandolKai": [
+      "asset"
+    ],
+    "FandolSong": [
+      "asset"
+    ],
+    "Long Cang": [
+      "asset"
+    ],
+    "Zhi Mang Xing": [
+      "asset"
+    ],
+    "Kaiti SC": [
+      "asset"
+    ],
+    "Songti SC": [
+      "asset"
+    ],
+    "HanziPen SC": [
+      "asset"
+    ]
+  },
+  "release_tier": "experimental",
+  "stable_validation_passed": false,
+  "test_passed": false,
+  "validation": {
+    "kind": "fixed_runtime_wide_micro_recovery_retention_and_development_regression",
+    "calibration_passed": false,
+    "retention_promotion_allowed": true,
+    "retention_plan_sha256": "b82283b54b5e47f4639b0df62231544c0419f6299d10820d86dca96ef24094ff",
+    "fixed_runtime": {
+      "temperature": 1.0,
+      "gates": {
+        "min_score": 0.7,
+        "min_margin": 0.01,
+        "min_patch_agreement": 0.6666666666666666
+      },
+      "max_size_relative_spread": 0.2
+    },
+    "retention_checks": [
+      {
+        "population": "all",
+        "metric": "named_precision",
+        "operator": "ge",
+        "value": 0.9507448789571694,
+        "actual": 0.953301418119411,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "all",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.6333974319210967,
+        "actual": 0.6546740276657775,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "all",
+        "metric": "unknown_not_named_rate",
+        "operator": "ge",
+        "value": 0.8463347706781654,
+        "actual": 0.8475107800862407,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "ios",
+        "metric": "named_precision",
+        "operator": "ge",
+        "value": 0.989732368288167,
+        "actual": 0.990269580475355,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "ios",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.7525918341226161,
+        "actual": 0.7945731473185716,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "android",
+        "metric": "named_precision",
+        "operator": "ge",
+        "value": 0.9024796832673474,
+        "actual": 0.905039566847147,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "android",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.51130476649013,
+        "actual": 0.5231102551757343,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "android",
+        "metric": "unknown_not_named_rate",
+        "operator": "ge",
+        "value": 0.8330170777988615,
+        "actual": 0.8387096774193549,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "shared_pingfang",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 1372,
+        "actual": 1413,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "shared_pingfang",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 8,
+        "actual": 3,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "native_anchor_pingfang",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 346,
+        "actual": 350,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "native_anchor_pingfang",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 1,
+        "actual": 0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "shared_sf_pro",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 646,
+        "actual": 697,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "shared_sf_pro",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 2,
+        "actual": 0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "native_anchor_sf_pro",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 124,
+        "actual": 127,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "native_anchor_sf_pro",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 0,
+        "actual": 0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "shared_helvetica",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 412,
+        "actual": 434,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "shared_helvetica",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 0,
+        "actual": 0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "native_anchor_helvetica",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 50,
+        "actual": 52,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "native_anchor_helvetica",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 0,
+        "actual": 0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "original8_shared",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 5201,
+        "actual": 5516,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "original8_shared",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 16,
+        "actual": 8,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:HarmonyOS Sans SC",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.47582362728785355,
+        "actual": 0.5715474209650583,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:MiSans",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.7149596774193548,
+        "actual": 0.7368951612903226,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Noto Sans CJK SC",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.4082756368386675,
+        "actual": 0.41802743305029394,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:OPPO Sans",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.7984072249589491,
+        "actual": 0.8144499178981938,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:PingFang",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.6947287264420331,
+        "actual": 0.8423757852655626,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:SF Pro",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.832026862026862,
+        "actual": 0.9267399267399268,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Helvetica",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.8956360078277886,
+        "actual": 0.9726027397260274,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Alipay Number",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.9475280898876404,
+        "actual": 0.9747191011235955,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Roboto",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.49617328519855597,
+        "actual": 0.5631768953068592,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Noto Serif CJK SC",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.3743778801843318,
+        "actual": 0.39055299539170507,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:LXGW WenKai",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.5172350230414746,
+        "actual": 0.5253456221198156,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:WenQuanYi Micro Hei",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.21539170506912442,
+        "actual": 0.24078341013824886,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:ZCOOL KuaiLe",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.5414285714285714,
+        "actual": 0.5748847926267281,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:ZCOOL XiaoWei",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.7776036866359447,
+        "actual": 0.815668202764977,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:ZCOOL QingKe HuangYou",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.806405529953917,
+        "actual": 0.8237327188940092,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Ma Shan Zheng",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.5909677419354838,
+        "actual": 0.6451612903225806,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:FandolHei",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.050357142857142864,
+        "actual": 0.09821428571428571,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:FandolKai",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.57,
+        "actual": 0.6875,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:FandolSong",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.3866666666666667,
+        "actual": 0.4270833333333333,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Long Cang",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.75,
+        "actual": 0.78,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Zhi Mang Xing",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.5996296296296296,
+        "actual": 0.6481481481481481,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Kaiti SC",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.97,
+        "actual": 1.0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Songti SC",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.97,
+        "actual": 1.0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:HanziPen SC",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.97,
+        "actual": 1.0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      }
+    ],
+    "retention_populations": {
+      "all": {
+        "views": 18672,
+        "named": 11071,
+        "correct_named": 10554,
+        "wrong_named": 517,
+        "known_correct_coverage": 0.6546740276657775,
+        "named_precision": 0.953301418119411,
+        "unknown_not_named_rate": 0.8475107800862407
+      },
+      "ios": {
+        "views": 8256,
+        "named": 6269,
+        "correct_named": 6208,
+        "wrong_named": 61,
+        "known_correct_coverage": 0.7945731473185716,
+        "named_precision": 0.990269580475355,
+        "unknown_not_named_rate": 0.8893905191873589
+      },
+      "android": {
+        "views": 10416,
+        "named": 4802,
+        "correct_named": 4346,
+        "wrong_named": 456,
+        "known_correct_coverage": 0.5231102551757343,
+        "named_precision": 0.905039566847147,
+        "unknown_not_named_rate": 0.8387096774193549
+      },
+      "shared_pingfang": {
+        "views": 1688,
+        "named": 1416,
+        "correct_named": 1413,
+        "wrong_named": 3,
+        "known_correct_coverage": 0.8370853080568721,
+        "named_precision": 0.9978813559322034,
+        "unknown_not_named_rate": null
+      },
+      "native_anchor_pingfang": {
+        "views": 362,
+        "named": 350,
+        "correct_named": 350,
+        "wrong_named": 0,
+        "known_correct_coverage": 0.9668508287292817,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "shared_sf_pro": {
+        "views": 756,
+        "named": 697,
+        "correct_named": 697,
+        "wrong_named": 0,
+        "known_correct_coverage": 0.921957671957672,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "native_anchor_sf_pro": {
+        "views": 129,
+        "named": 127,
+        "correct_named": 127,
+        "wrong_named": 0,
+        "known_correct_coverage": 0.9844961240310077,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "shared_helvetica": {
+        "views": 448,
+        "named": 434,
+        "correct_named": 434,
+        "wrong_named": 0,
+        "known_correct_coverage": 0.96875,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "native_anchor_helvetica": {
+        "views": 52,
+        "named": 52,
+        "correct_named": 52,
+        "wrong_named": 0,
+        "known_correct_coverage": 1.0,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "original8_shared": {
+        "views": 7008,
+        "named": 5524,
+        "correct_named": 5516,
+        "wrong_named": 8,
+        "known_correct_coverage": 0.7871004566210046,
+        "named_precision": 0.998551774076756,
+        "unknown_not_named_rate": null
+      },
+      "family:HarmonyOS Sans SC": {
+        "views": 1202,
+        "named": 691,
+        "correct_named": 687,
+        "wrong_named": 4,
+        "known_correct_coverage": 0.5715474209650583,
+        "named_precision": 0.9942112879884226,
+        "unknown_not_named_rate": null
+      },
+      "family:MiSans": {
+        "views": 992,
+        "named": 732,
+        "correct_named": 731,
+        "wrong_named": 1,
+        "known_correct_coverage": 0.7368951612903226,
+        "named_precision": 0.9986338797814208,
+        "unknown_not_named_rate": null
+      },
+      "family:Noto Sans CJK SC": {
+        "views": 1531,
+        "named": 668,
+        "correct_named": 640,
+        "wrong_named": 28,
+        "known_correct_coverage": 0.41802743305029394,
+        "named_precision": 0.9580838323353293,
+        "unknown_not_named_rate": null
+      },
+      "family:OPPO Sans": {
+        "views": 1218,
+        "named": 992,
+        "correct_named": 992,
+        "wrong_named": 0,
+        "known_correct_coverage": 0.8144499178981938,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "family:PingFang": {
+        "views": 1751,
+        "named": 1478,
+        "correct_named": 1475,
+        "wrong_named": 3,
+        "known_correct_coverage": 0.8423757852655626,
+        "named_precision": 0.9979702300405954,
+        "unknown_not_named_rate": null
+      },
+      "family:SF Pro": {
+        "views": 819,
+        "named": 759,
+        "correct_named": 759,
+        "wrong_named": 0,
+        "known_correct_coverage": 0.9267399267399268,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "family:Helvetica": {
+        "views": 511,
+        "named": 497,
+        "correct_named": 497,
+        "wrong_named": 0,
+        "known_correct_coverage": 0.9726027397260274,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "family:Alipay Number": {
+        "views": 356,
+        "named": 347,
+        "correct_named": 347,
+        "wrong_named": 0,
+        "known_correct_coverage": 0.9747191011235955,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "family:Roboto": {
+        "views": 1108,
+        "named": 639,
+        "correct_named": 624,
+        "wrong_named": 15,
+        "known_correct_coverage": 0.5631768953068592,
+        "named_precision": 0.9765258215962441,
+        "unknown_not_named_rate": null
+      },
+      "family:Noto Serif CJK SC": {
+        "views": 868,
+        "named": 357,
+        "correct_named": 339,
+        "wrong_named": 18,
+        "known_correct_coverage": 0.39055299539170507,
+        "named_precision": 0.9495798319327731,
+        "unknown_not_named_rate": null
+      },
+      "family:LXGW WenKai": {
+        "views": 868,
+        "named": 461,
+        "correct_named": 456,
+        "wrong_named": 5,
+        "known_correct_coverage": 0.5253456221198156,
+        "named_precision": 0.9891540130151844,
+        "unknown_not_named_rate": null
+      },
+      "family:WenQuanYi Micro Hei": {
+        "views": 868,
+        "named": 215,
+        "correct_named": 209,
+        "wrong_named": 6,
+        "known_correct_coverage": 0.24078341013824886,
+        "named_precision": 0.9720930232558139,
+        "unknown_not_named_rate": null
+      },
+      "family:ZCOOL KuaiLe": {
+        "views": 868,
+        "named": 502,
+        "correct_named": 499,
+        "wrong_named": 3,
+        "known_correct_coverage": 0.5748847926267281,
+        "named_precision": 0.9940239043824701,
+        "unknown_not_named_rate": null
+      },
+      "family:ZCOOL XiaoWei": {
+        "views": 868,
+        "named": 709,
+        "correct_named": 708,
+        "wrong_named": 1,
+        "known_correct_coverage": 0.815668202764977,
+        "named_precision": 0.998589562764457,
+        "unknown_not_named_rate": null
+      },
+      "family:ZCOOL QingKe HuangYou": {
+        "views": 868,
+        "named": 725,
+        "correct_named": 715,
+        "wrong_named": 10,
+        "known_correct_coverage": 0.8237327188940092,
+        "named_precision": 0.9862068965517241,
+        "unknown_not_named_rate": null
+      },
+      "family:Ma Shan Zheng": {
+        "views": 868,
+        "named": 584,
+        "correct_named": 560,
+        "wrong_named": 24,
+        "known_correct_coverage": 0.6451612903225806,
+        "named_precision": 0.958904109589041,
+        "unknown_not_named_rate": null
+      },
+      "family:FandolHei": {
+        "views": 112,
+        "named": 13,
+        "correct_named": 11,
+        "wrong_named": 2,
+        "known_correct_coverage": 0.09821428571428571,
+        "named_precision": 0.8461538461538461,
+        "unknown_not_named_rate": null
+      },
+      "family:FandolKai": {
+        "views": 80,
+        "named": 56,
+        "correct_named": 55,
+        "wrong_named": 1,
+        "known_correct_coverage": 0.6875,
+        "named_precision": 0.9821428571428571,
+        "unknown_not_named_rate": null
+      },
+      "family:FandolSong": {
+        "views": 96,
+        "named": 48,
+        "correct_named": 41,
+        "wrong_named": 7,
+        "known_correct_coverage": 0.4270833333333333,
+        "named_precision": 0.8541666666666666,
+        "unknown_not_named_rate": null
+      },
+      "family:Long Cang": {
+        "views": 100,
+        "named": 78,
+        "correct_named": 78,
+        "wrong_named": 0,
+        "known_correct_coverage": 0.78,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "family:Zhi Mang Xing": {
+        "views": 108,
+        "named": 70,
+        "correct_named": 70,
+        "wrong_named": 0,
+        "known_correct_coverage": 0.6481481481481481,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "family:Kaiti SC": {
+        "views": 21,
+        "named": 21,
+        "correct_named": 21,
+        "wrong_named": 0,
+        "known_correct_coverage": 1.0,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "family:Songti SC": {
+        "views": 20,
+        "named": 20,
+        "correct_named": 20,
+        "wrong_named": 0,
+        "known_correct_coverage": 1.0,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      },
+      "family:HanziPen SC": {
+        "views": 20,
+        "named": 20,
+        "correct_named": 20,
+        "wrong_named": 0,
+        "known_correct_coverage": 1.0,
+        "named_precision": 1.0,
+        "unknown_not_named_rate": null
+      }
+    },
+    "named_precision": 0.953301418119411,
+    "known_correct_coverage": 0.6546740276657775,
+    "unknown_not_named_rate": 0.8475107800862407,
+    "original_stable_calibration_checks": {
+      "named_precision": false,
+      "known_correct_coverage": false,
+      "per_family_coverage": false,
+      "native_known_top1": true,
+      "unknown_not_named": true,
+      "domains": false,
+      "size_median": true,
+      "size_p90": true,
+      "size_coverage": true
+    },
+    "model_count": 1,
+    "encoder_count": 1,
+    "teacher_in_deployed_model": false,
+    "platform_routing": false,
+    "scores_are_correctness_probabilities": false,
+    "blind_test_performed": false,
+    "development_holdout_evaluated": true,
+    "report_url": "/docs#font-model",
+    "output_family_count": 25,
+    "known_family_count": 24,
+    "score_merging": false,
+    "angular_margin_training_only": true,
+    "angular_margin_applies_at_inference": false,
+    "angular_margin_adds_deployment_parameters": false,
+    "wenkai_recovery_training_only": true,
+    "wenkai_recovery_applies_at_inference": false,
+    "wenkai_recovery_adds_deployment_parameters": false,
+    "wenkai_recovery_weighting": {
+      "family": "LXGW WenKai",
+      "training_scope": "True-label TRAIN rows only",
+      "base_known_ce_weight": 1.0,
+      "extra_known_ce_weight": 1.0,
+      "resulting_known_ce_weight": 2.0,
+      "label_smoothing": 0.03,
+      "denominator": 96,
+      "teacher_eligibility_gated": false,
+      "native_core_weighting_changed": false,
+      "angular_margin_weighting_changed": false,
+      "unknown_loss_changed": false,
+      "size_loss_changed": false,
+      "teacher_preservation_changed": false,
+      "labels_unchanged": true,
+      "adds_parameters": false,
+      "inference_rule": false,
+      "deployed_operator": false
+    },
+    "class_prior_weighting": true,
+    "inference_class_prior_changed": false,
+    "teacher_distribution_kl": true,
+    "micro_recovery_training_only": true,
+    "micro_recovery_applies_at_inference": false,
+    "micro_recovery_adds_deployment_parameters": false,
+    "micro_recovery_weighting": {
+      "family": "WenQuanYi Micro Hei",
+      "training_scope": "True-label TRAIN rows only",
+      "base_known_ce_weight": 1.0,
+      "extra_known_ce_weight": 0.25,
+      "resulting_known_ce_weight": 1.25,
+      "label_smoothing": 0.03,
+      "denominator": 96,
+      "teacher_eligibility_gated": false,
+      "wenkai_recovery_weighting_changed": false,
+      "native_core_weighting_changed": false,
+      "angular_margin_weighting_changed": false,
+      "unknown_loss_changed": false,
+      "size_loss_changed": false,
+      "teacher_preservation_changed": false,
+      "labels_unchanged": true,
+      "adds_parameters": false,
+      "inference_rule": false,
+      "deployed_operator": false
+    },
+    "runtime_gates_changed": false,
+    "retention_checks_passed": 46,
+    "retention_checks_total": 46,
+    "onnx_parity_passed": true,
+    "onnx_parity_is_accuracy_evaluation": false,
+    "development_comparison_passed": true,
+    "development_comparison": {
+      "passed": true,
+      "checks": [
+        {
+          "population": "all",
+          "metric": "named_precision",
+          "baseline": 0.9648809523809524,
+          "minimum": 0.9598809523809524,
+          "actual": 0.9634076615208691,
+          "passed": true
+        },
+        {
+          "population": "all",
+          "metric": "known_correct_coverage",
+          "baseline": 0.5165710643722116,
+          "minimum": 0.5065710643722116,
+          "actual": 0.5369662205226259,
+          "passed": true
+        },
+        {
+          "population": "all",
+          "metric": "unknown_not_named_rate",
+          "baseline": 0.9836065573770492,
+          "minimum": 0.9636065573770491,
+          "actual": 0.9699453551912568,
+          "passed": true
+        },
+        {
+          "population": "all",
+          "metric": "size.median_ape",
+          "maximum": 0.1,
+          "actual": 0.035666666666666735,
+          "passed": true
+        },
+        {
+          "population": "all",
+          "metric": "size.p90_ape",
+          "maximum": 0.25,
+          "actual": 0.09000000000000008,
+          "passed": true
+        },
+        {
+          "population": "all",
+          "metric": "size.coverage_of_correct_names",
+          "minimum": 0.7,
+          "actual": 1.0,
+          "passed": true
+        },
+        {
+          "population": "ios",
+          "metric": "named_precision",
+          "baseline": 1.0,
+          "minimum": 0.995,
+          "actual": 1.0,
+          "passed": true
+        },
+        {
+          "population": "ios",
+          "metric": "known_correct_coverage",
+          "baseline": 0.8640776699029126,
+          "minimum": 0.8540776699029126,
+          "actual": 0.9077669902912622,
+          "passed": true
+        },
+        {
+          "population": "ios",
+          "metric": "unknown_not_named_rate",
+          "baseline": 1.0,
+          "minimum": 0.98,
+          "actual": 1.0,
+          "passed": true
+        },
+        {
+          "population": "ios",
+          "metric": "size.median_ape",
+          "maximum": 0.1,
+          "actual": 0.019047619047619202,
+          "passed": true
+        },
+        {
+          "population": "ios",
+          "metric": "size.p90_ape",
+          "maximum": 0.25,
+          "actual": 0.07203137254901965,
+          "passed": true
+        },
+        {
+          "population": "ios",
+          "metric": "size.coverage_of_correct_names",
+          "minimum": 0.7,
+          "actual": 1.0,
+          "passed": true
+        },
+        {
+          "population": "android",
+          "metric": "named_precision",
+          "baseline": 0.9607190412782957,
+          "minimum": 0.9557190412782957,
+          "actual": 0.9590268886043534,
+          "passed": true
+        },
+        {
+          "population": "android",
+          "metric": "known_correct_coverage",
+          "baseline": 0.4921555252387449,
+          "minimum": 0.4821555252387449,
+          "actual": 0.5109140518417462,
+          "passed": true
+        },
+        {
+          "population": "android",
+          "metric": "unknown_not_named_rate",
+          "baseline": 0.9788732394366197,
+          "minimum": 0.9588732394366197,
+          "actual": 0.9612676056338029,
+          "passed": true
+        },
+        {
+          "population": "android",
+          "metric": "size.median_ape",
+          "maximum": 0.1,
+          "actual": 0.037171874999999965,
+          "passed": true
+        },
+        {
+          "population": "android",
+          "metric": "size.p90_ape",
+          "maximum": 0.25,
+          "actual": 0.09161249999999993,
+          "passed": true
+        },
+        {
+          "population": "android",
+          "metric": "size.coverage_of_correct_names",
+          "minimum": 0.7,
+          "actual": 1.0,
+          "passed": true
+        }
+      ],
+      "policy": {
+        "maximum_named_precision_drop": 0.005,
+        "maximum_known_coverage_drop": 0.01,
+        "maximum_unknown_withholding_drop": 0.02,
+        "maximum_size_median_ape": 0.1,
+        "maximum_size_p90_ape": 0.25,
+        "minimum_size_coverage_of_correct_names": 0.7,
+        "populations": [
+          "all",
+          "ios",
+          "android"
+        ],
+        "baseline_version": "r21-unified-font-v1-preview",
+        "is_blind_test": false,
+        "used_to_select_training_checkpoint": false
+      }
+    },
+    "development_policy_passed": false,
+    "test_read": false,
+    "historical_initialization_may_have_seen_development_sources": true,
+    "used_to_select_training_checkpoint": false,
+    "used_to_adjust_model_or_gates": false,
+    "derived_views_are_correlated": true,
+    "color_accuracy_evaluated": false,
+    "calibration": {
+      "views": 18672,
+      "known_views": 16121,
+      "unknown_views": 2551,
+      "named": 11071,
+      "correct_named": 10554,
+      "wrong_named": 517,
+      "named_precision": 0.953301418119411,
+      "known_correct_coverage": 0.6546740276657775,
+      "native_known_top1_accuracy": 0.9198473282442748,
+      "unknown_not_named_rate": 0.8475107800862407,
+      "explicit_unknown_recall": 0.2990983927871423,
+      "size": {
+        "correctly_named_with_size": 10554,
+        "coverage_of_correct_names": 1.0,
+        "median_ape": 0.025333333333333374,
+        "p90_ape": 0.07149999999999998
+      },
+      "by_domain": {
+        "ios": {
+          "views": 8256,
+          "known_views": 7813,
+          "unknown_views": 443,
+          "named": 6269,
+          "correct_named": 6208,
+          "wrong_named": 61,
+          "named_precision": 0.990269580475355,
+          "known_correct_coverage": 0.7945731473185716,
+          "native_known_top1_accuracy": 0.9856962557846024,
+          "unknown_not_named_rate": 0.8893905191873589,
+          "explicit_unknown_recall": 0.43340857787810383,
+          "size": {
+            "correctly_named_with_size": 6208,
+            "coverage_of_correct_names": 1.0,
+            "median_ape": 0.01862433862433871,
+            "p90_ape": 0.05312514619883041
+          }
+        },
+        "android": {
+          "views": 10416,
+          "known_views": 8308,
+          "unknown_views": 2108,
+          "named": 4802,
+          "correct_named": 4346,
+          "wrong_named": 456,
+          "named_precision": 0.905039566847147,
+          "known_correct_coverage": 0.5231102551757343,
+          "native_known_top1_accuracy": 0.8444872412132884,
+          "unknown_not_named_rate": 0.8387096774193549,
+          "explicit_unknown_recall": 0.2708728652751423,
+          "size": {
+            "correctly_named_with_size": 4346,
+            "coverage_of_correct_names": 1.0,
+            "median_ape": 0.03967028985507243,
+            "p90_ape": 0.09000000000000008
+          }
+        }
+      }
+    },
+    "development_regression": {
+      "views": 3504,
+      "known_views": 3138,
+      "unknown_views": 366,
+      "named": 1749,
+      "correct_named": 1685,
+      "wrong_named": 64,
+      "named_precision": 0.9634076615208691,
+      "known_correct_coverage": 0.5369662205226259,
+      "native_known_top1_accuracy": 0.8423855165069223,
+      "unknown_not_named_rate": 0.9699453551912568,
+      "explicit_unknown_recall": 0.9016393442622951,
+      "size": {
+        "correctly_named_with_size": 1685,
+        "coverage_of_correct_names": 1.0,
+        "median_ape": 0.035666666666666735,
+        "p90_ape": 0.09000000000000008
+      },
+      "by_domain": {
+        "ios": {
+          "views": 288,
+          "known_views": 206,
+          "unknown_views": 82,
+          "named": 187,
+          "correct_named": 187,
+          "wrong_named": 0,
+          "named_precision": 1.0,
+          "known_correct_coverage": 0.9077669902912622,
+          "native_known_top1_accuracy": 0.9902912621359223,
+          "unknown_not_named_rate": 1.0,
+          "explicit_unknown_recall": 1.0,
+          "size": {
+            "correctly_named_with_size": 187,
+            "coverage_of_correct_names": 1.0,
+            "median_ape": 0.019047619047619202,
+            "p90_ape": 0.07203137254901965
+          }
+        },
+        "android": {
+          "views": 3216,
+          "known_views": 2932,
+          "unknown_views": 284,
+          "named": 1562,
+          "correct_named": 1498,
+          "wrong_named": 64,
+          "named_precision": 0.9590268886043534,
+          "known_correct_coverage": 0.5109140518417462,
+          "native_known_top1_accuracy": 0.800818553888131,
+          "unknown_not_named_rate": 0.9612676056338029,
+          "explicit_unknown_recall": 0.8732394366197183,
+          "size": {
+            "correctly_named_with_size": 1498,
+            "coverage_of_correct_names": 1.0,
+            "median_ape": 0.037171874999999965,
+            "p90_ape": 0.09161249999999993
+          }
+        }
+      }
+    },
+    "development_native_regions": 1092,
+    "development_pages": 91,
+    "scope": "Repeated development regression on the same controlled native mobile regions and correlated views used for R21. Historical initialization may have seen images; neither a blind test nor a real-device accuracy estimate.",
+    "evidence_sha256": {
+      "parity": "96a94f60215b9b838e14bf98ef613e792c61c4df3555876a1fd68e805fda47d7",
+      "development_regression": "af6ad00930131ecdf53083a5d3ce836fb4904de15c61f1f072c8bfc7b7f77c22",
+      "development_freeze": "586e48474bea272acb070598db07ff6f7f736062ddfd53b62903fc12e9f798c4",
+      "baseline_development_regression": "8805f435e1e6f55f1094ebc9eccb2e0cc63dc3de72304542a3baec771c39fa49",
+      "exported_metadata": "35464dc28f6c198d4053825e45f037ac1aa1b80e2044c62db5f83d282861b8c3",
+      "retention_plan": "b82283b54b5e47f4639b0df62231544c0419f6299d10820d86dca96ef24094ff",
+      "objective_plan": "d8a6f96275a77f6909a43df569be585c71481e6af6519325af346f46066bad35",
+      "selection": "49bd22a905bda9ffda11822323c81423482085e10adb477aed90089fdf43618e",
+      "training_freeze": "29c1441bb052de737d11387a3ea0141b1a5c38171cc0461fabd996806167bb5a",
+      "training_counts": "cfefcadc98cc7a72a4eb2a0a2bab9ff7575f461cad599e8c48626651aa1eabf9",
+      "named_teacher_cache": "04e9f19a525f9b681f2f86d46bfcb2c2cad30e7e178a3858c68b4575f2b1d8ea",
+      "merged_known_data": "ec9b616538444741742f91414c7e66ae51bdf036c3956fdca9d6bdbbb7873b83",
+      "merged_known_teacher_cache": "17732d05f0102c6e384a4d234afdfc363adb94987ec300085485882e7593ef41",
+      "named_teacher_checkpoint": "b08c0e20e98835e55094debedcad495d579d478b8f793aa733601383bec87763",
+      "unknown_teacher_checkpoint": "960b210091f7c8b13a7283e6bd7f4a7e48e1bd7a1bf3a8d091d0fe11b4bf367e",
+      "unknown_teacher_inference": "4dc5fe667621f04567a6b89ce7e0f2695f04678defe742148db060fa07b5aa84"
+    }
+  },
+  "training": {
+    "angular_margin": {
+      "weight": 0.1,
+      "scale": 16.0,
+      "angle_radians": 0.1,
+      "denominator": 96,
+      "mask": "TRAIN rows whose true class is one of the 24 named families",
+      "row_weighting": "unchanged native-core row weights",
+      "features": "existing 256-dimensional style features",
+      "prototypes": "all 25 normalized family_head.weight rows; bias excluded",
+      "target_transform": "monotone cos(theta_y + angle_radians)",
+      "non_target_transform": "cos(theta_j)",
+      "monotone_threshold": "cos(theta_y) > -cos(angle_radians)",
+      "monotone_continuation": "cos(theta_y) - sin(angle_radians) * angle_radians",
+      "norm_epsilon": 1e-12,
+      "label_smoothing": 0.0,
+      "inference_rule": false,
+      "deployed_operator": false,
+      "unknown_rows_are_anchors": false,
+      "labels_unchanged": true,
+      "monotone_guard": true
+    },
+    "angular_margin_applies_at_inference": false,
+    "angular_margin_adds_deployment_parameters": false,
+    "wenkai_recovery_weighting": {
+      "family": "LXGW WenKai",
+      "training_scope": "True-label TRAIN rows only",
+      "base_known_ce_weight": 1.0,
+      "extra_known_ce_weight": 1.0,
+      "resulting_known_ce_weight": 2.0,
+      "label_smoothing": 0.03,
+      "denominator": 96,
+      "teacher_eligibility_gated": false,
+      "native_core_weighting_changed": false,
+      "angular_margin_weighting_changed": false,
+      "unknown_loss_changed": false,
+      "size_loss_changed": false,
+      "teacher_preservation_changed": false,
+      "labels_unchanged": true,
+      "adds_parameters": false,
+      "inference_rule": false,
+      "deployed_operator": false
+    },
+    "wenkai_recovery_applies_at_inference": false,
+    "wenkai_recovery_adds_deployment_parameters": false,
+    "micro_recovery_weighting": {
+      "family": "WenQuanYi Micro Hei",
+      "training_scope": "True-label TRAIN rows only",
+      "base_known_ce_weight": 1.0,
+      "extra_known_ce_weight": 0.25,
+      "resulting_known_ce_weight": 1.25,
+      "label_smoothing": 0.03,
+      "denominator": 96,
+      "teacher_eligibility_gated": false,
+      "wenkai_recovery_weighting_changed": false,
+      "native_core_weighting_changed": false,
+      "angular_margin_weighting_changed": false,
+      "unknown_loss_changed": false,
+      "size_loss_changed": false,
+      "teacher_preservation_changed": false,
+      "labels_unchanged": true,
+      "adds_parameters": false,
+      "inference_rule": false,
+      "deployed_operator": false
+    },
+    "micro_recovery_applies_at_inference": false,
+    "micro_recovery_adds_deployment_parameters": false,
+    "historical_known_data": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/paired-known-capture-v1/data/MANIFEST.json",
+      "sha256": "4caff363a62c4df7f58dd3f63fe271dff7c0e6a91952cd5bff7958e78d60e357"
+    },
+    "historical_known_cache": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/paired-known-capture-v1/cache/CACHE_MANIFEST.json",
+      "sha256": "bef47534a7088bb1cb8af2d13dfb540b1d02e406279b39ea519f0000fd3d3e5e"
+    },
+    "known_cache_kind": "merged_known_b08_logits",
+    "historical_known_data_used_for_sampling": false,
+    "historical_known_cache_used_for_optimizer": false,
+    "named_teacher_cache_used_partitions": [
+      "original",
+      "supplement"
+    ],
+    "unknown_teacher_used_partitions": [
+      "original",
+      "supplement"
+    ],
+    "objective_variant": "wide_cnn_face_balanced_angular_margin_wenkai_micro_ce_recovery",
+    "objective": {
+      "family_cross_entropy_label_smoothing": 0.03,
+      "native_core_weighting": {
+        "families": [
+          "PingFang",
+          "SF Pro",
+          "Helvetica"
+        ],
+        "split": "train",
+        "domain": "ios",
+        "view": "native",
+        "weight": 2.0,
+        "other_weight": 1.0,
+        "denominator": 96,
+        "size_loss_weighted": false,
+        "inference_rule": false
+      },
+      "unknown_loss_weight": 1.0,
+      "ce_denominator": 96,
+      "size_smooth_l1_weight": 0.2,
+      "size_loss_weighted": false,
+      "teacher_logits_used": true,
+      "second_model_resident": false,
+      "teacher_mask": "Selected same-tile TRAIN teacher argmax equals true target; known=b08, unknown=R21",
+      "teacher_cache_deployed": false,
+      "all_parameters_trained": true,
+      "inference_rules_changed": false,
+      "training_inputs": [
+        "image_tiles"
+      ],
+      "class_prior_weighting": true,
+      "unknown_floor_supervision": {
+        "minimum_unknown_probability": 0.5,
+        "loss": "relu(softplus(-unknown_log_odds) - log(2))",
+        "log_odds": "z_unknown - logsumexp(z_named)",
+        "applies_to": "TRAIN rows whose true class is __unknown__",
+        "named_conditional_distribution_target": null,
+        "known_label_smoothing": 0.03,
+        "labels_unchanged": true,
+        "inference_rule": false,
+        "penalizes_confidence_above_floor": false
+      },
+      "teacher_kl_weight": 2.0,
+      "teacher_temperature": 1.0,
+      "teacher_policy": {
+        "named_targets": "b08 frozen source-balanced CNN",
+        "unknown_target": "R21 frozen unified CNN",
+        "selection_input": "true TRAIN target only",
+        "mask": "selected same-tile teacher argmax equals true TRAIN target",
+        "temperature": 1.0,
+        "kl_weight": 2.0,
+        "offline_teacher_count": 2,
+        "teacher_models_resident_during_optimizer": 0,
+        "teacher_models_deployed": 0,
+        "inference_routing": false
+      },
+      "teacher_kl_reduction": "Mean eligible KL(teacher || student); differentiable zero if empty",
+      "teacher_distribution_kl": true,
+      "angular_margin": {
+        "weight": 0.1,
+        "scale": 16.0,
+        "angle_radians": 0.1,
+        "denominator": 96,
+        "mask": "TRAIN rows whose true class is one of the 24 named families",
+        "row_weighting": "unchanged native-core row weights",
+        "features": "existing 256-dimensional style features",
+        "prototypes": "all 25 normalized family_head.weight rows; bias excluded",
+        "target_transform": "monotone cos(theta_y + angle_radians)",
+        "non_target_transform": "cos(theta_j)",
+        "monotone_threshold": "cos(theta_y) > -cos(angle_radians)",
+        "monotone_continuation": "cos(theta_y) - sin(angle_radians) * angle_radians",
+        "norm_epsilon": 1e-12,
+        "label_smoothing": 0.0,
+        "inference_rule": false,
+        "deployed_operator": false,
+        "unknown_rows_are_anchors": false,
+        "labels_unchanged": true,
+        "monotone_guard": true
+      },
+      "wenkai_recovery_weighting": {
+        "family": "LXGW WenKai",
+        "training_scope": "True-label TRAIN rows only",
+        "base_known_ce_weight": 1.0,
+        "extra_known_ce_weight": 1.0,
+        "resulting_known_ce_weight": 2.0,
+        "label_smoothing": 0.03,
+        "denominator": 96,
+        "teacher_eligibility_gated": false,
+        "native_core_weighting_changed": false,
+        "angular_margin_weighting_changed": false,
+        "unknown_loss_changed": false,
+        "size_loss_changed": false,
+        "teacher_preservation_changed": false,
+        "labels_unchanged": true,
+        "adds_parameters": false,
+        "inference_rule": false,
+        "deployed_operator": false
+      },
+      "inference_class_prior_changed": false,
+      "micro_recovery_weighting": {
+        "family": "WenQuanYi Micro Hei",
+        "training_scope": "True-label TRAIN rows only",
+        "base_known_ce_weight": 1.0,
+        "extra_known_ce_weight": 0.25,
+        "resulting_known_ce_weight": 1.25,
+        "label_smoothing": 0.03,
+        "denominator": 96,
+        "teacher_eligibility_gated": false,
+        "wenkai_recovery_weighting_changed": false,
+        "native_core_weighting_changed": false,
+        "angular_margin_weighting_changed": false,
+        "unknown_loss_changed": false,
+        "size_loss_changed": false,
+        "teacher_preservation_changed": false,
+        "labels_unchanged": true,
+        "adds_parameters": false,
+        "inference_rule": false,
+        "deployed_operator": false
+      }
+    },
+    "unknown_floor_supervision": {
+      "minimum_unknown_probability": 0.5,
+      "loss": "relu(softplus(-unknown_log_odds) - log(2))",
+      "log_odds": "z_unknown - logsumexp(z_named)",
+      "applies_to": "TRAIN rows whose true class is __unknown__",
+      "named_conditional_distribution_target": null,
+      "known_label_smoothing": 0.03,
+      "labels_unchanged": true,
+      "inference_rule": false,
+      "penalizes_confidence_above_floor": false
+    },
+    "sampling": {
+      "batch_size": 96,
+      "base_known": 46,
+      "unknown": 16,
+      "base_unknown": null,
+      "supplement_unknown": null,
+      "source_balanced": true,
+      "unknown_source_count": 11,
+      "old_unknown_source_count": 9,
+      "supplement_sources": [
+        "WenQuanYi Zen Hei",
+        "Zhuque Fangsong"
+      ],
+      "unknown_selection": "Persistent round robin over sorted 11 TRAIN source families; no reset between batches.",
+      "old_new_allocation": "Dynamic actual counts from the combined source cycle, not fixed per-batch quotas.",
+      "original_unknown_selection": "Preserve source/domain/face cycling, weighted available view, then uniform region.",
+      "supplement_selection": "Preserve weighted view then uniform verified TRAIN region within the selected new source.",
+      "supplement_view_weights": {
+        "native": 0.4,
+        "half": 0.2,
+        "three_quarters_jpeg75": 0.2,
+        "jpeg75": 0.2
+      },
+      "ios_native_pingfang": 16,
+      "ios_native_sfpro_helvetica": 8,
+      "ios_native_original_eight": 8,
+      "original_eight_families": [
+        "HarmonyOS Sans SC",
+        "MiSans",
+        "Noto Sans CJK SC",
+        "OPPO Sans",
+        "PingFang",
+        "SF Pro",
+        "Helvetica",
+        "Alipay Number"
+      ],
+      "platform_labels_are_network_inputs": false,
+      "replacement_proposals_counted_as_training": false,
+      "known": 48,
+      "known_supplement": 2,
+      "known_supplement_families": [
+        "LXGW WenKai",
+        "WenQuanYi Micro Hei"
+      ],
+      "known_supplement_rows_per_source_per_batch": 1,
+      "known_sampling": "For each paired class, one old TRAIN row plus one new paired known row; other 22 classes retain two old rows.",
+      "known_supplement_selection": "WenKai cycles Light, Medium, Regular exactly; Micro uses its sole Regular face; then weighted view and uniform region.",
+      "known_class_prior_changed": false,
+      "limitation": "Paired Micro has one verified face; paired WenKai has exactly Light, Medium and Regular.",
+      "known_supplement_face_cycle": {
+        "LXGW WenKai": [
+          "Light",
+          "Medium",
+          "Regular"
+        ],
+        "WenQuanYi Micro Hei": [
+          "Regular"
+        ]
+      },
+      "known_supplement_wenkai_rows_per_face_at_6000_steps": 2000,
+      "known_total_wenkai_rows_per_face_at_6000_steps": 4000
+    },
+    "unknown_source_order": [
+      "Apple Chancery",
+      "Bradley Hand",
+      "Courier",
+      "Lato",
+      "Liu Jian Mao Cao",
+      "Noteworthy",
+      "Open Sans",
+      "Smiley Sans",
+      "Times",
+      "WenQuanYi Zen Hei",
+      "Zhuque Fangsong"
+    ],
+    "design_changes": [
+      "Add exactly 0.25 extra label-smoothed family CE for true WenQuanYi Micro Hei TRAIN rows, raising their family CE weight from 1 to 1.25.",
+      "Keep candidate 20 WenKai CE weight 2, full eligible-teacher KL, angular auxiliary, native-core weights, unknown floor, size loss, b08-to-wide initializer, face-balanced replay, data, schedule, architecture and runtime fixed."
+    ],
+    "single_change_causal_attribution": false,
+    "supplement_data": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/new-unknown-capture-v1/data/MANIFEST.json",
+      "sha256": "43aac66dfc3ce3a09fd0acd088dcda82450a7203997befd1e35aebe016713b05"
+    },
+    "supplement_cache": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/new-unknown-capture-v1/cache/CACHE_MANIFEST.json",
+      "sha256": "4c9114a8f49b7bbdb54d5c915a67643c6e4bef581ca195ecfe6264bf251e434b"
+    },
+    "known_data": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v3/paired-wenkai-weight-capture-v1/merged-data/MANIFEST.json",
+      "sha256": "ec9b616538444741742f91414c7e66ae51bdf036c3956fdca9d6bdbbb7873b83"
+    },
+    "known_cache": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v3/paired-wenkai-weight-capture-v1/teacher-cache/CACHE_MANIFEST.json",
+      "sha256": "17732d05f0102c6e384a4d234afdfc363adb94987ec300085485882e7593ef41"
+    },
+    "student_initializer": {
+      "checkpoint": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/run-source-balanced-v1/model.pth",
+        "sha256": "b08c0e20e98835e55094debedcad495d579d478b8f793aa733601383bec87763"
+      },
+      "selection": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/run-source-balanced-v1/SELECTION.json",
+        "sha256": "14825ee2c994aeb1a387f590f95ff4354efe6323ab92891230a47c69837002d8"
+      },
+      "training_freeze": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/run-source-balanced-v1/TRAINING_FREEZE.json",
+        "sha256": "3722b7a9d940fc069718e32c98bcb437dc01601470e5778160b3271fefc19d28"
+      },
+      "state_sha256": "ab820e0ba8672107d3a5aecc69a3dc6418a0496ced78c0e4f5e898f30db9435c",
+      "parameter_groups_sha256": {
+        "trunk": "3cdd0daef6b431a0ceb86f96969e75eac0571e94c10bd10624e199c76a459988",
+        "style": "22d21553fe7f52b91f0153a6180585e6f3eafde0c89d541971be6a4fddbee434",
+        "family_head": "680e374796beb5cc5007b98cbe131144e2900703283915276ba474130b11d9f1",
+        "size_head": "0c76216a865ba641d18b476766a6f5de7d5758bdbab5f90dccec603cae2245d1"
+      },
+      "selected_step": 1500,
+      "optimizer_steps_executed": 3000
+    },
+    "named_teacher_identity": {
+      "checkpoint": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/run-source-balanced-v1/model.pth",
+        "sha256": "b08c0e20e98835e55094debedcad495d579d478b8f793aa733601383bec87763"
+      },
+      "selection": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/run-source-balanced-v1/SELECTION.json",
+        "sha256": "14825ee2c994aeb1a387f590f95ff4354efe6323ab92891230a47c69837002d8"
+      },
+      "training_freeze": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/run-source-balanced-v1/TRAINING_FREEZE.json",
+        "sha256": "3722b7a9d940fc069718e32c98bcb437dc01601470e5778160b3271fefc19d28"
+      },
+      "state_sha256": "ab820e0ba8672107d3a5aecc69a3dc6418a0496ced78c0e4f5e898f30db9435c",
+      "parameter_groups_sha256": {
+        "trunk": "3cdd0daef6b431a0ceb86f96969e75eac0571e94c10bd10624e199c76a459988",
+        "style": "22d21553fe7f52b91f0153a6180585e6f3eafde0c89d541971be6a4fddbee434",
+        "family_head": "680e374796beb5cc5007b98cbe131144e2900703283915276ba474130b11d9f1",
+        "size_head": "0c76216a865ba641d18b476766a6f5de7d5758bdbab5f90dccec603cae2245d1"
+      },
+      "selected_step": 1500,
+      "optimizer_steps_executed": 3000
+    },
+    "named_teacher_cache": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/teacher-preserve-cache-v1/CACHE_MANIFEST.json",
+      "sha256": "04e9f19a525f9b681f2f86d46bfcb2c2cad30e7e178a3858c68b4575f2b1d8ea"
+    },
+    "named_teacher_state_sha256": "ab820e0ba8672107d3a5aecc69a3dc6418a0496ced78c0e4f5e898f30db9435c",
+    "unknown_teacher_identity": {
+      "checkpoint": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v1/run-v1/model.pth",
+        "sha256": "960b210091f7c8b13a7283e6bd7f4a7e48e1bd7a1bf3a8d091d0fe11b4bf367e"
+      },
+      "selection": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v1/run-v1/SELECTION.json",
+        "sha256": "5b99f17bfda9566a334abd81cffab9cf19e3da74aa38a20fc2405638248268f9"
+      },
+      "state_sha256": "247fb483cea5bdf3d7b45b90b0d95f58738fb937a065d19b8a8a9efb1f94a16e",
+      "inference_report": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v3/train-inference-audit-v1/REPORT.json",
+        "sha256": "4dc5fe667621f04567a6b89ce7e0f2695f04678defe742148db060fa07b5aa84"
+      },
+      "inference_freeze": {
+        "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v3/train-inference-audit-v1/INFERENCE_FREEZE.json",
+        "sha256": "d2b571ef033ac9628754c44647b4dadc13b64c24592cb0e003501bb17ba5eb26"
+      },
+      "outputs": {
+        "original": {
+          "logits": {
+            "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v3/train-inference-audit-v1/r21/original/logits.npy",
+            "sha256": "8b2e3af270eaf312ed2ea0a5423da01e4c5b05849e86a450af1849f8c6b62c7d"
+          },
+          "tiles": 130854
+        },
+        "supplement": {
+          "logits": {
+            "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v3/train-inference-audit-v1/r21/supplement/logits.npy",
+            "sha256": "4fb1bd0fc1f2e0b84a9f9239fdb240b4267bd13ac4cfdcc9f2492b6323a109b7"
+          },
+          "tiles": 3156
+        },
+        "known": {
+          "logits": {
+            "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v3/train-inference-audit-v1/r21/known/logits.npy",
+            "sha256": "1e89f8b902e3a07576e9eab30a362fdc4ab8cec955e2ab7c40248434eb44d9f4"
+          },
+          "tiles": 3220
+        }
+      },
+      "network_sources": {
+        "training/network.py": {
+          "path": "/Users/allenflux/PycharmProjects/flux-glyph/training/network.py",
+          "sha256": "ce52a705cecb29cd5a024fb5a8ec5d05a710c9bedc0998c870b366f2ff763f22"
+        },
+        "training/region_network.py": {
+          "path": "/Users/allenflux/PycharmProjects/flux-glyph/training/region_network.py",
+          "sha256": "aeca98a74d495942efebe9f82b2ef7b05cc8aafa60696e6ff7430b50eec4dbf2"
+        },
+        "training/train_regions.py": {
+          "path": "/Users/allenflux/PycharmProjects/flux-glyph/training/train_regions.py",
+          "sha256": "22ebda5259096110041a82aa8740e62eb3a8a719533ac32728fbdf7095646380"
+        }
+      },
+      "selection_policy": {
+        "named_targets": "b08 frozen source-balanced CNN",
+        "unknown_target": "R21 frozen unified CNN",
+        "selection_input": "true TRAIN target only",
+        "mask": "selected same-tile teacher argmax equals true TRAIN target",
+        "temperature": 1.0,
+        "kl_weight": 2.0,
+        "offline_teacher_count": 2,
+        "teacher_models_resident_during_optimizer": 0,
+        "teacher_models_deployed": 0,
+        "inference_routing": false
+      }
+    },
+    "teacher_policy": {
+      "named_targets": "b08 frozen source-balanced CNN",
+      "unknown_target": "R21 frozen unified CNN",
+      "selection_input": "true TRAIN target only",
+      "mask": "selected same-tile teacher argmax equals true TRAIN target",
+      "temperature": 1.0,
+      "kl_weight": 2.0,
+      "offline_teacher_count": 2,
+      "teacher_models_resident_during_optimizer": 0,
+      "teacher_models_deployed": 0,
+      "inference_routing": false
+    },
+    "teacher_mix": {
+      "original": {
+        "tiles": 130854,
+        "named_teacher_tiles": 122782,
+        "unknown_teacher_tiles": 8072,
+        "logits_sha256": "289247d0624455944cb6b3eef7aede624ca05be0c0554090eb5e1be0da31bf51",
+        "labels_sha256": "c760313faf3cd6e58fe8a6b83dda25407171538c56a9550010d471c8d1774035"
+      },
+      "supplement": {
+        "tiles": 3156,
+        "named_teacher_tiles": 0,
+        "unknown_teacher_tiles": 3156,
+        "logits_sha256": "3c390cf948d8cb599f4b5a870c9987cb74ba4cc5fc5c87d2bf59a4e9d2c50453",
+        "labels_sha256": "a7fd9741ee92cfc1259e39c5f69b2afd64c28255772c5bb44cd975439e9943b5"
+      },
+      "known": {
+        "tiles": 4820,
+        "named_teacher_tiles": 4820,
+        "unknown_teacher_tiles": 0,
+        "logits_sha256": "fd6a6d27d90126dde832544c8b9ecd3b2b9be4e9ccb5498279fe8f4570c8af87",
+        "labels_sha256": "b69003b480a236472c381c19b4bc57cda1312aed7cee50ac4660b64432cb7598"
+      }
+    },
+    "historical_teacher_mix": {
+      "original": {
+        "tiles": 130854,
+        "named_teacher_tiles": 122782,
+        "unknown_teacher_tiles": 8072,
+        "logits_sha256": "289247d0624455944cb6b3eef7aede624ca05be0c0554090eb5e1be0da31bf51",
+        "labels_sha256": "c760313faf3cd6e58fe8a6b83dda25407171538c56a9550010d471c8d1774035"
+      },
+      "supplement": {
+        "tiles": 3156,
+        "named_teacher_tiles": 0,
+        "unknown_teacher_tiles": 3156,
+        "logits_sha256": "3c390cf948d8cb599f4b5a870c9987cb74ba4cc5fc5c87d2bf59a4e9d2c50453",
+        "labels_sha256": "a7fd9741ee92cfc1259e39c5f69b2afd64c28255772c5bb44cd975439e9943b5"
+      },
+      "known": {
+        "tiles": 3220,
+        "named_teacher_tiles": 3220,
+        "unknown_teacher_tiles": 0,
+        "logits_sha256": "3b36df40bcd21333b701f4bc87aa27c9344206fc64949426158779c4f6103029",
+        "labels_sha256": "e7a18b76b2f2d3fbb4cac64789aa12cefe7432bf2a203818027f2eaead928d91"
+      }
+    },
+    "merged_known_teacher_cache": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v3/paired-wenkai-weight-capture-v1/teacher-cache/CACHE_MANIFEST.json",
+      "sha256": "17732d05f0102c6e384a4d234afdfc363adb94987ec300085485882e7593ef41"
+    },
+    "widening": {
+      "schema": "flux-glyph-wide-region-transfer-v1",
+      "method": "Net2Wider with whole-vector GroupNorm duplication",
+      "seed": 2026091414,
+      "family_count": 25,
+      "dtype": "float32",
+      "source_parameters": 365034,
+      "widened_parameters": 1450938,
+      "source_widths": [
+        32,
+        48,
+        64,
+        64,
+        192,
+        128
+      ],
+      "widened_widths": [
+        64,
+        96,
+        128,
+        128,
+        384,
+        256
+      ],
+      "source_groupnorm_groups": 8,
+      "widened_groupnorm_groups": 16,
+      "pool_shape": [
+        4,
+        4
+      ],
+      "single_encoder": true,
+      "score_merging": false,
+      "function_preserving_initialization": true,
+      "incoming_split_bounds": [
+        0.25,
+        0.75
+      ],
+      "incoming_split_ranges": {
+        "trunk.3.weight": {
+          "minimum": 0.2500028610229492,
+          "maximum": 0.7499945759773254
+        },
+        "trunk.6.weight": {
+          "minimum": 0.2500036656856537,
+          "maximum": 0.749998152256012
+        },
+        "trunk.9.weight": {
+          "minimum": 0.2500015199184418,
+          "maximum": 0.7499938607215881
+        },
+        "style.0.weight": {
+          "minimum": 0.25000032782554626,
+          "maximum": 0.7499993443489075
+        },
+        "style.2.weight": {
+          "minimum": 0.25002214312553406,
+          "maximum": 0.7499955296516418
+        },
+        "family_head.weight": {
+          "minimum": 0.25033697485923767,
+          "maximum": 0.7499051690101624
+        },
+        "size_head.weight": {
+          "minimum": 0.2503151297569275,
+          "maximum": 0.7492708563804626
+        }
+      }
+    },
+    "widening_parity": {
+      "passed": true,
+      "device": "mps",
+      "train_tiles": 384,
+      "indices": {
+        "original": [
+          103106,
+          22335,
+          96412,
+          53660,
+          65115,
+          20972,
+          65506,
+          47886,
+          27640,
+          112722,
+          103274,
+          83951,
+          117100,
+          45018,
+          65882,
+          1938,
+          25440,
+          84024,
+          25395,
+          113460,
+          43396,
+          91700,
+          19674,
+          75799,
+          3930,
+          35233,
+          40698,
+          51586,
+          65425,
+          93308,
+          64072,
+          20607,
+          125957,
+          89510,
+          46528,
+          51551,
+          93692,
+          80465,
+          52331,
+          73227,
+          13046,
+          115002,
+          108116,
+          130442,
+          116626,
+          22975,
+          30076,
+          21816,
+          42867,
+          40982,
+          28755,
+          89028,
+          42533,
+          39183,
+          32874,
+          94153,
+          113927,
+          44940,
+          59119,
+          19959,
+          29267,
+          71190,
+          102031,
+          89777,
+          100634,
+          99633,
+          37694,
+          46475,
+          13678,
+          25297,
+          29595,
+          68428,
+          111348,
+          65722,
+          83513,
+          68423,
+          25199,
+          56161,
+          105421,
+          46374,
+          13124,
+          99142,
+          45204,
+          126816,
+          100994,
+          100225,
+          111318,
+          7606,
+          6915,
+          75613,
+          113963,
+          38249,
+          100454,
+          18134,
+          109024,
+          60304,
+          19592,
+          38584,
+          92467,
+          7886,
+          114973,
+          58778,
+          98591,
+          73853,
+          38161,
+          126256,
+          49618,
+          62295,
+          67209,
+          110453,
+          65403,
+          72627,
+          87558,
+          128137,
+          62326,
+          38079,
+          85773,
+          55726,
+          44724,
+          115948,
+          7111,
+          121866,
+          37380,
+          89642,
+          93739,
+          42028,
+          54425,
+          16093
+        ],
+        "supplement": [
+          1152,
+          204,
+          2200,
+          847,
+          1366,
+          448,
+          2309,
+          2965,
+          557,
+          2365,
+          11,
+          556,
+          1015,
+          1616,
+          17,
+          2305,
+          998,
+          2697,
+          3077,
+          1194,
+          264,
+          2424,
+          2862,
+          2974,
+          2930,
+          1679,
+          519,
+          463,
+          1762,
+          1726,
+          295,
+          2369,
+          2934,
+          486,
+          219,
+          2595,
+          1656,
+          2603,
+          889,
+          732,
+          2183,
+          2828,
+          1163,
+          1615,
+          1930,
+          1217,
+          1793,
+          851,
+          256,
+          1184,
+          927,
+          1000,
+          2149,
+          800,
+          1920,
+          95,
+          2333,
+          3053,
+          1774,
+          2307,
+          2081,
+          1675,
+          3131,
+          699,
+          1841,
+          341,
+          465,
+          1670,
+          2786,
+          1249,
+          1387,
+          2314,
+          10,
+          1645,
+          2693,
+          19,
+          1534,
+          1296,
+          2382,
+          2251,
+          678,
+          1223,
+          627,
+          3066,
+          2003,
+          2486,
+          2556,
+          7,
+          2665,
+          2684,
+          3122,
+          1812,
+          360,
+          3136,
+          843,
+          2723,
+          2829,
+          1640,
+          598,
+          3052,
+          332,
+          517,
+          1514,
+          2375,
+          1264,
+          2239,
+          1262,
+          2537,
+          416,
+          278,
+          1614,
+          3008,
+          1936,
+          1530,
+          2911,
+          1658,
+          130,
+          1750,
+          564,
+          466,
+          1773,
+          2888,
+          415,
+          2406,
+          1102,
+          1166,
+          2956,
+          2824
+        ],
+        "known": [
+          4217,
+          1254,
+          1658,
+          1407,
+          1217,
+          901,
+          2566,
+          3056,
+          1875,
+          2519,
+          1046,
+          437,
+          3228,
+          2367,
+          1609,
+          3599,
+          3065,
+          3513,
+          1345,
+          2939,
+          528,
+          4001,
+          1221,
+          2975,
+          2103,
+          3446,
+          2341,
+          3064,
+          3011,
+          2255,
+          3563,
+          1853,
+          3202,
+          170,
+          1099,
+          1915,
+          2604,
+          1400,
+          4194,
+          4748,
+          1421,
+          725,
+          66,
+          2046,
+          1657,
+          2551,
+          537,
+          2834,
+          2044,
+          3675,
+          3915,
+          3461,
+          3679,
+          894,
+          1862,
+          3111,
+          2196,
+          2167,
+          1770,
+          4137,
+          3263,
+          4313,
+          2665,
+          1793,
+          4210,
+          388,
+          4076,
+          41,
+          655,
+          2533,
+          3850,
+          4654,
+          112,
+          4545,
+          523,
+          4257,
+          3964,
+          3210,
+          1175,
+          1411,
+          1429,
+          4639,
+          3713,
+          2628,
+          3150,
+          825,
+          4643,
+          4049,
+          101,
+          2130,
+          4526,
+          3725,
+          457,
+          452,
+          3382,
+          3462,
+          2983,
+          1859,
+          2029,
+          4757,
+          1084,
+          961,
+          636,
+          4278,
+          1930,
+          4550,
+          2488,
+          972,
+          12,
+          472,
+          4029,
+          74,
+          2304,
+          988,
+          416,
+          2242,
+          2009,
+          3396,
+          690,
+          1269,
+          4528,
+          3136,
+          3922,
+          3369,
+          3887,
+          2262,
+          2045,
+          3933
+        ]
+      },
+      "tiles_sha256": "22ea1f7331ff8f27a0f28e00c1a849d9a956b0503fb2d46e266593a3f69b458b",
+      "logits_max_abs_error": 3.24249267578125e-05,
+      "log_em_ratio_max_abs_error": 3.5762786865234375e-07,
+      "atol": 0.0003,
+      "rtol": 0.0003,
+      "source_state_sha256": "ab820e0ba8672107d3a5aecc69a3dc6418a0496ced78c0e4f5e898f30db9435c",
+      "wide_state_sha256": "69051cadc9d3d2e8eb788b5da449e7f53564130dae29b161e215535e784bc857",
+      "source_parameters_unchanged": true,
+      "wide_parameters_unchanged": true,
+      "optimizer_steps": 0,
+      "calibration_read": false,
+      "development_read": false,
+      "test_read": false
+    },
+    "offline_teacher_count": 2,
+    "teacher_models_resident_during_optimizer": 0,
+    "historical_core_caches_used_for_training": false,
+    "training_data_counts": {
+      "original_views": 70128,
+      "supplement_views": 1918,
+      "known_supplement_views": 2880,
+      "combined_views": 74926,
+      "original_native_regions": 19803,
+      "supplement_native_regions": 480,
+      "known_supplement_native_regions": 720,
+      "combined_native_regions": 21003,
+      "original_tiles": 130854,
+      "supplement_tiles": 3156,
+      "known_supplement_tiles": 4820,
+      "combined_tiles": 138830,
+      "calibration_unchanged": true,
+      "derived_views_are_correlated": true
+    },
+    "objective_plan": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v3/micro-recovery-plan-v1/PLAN.json",
+      "sha256": "d8a6f96275a77f6909a43df569be585c71481e6af6519325af346f46066bad35"
+    },
+    "base_checkpoint": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/run-core-v1/model.pth",
+      "sha256": "f2f7f7c6d44aad5b3e22a2ba7d5c78b069fbb0a04423ee9bf186bfa60e52533e"
+    },
+    "base_selection": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/run-core-v1/SELECTION.json",
+      "sha256": "18b5cbf95e45fee83283256581f32c94dae80f653e2fdfe1e24ddf25bfb414da"
+    },
+    "base_state_sha256": "cb2a9bbe2e7e579d5d3a49ff7126c62f481ca94046d90ba250bbc4fa16c14bd8",
+    "cache_manifest": {
+      "path": "/Users/allenflux/PycharmProjects/flux-glyph/artifacts/unified-font-v2/run-adapter-v1/cache/CACHE_MANIFEST.json",
+      "sha256": "c3d3e57cf4d8377174e4b7981bbc1d30ee0e72af547f41f2f96a9a674998974a"
+    },
+    "initial_state_sha256": "69051cadc9d3d2e8eb788b5da449e7f53564130dae29b161e215535e784bc857",
+    "state_before_sha256": "69051cadc9d3d2e8eb788b5da449e7f53564130dae29b161e215535e784bc857",
+    "state_after_sha256": "ea89337ebd8df8b71833073effbe78180e80b6fe41063b993df27c24a62ad97a",
+    "initial_parameter_groups_sha256": {
+      "trunk": "105b7ea8342481573741e1932a589bcf848dba1253a6a1b4c3cf769a30e5aaac",
+      "style": "60f481dd2638ea1197dd45d0c0d2355028a53dd397260333390d24bef4b746c3",
+      "family_head": "7242e16c80cac85d24633094349d8e886380962a284b6f7ca7cf4cdf07f36f71",
+      "size_head": "d1b23bb4fa184ab0ca84672e99629986dcdc02a4a929a71916a5a201e1171a34"
+    },
+    "selected_parameter_groups_sha256": {
+      "trunk": "758aa3e35b777fffc2f670b72b2a2fc0624d65ce2c7b3ed0d919770601ca2566",
+      "style": "36edda5518d5978a07aba3bf45c6293d5d97f7d578bc9b0020152eecbe19c4a6",
+      "family_head": "9419989ecec278f325ec1b6b0e689fa02558c89e60aa671c08c0274b4c503f5e",
+      "size_head": "a1fb42701a664f0563d03b469cdeb10ae54d8a2add319cf26c9f844c745d643c"
+    },
+    "final_parameter_groups_sha256": {
+      "trunk": "758aa3e35b777fffc2f670b72b2a2fc0624d65ce2c7b3ed0d919770601ca2566",
+      "style": "36edda5518d5978a07aba3bf45c6293d5d97f7d578bc9b0020152eecbe19c4a6",
+      "family_head": "9419989ecec278f325ec1b6b0e689fa02558c89e60aa671c08c0274b4c503f5e",
+      "size_head": "a1fb42701a664f0563d03b469cdeb10ae54d8a2add319cf26c9f844c745d643c"
+    },
+    "training_counts_sha256": "cfefcadc98cc7a72a4eb2a0a2bab9ff7575f461cad599e8c48626651aa1eabf9",
+    "optimizer_steps_executed": 6000,
+    "source_optimizer_steps_executed": 3000,
+    "source_selected_step": 1500,
+    "base_selected_step": 1000,
+    "core_optimizer_steps_executed": 1500,
+    "training_device": "mps",
+    "selected_step": 6000,
+    "all_parameters_trained": true,
+    "base_frozen": false,
+    "size_head_frozen": false,
+    "residual_head_trained": false,
+    "trainable_parameter_groups": [
+      "trunk",
+      "style",
+      "family_head",
+      "size_head"
+    ],
+    "frozen_parameter_groups": [],
+    "model_count": 1,
+    "encoder_count": 1,
+    "teacher_logits_used": true,
+    "second_model_resident": false,
+    "teacher_mask_verified_against_same_tile_argmax": true,
+    "teacher_distribution_kl": true,
+    "checkpoint_selection": "Fixed final step 6000; no intermediate CAL inference or checkpoint search",
+    "calibration_reused_for_prior_development": true,
+    "teacher_optimizer_steps": 0,
+    "teacher_cache_deployed": false,
+    "teacher_in_deployed_model": false,
+    "feature_cache_reused": false,
+    "teacher_cache_reused": true,
+    "training_inputs": [
+      "image_tiles"
+    ],
+    "ocr_text_used": false,
+    "platform_routing": false,
+    "score_merging": false,
+    "development_holdout_is_blind_test": false,
+    "class_prior_weighting_training_only": true,
+    "inference_class_prior_changed": false,
+    "selection_sha256": "49bd22a905bda9ffda11822323c81423482085e10adb477aed90089fdf43618e",
+    "checkpoint_sha256": "53d73321c109825014fca96435f08a8c7a01ec6fe2abefa727855e1500d94c42",
+    "data_manifest_sha256": "dfdd9fa746b28b3665eed10491ce83c5c872f16b2499fe3ae6c6e6bb9ed40a23",
+    "retention_plan_sha256": "b82283b54b5e47f4639b0df62231544c0419f6299d10820d86dca96ef24094ff",
+    "fixed_runtime": {
+      "temperature": 1.0,
+      "gates": {
+        "min_score": 0.7,
+        "min_margin": 0.01,
+        "min_patch_agreement": 0.6666666666666666
+      },
+      "max_size_relative_spread": 0.2
+    }
+  }
+}
