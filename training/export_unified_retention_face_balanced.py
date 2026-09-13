@@ -925,6 +925,7 @@ def export(args):
          'training/retention_supplement_sampler.py', 'training/prepare_unified_unknown_supplement.py',
          'training/cache_unified_unknown_supplement.py', 'training/train_unified_retention_adapter.py',
          'training/retention_adapter_network.py', 'training/export_unified_retention_core.py',
+         'training/export_unified_retention_wide.py',
          'training/export_unified_regions.py', 'training/export_region_stable.py',
          'src/flux_glyph/unified_font.py', 'src/flux_glyph/region_font.py')}
     evidence = dict(selection['bindings'])
