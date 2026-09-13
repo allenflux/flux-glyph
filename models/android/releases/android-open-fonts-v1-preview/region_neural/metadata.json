@@ -1,0 +1,129 @@
+{
+  "schema": "flux-glyph-android-region-font-v1",
+  "algorithm": "android-region-cnn64x256-v1",
+  "font_mode": "android",
+  "data_kind": "android_emulator_screenshot",
+  "model": {
+    "path": "model.onnx",
+    "sha256": "c095f67c4763cbec7055ac04f706c5dcbb9ad4b8b72e43c6beedfa53851ec17a"
+  },
+  "families": [
+    "Noto Sans CJK SC",
+    "Noto Serif CJK SC",
+    "LXGW WenKai",
+    "WenQuanYi Micro Hei",
+    "ZCOOL KuaiLe",
+    "ZCOOL XiaoWei",
+    "ZCOOL QingKe HuangYou",
+    "Ma Shan Zheng",
+    "Roboto",
+    "__unknown__"
+  ],
+  "temperature": 1.0,
+  "gates": {
+    "min_score": 0.85,
+    "min_margin": 0.01,
+    "min_patch_agreement": 0.6666666666666666
+  },
+  "max_size_relative_spread": 0.2,
+  "font_label_groups": {
+    "Noto Sans CJK SC": [
+      "Noto Sans CJK SC",
+      "Source Han Sans SC"
+    ],
+    "Noto Serif CJK SC": [
+      "Noto Serif CJK SC",
+      "Source Han Serif SC"
+    ]
+  },
+  "font_sources": {
+    "Noto Sans CJK SC": [
+      "asset"
+    ],
+    "Noto Serif CJK SC": [
+      "asset"
+    ],
+    "LXGW WenKai": [
+      "asset"
+    ],
+    "WenQuanYi Micro Hei": [
+      "asset"
+    ],
+    "ZCOOL KuaiLe": [
+      "asset"
+    ],
+    "ZCOOL XiaoWei": [
+      "asset"
+    ],
+    "ZCOOL QingKe HuangYou": [
+      "asset"
+    ],
+    "Ma Shan Zheng": [
+      "asset"
+    ],
+    "Roboto": [
+      "asset"
+    ]
+  },
+  "training": {
+    "selection_sha256": "ebc3df30b346662c2a390d6dff17f354edbe049af87746af61ac262dee1bd52a",
+    "checkpoint_sha256": "fa6b313074bb41752730e364336a3d1aa1a38cd43134b463d4aa688d39b2dbde",
+    "data_manifest_sha256": "429c5a68b755e72580709a7f3b243b5b578999caa4cef80591def29df2e68346",
+    "optimizer_steps_executed": 6000,
+    "selected_step": 6000,
+    "unknown_fonts_held_out_by_family": true,
+    "ocr_text_used": false,
+    "training_device": "mps"
+  },
+  "release_tier": "experimental",
+  "stable_validation_passed": false,
+  "test_passed": false,
+  "validation": {
+    "kind": "controlled_android_emulator_regions",
+    "report_url": "/docs#android-preview",
+    "test_pages": 100,
+    "test_native_regions": 1200,
+    "test_views": 4800,
+    "derived_views_are_correlated": true,
+    "known_views": 3600,
+    "unknown_views": 1200,
+    "named_outputs": 2662,
+    "correct_named": 2465,
+    "wrong_named": 197,
+    "named_precision": 0.9259954921111946,
+    "known_correct_coverage": 0.6847222222222222,
+    "native_known_top1_accuracy": 0.9444444444444444,
+    "unknown_wrongly_named": 174,
+    "unknown_not_named_rate": 0.855,
+    "explicit_unknown_recall": 0.015,
+    "unknown_test_families": [
+      "Smiley Sans"
+    ],
+    "size": {
+      "correctly_named_with_size": 2465,
+      "coverage_of_correct_names": 1.0,
+      "median_ape": 0.030312499999999964,
+      "p90_ape": 0.07245624999999997
+    },
+    "failed_stable_checks": [
+      "named_precision",
+      "known_correct_coverage",
+      "per_family_coverage"
+    ],
+    "test_report_sha256": "abda8b659a8e6b9d012f9eeafbe43efdf9969b2f4ed81f3761d4064351e92e3c",
+    "onnx_sha256": "c095f67c4763cbec7055ac04f706c5dcbb9ad4b8b72e43c6beedfa53851ec17a",
+    "onnx_parity_passed": true,
+    "training_pages": 600,
+    "training_native_regions": 7200,
+    "training_font_faces": 33,
+    "all_capture_font_faces": 35,
+    "local_training_steps": 6000,
+    "limitations": [
+      "Nine covered font candidates; outside-scope fonts may be misnamed.",
+      "Scores are model outputs, not measured correctness probabilities.",
+      "Unknown evaluation contains one held-out family only.",
+      "Sizes are source-image pixels, not Android sp/dp.",
+      "Evaluation used native region boundaries; not full-screenshot detection accuracy."
+    ]
+  }
+}

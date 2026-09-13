@@ -1,0 +1,519 @@
+{
+  "schema": "flux-glyph-android-experiment-record-v1",
+  "experiment": "android-open-fonts-trial-v1",
+  "published": false,
+  "release_acceptance_passed": false,
+  "reason": "Sealed TEST failed named precision, known coverage and per-family coverage. Preserve this report as a failed experiment.",
+  "training_device": "mps",
+  "optimizer_steps_executed": 6000,
+  "selected_step": 6000,
+  "calibration_metrics": {
+    "passed": true,
+    "checks": {
+      "named_precision": true,
+      "known_correct_coverage": true,
+      "per_family_coverage": true,
+      "native_known_top1": true,
+      "unseen_unknown_not_named": true,
+      "size_median": true,
+      "size_p90": true,
+      "size_coverage": true
+    },
+    "views": 4800,
+    "preprocessing_rejected": 0,
+    "known_views": 3600,
+    "unknown_views": 1200,
+    "named": 2584,
+    "correct_named": 2533,
+    "wrong_named": 51,
+    "named_precision": 0.9802631578947368,
+    "known_correct_coverage": 0.7036111111111111,
+    "native_known_top1_accuracy": 0.9522222222222222,
+    "unknown_wrongly_named": 21,
+    "unknown_not_named_rate": 0.9825,
+    "explicit_unknown_recall": 0.8825,
+    "size": {
+      "correctly_named_with_size": 2533,
+      "coverage_of_correct_names": 1.0,
+      "median_ape": 0.028214285714285636,
+      "p90_ape": 0.07227380952380953
+    },
+    "per_family": {
+      "Noto Sans CJK SC": {
+        "views": 400,
+        "correct_named": 205,
+        "wrong_named": 4,
+        "correct_coverage": 0.5125
+      },
+      "Noto Serif CJK SC": {
+        "views": 400,
+        "correct_named": 309,
+        "wrong_named": 0,
+        "correct_coverage": 0.7725
+      },
+      "LXGW WenKai": {
+        "views": 400,
+        "correct_named": 280,
+        "wrong_named": 7,
+        "correct_coverage": 0.7
+      },
+      "WenQuanYi Micro Hei": {
+        "views": 400,
+        "correct_named": 212,
+        "wrong_named": 4,
+        "correct_coverage": 0.53
+      },
+      "ZCOOL KuaiLe": {
+        "views": 400,
+        "correct_named": 254,
+        "wrong_named": 0,
+        "correct_coverage": 0.635
+      },
+      "ZCOOL XiaoWei": {
+        "views": 400,
+        "correct_named": 325,
+        "wrong_named": 1,
+        "correct_coverage": 0.8125
+      },
+      "ZCOOL QingKe HuangYou": {
+        "views": 400,
+        "correct_named": 351,
+        "wrong_named": 0,
+        "correct_coverage": 0.8775
+      },
+      "Ma Shan Zheng": {
+        "views": 400,
+        "correct_named": 327,
+        "wrong_named": 0,
+        "correct_coverage": 0.8175
+      },
+      "Roboto": {
+        "views": 400,
+        "correct_named": 270,
+        "wrong_named": 14,
+        "correct_coverage": 0.675
+      }
+    }
+  },
+  "test_metrics": {
+    "passed": false,
+    "checks": {
+      "named_precision": false,
+      "known_correct_coverage": false,
+      "per_family_coverage": false,
+      "native_known_top1": true,
+      "unseen_unknown_not_named": true,
+      "size_median": true,
+      "size_p90": true,
+      "size_coverage": true
+    },
+    "views": 4800,
+    "preprocessing_rejected": 0,
+    "known_views": 3600,
+    "unknown_views": 1200,
+    "named": 2662,
+    "correct_named": 2465,
+    "wrong_named": 197,
+    "named_precision": 0.9259954921111946,
+    "known_correct_coverage": 0.6847222222222222,
+    "native_known_top1_accuracy": 0.9444444444444444,
+    "unknown_wrongly_named": 174,
+    "unknown_not_named_rate": 0.855,
+    "explicit_unknown_recall": 0.015,
+    "size": {
+      "correctly_named_with_size": 2465,
+      "coverage_of_correct_names": 1.0,
+      "median_ape": 0.030312499999999964,
+      "p90_ape": 0.07245624999999997
+    },
+    "per_family": {
+      "Noto Sans CJK SC": {
+        "views": 400,
+        "correct_named": 207,
+        "wrong_named": 3,
+        "correct_coverage": 0.5175
+      },
+      "Noto Serif CJK SC": {
+        "views": 400,
+        "correct_named": 301,
+        "wrong_named": 0,
+        "correct_coverage": 0.7525
+      },
+      "LXGW WenKai": {
+        "views": 400,
+        "correct_named": 274,
+        "wrong_named": 0,
+        "correct_coverage": 0.685
+      },
+      "WenQuanYi Micro Hei": {
+        "views": 400,
+        "correct_named": 184,
+        "wrong_named": 5,
+        "correct_coverage": 0.46
+      },
+      "ZCOOL KuaiLe": {
+        "views": 400,
+        "correct_named": 300,
+        "wrong_named": 0,
+        "correct_coverage": 0.75
+      },
+      "ZCOOL XiaoWei": {
+        "views": 400,
+        "correct_named": 302,
+        "wrong_named": 0,
+        "correct_coverage": 0.755
+      },
+      "ZCOOL QingKe HuangYou": {
+        "views": 400,
+        "correct_named": 357,
+        "wrong_named": 0,
+        "correct_coverage": 0.8925
+      },
+      "Ma Shan Zheng": {
+        "views": 400,
+        "correct_named": 291,
+        "wrong_named": 0,
+        "correct_coverage": 0.7275
+      },
+      "Roboto": {
+        "views": 400,
+        "correct_named": 249,
+        "wrong_named": 15,
+        "correct_coverage": 0.6225
+      }
+    }
+  },
+  "test_confusion": {
+    "__unknown__": {
+      "Roboto": 30,
+      "(abstain)": 1026,
+      "WenQuanYi Micro Hei": 99,
+      "ZCOOL QingKe HuangYou": 42,
+      "Noto Sans CJK SC": 3
+    },
+    "Noto Serif CJK SC": {
+      "Noto Serif CJK SC": 301,
+      "(abstain)": 99
+    },
+    "Noto Sans CJK SC": {
+      "(abstain)": 190,
+      "Noto Sans CJK SC": 207,
+      "Roboto": 3
+    },
+    "ZCOOL KuaiLe": {
+      "(abstain)": 100,
+      "ZCOOL KuaiLe": 300
+    },
+    "Roboto": {
+      "Roboto": 249,
+      "(abstain)": 136,
+      "WenQuanYi Micro Hei": 2,
+      "Noto Sans CJK SC": 9,
+      "LXGW WenKai": 4
+    },
+    "WenQuanYi Micro Hei": {
+      "WenQuanYi Micro Hei": 184,
+      "(abstain)": 211,
+      "Noto Sans CJK SC": 4,
+      "Roboto": 1
+    },
+    "Ma Shan Zheng": {
+      "(abstain)": 109,
+      "Ma Shan Zheng": 291
+    },
+    "LXGW WenKai": {
+      "(abstain)": 126,
+      "LXGW WenKai": 274
+    },
+    "ZCOOL QingKe HuangYou": {
+      "ZCOOL QingKe HuangYou": 357,
+      "(abstain)": 43
+    },
+    "ZCOOL XiaoWei": {
+      "ZCOOL XiaoWei": 302,
+      "(abstain)": 98
+    }
+  },
+  "denominators": {
+    "known_views_including_rejected": 3600,
+    "unknown_views_including_rejected": 1200,
+    "native_known_regions_including_rejected": 900,
+    "named_precision_population": "All named outputs, including wrong names on unknown fonts.",
+    "unknown_not_named_definition": "Explicit unknown, uncertainty and preprocessing rejection all withhold a name; only explicit unknown counts toward explicit_unknown_recall.",
+    "unknown_outcomes": {
+      "wrongly_named": 174,
+      "explicit_unknown": 18,
+      "uncertain_without_name": 1008,
+      "preprocessing_rejected": 0
+    },
+    "size_error_population": "Correctly named regions with an available size only; wrong names and missing sizes are excluded from error quantiles and reflected in coverage.",
+    "size_available_among_correct_names": 2465,
+    "correctly_named_views": 2465,
+    "size_available_on_wrong_names": 197,
+    "size_correct_coverage_of_all_known_views": 0.6847222222222222,
+    "color_accuracy_evaluated": false
+  },
+  "holdout_evidence": {
+    "source_manifest_sha256": "85cd830b1f45475d19f61c2c8bc6078de2d9bff6965b3e7ab3012eb12c9557c5",
+    "unknown_by_split": {
+      "train": {
+        "Zhi Mang Xing": {
+          "native_regions": 257,
+          "font_file_sha256": [
+            "644e0cae9b40f0b10ab729a01bd32032e3973bac22be3dccae01bf6ae7fde969"
+          ]
+        },
+        "FandolHei": {
+          "native_regions": 516,
+          "font_file_sha256": [
+            "42ca2de27b45e16a284768673b6205a5add9e17871ee0e7db9c0d03f061d96fd",
+            "4afa97aa8751e0118617df88272b58d43691b5cffb7ea024c4580496e9f34d28"
+          ]
+        },
+        "Long Cang": {
+          "native_regions": 256,
+          "font_file_sha256": [
+            "e5bf2c3f24ef2327c6f136d8f73e2f9dfdf44896fdbeb35a9515f44777bb91bc"
+          ]
+        },
+        "FandolKai": {
+          "native_regions": 258,
+          "font_file_sha256": [
+            "ea7e7fb4f9b3ac694a68d43946e04d21deed6e8c29a7c2d3081e1a4138f2f827"
+          ]
+        },
+        "FandolSong": {
+          "native_regions": 513,
+          "font_file_sha256": [
+            "a3820003227d4abe31fe28b493200d94a849ccfd078b50a019264f70353020b0",
+            "ffa76a70e128947a4dd22151d5ee829b23e24ce3cb6fe8ad49891cd1c2d9e9b9"
+          ]
+        }
+      },
+      "calibration": {
+        "Liu Jian Mao Cao": {
+          "native_regions": 300,
+          "font_file_sha256": [
+            "cab396b91a5b7c0b4005a35891180d06e6751f5ac261fe680aec65c1ae209033"
+          ]
+        }
+      },
+      "test": {
+        "Smiley Sans": {
+          "native_regions": 300,
+          "font_file_sha256": [
+            "b447d7e781f08bc95c4c9f23ba71ed2b8ebb639aa7184485c71c4ca5afcd25c4"
+          ]
+        }
+      }
+    },
+    "whole_unknown_families_and_files_disjoint": true,
+    "independence_scope": "This frozen Android capture corpus; absence from all initialization pretraining is not asserted.",
+    "user_images_used_as_font_truth": false,
+    "native_renderer": "Android emulator",
+    "statistical_unit": "Native region/page; four views of one region are correlated, not four independent captures."
+  },
+  "onnx_parity": {
+    "schema": "flux-glyph-android-onnx-parity-v1",
+    "passed": true,
+    "test_read": false,
+    "selection_sha256": "ebc3df30b346662c2a390d6dff17f354edbe049af87746af61ac262dee1bd52a",
+    "checkpoint_sha256": "fa6b313074bb41752730e364336a3d1aa1a38cd43134b463d4aa688d39b2dbde",
+    "model_sha256": "c095f67c4763cbec7055ac04f706c5dcbb9ad4b8b72e43c6beedfa53851ec17a",
+    "metadata_sha256": "cc4b97ba313cc06b799f0faffc9a1d4e7683446a7170272e18ea3a6bb1d2555e",
+    "source_bindings": {
+      "training/export_android_regions.py": "463d5f5002d4440438a9351000ec1913bf5dea17d40647d3047de60f4d4ee23a",
+      "training/export_region_stable.py": "07f1d4964201d651af7066ed8e9ae8e6b13efd3ac4c8e3cc94de70e206e9b56a",
+      "training/train_regions.py": "22ebda5259096110041a82aa8740e62eb3a8a719533ac32728fbdf7095646380"
+    },
+    "calibration_regions": 4800,
+    "calibration_tiles": 7272,
+    "max_logit_absolute_error": 2.047419548034668e-05,
+    "max_size_absolute_error": 4.470348358154297e-07,
+    "calibration_font_decisions_identical": true,
+    "original_torch_groupnorm_reference": true,
+    "calibration_size_availability_identical": true,
+    "calibration_size_values_close": true,
+    "size_value_atol_px": 0.02,
+    "size_value_rtol": 0.0003,
+    "max_size_pixel_error": 0.010000000000001563,
+    "cached_mps_outputs_reproduce_selected_metrics": true,
+    "runtime_calibration_metrics": {
+      "passed": true,
+      "checks": {
+        "named_precision": true,
+        "known_correct_coverage": true,
+        "per_family_coverage": true,
+        "native_known_top1": true,
+        "unseen_unknown_not_named": true,
+        "size_median": true,
+        "size_p90": true,
+        "size_coverage": true
+      },
+      "views": 4800,
+      "preprocessing_rejected": 0,
+      "known_views": 3600,
+      "unknown_views": 1200,
+      "named": 2584,
+      "correct_named": 2533,
+      "wrong_named": 51,
+      "named_precision": 0.9802631578947368,
+      "known_correct_coverage": 0.7036111111111111,
+      "native_known_top1_accuracy": 0.9522222222222222,
+      "unknown_wrongly_named": 21,
+      "unknown_not_named_rate": 0.9825,
+      "explicit_unknown_recall": 0.8825,
+      "size": {
+        "correctly_named_with_size": 2533,
+        "coverage_of_correct_names": 1.0,
+        "median_ape": 0.028214285714285636,
+        "p90_ape": 0.07227380952380953
+      },
+      "per_family": {
+        "Noto Sans CJK SC": {
+          "views": 400,
+          "correct_named": 205,
+          "wrong_named": 4,
+          "correct_coverage": 0.5125
+        },
+        "Noto Serif CJK SC": {
+          "views": 400,
+          "correct_named": 309,
+          "wrong_named": 0,
+          "correct_coverage": 0.7725
+        },
+        "LXGW WenKai": {
+          "views": 400,
+          "correct_named": 280,
+          "wrong_named": 7,
+          "correct_coverage": 0.7
+        },
+        "WenQuanYi Micro Hei": {
+          "views": 400,
+          "correct_named": 212,
+          "wrong_named": 4,
+          "correct_coverage": 0.53
+        },
+        "ZCOOL KuaiLe": {
+          "views": 400,
+          "correct_named": 254,
+          "wrong_named": 0,
+          "correct_coverage": 0.635
+        },
+        "ZCOOL XiaoWei": {
+          "views": 400,
+          "correct_named": 325,
+          "wrong_named": 1,
+          "correct_coverage": 0.8125
+        },
+        "ZCOOL QingKe HuangYou": {
+          "views": 400,
+          "correct_named": 351,
+          "wrong_named": 0,
+          "correct_coverage": 0.8775
+        },
+        "Ma Shan Zheng": {
+          "views": 400,
+          "correct_named": 327,
+          "wrong_named": 0,
+          "correct_coverage": 0.8175
+        },
+        "Roboto": {
+          "views": 400,
+          "correct_named": 270,
+          "wrong_named": 14,
+          "correct_coverage": 0.675
+        }
+      }
+    },
+    "batch_checks": [
+      {
+        "batch_size": 1,
+        "samples": 256,
+        "passed": true,
+        "font_and_size_checked": true
+      },
+      {
+        "batch_size": 7,
+        "samples": 256,
+        "passed": true,
+        "font_and_size_checked": true
+      },
+      {
+        "batch_size": 32,
+        "samples": 256,
+        "passed": true,
+        "font_and_size_checked": true
+      },
+      {
+        "batch_size": 128,
+        "samples": 256,
+        "passed": true,
+        "font_and_size_checked": true
+      }
+    ]
+  },
+  "artifacts": {
+    "artifacts/android-font-v1/sources/FONTS.json": {
+      "sha256": "544a8eddcd5278173938aedce5174f5e5399f6e70174747a2730bbf67d4aef99",
+      "bytes": 100596
+    },
+    "artifacts/android-font-v1/capture-v2/CAPTURE_MANIFEST.json": {
+      "sha256": "85cd830b1f45475d19f61c2c8bc6078de2d9bff6965b3e7ab3012eb12c9557c5",
+      "bytes": 366594
+    },
+    "artifacts/android-font-v1/CAPTURE_AUDIT.json": {
+      "sha256": "494fa473030693db23d5c836e868708b6d27bf42f3ac8517c48ef16bd9a98ccb",
+      "bytes": 1277
+    },
+    "artifacts/android-font-v1/PREPROCESS_AUDIT.json": {
+      "sha256": "914d04881c9451d93e0ebe89cd3cca7bf777e0c1dc4bb2af2e899d3d12d65158",
+      "bytes": 61703
+    },
+    "artifacts/android-font-v1/data-v2/MANIFEST.json": {
+      "sha256": "429c5a68b755e72580709a7f3b243b5b578999caa4cef80591def29df2e68346",
+      "bytes": 18509
+    },
+    "artifacts/android-font-v1/data-v2/train/MANIFEST.json": {
+      "sha256": "b8ab7d9a4b95a1cc59446215a91f7aa329ad8ef9a08576c61651a5025176b7d9",
+      "bytes": 4334
+    },
+    "artifacts/android-font-v1/data-v2/calibration/MANIFEST.json": {
+      "sha256": "191f9a47b20ed9ce53e92e79d39c7fb0e6e283423cd998e23479cc745eec4a56",
+      "bytes": 1107
+    },
+    "artifacts/android-font-v1/data-v2/test/MANIFEST.json": {
+      "sha256": "1c01a8b3576a3d944fdc72fe3e4339199f29226b30a3cdac00d997c7f497b7b9",
+      "bytes": 1289
+    },
+    "artifacts/android-font-v1/run-v1/TRAINING_FREEZE.json": {
+      "sha256": "33eebb755738405b88141c67bb5278cc72bd854d7d744a7c3ec41fc314a46223",
+      "bytes": 20227
+    },
+    "artifacts/android-font-v1/run-v1/SELECTION.json": {
+      "sha256": "ebc3df30b346662c2a390d6dff17f354edbe049af87746af61ac262dee1bd52a",
+      "bytes": 40492
+    },
+    "artifacts/android-font-v1/run-v1/PARITY.json": {
+      "sha256": "b90c5f9b1367a1d3c6da49bba26b0059a5a82314799013844c9435bf50ecb6a2",
+      "bytes": 4235
+    },
+    "artifacts/android-font-v1/run-v1/TEST_FREEZE.json": {
+      "sha256": "80fd2fba749ead03b33ce12a3d580e4c8efc529a9fcc1c53dd3b5bda91858693",
+      "bytes": 2051
+    },
+    "artifacts/android-font-v1/run-v1/TEST.json": {
+      "sha256": "abda8b659a8e6b9d012f9eeafbe43efdf9969b2f4ed81f3761d4064351e92e3c",
+      "bytes": 2737237
+    },
+    "artifacts/android-font-v1/region-v1/model.onnx": {
+      "sha256": "c095f67c4763cbec7055ac04f706c5dcbb9ad4b8b72e43c6beedfa53851ec17a",
+      "bytes": 1467097
+    },
+    "artifacts/android-font-v1/region-v1/metadata.json": {
+      "sha256": "cc4b97ba313cc06b799f0faffc9a1d4e7683446a7170272e18ea3a6bb1d2555e",
+      "bytes": 1807
+    }
+  },
+  "next_round_policy": "Smiley Sans may become development/training data. A new sealed TEST must use distinct unknown families and new text/page sources; this first TEST is no longer unseen after development use."
+}

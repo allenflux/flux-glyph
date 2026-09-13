@@ -1,0 +1,2266 @@
+{
+  "schema": "flux-glyph-android-font-sources-v1",
+  "created_at_utc": "2026-09-13T06:57:47.862755+00:00",
+  "families": [
+    "Noto Sans CJK SC",
+    "Noto Serif CJK SC",
+    "LXGW WenKai",
+    "WenQuanYi Micro Hei",
+    "ZCOOL KuaiLe",
+    "ZCOOL XiaoWei",
+    "ZCOOL QingKe HuangYou",
+    "Ma Shan Zheng",
+    "Roboto"
+  ],
+  "unknown_family_splits": {
+    "train": [
+      "Long Cang",
+      "Zhi Mang Xing",
+      "FandolHei",
+      "FandolSong",
+      "FandolKai"
+    ],
+    "calibration": [
+      "Liu Jian Mao Cao"
+    ],
+    "test": [
+      "Smiley Sans"
+    ]
+  },
+  "fonts": [
+    {
+      "id": "NotoSansCJKsc-Light_ttc0",
+      "family": "Noto Sans CJK SC",
+      "training_family": "Noto Sans CJK SC",
+      "native_family": "Noto Sans CJK SC",
+      "postscript": "NotoSansCJKsc-Light",
+      "path": "artifacts/android-font-v1/sources/notosans/NotoSansCJKsc-Light.otf",
+      "sha256": "e78bbbe1573bbb006156c1198f5c8cd6329470cb6e0b6702c7a3c83913db4abf",
+      "ttc_index": 0,
+      "weight": 300,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.004;hotconv 1.0.118;makeotfexe 2.5.65603",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/notosans/LICENSE",
+          "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/notosans/NotoSansCJKsc-Light_ttc0.cmap.json",
+        "sha256": "1b23ff445c9ff35877166b76f2ceeff5ad2df842d8f685e4aba223441d23bb9c",
+        "codepoint_count": 44810,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 20976,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/notosans/NotoSansCJKsc-Light.otf",
+        "sha256": "e78bbbe1573bbb006156c1198f5c8cd6329470cb6e0b6702c7a3c83913db4abf",
+        "bytes": 16329648,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/NotoSansCJKsc-Light.otf",
+        "family": "Noto Sans CJK SC",
+        "role": "known",
+        "kind": "font",
+        "source_repository": "notofonts/noto-cjk",
+        "source_commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+        "source_url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Light.otf",
+        "previous_source_manifest": "artifacts/font-sans-v1/scenes-v1/SOURCE_MANIFEST.json",
+        "previous_source_manifest_sha256": "d6c5b6983d42f3f5d43067b7715c3a834f1c74cf9300314639ec807b52a6cf44"
+      }
+    },
+    {
+      "id": "NotoSansCJKsc-Regular_ttc0",
+      "family": "Noto Sans CJK SC",
+      "training_family": "Noto Sans CJK SC",
+      "native_family": "Noto Sans CJK SC",
+      "postscript": "NotoSansCJKsc-Regular",
+      "path": "artifacts/android-font-v1/sources/notosans/NotoSansCJKsc-Regular.otf",
+      "sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.004;hotconv 1.0.118;makeotfexe 2.5.65603",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/notosans/LICENSE",
+          "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/notosans/NotoSansCJKsc-Regular_ttc0.cmap.json",
+        "sha256": "1b23ff445c9ff35877166b76f2ceeff5ad2df842d8f685e4aba223441d23bb9c",
+        "codepoint_count": 44810,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 20976,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/notosans/NotoSansCJKsc-Regular.otf",
+        "sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+        "bytes": 16437364,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/NotoSansCJKsc-Regular.otf",
+        "family": "Noto Sans CJK SC",
+        "role": "known",
+        "kind": "font",
+        "source_repository": "notofonts/noto-cjk",
+        "source_commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+        "source_url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf",
+        "previous_source_manifest": "artifacts/font-sans-v1/scenes-v1/SOURCE_MANIFEST.json",
+        "previous_source_manifest_sha256": "d6c5b6983d42f3f5d43067b7715c3a834f1c74cf9300314639ec807b52a6cf44"
+      }
+    },
+    {
+      "id": "NotoSansCJKsc-Medium_ttc0",
+      "family": "Noto Sans CJK SC",
+      "training_family": "Noto Sans CJK SC",
+      "native_family": "Noto Sans CJK SC",
+      "postscript": "NotoSansCJKsc-Medium",
+      "path": "artifacts/android-font-v1/sources/notosans/NotoSansCJKsc-Medium.otf",
+      "sha256": "ca094f6b0001fb048ca39ddd797a0cdb0179e1e55c6561e111c49c3e6a61d7b7",
+      "ttc_index": 0,
+      "weight": 500,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.004;hotconv 1.0.118;makeotfexe 2.5.65603",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/notosans/LICENSE",
+          "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/notosans/NotoSansCJKsc-Medium_ttc0.cmap.json",
+        "sha256": "1b23ff445c9ff35877166b76f2ceeff5ad2df842d8f685e4aba223441d23bb9c",
+        "codepoint_count": 44810,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 20976,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/notosans/NotoSansCJKsc-Medium.otf",
+        "sha256": "ca094f6b0001fb048ca39ddd797a0cdb0179e1e55c6561e111c49c3e6a61d7b7",
+        "bytes": 16523632,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/NotoSansCJKsc-Medium.otf",
+        "family": "Noto Sans CJK SC",
+        "role": "known",
+        "kind": "font",
+        "source_repository": "notofonts/noto-cjk",
+        "source_commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+        "source_url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Medium.otf",
+        "previous_source_manifest": "artifacts/font-sans-v1/scenes-v1/SOURCE_MANIFEST.json",
+        "previous_source_manifest_sha256": "d6c5b6983d42f3f5d43067b7715c3a834f1c74cf9300314639ec807b52a6cf44"
+      }
+    },
+    {
+      "id": "NotoSansCJKsc-Bold_ttc0",
+      "family": "Noto Sans CJK SC",
+      "training_family": "Noto Sans CJK SC",
+      "native_family": "Noto Sans CJK SC",
+      "postscript": "NotoSansCJKsc-Bold",
+      "path": "artifacts/android-font-v1/sources/notosans/NotoSansCJKsc-Bold.otf",
+      "sha256": "b5f0d1a190a7f9b43c310a8850630af12553df32c4c050543f9059732d9b4c0a",
+      "ttc_index": 0,
+      "weight": 700,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.004;hotconv 1.0.118;makeotfexe 2.5.65603",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/notosans/LICENSE",
+          "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/notosans/NotoSansCJKsc-Bold_ttc0.cmap.json",
+        "sha256": "1b23ff445c9ff35877166b76f2ceeff5ad2df842d8f685e4aba223441d23bb9c",
+        "codepoint_count": 44810,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 20976,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/notosans/NotoSansCJKsc-Bold.otf",
+        "sha256": "b5f0d1a190a7f9b43c310a8850630af12553df32c4c050543f9059732d9b4c0a",
+        "bytes": 17002248,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/NotoSansCJKsc-Bold.otf",
+        "family": "Noto Sans CJK SC",
+        "role": "known",
+        "kind": "font",
+        "source_repository": "notofonts/noto-cjk",
+        "source_commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+        "source_url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Bold.otf",
+        "previous_source_manifest": "artifacts/font-sans-v1/scenes-v1/SOURCE_MANIFEST.json",
+        "previous_source_manifest_sha256": "d6c5b6983d42f3f5d43067b7715c3a834f1c74cf9300314639ec807b52a6cf44"
+      }
+    },
+    {
+      "id": "NotoSerifCJKsc-Light_ttc0",
+      "family": "Noto Serif CJK SC",
+      "training_family": "Noto Serif CJK SC",
+      "native_family": "Noto Serif CJK SC",
+      "postscript": "NotoSerifCJKsc-Light",
+      "path": "artifacts/android-font-v1/sources/notoserif/NotoSerifCJKsc-Light.otf",
+      "sha256": "7da07efb309a89b156090848aab55d9dc57f15b08387b51184b08b89501a382c",
+      "ttc_index": 0,
+      "weight": 300,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.003;hotconv 1.1.1;makeotfexe 2.6.0",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/notoserif/LICENSE",
+          "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/notoserif/NotoSerifCJKsc-Light_ttc0.cmap.json",
+        "sha256": "aa3f08862378c997ea108100814afa2161c01252e33ff2b31a403a8bc3b0a4fd",
+        "codepoint_count": 44777,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 20992,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "notoserif",
+        "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Serif/OTF/SimplifiedChinese/NotoSerifCJKsc-Light.otf",
+        "file": "NotoSerifCJKsc-Light.otf",
+        "source_repository": "notofonts/noto-cjk",
+        "source_commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+        "family": "Noto Serif CJK SC",
+        "role": "known",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/notoserif/NotoSerifCJKsc-Light.otf",
+        "resolved_url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Serif/OTF/SimplifiedChinese/NotoSerifCJKsc-Light.otf",
+        "sha256": "7da07efb309a89b156090848aab55d9dc57f15b08387b51184b08b89501a382c",
+        "bytes": 24501028,
+        "retrieved_at_utc": "2026-09-13T06:54:19.402159+00:00"
+      }
+    },
+    {
+      "id": "NotoSerifCJKsc-Regular_ttc0",
+      "family": "Noto Serif CJK SC",
+      "training_family": "Noto Serif CJK SC",
+      "native_family": "Noto Serif CJK SC",
+      "postscript": "NotoSerifCJKsc-Regular",
+      "path": "artifacts/android-font-v1/sources/notoserif/NotoSerifCJKsc-Regular.otf",
+      "sha256": "2a2eae2628df83556c54018c41e20fa532c1b862c5256ae8b3f23feb918d12ca",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.003;hotconv 1.1.1;makeotfexe 2.6.0",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/notoserif/LICENSE",
+          "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/notoserif/NotoSerifCJKsc-Regular_ttc0.cmap.json",
+        "sha256": "aa3f08862378c997ea108100814afa2161c01252e33ff2b31a403a8bc3b0a4fd",
+        "codepoint_count": 44777,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 20992,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "notoserif",
+        "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Serif/OTF/SimplifiedChinese/NotoSerifCJKsc-Regular.otf",
+        "file": "NotoSerifCJKsc-Regular.otf",
+        "source_repository": "notofonts/noto-cjk",
+        "source_commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+        "family": "Noto Serif CJK SC",
+        "role": "known",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/notoserif/NotoSerifCJKsc-Regular.otf",
+        "resolved_url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Serif/OTF/SimplifiedChinese/NotoSerifCJKsc-Regular.otf",
+        "sha256": "2a2eae2628df83556c54018c41e20fa532c1b862c5256ae8b3f23feb918d12ca",
+        "bytes": 24543080,
+        "retrieved_at_utc": "2026-09-13T06:54:28.434030+00:00"
+      }
+    },
+    {
+      "id": "NotoSerifCJKsc-Medium_ttc0",
+      "family": "Noto Serif CJK SC",
+      "training_family": "Noto Serif CJK SC",
+      "native_family": "Noto Serif CJK SC",
+      "postscript": "NotoSerifCJKsc-Medium",
+      "path": "artifacts/android-font-v1/sources/notoserif/NotoSerifCJKsc-Medium.otf",
+      "sha256": "19322be2ecf5dd2abd546db7a86cc83c286026cbd28593583bfcfd721e48c9fe",
+      "ttc_index": 0,
+      "weight": 500,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.003;hotconv 1.1.1;makeotfexe 2.6.0",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/notoserif/LICENSE",
+          "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/notoserif/NotoSerifCJKsc-Medium_ttc0.cmap.json",
+        "sha256": "aa3f08862378c997ea108100814afa2161c01252e33ff2b31a403a8bc3b0a4fd",
+        "codepoint_count": 44777,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 20992,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "notoserif",
+        "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Serif/OTF/SimplifiedChinese/NotoSerifCJKsc-Medium.otf",
+        "file": "NotoSerifCJKsc-Medium.otf",
+        "source_repository": "notofonts/noto-cjk",
+        "source_commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+        "family": "Noto Serif CJK SC",
+        "role": "known",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/notoserif/NotoSerifCJKsc-Medium.otf",
+        "resolved_url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Serif/OTF/SimplifiedChinese/NotoSerifCJKsc-Medium.otf",
+        "sha256": "19322be2ecf5dd2abd546db7a86cc83c286026cbd28593583bfcfd721e48c9fe",
+        "bytes": 24805308,
+        "retrieved_at_utc": "2026-09-13T06:54:18.278913+00:00"
+      }
+    },
+    {
+      "id": "NotoSerifCJKsc-Bold_ttc0",
+      "family": "Noto Serif CJK SC",
+      "training_family": "Noto Serif CJK SC",
+      "native_family": "Noto Serif CJK SC",
+      "postscript": "NotoSerifCJKsc-Bold",
+      "path": "artifacts/android-font-v1/sources/notoserif/NotoSerifCJKsc-Bold.otf",
+      "sha256": "8af07d4b6c2e82bcc72a30e066eaf295f11b9424f4aad2eaa9fe0e9c3b38fc73",
+      "ttc_index": 0,
+      "weight": 700,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.003;hotconv 1.1.1;makeotfexe 2.6.0",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/notoserif/LICENSE",
+          "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/notoserif/NotoSerifCJKsc-Bold_ttc0.cmap.json",
+        "sha256": "aa3f08862378c997ea108100814afa2161c01252e33ff2b31a403a8bc3b0a4fd",
+        "codepoint_count": 44777,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 20992,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "notoserif",
+        "url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Serif/OTF/SimplifiedChinese/NotoSerifCJKsc-Bold.otf",
+        "file": "NotoSerifCJKsc-Bold.otf",
+        "source_repository": "notofonts/noto-cjk",
+        "source_commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+        "family": "Noto Serif CJK SC",
+        "role": "known",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/notoserif/NotoSerifCJKsc-Bold.otf",
+        "resolved_url": "https://raw.githubusercontent.com/notofonts/noto-cjk/f8d157532fbfaeda587e826d4cd5b21a49186f7c/Serif/OTF/SimplifiedChinese/NotoSerifCJKsc-Bold.otf",
+        "sha256": "8af07d4b6c2e82bcc72a30e066eaf295f11b9424f4aad2eaa9fe0e9c3b38fc73",
+        "bytes": 25521460,
+        "retrieved_at_utc": "2026-09-13T06:54:27.658490+00:00"
+      }
+    },
+    {
+      "id": "LXGWWenKai-Light_ttc0",
+      "family": "LXGW WenKai",
+      "training_family": "LXGW WenKai",
+      "native_family": "LXGW WenKai",
+      "postscript": "LXGWWenKai-Light",
+      "path": "artifacts/android-font-v1/sources/lxgwwenkai/LXGWWenKai-Light.ttf",
+      "sha256": "526ec70cbb0118e871d481f8179e03ff045f0e4d72d080dcca87950c4ab27cca",
+      "ttc_index": 0,
+      "weight": 300,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 1.522; March 17, 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/lxgwwenkai/OFL.txt",
+          "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/lxgwwenkai/LXGWWenKai-Light_ttc0.cmap.json",
+        "sha256": "972658df87b051171467265b99ee43ed5c471c29293b30ec9efefdc786c86265",
+        "codepoint_count": 46490,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 20992,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "lxgwwenkai",
+        "url": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/50f4b182415a8c33d9a456df220b66a284e2509b/fonts/TTF/LXGWWenKai-Light.ttf",
+        "file": "LXGWWenKai-Light.ttf",
+        "source_repository": "lxgw/LxgwWenKai",
+        "source_commit": "50f4b182415a8c33d9a456df220b66a284e2509b",
+        "family": "LXGW WenKai",
+        "role": "known",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/lxgwwenkai/LXGWWenKai-Light.ttf",
+        "resolved_url": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/50f4b182415a8c33d9a456df220b66a284e2509b/fonts/TTF/LXGWWenKai-Light.ttf",
+        "sha256": "526ec70cbb0118e871d481f8179e03ff045f0e4d72d080dcca87950c4ab27cca",
+        "bytes": 28267156,
+        "retrieved_at_utc": "2026-09-13T06:54:28.444305+00:00"
+      }
+    },
+    {
+      "id": "LXGWWenKai-Regular_ttc0",
+      "family": "LXGW WenKai",
+      "training_family": "LXGW WenKai",
+      "native_family": "LXGW WenKai",
+      "postscript": "LXGWWenKai-Regular",
+      "path": "artifacts/android-font-v1/sources/lxgwwenkai/LXGWWenKai-Regular.ttf",
+      "sha256": "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 1.522; March 17, 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/lxgwwenkai/OFL.txt",
+          "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/lxgwwenkai/LXGWWenKai-Regular_ttc0.cmap.json",
+        "sha256": "972658df87b051171467265b99ee43ed5c471c29293b30ec9efefdc786c86265",
+        "codepoint_count": 46490,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 20992,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "lxgwwenkai",
+        "url": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/50f4b182415a8c33d9a456df220b66a284e2509b/fonts/TTF/LXGWWenKai-Regular.ttf",
+        "file": "LXGWWenKai-Regular.ttf",
+        "source_repository": "lxgw/LxgwWenKai",
+        "source_commit": "50f4b182415a8c33d9a456df220b66a284e2509b",
+        "family": "LXGW WenKai",
+        "role": "known",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/lxgwwenkai/LXGWWenKai-Regular.ttf",
+        "resolved_url": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/50f4b182415a8c33d9a456df220b66a284e2509b/fonts/TTF/LXGWWenKai-Regular.ttf",
+        "sha256": "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009",
+        "bytes": 25575676,
+        "retrieved_at_utc": "2026-09-13T06:54:18.029334+00:00"
+      }
+    },
+    {
+      "id": "LXGWWenKai-Medium_ttc0",
+      "family": "LXGW WenKai",
+      "training_family": "LXGW WenKai",
+      "native_family": "LXGW WenKai",
+      "postscript": "LXGWWenKai-Medium",
+      "path": "artifacts/android-font-v1/sources/lxgwwenkai/LXGWWenKai-Medium.ttf",
+      "sha256": "d4bdeb38a39151d74d084cba5090f8cb7d20bf83eedb78c35939ae70b9f4e3f6",
+      "ttc_index": 0,
+      "weight": 500,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 1.522; March 17, 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/lxgwwenkai/OFL.txt",
+          "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/lxgwwenkai/LXGWWenKai-Medium_ttc0.cmap.json",
+        "sha256": "972658df87b051171467265b99ee43ed5c471c29293b30ec9efefdc786c86265",
+        "codepoint_count": 46490,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 20992,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "lxgwwenkai",
+        "url": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/50f4b182415a8c33d9a456df220b66a284e2509b/fonts/TTF/LXGWWenKai-Medium.ttf",
+        "file": "LXGWWenKai-Medium.ttf",
+        "source_repository": "lxgw/LxgwWenKai",
+        "source_commit": "50f4b182415a8c33d9a456df220b66a284e2509b",
+        "family": "LXGW WenKai",
+        "role": "known",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/lxgwwenkai/LXGWWenKai-Medium.ttf",
+        "resolved_url": "https://raw.githubusercontent.com/lxgw/LxgwWenKai/50f4b182415a8c33d9a456df220b66a284e2509b/fonts/TTF/LXGWWenKai-Medium.ttf",
+        "sha256": "d4bdeb38a39151d74d084cba5090f8cb7d20bf83eedb78c35939ae70b9f4e3f6",
+        "bytes": 25379848,
+        "retrieved_at_utc": "2026-09-13T06:54:21.253345+00:00"
+      }
+    },
+    {
+      "id": "WenQuanYiMicroHei_ttc0",
+      "family": "WenQuanYi Micro Hei",
+      "training_family": "WenQuanYi Micro Hei",
+      "native_family": "WenQuanYi Micro Hei",
+      "postscript": "WenQuanYiMicroHei",
+      "path": "artifacts/android-font-v1/sources/wqymicrohei/wqy-microhei.ttc",
+      "sha256": "e4bca8df123ce01b104780f576ea1a58b9a5ff1662a91124b6d3180cb6c88212",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 0.2.0-beta",
+      "license": "Apache-2.0 OR GPL-3.0 with upstream font embedding exception",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/wqymicrohei/LICENSE_Apache2.txt",
+          "sha256": "1c19d8eb506a0e9d501d882fc9fe94eca99bc7b2f69f5e64fa79b7ec48cee54d"
+        },
+        {
+          "path": "artifacts/android-font-v1/sources/wqymicrohei/LICENSE_GPLv3.txt",
+          "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/wqymicrohei/WenQuanYiMicroHei_ttc0.cmap.json",
+        "sha256": "b2fca3d3bba03ea4b1ff948eee7545a34f5a8a4d1c8e03df9c78d4e2cce051e4",
+        "codepoint_count": 34600,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 20932,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/wqymicrohei/wqy-microhei.ttc",
+        "sha256": "e4bca8df123ce01b104780f576ea1a58b9a5ff1662a91124b6d3180cb6c88212",
+        "bytes": 5177387,
+        "family": "WenQuanYi Micro Hei",
+        "role": "known",
+        "kind": "font",
+        "archive": "artifacts/android-font-v1/sources/wqymicrohei/fonts-wqy-microhei_0.2.0-beta.orig.tar.gz",
+        "archive_sha256": "2802ac8023aa36a66ea6e7445854e3a078d377ffff42169341bd237871f7213e",
+        "archive_member": "wqy-microhei/wqy-microhei.ttc",
+        "source_version": "0.2.0-beta",
+        "source_distribution": "Debian official original upstream archive",
+        "source_url": "https://deb.debian.org/debian/pool/main/f/fonts-wqy-microhei/fonts-wqy-microhei_0.2.0-beta.orig.tar.gz"
+      }
+    },
+    {
+      "id": "ZCOOLKuaiLe-Regular_ttc0",
+      "family": "ZCOOL KuaiLe",
+      "training_family": "ZCOOL KuaiLe",
+      "native_family": "ZCOOL KuaiLe",
+      "postscript": "ZCOOLKuaiLe-Regular",
+      "path": "artifacts/android-font-v1/sources/zcoolkuaile/ZCOOLKuaiLe-Regular.ttf",
+      "sha256": "812a6fc1fe54b6d73a419245c32dfeba8aa33104d5be90d1cf6af082007cb71d",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.001",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/zcoolkuaile/OFL.txt",
+          "sha256": "538078469839b4a2e7ad22bef4ebe41681a4e53749bb2a072144024f1d6d703d"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/zcoolkuaile/ZCOOLKuaiLe-Regular_ttc0.cmap.json",
+        "sha256": "6d7101d2970bf34d02384db168eda9789fe76048ddba34551e76bdb5286acbfb",
+        "codepoint_count": 7053,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 6766,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "zcoolkuaile",
+        "url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/zcoolkuaile/ZCOOLKuaiLe-Regular.ttf",
+        "file": "ZCOOLKuaiLe-Regular.ttf",
+        "source_repository": "google/fonts",
+        "source_commit": "809e4d8b8d7e9364a914909bb777679606c178b8",
+        "family": "ZCOOL KuaiLe",
+        "role": "known",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/zcoolkuaile/ZCOOLKuaiLe-Regular.ttf",
+        "resolved_url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/zcoolkuaile/ZCOOLKuaiLe-Regular.ttf",
+        "sha256": "812a6fc1fe54b6d73a419245c32dfeba8aa33104d5be90d1cf6af082007cb71d",
+        "bytes": 1514968,
+        "retrieved_at_utc": "2026-09-13T06:54:12.686159+00:00"
+      }
+    },
+    {
+      "id": "ZCOOLXiaoWei-Regular_ttc0",
+      "family": "ZCOOL XiaoWei",
+      "training_family": "ZCOOL XiaoWei",
+      "native_family": "站酷小薇体",
+      "postscript": "ZCOOLXiaoWei-Regular",
+      "path": "artifacts/android-font-v1/sources/zcoolxiaowei/ZCOOLXiaoWei-Regular.ttf",
+      "sha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 1.000",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/zcoolxiaowei/OFL.txt",
+          "sha256": "a094514ca57cf8f9c5e8d8d1adab5d8cd3a377297ff016f9df2c05b3ecd77f0a"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/zcoolxiaowei/ZCOOLXiaoWei-Regular_ttc0.cmap.json",
+        "sha256": "20003599c64dd52d079130b94065bf9623a93f2e0426b320537d47c04f6c5ded",
+        "codepoint_count": 7016,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 6763,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "zcoolxiaowei",
+        "url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/zcoolxiaowei/ZCOOLXiaoWei-Regular.ttf",
+        "file": "ZCOOLXiaoWei-Regular.ttf",
+        "source_repository": "google/fonts",
+        "source_commit": "809e4d8b8d7e9364a914909bb777679606c178b8",
+        "family": "ZCOOL XiaoWei",
+        "role": "known",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/zcoolxiaowei/ZCOOLXiaoWei-Regular.ttf",
+        "resolved_url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/zcoolxiaowei/ZCOOLXiaoWei-Regular.ttf",
+        "sha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1",
+        "bytes": 6313808,
+        "retrieved_at_utc": "2026-09-13T06:54:13.142096+00:00"
+      }
+    },
+    {
+      "id": "ZCOOLQingKeHuangYou-Regular_ttc0",
+      "family": "ZCOOL QingKe HuangYou",
+      "training_family": "ZCOOL QingKe HuangYou",
+      "native_family": "ZCOOL QingKe HuangYou",
+      "postscript": "ZCOOLQingKeHuangYou-Regular",
+      "path": "artifacts/android-font-v1/sources/zcoolqingkehuangyou/ZCOOLQingKeHuangYou-Regular.ttf",
+      "sha256": "54f0c0df4308cd74cd0f2fd3494ae054dbc4a1fd6fa7d71f4807eb4cdd8b4136",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 1.000",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/zcoolqingkehuangyou/OFL.txt",
+          "sha256": "f1bce31b817dee01c1e4ef8bc45d8ecb95f01f4abbf0a985007cb3cd0fd8123d"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/zcoolqingkehuangyou/ZCOOLQingKeHuangYou-Regular_ttc0.cmap.json",
+        "sha256": "2643fea1fe6b74645d283bfff9df3c297888bdda42ea404e881c23e1d8dfea64",
+        "codepoint_count": 9429,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 9176,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "zcoolqingkehuangyou",
+        "url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/zcoolqingkehuangyou/ZCOOLQingKeHuangYou-Regular.ttf",
+        "file": "ZCOOLQingKeHuangYou-Regular.ttf",
+        "source_repository": "google/fonts",
+        "source_commit": "809e4d8b8d7e9364a914909bb777679606c178b8",
+        "family": "ZCOOL QingKe HuangYou",
+        "role": "known",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/zcoolqingkehuangyou/ZCOOLQingKeHuangYou-Regular.ttf",
+        "resolved_url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/zcoolqingkehuangyou/ZCOOLQingKeHuangYou-Regular.ttf",
+        "sha256": "54f0c0df4308cd74cd0f2fd3494ae054dbc4a1fd6fa7d71f4807eb4cdd8b4136",
+        "bytes": 8328684,
+        "retrieved_at_utc": "2026-09-13T06:54:13.726508+00:00"
+      }
+    },
+    {
+      "id": "MaShanZheng-Regular_ttc0",
+      "family": "Ma Shan Zheng",
+      "training_family": "Ma Shan Zheng",
+      "native_family": "Ma Shan Zheng",
+      "postscript": "MaShanZheng-Regular",
+      "path": "artifacts/android-font-v1/sources/mashanzheng/MaShanZheng-Regular.ttf",
+      "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.003",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/mashanzheng/OFL.txt",
+          "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/mashanzheng/MaShanZheng-Regular_ttc0.cmap.json",
+        "sha256": "159b4ef3a0b45c3b6e09b28392c02b010f773857c81996cdcc9db1f4c11d3bc1",
+        "codepoint_count": 7015,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 6763,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "mashanzheng",
+        "url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/mashanzheng/MaShanZheng-Regular.ttf",
+        "file": "MaShanZheng-Regular.ttf",
+        "source_repository": "google/fonts",
+        "source_commit": "809e4d8b8d7e9364a914909bb777679606c178b8",
+        "family": "Ma Shan Zheng",
+        "role": "known",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/mashanzheng/MaShanZheng-Regular.ttf",
+        "resolved_url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/mashanzheng/MaShanZheng-Regular.ttf",
+        "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+        "bytes": 5857936,
+        "retrieved_at_utc": "2026-09-13T06:54:13.896634+00:00"
+      }
+    },
+    {
+      "id": "FluxSans-Roboto-W300-D100_ttc0",
+      "family": "Roboto",
+      "training_family": "Roboto",
+      "native_family": "Roboto",
+      "postscript": "FluxSans-Roboto-W300-D100",
+      "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W300-D100.ttf",
+      "sha256": "2d15ca42799f02e77b508c9c8287f1a8e2ec91010d1638dfc050620bb28cde65",
+      "ttc_index": 0,
+      "weight": 300,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "latin"
+      ],
+      "version": "Version 3.015; 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/roboto/OFL.txt",
+          "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W300-D100_ttc0.cmap.json",
+        "sha256": "b701abe4222efb3601d1732055fa07c497a1a538d12248d3d5056a5d78b992f6",
+        "codepoint_count": 927,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 0,
+        "gb2312_han_applicable": false,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 0,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": "账单详情全部交易成功支付时间款方式收银行余额转微信宝字体识别测试简中文金颜色号"
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W300-D100.ttf",
+        "sha256": "2d15ca42799f02e77b508c9c8287f1a8e2ec91010d1638dfc050620bb28cde65",
+        "bytes": 157648,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/FluxSans-Roboto-W300-D100.ttf",
+        "family": "Roboto",
+        "role": "known",
+        "kind": "font",
+        "source_derivation": {
+          "source": "artifacts/neural-font-v1/downloads/roboto-google-fonts/Roboto[wdth,wght].ttf",
+          "source_sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+          "source_manifest": "artifacts/neural-font-v1/downloads/roboto-google-fonts/SOURCE_MANIFEST.json",
+          "source_manifest_sha256": "856f3cc86ee97484fc6ac95b0b0610f89d287f1fd35971f57451b8307111e76c",
+          "operation": "fontTools varLib.instantiateVariableFont then unique name IDs 3/4/6",
+          "axes": {
+            "wdth": 100,
+            "wght": 300
+          },
+          "fonttools_version": "4.65.0",
+          "derived_sha256": "2d15ca42799f02e77b508c9c8287f1a8e2ec91010d1638dfc050620bb28cde65",
+          "derived_postscript": "FluxSans-Roboto-W300-D100",
+          "glyphs_are_original_variable_font_instances": true
+        },
+        "source_repository": "google/fonts",
+        "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c"
+      }
+    },
+    {
+      "id": "FluxSans-Roboto-W300-D75_ttc0",
+      "family": "Roboto",
+      "training_family": "Roboto",
+      "native_family": "Roboto",
+      "postscript": "FluxSans-Roboto-W300-D75",
+      "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W300-D75.ttf",
+      "sha256": "2b0d16e0ffe7113c68266bf2425fbb0a0d1fe8aee333e6f0c9d4b1bcdab5f686",
+      "ttc_index": 0,
+      "weight": 300,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "latin"
+      ],
+      "version": "Version 3.015; 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/roboto/OFL.txt",
+          "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W300-D75_ttc0.cmap.json",
+        "sha256": "b701abe4222efb3601d1732055fa07c497a1a538d12248d3d5056a5d78b992f6",
+        "codepoint_count": 927,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 0,
+        "gb2312_han_applicable": false,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 0,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": "账单详情全部交易成功支付时间款方式收银行余额转微信宝字体识别测试简中文金颜色号"
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W300-D75.ttf",
+        "sha256": "2b0d16e0ffe7113c68266bf2425fbb0a0d1fe8aee333e6f0c9d4b1bcdab5f686",
+        "bytes": 157472,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/FluxSans-Roboto-W300-D75.ttf",
+        "family": "Roboto",
+        "role": "known",
+        "kind": "font",
+        "source_derivation": {
+          "source": "artifacts/neural-font-v1/downloads/roboto-google-fonts/Roboto[wdth,wght].ttf",
+          "source_sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+          "source_manifest": "artifacts/neural-font-v1/downloads/roboto-google-fonts/SOURCE_MANIFEST.json",
+          "source_manifest_sha256": "856f3cc86ee97484fc6ac95b0b0610f89d287f1fd35971f57451b8307111e76c",
+          "operation": "fontTools varLib.instantiateVariableFont then unique name IDs 3/4/6",
+          "axes": {
+            "wdth": 75,
+            "wght": 300
+          },
+          "fonttools_version": "4.65.0",
+          "derived_sha256": "2b0d16e0ffe7113c68266bf2425fbb0a0d1fe8aee333e6f0c9d4b1bcdab5f686",
+          "derived_postscript": "FluxSans-Roboto-W300-D75",
+          "glyphs_are_original_variable_font_instances": true
+        },
+        "source_repository": "google/fonts",
+        "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c"
+      }
+    },
+    {
+      "id": "FluxSans-Roboto-W400-D100_ttc0",
+      "family": "Roboto",
+      "training_family": "Roboto",
+      "native_family": "Roboto",
+      "postscript": "FluxSans-Roboto-W400-D100",
+      "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W400-D100.ttf",
+      "sha256": "16fcb6b81ddd5d61ac28494f0895aaae3b065d68fd2e7cf51cdf84b4fec03fe5",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "latin"
+      ],
+      "version": "Version 3.015; 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/roboto/OFL.txt",
+          "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W400-D100_ttc0.cmap.json",
+        "sha256": "b701abe4222efb3601d1732055fa07c497a1a538d12248d3d5056a5d78b992f6",
+        "codepoint_count": 927,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 0,
+        "gb2312_han_applicable": false,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 0,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": "账单详情全部交易成功支付时间款方式收银行余额转微信宝字体识别测试简中文金颜色号"
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W400-D100.ttf",
+        "sha256": "16fcb6b81ddd5d61ac28494f0895aaae3b065d68fd2e7cf51cdf84b4fec03fe5",
+        "bytes": 157576,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/FluxSans-Roboto-W400-D100.ttf",
+        "family": "Roboto",
+        "role": "known",
+        "kind": "font",
+        "source_derivation": {
+          "source": "artifacts/neural-font-v1/downloads/roboto-google-fonts/Roboto[wdth,wght].ttf",
+          "source_sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+          "source_manifest": "artifacts/neural-font-v1/downloads/roboto-google-fonts/SOURCE_MANIFEST.json",
+          "source_manifest_sha256": "856f3cc86ee97484fc6ac95b0b0610f89d287f1fd35971f57451b8307111e76c",
+          "operation": "fontTools varLib.instantiateVariableFont then unique name IDs 3/4/6",
+          "axes": {
+            "wdth": 100,
+            "wght": 400
+          },
+          "fonttools_version": "4.65.0",
+          "derived_sha256": "16fcb6b81ddd5d61ac28494f0895aaae3b065d68fd2e7cf51cdf84b4fec03fe5",
+          "derived_postscript": "FluxSans-Roboto-W400-D100",
+          "glyphs_are_original_variable_font_instances": true
+        },
+        "source_repository": "google/fonts",
+        "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c"
+      }
+    },
+    {
+      "id": "FluxSans-Roboto-W400-D75_ttc0",
+      "family": "Roboto",
+      "training_family": "Roboto",
+      "native_family": "Roboto",
+      "postscript": "FluxSans-Roboto-W400-D75",
+      "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W400-D75.ttf",
+      "sha256": "57cc47fb3dfc7dfd09a5f1d5ce73ffbb96c3cb436f028dfc92f25e3a3833c9c2",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "latin"
+      ],
+      "version": "Version 3.015; 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/roboto/OFL.txt",
+          "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W400-D75_ttc0.cmap.json",
+        "sha256": "b701abe4222efb3601d1732055fa07c497a1a538d12248d3d5056a5d78b992f6",
+        "codepoint_count": 927,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 0,
+        "gb2312_han_applicable": false,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 0,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": "账单详情全部交易成功支付时间款方式收银行余额转微信宝字体识别测试简中文金颜色号"
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W400-D75.ttf",
+        "sha256": "57cc47fb3dfc7dfd09a5f1d5ce73ffbb96c3cb436f028dfc92f25e3a3833c9c2",
+        "bytes": 157224,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/FluxSans-Roboto-W400-D75.ttf",
+        "family": "Roboto",
+        "role": "known",
+        "kind": "font",
+        "source_derivation": {
+          "source": "artifacts/neural-font-v1/downloads/roboto-google-fonts/Roboto[wdth,wght].ttf",
+          "source_sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+          "source_manifest": "artifacts/neural-font-v1/downloads/roboto-google-fonts/SOURCE_MANIFEST.json",
+          "source_manifest_sha256": "856f3cc86ee97484fc6ac95b0b0610f89d287f1fd35971f57451b8307111e76c",
+          "operation": "fontTools varLib.instantiateVariableFont then unique name IDs 3/4/6",
+          "axes": {
+            "wdth": 75,
+            "wght": 400
+          },
+          "fonttools_version": "4.65.0",
+          "derived_sha256": "57cc47fb3dfc7dfd09a5f1d5ce73ffbb96c3cb436f028dfc92f25e3a3833c9c2",
+          "derived_postscript": "FluxSans-Roboto-W400-D75",
+          "glyphs_are_original_variable_font_instances": true
+        },
+        "source_repository": "google/fonts",
+        "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c"
+      }
+    },
+    {
+      "id": "FluxSans-Roboto-W500-D100_ttc0",
+      "family": "Roboto",
+      "training_family": "Roboto",
+      "native_family": "Roboto",
+      "postscript": "FluxSans-Roboto-W500-D100",
+      "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W500-D100.ttf",
+      "sha256": "eaa543dfe2d720f5495e09a780c1f78e6d4ad35c92da5c6e752ec141c0b935bb",
+      "ttc_index": 0,
+      "weight": 500,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "latin"
+      ],
+      "version": "Version 3.015; 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/roboto/OFL.txt",
+          "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W500-D100_ttc0.cmap.json",
+        "sha256": "b701abe4222efb3601d1732055fa07c497a1a538d12248d3d5056a5d78b992f6",
+        "codepoint_count": 927,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 0,
+        "gb2312_han_applicable": false,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 0,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": "账单详情全部交易成功支付时间款方式收银行余额转微信宝字体识别测试简中文金颜色号"
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W500-D100.ttf",
+        "sha256": "eaa543dfe2d720f5495e09a780c1f78e6d4ad35c92da5c6e752ec141c0b935bb",
+        "bytes": 157708,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/FluxSans-Roboto-W500-D100.ttf",
+        "family": "Roboto",
+        "role": "known",
+        "kind": "font",
+        "source_derivation": {
+          "source": "artifacts/neural-font-v1/downloads/roboto-google-fonts/Roboto[wdth,wght].ttf",
+          "source_sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+          "source_manifest": "artifacts/neural-font-v1/downloads/roboto-google-fonts/SOURCE_MANIFEST.json",
+          "source_manifest_sha256": "856f3cc86ee97484fc6ac95b0b0610f89d287f1fd35971f57451b8307111e76c",
+          "operation": "fontTools varLib.instantiateVariableFont then unique name IDs 3/4/6",
+          "axes": {
+            "wdth": 100,
+            "wght": 500
+          },
+          "fonttools_version": "4.65.0",
+          "derived_sha256": "eaa543dfe2d720f5495e09a780c1f78e6d4ad35c92da5c6e752ec141c0b935bb",
+          "derived_postscript": "FluxSans-Roboto-W500-D100",
+          "glyphs_are_original_variable_font_instances": true
+        },
+        "source_repository": "google/fonts",
+        "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c"
+      }
+    },
+    {
+      "id": "FluxSans-Roboto-W500-D75_ttc0",
+      "family": "Roboto",
+      "training_family": "Roboto",
+      "native_family": "Roboto",
+      "postscript": "FluxSans-Roboto-W500-D75",
+      "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W500-D75.ttf",
+      "sha256": "e69e7f54315fefd4d08bd93e6f9eb3250247c256f506eebe85601b2c06373d40",
+      "ttc_index": 0,
+      "weight": 500,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "latin"
+      ],
+      "version": "Version 3.015; 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/roboto/OFL.txt",
+          "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W500-D75_ttc0.cmap.json",
+        "sha256": "b701abe4222efb3601d1732055fa07c497a1a538d12248d3d5056a5d78b992f6",
+        "codepoint_count": 927,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 0,
+        "gb2312_han_applicable": false,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 0,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": "账单详情全部交易成功支付时间款方式收银行余额转微信宝字体识别测试简中文金颜色号"
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W500-D75.ttf",
+        "sha256": "e69e7f54315fefd4d08bd93e6f9eb3250247c256f506eebe85601b2c06373d40",
+        "bytes": 157332,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/FluxSans-Roboto-W500-D75.ttf",
+        "family": "Roboto",
+        "role": "known",
+        "kind": "font",
+        "source_derivation": {
+          "source": "artifacts/neural-font-v1/downloads/roboto-google-fonts/Roboto[wdth,wght].ttf",
+          "source_sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+          "source_manifest": "artifacts/neural-font-v1/downloads/roboto-google-fonts/SOURCE_MANIFEST.json",
+          "source_manifest_sha256": "856f3cc86ee97484fc6ac95b0b0610f89d287f1fd35971f57451b8307111e76c",
+          "operation": "fontTools varLib.instantiateVariableFont then unique name IDs 3/4/6",
+          "axes": {
+            "wdth": 75,
+            "wght": 500
+          },
+          "fonttools_version": "4.65.0",
+          "derived_sha256": "e69e7f54315fefd4d08bd93e6f9eb3250247c256f506eebe85601b2c06373d40",
+          "derived_postscript": "FluxSans-Roboto-W500-D75",
+          "glyphs_are_original_variable_font_instances": true
+        },
+        "source_repository": "google/fonts",
+        "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c"
+      }
+    },
+    {
+      "id": "FluxSans-Roboto-W700-D100_ttc0",
+      "family": "Roboto",
+      "training_family": "Roboto",
+      "native_family": "Roboto",
+      "postscript": "FluxSans-Roboto-W700-D100",
+      "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W700-D100.ttf",
+      "sha256": "2d13a9a3fe365147e1931fb1e1a1d9ed12965be7c83d5b31c5cee6fd1bfe0a99",
+      "ttc_index": 0,
+      "weight": 700,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "latin"
+      ],
+      "version": "Version 3.015; 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/roboto/OFL.txt",
+          "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W700-D100_ttc0.cmap.json",
+        "sha256": "b701abe4222efb3601d1732055fa07c497a1a538d12248d3d5056a5d78b992f6",
+        "codepoint_count": 927,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 0,
+        "gb2312_han_applicable": false,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 0,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": "账单详情全部交易成功支付时间款方式收银行余额转微信宝字体识别测试简中文金颜色号"
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W700-D100.ttf",
+        "sha256": "2d13a9a3fe365147e1931fb1e1a1d9ed12965be7c83d5b31c5cee6fd1bfe0a99",
+        "bytes": 158308,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/FluxSans-Roboto-W700-D100.ttf",
+        "family": "Roboto",
+        "role": "known",
+        "kind": "font",
+        "source_derivation": {
+          "source": "artifacts/neural-font-v1/downloads/roboto-google-fonts/Roboto[wdth,wght].ttf",
+          "source_sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+          "source_manifest": "artifacts/neural-font-v1/downloads/roboto-google-fonts/SOURCE_MANIFEST.json",
+          "source_manifest_sha256": "856f3cc86ee97484fc6ac95b0b0610f89d287f1fd35971f57451b8307111e76c",
+          "operation": "fontTools varLib.instantiateVariableFont then unique name IDs 3/4/6",
+          "axes": {
+            "wdth": 100,
+            "wght": 700
+          },
+          "fonttools_version": "4.65.0",
+          "derived_sha256": "2d13a9a3fe365147e1931fb1e1a1d9ed12965be7c83d5b31c5cee6fd1bfe0a99",
+          "derived_postscript": "FluxSans-Roboto-W700-D100",
+          "glyphs_are_original_variable_font_instances": true
+        },
+        "source_repository": "google/fonts",
+        "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c"
+      }
+    },
+    {
+      "id": "FluxSans-Roboto-W700-D75_ttc0",
+      "family": "Roboto",
+      "training_family": "Roboto",
+      "native_family": "Roboto",
+      "postscript": "FluxSans-Roboto-W700-D75",
+      "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W700-D75.ttf",
+      "sha256": "a58121b765195efc4e9913540372a9a84fd6aadd6a6071a0938671ea7f3bf29d",
+      "ttc_index": 0,
+      "weight": 700,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "latin"
+      ],
+      "version": "Version 3.015; 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/roboto/OFL.txt",
+          "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W700-D75_ttc0.cmap.json",
+        "sha256": "b701abe4222efb3601d1732055fa07c497a1a538d12248d3d5056a5d78b992f6",
+        "codepoint_count": 927,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 0,
+        "gb2312_han_applicable": false,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 0,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": "账单详情全部交易成功支付时间款方式收银行余额转微信宝字体识别测试简中文金颜色号"
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W700-D75.ttf",
+        "sha256": "a58121b765195efc4e9913540372a9a84fd6aadd6a6071a0938671ea7f3bf29d",
+        "bytes": 157900,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/FluxSans-Roboto-W700-D75.ttf",
+        "family": "Roboto",
+        "role": "known",
+        "kind": "font",
+        "source_derivation": {
+          "source": "artifacts/neural-font-v1/downloads/roboto-google-fonts/Roboto[wdth,wght].ttf",
+          "source_sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+          "source_manifest": "artifacts/neural-font-v1/downloads/roboto-google-fonts/SOURCE_MANIFEST.json",
+          "source_manifest_sha256": "856f3cc86ee97484fc6ac95b0b0610f89d287f1fd35971f57451b8307111e76c",
+          "operation": "fontTools varLib.instantiateVariableFont then unique name IDs 3/4/6",
+          "axes": {
+            "wdth": 75,
+            "wght": 700
+          },
+          "fonttools_version": "4.65.0",
+          "derived_sha256": "a58121b765195efc4e9913540372a9a84fd6aadd6a6071a0938671ea7f3bf29d",
+          "derived_postscript": "FluxSans-Roboto-W700-D75",
+          "glyphs_are_original_variable_font_instances": true
+        },
+        "source_repository": "google/fonts",
+        "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c"
+      }
+    },
+    {
+      "id": "FluxSans-Roboto-W900-D100_ttc0",
+      "family": "Roboto",
+      "training_family": "Roboto",
+      "native_family": "Roboto",
+      "postscript": "FluxSans-Roboto-W900-D100",
+      "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W900-D100.ttf",
+      "sha256": "3a869d2ade4beb1fdd9231fa8cf93c22229e9a3b91cad4384b6165a899a3b8c4",
+      "ttc_index": 0,
+      "weight": 900,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "latin"
+      ],
+      "version": "Version 3.015; 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/roboto/OFL.txt",
+          "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W900-D100_ttc0.cmap.json",
+        "sha256": "b701abe4222efb3601d1732055fa07c497a1a538d12248d3d5056a5d78b992f6",
+        "codepoint_count": 927,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 0,
+        "gb2312_han_applicable": false,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 0,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": "账单详情全部交易成功支付时间款方式收银行余额转微信宝字体识别测试简中文金颜色号"
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W900-D100.ttf",
+        "sha256": "3a869d2ade4beb1fdd9231fa8cf93c22229e9a3b91cad4384b6165a899a3b8c4",
+        "bytes": 158684,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/FluxSans-Roboto-W900-D100.ttf",
+        "family": "Roboto",
+        "role": "known",
+        "kind": "font",
+        "source_derivation": {
+          "source": "artifacts/neural-font-v1/downloads/roboto-google-fonts/Roboto[wdth,wght].ttf",
+          "source_sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+          "source_manifest": "artifacts/neural-font-v1/downloads/roboto-google-fonts/SOURCE_MANIFEST.json",
+          "source_manifest_sha256": "856f3cc86ee97484fc6ac95b0b0610f89d287f1fd35971f57451b8307111e76c",
+          "operation": "fontTools varLib.instantiateVariableFont then unique name IDs 3/4/6",
+          "axes": {
+            "wdth": 100,
+            "wght": 900
+          },
+          "fonttools_version": "4.65.0",
+          "derived_sha256": "3a869d2ade4beb1fdd9231fa8cf93c22229e9a3b91cad4384b6165a899a3b8c4",
+          "derived_postscript": "FluxSans-Roboto-W900-D100",
+          "glyphs_are_original_variable_font_instances": true
+        },
+        "source_repository": "google/fonts",
+        "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c"
+      }
+    },
+    {
+      "id": "FluxSans-Roboto-W900-D75_ttc0",
+      "family": "Roboto",
+      "training_family": "Roboto",
+      "native_family": "Roboto",
+      "postscript": "FluxSans-Roboto-W900-D75",
+      "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W900-D75.ttf",
+      "sha256": "a13bebf8c842cd42fce79126810082e6add602725ba904ee0faa49b24926d392",
+      "ttc_index": 0,
+      "weight": 900,
+      "axes": {},
+      "variable": false,
+      "role": "known",
+      "split": "all",
+      "allowed_splits": [
+        "train",
+        "calibration",
+        "test"
+      ],
+      "scripts": [
+        "latin"
+      ],
+      "version": "Version 3.015; 2026",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/roboto/OFL.txt",
+          "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W900-D75_ttc0.cmap.json",
+        "sha256": "b701abe4222efb3601d1732055fa07c497a1a538d12248d3d5056a5d78b992f6",
+        "codepoint_count": 927,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 0,
+        "gb2312_han_applicable": false,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 0,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": "账单详情全部交易成功支付时间款方式收银行余额转微信宝字体识别测试简中文金颜色号"
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/roboto/FluxSans-Roboto-W900-D75.ttf",
+        "sha256": "a13bebf8c842cd42fce79126810082e6add602725ba904ee0faa49b24926d392",
+        "bytes": 158384,
+        "copied_from": "artifacts/font-sans-v1/scenes-v1/assets/FluxSans-Roboto-W900-D75.ttf",
+        "family": "Roboto",
+        "role": "known",
+        "kind": "font",
+        "source_derivation": {
+          "source": "artifacts/neural-font-v1/downloads/roboto-google-fonts/Roboto[wdth,wght].ttf",
+          "source_sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+          "source_manifest": "artifacts/neural-font-v1/downloads/roboto-google-fonts/SOURCE_MANIFEST.json",
+          "source_manifest_sha256": "856f3cc86ee97484fc6ac95b0b0610f89d287f1fd35971f57451b8307111e76c",
+          "operation": "fontTools varLib.instantiateVariableFont then unique name IDs 3/4/6",
+          "axes": {
+            "wdth": 75,
+            "wght": 900
+          },
+          "fonttools_version": "4.65.0",
+          "derived_sha256": "a13bebf8c842cd42fce79126810082e6add602725ba904ee0faa49b24926d392",
+          "derived_postscript": "FluxSans-Roboto-W900-D75",
+          "glyphs_are_original_variable_font_instances": true
+        },
+        "source_repository": "google/fonts",
+        "source_commit": "1c627bfa375fc51cf86fabeca4f6e08a95f0aa5c"
+      }
+    },
+    {
+      "id": "LongCang-Regular_ttc0",
+      "family": "Long Cang",
+      "training_family": "__unknown__",
+      "native_family": "Long Cang",
+      "postscript": "LongCang-Regular",
+      "path": "artifacts/android-font-v1/sources/longcang/LongCang-Regular.ttf",
+      "sha256": "e5bf2c3f24ef2327c6f136d8f73e2f9dfdf44896fdbeb35a9515f44777bb91bc",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "unknown",
+      "split": "train",
+      "allowed_splits": [
+        "train"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.001",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/longcang/OFL.txt",
+          "sha256": "603546b7219a94bb59bf8294458194a5010119486354092b66a09a3fd61aeacc"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/longcang/LongCang-Regular_ttc0.cmap.json",
+        "sha256": "159b4ef3a0b45c3b6e09b28392c02b010f773857c81996cdcc9db1f4c11d3bc1",
+        "codepoint_count": 7015,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 6763,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "longcang",
+        "url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/longcang/LongCang-Regular.ttf",
+        "file": "LongCang-Regular.ttf",
+        "source_repository": "google/fonts",
+        "source_commit": "809e4d8b8d7e9364a914909bb777679606c178b8",
+        "family": "Long Cang",
+        "role": "unknown_train",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/longcang/LongCang-Regular.ttf",
+        "resolved_url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/longcang/LongCang-Regular.ttf",
+        "sha256": "e5bf2c3f24ef2327c6f136d8f73e2f9dfdf44896fdbeb35a9515f44777bb91bc",
+        "bytes": 5162508,
+        "retrieved_at_utc": "2026-09-13T06:54:19.662867+00:00"
+      }
+    },
+    {
+      "id": "ZhiMangXing-Regular_ttc0",
+      "family": "Zhi Mang Xing",
+      "training_family": "__unknown__",
+      "native_family": "Zhi Mang Xing",
+      "postscript": "ZhiMangXing-Regular",
+      "path": "artifacts/android-font-v1/sources/zhimangxing/ZhiMangXing-Regular.ttf",
+      "sha256": "644e0cae9b40f0b10ab729a01bd32032e3973bac22be3dccae01bf6ae7fde969",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "unknown",
+      "split": "train",
+      "allowed_splits": [
+        "train"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.001",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/zhimangxing/OFL.txt",
+          "sha256": "10947328199e369a3e6b4a67e8e5507ed99d5bbb264a1f156415aa9b665e4d15"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/zhimangxing/ZhiMangXing-Regular_ttc0.cmap.json",
+        "sha256": "159b4ef3a0b45c3b6e09b28392c02b010f773857c81996cdcc9db1f4c11d3bc1",
+        "codepoint_count": 7015,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 6763,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "zhimangxing",
+        "url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/zhimangxing/ZhiMangXing-Regular.ttf",
+        "file": "ZhiMangXing-Regular.ttf",
+        "source_repository": "google/fonts",
+        "source_commit": "809e4d8b8d7e9364a914909bb777679606c178b8",
+        "family": "Zhi Mang Xing",
+        "role": "unknown_train",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/zhimangxing/ZhiMangXing-Regular.ttf",
+        "resolved_url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/zhimangxing/ZhiMangXing-Regular.ttf",
+        "sha256": "644e0cae9b40f0b10ab729a01bd32032e3973bac22be3dccae01bf6ae7fde969",
+        "bytes": 4063532,
+        "retrieved_at_utc": "2026-09-13T06:54:15.187719+00:00"
+      }
+    },
+    {
+      "id": "LiuJianMaoCao-Regular_ttc0",
+      "family": "Liu Jian Mao Cao",
+      "training_family": "__unknown__",
+      "native_family": "Liu Jian Mao Cao",
+      "postscript": "LiuJianMaoCao-Regular",
+      "path": "artifacts/android-font-v1/sources/liujianmaocao/LiuJianMaoCao-Regular.ttf",
+      "sha256": "cab396b91a5b7c0b4005a35891180d06e6751f5ac261fe680aec65c1ae209033",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "unknown",
+      "split": "calibration",
+      "allowed_splits": [
+        "calibration"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 1.003",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/liujianmaocao/OFL.txt",
+          "sha256": "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/liujianmaocao/LiuJianMaoCao-Regular_ttc0.cmap.json",
+        "sha256": "159b4ef3a0b45c3b6e09b28392c02b010f773857c81996cdcc9db1f4c11d3bc1",
+        "codepoint_count": 7015,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 6763,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "group": "liujianmaocao",
+        "url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/liujianmaocao/LiuJianMaoCao-Regular.ttf",
+        "file": "LiuJianMaoCao-Regular.ttf",
+        "source_repository": "google/fonts",
+        "source_commit": "809e4d8b8d7e9364a914909bb777679606c178b8",
+        "family": "Liu Jian Mao Cao",
+        "role": "unknown_calibration",
+        "kind": "font",
+        "path": "artifacts/android-font-v1/sources/liujianmaocao/LiuJianMaoCao-Regular.ttf",
+        "resolved_url": "https://raw.githubusercontent.com/google/fonts/809e4d8b8d7e9364a914909bb777679606c178b8/ofl/liujianmaocao/LiuJianMaoCao-Regular.ttf",
+        "sha256": "cab396b91a5b7c0b4005a35891180d06e6751f5ac261fe680aec65c1ae209033",
+        "bytes": 4951804,
+        "retrieved_at_utc": "2026-09-13T06:54:14.478008+00:00"
+      }
+    },
+    {
+      "id": "SmileySans-Oblique_ttc0",
+      "family": "Smiley Sans",
+      "training_family": "__unknown__",
+      "native_family": "Smiley Sans",
+      "postscript": "SmileySans-Oblique",
+      "path": "artifacts/android-font-v1/sources/smileysans/SmileySans-Oblique.ttf",
+      "sha256": "b447d7e781f08bc95c4c9f23ba71ed2b8ebb639aa7184485c71c4ca5afcd25c4",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "unknown",
+      "split": "test",
+      "allowed_splits": [
+        "test"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 2.0.1",
+      "license": "OFL-1.1",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/smileysans/LICENSE",
+          "sha256": "9401f4050f1b66c26b6ccdc8b0e14a3c1cc37aac122eda84386f25854a9bec72"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/smileysans/SmileySans-Oblique_ttc0.cmap.json",
+        "sha256": "09e3b661513d93a586aeecc13753ecaa699140b8588eec44d00eba90d258b6e3",
+        "codepoint_count": 9440,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 8057,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "path": "artifacts/android-font-v1/sources/smileysans/SmileySans-Oblique.ttf",
+        "sha256": "b447d7e781f08bc95c4c9f23ba71ed2b8ebb639aa7184485c71c4ca5afcd25c4",
+        "bytes": 2629764,
+        "family": "Smiley Sans",
+        "role": "unknown_test",
+        "kind": "font",
+        "archive": "artifacts/android-font-v1/sources/smileysans/smiley-sans-v2.0.1.zip",
+        "archive_sha256": "299c0be6c960ae37361762eca76f7d0cd516615435bb96c0d4b98a1e70178a07",
+        "archive_member": "SmileySans-Oblique.ttf",
+        "source_repository": "atelier-anchor/smiley-sans",
+        "source_commit": "67e3821f4b06cbd7155fa6fa69daff4b6f311b76",
+        "source_version": "v2.0.1",
+        "source_url": "https://github.com/atelier-anchor/smiley-sans/releases/download/v2.0.1/smiley-sans-v2.0.1.zip"
+      }
+    },
+    {
+      "id": "FandolHei-Bold_ttc0",
+      "family": "FandolHei",
+      "training_family": "__unknown__",
+      "native_family": "FandolHei",
+      "postscript": "FandolHei-Bold",
+      "path": "artifacts/android-font-v1/sources/fandol/FandolHei-Bold.otf",
+      "sha256": "42ca2de27b45e16a284768673b6205a5add9e17871ee0e7db9c0d03f061d96fd",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "unknown",
+      "split": "train",
+      "allowed_splits": [
+        "train"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 1.300;PS 1;hotconv 1.0.81;makeotf.lib2.5.63406 DEVELOPMENT",
+      "license": "GPL-3.0 with upstream font embedding exception",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/fandol/COPYING",
+          "sha256": "853b586f0d520493390e571431afaf36a5fbb27dcfd239338a7ee9b0505cb004"
+        },
+        {
+          "path": "artifacts/android-font-v1/sources/fandol/README",
+          "sha256": "32537e063f4c7d4aebf016d5c8279cbce13f34fc8970f24b2578a3c04d0f8ca6"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/fandol/FandolHei-Bold_ttc0.cmap.json",
+        "sha256": "34370a24b8c8338fd01c37c60994ceef85e50ee5ce2b676d94041a0f2e3af237",
+        "codepoint_count": 10207,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 7942,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "archive": {
+          "schema": "flux-glyph-fandol-upstream-source-v1",
+          "url": "https://mirrors.ctan.org/fonts/fandol.zip",
+          "resolved_url": "https://mirror.kku.ac.th/CTAN/fonts/fandol.zip",
+          "path": "artifacts/android-font-v1/sources/fandol/fandol.zip",
+          "bytes": 26688406,
+          "sha256": "9278f01b417ded5766d98c3937192a1a6a2c73a5e94a3493fdfc932b2a55005a",
+          "retrieved_at_utc": "2026-09-13T07:01:48.542609+00:00",
+          "role": "unknown",
+          "split": "train"
+        },
+        "archive_member": "fandol/FandolHei-Bold.otf",
+        "source_version": "0.3",
+        "source_url": "https://ctan.org/pkg/fandol",
+        "kind": "original_font_from_upstream_archive",
+        "path": "artifacts/android-font-v1/sources/fandol/FandolHei-Bold.otf",
+        "sha256": "42ca2de27b45e16a284768673b6205a5add9e17871ee0e7db9c0d03f061d96fd",
+        "bytes": 3581972
+      }
+    },
+    {
+      "id": "FandolHei-Regular_ttc0",
+      "family": "FandolHei",
+      "training_family": "__unknown__",
+      "native_family": "FandolHei",
+      "postscript": "FandolHei-Regular",
+      "path": "artifacts/android-font-v1/sources/fandol/FandolHei-Regular.otf",
+      "sha256": "4afa97aa8751e0118617df88272b58d43691b5cffb7ea024c4580496e9f34d28",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "unknown",
+      "split": "train",
+      "allowed_splits": [
+        "train"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 1.300;PS 1;hotconv 1.0.81;makeotf.lib2.5.63406 DEVELOPMENT",
+      "license": "GPL-3.0 with upstream font embedding exception",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/fandol/COPYING",
+          "sha256": "853b586f0d520493390e571431afaf36a5fbb27dcfd239338a7ee9b0505cb004"
+        },
+        {
+          "path": "artifacts/android-font-v1/sources/fandol/README",
+          "sha256": "32537e063f4c7d4aebf016d5c8279cbce13f34fc8970f24b2578a3c04d0f8ca6"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/fandol/FandolHei-Regular_ttc0.cmap.json",
+        "sha256": "98ff111f10dcb2c3f1080a32394dd002dfcf76ea6014dae67867bac4ea7899d7",
+        "codepoint_count": 10212,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 7942,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "archive": {
+          "schema": "flux-glyph-fandol-upstream-source-v1",
+          "url": "https://mirrors.ctan.org/fonts/fandol.zip",
+          "resolved_url": "https://mirror.kku.ac.th/CTAN/fonts/fandol.zip",
+          "path": "artifacts/android-font-v1/sources/fandol/fandol.zip",
+          "bytes": 26688406,
+          "sha256": "9278f01b417ded5766d98c3937192a1a6a2c73a5e94a3493fdfc932b2a55005a",
+          "retrieved_at_utc": "2026-09-13T07:01:48.542609+00:00",
+          "role": "unknown",
+          "split": "train"
+        },
+        "archive_member": "fandol/FandolHei-Regular.otf",
+        "source_version": "0.3",
+        "source_url": "https://ctan.org/pkg/fandol",
+        "kind": "original_font_from_upstream_archive",
+        "path": "artifacts/android-font-v1/sources/fandol/FandolHei-Regular.otf",
+        "sha256": "4afa97aa8751e0118617df88272b58d43691b5cffb7ea024c4580496e9f34d28",
+        "bytes": 5808908
+      }
+    },
+    {
+      "id": "FandolKai-Regular_ttc0",
+      "family": "FandolKai",
+      "training_family": "__unknown__",
+      "native_family": "FandolKai",
+      "postscript": "FandolKai-Regular",
+      "path": "artifacts/android-font-v1/sources/fandol/FandolKai-Regular.otf",
+      "sha256": "ea7e7fb4f9b3ac694a68d43946e04d21deed6e8c29a7c2d3081e1a4138f2f827",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "unknown",
+      "split": "train",
+      "allowed_splits": [
+        "train"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 1.300;PS 1;hotconv 1.0.81;makeotf.lib2.5.63406 DEVELOPMENT",
+      "license": "GPL-3.0 with upstream font embedding exception",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/fandol/COPYING",
+          "sha256": "853b586f0d520493390e571431afaf36a5fbb27dcfd239338a7ee9b0505cb004"
+        },
+        {
+          "path": "artifacts/android-font-v1/sources/fandol/README",
+          "sha256": "32537e063f4c7d4aebf016d5c8279cbce13f34fc8970f24b2578a3c04d0f8ca6"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/fandol/FandolKai-Regular_ttc0.cmap.json",
+        "sha256": "7eb6ff474cfd271c25a9fab8eb6872e3e4c41ea783fa47a63766c51d5d912f93",
+        "codepoint_count": 10269,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 7942,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "archive": {
+          "schema": "flux-glyph-fandol-upstream-source-v1",
+          "url": "https://mirrors.ctan.org/fonts/fandol.zip",
+          "resolved_url": "https://mirror.kku.ac.th/CTAN/fonts/fandol.zip",
+          "path": "artifacts/android-font-v1/sources/fandol/fandol.zip",
+          "bytes": 26688406,
+          "sha256": "9278f01b417ded5766d98c3937192a1a6a2c73a5e94a3493fdfc932b2a55005a",
+          "retrieved_at_utc": "2026-09-13T07:01:48.542609+00:00",
+          "role": "unknown",
+          "split": "train"
+        },
+        "archive_member": "fandol/FandolKai-Regular.otf",
+        "source_version": "0.3",
+        "source_url": "https://ctan.org/pkg/fandol",
+        "kind": "original_font_from_upstream_archive",
+        "path": "artifacts/android-font-v1/sources/fandol/FandolKai-Regular.otf",
+        "sha256": "ea7e7fb4f9b3ac694a68d43946e04d21deed6e8c29a7c2d3081e1a4138f2f827",
+        "bytes": 7790552
+      }
+    },
+    {
+      "id": "FandolSong-Bold_ttc0",
+      "family": "FandolSong",
+      "training_family": "__unknown__",
+      "native_family": "FandolSong",
+      "postscript": "FandolSong-Bold",
+      "path": "artifacts/android-font-v1/sources/fandol/FandolSong-Bold.otf",
+      "sha256": "ffa76a70e128947a4dd22151d5ee829b23e24ce3cb6fe8ad49891cd1c2d9e9b9",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "unknown",
+      "split": "train",
+      "allowed_splits": [
+        "train"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 1.300;PS 1;hotconv 1.0.81;makeotf.lib2.5.63406 DEVELOPMENT",
+      "license": "GPL-3.0 with upstream font embedding exception",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/fandol/COPYING",
+          "sha256": "853b586f0d520493390e571431afaf36a5fbb27dcfd239338a7ee9b0505cb004"
+        },
+        {
+          "path": "artifacts/android-font-v1/sources/fandol/README",
+          "sha256": "32537e063f4c7d4aebf016d5c8279cbce13f34fc8970f24b2578a3c04d0f8ca6"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/fandol/FandolSong-Bold_ttc0.cmap.json",
+        "sha256": "9f5034a4af51b0bd8c0eb364e0986ec242ed553ed3f4fc9c0a5f4c1238066844",
+        "codepoint_count": 10286,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 7942,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "archive": {
+          "schema": "flux-glyph-fandol-upstream-source-v1",
+          "url": "https://mirrors.ctan.org/fonts/fandol.zip",
+          "resolved_url": "https://mirror.kku.ac.th/CTAN/fonts/fandol.zip",
+          "path": "artifacts/android-font-v1/sources/fandol/fandol.zip",
+          "bytes": 26688406,
+          "sha256": "9278f01b417ded5766d98c3937192a1a6a2c73a5e94a3493fdfc932b2a55005a",
+          "retrieved_at_utc": "2026-09-13T07:01:48.542609+00:00",
+          "role": "unknown",
+          "split": "train"
+        },
+        "archive_member": "fandol/FandolSong-Bold.otf",
+        "source_version": "0.3",
+        "source_url": "https://ctan.org/pkg/fandol",
+        "kind": "original_font_from_upstream_archive",
+        "path": "artifacts/android-font-v1/sources/fandol/FandolSong-Bold.otf",
+        "sha256": "ffa76a70e128947a4dd22151d5ee829b23e24ce3cb6fe8ad49891cd1c2d9e9b9",
+        "bytes": 5777588
+      }
+    },
+    {
+      "id": "FandolSong-Regular_ttc0",
+      "family": "FandolSong",
+      "training_family": "__unknown__",
+      "native_family": "FandolSong",
+      "postscript": "FandolSong-Regular",
+      "path": "artifacts/android-font-v1/sources/fandol/FandolSong-Regular.otf",
+      "sha256": "a3820003227d4abe31fe28b493200d94a849ccfd078b50a019264f70353020b0",
+      "ttc_index": 0,
+      "weight": 400,
+      "axes": {},
+      "variable": false,
+      "role": "unknown",
+      "split": "train",
+      "allowed_splits": [
+        "train"
+      ],
+      "scripts": [
+        "han",
+        "latin"
+      ],
+      "version": "Version 1.300;PS 1;hotconv 1.0.81;makeotf.lib2.5.63406 DEVELOPMENT",
+      "license": "GPL-3.0 with upstream font embedding exception",
+      "license_files": [
+        {
+          "path": "artifacts/android-font-v1/sources/fandol/COPYING",
+          "sha256": "853b586f0d520493390e571431afaf36a5fbb27dcfd239338a7ee9b0505cb004"
+        },
+        {
+          "path": "artifacts/android-font-v1/sources/fandol/README",
+          "sha256": "32537e063f4c7d4aebf016d5c8279cbce13f34fc8970f24b2578a3c04d0f8ca6"
+        }
+      ],
+      "cmap": {
+        "path": "artifacts/android-font-v1/sources/fandol/FandolSong-Regular_ttc0.cmap.json",
+        "sha256": "b44811514046aced886fc6c216b553de71ddbd322bb398289a1ebc4e7f4d4b30",
+        "codepoint_count": 10287,
+        "gb2312_han_total": 6763,
+        "gb2312_han_covered": 6763,
+        "gb2312_han_applicable": true,
+        "gb2312_han_missing": [],
+        "basic_cjk_covered": 7943,
+        "latin_alphanumeric_complete": true,
+        "ui_probe_missing": ""
+      },
+      "source": {
+        "archive": {
+          "schema": "flux-glyph-fandol-upstream-source-v1",
+          "url": "https://mirrors.ctan.org/fonts/fandol.zip",
+          "resolved_url": "https://mirror.kku.ac.th/CTAN/fonts/fandol.zip",
+          "path": "artifacts/android-font-v1/sources/fandol/fandol.zip",
+          "bytes": 26688406,
+          "sha256": "9278f01b417ded5766d98c3937192a1a6a2c73a5e94a3493fdfc932b2a55005a",
+          "retrieved_at_utc": "2026-09-13T07:01:48.542609+00:00",
+          "role": "unknown",
+          "split": "train"
+        },
+        "archive_member": "fandol/FandolSong-Regular.otf",
+        "source_version": "0.3",
+        "source_url": "https://ctan.org/pkg/fandol",
+        "kind": "original_font_from_upstream_archive",
+        "path": "artifacts/android-font-v1/sources/fandol/FandolSong-Regular.otf",
+        "sha256": "a3820003227d4abe31fe28b493200d94a849ccfd078b50a019264f70353020b0",
+        "bytes": 4947904
+      }
+    }
+  ],
+  "visual_label_groups": {
+    "Noto Sans CJK SC": [
+      "Noto Sans CJK SC",
+      "Source Han Sans SC"
+    ],
+    "Noto Serif CJK SC": [
+      "Noto Serif CJK SC",
+      "Source Han Serif SC"
+    ]
+  },
+  "visual_group_scope": "Avoid competing labels for overlapping shared CJK designs. Only recorded Noto binaries are sampled here; not a claim that all versions, scripts, metrics or files are identical.",
+  "source_acquisition": "Official upstream repositories, Google Fonts upstream distribution, or Debian original upstream source archive with published SHA-256. Fandol 0.3: original archive from CTAN mirror redirect with immutable archive and member SHA-256.",
+  "download_manifest_sha256": "01fba940746f650b162d7cbbcf26f412985abd217372587e0f19f09153471f42",
+  "builder_sha256": "f5c8690244e5001dfb621597936cad878683666172a1b3edbb40e0d1997ed74e",
+  "android_native_rendering_validated": false,
+  "user_screenshot_font_truth_used": false,
+  "font_files_are_screenshots": false,
+  "commits": {
+    "google/fonts": "809e4d8b8d7e9364a914909bb777679606c178b8",
+    "lxgw/LxgwWenKai": "50f4b182415a8c33d9a456df220b66a284e2509b",
+    "notofonts/noto-cjk": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+    "anthonyfok/fonts-wqy-microhei": "cd82defe33ec0e86e628329f1b63049ef562c8e5",
+    "atelier-anchor/smiley-sans": "67e3821f4b06cbd7155fa6fa69daff4b6f311b76"
+  },
+  "original_variable_font": {
+    "path": "artifacts/android-font-v1/sources/roboto/Roboto[wdth,wght].ttf",
+    "sha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134"
+  },
+  "license_scope_note": "MiSans, HarmonyOS Sans and OPPO Sans are not included or described as open-source by this registry.",
+  "pre_capture_registry_extension": {
+    "previous_registry": "artifacts/android-font-v1/sources/FONTS.before-fandol.json",
+    "previous_registry_sha256": "42cf6a4159b5ffc1e898fd7f019a4fbd52f586f2f4f3ab99ce4fc6c7220e4897",
+    "extension_builder_sha256": "547431210c1f3edacd01194954646fb355a0c3c3475d7edf5cb4d5c4ddbdb9a5",
+    "source_download_manifest_sha256": "4abe001800641049ee15da6f10ae6b422f3205b1446a85b806f3da2ae2eff312",
+    "reason": "Additional training-only unknown sans/serif/Kai sources to avoid handwriting-only unknown supervision.",
+    "new_families": [
+      "FandolHei",
+      "FandolSong",
+      "FandolKai"
+    ],
+    "heldout_unknown_sources_changed": false,
+    "before_formal_capture_or_training": true
+  }
+}

@@ -6,7 +6,7 @@ const path = require('path');
 const http = require('http');
 const {spawn} = require('child_process');
 const root = path.resolve(__dirname, '..');
-const out = path.join(root, 'artifacts/region-ui-qa');
+const out = path.resolve(process.env.FLUX_QA_OUTPUT || path.join(root, 'artifacts/region-ui-qa'));
 const assert = (value, message) => { if (!value) throw Error(message); };
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const fixturePath = path.join(root, 'tests/fixtures/ui_title_billing_details.png');
@@ -85,7 +85,39 @@ const groupedFonts = {families:['PingFang','SF Pro','Alipay Number','MiSans'],
   font_sources:{PingFang:['system'],'SF Pro':['system'],'Alipay Number':['asset'],MiSans:['asset']},
   font_label_groups:{PingFang:['PingFang SC','PingFang TC','PingFang HK']}};
 let fontMetadata = groupedFonts;
+let androidAvailability = true;
+let androidDelay = 0;
+let androidJobComplete = false;
+const previewMetadata = {release_tier:'experimental',stable_validation_passed:false,test_passed:false,
+  validation:{named_precision:.9259954921111946,known_correct_coverage:.6847222222222222,
+    unknown_wrongly_named:174,unknown_views:1200,unknown_test_families:['Smiley Sans']}};
+let androidRelease = previewMetadata;
+const modeUploads = [];
+const androidFixture = {...fixture,model_release_tier:'experimental',stable_validation_passed:false,id:'android-ui-job',font_mode:'android',model_version:'android-ui-fixture',
+  device_inference_performed:false,regions:[{...regions[0],font:{method:'region_neural_network',font_mode:'android',
+    status:'candidate',family:'Noto Sans CJK SC',score:.8765,candidates:[{family:'Noto Sans CJK SC',score:.8765}],
+    reason_code:'region_neural_family_candidate'}}]};
 const server = http.createServer((req, res) => {
+  if (req.url === '/api/models/font?mode=android') {
+    const body={...androidRelease,available:androidAvailability,font_mode:'android',version:'android-ui-fixture',
+      families:['Noto Sans CJK SC','Noto Serif CJK SC','LXGW WenKai','WenQuanYi Micro Hei','ZCOOL KuaiLe','ZCOOL XiaoWei','ZCOOL QingKe HuangYou','Ma Shan Zheng','Roboto'],font_sources:{'Roboto':['system'],'LXGW WenKai':['asset']},
+      font_label_groups:{'Noto Sans CJK SC':['Noto Sans CJK SC','Source Han Sans']},
+      download_url:'/api/models/font/download?mode=android',bytes:1048576,
+      usage:{install:'pip install -r requirements.txt',predict:'python predict.py text-region.png'}};
+    setTimeout(()=>{res.setHeader('Content-Type','application/json');res.end(JSON.stringify(body));},androidDelay);return;
+  }
+  if (req.url === '/api/models/font/download?mode=android') {res.end('Independent Android UI download fixture');return;}
+  if (req.url === '/api/jobs?mode=android' && req.method === 'POST') {
+    let bytes=0;req.on('data',part=>bytes+=part.length);req.on('end',()=>{
+      modeUploads.push({mode:'android',bytes});res.statusCode=202;res.setHeader('Content-Type','application/json');
+      res.end(JSON.stringify({id:'android-ui-job',font_mode:'android',status:'queued',progress:{stage_code:'queued',percent:0}}));
+    });return;
+  }
+  if (req.url === '/api/jobs/android-ui-job') {
+    res.setHeader('Content-Type','application/json');res.end(JSON.stringify({id:'android-ui-job',font_mode:'android',
+      status:androidJobComplete?'complete':'queued',progress:{stage_code:androidJobComplete?'complete':'queued',percent:androidJobComplete?100:0},
+      ...(androidJobComplete?{result:androidFixture}:{})}));return;
+  }
   if (req.url === '/api/health') { res.setHeader('Content-Type','application/json'); res.end(JSON.stringify({model_version:'ui-fixture-region-model'})); return; }
   if (req.url === '/api/models/font') { res.setHeader('Content-Type','application/json');
     if(availability === 'locked') {res.statusCode=401;res.end('{}');return;}
@@ -417,8 +449,67 @@ const server = http.createServer((req, res) => {
     sourceCompatibilityChecks.push({mode,...state});
   }
 
+  const modeChecks=[];
+  for(const language of ['zh','en']) {
+    await evaluate(`window.FluxGlyphUI.setLanguage('${language}');document.querySelector('[data-font-mode="android"]').click()`);
+    await wait("document.getElementById('download-model').getAttribute('href')==='/api/models/font/download?mode=android'");
+    const state=await evaluate(`({mode:window.FluxGlyphUI.get().fontMode,info:document.getElementById('model-info').textContent,note:document.getElementById('model-label-note').textContent,help:document.querySelector('[data-i18n="fontModeHelp"]').textContent,overflow:document.documentElement.scrollWidth>innerWidth,resultHidden:document.getElementById('result-section').hidden,previewHidden:document.getElementById('android-preview').hidden,preview:document.getElementById('android-preview').textContent,previewLink:document.querySelector('#android-preview a').getAttribute('href'),previewBeforeUpload:document.getElementById('android-preview').getBoundingClientRect().bottom<=document.querySelector('.upload-help').getBoundingClientRect().top,downloadLabel:document.getElementById('download-model').textContent})`);
+    assert(state.mode==='android'&&state.info.includes('android-ui-fixture')&&state.resultHidden,'Mode switch must clear prior result and use independent download');
+    assert(state.note.includes('Source Han Sans')&&!state.note.includes('PingFang')&&!state.overflow,'Android alias group must remain visible and fit mobile');
+    assert(state.help.includes(language==='zh'?'不用于判断':'does not identify'),'Mode must not claim device OS detection');
+    assert(!state.previewHidden&&state.previewBeforeUpload&&state.previewLink==='/docs#android-preview','Experimental notice must be visible before upload and link to its evaluation');
+    assert(state.preview.includes(language==='zh'?'尚未通过稳定版验收':'Stable validation has not passed')&&state.preview.includes(language==='zh'?'分数不是准确率':'Scores are not accuracy'),'Preview must state stable failure and score limits in both languages');
+    assert(state.downloadLabel.includes(language==='zh'?'实验模型':'preview'),'Android experimental download must be labelled');
+    assert(await evaluate("fetch(document.getElementById('download-model').href).then(r=>r.text())")==='Independent Android UI download fixture','Android link fetched the wrong model');
+    modeChecks.push({language,...state});
+    await evaluate("window.FluxGlyphUI.setFontMode('ios')");
+    await wait("document.getElementById('download-model').getAttribute('href')==='/api/models/font/download'");
+    assert(await evaluate("document.getElementById('android-preview').hidden"),'Android preview warning leaked into iOS mode');
+  }
+  androidRelease={};
+  await evaluate("window.FluxGlyphUI.setFontMode('android')");
+  await wait("document.getElementById('download-model').getAttribute('href')==='/api/models/font/download?mode=android'");
+  assert(await evaluate("document.getElementById('android-preview').hidden && !document.getElementById('download-model').textContent.includes('preview')"),'Old Android metadata must not invent release validation');
+  androidRelease=previewMetadata;
+  await evaluate("window.FluxGlyphUI.setFontMode('ios')");
+  await wait("document.getElementById('download-model').getAttribute('href')==='/api/models/font/download'");
+  await evaluate("window.FluxGlyphUI.setLanguage('zh')");
+  androidAvailability=false;
+  await evaluate("window.FluxGlyphUI.setFontMode('android');fetch('/fixture/crop.png').then(r=>r.blob()).then(blob=>window.FluxGlyphUI.setFile(new File([blob],'android-ui.png',{type:'image/png'})))");
+  await wait("document.getElementById('font-model').getAttribute('aria-busy')==='false'");
+  assert(await evaluate("document.getElementById('start').disabled && !document.getElementById('download-model').hasAttribute('href') && document.getElementById('model-info').textContent.includes('安卓字体模型暂不可用')"),'Missing Android must disable prediction and download, even after selecting a file');
+  await evaluate("window.FluxGlyphUI.start('/api/jobs',{method:'POST',body:new Uint8Array([1])})");
+  assert(modeUploads.length===0,'Missing Android must not silently upload to iOS');
+  androidAvailability=true;
+  await evaluate("document.getElementById('refresh-model').click()");
+  await wait("!document.getElementById('start').disabled");
+  await evaluate("document.getElementById('start').click()");
+  await wait("window.FluxGlyphUI.get().snapshot?.status==='queued'");
+  assert(modeUploads.length===1&&modeUploads[0].bytes===cropPng.length,'Real mock upload did not carry selected Android mode and PNG bytes');
+  assert(await evaluate("[...document.querySelectorAll('[data-font-mode]')].every(b=>b.disabled)"),'Mode must be locked while a request is active');
+  await evaluate("window.FluxGlyphUI.setFontMode('ios')");
+  assert(await evaluate("window.FluxGlyphUI.get().fontMode==='android'"),'Active job changed model scope');
+  androidJobComplete=true;
+  await wait("window.FluxGlyphUI.get().result?.font_mode==='android'");
+  const completed=await evaluate("({json:JSON.parse(document.getElementById('json-output').textContent),row:document.querySelector('#regions .region').textContent,unlocked:[...document.querySelectorAll('[data-font-mode]')].every(b=>!b.disabled)})");
+  assert(completed.json.font_mode==='android'&&completed.json.device_inference_performed===false&&completed.unlocked,'Completed result lost scope or mode remained locked');
+  assert(completed.json.model_release_tier==='experimental'&&completed.json.stable_validation_passed===false&&JSON.stringify(completed.json)===JSON.stringify(androidFixture),'JSON must retain failed preview evidence unchanged');
+  assert(completed.row.includes('Noto Sans CJK SC')&&completed.row.includes('0.8765')&&!completed.row.includes('PingFang'),'Android result must present its own classifier scores');
+  modeChecks.push({completed:true,...completed});
+  await evaluate("window.scrollTo(0,0)");
+  fs.writeFileSync(path.join(out,'android-mode-mobile.png'),Buffer.from((await command('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})).data,'base64'));
+  await evaluate("window.FluxGlyphUI.setFontMode('ios')");
+  await wait("document.getElementById('download-model').getAttribute('href')==='/api/models/font/download'");
+  androidDelay=250;
+  await evaluate("window.FluxGlyphUI.setFontMode('android')");
+  await sleep(40);
+  await evaluate("window.FluxGlyphUI.setFontMode('ios')");
+  await sleep(350);
+  assert(await evaluate("window.FluxGlyphUI.get().fontMode==='ios' && document.getElementById('download-model').getAttribute('href')==='/api/models/font/download' && !document.getElementById('model-info').textContent.includes('android')"),'Stale Android response replaced iOS download after switching back');
+  modeChecks.push({stale_response_ignored:true,unavailable_no_fallback:true,queue_model_pinned:true});
+
   assert(!diagnostics.length,'JS exceptions '+diagnostics.join());
-  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({kind:'mocked region-result browser UI only, not model accuracy',passed:true,reports,scoreChecks,rejectionChecks,consensusChecks,availabilityChecks,sourceCompatibilityChecks,diagnostics},null,2));
+  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify({kind:'mocked region-result browser UI only, not model accuracy',passed:true,reports,scoreChecks,rejectionChecks,consensusChecks,availabilityChecks,sourceCompatibilityChecks,modeChecks,diagnostics},null,2));
   console.log(JSON.stringify({passed:true,viewports:reports.map(x=>x.name),output:out}));
  } finally {if(socket)socket.close();chrome.kill('SIGTERM');await new Promise(resolve=>chrome.exitCode!==null?resolve():chrome.once('exit',resolve));server.close();fs.rmSync(profile,{recursive:true,force:true});}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

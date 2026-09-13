@@ -1,0 +1,156 @@
+{
+  "kind": "Local delivery functionality and numerical equivalence only; not model accuracy",
+  "script_sha256": "f269a814b0c80f53a9dba173c1c7963c629cff8e5217639c599ec5b3f1754742",
+  "source": {
+    "page_id": "android-native-v1-train-00007",
+    "split": "train",
+    "image_sha256": "bd5fa1c6e2e90a59712fd29f8bc1a38d07d1b014abad7ec3afa55a0db1c0dc96",
+    "proof_sha256": "01d289918e6aaafd11d9ded917671c223e75f6ab3c73ee07c74302e05dac63cd",
+    "capture_manifest_sha256": "85cd830b1f45475d19f61c2c8bc6078de2d9bff6965b3e7ab3012eb12c9557c5"
+  },
+  "test_read": false,
+  "user_images_used": false,
+  "remote_requests_performed": false,
+  "passed": true,
+  "full_report_sha256": "3715a8f4a72db67c4e60ad79837720d68ce99ab341619832c1328e6c0dec9b82",
+  "health": {
+    "font_modes": {
+      "ios": {
+        "available": true,
+        "model_version": "r20-font-consensus-v1"
+      },
+      "android": {
+        "available": true,
+        "model_version": "android-open-fonts-v1-preview"
+      }
+    },
+    "default_font_mode": "ios",
+    "model_version": "r20-font-consensus-v1"
+  },
+  "kits": {
+    "ios": {
+      "sha256": "d7dcfd9d8e3cc7f0277715a940e97a7a0869e97c5c8e2878513e9cdc5f69d1c4",
+      "bytes": 4092733,
+      "version": "r20-font-consensus-v1",
+      "models": [
+        {
+          "path": "model.onnx",
+          "sha256": "bff569708afbb127222885539914942f9d958f46c8c11bfb9ace80784f70916b"
+        },
+        {
+          "path": "rejection.onnx",
+          "sha256": "be196ed06b7376fac935d03be3b46bec385f7c0182a85556a2cdd81c61bea594"
+        },
+        {
+          "path": "verifier.onnx",
+          "sha256": "3615ebf13c187b3953d53a247018d553fc55c7760b76037edeec224de29b03c0"
+        }
+      ],
+      "release_evidence": {}
+    },
+    "android": {
+      "sha256": "470f3779edb76cf904284f18328eb5238cd1352a2e3428ace6f35bc325e7e784",
+      "bytes": 1369214,
+      "version": "android-open-fonts-v1-preview",
+      "models": [
+        {
+          "path": "model.onnx",
+          "sha256": "c095f67c4763cbec7055ac04f706c5dcbb9ad4b8b72e43c6beedfa53851ec17a"
+        }
+      ],
+      "release_evidence": {
+        "release_tier": "experimental",
+        "stable_validation_passed": false,
+        "test_passed": false,
+        "validation": {
+          "kind": "controlled_android_emulator_regions",
+          "report_url": "/docs#android-preview",
+          "test_pages": 100,
+          "test_native_regions": 1200,
+          "test_views": 4800,
+          "derived_views_are_correlated": true,
+          "known_views": 3600,
+          "unknown_views": 1200,
+          "named_outputs": 2662,
+          "correct_named": 2465,
+          "wrong_named": 197,
+          "named_precision": 0.9259954921111946,
+          "known_correct_coverage": 0.6847222222222222,
+          "native_known_top1_accuracy": 0.9444444444444444,
+          "unknown_wrongly_named": 174,
+          "unknown_not_named_rate": 0.855,
+          "explicit_unknown_recall": 0.015,
+          "unknown_test_families": [
+            "Smiley Sans"
+          ],
+          "size": {
+            "correctly_named_with_size": 2465,
+            "coverage_of_correct_names": 1.0,
+            "median_ape": 0.030312499999999964,
+            "p90_ape": 0.07245624999999997
+          },
+          "failed_stable_checks": [
+            "named_precision",
+            "known_correct_coverage",
+            "per_family_coverage"
+          ],
+          "test_report_sha256": "abda8b659a8e6b9d012f9eeafbe43efdf9969b2f4ed81f3761d4064351e92e3c",
+          "onnx_sha256": "c095f67c4763cbec7055ac04f706c5dcbb9ad4b8b72e43c6beedfa53851ec17a",
+          "onnx_parity_passed": true,
+          "training_pages": 600,
+          "training_native_regions": 7200,
+          "training_font_faces": 33,
+          "all_capture_font_faces": 35,
+          "local_training_steps": 6000,
+          "limitations": [
+            "Nine covered font candidates; outside-scope fonts may be misnamed.",
+            "Scores are model outputs, not measured correctness probabilities.",
+            "Unknown evaluation contains one held-out family only.",
+            "Sizes are source-image pixels, not Android sp/dp.",
+            "Evaluation used native region boundaries; not full-screenshot detection accuracy."
+          ]
+        }
+      }
+    }
+  },
+  "native_checks": {
+    "count": 24,
+    "all_standalone_identical": true,
+    "all_release_flags_verified": true
+  },
+  "api_checks": [
+    {
+      "mode": "ios",
+      "default_mode_omitted": true,
+      "regions": 12,
+      "direct_crop_checks": 3,
+      "all_direct_crop_parity": true,
+      "release_flags_verified": true
+    },
+    {
+      "mode": "android",
+      "default_mode_omitted": false,
+      "regions": 12,
+      "direct_crop_checks": 3,
+      "all_direct_crop_parity": true,
+      "release_flags_verified": true
+    }
+  ],
+  "software_checks": {
+    "dev_pytest": {
+      "passed": 902,
+      "skipped": 47,
+      "subtests_passed": 182
+    },
+    "torch_training_export_tests": {
+      "passed": 125,
+      "skipped": 0
+    },
+    "browser_viewport_widths": [
+      1280,
+      390,
+      320
+    ],
+    "independent_cli_import_audits": 30
+  }
+}

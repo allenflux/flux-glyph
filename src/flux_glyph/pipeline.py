@@ -11,6 +11,7 @@ from .font_matcher import CompactFontBank,han,rank,score_font
 from .latin_matcher import CompactLatinBank,latin_character
 from .neural_font import NeuralFontClassifier
 from .region_font import RegionFontClassifier
+from .android_font import AndroidFontClassifier
 from .text_style import SizeMetrics,estimate_text_style
 from .models import load_active
 
@@ -50,8 +51,12 @@ def annotation(image,regions,path):
 class FontPipeline:
     def __init__(self,model_dir=ROOT/'models',cache_characters=32,max_regions=200):
         self.directory,self.version,self.manifest=load_active(model_dir)
-        self.region_neural=(RegionFontClassifier(self.directory/'region_neural')
-                            if any(row['path']=='region_neural/metadata.json' for row in self.manifest['files']) else None)
+        self.region_neural=None;self.font_mode='ios'
+        if any(row['path']=='region_neural/metadata.json' for row in self.manifest['files']):
+            metadata=json.loads((self.directory/'region_neural/metadata.json').read_text())
+            if metadata.get('schema')=='flux-glyph-android-region-font-v1':
+                self.region_neural=AndroidFontClassifier(self.directory/'region_neural');self.font_mode='android'
+            else:self.region_neural=RegionFontClassifier(self.directory/'region_neural')
         if self.region_neural is not None:
             self.detector=PPRegionDetector(self.directory/'pp')
             self.max_regions=max_regions
@@ -336,6 +341,7 @@ class FontPipeline:
             if 'rejection' in prediction:font['rejection']=prediction['rejection']
             if 'verifier' in prediction:font['verifier']=prediction['verifier']
             font.update(method='region_neural_network',scope='Detected text region',font_identity_verified=False,
+                        font_mode=getattr(self,'font_mode','ios'),
                         label=font['family'] or ('未知字体' if font['reason_code'] in ('unknown_font_rejected','verifier_font_out_of_scope')
                                                else '字体存在分歧' if font['reason_code']=='neural_model_disagreement' else '待确认'),reason=font['reason_code'])
             style=estimate_text_style(image,[],region_bbox=bounds) if i<self.max_regions else None
@@ -363,8 +369,10 @@ class FontPipeline:
                            'processing_limited_regions':max(0,len(regions)-self.max_regions)},
                 'timing_seconds':{'detector':det_seconds,'font_matching':match_seconds,'total':time.perf_counter()-started},
                 'source_sha256':sha(source),'font_scope':'Detected text regions; no text recognition',
-                'font_method':'region_neural_network','ocr_performed':False,
+                'font_method':'region_neural_network','font_mode':getattr(self,'font_mode','ios'),'ocr_performed':False,
                 'pipeline':'PP DB detector + region font/size CNN + source RGB color',
                 'font_identity_verified':False,'device_inference_performed':False,'font_cache_bytes':0}
+        if getattr(self.region_neural,'meta',{}).get('release_tier')=='experimental':
+            result.update(model_release_tier='experimental',stable_validation_passed=False)
         save_json(output/'result.json',result);report('finalizing','正在整理结果',99)
         return result

@@ -10,6 +10,9 @@
 
   const messages = {
     zh: {
+      fontModeLabel: '字体识别范围', fontModeHelp: 'iOS 与安卓使用各自独立的字体模型。此选择限定识别范围，不用于判断截图来自哪种手机系统。',
+      androidUnavailable: '安卓字体模型暂不可用，请稍后刷新或选择 iOS 范围。', modelAliasGroups: '共同识别组：{groups}。相同字形不细分别名或地区版本。',
+      androidPreviewNotice: 'Android 实验候选模型，覆盖9类字体，尚未通过稳定版验收；范围外字体仍可能误命名，分数不是准确率。', androidPreviewDocs: '查看评测结果与限制', downloadExperimentalModel: '下载 Android 实验模型',
       fontModelTitle: '字体模型', downloadModel: '下载字体模型', fontModelHelp: '下载后可在本地输入文字区域裁图，识别字体并估计字号、颜色。',
       modelLoading: '正在检查模型下载…', modelUnavailable: '当前暂无可下载的字体模型，可稍后刷新状态。', modelLoadFailed: '暂时无法获取下载信息，请点“刷新状态”重试。', modelLocked: '请先在上方输入访问令牌解锁，再下载模型。',
       refreshModel: '刷新状态', modelUsageToggle: '本地使用方式',
@@ -37,6 +40,9 @@
       apiHelp: '上传支付宝图片，完成后直接返回字体识别 JSON。', apiAsync: '使用 ?wait=false 先返回任务 ID，再轮询 GET /api/jobs/{id}。仍兼容 POST /api/predict?wait=true。', apiDocs: '完整 API 说明'
     },
     en: {
+      fontModeLabel: 'Font recognition scope', fontModeHelp: 'iOS and Android use separate font models. This selection limits the font search scope; it does not identify the phone’s operating system.',
+      androidUnavailable: 'The Android font model is unavailable. Refresh later or select the iOS scope.', modelAliasGroups: 'Shared recognition groups: {groups}. Identical glyphs do not distinguish aliases or regional variants.',
+      androidPreviewNotice: 'Experimental Android candidate model covering 9 font families. Stable validation has not passed; unsupported fonts may still be misnamed. Scores are not accuracy.', androidPreviewDocs: 'View evaluation results and limitations', downloadExperimentalModel: 'Download Android preview',
       fontModelTitle: 'Font model', downloadModel: 'Download font model', fontModelHelp: 'Run the model locally on a cropped text region to identify its font and estimate size and color.',
       modelLoading: 'Checking model download…', modelUnavailable: 'No font model is available to download yet. Check again later.', modelLoadFailed: 'Download information could not be loaded. Select Refresh status to try again.', modelLocked: 'Enter your access token above to unlock the model download.',
       refreshModel: 'Refresh status', modelUsageToggle: 'Run locally',
@@ -81,6 +87,38 @@
   let modelInfo = null;
   let modelLoadState = 'modelLoading';
   let modelLoading = false;
+  let fontMode = 'ios';
+  let modelGeneration = 0;
+  let modelController = null;
+  let requestBusy = false;
+  let healthModes = null;
+
+  const modeUrl = path => fontMode === 'android' ? `${path}?mode=android` : path;
+  const modelAvailable = () => modelInfo?.available === true && modelInfo.download_url === modeUrl('/api/models/font/download')
+    && (modelInfo.font_mode || 'ios') === fontMode;
+
+  function renderMode() {
+    $('font-mode').querySelectorAll('[data-font-mode]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.fontMode === fontMode));
+      button.disabled = requestBusy;
+    });
+    $('start').disabled = requestBusy || !file || (fontMode === 'android' && !modelAvailable());
+    $('api-upload-command').textContent = `curl -F "file=@./alipay.png" '${modeUrl('http://allenflux.tech:9000')}'`;
+    $('api-put-command').textContent = `curl -T ./alipay.png '${modeUrl('http://allenflux.tech:9000/upload/alipay.png')}'`;
+  }
+
+  function setBusy(value) { requestBusy = value; renderMode(); }
+
+  function setFontMode(mode) {
+    if (!['ios', 'android'].includes(mode) || mode === fontMode || requestBusy) return;
+    fontMode = mode;
+    ++generation;
+    stop();
+    resetOutput();
+    resetProgress();
+    state(file ? 'selected' : 'waiting', false, file ? {name: file.name} : {});
+    loadFontModel();
+  }
 
   function loadLanguage() {
     try { return localStorage.getItem('flux-glyph-language') === 'en' ? 'en' : 'zh'; } catch (_) { return 'zh'; }
@@ -105,6 +143,7 @@
     job = null;
     pollFailures = 0;
     reconnectState = null;
+    setBusy(false);
   }
 
   const api = (url, options = {}) => fetch(url, options).then(async response => {
@@ -158,7 +197,7 @@
     file = nextFile;
     resetOutput();
     resetProgress();
-    $('start').disabled = !nextFile;
+    renderMode();
     $('filename').textContent = nextFile ? nextFile.name : t('noFile');
     if (preview) URL.revokeObjectURL(preview);
     preview = nextFile ? URL.createObjectURL(nextFile) : null;
@@ -255,14 +294,15 @@
   }
 
   function start(url = '/api/jobs', options) {
+    if (fontMode === 'android' && !modelAvailable()) { state('androidUnavailable', true); return; }
     const activeGeneration = ++generation;
     stop();
     resetOutput();
     resetProgress();
-    $('start').disabled = true;
+    setBusy(true);
     updateProgress({stage_code: 'preparing', percent: null}, 'running', '', false);
     state('creating');
-    api(url, options).then(data => {
+    api(fontMode === 'android' ? `${url}${url.includes('?') ? '&' : '?'}mode=android` : url, options).then(data => {
       if (activeGeneration !== generation) return;
       job = data.id;
       latestSnapshot = data;
@@ -273,8 +313,8 @@
       poll(activeGeneration);
     }).catch(error => {
       if (activeGeneration !== generation) return;
-      $('start').disabled = !file;
-      const key = error.status === 429 ? 'busy' : error.status === 413 ? 'imageTooLarge' : (error.status === 400 || error.status === 415) ? 'invalidImage' : (error.status === 401 || error.status === 403) ? 'authRequired' : 'uploadFailed';
+      setBusy(false);
+      const key = error.status === 503 && fontMode === 'android' ? 'androidUnavailable' : error.status === 429 ? 'busy' : error.status === 413 ? 'imageTooLarge' : (error.status === 400 || error.status === 415) ? 'invalidImage' : (error.status === 401 || error.status === 403) ? 'authRequired' : 'uploadFailed';
       if (error.status === 401 || error.status === 403) $('auth-panel').hidden = false;
       state(key, true);
       markProgressError(t(key));
@@ -290,7 +330,7 @@
       reconnectState = null;
       updateQueue(data);
       if (data.status === 'error') {
-        $('start').disabled = !file;
+        setBusy(false);
         const errorKey = data.error_code === 'service_restarted' ? 'restarted' : 'failed';
         state(errorKey, true);
         const message = language === 'zh' && data.error_code !== 'service_restarted' && data.error ? data.error : t(errorKey);
@@ -301,7 +341,7 @@
       }
       updateProgress(data.progress, data.status, data.stage, data.status === 'complete');
       if (data.status === 'complete') {
-        $('start').disabled = !file;
+        setBusy(false);
         show(data.result);
         return;
       }
@@ -315,7 +355,7 @@
         timer = null;
         latestSnapshot = null;
         reconnectState = null;
-        $('start').disabled = !file;
+        setBusy(false);
         if (error.status === 401) $('auth-panel').hidden = false;
         state(key, true, values);
         markProgressError(t(key, values));
@@ -785,7 +825,10 @@
 
   function renderFontModel() {
     const download = $('download-model');
-    const available = modelInfo?.available === true && modelInfo.download_url === '/api/models/font/download';
+    const available = modelAvailable();
+    const experimental = fontMode === 'android' && modelInfo?.release_tier === 'experimental';
+    $('android-preview').hidden = !experimental;
+    download.textContent = t(experimental ? 'downloadExperimentalModel' : 'downloadModel');
     download.setAttribute('aria-disabled', String(!available));
     $('font-model').setAttribute('aria-busy', String(modelLoading));
     $('refresh-model').disabled = modelLoading;
@@ -794,7 +837,7 @@
     $('model-info').textContent = available ? t('modelAvailable', {
       version: modelInfo.version || '—',
       size: Number.isFinite(modelInfo.bytes) ? `${(modelInfo.bytes / 1048576).toFixed(1)} MB` : '—'
-    }) : t(modelLoadState);
+    }) : t(fontMode === 'android' && modelLoadState === 'modelUnavailable' ? 'androidUnavailable' : modelLoadState);
     const families = Array.isArray(modelInfo?.families) ? modelInfo.families.filter(value => typeof value === 'string') : [];
     $('model-families').hidden = !available || !families.length;
     $('model-families').replaceChildren();
@@ -807,7 +850,7 @@
       row.textContent = t(key, {families: names.join(' · ')});
       $('model-families').append(row);
     };
-    for (const [source, key] of [['system', 'modelSystemFonts'], ['asset', 'modelAssetFonts']]) {
+    for (const [source, key] of (fontMode === 'android' ? [] : [['system', 'modelSystemFonts'], ['asset', 'modelAssetFonts']])) {
       const names = families.filter(family => Array.isArray(sources?.[family]) && sources[family].includes(source));
       names.forEach(family => grouped.add(family));
       appendFamilies(key, names, source);
@@ -817,41 +860,60 @@
     $('model-label-note').hidden = !available || !families.includes('PingFang') || !Array.isArray(pingFangNames)
       || !pingFangNames.includes('PingFang SC') || !pingFangNames.includes('PingFang TC');
     $('model-label-note').textContent = t('modelPingFangGroup');
+    if (fontMode === 'android') {
+      const groups = Object.entries(modelInfo?.font_label_groups || {}).filter(([family, names]) => families.includes(family) && Array.isArray(names) && names.length > 1);
+      $('model-label-note').hidden = !available || !groups.length;
+      $('model-label-note').textContent = t('modelAliasGroups', {groups: groups.map(([family, names]) => `${family} (${names.join(' / ')})`).join(' · ')});
+    }
     const usage = modelInfo?.usage;
     const hasUsage = available && typeof usage?.install === 'string' && typeof usage?.predict === 'string';
     $('model-usage').hidden = !hasUsage;
     $('model-usage-command').textContent = hasUsage ? `${usage.install}\n${usage.predict}` : '';
+    const version = available ? modelInfo.version : healthModes?.[fontMode]?.model_version;
+    if (version || healthModes || fontMode === 'android') {
+      $('health').dataset.modelVersion = version || '';
+      $('health').textContent = version ? t('modelVersion', {version}) : '';
+    }
+    renderMode();
   }
 
   async function loadFontModel() {
-    if (modelLoading) return;
+    const token = ++modelGeneration;
+    const mode = fontMode;
+    modelController?.abort();
     modelLoading = true;
     modelInfo = null;
     modelLoadState = 'modelLoading';
     renderFontModel();
     const controller = new AbortController();
+    modelController = controller;
     const timeout = setTimeout(() => controller.abort(), 10000);
     try {
-      modelInfo = await api('/api/models/font', {signal: controller.signal});
+      const info = await api(modeUrl('/api/models/font'), {signal: controller.signal});
+      if (token !== modelGeneration || mode !== fontMode) return;
+      modelInfo = info;
       modelLoadState = modelInfo.available === true ? 'modelLoadFailed' : 'modelUnavailable';
     } catch (error) {
+      if (token !== modelGeneration || mode !== fontMode) return;
       modelInfo = null;
       modelLoadState = error.status === 401 || error.status === 403 ? 'modelLocked' : 'modelLoadFailed';
       if (modelLoadState === 'modelLocked') $('auth-panel').hidden = false;
     } finally {
       clearTimeout(timeout);
-      modelLoading = false;
+      if (token === modelGeneration) modelLoading = false;
     }
-    renderFontModel();
+    if (token === modelGeneration) renderFontModel();
   }
 
   async function health() {
     try {
       const data = await api('/api/health');
+      healthModes = data.font_modes || null;
       $('health').dataset.unavailable = 'false';
       $('health').dataset.modelVersion = data.model_version || '';
       $('health').textContent = data.model_version ? t('modelVersion', {version: data.model_version}) : '';
       if (data.authentication_required) $('auth-panel').hidden = false;
+      renderFontModel();
     } catch (_) { $('health').dataset.unavailable = 'true'; $('health').textContent = t('healthUnavailable'); }
   }
 
@@ -911,6 +973,10 @@
     if (button && button !== $('language') && $('language').contains(button)) applyLanguage(button.dataset.language);
   });
   $('copy-json').addEventListener('click', copyJson);
+  $('font-mode').addEventListener('click', event => {
+    const button = event.target.closest('[data-font-mode]');
+    if (button && $('font-mode').contains(button)) setFontMode(button.dataset.fontMode);
+  });
   $('refresh-model').addEventListener('click', loadFontModel);
   $('close-detail').addEventListener('click', closeDetail);
   $('detail-panel').addEventListener('keydown', event => { if (event.key === 'Escape') closeDetail(); });
@@ -937,5 +1003,5 @@
   applyLanguage(language, false);
   health();
   loadFontModel();
-  window.FluxGlyphUI = {show, setFile, start, select, setLanguage: applyLanguage, get: () => ({file, job, result, selected, generation, language, snapshot: latestSnapshot, progress: latestSnapshot?.progress || null, queue: latestSnapshot ? {position: latestSnapshot.queue_position, ahead: latestSnapshot.queue_ahead, total: latestSnapshot.queue_total} : null})};
+  window.FluxGlyphUI = {show, setFile, start, select, setFontMode, setLanguage: applyLanguage, get: () => ({file, job, result, selected, generation, language, fontMode, snapshot: latestSnapshot, progress: latestSnapshot?.progress || null, queue: latestSnapshot ? {position: latestSnapshot.queue_position, ahead: latestSnapshot.queue_ahead, total: latestSnapshot.queue_total} : null})};
 })();

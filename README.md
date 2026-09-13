@@ -4,6 +4,24 @@
 
 网站和 API 使用 **9000** 端口。保留 PP 的文字区域检测模型用于定位；字体 CNN 直接处理区域图像，不读取文字内容，不需要字符切分或人工选择中文／英文。独立字体模型也可以下载到本地使用。
 
+## iOS 与安卓独立模式
+
+页面顶部选择 iOS 或 **Android 实验候选模型**，同时切换识别模型和下载包。默认 iOS 使用下述 R20 流程；安卓使用独立的十类字体／字号 CNN（九种命名字体加未知类），版本为 `android-open-fonts-v1-preview`，尚未通过稳定版验收。此选择限定字体识别范围，不判断截图来自哪种手机系统。
+
+安卓首版覆盖 Noto／思源黑体与宋体组、霞鹜文楷、文泉驿微米黑、三款站酷字体、马善政和 Roboto。它在本地 MPS 训练 6,000 步，训练使用 33 个字体实例，完整采集来源为 35 个；采集应用加载字体资产，不代表手机厂商系统默认字体。
+
+首轮独立 TEST 的整体命名精度为 **92.60%**，已知字体正确命名覆盖率 **68.47%**，未知字体误命名 **14.5%**，因此原稳定验收仍为失败。测试来自 100 张模拟器截图、1,200 个原生区域的 4,800 个相关视图，未知来源仅为 Smiley Sans；不代表所有真机或未知字体。实验候选可主动下载试用，模型评分不是正确概率。来源和完整限制见 [本版字体来源](docs/sources/android/README.md)、[安卓字体训练](docs/android-font-training.md) 和[逐轮验证记录](docs/android-font-results.md)。后续 63 个字体实例的试验均未发布，不属于本版训练范围。
+
+```sh
+curl 'http://localhost:9000/api/models/font?mode=android'
+curl -o android-font-onnx.zip 'http://localhost:9000/api/models/font/download?mode=android'
+curl -F 'file=@screenshot.png' 'http://localhost:9000/api/jobs?mode=android'
+```
+
+原有上传接口也接受 `?mode=android`；省略时继续使用 iOS。每个任务固定提交时的模式，返回 `font_mode`。安卓模型信息接口和 ZIP 内元数据声明 `release_tier: experimental`、`test_passed: false`、`stable_validation_passed: false`，并包含 `validation` 评测说明；预测 API 与 CLI JSON 则返回 `model_release_tier: experimental` 和 `stable_validation_passed: false`。两种模式共用一个任务队列；安卓模型不可用时该模式返回 503，不会隐式切换到 iOS。
+
+安卓模型由 `models/android/ACTIVE.json` 独立选择；`models/ACTIVE.json` 继续控制 iOS。安卓下载包使用相同的 `python predict.py text-region.png` 命令，包含单个十类 ONNX 和完整预处理代码，不需要 iOS 的复核、拒识 ONNX。
+
 ## R20 字体识别与神经网络复核
 
 当前流程是：**原图 → 文字区域检测 → 未知字体拒识 CNN → 区域字体 CNN 与独立字体复核 CNN → 字号与颜色结果**。字体网络都处理区域像素，不使用文字内容或参考字形比对。两网首选相同且各自通过门槛才输出字体候选和字号；分歧时展示双方评分，不确认字体或字号。被拒识的字体显示“未知字体”，仍保留颜色。

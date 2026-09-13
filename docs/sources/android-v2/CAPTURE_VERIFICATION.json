@@ -1,0 +1,926 @@
+{
+  "schema": "flux-glyph-android-v2-capture-verification-v1",
+  "verified_at_utc": "2026-09-13T08:29:33.146530+00:00",
+  "status": "metadata_native_font_proofs_and_train_cal_preparation_verified",
+  "hash_scheme": "SHA-256 content bindings; no cryptographic source signature is asserted",
+  "scope": {
+    "capture_round": 2,
+    "capture_root": "artifacts/android-font-v1/capture-v3",
+    "images_opened_for_this_audit": 0,
+    "image_hashes_recomputed_in_this_audit": false,
+    "image_hash_reference": "Labels agree with the frozen capture manifest; image bytes were verified during native capture and the earlier capture audit. This audit rechecks proof bytes and metadata only.",
+    "test_prepared": false,
+    "test_inference_performed": false,
+    "test_prepared_directory_exists": false,
+    "test_pixels_opened_for_this_audit": false,
+    "user_images_used": false,
+    "texts_or_user_data_included_in_report": false,
+    "paths": "repository-relative only"
+  },
+  "rendering": {
+    "device_type": "local Android emulator",
+    "android_release": "15",
+    "sdk_int": 35,
+    "build_fingerprint": "google/sdk_gphone64_arm64/emu64a:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "canvas_px": [
+      1080,
+      2400
+    ],
+    "font_loading": "Capture application explicitly loads bundled font assets with Font.Builder and a single FontFamily; TextRunShaper reports the actual glyph font.",
+    "drawing": "Native Android Canvas.drawGlyphs; framebuffer recorded by adb screencap.",
+    "is_physical_phone_capture": false,
+    "is_manufacturer_system_default_font_capture": false,
+    "claim_boundary": "These images verify explicit application asset fonts rendered on an emulator. They do not establish phone-brand system defaults or real-device recognition accuracy."
+  },
+  "totals": {
+    "pages": 1300,
+    "regions": 15600,
+    "glyphs": 91479,
+    "font_faces": 63,
+    "known_families": 9,
+    "known_faces": 26,
+    "unknown_faces": 37,
+    "all_native_glyphs_font_verified": true,
+    "native_fallbacks": 0,
+    "missing_glyphs": 0,
+    "native_capture_exclusions": 0
+  },
+  "partitions": {
+    "train": {
+      "pages": 1000,
+      "regions": 12000,
+      "glyphs": 69357,
+      "allowed_faces": 47,
+      "observed_faces": 47,
+      "all_allowed_faces_observed": true,
+      "families": [
+        {
+          "source_family": "FandolHei",
+          "training_family": "__unknown__",
+          "faces": 2,
+          "regions": 381
+        },
+        {
+          "source_family": "FandolKai",
+          "training_family": "__unknown__",
+          "faces": 1,
+          "regions": 381
+        },
+        {
+          "source_family": "FandolSong",
+          "training_family": "__unknown__",
+          "faces": 2,
+          "regions": 381
+        },
+        {
+          "source_family": "LXGW WenKai",
+          "training_family": "LXGW WenKai",
+          "faces": 3,
+          "regions": 1000
+        },
+        {
+          "source_family": "Lato",
+          "training_family": "__unknown__",
+          "faces": 4,
+          "regions": 167
+        },
+        {
+          "source_family": "Liu Jian Mao Cao",
+          "training_family": "__unknown__",
+          "faces": 1,
+          "regions": 381
+        },
+        {
+          "source_family": "Long Cang",
+          "training_family": "__unknown__",
+          "faces": 1,
+          "regions": 381
+        },
+        {
+          "source_family": "Ma Shan Zheng",
+          "training_family": "Ma Shan Zheng",
+          "faces": 1,
+          "regions": 1000
+        },
+        {
+          "source_family": "Noto Sans CJK SC",
+          "training_family": "Noto Sans CJK SC",
+          "faces": 4,
+          "regions": 1000
+        },
+        {
+          "source_family": "Noto Serif CJK SC",
+          "training_family": "Noto Serif CJK SC",
+          "faces": 4,
+          "regions": 1000
+        },
+        {
+          "source_family": "Open Sans",
+          "training_family": "__unknown__",
+          "faces": 8,
+          "regions": 167
+        },
+        {
+          "source_family": "Roboto",
+          "training_family": "Roboto",
+          "faces": 10,
+          "regions": 1000
+        },
+        {
+          "source_family": "Smiley Sans",
+          "training_family": "__unknown__",
+          "faces": 1,
+          "regions": 381
+        },
+        {
+          "source_family": "WenQuanYi Micro Hei",
+          "training_family": "WenQuanYi Micro Hei",
+          "faces": 1,
+          "regions": 1000
+        },
+        {
+          "source_family": "ZCOOL KuaiLe",
+          "training_family": "ZCOOL KuaiLe",
+          "faces": 1,
+          "regions": 1000
+        },
+        {
+          "source_family": "ZCOOL QingKe HuangYou",
+          "training_family": "ZCOOL QingKe HuangYou",
+          "faces": 1,
+          "regions": 1000
+        },
+        {
+          "source_family": "ZCOOL XiaoWei",
+          "training_family": "ZCOOL XiaoWei",
+          "faces": 1,
+          "regions": 1000
+        },
+        {
+          "source_family": "Zhi Mang Xing",
+          "training_family": "__unknown__",
+          "faces": 1,
+          "regions": 380
+        }
+      ]
+    },
+    "calibration": {
+      "pages": 150,
+      "regions": 1800,
+      "glyphs": 10917,
+      "allowed_faces": 35,
+      "observed_faces": 35,
+      "all_allowed_faces_observed": true,
+      "families": [
+        {
+          "source_family": "LXGW WenKai",
+          "training_family": "LXGW WenKai",
+          "faces": 3,
+          "regions": 150
+        },
+        {
+          "source_family": "M PLUS 1p",
+          "training_family": "__unknown__",
+          "faces": 4,
+          "regions": 200
+        },
+        {
+          "source_family": "Ma Shan Zheng",
+          "training_family": "Ma Shan Zheng",
+          "faces": 1,
+          "regions": 150
+        },
+        {
+          "source_family": "Noto Sans CJK SC",
+          "training_family": "Noto Sans CJK SC",
+          "faces": 4,
+          "regions": 150
+        },
+        {
+          "source_family": "Noto Serif CJK SC",
+          "training_family": "Noto Serif CJK SC",
+          "faces": 4,
+          "regions": 150
+        },
+        {
+          "source_family": "Roboto",
+          "training_family": "Roboto",
+          "faces": 10,
+          "regions": 150
+        },
+        {
+          "source_family": "Ubuntu",
+          "training_family": "__unknown__",
+          "faces": 4,
+          "regions": 50
+        },
+        {
+          "source_family": "WenQuanYi Micro Hei",
+          "training_family": "WenQuanYi Micro Hei",
+          "faces": 1,
+          "regions": 150
+        },
+        {
+          "source_family": "Yusei Magic",
+          "training_family": "__unknown__",
+          "faces": 1,
+          "regions": 200
+        },
+        {
+          "source_family": "ZCOOL KuaiLe",
+          "training_family": "ZCOOL KuaiLe",
+          "faces": 1,
+          "regions": 150
+        },
+        {
+          "source_family": "ZCOOL QingKe HuangYou",
+          "training_family": "ZCOOL QingKe HuangYou",
+          "faces": 1,
+          "regions": 150
+        },
+        {
+          "source_family": "ZCOOL XiaoWei",
+          "training_family": "ZCOOL XiaoWei",
+          "faces": 1,
+          "regions": 150
+        }
+      ]
+    },
+    "test": {
+      "pages": 150,
+      "regions": 1800,
+      "glyphs": 11205,
+      "allowed_faces": 33,
+      "observed_faces": 33,
+      "all_allowed_faces_observed": true,
+      "families": [
+        {
+          "source_family": "IBM Plex Sans SC",
+          "training_family": "__unknown__",
+          "faces": 4,
+          "regions": 200
+        },
+        {
+          "source_family": "LXGW WenKai",
+          "training_family": "LXGW WenKai",
+          "faces": 3,
+          "regions": 150
+        },
+        {
+          "source_family": "Liberation Sans",
+          "training_family": "__unknown__",
+          "faces": 2,
+          "regions": 50
+        },
+        {
+          "source_family": "Ma Shan Zheng",
+          "training_family": "Ma Shan Zheng",
+          "faces": 1,
+          "regions": 150
+        },
+        {
+          "source_family": "Noto Sans CJK SC",
+          "training_family": "Noto Sans CJK SC",
+          "faces": 4,
+          "regions": 150
+        },
+        {
+          "source_family": "Noto Serif CJK SC",
+          "training_family": "Noto Serif CJK SC",
+          "faces": 4,
+          "regions": 150
+        },
+        {
+          "source_family": "Roboto",
+          "training_family": "Roboto",
+          "faces": 10,
+          "regions": 150
+        },
+        {
+          "source_family": "WenQuanYi Micro Hei",
+          "training_family": "WenQuanYi Micro Hei",
+          "faces": 1,
+          "regions": 150
+        },
+        {
+          "source_family": "Yuji Syuku",
+          "training_family": "__unknown__",
+          "faces": 1,
+          "regions": 200
+        },
+        {
+          "source_family": "ZCOOL KuaiLe",
+          "training_family": "ZCOOL KuaiLe",
+          "faces": 1,
+          "regions": 150
+        },
+        {
+          "source_family": "ZCOOL QingKe HuangYou",
+          "training_family": "ZCOOL QingKe HuangYou",
+          "faces": 1,
+          "regions": 150
+        },
+        {
+          "source_family": "ZCOOL XiaoWei",
+          "training_family": "ZCOOL XiaoWei",
+          "faces": 1,
+          "regions": 150
+        }
+      ]
+    }
+  },
+  "partition_checks": {
+    "new_normalized_text_overlap": 0,
+    "prior_all_partition_text_overlap": 0,
+    "prior_text_exclusion_evidence": {
+      "path": "artifacts/android-font-v1/scenes-v4/SCENE_AUDIT.json",
+      "sha256": "02b0a3f0e6847a711365d2ec8c911b8347022d11744fbfa11355d1049989dd13"
+    },
+    "all_allowed_faces_observed_in_each_split": true,
+    "unknown_source_families_and_source_files_disjoint_across_current_partitions": true,
+    "old_test_status": "The first-round failed TEST remains a failed historical experiment; Smiley Sans is now TRAIN and is not an unseen font in this round."
+  },
+  "preparation": {
+    "source_crop": {
+      "method": "native_ink_bbox_with_padding_v1",
+      "padding_px": "max(2, ceil(native_font_size_px * .15))",
+      "rounding": "floor left/top, ceil right/bottom",
+      "clamp": "original verified layout bbox"
+    },
+    "inputs": [
+      "image_tiles"
+    ],
+    "ocr_performed": false,
+    "train_cal": {
+      "train": {
+        "native_regions": 12000,
+        "requested_views": 48000,
+        "prepared_views": 47988,
+        "tiles": 71254,
+        "rejected_views": 12,
+        "rejection_rate": 0.00025,
+        "rejections": [
+          {
+            "source_family": "Long Cang",
+            "view": "half",
+            "reason": "low_quality_region",
+            "count": 12
+          }
+        ],
+        "manifest": {
+          "path": "artifacts/android-font-v1/data-v3/train/MANIFEST.json",
+          "sha256": "ff0e6d3d4005c86d1c4503f172be30eed66ba4ae9e23307e02ded80722aaddd3"
+        },
+        "rows": {
+          "path": "artifacts/android-font-v1/data-v3/train/rows.json",
+          "sha256": "69934c55fea0fab31d37b621322b746549495c1551f39d108fa968f7708d09c8"
+        },
+        "array": {
+          "path": "artifacts/android-font-v1/data-v3/train/tiles.raw",
+          "sha256": "2a11e354f02c0c0903dcb29480832795167493d9374273e0db5c5a72860c21f2"
+        },
+        "array_contents_sha256_verified": true,
+        "array_opened_for_inference": false
+      },
+      "calibration": {
+        "native_regions": 1800,
+        "requested_views": 7200,
+        "prepared_views": 7200,
+        "tiles": 12062,
+        "rejected_views": 0,
+        "rejection_rate": 0.0,
+        "rejections": [],
+        "manifest": {
+          "path": "artifacts/android-font-v1/data-v3/calibration/MANIFEST.json",
+          "sha256": "0c14f1fd9e9a3072a91cdfe91204106e1710e5d62c21d54a0b9cc4a5741f89f6"
+        },
+        "rows": {
+          "path": "artifacts/android-font-v1/data-v3/calibration/rows.json",
+          "sha256": "7a777d0a823433f551cfa5137615fa9113e26feea2a9bf737174baf4f36639e9"
+        },
+        "array": {
+          "path": "artifacts/android-font-v1/data-v3/calibration/tiles.raw",
+          "sha256": "26151529597aeff07edb93e73e5530db8962f83005264c023d61cdb1deaba15f"
+        },
+        "array_contents_sha256_verified": true,
+        "array_opened_for_inference": false
+      }
+    },
+    "test": "Not prepared and not inferred at the time of this verification."
+  },
+  "evidence": {
+    "registry": {
+      "path": "artifacts/android-font-v1/sources-v2/FONTS.json",
+      "sha256": "38e8afe2a15a8e9d9c8a625e827cf9d45329833c22b0651b17606a0b7b5109e5"
+    },
+    "public_registry": {
+      "path": "docs/sources/android-v2/FONTS.json",
+      "sha256": "38e8afe2a15a8e9d9c8a625e827cf9d45329833c22b0651b17606a0b7b5109e5"
+    },
+    "capture_manifest": {
+      "path": "artifacts/android-font-v1/capture-v3/CAPTURE_MANIFEST.json",
+      "sha256": "91f42196ddd7ffe5de6dd72e93a944608d509b00a1903e0d01de772e53460fa5"
+    },
+    "labels": {
+      "path": "artifacts/android-font-v1/capture-v3/labels.jsonl",
+      "sha256": "eabb44d23ee0462d3435621db5240fe22e33c17d2c035d650e506c1b13ba1efc"
+    },
+    "scenes": {
+      "path": "artifacts/android-font-v1/scenes-v4/Scenes.json",
+      "sha256": "cc21cb69e4bb324e457ea4470df09ae0d67ef447f98c93b119173d667da9f972"
+    },
+    "scene_audit": {
+      "path": "artifacts/android-font-v1/scenes-v4/SCENE_AUDIT.json",
+      "sha256": "02b0a3f0e6847a711365d2ec8c911b8347022d11744fbfa11355d1049989dd13"
+    },
+    "earlier_capture_audit": {
+      "path": "artifacts/android-font-v1/capture-v3/CAPTURE_AUDIT.json",
+      "sha256": "2ea3c345b2ed3ca4bf7559720db8244d4964b5e8cd7d8ca6f1315dd925af989c"
+    },
+    "build": {
+      "path": "artifacts/android-font-v1/build-v5/BUILD.json",
+      "sha256": "9fdc8cb23038dc8812f8e508e4ca6beaa174784e556208a641228157234c3be3"
+    },
+    "apk": {
+      "path": "artifacts/android-font-v1/build-v5/capture.apk",
+      "sha256": "5a21f30c90989172959122e76f868b1af42914d0597b0c4298a939cc6e94f5b3"
+    },
+    "prepared_root": {
+      "path": "artifacts/android-font-v1/data-v3/MANIFEST.json",
+      "sha256": "3f76f3de1ef523c8bdcf7976d4bd9419ef55f51c858509ecb1c716d9808c7290"
+    },
+    "source_code": [
+      {
+        "path": "training/capture/generate_android_scenes_v2.py",
+        "sha256": "340a0eb58129319a5bce504bf22ca9f93173bee728148024d74923182717edd0"
+      },
+      {
+        "path": "training/capture/capture_android.py",
+        "sha256": "c0165fff140522ec3b983132eedb8fc2922e8573b0e916ae26864fcb5bddb584"
+      },
+      {
+        "path": "training/capture/android/CaptureActivity.java",
+        "sha256": "c50501520e505017a047165ef7cf957b2c5e03516db01f5e46ed3574a7132f82"
+      },
+      {
+        "path": "training/capture/android/AndroidManifest.xml",
+        "sha256": "e699b89b845a34d4a353eb50d5e1339ed5e82cc5d04db478b7bd72dca8c1fb52"
+      },
+      {
+        "path": "training/prepare_android_regions.py",
+        "sha256": "944beffe6e502366b2ee3d740c1b7b5eb62441766cab8034d7b48e4ce240320d"
+      },
+      {
+        "path": "training/prepare_sans_views.py",
+        "sha256": "2020bc357e31051c4b75bb5987d39b3bd9fc761943d3cf8b9ac604e72df35215"
+      },
+      {
+        "path": "src/flux_glyph/region_font.py",
+        "sha256": "9ba944d0ea07d1124af16e23ba3c80a20ae206221891e834f41ff26fe0b86e4b"
+      }
+    ],
+    "actual_font_file_bindings": [
+      {
+        "id": "NotoSansCJKsc-Light_ttc0",
+        "source_family": "Noto Sans CJK SC",
+        "sha256": "e78bbbe1573bbb006156c1198f5c8cd6329470cb6e0b6702c7a3c83913db4abf",
+        "ttc_index": 0,
+        "postscript": "NotoSansCJKsc-Light"
+      },
+      {
+        "id": "NotoSansCJKsc-Regular_ttc0",
+        "source_family": "Noto Sans CJK SC",
+        "sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+        "ttc_index": 0,
+        "postscript": "NotoSansCJKsc-Regular"
+      },
+      {
+        "id": "NotoSansCJKsc-Medium_ttc0",
+        "source_family": "Noto Sans CJK SC",
+        "sha256": "ca094f6b0001fb048ca39ddd797a0cdb0179e1e55c6561e111c49c3e6a61d7b7",
+        "ttc_index": 0,
+        "postscript": "NotoSansCJKsc-Medium"
+      },
+      {
+        "id": "NotoSansCJKsc-Bold_ttc0",
+        "source_family": "Noto Sans CJK SC",
+        "sha256": "b5f0d1a190a7f9b43c310a8850630af12553df32c4c050543f9059732d9b4c0a",
+        "ttc_index": 0,
+        "postscript": "NotoSansCJKsc-Bold"
+      },
+      {
+        "id": "NotoSerifCJKsc-Light_ttc0",
+        "source_family": "Noto Serif CJK SC",
+        "sha256": "7da07efb309a89b156090848aab55d9dc57f15b08387b51184b08b89501a382c",
+        "ttc_index": 0,
+        "postscript": "NotoSerifCJKsc-Light"
+      },
+      {
+        "id": "NotoSerifCJKsc-Regular_ttc0",
+        "source_family": "Noto Serif CJK SC",
+        "sha256": "2a2eae2628df83556c54018c41e20fa532c1b862c5256ae8b3f23feb918d12ca",
+        "ttc_index": 0,
+        "postscript": "NotoSerifCJKsc-Regular"
+      },
+      {
+        "id": "NotoSerifCJKsc-Medium_ttc0",
+        "source_family": "Noto Serif CJK SC",
+        "sha256": "19322be2ecf5dd2abd546db7a86cc83c286026cbd28593583bfcfd721e48c9fe",
+        "ttc_index": 0,
+        "postscript": "NotoSerifCJKsc-Medium"
+      },
+      {
+        "id": "NotoSerifCJKsc-Bold_ttc0",
+        "source_family": "Noto Serif CJK SC",
+        "sha256": "8af07d4b6c2e82bcc72a30e066eaf295f11b9424f4aad2eaa9fe0e9c3b38fc73",
+        "ttc_index": 0,
+        "postscript": "NotoSerifCJKsc-Bold"
+      },
+      {
+        "id": "LXGWWenKai-Light_ttc0",
+        "source_family": "LXGW WenKai",
+        "sha256": "526ec70cbb0118e871d481f8179e03ff045f0e4d72d080dcca87950c4ab27cca",
+        "ttc_index": 0,
+        "postscript": "LXGWWenKai-Light"
+      },
+      {
+        "id": "LXGWWenKai-Regular_ttc0",
+        "source_family": "LXGW WenKai",
+        "sha256": "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009",
+        "ttc_index": 0,
+        "postscript": "LXGWWenKai-Regular"
+      },
+      {
+        "id": "LXGWWenKai-Medium_ttc0",
+        "source_family": "LXGW WenKai",
+        "sha256": "d4bdeb38a39151d74d084cba5090f8cb7d20bf83eedb78c35939ae70b9f4e3f6",
+        "ttc_index": 0,
+        "postscript": "LXGWWenKai-Medium"
+      },
+      {
+        "id": "WenQuanYiMicroHei_ttc0",
+        "source_family": "WenQuanYi Micro Hei",
+        "sha256": "e4bca8df123ce01b104780f576ea1a58b9a5ff1662a91124b6d3180cb6c88212",
+        "ttc_index": 0,
+        "postscript": "WenQuanYiMicroHei"
+      },
+      {
+        "id": "ZCOOLKuaiLe-Regular_ttc0",
+        "source_family": "ZCOOL KuaiLe",
+        "sha256": "812a6fc1fe54b6d73a419245c32dfeba8aa33104d5be90d1cf6af082007cb71d",
+        "ttc_index": 0,
+        "postscript": "ZCOOLKuaiLe-Regular"
+      },
+      {
+        "id": "ZCOOLXiaoWei-Regular_ttc0",
+        "source_family": "ZCOOL XiaoWei",
+        "sha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1",
+        "ttc_index": 0,
+        "postscript": "ZCOOLXiaoWei-Regular"
+      },
+      {
+        "id": "ZCOOLQingKeHuangYou-Regular_ttc0",
+        "source_family": "ZCOOL QingKe HuangYou",
+        "sha256": "54f0c0df4308cd74cd0f2fd3494ae054dbc4a1fd6fa7d71f4807eb4cdd8b4136",
+        "ttc_index": 0,
+        "postscript": "ZCOOLQingKeHuangYou-Regular"
+      },
+      {
+        "id": "MaShanZheng-Regular_ttc0",
+        "source_family": "Ma Shan Zheng",
+        "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+        "ttc_index": 0,
+        "postscript": "MaShanZheng-Regular"
+      },
+      {
+        "id": "FluxSans-Roboto-W300-D100_ttc0",
+        "source_family": "Roboto",
+        "sha256": "2d15ca42799f02e77b508c9c8287f1a8e2ec91010d1638dfc050620bb28cde65",
+        "ttc_index": 0,
+        "postscript": "FluxSans-Roboto-W300-D100"
+      },
+      {
+        "id": "FluxSans-Roboto-W300-D75_ttc0",
+        "source_family": "Roboto",
+        "sha256": "2b0d16e0ffe7113c68266bf2425fbb0a0d1fe8aee333e6f0c9d4b1bcdab5f686",
+        "ttc_index": 0,
+        "postscript": "FluxSans-Roboto-W300-D75"
+      },
+      {
+        "id": "FluxSans-Roboto-W400-D100_ttc0",
+        "source_family": "Roboto",
+        "sha256": "16fcb6b81ddd5d61ac28494f0895aaae3b065d68fd2e7cf51cdf84b4fec03fe5",
+        "ttc_index": 0,
+        "postscript": "FluxSans-Roboto-W400-D100"
+      },
+      {
+        "id": "FluxSans-Roboto-W400-D75_ttc0",
+        "source_family": "Roboto",
+        "sha256": "57cc47fb3dfc7dfd09a5f1d5ce73ffbb96c3cb436f028dfc92f25e3a3833c9c2",
+        "ttc_index": 0,
+        "postscript": "FluxSans-Roboto-W400-D75"
+      },
+      {
+        "id": "FluxSans-Roboto-W500-D100_ttc0",
+        "source_family": "Roboto",
+        "sha256": "eaa543dfe2d720f5495e09a780c1f78e6d4ad35c92da5c6e752ec141c0b935bb",
+        "ttc_index": 0,
+        "postscript": "FluxSans-Roboto-W500-D100"
+      },
+      {
+        "id": "FluxSans-Roboto-W500-D75_ttc0",
+        "source_family": "Roboto",
+        "sha256": "e69e7f54315fefd4d08bd93e6f9eb3250247c256f506eebe85601b2c06373d40",
+        "ttc_index": 0,
+        "postscript": "FluxSans-Roboto-W500-D75"
+      },
+      {
+        "id": "FluxSans-Roboto-W700-D100_ttc0",
+        "source_family": "Roboto",
+        "sha256": "2d13a9a3fe365147e1931fb1e1a1d9ed12965be7c83d5b31c5cee6fd1bfe0a99",
+        "ttc_index": 0,
+        "postscript": "FluxSans-Roboto-W700-D100"
+      },
+      {
+        "id": "FluxSans-Roboto-W700-D75_ttc0",
+        "source_family": "Roboto",
+        "sha256": "a58121b765195efc4e9913540372a9a84fd6aadd6a6071a0938671ea7f3bf29d",
+        "ttc_index": 0,
+        "postscript": "FluxSans-Roboto-W700-D75"
+      },
+      {
+        "id": "FluxSans-Roboto-W900-D100_ttc0",
+        "source_family": "Roboto",
+        "sha256": "3a869d2ade4beb1fdd9231fa8cf93c22229e9a3b91cad4384b6165a899a3b8c4",
+        "ttc_index": 0,
+        "postscript": "FluxSans-Roboto-W900-D100"
+      },
+      {
+        "id": "FluxSans-Roboto-W900-D75_ttc0",
+        "source_family": "Roboto",
+        "sha256": "a13bebf8c842cd42fce79126810082e6add602725ba904ee0faa49b24926d392",
+        "ttc_index": 0,
+        "postscript": "FluxSans-Roboto-W900-D75"
+      },
+      {
+        "id": "LongCang-Regular_ttc0",
+        "source_family": "Long Cang",
+        "sha256": "e5bf2c3f24ef2327c6f136d8f73e2f9dfdf44896fdbeb35a9515f44777bb91bc",
+        "ttc_index": 0,
+        "postscript": "LongCang-Regular"
+      },
+      {
+        "id": "ZhiMangXing-Regular_ttc0",
+        "source_family": "Zhi Mang Xing",
+        "sha256": "644e0cae9b40f0b10ab729a01bd32032e3973bac22be3dccae01bf6ae7fde969",
+        "ttc_index": 0,
+        "postscript": "ZhiMangXing-Regular"
+      },
+      {
+        "id": "FandolHei-Bold_ttc0",
+        "source_family": "FandolHei",
+        "sha256": "42ca2de27b45e16a284768673b6205a5add9e17871ee0e7db9c0d03f061d96fd",
+        "ttc_index": 0,
+        "postscript": "FandolHei-Bold"
+      },
+      {
+        "id": "FandolHei-Regular_ttc0",
+        "source_family": "FandolHei",
+        "sha256": "4afa97aa8751e0118617df88272b58d43691b5cffb7ea024c4580496e9f34d28",
+        "ttc_index": 0,
+        "postscript": "FandolHei-Regular"
+      },
+      {
+        "id": "FandolSong-Bold_ttc0",
+        "source_family": "FandolSong",
+        "sha256": "ffa76a70e128947a4dd22151d5ee829b23e24ce3cb6fe8ad49891cd1c2d9e9b9",
+        "ttc_index": 0,
+        "postscript": "FandolSong-Bold"
+      },
+      {
+        "id": "FandolSong-Regular_ttc0",
+        "source_family": "FandolSong",
+        "sha256": "a3820003227d4abe31fe28b493200d94a849ccfd078b50a019264f70353020b0",
+        "ttc_index": 0,
+        "postscript": "FandolSong-Regular"
+      },
+      {
+        "id": "FandolKai-Regular_ttc0",
+        "source_family": "FandolKai",
+        "sha256": "ea7e7fb4f9b3ac694a68d43946e04d21deed6e8c29a7c2d3081e1a4138f2f827",
+        "ttc_index": 0,
+        "postscript": "FandolKai-Regular"
+      },
+      {
+        "id": "LiuJianMaoCao-Regular_ttc0",
+        "source_family": "Liu Jian Mao Cao",
+        "sha256": "cab396b91a5b7c0b4005a35891180d06e6751f5ac261fe680aec65c1ae209033",
+        "ttc_index": 0,
+        "postscript": "LiuJianMaoCao-Regular"
+      },
+      {
+        "id": "SmileySans-Oblique_ttc0",
+        "source_family": "Smiley Sans",
+        "sha256": "b447d7e781f08bc95c4c9f23ba71ed2b8ebb639aa7184485c71c4ca5afcd25c4",
+        "ttc_index": 0,
+        "postscript": "SmileySans-Oblique"
+      },
+      {
+        "id": "Lato-Light_ttc0",
+        "source_family": "Lato",
+        "sha256": "cf2a774503baf418d584f49967bd160e1e03f087c13b25602f28024ec7788f08",
+        "ttc_index": 0,
+        "postscript": "Lato-Light"
+      },
+      {
+        "id": "Lato-Regular_ttc0",
+        "source_family": "Lato",
+        "sha256": "d636e4683231f931eda222d588e944d082bfd3bdba02f928bee461c0f185b251",
+        "ttc_index": 0,
+        "postscript": "Lato-Regular"
+      },
+      {
+        "id": "Lato-Medium_ttc0",
+        "source_family": "Lato",
+        "sha256": "d3ac182a6833e005745dd75679fbad081c0b12535df4e93ad8ed57817a31a338",
+        "ttc_index": 0,
+        "postscript": "Lato-Medium"
+      },
+      {
+        "id": "Lato-Bold_ttc0",
+        "source_family": "Lato",
+        "sha256": "8a0aace75d33794eece4b28187bfc1df0bbd2888b5d8a56e01788c8d65d16be1",
+        "ttc_index": 0,
+        "postscript": "Lato-Bold"
+      },
+      {
+        "id": "FluxAndroidV2-OpenSans-W300-D100_ttc0",
+        "source_family": "Open Sans",
+        "sha256": "3452664ea2737e5f771277b2a89721393cabd6ec813606443e5d91921e09d1d1",
+        "ttc_index": 0,
+        "postscript": "FluxAndroidV2-OpenSans-W300-D100"
+      },
+      {
+        "id": "FluxAndroidV2-OpenSans-W300-D75_ttc0",
+        "source_family": "Open Sans",
+        "sha256": "f10bc125c686a7074c10e7b8b23f1535cf10f3819a265d5850d8ebb6ea8c8333",
+        "ttc_index": 0,
+        "postscript": "FluxAndroidV2-OpenSans-W300-D75"
+      },
+      {
+        "id": "FluxAndroidV2-OpenSans-W400-D100_ttc0",
+        "source_family": "Open Sans",
+        "sha256": "1bb6ed342a78d247d13944b43a02bdf2ea9485b2aa6ac1cc5a42ddc179eff944",
+        "ttc_index": 0,
+        "postscript": "FluxAndroidV2-OpenSans-W400-D100"
+      },
+      {
+        "id": "FluxAndroidV2-OpenSans-W400-D75_ttc0",
+        "source_family": "Open Sans",
+        "sha256": "321590698f60e7f21c810f244ea0dc95b861972297d10957d5c9b7091ed15b40",
+        "ttc_index": 0,
+        "postscript": "FluxAndroidV2-OpenSans-W400-D75"
+      },
+      {
+        "id": "FluxAndroidV2-OpenSans-W500-D100_ttc0",
+        "source_family": "Open Sans",
+        "sha256": "ccdd371c3ba4570ae7fa16c9fae3337b3558b94fd7c9dc9b500c5b234a61e0ed",
+        "ttc_index": 0,
+        "postscript": "FluxAndroidV2-OpenSans-W500-D100"
+      },
+      {
+        "id": "FluxAndroidV2-OpenSans-W500-D75_ttc0",
+        "source_family": "Open Sans",
+        "sha256": "9e279cd52217648601dac6fb33a1017360be5c193b9697aa1a663ad3cfe8231a",
+        "ttc_index": 0,
+        "postscript": "FluxAndroidV2-OpenSans-W500-D75"
+      },
+      {
+        "id": "FluxAndroidV2-OpenSans-W700-D100_ttc0",
+        "source_family": "Open Sans",
+        "sha256": "a69e239d4ee467c4c83a05b4682575ca0103dcc092852ebf5fecb457cea27d8c",
+        "ttc_index": 0,
+        "postscript": "FluxAndroidV2-OpenSans-W700-D100"
+      },
+      {
+        "id": "FluxAndroidV2-OpenSans-W700-D75_ttc0",
+        "source_family": "Open Sans",
+        "sha256": "53dc3fab26ef01989f814ed73fffac4bd092608634b240c2546e5c52c68db32e",
+        "ttc_index": 0,
+        "postscript": "FluxAndroidV2-OpenSans-W700-D75"
+      },
+      {
+        "id": "MPLUS1p-Light_ttc0",
+        "source_family": "M PLUS 1p",
+        "sha256": "e39fa39f8556c3fdf47e01f68915d8d17936107f33fbead6b1b40fcf605c118c",
+        "ttc_index": 0,
+        "postscript": "MPLUS1p-Light"
+      },
+      {
+        "id": "MPLUS1p-Regular_ttc0",
+        "source_family": "M PLUS 1p",
+        "sha256": "2f294ad496432b1608f070d310e3aa2adcf1de4af429f4901df97ec4bd361ed1",
+        "ttc_index": 0,
+        "postscript": "MPLUS1p-Regular"
+      },
+      {
+        "id": "MPLUS1p-Medium_ttc0",
+        "source_family": "M PLUS 1p",
+        "sha256": "28b2f52a40ae988064810b71d67e127df75a16e08d7df4e192d1006e4075394f",
+        "ttc_index": 0,
+        "postscript": "MPLUS1p-Medium"
+      },
+      {
+        "id": "MPLUS1p-Bold_ttc0",
+        "source_family": "M PLUS 1p",
+        "sha256": "76eb077b0a31ca33ca40238e47da5a17e2786741607cec09678d7d2e5ab1afc1",
+        "ttc_index": 0,
+        "postscript": "MPLUS1p-Bold"
+      },
+      {
+        "id": "YuseiMagic-Regular_ttc0",
+        "source_family": "Yusei Magic",
+        "sha256": "82098615f39ed9da6a8ccc674b9006e49c70dd5b775a7a1697f6bedd22ce25a2",
+        "ttc_index": 0,
+        "postscript": "YuseiMagic-Regular"
+      },
+      {
+        "id": "Ubuntu-Light_ttc0",
+        "source_family": "Ubuntu",
+        "sha256": "a5d3ef89f219e90e1f22616adf2bd4a86c8ddd37aff58cd223482c44e3a92eef",
+        "ttc_index": 0,
+        "postscript": "Ubuntu-Light"
+      },
+      {
+        "id": "Ubuntu-Regular_ttc0",
+        "source_family": "Ubuntu",
+        "sha256": "3128df86a31805618436d0ae5651ba4285d0c9de0a39057d025f64ee33bceb64",
+        "ttc_index": 0,
+        "postscript": "Ubuntu-Regular"
+      },
+      {
+        "id": "Ubuntu-Medium_ttc0",
+        "source_family": "Ubuntu",
+        "sha256": "3cd952b8b52581e48a8fa95b31c8829c2baa41b635042a69587d57f98092961e",
+        "ttc_index": 0,
+        "postscript": "Ubuntu-Medium"
+      },
+      {
+        "id": "Ubuntu-Bold_ttc0",
+        "source_family": "Ubuntu",
+        "sha256": "679b5c1e09cab3156bb8ef529735f9382bf31ca7ac737382ab959297f8d82ad4",
+        "ttc_index": 0,
+        "postscript": "Ubuntu-Bold"
+      },
+      {
+        "id": "IBMPlexSansSC-Light_ttc0",
+        "source_family": "IBM Plex Sans SC",
+        "sha256": "1df4e4de4f669c593c56b6a55e89c451ed2ef64c2669c068ea44ba6f7b24819c",
+        "ttc_index": 0,
+        "postscript": "IBMPlexSansSC-Light"
+      },
+      {
+        "id": "IBMPlexSansSC_ttc0",
+        "source_family": "IBM Plex Sans SC",
+        "sha256": "fc42109cec4e0af7efd4d4d7f6de138d00e87b8b48987432808e43af33580530",
+        "ttc_index": 0,
+        "postscript": "IBMPlexSansSC"
+      },
+      {
+        "id": "IBMPlexSansSC-Medm_ttc0",
+        "source_family": "IBM Plex Sans SC",
+        "sha256": "0c6f731e82267b9c1159b5fd424ebfaec1d8e66d4f2924d2f4d75567ca98b750",
+        "ttc_index": 0,
+        "postscript": "IBMPlexSansSC-Medm"
+      },
+      {
+        "id": "IBMPlexSansSC-Bold_ttc0",
+        "source_family": "IBM Plex Sans SC",
+        "sha256": "cfd4c5a23c4924a45457c5d44b4e264b003d0f51cf60e6290a893c9ba5bec010",
+        "ttc_index": 0,
+        "postscript": "IBMPlexSansSC-Bold"
+      },
+      {
+        "id": "YujiSyuku-Regular_ttc0",
+        "source_family": "Yuji Syuku",
+        "sha256": "82728ebafc8c97391e2dab633414a806f344b8e4e2227d307179f07b548fca61",
+        "ttc_index": 0,
+        "postscript": "YujiSyuku-Regular"
+      },
+      {
+        "id": "LiberationSans_ttc0",
+        "source_family": "Liberation Sans",
+        "sha256": "bade59d822652f76e6941aa87b40a87c13d1cc70db98ededb5011127efafd1d3",
+        "ttc_index": 0,
+        "postscript": "LiberationSans"
+      },
+      {
+        "id": "LiberationSans-Bold_ttc0",
+        "source_family": "Liberation Sans",
+        "sha256": "1b5f2da6f4cadce4c05b9ecebe3a6fcd374eb95ae443605e799f4c3287978939",
+        "ttc_index": 0,
+        "postscript": "LiberationSans-Bold"
+      }
+    ]
+  }
+}

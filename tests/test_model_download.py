@@ -11,7 +11,7 @@ from fastapi.testclient import TestClient
 import pytest
 
 from flux_glyph import api
-from flux_glyph.model_download import PREDICT, font_kit
+from flux_glyph.model_download import PREDICT, font_kit, release_metadata
 
 
 def sha(data):
@@ -94,6 +94,57 @@ def test_wrong_declared_model_sha_is_rejected(tmp_path):
     engine.region_neural.meta['model']['sha256'] = '0' * 64
     with pytest.raises(ValueError, match='Model changed'):
         font_kit(engine)
+
+
+def test_release_evidence_is_copied_without_inventing_a_default_tier(tmp_path):
+    legacy=fake_engine(tmp_path/'old')
+    info,payload=font_kit(legacy)
+    assert all(key not in info and key not in json.loads(zip_files(payload)['metadata.json'])
+               for key in ('release_tier','stable_validation_passed','test_passed','validation'))
+    public={'release_tier':'experimental','stable_validation_passed':False,'test_passed':False,
+            'validation':{'named_precision':.9259954921111946,'known_correct_coverage':.6847222222222222,
+                'unknown_wrongly_named':174,'unknown_views':1200,'unknown_test_families':['Smiley Sans'],
+                'note':'<script>data only</script>','optional':None}}
+    copied=release_metadata({**public,'private_training_path':'/private/should-not-copy'})
+    assert copied==public and 'private_training_path' not in copied
+    public['validation']['unknown_test_families'].append('Changed after copying')
+    assert copied['validation']['unknown_test_families']==['Smiley Sans']
+
+
+@pytest.mark.parametrize('public',[
+    {'release_tier':''},{'stable_validation_passed':0},{'test_passed':'false'}, {'validation':[]},
+    {'validation':{'value':float('nan')}},{'validation':{'value':float('inf')}},
+    {'validation':{1:'non-string key'}},{'validation':{'value':object()}},
+    {'validation':{'value':(1,2)}},{'validation':{'value':2**53}},
+    {'validation':{'value':'x'*65537}},
+])
+def test_non_json_or_malformed_public_release_evidence_is_rejected(public):
+    with pytest.raises(ValueError):release_metadata(public)
+
+
+def test_cyclic_validation_data_is_rejected_without_recursion_overflow():
+    validation={};validation['self']=validation
+    with pytest.raises(ValueError,match='bounds'):release_metadata({'validation':validation})
+
+
+@pytest.mark.parametrize('experimental',[False,True])
+def test_standalone_predict_json_retains_declared_preview_tier(monkeypatch,tmp_path,capsys,experimental):
+    from PIL import Image
+    import sys
+    picture=tmp_path/'region.png';Image.new('RGB',(24,24),'white').save(picture)
+    metadata={'private_training_path':'never emit'}
+    if experimental:metadata.update(release_tier='experimental',stable_validation_passed=False)
+    predicted={'family':None,'status':'uncertain','font_size_px_estimate':None}
+    model=SimpleNamespace(meta=metadata,predict=lambda image:dict(predicted))
+    monkeypatch.setitem(sys.modules,'inference',SimpleNamespace(RegionFontClassifier=lambda path:model))
+    monkeypatch.setitem(sys.modules,'text_style',SimpleNamespace(estimate_text_style=lambda *args,**kwargs:{'text_color_hex':'#000000'}))
+    monkeypatch.setattr(sys,'argv',['predict.py',str(picture)])
+    exec(compile(PREDICT,'predict.py','exec'),{'__file__':str(tmp_path/'predict.py')})
+    result=json.loads(capsys.readouterr().out)
+    assert result['font']==predicted and result['ocr_performed'] is False and 'private_training_path' not in result
+    if experimental:
+        assert result['model_release_tier']=='experimental' and result['stable_validation_passed'] is False
+    else:assert 'model_release_tier' not in result and 'stable_validation_passed' not in result
 
 
 def test_repeat_download_is_deterministic_and_cached_content_is_immutable(tmp_path):

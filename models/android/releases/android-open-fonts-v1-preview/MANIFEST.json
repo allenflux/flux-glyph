@@ -1,0 +1,31 @@
+{
+  "schema": "flux-glyph-models-v2",
+  "files": [
+    {
+      "path": "pp/onnx/paddle_ocr_det.onnx",
+      "sha256": "69ce850fec741a2a4568c7c924bb025c9d4f1129e5f96ab428c799ccc5ef2275",
+      "bytes": 4729474
+    },
+    {
+      "path": "pp/paddle_ocr_delivery.contract.json",
+      "sha256": "3457279d02acb449b6844cfa132687585b3bedc1f3e6736fdb539adc6edb9b2a",
+      "bytes": 7851
+    },
+    {
+      "path": "region_neural/metadata.json",
+      "sha256": "957a176f045cce8c5b0dd4a53ce1c07d34a4917508609a21c4d0bc0002ed827b",
+      "bytes": 3654
+    },
+    {
+      "path": "region_neural/model.onnx",
+      "sha256": "c095f67c4763cbec7055ac04f706c5dcbb9ad4b8b72e43c6beedfa53851ec17a",
+      "bytes": 1467097
+    }
+  ],
+  "source_note": "Detector and trained region font/size CNN; no text recognizer, dictionary, glyph segmenter or reference bank.",
+  "version": "android-open-fonts-v1-preview",
+  "base_version": "r20-font-consensus-v1",
+  "font_method": "region_neural_network",
+  "ocr_performed": false,
+  "font_mode": "android"
+}

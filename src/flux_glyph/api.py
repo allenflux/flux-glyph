@@ -56,8 +56,10 @@ def public_result(identifier,result):
     return {k:result[k] for k in ('id','width','height','summary','timing_seconds','model_version','source_sha256','font_scope','font_identity_verified','device_inference_performed')} | {
         'regions':regions,'image_url':prefix+'original.png','annotated_preview_url':prefix+'annotated.png',
         'font_method':result.get('font_method','reference_matching'),
+        'font_mode':result.get('font_mode','ios'),
         'ocr_performed':result.get('ocr_performed',True),
-        'annotated_image_url':f'/api/jobs/{identifier}/image','download_json_url':f'/api/jobs/{identifier}/json'}
+        'annotated_image_url':f'/api/jobs/{identifier}/image','download_json_url':f'/api/jobs/{identifier}/json'} | {
+        key:result[key] for key in ('model_release_tier','stable_validation_passed') if key in result}
 
 
 class Jobs:
@@ -66,6 +68,16 @@ class Jobs:
         self.lock=threading.RLock();self.pool=ThreadPoolExecutor(max_workers=1,thread_name_prefix='glyph')
         self.capacity=threading.BoundedSemaphore(MAX_QUEUE+1);self.active=set();self.jobs={}
         self.engine=FontPipeline(Path(os.getenv('FLUX_MODEL_DIR',str(ROOT/'models'))),cache_characters=int(os.getenv('FLUX_FONT_CACHE_CHARACTERS','32')),max_regions=int(os.getenv('FLUX_MAX_REGIONS','200')))
+        if getattr(self.engine,'font_mode','ios')!='ios':raise ValueError('Default model must use the iOS scope')
+        self.engines={'ios':self.engine}
+        android=Path(os.getenv('FLUX_ANDROID_MODEL_DIR',str(ROOT/'models/android')))
+        if android.exists():
+            try:
+                engine=FontPipeline(android,cache_characters=int(os.getenv('FLUX_FONT_CACHE_CHARACTERS','32')),max_regions=int(os.getenv('FLUX_MAX_REGIONS','200')))
+                if getattr(engine,'font_mode',None)!='android':raise ValueError('Android mode requires its independent model')
+                self.engines['android']=engine
+            except Exception:
+                logger.exception('Android model unavailable; Android requests remain disabled')
         for path in DATA.glob('*/job.json'):
             if not re.fullmatch('[a-f0-9]{32}',path.parent.name):continue
             try:
@@ -110,24 +122,32 @@ class Jobs:
                     logger.exception('Could not remove expired job: %s',key);continue
                 self.jobs.pop(key,None)
 
-    def submit(self,payload,filename):
+    def engine_for(self,mode):
+        if mode not in ('ios','android'):raise HTTPException(400,'字体模式必须为 ios 或 android。')
+        engine=getattr(self,'engines',{'ios':self.engine}).get(mode)
+        if engine is None:raise HTTPException(503,'安卓字体模型暂不可用，请稍后重试。')
+        return engine
+
+    def submit(self,payload,filename,mode='ios'):
+        engine=self.engine_for(mode)
         if not self.capacity.acquire(blocking=False):raise HTTPException(429,'识别队列已满，请稍后重试。',headers={'Retry-After':'2'})
         try:
             with self.lock:
                 identifier=uuid.uuid4().hex;directory=DATA/identifier;directory.mkdir()
                 (directory/'uploaded-image').write_bytes(payload)
                 job={'id':identifier,'status':'queued','stage':'等待识别','created_at':time.time(),'filename':filename[:200],
+                     'font_mode':mode,'model_version':engine.version,
                      'progress':{'stage_code':'queued','percent':0,'current':None,'total':None}}
                 self.jobs[identifier]=job;self.active.add(identifier)
                 save_json(directory/'job.json',job)
                 # Enqueue under the same lock as insertion: concurrent uploads
                 # cannot reorder execution relative to displayed positions.
-                self.pool.submit(self.work,identifier)
+                self.pool.submit(self.work,identifier,engine)
                 return self.snapshot(identifier)
         except Exception:
             self.capacity.release();raise
 
-    def work(self,identifier):
+    def work(self,identifier,engine=None):
         directory=DATA/identifier
         try:
             with self.lock:self.jobs[identifier].update(status='running',stage='开始识别',
@@ -139,7 +159,12 @@ class Jobs:
                         self.jobs[identifier]['progress']=dict(update['progress'])
                     else:
                         self.jobs[identifier]['stage']=str(update)
-            result=self.engine.run(directory/'uploaded-image',directory,identifier,progress)
+            mode=self.jobs[identifier].get('font_mode','ios')
+            engine=engine or self.engine_for(mode)
+            if self.jobs[identifier].get('model_version',engine.version)!=engine.version:raise ValueError('Queued model changed')
+            result=engine.run(directory/'uploaded-image',directory,identifier,progress)
+            if result.get('font_mode',mode)!=mode:raise ValueError('Result model mode differs from queued mode')
+            result['font_mode']=mode
             save_json(directory/'public-result.json',public_result(identifier,result))
             with self.lock:self.jobs[identifier].update(status='complete',stage='识别完成',
                     progress={'stage_code':'complete','percent':100,'current':None,'total':None})
@@ -220,7 +245,10 @@ def health():
     queue=jobs.queue_state()
     return {'ok':True,'model_version':jobs.engine.version,'max_upload_mb':MAX_BYTES//1024//1024,
             'max_pixels':MAX_PIXELS,'workers':1,'queue_size':MAX_QUEUE,'authentication_required':bool(TOKEN),
-            'running_jobs':queue['running'],'waiting_jobs':queue['waiting']}
+            'running_jobs':queue['running'],'waiting_jobs':queue['waiting'],
+            'font_modes':{mode:{'available':mode in jobs.engines,
+                               'model_version':jobs.engines[mode].version if mode in jobs.engines else None}
+                          for mode in ('ios','android')},'default_font_mode':'ios'}
 
 
 @app.post('/auth')
@@ -239,17 +267,20 @@ async def authenticate(request:Request):
 
 
 @app.get('/api/models/font')
-def current_font_model():
-    bundle=font_kit(app.state.jobs.engine)
-    return bundle[0] if bundle else {'available':False,'format':'ONNX'}
+def current_font_model(mode:str='ios'):
+    if mode not in ('ios','android'):raise HTTPException(400,'字体模式必须为 ios 或 android。')
+    engine=app.state.jobs.engines.get(mode)
+    bundle=font_kit(engine) if engine is not None else None
+    return bundle[0] if bundle else {'available':False,'format':'ONNX',**({'font_mode':mode} if mode!='ios' else {})}
 
 
 @app.get('/api/models/font/download')
-def download_font_model():
-    bundle=font_kit(app.state.jobs.engine)
+def download_font_model(mode:str='ios'):
+    bundle=font_kit(app.state.jobs.engine_for(mode))
     if bundle is None:raise HTTPException(404,'当前模型不提供独立区域字体下载包。')
+    filename='flux-glyph-android-font-onnx.zip' if mode=='android' else 'flux-glyph-font-onnx.zip'
     return Response(bundle[1],media_type='application/zip',headers={
-        'Content-Disposition':'attachment; filename="flux-glyph-font-onnx.zip"',
+        'Content-Disposition':f'attachment; filename="{filename}"',
         'X-Model-SHA256':bundle[0]['sha256']})
 
 
@@ -280,10 +311,12 @@ async def payload_from(request,filename=None):
 
 
 async def enqueue_job(request:Request,filename=None):
+    mode=request.query_params.get('mode','ios')
+    app.state.jobs.engine_for(mode)
     if app.state.upload_slots.locked():raise HTTPException(429,'正在接收其他图片，请稍后重试。',headers={'Retry-After':'2'})
     async with app.state.upload_slots:
         payload,name=await payload_from(request,filename)
-        return await asyncio.to_thread(app.state.jobs.submit,payload,name)
+        return await asyncio.to_thread(app.state.jobs.submit,payload,name,mode)
 
 
 @app.post('/api/jobs',status_code=202)
