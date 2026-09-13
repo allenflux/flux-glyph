@@ -68,16 +68,10 @@ class Jobs:
         self.lock=threading.RLock();self.pool=ThreadPoolExecutor(max_workers=1,thread_name_prefix='glyph')
         self.capacity=threading.BoundedSemaphore(MAX_QUEUE+1);self.active=set();self.jobs={}
         self.engine=FontPipeline(Path(os.getenv('FLUX_MODEL_DIR',str(ROOT/'models'))),cache_characters=int(os.getenv('FLUX_FONT_CACHE_CHARACTERS','32')),max_regions=int(os.getenv('FLUX_MAX_REGIONS','200')))
-        if getattr(self.engine,'font_mode','ios')!='ios':raise ValueError('Default model must use the iOS scope')
-        self.engines={'ios':self.engine}
-        android=Path(os.getenv('FLUX_ANDROID_MODEL_DIR',str(ROOT/'models/android')))
-        if android.exists():
-            try:
-                engine=FontPipeline(android,cache_characters=int(os.getenv('FLUX_FONT_CACHE_CHARACTERS','32')),max_regions=int(os.getenv('FLUX_MAX_REGIONS','200')))
-                if getattr(engine,'font_mode',None)!='android':raise ValueError('Android mode requires its independent model')
-                self.engines['android']=engine
-            except Exception:
-                logger.exception('Android model unavailable; Android requests remain disabled')
+        # A single ACTIVE bundle owns all classification. Legacy bundles remain
+        # loadable for local compatibility without claiming unified training.
+        self.default_font_mode=getattr(self.engine,'font_mode','ios')
+        self.engines={self.default_font_mode:self.engine}
         for path in DATA.glob('*/job.json'):
             if not re.fullmatch('[a-f0-9]{32}',path.parent.name):continue
             try:
@@ -122,14 +116,16 @@ class Jobs:
                     logger.exception('Could not remove expired job: %s',key);continue
                 self.jobs.pop(key,None)
 
-    def engine_for(self,mode):
-        if mode not in ('ios','android'):raise HTTPException(400,'字体模式必须为 ios 或 android。')
-        engine=getattr(self,'engines',{'ios':self.engine}).get(mode)
-        if engine is None:raise HTTPException(503,'安卓字体模型暂不可用，请稍后重试。')
-        return engine
+    def engine_for(self,mode=None):
+        if mode not in (None,'unified'):
+            raise HTTPException(400,'已改为统一字体识别，请省略 mode 或使用 mode=unified；不再按 iOS／Android 分开选择。')
+        if mode=='unified' and getattr(self.engine,'font_mode','ios')!='unified':
+            raise HTTPException(503,'统一字体模型尚未安装。')
+        return self.engine
 
-    def submit(self,payload,filename,mode='ios'):
+    def submit(self,payload,filename,mode=None):
         engine=self.engine_for(mode)
+        mode=getattr(engine,'font_mode','ios')
         if not self.capacity.acquire(blocking=False):raise HTTPException(429,'识别队列已满，请稍后重试。',headers={'Retry-After':'2'})
         try:
             with self.lock:
@@ -160,7 +156,7 @@ class Jobs:
                     else:
                         self.jobs[identifier]['stage']=str(update)
             mode=self.jobs[identifier].get('font_mode','ios')
-            engine=engine or self.engine_for(mode)
+            engine=engine or self.engine
             if self.jobs[identifier].get('model_version',engine.version)!=engine.version:raise ValueError('Queued model changed')
             result=engine.run(directory/'uploaded-image',directory,identifier,progress)
             if result.get('font_mode',mode)!=mode:raise ValueError('Result model mode differs from queued mode')
@@ -215,7 +211,7 @@ async def lifespan(app):
 
 
 app=FastAPI(title='Flux Glyph API',version='1.0.0',lifespan=lifespan,docs_url=None,redoc_url=None,
-            description='上传支付宝截图，检测文字区域，分别识别中文、数字与英文字体候选并下载标注图片。')
+            description='上传截图，检测文字区域，用统一字体模型识别候选并估计字号、颜色。')
 
 
 @app.exception_handler(HTTPException)
@@ -246,9 +242,8 @@ def health():
     return {'ok':True,'model_version':jobs.engine.version,'max_upload_mb':MAX_BYTES//1024//1024,
             'max_pixels':MAX_PIXELS,'workers':1,'queue_size':MAX_QUEUE,'authentication_required':bool(TOKEN),
             'running_jobs':queue['running'],'waiting_jobs':queue['waiting'],
-            'font_modes':{mode:{'available':mode in jobs.engines,
-                               'model_version':jobs.engines[mode].version if mode in jobs.engines else None}
-                          for mode in ('ios','android')},'default_font_mode':'ios'}
+            'font_modes':{getattr(jobs.engine,'font_mode','ios'):{'available':True,'model_version':jobs.engine.version}},
+            'default_font_mode':getattr(jobs.engine,'font_mode','ios')}
 
 
 @app.post('/auth')
@@ -267,18 +262,16 @@ async def authenticate(request:Request):
 
 
 @app.get('/api/models/font')
-def current_font_model(mode:str='ios'):
-    if mode not in ('ios','android'):raise HTTPException(400,'字体模式必须为 ios 或 android。')
-    engine=app.state.jobs.engines.get(mode)
-    bundle=font_kit(engine) if engine is not None else None
-    return bundle[0] if bundle else {'available':False,'format':'ONNX',**({'font_mode':mode} if mode!='ios' else {})}
+def current_font_model(mode:str|None=None):
+    bundle=font_kit(app.state.jobs.engine_for(mode))
+    return bundle[0] if bundle else {'available':False,'format':'ONNX'}
 
 
 @app.get('/api/models/font/download')
-def download_font_model(mode:str='ios'):
+def download_font_model(mode:str|None=None):
     bundle=font_kit(app.state.jobs.engine_for(mode))
     if bundle is None:raise HTTPException(404,'当前模型不提供独立区域字体下载包。')
-    filename='flux-glyph-android-font-onnx.zip' if mode=='android' else 'flux-glyph-font-onnx.zip'
+    filename='flux-glyph-font-onnx.zip'
     return Response(bundle[1],media_type='application/zip',headers={
         'Content-Disposition':f'attachment; filename="{filename}"',
         'X-Model-SHA256':bundle[0]['sha256']})
@@ -311,7 +304,7 @@ async def payload_from(request,filename=None):
 
 
 async def enqueue_job(request:Request,filename=None):
-    mode=request.query_params.get('mode','ios')
+    mode=request.query_params.get('mode')
     app.state.jobs.engine_for(mode)
     if app.state.upload_slots.locked():raise HTTPException(429,'正在接收其他图片，请稍后重试。',headers={'Retry-After':'2'})
     async with app.state.upload_slots:

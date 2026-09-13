@@ -11,6 +11,7 @@ sys.path.insert(0,str(ROOT/'src'))
 from flux_glyph.models import load_active,verify_bundle
 from flux_glyph.region_font import RegionFontClassifier
 from flux_glyph.android_font import AndroidFontClassifier
+from flux_glyph.unified_font import UnifiedFontClassifier
 from model_release import safe_version,validate_runtime
 from package_models import write_models_manifest
 
@@ -19,7 +20,8 @@ def package(base,region,output,version):
     version=safe_version(version)
     selected,base_version,_=load_active(base)
     metadata=json.loads((Path(region)/'metadata.json').read_text())
-    classifier=(AndroidFontClassifier(region) if metadata.get('schema')=='flux-glyph-android-region-font-v1'
+    classifier=(UnifiedFontClassifier(region) if metadata.get('schema')=='flux-glyph-unified-region-font-v1'
+                else AndroidFontClassifier(region) if metadata.get('schema')=='flux-glyph-android-region-font-v1'
                 else RegionFontClassifier(region))
     output=Path(output).resolve()
     if output.exists():raise FileExistsError('Choose a new bundle output directory')

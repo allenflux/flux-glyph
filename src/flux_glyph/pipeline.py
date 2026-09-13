@@ -12,6 +12,7 @@ from .latin_matcher import CompactLatinBank,latin_character
 from .neural_font import NeuralFontClassifier
 from .region_font import RegionFontClassifier
 from .android_font import AndroidFontClassifier
+from .unified_font import UnifiedFontClassifier
 from .text_style import SizeMetrics,estimate_text_style
 from .models import load_active
 
@@ -54,7 +55,9 @@ class FontPipeline:
         self.region_neural=None;self.font_mode='ios'
         if any(row['path']=='region_neural/metadata.json' for row in self.manifest['files']):
             metadata=json.loads((self.directory/'region_neural/metadata.json').read_text())
-            if metadata.get('schema')=='flux-glyph-android-region-font-v1':
+            if metadata.get('schema')=='flux-glyph-unified-region-font-v1':
+                self.region_neural=UnifiedFontClassifier(self.directory/'region_neural');self.font_mode='unified'
+            elif metadata.get('schema')=='flux-glyph-android-region-font-v1':
                 self.region_neural=AndroidFontClassifier(self.directory/'region_neural');self.font_mode='android'
             else:self.region_neural=RegionFontClassifier(self.directory/'region_neural')
         if self.region_neural is not None:

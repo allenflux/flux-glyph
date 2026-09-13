@@ -1,0 +1,655 @@
+{
+  "schema": "flux-glyph-unified-public-sources-v1",
+  "paths_relative_to": "repository_root",
+  "status": "completed_local_experimental_training_export_and_development_regression",
+  "input_manifests": {
+    "ios_views": {
+      "path": "artifacts/font-sans-v1/views-v1/MANIFEST.json",
+      "sha256": "3e8b1146f28e65250b5f9c556b9b386ab9f3ca8980936fd5b7413c47959b007b"
+    },
+    "ios_unknown": {
+      "path": "artifacts/font-unknown-gate-v1/data-v1/MANIFEST.json",
+      "sha256": "18e8f3238b1e2a9be62e7502d432624987c08e158579348a17209dc0e6cd3e02"
+    },
+    "ios_supplement": {
+      "path": "artifacts/font-unknown-gate-v1/supplement-data-v2/MANIFEST.json",
+      "sha256": "0f4bc3cab09aacde67d363d201238568417702b2935320b93ba5094bdc1200af"
+    },
+    "android": {
+      "path": "artifacts/android-font-v1/data-v3/MANIFEST.json",
+      "sha256": "3f76f3de1ef523c8bdcf7976d4bd9419ef55f51c858509ecb1c716d9808c7290"
+    }
+  },
+  "source_registry_manifests": [
+    {
+      "path": "artifacts/font-sans-v1/scenes-v1/SOURCE_MANIFEST.json",
+      "sha256": "d6c5b6983d42f3f5d43067b7715c3a834f1c74cf9300314639ec807b52a6cf44"
+    },
+    {
+      "path": "artifacts/font-unknown-gate-v1/scenes-v4/SOURCE_MANIFEST.json",
+      "sha256": "16c9f3adfc117bb7804349b2b0d7e5eae26c632c2abba2713f3c87325e9cc264"
+    },
+    {
+      "path": "artifacts/font-unknown-gate-v1/supplement-data-v2/MANIFEST.json",
+      "sha256": "0f4bc3cab09aacde67d363d201238568417702b2935320b93ba5094bdc1200af"
+    },
+    {
+      "path": "artifacts/android-font-v1/sources-v2/FONTS.json",
+      "sha256": "38e8afe2a15a8e9d9c8a625e827cf9d45329833c22b0651b17606a0b7b5109e5"
+    }
+  ],
+  "known_families": [
+    {
+      "family": "HarmonyOS Sans SC",
+      "aliases": [
+        "HarmonyOS Sans SC"
+      ],
+      "native_capture_domains": [
+        "ios"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "ios": 5
+      },
+      "source_font_sha256": [
+        "297b088424be212207df2ce8b98e335468b782aa6b96832af0b8b773d711e2b1",
+        "43a424b85e47fb53a17b3b32026a71801f86f8e022ca6798d186b47d39fa5f01",
+        "6ed1553edccddc48eb27ff25d134a4a715cf54211238d4840b3038576cba1944",
+        "a88d9065dc144bf462e6553e308e9d5256bfe1a068abb47a3ee1081d636ea91a",
+        "dd366290b40861bc6ced85801e850ab66d6fe4c5b33bc43095a9747fa29288d8"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [],
+      "license_note": "Original local/system/asset source terms remain in the source record; no open-source license is inferred."
+    },
+    {
+      "family": "MiSans",
+      "aliases": [
+        "MiSans"
+      ],
+      "native_capture_domains": [
+        "ios"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "ios": 4
+      },
+      "source_font_sha256": [
+        "5c306154f81ca5888cd517c16493a9ecc7561deb0b7b449d59fc61e8b41021f0",
+        "9c120f0a849bc0aa5048daae2a3c0f6eecd828b5b33fce682a9622833f5feea6",
+        "b03e98374e971594b0b7a9706d0704241f76e1b88556cdda79c5039ef8a638d1",
+        "d0c1d327952ed935e86fb78a97a6c182b44f2c2b08777326786b1f8b26d1fe1e"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [],
+      "license_note": "Original local/system/asset source terms remain in the source record; no open-source license is inferred."
+    },
+    {
+      "family": "Noto Sans CJK SC",
+      "aliases": [
+        "Noto Sans CJK SC",
+        "Source Han Sans SC"
+      ],
+      "native_capture_domains": [
+        "android",
+        "ios"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 4,
+        "ios": 4
+      },
+      "source_font_sha256": [
+        "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+        "b5f0d1a190a7f9b43c310a8850630af12553df32c4c050543f9059732d9b4c0a",
+        "ca094f6b0001fb048ca39ddd797a0cdb0179e1e55c6561e111c49c3e6a61d7b7",
+        "e78bbbe1573bbb006156c1198f5c8cd6329470cb6e0b6702c7a3c83913db4abf"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [
+        "OFL-1.1"
+      ]
+    },
+    {
+      "family": "OPPO Sans",
+      "aliases": [
+        "OPPO Sans"
+      ],
+      "native_capture_domains": [
+        "ios"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "ios": 3
+      },
+      "source_font_sha256": [
+        "28c4079cf203b619cc6c6a5d1185b1a1128e8e91ea431df6b2d025b55ebad99a",
+        "337431511cecde0d0e05df1b8814d226b1f0f936436bf6d119317e62b0ea2a96",
+        "7d400338d2586417ff70d5fd886db79d408d4b729e04970ccab4f6a3da76b8d3"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [],
+      "license_note": "Original local/system/asset source terms remain in the source record; no open-source license is inferred."
+    },
+    {
+      "family": "PingFang",
+      "aliases": [
+        "PingFang SC",
+        "PingFang TC",
+        "PingFang HK"
+      ],
+      "native_capture_domains": [
+        "ios"
+      ],
+      "actual_source_kinds": [
+        "ios_system"
+      ],
+      "native_face_counts": {
+        "ios": 12
+      },
+      "source_font_sha256": [],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [],
+      "license_note": "Original local/system/asset source terms remain in the source record; no open-source license is inferred."
+    },
+    {
+      "family": "SF Pro",
+      "aliases": [
+        "SF Pro"
+      ],
+      "native_capture_domains": [
+        "ios"
+      ],
+      "actual_source_kinds": [
+        "ios_system"
+      ],
+      "native_face_counts": {
+        "ios": 5
+      },
+      "source_font_sha256": [],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [],
+      "license_note": "Original local/system/asset source terms remain in the source record; no open-source license is inferred."
+    },
+    {
+      "family": "Helvetica",
+      "aliases": [
+        "Helvetica"
+      ],
+      "native_capture_domains": [
+        "ios"
+      ],
+      "actual_source_kinds": [
+        "ios_system"
+      ],
+      "native_face_counts": {
+        "ios": 2
+      },
+      "source_font_sha256": [],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [],
+      "license_note": "Original local/system/asset source terms remain in the source record; no open-source license is inferred."
+    },
+    {
+      "family": "Alipay Number",
+      "aliases": [
+        "Alipay Number"
+      ],
+      "native_capture_domains": [
+        "ios"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "ios": 1
+      },
+      "source_font_sha256": [
+        "6074082d8cb92e175184b177e28335e0171f3ddfb2b5818d7853295f7fb0fada"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [],
+      "license_note": "Original local/system/asset source terms remain in the source record; no open-source license is inferred."
+    },
+    {
+      "family": "Roboto",
+      "aliases": [
+        "Roboto"
+      ],
+      "native_capture_domains": [
+        "android",
+        "ios"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 10,
+        "ios": 10
+      },
+      "source_font_sha256": [
+        "16fcb6b81ddd5d61ac28494f0895aaae3b065d68fd2e7cf51cdf84b4fec03fe5",
+        "2b0d16e0ffe7113c68266bf2425fbb0a0d1fe8aee333e6f0c9d4b1bcdab5f686",
+        "2d13a9a3fe365147e1931fb1e1a1d9ed12965be7c83d5b31c5cee6fd1bfe0a99",
+        "2d15ca42799f02e77b508c9c8287f1a8e2ec91010d1638dfc050620bb28cde65",
+        "3a869d2ade4beb1fdd9231fa8cf93c22229e9a3b91cad4384b6165a899a3b8c4",
+        "57cc47fb3dfc7dfd09a5f1d5ce73ffbb96c3cb436f028dfc92f25e3a3833c9c2",
+        "a13bebf8c842cd42fce79126810082e6add602725ba904ee0faa49b24926d392",
+        "a58121b765195efc4e9913540372a9a84fd6aadd6a6071a0938671ea7f3bf29d",
+        "e69e7f54315fefd4d08bd93e6f9eb3250247c256f506eebe85601b2c06373d40",
+        "eaa543dfe2d720f5495e09a780c1f78e6d4ad35c92da5c6e752ec141c0b935bb"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [
+        "OFL-1.1"
+      ]
+    },
+    {
+      "family": "Noto Serif CJK SC",
+      "aliases": [
+        "Noto Serif CJK SC",
+        "Source Han Serif SC"
+      ],
+      "native_capture_domains": [
+        "android"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 4
+      },
+      "source_font_sha256": [
+        "19322be2ecf5dd2abd546db7a86cc83c286026cbd28593583bfcfd721e48c9fe",
+        "2a2eae2628df83556c54018c41e20fa532c1b862c5256ae8b3f23feb918d12ca",
+        "7da07efb309a89b156090848aab55d9dc57f15b08387b51184b08b89501a382c",
+        "8af07d4b6c2e82bcc72a30e066eaf295f11b9424f4aad2eaa9fe0e9c3b38fc73"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [
+        "OFL-1.1"
+      ]
+    },
+    {
+      "family": "LXGW WenKai",
+      "aliases": [
+        "LXGW WenKai"
+      ],
+      "native_capture_domains": [
+        "android"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 3
+      },
+      "source_font_sha256": [
+        "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009",
+        "526ec70cbb0118e871d481f8179e03ff045f0e4d72d080dcca87950c4ab27cca",
+        "d4bdeb38a39151d74d084cba5090f8cb7d20bf83eedb78c35939ae70b9f4e3f6"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [
+        "OFL-1.1"
+      ]
+    },
+    {
+      "family": "WenQuanYi Micro Hei",
+      "aliases": [
+        "WenQuanYi Micro Hei"
+      ],
+      "native_capture_domains": [
+        "android"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 1
+      },
+      "source_font_sha256": [
+        "e4bca8df123ce01b104780f576ea1a58b9a5ff1662a91124b6d3180cb6c88212"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [
+        "Apache-2.0 OR GPL-3.0 with upstream font embedding exception"
+      ]
+    },
+    {
+      "family": "ZCOOL KuaiLe",
+      "aliases": [
+        "ZCOOL KuaiLe"
+      ],
+      "native_capture_domains": [
+        "android"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 1
+      },
+      "source_font_sha256": [
+        "812a6fc1fe54b6d73a419245c32dfeba8aa33104d5be90d1cf6af082007cb71d"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [
+        "OFL-1.1"
+      ]
+    },
+    {
+      "family": "ZCOOL XiaoWei",
+      "aliases": [
+        "ZCOOL XiaoWei"
+      ],
+      "native_capture_domains": [
+        "android"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 1
+      },
+      "source_font_sha256": [
+        "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [
+        "OFL-1.1"
+      ]
+    },
+    {
+      "family": "ZCOOL QingKe HuangYou",
+      "aliases": [
+        "ZCOOL QingKe HuangYou"
+      ],
+      "native_capture_domains": [
+        "android"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 1
+      },
+      "source_font_sha256": [
+        "54f0c0df4308cd74cd0f2fd3494ae054dbc4a1fd6fa7d71f4807eb4cdd8b4136"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [
+        "OFL-1.1"
+      ]
+    },
+    {
+      "family": "Ma Shan Zheng",
+      "aliases": [
+        "Ma Shan Zheng"
+      ],
+      "native_capture_domains": [
+        "android"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 1
+      },
+      "source_font_sha256": [
+        "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb"
+      ],
+      "promoted_from_previous_unknown": false,
+      "upstream_license_labels": [
+        "OFL-1.1"
+      ]
+    },
+    {
+      "family": "FandolHei",
+      "aliases": [
+        "FandolHei"
+      ],
+      "native_capture_domains": [
+        "android"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 2
+      },
+      "source_font_sha256": [
+        "42ca2de27b45e16a284768673b6205a5add9e17871ee0e7db9c0d03f061d96fd",
+        "4afa97aa8751e0118617df88272b58d43691b5cffb7ea024c4580496e9f34d28"
+      ],
+      "promoted_from_previous_unknown": true,
+      "upstream_license_labels": [
+        "GPL-3.0 with upstream font embedding exception"
+      ]
+    },
+    {
+      "family": "FandolKai",
+      "aliases": [
+        "FandolKai"
+      ],
+      "native_capture_domains": [
+        "android"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 1
+      },
+      "source_font_sha256": [
+        "ea7e7fb4f9b3ac694a68d43946e04d21deed6e8c29a7c2d3081e1a4138f2f827"
+      ],
+      "promoted_from_previous_unknown": true,
+      "upstream_license_labels": [
+        "GPL-3.0 with upstream font embedding exception"
+      ]
+    },
+    {
+      "family": "FandolSong",
+      "aliases": [
+        "FandolSong"
+      ],
+      "native_capture_domains": [
+        "android"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 2
+      },
+      "source_font_sha256": [
+        "a3820003227d4abe31fe28b493200d94a849ccfd078b50a019264f70353020b0",
+        "ffa76a70e128947a4dd22151d5ee829b23e24ce3cb6fe8ad49891cd1c2d9e9b9"
+      ],
+      "promoted_from_previous_unknown": true,
+      "upstream_license_labels": [
+        "GPL-3.0 with upstream font embedding exception"
+      ]
+    },
+    {
+      "family": "Long Cang",
+      "aliases": [
+        "Long Cang"
+      ],
+      "native_capture_domains": [
+        "android"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 1
+      },
+      "source_font_sha256": [
+        "e5bf2c3f24ef2327c6f136d8f73e2f9dfdf44896fdbeb35a9515f44777bb91bc"
+      ],
+      "promoted_from_previous_unknown": true,
+      "upstream_license_labels": [
+        "OFL-1.1"
+      ]
+    },
+    {
+      "family": "Zhi Mang Xing",
+      "aliases": [
+        "Zhi Mang Xing"
+      ],
+      "native_capture_domains": [
+        "android"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "android": 1
+      },
+      "source_font_sha256": [
+        "644e0cae9b40f0b10ab729a01bd32032e3973bac22be3dccae01bf6ae7fde969"
+      ],
+      "promoted_from_previous_unknown": true,
+      "upstream_license_labels": [
+        "OFL-1.1"
+      ]
+    },
+    {
+      "family": "Kaiti SC",
+      "aliases": [
+        "Kaiti SC"
+      ],
+      "native_capture_domains": [
+        "ios"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "ios": 2
+      },
+      "source_font_sha256": [
+        "cfd20ab9514ad926699811cdfc92963478adc65b370965657b56dd1338686570"
+      ],
+      "promoted_from_previous_unknown": true,
+      "upstream_license_labels": [],
+      "license_note": "Original local/system/asset source terms remain in the source record; no open-source license is inferred.",
+      "source_note": "Registered application TTC asset in this iOS capture; not proof of an iOS built-in font."
+    },
+    {
+      "family": "Songti SC",
+      "aliases": [
+        "Songti SC"
+      ],
+      "native_capture_domains": [
+        "ios"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "ios": 3
+      },
+      "source_font_sha256": [
+        "6873ac2ccab5c2e74d87d6b690f3773098dd6a6238805363a3b3567f2caf6f47"
+      ],
+      "promoted_from_previous_unknown": true,
+      "upstream_license_labels": [],
+      "license_note": "Original local/system/asset source terms remain in the source record; no open-source license is inferred.",
+      "source_note": "Registered application TTC asset in this iOS capture; not proof of an iOS built-in font."
+    },
+    {
+      "family": "HanziPen SC",
+      "aliases": [
+        "HanziPen SC"
+      ],
+      "native_capture_domains": [
+        "ios"
+      ],
+      "actual_source_kinds": [
+        "asset"
+      ],
+      "native_face_counts": {
+        "ios": 2
+      },
+      "source_font_sha256": [
+        "cec58b8918ec1468ebb29e9c6d0c096f893e5a9c416c6ed63e3098900389213a"
+      ],
+      "promoted_from_previous_unknown": true,
+      "upstream_license_labels": [],
+      "license_note": "Original local/system/asset source terms remain in the source record; no open-source license is inferred.",
+      "source_note": "Registered application TTC asset in this iOS capture; not proof of an iOS built-in font."
+    }
+  ],
+  "unknown_label": "__unknown__",
+  "font_label_groups": {
+    "PingFang": [
+      "PingFang SC",
+      "PingFang TC",
+      "PingFang HK"
+    ],
+    "Noto Sans CJK SC": [
+      "Noto Sans CJK SC",
+      "Source Han Sans SC"
+    ],
+    "Noto Serif CJK SC": [
+      "Noto Serif CJK SC",
+      "Source Han Serif SC"
+    ]
+  },
+  "alias_rules": [
+    "Merge PingFang SC/TC/HK at family level, retaining actual native face identity.",
+    "Noto Sans/Source Han Sans SC and Noto Serif/Source Han Serif SC are visual-family groups; do not duplicate equivalent outlines as competing labels.",
+    "Keep FandolKai/Kaiti SC and FandolSong/Songti SC distinct.",
+    "FontTools variable instances and registration-only PostScript renames retain their original family and provenance.",
+    "Exclude Klee One/WenKai Mono as unknown negatives against their related known WenKai family."
+  ],
+  "shared_exact_font_files_across_native_domains": {
+    "Noto Sans CJK SC": 4,
+    "Roboto": 10
+  },
+  "initializer": {
+    "checkpoint": {
+      "path": "artifacts/font-sans-v1/run-v2/verifier.pth",
+      "sha256": "af339537fb3e6e2e1d72cb0a9f7ca6754ee91c0790440d47202699d3c4fe5a18"
+    },
+    "selection": {
+      "path": "artifacts/font-sans-v1/run-v2/SELECTION.json",
+      "sha256": "974bcfa0e7df8d4d6c5760d333b9c2f3b47d156b5c38ce0c98e894f7bda703ab"
+    },
+    "state_sha256": "766924dd0fd53f489f2660d3fc1d5bf9aed0a8b89007b6adf33d1d5cdbc89fc9",
+    "encoder_sha256": "5bdcff066a9f76815c37c3eeb505cfa7d1b94b529dd0b6caa4cf3ba60184805a",
+    "size_head_sha256": "a39b486aea6cc95e3506e91f1938a6392a5c321ca2bc1bdf36b23485a5e8ee14",
+    "verified_historical_bindings": 18,
+    "historical_calibration_passed": false,
+    "single_parent_encoder": true,
+    "mapped_family_rows": 9,
+    "new_family_rows": 16
+  },
+  "source_scope": [
+    "Verified native simulator/emulator screenshots of controlled generated pages.",
+    "A font source or name is not a device/OS classification.",
+    "No user screenshot pixels or guessed user font labels used for training.",
+    "No source font files or capture images are included in this public index."
+  ],
+  "model_version": "r21-unified-font-v1-preview",
+  "release_tier": "experimental",
+  "stable_validation_passed": false,
+  "joint_model": {
+    "path": "artifacts/unified-font-v1/region-v1/model.onnx",
+    "sha256": "0d40b7eea72f70f4b4b57b9fd8fe6b8a6d401bd8f1160a19851020888e33b0db",
+    "font_model_count": 1,
+    "output_family_count": 25
+  },
+  "blind_test_performed": false
+}

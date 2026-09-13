@@ -1,0 +1,298 @@
+{
+  "schema": "flux-glyph-unified-region-font-v1",
+  "algorithm": "unified-region-cnn64x256-v1",
+  "font_mode": "unified",
+  "data_kind": "native_mobile_screenshots",
+  "model": {
+    "path": "model.onnx",
+    "sha256": "0d40b7eea72f70f4b4b57b9fd8fe6b8a6d401bd8f1160a19851020888e33b0db"
+  },
+  "network_architecture": "region-cnn64x256-unified-v1",
+  "families": [
+    "HarmonyOS Sans SC",
+    "MiSans",
+    "Noto Sans CJK SC",
+    "OPPO Sans",
+    "PingFang",
+    "SF Pro",
+    "Helvetica",
+    "Alipay Number",
+    "Roboto",
+    "Noto Serif CJK SC",
+    "LXGW WenKai",
+    "WenQuanYi Micro Hei",
+    "ZCOOL KuaiLe",
+    "ZCOOL XiaoWei",
+    "ZCOOL QingKe HuangYou",
+    "Ma Shan Zheng",
+    "FandolHei",
+    "FandolKai",
+    "FandolSong",
+    "Long Cang",
+    "Zhi Mang Xing",
+    "Kaiti SC",
+    "Songti SC",
+    "HanziPen SC",
+    "__unknown__"
+  ],
+  "temperature": 1.0,
+  "gates": {
+    "min_score": 0.7,
+    "min_margin": 0.01,
+    "min_patch_agreement": 0.6666666666666666
+  },
+  "max_size_relative_spread": 0.2,
+  "font_label_groups": {
+    "PingFang": [
+      "PingFang SC",
+      "PingFang TC",
+      "PingFang HK"
+    ],
+    "Noto Sans CJK SC": [
+      "Noto Sans CJK SC",
+      "Source Han Sans SC"
+    ],
+    "Noto Serif CJK SC": [
+      "Noto Serif CJK SC",
+      "Source Han Serif SC"
+    ]
+  },
+  "font_sources": {
+    "HarmonyOS Sans SC": [
+      "asset"
+    ],
+    "MiSans": [
+      "asset"
+    ],
+    "Noto Sans CJK SC": [
+      "asset"
+    ],
+    "OPPO Sans": [
+      "asset"
+    ],
+    "PingFang": [
+      "system"
+    ],
+    "SF Pro": [
+      "system"
+    ],
+    "Helvetica": [
+      "system"
+    ],
+    "Alipay Number": [
+      "asset"
+    ],
+    "Roboto": [
+      "asset"
+    ],
+    "Noto Serif CJK SC": [
+      "asset"
+    ],
+    "LXGW WenKai": [
+      "asset"
+    ],
+    "WenQuanYi Micro Hei": [
+      "asset"
+    ],
+    "ZCOOL KuaiLe": [
+      "asset"
+    ],
+    "ZCOOL XiaoWei": [
+      "asset"
+    ],
+    "ZCOOL QingKe HuangYou": [
+      "asset"
+    ],
+    "Ma Shan Zheng": [
+      "asset"
+    ],
+    "FandolHei": [
+      "asset"
+    ],
+    "FandolKai": [
+      "asset"
+    ],
+    "FandolSong": [
+      "asset"
+    ],
+    "Long Cang": [
+      "asset"
+    ],
+    "Zhi Mang Xing": [
+      "asset"
+    ],
+    "Kaiti SC": [
+      "asset"
+    ],
+    "Songti SC": [
+      "asset"
+    ],
+    "HanziPen SC": [
+      "asset"
+    ]
+  },
+  "release_tier": "experimental",
+  "test_passed": false,
+  "stable_validation_passed": false,
+  "validation": {
+    "kind": "joint_calibration_and_development_regression",
+    "report_url": "/docs#font-model",
+    "model_count": 1,
+    "platform_routing": false,
+    "score_merging": false,
+    "scores_are_correctness_probabilities": false,
+    "calibration_passed": false,
+    "experimental_precision_priority_met": true,
+    "onnx_parity_passed": true,
+    "onnx_parity_is_accuracy_evaluation": false,
+    "development_holdout_evaluated": true,
+    "development_policy_passed": false,
+    "blind_test_performed": false,
+    "test_read": false,
+    "historical_initialization_may_have_seen_development_sources": true,
+    "used_to_adjust_model_or_gates": false,
+    "derived_views_are_correlated": true,
+    "color_accuracy_evaluated": false,
+    "calibration": {
+      "views": 18672,
+      "known_views": 16121,
+      "unknown_views": 2551,
+      "named": 10740,
+      "correct_named": 10211,
+      "wrong_named": 529,
+      "named_precision": 0.9507448789571694,
+      "known_correct_coverage": 0.6333974319210967,
+      "native_known_top1_accuracy": 0.9092950157162102,
+      "unknown_not_named_rate": 0.8463347706781654,
+      "explicit_unknown_recall": 0.31634653077224617,
+      "size": {
+        "correctly_named_with_size": 10211,
+        "coverage_of_correct_names": 1.0,
+        "median_ape": 0.029876543209876538,
+        "p90_ape": 0.078125
+      },
+      "by_domain": {
+        "ios": {
+          "views": 8256,
+          "known_views": 7813,
+          "unknown_views": 443,
+          "named": 5941,
+          "correct_named": 5880,
+          "wrong_named": 61,
+          "named_precision": 0.989732368288167,
+          "known_correct_coverage": 0.7525918341226161,
+          "native_known_top1_accuracy": 0.9806478754732857,
+          "unknown_not_named_rate": 0.909706546275395,
+          "explicit_unknown_recall": 0.5079006772009029,
+          "size": {
+            "correctly_named_with_size": 5880,
+            "coverage_of_correct_names": 1.0,
+            "median_ape": 0.02389846743295021,
+            "p90_ape": 0.06381190476190472
+          }
+        },
+        "android": {
+          "views": 10416,
+          "known_views": 8308,
+          "unknown_views": 2108,
+          "named": 4799,
+          "correct_named": 4331,
+          "wrong_named": 468,
+          "named_precision": 0.9024796832673474,
+          "known_correct_coverage": 0.52130476649013,
+          "native_known_top1_accuracy": 0.8276360134809821,
+          "unknown_not_named_rate": 0.8330170777988615,
+          "explicit_unknown_recall": 0.27609108159392787,
+          "size": {
+            "correctly_named_with_size": 4331,
+            "coverage_of_correct_names": 1.0,
+            "median_ape": 0.040000000000000036,
+            "p90_ape": 0.09097222222222223
+          }
+        }
+      }
+    },
+    "development_regression": {
+      "views": 3504,
+      "known_views": 3138,
+      "unknown_views": 366,
+      "named": 1680,
+      "correct_named": 1621,
+      "wrong_named": 59,
+      "named_precision": 0.9648809523809524,
+      "known_correct_coverage": 0.5165710643722116,
+      "native_known_top1_accuracy": 0.8210862619808307,
+      "unknown_not_named_rate": 0.9836065573770492,
+      "explicit_unknown_recall": 0.9207650273224044,
+      "size": {
+        "correctly_named_with_size": 1621,
+        "coverage_of_correct_names": 1.0,
+        "median_ape": 0.03562500000000002,
+        "p90_ape": 0.08833333333333337
+      },
+      "by_domain": {
+        "ios": {
+          "views": 288,
+          "known_views": 206,
+          "unknown_views": 82,
+          "named": 178,
+          "correct_named": 178,
+          "wrong_named": 0,
+          "named_precision": 1.0,
+          "known_correct_coverage": 0.8640776699029126,
+          "native_known_top1_accuracy": 0.9902912621359223,
+          "unknown_not_named_rate": 1.0,
+          "explicit_unknown_recall": 1.0,
+          "size": {
+            "correctly_named_with_size": 178,
+            "coverage_of_correct_names": 1.0,
+            "median_ape": 0.027960662525879976,
+            "p90_ape": 0.07900000000000007
+          }
+        },
+        "android": {
+          "views": 3216,
+          "known_views": 2932,
+          "unknown_views": 284,
+          "named": 1502,
+          "correct_named": 1443,
+          "wrong_named": 59,
+          "named_precision": 0.9607190412782957,
+          "known_correct_coverage": 0.4921555252387449,
+          "native_known_top1_accuracy": 0.7735334242837654,
+          "unknown_not_named_rate": 0.9788732394366197,
+          "explicit_unknown_recall": 0.897887323943662,
+          "size": {
+            "correctly_named_with_size": 1443,
+            "coverage_of_correct_names": 1.0,
+            "median_ape": 0.036341991341991564,
+            "p90_ape": 0.09003968253968245
+          }
+        }
+      }
+    },
+    "development_native_regions": 1092,
+    "development_pages": 91,
+    "scope": "Development regression on controlled native mobile regions and correlated views. Historical initialization may have seen some source images. This is not an independent blind TEST, device identification or real-world accuracy estimate.",
+    "evidence_sha256": {
+      "parity": "a9a6bc5f88f8eaf84577090ad802a7198064a6dda613a0dedca9d31ba80f5a66",
+      "development_regression": "8805f435e1e6f55f1094ebc9eccb2e0cc63dc3de72304542a3baec771c39fa49",
+      "development_freeze": "9ed0c7cc6423d11baced9cdc2a50a56957135e662e475ee242aa2db0f0b37f31",
+      "exported_metadata": "143cb619733b1af3b28aa39543c5eff725c164070e75200514cb2180462435a0"
+    }
+  },
+  "training": {
+    "selection_sha256": "5b99f17bfda9566a334abd81cffab9cf19e3da74aa38a20fc2405638248268f9",
+    "checkpoint_sha256": "960b210091f7c8b13a7283e6bd7f4a7e48e1bd7a1bf3a8d091d0fe11b4bf367e",
+    "data_manifest_sha256": "dfdd9fa746b28b3665eed10491ce83c5c872f16b2499fe3ae6c6e6bb9ed40a23",
+    "optimizer_steps_executed": 6000,
+    "selected_step": 6000,
+    "ocr_text_used": false,
+    "training_device": "mps",
+    "model_count": 1,
+    "platform_routing": false,
+    "score_merging": false,
+    "initializer_family_count": 9,
+    "development_holdout_is_blind_test": false
+  }
+}

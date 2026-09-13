@@ -1,61 +1,19 @@
 # Flux Glyph
 
-上传截图，定位文字区域，直接识别区域字体并估计字号、文字颜色。页面用 `R001` 等编号和原图裁图定位区域，提供字体详情、格式化 JSON、复制 JSON 和原尺寸标注 PNG 下载，支持中文与 English。
+上传 iOS 或 Android 截图，定位文字区域，使用**一个联合训练的字体／字号 CNN**识别字体，并测量文字颜色。网页不需要选择手机系统；字体识别使用一个 ONNX、一套共同评分规则。区域检测器只负责定位，不进行 OCR 识字。网络只输入区域图像，不需要文字内容或字符切分。
 
-网站和 API 使用 **9000** 端口。保留 PP 的文字区域检测模型用于定位；字体 CNN 直接处理区域图像，不读取文字内容，不需要字符切分或人工选择中文／英文。独立字体模型也可以下载到本地使用。
+网站和 API 使用 **9000** 端口。模型下载放在上传区上方，使用说明统一为 `/docs#font-model`。
 
-## iOS 与安卓独立模式
-
-页面顶部选择 iOS 或 **Android 实验候选模型**，同时切换识别模型和下载包。默认 iOS 使用下述 R20 流程；安卓使用独立的十类字体／字号 CNN（九种命名字体加未知类），版本为 `android-open-fonts-v1-preview`，尚未通过稳定版验收。此选择限定字体识别范围，不判断截图来自哪种手机系统。
-
-安卓首版覆盖 Noto／思源黑体与宋体组、霞鹜文楷、文泉驿微米黑、三款站酷字体、马善政和 Roboto。它在本地 MPS 训练 6,000 步，训练使用 33 个字体实例，完整采集来源为 35 个；采集应用加载字体资产，不代表手机厂商系统默认字体。
-
-首轮独立 TEST 的整体命名精度为 **92.60%**，已知字体正确命名覆盖率 **68.47%**，未知字体误命名 **14.5%**，因此原稳定验收仍为失败。测试来自 100 张模拟器截图、1,200 个原生区域的 4,800 个相关视图，未知来源仅为 Smiley Sans；不代表所有真机或未知字体。实验候选可主动下载试用，模型评分不是正确概率。来源和完整限制见 [本版字体来源](docs/sources/android/README.md)、[安卓字体训练](docs/android-font-training.md) 和[逐轮验证记录](docs/android-font-results.md)。后续 63 个字体实例的试验均未发布，不属于本版训练范围。
-
-```sh
-curl 'http://localhost:9000/api/models/font?mode=android'
-curl -o android-font-onnx.zip 'http://localhost:9000/api/models/font/download?mode=android'
-curl -F 'file=@screenshot.png' 'http://localhost:9000/api/jobs?mode=android'
-```
-
-原有上传接口也接受 `?mode=android`；省略时继续使用 iOS。每个任务固定提交时的模式，返回 `font_mode`。安卓模型信息接口和 ZIP 内元数据声明 `release_tier: experimental`、`test_passed: false`、`stable_validation_passed: false`，并包含 `validation` 评测说明；预测 API 与 CLI JSON 则返回 `model_release_tier: experimental` 和 `stable_validation_passed: false`。两种模式共用一个任务队列；安卓模型不可用时该模式返回 503，不会隐式切换到 iOS。
-
-安卓模型由 `models/android/ACTIVE.json` 独立选择；`models/ACTIVE.json` 继续控制 iOS。安卓下载包使用相同的 `python predict.py text-region.png` 命令，包含单个十类 ONNX 和完整预处理代码，不需要 iOS 的复核、拒识 ONNX。
-
-## R20 字体识别与神经网络复核
-
-当前流程是：**原图 → 文字区域检测 → 未知字体拒识 CNN → 区域字体 CNN 与独立字体复核 CNN → 字号与颜色结果**。字体网络都处理区域像素，不使用文字内容或参考字形比对。两网首选相同且各自通过门槛才输出字体候选和字号；分歧时展示双方评分，不确认字体或字号。被拒识的字体显示“未知字体”，仍保留颜色。
-
-默认模型为 `r20-font-consensus-v1`，模型下载位于上传区上方。实际运行版本以 `/api/health` 的 `model_version` 为准。训练在本地执行，经过验证的代码和模型通过 Git 的 `main` 分支更新到服务器。
-
-R20 在本地训练九类复核 CNN，加入轻字重、不同 Roboto 字重/宽度和缩放压缩视图，原字体/字号及拒识权重保持不变。冻结测试的 7,296 个相关视图中，错误命名由 493 降为 71，正确命名由 4,898 降为 4,816；部分正确结果会转为不确定。新测试来源为 720 个受控原生区域，另复用 1,104 个历史区域作回归，均不是 Android 原生准确率验收。Roboto 仅作额外竞争类帮助排除错误命名，未作为正式可命名字体发布。详见 [R20 验证结果与限制](docs/font-sans-results.md) 和 [训练及校准说明](docs/font-sans-verification.md)。
-
-R19 在保留 R17 主字体和字号模型的基础上训练独立拒识网络。固定留出的 360 个未知字体区域拒识 290 个（80.6%），新旧测试来源的 1,464 个已知区域误拒 2 个；相似无衬线字体仍可能漏判。用户示例中的安卓手写裁图已不再误报苹方。详见 [拒识结果](docs/font-unknown-rejection-results.md) 和 [采集训练说明](docs/font-unknown-rejection.md)。
-
-R17 使用新采集的 1,000 张原生 iOS Simulator 截图继续训练，包含简体、繁体、英文和数字。八个字体输出中，PingFang 表示苹方字体族，覆盖原生 SC／TC／HK，不宣称能从相同字形区分地区版本。SF Pro、PingFang 和 Helvetica 来自系统；Alipay Number 及其余类别由采集应用加载，**Alipay Number 不是 iOS 系统字体**。来源写入元数据和下载说明。
-
-此前系统字体的本地微调方式与发布条件见 [系统字体优先训练](docs/ios-system-font-training.md)。该候选有旧正确结果退为待确认，未通过当时保留条件，因此未激活；R19 主分类权重仍沿用 R17。详见 [此前优化回归](docs/ios-system-font-results.md)。
-
-原 R17 固定测试有 100 张完整截图、1,104 个区域，字体正确 1,013 个、错误 1 个、待确认 90 个。R19 同集回归为正确 1,011 个、错误 1 个、弃权 92 个，新增的两处弃权为未知字体误拒；两版均没有漏检或额外框。这些是受控模拟器成绩，不能推广到任意 App、真机或未知字体。历史基线见 [R17 验证报告](docs/ios-traditional-results.md)、[采集证据](docs/ios-traditional-capture.md) 和 [训练流程](docs/ios-traditional-training.md)。
-
-默认模型由随源码提供的 `models/ACTIVE.json` 选择，所需完整包在 `models/releases/`，因此标准 Docker Compose 部署也能提供字体模型下载。根目录历史 R14 文件保留用于回退。
-
-R17 完整包已保留在 `models/releases/r17-ios-hant-region-v1`，字体权重和元数据另存于 `models/experiments/ios-hant-region-v1`。需要重建完整包时：
-
-```sh
-PYTHONPATH=src .venv/bin/python scripts/package_region.py \
-  --region models/experiments/ios-hant-region-v1 \
-  --output artifacts/rebuilt-r17-bundle \
-  --version r17-ios-hant-region-v1
-```
-
-输出目录必须尚不存在；打包工具会验证字体模型，并从当前基础包复制 PP 检测模型和检测配置。区域模型完整包不需要 PP 识字模型、字符字典、逐字参考库或旧字号统计文件。
+**本地实验模型 `r21-unified-font-v1-preview` 已完成 6,000 步联合训练和单 ONNX 导出，一致性验证通过，稳定验收未通过。** CAL 命名精度 95.07%、已知正确覆盖 63.34%；这些是选模型用的校准结果，不是盲测准确率。开发回归已完成，命名精度 96.49%、已知正确覆盖 51.66%，稳定条件仍未通过；这些旧 TRAIN 留出的图片可能被初始化网络见过，不是盲测。当前实际可用版本以 `/api/health` 和 `/api/models/font` 为准；服务器只推理。
 
 ## 下载字体模型并单独使用
 
-网页顶部的“字体模型”卡片显示当前可下载模型的版本、文件大小和下载按钮；“本地使用方式”包含字体来源及运行命令。R20 下载包包含字体/字号 ONNX、拒识 ONNX、复核 ONNX、`metadata.json`、`inference.py`、`text_style.py`、`predict.py`、`requirements.txt`、README 和 SHA256 清单，不包含用户上传图片。服务更新后可点“刷新状态”重新获取下载信息。
+```sh
+curl http://localhost:9000/api/models/font
+curl -o flux-glyph-font-onnx.zip http://localhost:9000/api/models/font/download
+```
 
-解压 ZIP 后，在其目录安装依赖并运行：
+解压 ZIP 后，在其目录安装依赖并输入一个文字区域裁图：
 
 ```sh
 python -m venv .venv
@@ -65,18 +23,30 @@ pip install -r requirements.txt
 python predict.py text-region.png
 ```
 
-输入应是一行或一个文字区域的裁图。脚本返回字体候选、像素字号估计及可见颜色，不要求文字内容；完整截图可交给网站/API 自动定位区域。Python 3.10+，推理依赖 ONNX Runtime、NumPy、Pillow，不需要 PyTorch。
+联合模型包包含一个字体／字号 `model.onnx`、`metadata.json`、预处理与推理代码、颜色测量代码、`predict.py`、依赖说明和 SHA256 清单。Python 3.10+，推理依赖 ONNX Runtime、NumPy、Pillow，不需要 PyTorch。一个模型同时处理两端截图，不附带第二个字体编码器、独立拒识网络或复核网络。下载包不包含用户上传图片和训练字体源文件。
 
-模型输入 `tiles` 为 float32 `[N,1,64,256]`；两个输出是 `logits [N,C]` 和 `log_em_ratio [N]`。必须使用包内 `preprocess_region` 保留比例、归一化背景并生成图块，再按元数据里的类别顺序、温度和门槛聚合；不要把整张截图直接拉伸成模型输入。`predict.py` 已完成这些步骤。
-
-先运行独立的 `rejection.onnx`，相同输入，输出 `known_logits [N,2]`（unknown、known）。R20 的 `verifier.onnx` 另输出九类 `logits [N,9]` 与未用于最终字号的 `log_em_ratio [N]`。三个 ONNX 必须一起保留，使用包内脚本即可完成拒识、分类与复核。元数据算法为 `region-cnn64x256-consensus-v3`，不能用旧版代码忽略复核或拒识模型后运行。
+输入应是一行或一个文字区域。`predict.py` 保留原始比例，生成 float32 `[N,1,64,256]` 图块，再按元数据中的完整类别顺序、温度和共同门槛聚合。ONNX 输出 `logits [N,C]` 与 `log_em_ratio [N]`；联合训练有 24 个具名字体和一个未知类别。不要把整张截图直接拉伸为单个图块。完整截图可交给网站或异步 API：
 
 ```sh
-curl http://localhost:9000/api/models/font
-curl -o flux-glyph-font-onnx.zip http://localhost:9000/api/models/font/download
+curl -F 'file=@screenshot.png' http://localhost:9000/api/jobs
+curl http://localhost:9000/api/jobs/TASK_ID
 ```
 
-信息接口包含 `available`、`version`、`families`、`input_shape`、`download_url`、`bytes`、`sha256`、`ocr_required: false` 和 `usage`。未加载区域模型时返回 `available: false`，下载接口返回 404。启用令牌时，两路接口与图片识别使用同一访问保护；网页下载使用解锁后的 Cookie，命令行添加 `Authorization: Bearer YOUR_TOKEN`，不把令牌写入 URL。
+请求不需要平台参数。模型信息接口包含 `available`、`version`、`families`、`download_url`、`bytes`、`sha256` 和 `usage`，具体类别与状态以当前文件为准。版本更新后重新识别，历史任务不会自动重算。启用访问令牌时，网页下载使用解锁后的 Cookie；命令行附带 `Authorization: Bearer YOUR_TOKEN`，不把令牌写入 URL。
+
+## 联合字体范围和证据
+
+具名范围包含 PingFang、SF Pro、Helvetica、HarmonyOS Sans SC、MiSans、OPPO Sans、Alipay Number、Noto／Source Han 黑体与宋体组、Roboto、LXGW WenKai、WenQuanYi Micro Hei、三款 ZCOOL 字体、Ma Shan Zheng，以及 FandolHei／Kai／Song、Long Cang、Zhi Mang Xing、Kaiti SC、Songti SC、HanziPen SC。完整名称顺序和采集域见 [联合来源](docs/sources/unified/README.md)。
+
+PingFang 合并 SC／TC／HK 字体族，不从相同字形强行区分地区版本。FandolKai 与 Kaiti SC、FandolSong 与 Songti SC 保留不同类别。字体名称不能确定设备系统。Alipay Number 是应用数字字体；Kaiti SC、Songti SC、HanziPen SC 在本批采集中也是应用加载资产，不代表 iOS 系统内置。
+
+数据来自经过实际字体核验的 iOS Simulator 和 Android Emulator 原生页面。联合 TRAIN 为 70,128 个视图／19,803 个原生区域；CAL 为 18,672／5,424；开发保留集为 3,504／1,092。缩放和 JPEG 版本属于相关视图，不是独立采集。没有将用户截图中的字体猜测用作训练真值。
+
+新增具名类别的开发分区由旧 TRAIN 的整页／文本连接组件预先划分，历史初始化网络可能已经见过这些图片，不能称为盲测。第二批 Android TEST 继续封存，也没有覆盖全部联合类别。未知类帮助保留未覆盖情况，不保证拒绝或识别所有未知字体。95% 命名精度是校准选择偏好，稳定通过条件另外记录；模型分数不是实际准确率。
+
+CAL 中 iOS 原生来源的命名精度／正确覆盖为 98.97%／75.26%，Android 为 90.25%／52.13%。部分新类别覆盖仍低，不能承诺截图中的所有手写字体、金额或时间都已改善。
+
+完整数据、单模型训练、实际校准和导出结果、固定选择条件及限制见 [联合训练说明](docs/unified-font-training.md) 与 [精简数据审计](docs/sources/unified/DATA_AUDIT.json)。旧模型的评测不会作为联合模型成绩。
 
 ## Docker Compose 部署
 
@@ -117,13 +87,12 @@ docker compose -f compose.yaml -f compose.ios.yaml up -d --build
 
 - 模型分数未达门槛，或前两名字体评分过于接近。
 - 区域内不同图像片段的字体判断不一致。
-- 主字体网络与复核网络意见不同，或复核证据不足。
 - 区域过长、图像质量不足或背景颜色不均匀。
 - 区域超出本次处理数量上限。
 
-通过未知字体检查并有有效分类评分时，区域列表和详情展示原始模型评分（例如 `0.6559`），包括尚未通过确认门槛的区域。两网分歧时显示“字体存在分歧”及双方候选/评分；其他候选显示“最接近：字体名”。被拒识时显示“未知字体”，不展示命名候选；原状态和原因保留，没有有效输出时显示“未生成评分”。
+区域列表和详情展示当前字体候选及模型评分，包括尚未通过确认门槛的区域。`candidate` 是模型候选，评分不是正确概率。`uncertain` 保留原因，API 的 `font.family` 为 null，候选可从 `font.candidates` 读取。模型的未知类别胜出时显示“未知字体”，不输出具名字体或字号；这不等于识别出了未知字体的真实名称。
 
-未通过分类或复核时 API 的 `font.family` 为 null，可从 `font.candidates` 和 `font.verifier.candidates` 查看双方预测；拒识或复核额外类别拦截时命名候选为空。`font.rejection`、`font.verifier` 保留检查状态。页面不改写返回或复制的 JSON。分数不是实际准确率；两个网络仍可能共同犯错。字体名不能用于确定手机系统、设备或截图真伪。灰色 `out_of_scope` 用于未知字体和历史结果兼容。版本更新后需重新识别，历史保存结果不会自动重算。
+联合模型使用包含未知类的完整 softmax，不去掉未知类后放大其他分数。没有第二个字体网络或平台路由。页面不改写原始或复制的 JSON。相近字体、混合字体、裁剪偏差和图像退化仍可能导致误判；字体结果不能证明设备系统或截图真伪。
 
 `text_style.font_size_px_estimate` 是输入截图中的像素字号估计，**不是 iOS pt，也不是检测框高度**。区域模型的 `font_size_px_interval` 为 null，不将图块差异伪装成置信区间。`text_color_hex` 是可见 `#RRGGBB` 颜色；缺少可靠结果时字段为 null，`size`、`color` 说明状态和原因。缩放截图会改变像素字号；颜色测量不恢复原始透明度。
 
@@ -178,9 +147,9 @@ PYTHONPATH=src OPENBLAS_NUM_THREADS=1 \
 ```sh
 .venv/bin/python scripts/model_release.py \
   --model-root models export \
-  --output artifacts/flux-glyph-r17-ios-hant-region-v1.zip
+  --output artifacts/flux-glyph-current-bundle.zip
 .venv/bin/python scripts/model_release.py install \
-  artifacts/flux-glyph-r17-ios-hant-region-v1.zip --version r17-ios-hant-region-v1
+  artifacts/flux-glyph-current-bundle.zip --version RELEASE_VERSION
 # 同步完整 models/ 及配套代码后重启/重建
 docker compose up -d --build
 # 回退根目录随项目提供的历史包
@@ -194,7 +163,9 @@ docker compose restart api
 
 ## 历史记录与项目结构
 
-R14 参考匹配记录见 [移动字体改进](docs/mobile-font-improvements.md)、[中文精度报告](docs/accuracy-report.md)；R15 单字 CNN 记录见 [iOS 截图训练](docs/ios-screenshot-training.md)、[历史截图评测](docs/ios-screenshot-results.md)。更早的实验见 [神经网络训练历史](docs/neural-font-training.md)，原部署资源记录见 [交付验证](docs/delivery-validation.md)。这些记录保留各自版本、输入和评分口径，不是 R16 验证结果。
+历史 iOS R20 使用三个神经网络组成复核流程，见 [R20 结果](docs/font-sans-results.md)和[原训练说明](docs/font-sans-verification.md)。历史 Android 独立实验版 `android-open-fonts-v1-preview` 的 TEST 命名精度为 92.60%，正确覆盖为 68.47%，原稳定验收失败，见 [原 Android 训练](docs/android-font-training.md)和[逐轮记录](docs/android-font-results.md)。这些数字不是联合模型准确率；历史报告和权重保持原样。
+
+R17 简繁体数据与结果见 [采集证据](docs/ios-traditional-capture.md)、[验证报告](docs/ios-traditional-results.md)。更早版本见 [移动字体改进](docs/mobile-font-improvements.md)、[iOS 单字截图训练](docs/ios-screenshot-training.md)、[神经网络历史](docs/neural-font-training.md)。历史推理兼容代码与保存任务不改变各自原始版本。
 
 - `src/flux_glyph/`：区域检测、字体／字号 CNN、颜色测量、标注导出与 API；另保留历史推理兼容代码。
 - `web/`：区域裁图交互、中英切换、模型下载与 API 说明。

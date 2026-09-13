@@ -38,9 +38,10 @@ for (const label of ['字体存在分歧', 'Font predictions disagree', 'neural_
 for (const id of ['font-model', 'download-model', 'refresh-model', 'model-info', 'model-families', 'model-label-note', 'model-usage-command']) {
   assert(new RegExp(`id=["']${id}["']`).test(html), `missing standalone model control: #${id}`);
 }
-assert(js.includes("modelInfo.download_url === modeUrl('/api/models/font/download')"), 'model downloads must use the fixed same-origin authenticated mode route');
-assert(html.includes('data-font-mode="ios"') && html.includes('data-font-mode="android"'), 'independent font scope controls must exist');
-assert(html.includes('id="android-preview"') && html.includes('href="/docs#android-preview"'), 'Android preview must have a visible notice and evaluation link');
+assert(js.includes("modelInfo.download_url === '/api/models/font/download'"), 'model downloads must use the fixed same-origin authenticated route');
+assert(!html.includes('data-font-mode') && !js.includes('mode=') && !js.includes('setFontMode'), 'a single model must not offer a platform selector or route by mode');
+assert(html.includes('id="model-preview"') && html.includes('href="/docs#font-model"'), 'experimental model notice must link to its usage and evaluation');
+assert(js.includes("modelInfo?.font_mode === 'unified'") && js.includes('families.length') && js.includes('modelScope'), 'joint coverage and public class count must derive from actual metadata');
 assert(js.includes("modelInfo?.release_tier === 'experimental'") && js.includes('尚未通过稳定版验收') && js.includes('Stable validation has not passed'), 'preview evidence must control bilingual notices without claiming stable success');
 assert(js.includes('modelInfo?.usage') && js.includes("$('model-usage-command').textContent"), 'model usage must be rendered safely from API data');
 assert(js.includes('modelInfo?.font_sources') && js.includes('modelInfo?.font_label_groups?.PingFang'), 'font source categories and label grouping must come from model metadata');

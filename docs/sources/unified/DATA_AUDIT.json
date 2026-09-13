@@ -1,0 +1,564 @@
+{
+  "schema": "flux-glyph-unified-public-data-audit-v1",
+  "paths_relative_to": "repository_root",
+  "status": "completed_local_experimental_training_export_and_development_regression",
+  "data_manifest": {
+    "path": "artifacts/unified-font-v1/data-v1/MANIFEST.json",
+    "sha256": "dfdd9fa746b28b3665eed10491ce83c5c872f16b2499fe3ae6c6e6bb9ed40a23"
+  },
+  "partition_counts": {
+    "train": {
+      "views": 70128,
+      "native_regions": 19803,
+      "pages": 2206,
+      "families": {
+        "SF Pro": 2940,
+        "Noto Sans CJK SC": 6344,
+        "PingFang": 2880,
+        "Helvetica": 2940,
+        "OPPO Sans": 4142,
+        "MiSans": 4138,
+        "Alipay Number": 1802,
+        "HarmonyOS Sans SC": 4138,
+        "Roboto": 4664,
+        "__unknown__": 4806,
+        "HanziPen SC": 166,
+        "Kaiti SC": 165,
+        "Songti SC": 167,
+        "ZCOOL KuaiLe": 3464,
+        "FandolHei": 1312,
+        "WenQuanYi Micro Hei": 3464,
+        "ZCOOL XiaoWei": 3464,
+        "FandolKai": 1328,
+        "LXGW WenKai": 3464,
+        "Noto Serif CJK SC": 3464,
+        "Ma Shan Zheng": 3464,
+        "ZCOOL QingKe HuangYou": 3464,
+        "Long Cang": 1316,
+        "FandolSong": 1324,
+        "Zhi Mang Xing": 1308
+      },
+      "platforms": {
+        "ios": 28572,
+        "android": 41556
+      },
+      "rejected": 12,
+      "tiles": 130854,
+      "manifest": {
+        "path": "artifacts/unified-font-v1/data-v1/train/MANIFEST.json",
+        "sha256": "4a14ef83b39181f5da55d0c5a7c3a0f868547e6dd5ee497f5887b70cec479ca5"
+      },
+      "array": {
+        "path": "artifacts/unified-font-v1/data-v1/train/tiles.raw",
+        "sha256": "36caea3f7ea9b808a4481e6840d8cc2aad2ccc36572ad8644af5610751d30959"
+      },
+      "metadata": {
+        "path": "artifacts/unified-font-v1/data-v1/train/rows.json",
+        "sha256": "172f5e36154db6e2a408fe597afbabbc23890a80fe086fc4f2c7ded3b4682dba"
+      }
+    },
+    "calibration": {
+      "views": 18672,
+      "native_regions": 5424,
+      "pages": 461,
+      "families": {
+        "PingFang": 1751,
+        "SF Pro": 819,
+        "Helvetica": 511,
+        "Noto Sans CJK SC": 1531,
+        "HarmonyOS Sans SC": 1202,
+        "MiSans": 992,
+        "OPPO Sans": 1218,
+        "Alipay Number": 356,
+        "Roboto": 1108,
+        "Kaiti SC": 21,
+        "__unknown__": 2551,
+        "Songti SC": 20,
+        "HanziPen SC": 20,
+        "ZCOOL XiaoWei": 868,
+        "Noto Serif CJK SC": 868,
+        "Zhi Mang Xing": 108,
+        "ZCOOL QingKe HuangYou": 868,
+        "Ma Shan Zheng": 868,
+        "WenQuanYi Micro Hei": 868,
+        "LXGW WenKai": 868,
+        "ZCOOL KuaiLe": 868,
+        "FandolHei": 112,
+        "Long Cang": 100,
+        "FandolSong": 96,
+        "FandolKai": 80
+      },
+      "platforms": {
+        "ios": 8256,
+        "android": 10416
+      },
+      "rejected": 0,
+      "tiles": 37834,
+      "manifest": {
+        "path": "artifacts/unified-font-v1/data-v1/calibration/MANIFEST.json",
+        "sha256": "82fdb457bc5a9a22659b25de29a6ac6b9b6e2e7ca05a0c83524a3e422c211160"
+      },
+      "array": {
+        "path": "artifacts/unified-font-v1/data-v1/calibration/tiles.raw",
+        "sha256": "f69fae018852ddbd364235655dee923456a0ad187d1ae1626ee8f0d5968fad08"
+      },
+      "metadata": {
+        "path": "artifacts/unified-font-v1/data-v1/calibration/rows.json",
+        "sha256": "7d10891fa7b29dd727ec56452191835a14c4403c2e41252c8916778f56316125"
+      }
+    },
+    "development_holdout": {
+      "views": 3504,
+      "native_regions": 1092,
+      "pages": 91,
+      "families": {
+        "MiSans": 19,
+        "Kaiti SC": 21,
+        "__unknown__": 366,
+        "SF Pro": 18,
+        "HarmonyOS Sans SC": 17,
+        "Helvetica": 18,
+        "Songti SC": 20,
+        "OPPO Sans": 17,
+        "Alipay Number": 19,
+        "HanziPen SC": 21,
+        "PingFang": 18,
+        "Noto Sans CJK SC": 286,
+        "ZCOOL KuaiLe": 268,
+        "LXGW WenKai": 268,
+        "WenQuanYi Micro Hei": 268,
+        "FandolHei": 100,
+        "Ma Shan Zheng": 268,
+        "Noto Serif CJK SC": 268,
+        "ZCOOL XiaoWei": 268,
+        "ZCOOL QingKe HuangYou": 268,
+        "Roboto": 268,
+        "Zhi Mang Xing": 104,
+        "FandolKai": 116,
+        "FandolSong": 104,
+        "Long Cang": 96
+      },
+      "platforms": {
+        "ios": 288,
+        "android": 3216
+      },
+      "rejected": 0,
+      "tiles": 5967,
+      "manifest": {
+        "path": "artifacts/unified-font-v1/data-v1/development_holdout/MANIFEST.json",
+        "sha256": "76c2e549e9da5ee8fbd3ae8b38bda9dee6862b4e6105fab232a75153315eeeb7"
+      },
+      "array": {
+        "path": "artifacts/unified-font-v1/data-v1/development_holdout/tiles.raw",
+        "sha256": "e7d258c5fc7a45c89ec0ab2327b19aa9492cc77a69a5da51875e048c0bbc1fa7"
+      },
+      "metadata": {
+        "path": "artifacts/unified-font-v1/data-v1/development_holdout/rows.json",
+        "sha256": "064c83da73077bf1022cd8123c9bd27eb0f54a03d1cf3e34fb73d3be93922fd2"
+      }
+    }
+  },
+  "families": [
+    "HarmonyOS Sans SC",
+    "MiSans",
+    "Noto Sans CJK SC",
+    "OPPO Sans",
+    "PingFang",
+    "SF Pro",
+    "Helvetica",
+    "Alipay Number",
+    "Roboto",
+    "Noto Serif CJK SC",
+    "LXGW WenKai",
+    "WenQuanYi Micro Hei",
+    "ZCOOL KuaiLe",
+    "ZCOOL XiaoWei",
+    "ZCOOL QingKe HuangYou",
+    "Ma Shan Zheng",
+    "FandolHei",
+    "FandolKai",
+    "FandolSong",
+    "Long Cang",
+    "Zhi Mang Xing",
+    "Kaiti SC",
+    "Songti SC",
+    "HanziPen SC",
+    "__unknown__"
+  ],
+  "known_family_count": 24,
+  "unknown_class_count": 1,
+  "split_policy": {
+    "seed": "unified-native-pages-20260913-v1",
+    "identity_keys": [
+      "page",
+      "source_pixels",
+      "native_crop",
+      "normalized_text"
+    ],
+    "moved_datasets": [
+      "android",
+      "ios_unknown"
+    ],
+    "development_page_fraction": 0.1,
+    "giant_components": "keep indivisible; do not exceed each development page budget",
+    "cross_original_split_conflicts": "exclude entire connected components",
+    "component_audit": [
+      {
+        "dataset": "android",
+        "pages": 670,
+        "components": 608,
+        "largest_component": 21,
+        "target_pages_per_development_partition": 67,
+        "moved_pages": {
+          "development_holdout": 67,
+          "calibration": 67
+        }
+      },
+      {
+        "dataset": "ios_unknown",
+        "pages": 240,
+        "components": 240,
+        "largest_component": 1,
+        "target_pages_per_development_partition": 24,
+        "moved_pages": {
+          "development_holdout": 24,
+          "calibration": 24
+        }
+      }
+    ],
+    "excluded_pages": [],
+    "old_test_pixels_read": false,
+    "new_android_test_pixels_read": false,
+    "development_holdout_is_blind_test": false,
+    "initialization_history": "Historical checkpoints may have seen development-holdout images under old labels; report as development regression only."
+  },
+  "unknown_source_view_counts": {
+    "train": {
+      "Times": 330,
+      "Courier": 324,
+      "Apple Chancery": 120,
+      "Bradley Hand": 120,
+      "Noteworthy": 120,
+      "Lato": 576,
+      "Liu Jian Mao Cao": 1308,
+      "Smiley Sans": 1312,
+      "Open Sans": 596
+    },
+    "calibration": {
+      "Courier": 43,
+      "Times": 40,
+      "Lucida Grande": 96,
+      "Baoli SC": 84,
+      "Weibei SC": 84,
+      "Comic Sans MS": 96,
+      "Smiley Sans": 112,
+      "Liu Jian Mao Cao": 124,
+      "Lato": 48,
+      "Open Sans": 24,
+      "Yusei Magic": 800,
+      "M PLUS 1p": 800,
+      "Ubuntu": 200
+    },
+    "development_holdout": {
+      "Courier": 42,
+      "Times": 40,
+      "Lato": 44,
+      "Open Sans": 48,
+      "Liu Jian Mao Cao": 92,
+      "Smiley Sans": 100
+    }
+  },
+  "unknown_source_seen_in_current_train": {
+    "calibration": {
+      "Courier": true,
+      "Times": true,
+      "Lucida Grande": false,
+      "Baoli SC": false,
+      "Weibei SC": false,
+      "Comic Sans MS": false,
+      "Smiley Sans": true,
+      "Liu Jian Mao Cao": true,
+      "Lato": true,
+      "Open Sans": true,
+      "Yusei Magic": false,
+      "M PLUS 1p": false,
+      "Ubuntu": false
+    },
+    "development_holdout": {
+      "Courier": true,
+      "Times": true,
+      "Lato": true,
+      "Open Sans": true,
+      "Liu Jian Mao Cao": true,
+      "Smiley Sans": true
+    }
+  },
+  "quality_exclusions": {
+    "train": 12,
+    "calibration": 0,
+    "development_holdout": 0,
+    "family": "Long Cang",
+    "view": "half",
+    "count_as": "preprocessing abstention; thresholds unchanged"
+  },
+  "read_only_source_metadata_audit": {
+    "input_capture_batches": 5,
+    "native_family_fallback_or_clipping_metadata_failures": 0,
+    "ios_actual_point_size_times_scale_disagreements": 0,
+    "cross_dataset_cross_original_split_normalized_text_intersections": 0,
+    "same_font_file_sha_mapped_to_different_actual_family": 0,
+    "pixels_opened_by_this_public_index_audit": false
+  },
+  "frozen_sources": [
+    {
+      "path": "training/prepare_unified_regions.py",
+      "sha256": "00250f9ff4c0a26e06116c37e8b917a1bf8d6bfb8d33ae949c093b31b09dcaaa"
+    },
+    {
+      "path": "training/train_unified_regions.py",
+      "sha256": "530482e737e64919598e43c524a8a1acb6a359623e7d98849930d69278c0831d"
+    },
+    {
+      "path": "training/region_network.py",
+      "sha256": "aeca98a74d495942efebe9f82b2ef7b05cc8aafa60696e6ff7430b50eec4dbf2"
+    },
+    {
+      "path": "src/flux_glyph/region_font.py",
+      "sha256": "9ba944d0ea07d1124af16e23ba3c80a20ae206221891e834f41ff26fe0b86e4b"
+    },
+    {
+      "path": "src/flux_glyph/unified_font.py",
+      "sha256": "3ec41e04081828c32701ccf0ac431ddf1ce293a6436abc49828abbb0ce7a1331"
+    }
+  ],
+  "training_protocol": {
+    "path": "artifacts/unified-font-v1/run-v1/TRAINING_FREEZE.json",
+    "sha256": "5cd2cbfb5bc3c33d0a1653c520899916472b86a37fcdc5b4f1574654dc8fc7a8"
+  },
+  "history_limits": {
+    "development_holdout_is_blind": false,
+    "initializer_may_have_seen_reassigned_pages": true,
+    "old_ios_tests": "Already evaluated historically; regression evidence only.",
+    "first_android_test": "Already evaluated; failed stable criteria; Smiley Sans later became TRAIN.",
+    "second_android_test": {
+      "capture_pages": 150,
+      "native_regions": 1800,
+      "known_families": 9,
+      "unknown_families": [
+        "IBM Plex Sans SC",
+        "Yuji Syuku",
+        "Liberation Sans"
+      ],
+      "used_for_joint_training_or_selection": false,
+      "test_arrays_prepared": false,
+      "covers_all_24_known_families": false,
+      "covers_ios_rendering": false
+    },
+    "correlated_views_are_independent_samples": false
+  },
+  "model_metrics": {
+    "calibration": {
+      "role": "used_for_checkpoint_and_gate_selection_not_blind_test",
+      "views": 18672,
+      "named": 10740,
+      "correct_named": 10211,
+      "wrong_named": 529,
+      "known_views": 16121,
+      "unknown_views": 2551,
+      "named_precision": 0.9507448789571694,
+      "known_correct_coverage": 0.6333974319210967,
+      "unknown_not_named_rate": 0.8463347706781654,
+      "size": {
+        "correctly_named_with_size": 10211,
+        "coverage_of_correct_names": 1.0,
+        "median_ape": 0.029876543209876538,
+        "p90_ape": 0.078125
+      },
+      "checks": {
+        "named_precision": false,
+        "known_correct_coverage": false,
+        "per_family_coverage": false,
+        "native_known_top1": true,
+        "unknown_not_named": true,
+        "domains": false,
+        "size_median": true,
+        "size_p90": true,
+        "size_coverage": true
+      },
+      "stable_passed": false,
+      "per_domain": {
+        "ios": {
+          "views": 8256,
+          "named": 5941,
+          "correct_named": 5880,
+          "wrong_named": 61,
+          "known_views": 7813,
+          "unknown_views": 443,
+          "named_precision": 0.989732368288167,
+          "known_correct_coverage": 0.7525918341226161,
+          "unknown_not_named_rate": 0.909706546275395
+        },
+        "android": {
+          "views": 10416,
+          "named": 4799,
+          "correct_named": 4331,
+          "wrong_named": 468,
+          "known_views": 8308,
+          "unknown_views": 2108,
+          "named_precision": 0.9024796832673474,
+          "known_correct_coverage": 0.52130476649013,
+          "unknown_not_named_rate": 0.8330170777988615
+        }
+      }
+    },
+    "development_regression": {
+      "role": "development_regression_not_blind_test",
+      "views": 3504,
+      "native_regions": 1092,
+      "pages": 91,
+      "named": 1680,
+      "correct_named": 1621,
+      "wrong_named": 59,
+      "known_views": 3138,
+      "unknown_views": 366,
+      "named_precision": 0.9648809523809524,
+      "known_correct_coverage": 0.5165710643722116,
+      "unknown_not_named_rate": 0.9836065573770492,
+      "native_known_top1_accuracy": 0.8210862619808307,
+      "size": {
+        "correctly_named_with_size": 1621,
+        "coverage_of_correct_names": 1.0,
+        "median_ape": 0.03562500000000002,
+        "p90_ape": 0.08833333333333337
+      },
+      "checks": {
+        "named_precision": false,
+        "known_correct_coverage": false,
+        "per_family_coverage": false,
+        "native_known_top1": false,
+        "unknown_not_named": true,
+        "domains": false,
+        "size_median": true,
+        "size_p90": true,
+        "size_coverage": true
+      },
+      "stable_passed": false,
+      "per_domain": {
+        "ios": {
+          "views": 288,
+          "named": 178,
+          "correct_named": 178,
+          "wrong_named": 0,
+          "known_views": 206,
+          "unknown_views": 82,
+          "named_precision": 1.0,
+          "known_correct_coverage": 0.8640776699029126,
+          "unknown_not_named_rate": 1.0
+        },
+        "android": {
+          "views": 3216,
+          "named": 1502,
+          "correct_named": 1443,
+          "wrong_named": 59,
+          "known_views": 2932,
+          "unknown_views": 284,
+          "named_precision": 0.9607190412782957,
+          "known_correct_coverage": 0.4921555252387449,
+          "unknown_not_named_rate": 0.9788732394366197
+        }
+      },
+      "unknown_outcomes": {
+        "wrongly_named": 6,
+        "explicit_unknown": 337,
+        "uncertain_without_name": 23,
+        "preprocessing_rejected": 0
+      },
+      "blind_test_performed": false,
+      "used_to_adjust_model_or_gates": false,
+      "historical_initializer_exposure_possible": true,
+      "unknown_source_families_seen_in_current_training": true,
+      "color_accuracy_evaluated": false
+    }
+  },
+  "note": "CAL selected the model/gates. Frozen development regression completed without adjustment; both are non-blind development evidence. Single ONNX parity passed while stable recognition criteria failed. No independent new TEST was performed.",
+  "model_version": "r21-unified-font-v1-preview",
+  "release_tier": "experimental",
+  "stable_validation_passed": false,
+  "completed_training": {
+    "optimizer_steps_executed": 6000,
+    "selected_step": 6000,
+    "temperature": 1.0,
+    "gates": {
+      "min_score": 0.7,
+      "min_margin": 0.01,
+      "min_patch_agreement": 0.6666666666666666
+    },
+    "all_four_parameter_groups_changed": true
+  },
+  "onnx_parity": {
+    "passed": true,
+    "font_model_count": 1,
+    "output_family_count": 25,
+    "calibration_regions": 18672,
+    "calibration_tiles": 37834,
+    "max_logit_absolute_error": 3.6835670471191406e-05,
+    "max_size_absolute_error": 4.76837158203125e-07,
+    "max_size_pixel_error": 0.010000000000005116,
+    "calibration_font_decisions_identical": true,
+    "calibration_size_availability_identical": true,
+    "calibration_size_values_close": true,
+    "batch_checks": [
+      {
+        "batch_size": 1,
+        "samples": 256,
+        "passed": true,
+        "font_and_size_checked": true
+      },
+      {
+        "batch_size": 7,
+        "samples": 256,
+        "passed": true,
+        "font_and_size_checked": true
+      },
+      {
+        "batch_size": 32,
+        "samples": 256,
+        "passed": true,
+        "font_and_size_checked": true
+      },
+      {
+        "batch_size": 128,
+        "samples": 256,
+        "passed": true,
+        "font_and_size_checked": true
+      }
+    ]
+  },
+  "completed_evidence": {
+    "SELECTION.json": {
+      "path": "artifacts/unified-font-v1/run-v1/SELECTION.json",
+      "sha256": "5b99f17bfda9566a334abd81cffab9cf19e3da74aa38a20fc2405638248268f9"
+    },
+    "PARITY.json": {
+      "path": "artifacts/unified-font-v1/run-v1/PARITY.json",
+      "sha256": "a9a6bc5f88f8eaf84577090ad802a7198064a6dda613a0dedca9d31ba80f5a66"
+    },
+    "DEVELOPMENT_REGRESSION.json": {
+      "path": "artifacts/unified-font-v1/run-v1/DEVELOPMENT_REGRESSION.json",
+      "sha256": "8805f435e1e6f55f1094ebc9eccb2e0cc63dc3de72304542a3baec771c39fa49"
+    }
+  },
+  "blind_test_performed": false,
+  "local_user_crop_observations": {
+    "font_ground_truth_available": false,
+    "accuracy_metric": false,
+    "some_han_candidates_changed_to_kai_related_families": true,
+    "observed_han_scores_approximate": [
+      0.51,
+      0.62
+    ],
+    "frozen_min_score": 0.7,
+    "amount_and_time_consistent_improvement_established": false,
+    "used_to_adjust_model_or_gates": false
+  }
+}

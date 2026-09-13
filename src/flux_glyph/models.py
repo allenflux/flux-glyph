@@ -47,12 +47,13 @@ def verify_bundle(directory):
         if (not isinstance(name,str) or PurePosixPath(name).name!=name or '\\' in name
                 or not name.endswith('.onnx')):raise ValueError('Invalid region model path')
         required.add('region_neural/'+name)
-        if metadata.get('schema')=='flux-glyph-android-region-font-v1':
+        if metadata.get('schema') in ('flux-glyph-android-region-font-v1','flux-glyph-unified-region-font-v1'):
             from .android_font import android_metadata
-            validated=android_metadata(metadata)
+            from .unified_font import unified_metadata
+            validated=(unified_metadata(metadata) if metadata['schema']=='flux-glyph-unified-region-font-v1' else android_metadata(metadata))
             entry=next((row for row in rows if row['path']=='region_neural/'+name),None)
             if entry is None or entry['sha256']!=validated['model']['sha256']:
-                raise ValueError('Android bundle model metadata SHA differs')
+                raise ValueError('Region bundle model metadata SHA differs')
         elif (metadata.get('algorithm') in ('region-cnn64x256-rejection-v2','region-cnn64x256-consensus-v3')
                 or 'rejection' in metadata or 'verifier' in metadata):
             from .region_font import rejection_metadata,verifier_metadata
