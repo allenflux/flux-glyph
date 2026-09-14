@@ -106,11 +106,11 @@ def fixture(tmp_path):
             'metadata_path': metadata_path, 'source': source, 'model': model, 'checkpoint': checkpoint}
 
 
-@pytest.mark.parametrize('generation',['v1','v2'])
+@pytest.mark.parametrize('generation',['v1','v2','v3'])
 def test_prepares_new_preview_without_mutating_raw_evidence(tmp_path,monkeypatch,generation):
-    if generation=='v2':
+    if generation!='v1':
         for name in ('SELECTION_SCHEMA','PARITY_SCHEMA','DEVELOPMENT_SCHEMA','FREEZE_SCHEMA'):
-            monkeypatch.setattr(release,name,getattr(release,name).removesuffix('v1')+'v2')
+            monkeypatch.setattr(release,name,getattr(release,name).removesuffix('v1')+generation)
     f = fixture(tmp_path); output = tmp_path / 'release-ready'
     before = {name: release.sha(f[name]) for name in
               ('selection_path', 'metadata_path', 'parity_path', 'report_path',

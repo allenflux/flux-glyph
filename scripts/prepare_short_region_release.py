@@ -25,6 +25,10 @@ SUPPORTED_SCHEMAS = {
         'flux-glyph-unified-short-onnx-parity-v2',
         'flux-glyph-unified-short-development-regression-v2',
         'flux-glyph-unified-short-development-freeze-v2'),
+    'flux-glyph-unified-short-selection-v3': (
+        'flux-glyph-unified-short-onnx-parity-v3',
+        'flux-glyph-unified-short-development-regression-v3',
+        'flux-glyph-unified-short-development-freeze-v3'),
 }
 CAL_REGIONS = 18672
 CAL_TILES = 37834
