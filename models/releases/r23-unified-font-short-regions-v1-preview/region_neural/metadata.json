@@ -1,0 +1,1008 @@
+{
+  "schema": "flux-glyph-unified-region-font-v1",
+  "algorithm": "unified-region-cnn64x256-v1",
+  "font_mode": "unified",
+  "data_kind": "native_mobile_screenshots",
+  "network_architecture": "region-cnn64x256-unified-spatial4x16-v1",
+  "model": {
+    "path": "model.onnx",
+    "sha256": "3febfea43d8b26cef906806a1d130ded32ebd9f707b52f115918eb235ee72aa0"
+  },
+  "families": [
+    "HarmonyOS Sans SC",
+    "MiSans",
+    "Noto Sans CJK SC",
+    "OPPO Sans",
+    "PingFang",
+    "SF Pro",
+    "Helvetica",
+    "Alipay Number",
+    "Roboto",
+    "Noto Serif CJK SC",
+    "LXGW WenKai",
+    "WenQuanYi Micro Hei",
+    "ZCOOL KuaiLe",
+    "ZCOOL XiaoWei",
+    "ZCOOL QingKe HuangYou",
+    "Ma Shan Zheng",
+    "FandolHei",
+    "FandolKai",
+    "FandolSong",
+    "Long Cang",
+    "Zhi Mang Xing",
+    "Kaiti SC",
+    "Songti SC",
+    "HanziPen SC",
+    "__unknown__"
+  ],
+  "temperature": 1.0,
+  "gates": {
+    "min_score": 0.7,
+    "min_margin": 0.01,
+    "min_patch_agreement": 0.6666666666666666
+  },
+  "max_size_relative_spread": 0.2,
+  "font_label_groups": {
+    "PingFang": [
+      "PingFang SC",
+      "PingFang TC",
+      "PingFang HK"
+    ],
+    "Noto Sans CJK SC": [
+      "Noto Sans CJK SC",
+      "Source Han Sans SC"
+    ],
+    "Noto Serif CJK SC": [
+      "Noto Serif CJK SC",
+      "Source Han Serif SC"
+    ]
+  },
+  "font_sources": {
+    "HarmonyOS Sans SC": [
+      "asset"
+    ],
+    "MiSans": [
+      "asset"
+    ],
+    "Noto Sans CJK SC": [
+      "asset"
+    ],
+    "OPPO Sans": [
+      "asset"
+    ],
+    "PingFang": [
+      "system"
+    ],
+    "SF Pro": [
+      "system"
+    ],
+    "Helvetica": [
+      "system"
+    ],
+    "Alipay Number": [
+      "asset"
+    ],
+    "Roboto": [
+      "asset"
+    ],
+    "Noto Serif CJK SC": [
+      "asset"
+    ],
+    "LXGW WenKai": [
+      "asset"
+    ],
+    "WenQuanYi Micro Hei": [
+      "asset"
+    ],
+    "ZCOOL KuaiLe": [
+      "asset"
+    ],
+    "ZCOOL XiaoWei": [
+      "asset"
+    ],
+    "ZCOOL QingKe HuangYou": [
+      "asset"
+    ],
+    "Ma Shan Zheng": [
+      "asset"
+    ],
+    "FandolHei": [
+      "asset"
+    ],
+    "FandolKai": [
+      "asset"
+    ],
+    "FandolSong": [
+      "asset"
+    ],
+    "Long Cang": [
+      "asset"
+    ],
+    "Zhi Mang Xing": [
+      "asset"
+    ],
+    "Kaiti SC": [
+      "asset"
+    ],
+    "Songti SC": [
+      "asset"
+    ],
+    "HanziPen SC": [
+      "asset"
+    ]
+  },
+  "release_tier": "experimental",
+  "stable_validation_passed": false,
+  "test_passed": false,
+  "pre_development": false,
+  "validation": {
+    "kind": "short_region_continuation_calibration_and_dual_development_preview",
+    "calibration_promotion_allowed": true,
+    "promotion_allowed": true,
+    "development_holdout_evaluated": true,
+    "original_retention_checks": 46,
+    "short_regression_checks": 7,
+    "calibration_checks": 53,
+    "retention_checks": [
+      {
+        "population": "all",
+        "metric": "named_precision",
+        "operator": "ge",
+        "value": 0.9507448789571694,
+        "actual": 0.958011540168664,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "all",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.6333974319210967,
+        "actual": 0.669437379815148,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "all",
+        "metric": "unknown_not_named_rate",
+        "operator": "ge",
+        "value": 0.8463347706781654,
+        "actual": 0.8584868678949431,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "ios",
+        "metric": "named_precision",
+        "operator": "ge",
+        "value": 0.989732368288167,
+        "actual": 0.9915413533834586,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "ios",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.7525918341226161,
+        "actual": 0.8101881479585307,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "android",
+        "metric": "named_precision",
+        "operator": "ge",
+        "value": 0.9024796832673474,
+        "actual": 0.9141569350542922,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "android",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.51130476649013,
+        "actual": 0.5370727010110736,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "android",
+        "metric": "unknown_not_named_rate",
+        "operator": "ge",
+        "value": 0.8330170777988615,
+        "actual": 0.8500948766603416,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "shared_pingfang",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 1372,
+        "actual": 1436,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "shared_pingfang",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 8,
+        "actual": 1,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "native_anchor_pingfang",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 346,
+        "actual": 352,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "native_anchor_pingfang",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 1,
+        "actual": 0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "shared_sf_pro",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 646,
+        "actual": 678,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "shared_sf_pro",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 2,
+        "actual": 0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "native_anchor_sf_pro",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 124,
+        "actual": 124,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "native_anchor_sf_pro",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 0,
+        "actual": 0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "shared_helvetica",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 412,
+        "actual": 433,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "shared_helvetica",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 0,
+        "actual": 0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "native_anchor_helvetica",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 50,
+        "actual": 52,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "native_anchor_helvetica",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 0,
+        "actual": 0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "original8_shared",
+        "metric": "correct_named",
+        "operator": "ge",
+        "value": 5201,
+        "actual": 5639,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "original8_shared",
+        "metric": "wrong_named",
+        "operator": "le",
+        "value": 16,
+        "actual": 5,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:HarmonyOS Sans SC",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.47582362728785355,
+        "actual": 0.5948419301164726,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:MiSans",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.7149596774193548,
+        "actual": 0.75,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Noto Sans CJK SC",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.4082756368386675,
+        "actual": 0.46701502286087526,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:OPPO Sans",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.7984072249589491,
+        "actual": 0.8571428571428571,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:PingFang",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.6947287264420331,
+        "actual": 0.8543689320388349,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:SF Pro",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.832026862026862,
+        "actual": 0.9035409035409036,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Helvetica",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.8956360078277886,
+        "actual": 0.9686888454011742,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Alipay Number",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.9475280898876404,
+        "actual": 0.9803370786516854,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Roboto",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.49617328519855597,
+        "actual": 0.5487364620938628,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Noto Serif CJK SC",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.3743778801843318,
+        "actual": 0.4032258064516129,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:LXGW WenKai",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.5172350230414746,
+        "actual": 0.5645161290322581,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:WenQuanYi Micro Hei",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.21539170506912442,
+        "actual": 0.2903225806451613,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:ZCOOL KuaiLe",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.5414285714285714,
+        "actual": 0.5887096774193549,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:ZCOOL XiaoWei",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.7776036866359447,
+        "actual": 0.8122119815668203,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:ZCOOL QingKe HuangYou",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.806405529953917,
+        "actual": 0.8294930875576036,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Ma Shan Zheng",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.5909677419354838,
+        "actual": 0.6255760368663594,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:FandolHei",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.050357142857142864,
+        "actual": 0.08928571428571429,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:FandolKai",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.57,
+        "actual": 0.725,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:FandolSong",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.3866666666666667,
+        "actual": 0.4583333333333333,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Long Cang",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.75,
+        "actual": 0.76,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Zhi Mang Xing",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.5996296296296296,
+        "actual": 0.6111111111111112,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Kaiti SC",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.97,
+        "actual": 1.0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:Songti SC",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.97,
+        "actual": 1.0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      },
+      {
+        "population": "family:HanziPen SC",
+        "metric": "known_correct_coverage",
+        "operator": "ge",
+        "value": 0.97,
+        "actual": 1.0,
+        "passed": true,
+        "normalized_deficit": 0.0
+      }
+    ],
+    "short_comparison": {
+      "passed": true,
+      "checks": [
+        {
+          "name": "short_known_coverage",
+          "actual": 0.5463175122749591,
+          "minimum": 0.5460229132569558,
+          "passed": true
+        },
+        {
+          "name": "short_unknown_false_names",
+          "actual": 142,
+          "maximum": 161,
+          "passed": true
+        },
+        {
+          "name": "all.known_correct_coverage",
+          "actual": 0.669437379815148,
+          "minimum": 0.6546740276657775,
+          "passed": true
+        },
+        {
+          "name": "all.named_precision",
+          "actual": 0.958011540168664,
+          "minimum": 0.953301418119411,
+          "passed": true
+        },
+        {
+          "name": "all.unknown_not_named_rate",
+          "actual": 0.8584868678949431,
+          "minimum": 0.8475107800862407,
+          "passed": true
+        },
+        {
+          "name": "ios.known_correct_coverage",
+          "actual": 0.8101881479585307,
+          "minimum": 0.7895731473185716,
+          "passed": true
+        },
+        {
+          "name": "android.known_correct_coverage",
+          "actual": 0.5370727010110736,
+          "minimum": 0.5181102551757343,
+          "passed": true
+        }
+      ],
+      "policy": {
+        "short_known_coverage_gain": 0.02,
+        "short_unknown_false_names_increase": 0,
+        "all_known_coverage_drop": 0.0,
+        "all_named_precision_drop": 0.0,
+        "all_unknown_withholding_drop": 0.0,
+        "per_domain_known_coverage_drop": 0.005,
+        "original_46_checks_required": true,
+        "original_18_development_checks_required": true,
+        "r22_18_development_checks_also_required": true,
+        "blind_test": false
+      }
+    },
+    "fixed_runtime": {
+      "temperature": 1.0,
+      "gates": {
+        "min_score": 0.7,
+        "min_margin": 0.01,
+        "min_patch_agreement": 0.6666666666666666
+      },
+      "max_size_relative_spread": 0.2
+    },
+    "model_count": 1,
+    "encoder_count": 1,
+    "platform_routing": false,
+    "android_system_guard_policy": {
+      "name": "android_wrong_named_as_ios_system_family",
+      "domain": "android",
+      "predicted_families": [
+        "PingFang",
+        "SF Pro",
+        "Helvetica"
+      ],
+      "metric": "wrong_named",
+      "operator": "le",
+      "maximum": 27,
+      "r22_actual": 27,
+      "population": "all true CAL Android regions",
+      "original_53_checks_unchanged": true
+    },
+    "android_system_guard": {
+      "name": "android_wrong_named_as_ios_system_family",
+      "domain": "android",
+      "predicted_families": [
+        "PingFang",
+        "SF Pro",
+        "Helvetica"
+      ],
+      "metric": "wrong_named",
+      "operator": "le",
+      "maximum": 27,
+      "r22_actual": 27,
+      "population": "all true CAL Android regions",
+      "original_53_checks_unchanged": true,
+      "actual": 26,
+      "passed": true
+    },
+    "scores_are_correctness_probabilities": false,
+    "blind_test_performed": false,
+    "development_checks": 36,
+    "stable_validation_passed": false,
+    "test_passed": false,
+    "test_read": false,
+    "development_evidence": {
+      "report_sha256": "8625145cb09ca62e31bb49f4972e932231819d05d9ffae265ebf77f4ed157ea0",
+      "freeze_sha256": "d1154df58435a706a354ebe08972ad58d6f87f9cc85ea24aa8ac447fb82b59dc",
+      "r21_checks": 18,
+      "r22_checks": 18
+    }
+  },
+  "training": {
+    "kind": "R22 spatial residual with verified TRAIN rejection supervision",
+    "trial": "refinement-low",
+    "steps": 2400,
+    "selection_sha256": "67e41214459f9e49a258d64b7359158184e5368e036c5852c3012bfec0c92728",
+    "checkpoint_sha256": "335a60111ce962901b6f7d9d4ef301746d04685c96a797d8c8b34dfc26153ecc",
+    "training_protocol_sha256": "88fabd916e3f68c00d2f63529f1e23f7087d250e70da2f545330ba2306e909a7",
+    "training_counts_sha256": "0902aaee5884070c11997778be840e5e254a7e56ccaf26fe12cf7de151eaa0c1",
+    "initial_state_sha256": "ea89337ebd8df8b71833073effbe78180e80b6fe41063b993df27c24a62ad97a",
+    "inherited_spatial_state_sha256": "6d7fd2d5cbb0b7b20c5888057aa08a530217eec8b272c3109c79a19fd1e7bfbe",
+    "final_state_sha256": "3f333da05daa2dcb809d8f2d7e1106d6bff7685df46937ae0179ccbb5e6ed6c8",
+    "objective": {
+      "replay_batch": 96,
+      "focus_batch": 32,
+      "mobile_batch": 20,
+      "focus_weight": 0.5,
+      "mobile_weight": 0.5,
+      "mobile_sampling": {
+        "schema": "flux-glyph-native-mobile-short-sampling-v1",
+        "batch_rows": 20,
+        "known_families": [
+          "Noto Sans CJK SC",
+          "PingFang",
+          "SF Pro",
+          "Helvetica",
+          "Roboto",
+          "Noto Serif CJK SC",
+          "LXGW WenKai",
+          "WenQuanYi Micro Hei",
+          "ZCOOL KuaiLe",
+          "ZCOOL XiaoWei",
+          "ZCOOL QingKe HuangYou",
+          "Ma Shan Zheng",
+          "FandolHei",
+          "FandolKai",
+          "FandolSong",
+          "Long Cang",
+          "Zhi Mang Xing"
+        ],
+        "rows_per_known_family": 1,
+        "unknown_rows_per_batch": 3,
+        "unknown_sources": [
+          "Lato",
+          "Liu Jian Mao Cao",
+          "Open Sans",
+          "Smiley Sans"
+        ],
+        "glyph_counts": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "source_selection": "known families each once; unknown sources in one global round robin",
+        "script_and_length_selection": "complete script/length Cartesian cycle per source family",
+        "face_selection": "round robin within source family, script and length",
+        "identity_selection": "uniform native identity within selected face before choosing view",
+        "view_weights": {
+          "native": 0.4,
+          "half": 0.2,
+          "three_quarters_jpeg75": 0.2,
+          "jpeg75": 0.2
+        },
+        "rng_independent": true,
+        "label_source": "verified native font proof only",
+        "platform_features": false,
+        "related_views_are_independent_samples": false,
+        "model_inference": false
+      },
+      "unknown_oe_multiplier": 0.25,
+      "effective_unknown_oe_coefficient": 0.125,
+      "unknown_oe": {
+        "coefficient": 0.5,
+        "denominator": 96,
+        "mask": "verified true-unknown rows in the original 96-row replay batch only",
+        "loss": "KL(uniform24 || softmax(logits_named24))",
+        "known_row_gradient": "exactly zero",
+        "unknown_logit_gradient": "exactly zero from this auxiliary",
+        "focus_rows_regularized": false,
+        "conditional_named_distribution_only": true,
+        "unknown_probability_target": null,
+        "original_unknown_floor_preserved": true,
+        "original_full_teacher_kl_preserved": true,
+        "teacher_competition": "Original KL2 can favor nonuniform named tails on eligible unknown rows; both losses remain active.",
+        "unknown_mass_effect": "No explicit probability target; changes to named logits can indirectly change p_unknown.",
+        "teacher_logits_used_by_auxiliary": false,
+        "labels_unchanged": true,
+        "new_parameters": 0,
+        "inference_rule": false,
+        "reference": "https://arxiv.org/abs/1812.04606",
+        "scope": "Hypothesis for unseen-font confidence; no generalization claim before evaluation."
+      },
+      "replay_loss": "unchanged R22 supervised, unknown-floor, angular, size and correct-teacher full KL2",
+      "focus_loss": "same full R22 loss on complete native single-tile TRAIN regions",
+      "replay_teacher": {
+        "original_true_unknown": "original frozen R21 same-tile TRAIN logits",
+        "original_known": "frozen R22 same-tile TRAIN logits",
+        "supplement_all": "frozen R22 same-tile TRAIN logits",
+        "merged_known_all": "frozen R22 same-tile TRAIN logits",
+        "selection_input": "verified original TRAIN partition and true label only"
+      },
+      "focus_teacher": "same verified source/tile teacher as replay; no parent-crop teacher transfer",
+      "focus_sampling": {
+        "batch_size": 32,
+        "known_rows": 28,
+        "unknown_rows": 4,
+        "known_families": [
+          "Noto Sans CJK SC",
+          "Roboto",
+          "Noto Serif CJK SC",
+          "LXGW WenKai",
+          "WenQuanYi Micro Hei",
+          "ZCOOL KuaiLe",
+          "ZCOOL XiaoWei",
+          "ZCOOL QingKe HuangYou",
+          "Ma Shan Zheng",
+          "FandolHei",
+          "FandolKai",
+          "FandolSong",
+          "Long Cang",
+          "Zhi Mang Xing"
+        ],
+        "known_per_family_and_glyph_count": 1,
+        "glyph_counts": [
+          3,
+          4
+        ],
+        "unknown_per_glyph_count": 2,
+        "unknown_sources": [
+          "Lato",
+          "Liu Jian Mao Cao",
+          "Open Sans",
+          "Smiley Sans",
+          "WenQuanYi Zen Hei",
+          "Zhuque Fangsong"
+        ],
+        "allowed_train_unknown_sources": [
+          "Apple Chancery",
+          "Bradley Hand",
+          "Courier",
+          "Lato",
+          "Liu Jian Mao Cao",
+          "Noteworthy",
+          "Open Sans",
+          "Smiley Sans",
+          "Times",
+          "WenQuanYi Zen Hei",
+          "Zhuque Fangsong"
+        ],
+        "unknown_selection": "independent exact source round robin for each glyph count, then uniform native identity",
+        "known_selection": "one row per family and glyph count; exact font faces cycle before uniform native identity",
+        "identity_weighting": "uniform native identity before view; derived view multiplicity never weights identity",
+        "view_weights": {
+          "native": 0.4,
+          "half": 0.2,
+          "three_quarters_jpeg75": 0.2,
+          "jpeg75": 0.2
+        },
+        "required_views": [
+          "native",
+          "half",
+          "three_quarters_jpeg75",
+          "jpeg75"
+        ],
+        "required_tile_count_per_view": 1,
+        "proof": "exact TRAIN Android glyph list and font identity; text length is never a glyph-count fallback",
+        "inference": false,
+        "independent_rng": true
+      },
+      "focus_normalization": "32 outputs repeated three times in the unchanged 96-row mean loss; no duplicated CNN forward or additional unique samples",
+      "mobile_loss": ".5 * (mean CE25 over all 20 verified labels + .2 * mean smooth-L1 size beta .05)",
+      "mobile_unknown_loss": "the three verified true-unknown rows use CE25 target 24; no additional mobile OE",
+      "pair_policy": {
+        "schema": "flux-glyph-native-font-pair-margin-v1",
+        "pairs_per_batch": 16,
+        "rows_per_batch": 32,
+        "weight": 0.1,
+        "margin": 1.0,
+        "loss": "mean softplus(1 - ((L_a[y_a]-L_a[y_b])-(L_b[y_a]-L_b[y_b])))",
+        "targets": "different verified canonical font targets; never two unknown targets",
+        "class_bias_cancels": true,
+        "extra_cross_entropy": false,
+        "extra_size_loss": false,
+        "extra_parameters": false,
+        "runtime_changes": false,
+        "model_count": 1
+      },
+      "pair_sampling": {
+        "schema": "flux-glyph-native-font-pair-sampling-v1",
+        "pairs_per_batch": 16,
+        "sources": [
+          "Noto Sans CJK SC",
+          "PingFang",
+          "SF Pro",
+          "Helvetica",
+          "Roboto",
+          "Noto Serif CJK SC",
+          "LXGW WenKai",
+          "WenQuanYi Micro Hei",
+          "ZCOOL KuaiLe",
+          "ZCOOL XiaoWei",
+          "ZCOOL QingKe HuangYou",
+          "Ma Shan Zheng",
+          "FandolHei",
+          "FandolKai",
+          "FandolSong",
+          "Long Cang",
+          "Zhi Mang Xing",
+          "Lato",
+          "Liu Jian Mao Cao",
+          "Open Sans",
+          "Smiley Sans"
+        ],
+        "anchor_source": "one global round robin over all verified sources",
+        "slot": "script/length round robin within anchor source",
+        "counterpart": "round robin over different-target sources with an exact shared cohort",
+        "cohort": "round robin within anchor slot and counterpart source",
+        "face": "round robin within cohort and source",
+        "native_identity": "uniform within chosen face",
+        "view": "same related view for both sides",
+        "view_weights": {
+          "native": 0.4,
+          "half": 0.2,
+          "three_quarters_jpeg75": 0.2,
+          "jpeg75": 0.2
+        },
+        "rng_independent": true,
+        "platform_features": false,
+        "predictions_used_as_labels": false,
+        "old_mobile_ce_pool_changed": false,
+        "related_views_are_independent_samples": false
+      },
+      "pair_batch": 16,
+      "pair_rows": 32,
+      "cnn_input_rows_per_step": 180,
+      "one_cnn_forward_per_step": true,
+      "pair_loss": ".1 * mean softplus(1 - [(logit_a[ya] - logit_a[yb]) - (logit_b[ya] - logit_b[yb])])",
+      "pair_rows_have_ce": false,
+      "pair_rows_have_size_loss": false,
+      "pair_class_bias_cancels": true,
+      "rationale": "Retain balanced supervision with confusion weight 1.0 and learn finer spatial evidence at three higher fixed learning rates.",
+      "replay_rng_unchanged": true,
+      "focus_rng_independent": true,
+      "mobile_rng_independent": true,
+      "pair_rng_independent": true,
+      "derived_short_crops_used": false,
+      "all_parameters_trained": false,
+      "label_sources": "verified native TRAIN font/glyph proof, never predictions",
+      "teacher_cache_deployed": false,
+      "second_model_resident_during_optimizer": false,
+      "model_count": 1,
+      "ocr_recognition": false,
+      "runtime_changes": false,
+      "platform_features": false,
+      "platform_routing": false,
+      "arbitrary_confidence_boost": false,
+      "original_full_correct_teacher_kl_preserved": true,
+      "trainable_policy": {
+        "schema": "flux-glyph-spatial-rejection-residual-v1",
+        "trainable": [
+          "style.0.residual_raw",
+          "family_head.unknown_weight_delta",
+          "family_head.unknown_bias_delta"
+        ],
+        "constraint": "zero-sum horizontal spatial residual; only existing unknown classifier row may adapt",
+        "frozen": "all inherited tensors; the 24 known classifier rows remain bitwise unchanged",
+        "folded_architecture": "region-cnn64x256-unified-spatial4x16-v1",
+        "model_count": 1,
+        "platform_routing": false,
+        "extra_output_heads": false,
+        "runtime_score_changes": false
+      },
+      "repair_supervision": {
+        "schema": "flux-glyph-spatial-rejection-supervision-v2",
+        "rows": "existing replay, focus and mobile rows only; pair rows excluded",
+        "targets": "unaltered verified native TRAIN font labels",
+        "unknown_cross_entropy_weight": 0.25,
+        "kaiti_extra_cross_entropy_weight": 0.05,
+        "non_system_penalty": "-log(1 - sum p(PingFang, SF Pro, Helvetica)) for true non-system targets",
+        "non_system_penalty_applies_to": "all TRAIN domains equally; no platform features or routes",
+        "original_objective_preserved": true,
+        "second_forward": false,
+        "runtime_changes": false
+      },
+      "repair_confusion_weights": {
+        "refinement-low": 1.0,
+        "refinement-medium": 1.0,
+        "refinement-high": 1.0
+      }
+    },
+    "all_parameters_trained": false,
+    "trainable_policy": {
+      "schema": "flux-glyph-spatial-rejection-residual-v1",
+      "trainable": [
+        "style.0.residual_raw",
+        "family_head.unknown_weight_delta",
+        "family_head.unknown_bias_delta"
+      ],
+      "constraint": "zero-sum horizontal spatial residual; only existing unknown classifier row may adapt",
+      "frozen": "all inherited tensors; the 24 known classifier rows remain bitwise unchanged",
+      "folded_architecture": "region-cnn64x256-unified-spatial4x16-v1",
+      "model_count": 1,
+      "platform_routing": false,
+      "extra_output_heads": false,
+      "runtime_score_changes": false
+    },
+    "repair_confusion_weight": 1.0,
+    "parameter_count": 3810234,
+    "trainable_parameter_count": 3145985,
+    "cnn_input_rows_per_step": 180,
+    "cnn_input_groups_per_step": {
+      "replay": 96,
+      "retained_android_focus": 32,
+      "native_mobile": 20,
+      "same_content_pairs": 32
+    },
+    "feature_cache_training_only": true,
+    "teacher_cache_deployed": false,
+    "data_manifest_sha256": "dfdd9fa746b28b3665eed10491ce83c5c872f16b2499fe3ae6c6e6bb9ed40a23",
+    "ocr_text_used": false,
+    "model_count": 1,
+    "encoder_count": 1,
+    "inference_rules_changed": false,
+    "platform_routing": false,
+    "score_merging": false,
+    "platform_features": false,
+    "test_read": false,
+    "development_holdout_read": false
+  },
+  "version": "r23-unified-font-short-regions-v1-preview"
+}

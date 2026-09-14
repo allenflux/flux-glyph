@@ -1,0 +1,31 @@
+{
+  "schema": "flux-glyph-models-v2",
+  "files": [
+    {
+      "path": "pp/onnx/paddle_ocr_det.onnx",
+      "sha256": "69ce850fec741a2a4568c7c924bb025c9d4f1129e5f96ab428c799ccc5ef2275",
+      "bytes": 4729474
+    },
+    {
+      "path": "pp/paddle_ocr_delivery.contract.json",
+      "sha256": "3457279d02acb449b6844cfa132687585b3bedc1f3e6736fdb539adc6edb9b2a",
+      "bytes": 7851
+    },
+    {
+      "path": "region_neural/metadata.json",
+      "sha256": "c636b6fc648afb000063418525543a7bcc33b8e82e462743906f21ce82f01e26",
+      "bytes": 30718
+    },
+    {
+      "path": "region_neural/model.onnx",
+      "sha256": "3febfea43d8b26cef906806a1d130ded32ebd9f707b52f115918eb235ee72aa0",
+      "bytes": 15255651
+    }
+  ],
+  "source_note": "Detector and trained region font/size CNN; no text recognizer, dictionary, glyph segmenter or reference bank.",
+  "version": "r23-unified-font-short-regions-v1-preview",
+  "base_version": "r22-unified-font-retention-v1-preview",
+  "font_method": "region_neural_network",
+  "ocr_performed": false,
+  "font_mode": "unified"
+}
