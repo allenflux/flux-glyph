@@ -29,6 +29,10 @@ SUPPORTED_SCHEMAS = {
         'flux-glyph-unified-short-onnx-parity-v3',
         'flux-glyph-unified-short-development-regression-v3',
         'flux-glyph-unified-short-development-freeze-v3'),
+    'flux-glyph-unified-native-short-selection-v1': (
+        'flux-glyph-unified-native-short-onnx-parity-v1',
+        'flux-glyph-unified-native-short-development-regression-v1',
+        'flux-glyph-unified-native-short-development-freeze-v1'),
 }
 CAL_REGIONS = 18672
 CAL_TILES = 37834
@@ -39,6 +43,9 @@ DEV_CHECKS_PER_BASELINE = 18
 DEV_CHECKS = DEV_CHECKS_PER_BASELINE * 2
 DEV_VIEWS = 3504
 DEV_TILES = 5967
+FIXED_RUNTIME = {'temperature': 1.0,
+    'gates': {'min_score': .7, 'min_margin': .01, 'min_patch_agreement': 2 / 3},
+    'max_size_relative_spread': .2}
 DEVELOPMENT_POLICY = {
     'maximum_named_precision_drop': .005,
     'maximum_known_coverage_drop': .01,
@@ -95,6 +102,11 @@ def _bound(bindings, path, digest, label):
 
 
 def _validate_cal(selection, parity, metadata):
+    require(selection.get('runtime') == FIXED_RUNTIME
+            and parity.get('fixed_runtime') == FIXED_RUNTIME
+            and {key: metadata.get(key) for key in FIXED_RUNTIME} == FIXED_RUNTIME
+            and metadata.get('validation', {}).get('fixed_runtime') == FIXED_RUNTIME,
+            'CAL, ONNX metadata and PARITY must retain the frozen runtime')
     require(selection.get('schema') in SUPPORTED_SCHEMAS
             and selection.get('calibration_promotion_allowed') is True
             and selection.get('promotion_allowed') is False
@@ -141,7 +153,8 @@ def _validate_cal(selection, parity, metadata):
     batches = parity.get('batch_checks')
     require(isinstance(batches, list) and len(batches) == 4
             and {row.get('batch_size') for row in batches} == {1, 7, 32, 128}
-            and all(row.get('passed') is True for row in batches),
+            and all(row.get('passed') is True and row.get('font_and_size_checked') is True
+                    for row in batches),
             'PARITY batch checks are incomplete')
 
     validation = metadata.get('validation', {})
@@ -169,6 +182,11 @@ def _validate_cal(selection, parity, metadata):
             'Metadata short-region CAL regression')
     require(validation['short_comparison'].get('passed') is True,
             'Raw metadata short-region comparison did not pass')
+
+
+def validate_calibration_boundary(selection, parity, metadata):
+    """Require complete CAL and export evidence before DEV can start."""
+    _validate_cal(selection, parity, metadata)
 
 
 def _validate_development(report, freeze, parity):

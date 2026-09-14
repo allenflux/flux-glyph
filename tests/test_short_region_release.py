@@ -31,9 +31,9 @@ def fixture(tmp_path):
         'selected': {'promotion_allowed': True,
                      'retention_checks': [{'passed': True} for _ in range(46)]},
         'r22_comparison': {'passed': True, 'checks': [{'passed': True} for _ in range(7)]},
-        'bindings': source_bindings}
+        'bindings': source_bindings, 'runtime': deepcopy(release.FIXED_RUNTIME)}
     selection_path = run / 'SELECTION.json'; write_json(selection_path, selection)
-    runtime = {'temperature': 1.0, 'gates': {'known': .5}, 'max_size_relative_spread': .2}
+    runtime = deepcopy(release.FIXED_RUNTIME)
     metadata = {'schema': release.METADATA_SCHEMA, 'model': {'path': 'model.onnx', 'sha256': release.sha(model)},
         'families': selection['families'], **runtime, 'release_tier': 'experimental',
         'stable_validation_passed': False, 'test_passed': False,
@@ -59,7 +59,8 @@ def fixture(tmp_path):
         'calibration_runtime_signatures_identical': True, 'calibration_size_values_close': True,
         'cached_mps_outputs_close': True, 'original_torch_groupnorm_reference': True,
         'export_parameters_unchanged': True, 'teacher_cache_deployed': False,
-        'batch_checks': [{'batch_size': size, 'passed': True} for size in (1, 7, 32, 128)],
+        'batch_checks': [{'batch_size': size, 'passed': True, 'font_and_size_checked': True}
+                         for size in (1, 7, 32, 128)],
         'stable_validation_passed': False, 'test_passed': False, 'test_read': False,
         'development_holdout_read': False, 'user_images_read': False,
         'selection_sha256': release.sha(selection_path),
@@ -106,9 +107,12 @@ def fixture(tmp_path):
             'metadata_path': metadata_path, 'source': source, 'model': model, 'checkpoint': checkpoint}
 
 
-@pytest.mark.parametrize('generation',['v1','v2','v3'])
+@pytest.mark.parametrize('generation',['v1','v2','v3','native'])
 def test_prepares_new_preview_without_mutating_raw_evidence(tmp_path,monkeypatch,generation):
-    if generation!='v1':
+    if generation=='native':
+        for name in ('SELECTION_SCHEMA','PARITY_SCHEMA','DEVELOPMENT_SCHEMA','FREEZE_SCHEMA'):
+            monkeypatch.setattr(release,name,getattr(release,name).replace('unified-short','unified-native-short'))
+    elif generation!='v1':
         for name in ('SELECTION_SCHEMA','PARITY_SCHEMA','DEVELOPMENT_SCHEMA','FREEZE_SCHEMA'):
             monkeypatch.setattr(release,name,getattr(release,name).removesuffix('v1')+generation)
     f = fixture(tmp_path); output = tmp_path / 'release-ready'
@@ -144,7 +148,77 @@ def test_rejects_mixed_training_and_parity_generations(tmp_path):
 
 
 def test_release_policy_is_exactly_the_current_evaluator_policy():
+    from training.train_unified_retention import FIXED_RUNTIME
     assert release.DEVELOPMENT_POLICY == evaluator.POLICY
+    assert release.FIXED_RUNTIME == FIXED_RUNTIME
+
+
+@pytest.mark.parametrize('field', ['gates', 'temperature', 'max_size_relative_spread'])
+def test_cal_boundary_rejects_joint_export_runtime_changes(tmp_path, field):
+    f = fixture(tmp_path)
+    selection = json.loads(f['selection_path'].read_text())
+    parity = json.loads(f['parity_path'].read_text())
+    metadata = json.loads(f['metadata_path'].read_text())
+    changed = deepcopy(release.FIXED_RUNTIME)
+    changed[field] = {'min_score': .5, 'min_margin': .01, 'min_patch_agreement': 2/3} if field == 'gates' else .5
+    parity['fixed_runtime'] = deepcopy(changed)
+    metadata.update(deepcopy(changed))
+    metadata['validation']['fixed_runtime'] = deepcopy(changed)
+    with pytest.raises(ValueError, match='frozen runtime'):
+        release.validate_calibration_boundary(selection, parity, metadata)
+    selection['runtime'] = deepcopy(changed)
+    with pytest.raises(ValueError, match='frozen runtime'):
+        release.validate_calibration_boundary(selection, parity, metadata)
+
+
+@pytest.mark.parametrize('key', [
+    'calibration_tiles', 'calibration_regions', 'original_retention_checks_passed',
+    'short_checks_passed', 'font_model_count', 'encoder_count', 'output_family_count',
+    'one_deployed_cnn', 'platform_routing', 'score_merging', 'runtime_gates_changed',
+    'calibration_font_decisions_identical', 'calibration_runtime_signatures_identical',
+    'calibration_size_values_close', 'cached_mps_outputs_close',
+    'original_torch_groupnorm_reference', 'export_parameters_unchanged',
+    'teacher_cache_deployed', 'batch_checks',
+])
+def test_native_dev_entry_rejects_incomplete_parity_before_inference(tmp_path, monkeypatch, key):
+    from types import SimpleNamespace
+    from training import evaluate_unified_native_short as native
+    f = fixture(tmp_path)
+    selection = json.loads(f['selection_path'].read_text())
+    selection['schema'] = 'flux-glyph-unified-native-short-selection-v1'
+    parity = json.loads(f['parity_path'].read_text())
+    parity['schema'] = native.PARITY_SCHEMA
+    metadata = json.loads(f['metadata_path'].read_text())
+    release.validate_calibration_boundary(selection, parity, metadata)
+    del parity[key]
+    write_json(f['parity_path'], parity)
+    monkeypatch.setattr(native, 'validate', lambda *args: selection)
+    def no_inference(*args, **kwargs):
+        pytest.fail('Incomplete export proof reached model or DEV loading')
+    monkeypatch.setattr(native, 'UnifiedFontClassifier', no_inference)
+    monkeypatch.setattr(native, 'load_split', no_inference)
+    args = SimpleNamespace(run=f['run'], data=tmp_path/'data', plan=tmp_path/'plan.json',
+                           region=f['region'], output=tmp_path/'DEV.json')
+    with pytest.raises(ValueError, match='PARITY'):
+        native.evaluate(args)
+    assert not args.output.exists()
+
+
+@pytest.mark.parametrize('change', ['tile_count', 'batch_size', 'batch_failed', 'size_parity',
+                                   'batch_size_unchecked', 'batch_size_missing'])
+def test_shared_cal_boundary_rejects_changed_parity(tmp_path, change):
+    f = fixture(tmp_path)
+    selection = json.loads(f['selection_path'].read_text())
+    parity = json.loads(f['parity_path'].read_text())
+    metadata = json.loads(f['metadata_path'].read_text())
+    if change == 'tile_count': parity['calibration_tiles'] = 37833
+    elif change == 'batch_size': parity['batch_checks'][1]['batch_size'] = 8
+    elif change == 'batch_failed': parity['batch_checks'][1]['passed'] = False
+    elif change == 'batch_size_unchecked': parity['batch_checks'][1]['font_and_size_checked'] = False
+    elif change == 'batch_size_missing': del parity['batch_checks'][1]['font_and_size_checked']
+    else: parity['calibration_size_values_close'] = False
+    with pytest.raises(ValueError, match='PARITY'):
+        release.validate_calibration_boundary(selection, parity, metadata)
 
 
 @pytest.mark.parametrize(('target', 'mutate'), [
