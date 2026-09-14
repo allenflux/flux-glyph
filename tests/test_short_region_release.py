@@ -67,7 +67,9 @@ def fixture(tmp_path):
         'checkpoint_sha256': release.sha(checkpoint), 'model_sha256': release.sha(model),
         'metadata_sha256': release.sha(metadata_path), 'fixed_runtime': runtime,
         'source_bindings': source_bindings,
-        'calibration_bindings': {str(cal.resolve()): release.sha(cal)}}
+        'calibration_bindings': {str(cal.resolve()): release.sha(cal)},
+        'android_system_font_confusion': {'baseline_count': 27, 'maximum_count': 27, 'actual_count': 20,
+            'passed': True, 'predicted_families': ['PingFang', 'SF Pro', 'Helvetica']}}
     parity_path = run / 'PARITY.json'; write_json(parity_path, parity)
     evidence_bindings = {str(path.resolve()): release.sha(path) for path in
         (selection_path, checkpoint, parity_path, model, metadata_path, source, cal, dev)}
@@ -101,17 +103,24 @@ def fixture(tmp_path):
             'development_views': 3504, 'development_tiles': 5967,
             'r21_development_checks': 18, 'r22_development_checks': 18,
             'development_checks': 36, 'deployed_cnns': 1}}
+    if any(name in release.PARITY_SCHEMA for name in ('native-short', 'native-oe', 'native-ios')):
+        trial = next(name for name in ('native-short', 'native-oe', 'native-ios') if name in release.PARITY_SCHEMA)
+        report['source_version_summaries'] = {'candidate': {
+            'trial_id': trial + '-v1',
+            'intended_release_version': release.VERSION,
+            'model_sha256': release.sha(model), 'selection_sha256': release.sha(selection_path)}}
     write_json(report_path, report)
     return {'run': run, 'region': region, 'report_path': report_path, 'freeze_path': freeze_path,
             'report': report, 'parity_path': parity_path, 'selection_path': selection_path,
             'metadata_path': metadata_path, 'source': source, 'model': model, 'checkpoint': checkpoint}
 
 
-@pytest.mark.parametrize('generation',['v1','v2','v3','native'])
+@pytest.mark.parametrize('generation',['v1','v2','v3','native','native_oe','native_ios'])
 def test_prepares_new_preview_without_mutating_raw_evidence(tmp_path,monkeypatch,generation):
-    if generation=='native':
+    if generation in ('native','native_oe','native_ios'):
         for name in ('SELECTION_SCHEMA','PARITY_SCHEMA','DEVELOPMENT_SCHEMA','FREEZE_SCHEMA'):
-            monkeypatch.setattr(release,name,getattr(release,name).replace('unified-short','unified-native-short'))
+            replacement = 'unified-native-short' if generation == 'native' else 'unified-' + generation.replace('_', '-')
+            monkeypatch.setattr(release,name,getattr(release,name).replace('unified-short',replacement))
     elif generation!='v1':
         for name in ('SELECTION_SCHEMA','PARITY_SCHEMA','DEVELOPMENT_SCHEMA','FREEZE_SCHEMA'):
             monkeypatch.setattr(release,name,getattr(release,name).removesuffix('v1')+generation)
@@ -147,10 +156,40 @@ def test_rejects_mixed_training_and_parity_generations(tmp_path):
         release.prepare_release(f['run'],f['region'],f['report_path'],tmp_path/'output',f['freeze_path'])
 
 
+@pytest.mark.parametrize('field,value', [('trial_id','native-short-v1'),
+    ('intended_release_version','r22-unified-font-retention-v1-preview'),
+    ('model_sha256','0'*64), ('selection_sha256','0'*64)])
+@pytest.mark.parametrize('generation', ['native-oe', 'native-ios'])
+def test_native_oe_release_rejects_mixed_candidate_identity(tmp_path,monkeypatch,field,value,generation):
+    for name in ('SELECTION_SCHEMA','PARITY_SCHEMA','DEVELOPMENT_SCHEMA','FREEZE_SCHEMA'):
+        monkeypatch.setattr(release,name,getattr(release,name).replace('unified-short','unified-' + generation))
+    f=fixture(tmp_path); report=json.loads(f['report_path'].read_text())
+    report['source_version_summaries']['candidate'][field]=value
+    write_json(f['report_path'],report)
+    with pytest.raises(ValueError,match='candidate identity'):
+        release.prepare_release(f['run'],f['region'],f['report_path'],tmp_path/'output',f['freeze_path'])
+
+
 def test_release_policy_is_exactly_the_current_evaluator_policy():
     from training.train_unified_retention import FIXED_RUNTIME
     assert release.DEVELOPMENT_POLICY == evaluator.POLICY
     assert release.FIXED_RUNTIME == FIXED_RUNTIME
+
+
+@pytest.mark.parametrize('key,value', [('actual_count', 28), ('actual_count', True),
+    ('baseline_count', 28), ('maximum_count', 28), ('passed', False), ('predicted_families', ['PingFang'])])
+def test_ios_trial_requires_android_confusion_guard_in_addition_to_cal53(tmp_path, monkeypatch, key, value):
+    for name in ('SELECTION_SCHEMA','PARITY_SCHEMA','DEVELOPMENT_SCHEMA','FREEZE_SCHEMA'):
+        monkeypatch.setattr(release,name,getattr(release,name).replace('unified-short','unified-native-ios'))
+    f = fixture(tmp_path)
+    selection, parity, metadata = (json.loads(f[k].read_text()) for k in ('selection_path','parity_path','metadata_path'))
+    release.validate_calibration_boundary(selection, parity, metadata)
+    parity['android_system_font_confusion'][key] = value
+    with pytest.raises(ValueError, match='confusion guard'):
+        release.validate_calibration_boundary(selection, parity, metadata)
+    del parity['android_system_font_confusion']
+    with pytest.raises(ValueError, match='confusion guard'):
+        release.validate_calibration_boundary(selection, parity, metadata)
 
 
 @pytest.mark.parametrize('field', ['gates', 'temperature', 'max_size_relative_spread'])
@@ -180,12 +219,14 @@ def test_cal_boundary_rejects_joint_export_runtime_changes(tmp_path, field):
     'original_torch_groupnorm_reference', 'export_parameters_unchanged',
     'teacher_cache_deployed', 'batch_checks',
 ])
-def test_native_dev_entry_rejects_incomplete_parity_before_inference(tmp_path, monkeypatch, key):
+@pytest.mark.parametrize('generation', ['native_short', 'native_oe', 'native_ios'])
+def test_native_dev_entry_rejects_incomplete_parity_before_inference(tmp_path, monkeypatch, key, generation):
     from types import SimpleNamespace
-    from training import evaluate_unified_native_short as native
+    import importlib
+    native = importlib.import_module('training.evaluate_unified_' + generation)
     f = fixture(tmp_path)
     selection = json.loads(f['selection_path'].read_text())
-    selection['schema'] = 'flux-glyph-unified-native-short-selection-v1'
+    selection['schema'] = 'flux-glyph-unified-' + generation.replace('_', '-') + '-selection-v1'
     parity = json.loads(f['parity_path'].read_text())
     parity['schema'] = native.PARITY_SCHEMA
     metadata = json.loads(f['metadata_path'].read_text())

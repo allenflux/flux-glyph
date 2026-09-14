@@ -33,6 +33,14 @@ SUPPORTED_SCHEMAS = {
         'flux-glyph-unified-native-short-onnx-parity-v1',
         'flux-glyph-unified-native-short-development-regression-v1',
         'flux-glyph-unified-native-short-development-freeze-v1'),
+    'flux-glyph-unified-native-oe-selection-v1': (
+        'flux-glyph-unified-native-oe-onnx-parity-v1',
+        'flux-glyph-unified-native-oe-development-regression-v1',
+        'flux-glyph-unified-native-oe-development-freeze-v1'),
+    'flux-glyph-unified-native-ios-selection-v1': (
+        'flux-glyph-unified-native-ios-onnx-parity-v1',
+        'flux-glyph-unified-native-ios-development-regression-v1',
+        'flux-glyph-unified-native-ios-development-freeze-v1'),
 }
 CAL_REGIONS = 18672
 CAL_TILES = 37834
@@ -150,6 +158,13 @@ def _validate_cal(selection, parity, metadata):
             and parity.get('development_holdout_read') is False
             and parity.get('user_images_read') is False,
             'PARITY must prove the full 37,834-tile, one-CNN, 46+7 CAL boundary')
+    if selection['schema'] == 'flux-glyph-unified-native-ios-selection-v1':
+        guard = parity.get('android_system_font_confusion', {})
+        require(guard.get('baseline_count') == guard.get('maximum_count') == 27
+                and type(guard.get('actual_count')) is int and 0 <= guard['actual_count'] <= 27
+                and guard.get('passed') is True
+                and guard.get('predicted_families') == ['PingFang', 'SF Pro', 'Helvetica'],
+                'PARITY Android system-font confusion guard must pass in addition to CAL53')
     batches = parity.get('batch_checks')
     require(isinstance(batches, list) and len(batches) == 4
             and {row.get('batch_size') for row in batches} == {1, 7, 32, 128}
@@ -190,6 +205,18 @@ def validate_calibration_boundary(selection, parity, metadata):
 
 
 def _validate_development(report, freeze, parity):
+    native_trials = {
+        'flux-glyph-unified-native-short-onnx-parity-v1': 'native-short-v1',
+        'flux-glyph-unified-native-oe-onnx-parity-v1': 'native-oe-v1',
+        'flux-glyph-unified-native-ios-onnx-parity-v1': 'native-ios-v1',
+    }
+    if parity.get('schema') in native_trials:
+        candidate = report.get('source_version_summaries', {}).get('candidate', {})
+        require(candidate.get('trial_id') == native_trials[parity['schema']]
+                and candidate.get('intended_release_version') == VERSION
+                and candidate.get('model_sha256') == parity.get('model_sha256')
+                and candidate.get('selection_sha256') == parity.get('selection_sha256'),
+                'Development candidate identity differs from the verified export')
     matches = [schemas for schemas in SUPPORTED_SCHEMAS.values() if schemas[0] == parity.get('schema')]
     require(len(matches) == 1, 'Unknown short-region parity schema')
     _, development_schema, freeze_schema = matches[0]
