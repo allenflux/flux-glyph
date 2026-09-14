@@ -70,6 +70,16 @@ def fixture(tmp_path):
         'calibration_bindings': {str(cal.resolve()): release.sha(cal)},
         'android_system_font_confusion': {'baseline_count': 27, 'maximum_count': 27, 'actual_count': 20,
             'passed': True, 'predicted_families': ['PingFang', 'SF Pro', 'Helvetica']}}
+    if 'native-mobile' in release.PARITY_SCHEMA:
+        from training.train_unified_native_mobile import ANDROID_SYSTEM_GUARD
+        guard = {**deepcopy(ANDROID_SYSTEM_GUARD), 'actual': 20, 'passed': True}
+        baseline = {**deepcopy(ANDROID_SYSTEM_GUARD), 'actual': 27, 'passed': True}
+        parity.update(android_system_guard_policy=deepcopy(ANDROID_SYSTEM_GUARD),
+                      android_system_guard=guard, android_system_guard_baseline=baseline)
+        metadata['validation'].update(android_system_guard_policy=deepcopy(ANDROID_SYSTEM_GUARD),
+                                      android_system_guard=guard)
+        write_json(metadata_path, metadata)
+        parity['metadata_sha256'] = release.sha(metadata_path)
     parity_path = run / 'PARITY.json'; write_json(parity_path, parity)
     evidence_bindings = {str(path.resolve()): release.sha(path) for path in
         (selection_path, checkpoint, parity_path, model, metadata_path, source, cal, dev)}
@@ -80,6 +90,9 @@ def fixture(tmp_path):
         'calibration_checks_required': 53, 'development_checks_required': 36,
         'fixed_runtime': runtime, 'test_read': False, 'blind_test_performed': False,
         'used_to_select_training_checkpoint': False}
+    if 'native-mobile' in release.PARITY_SCHEMA:
+        freeze['android_system_guard_policy'] = deepcopy(parity['android_system_guard_policy'])
+        freeze['android_system_guard'] = deepcopy(parity['android_system_guard'])
     report_path = tmp_path / 'DEVELOPMENT_REGRESSION.json'
     freeze_path = tmp_path / 'DEVELOPMENT_REGRESSION_FREEZE.json'; write_json(freeze_path, freeze)
     def comparison(version):
@@ -103,8 +116,12 @@ def fixture(tmp_path):
             'development_views': 3504, 'development_tiles': 5967,
             'r21_development_checks': 18, 'r22_development_checks': 18,
             'development_checks': 36, 'deployed_cnns': 1}}
-    if any(name in release.PARITY_SCHEMA for name in ('native-short', 'native-oe', 'native-ios')):
-        trial = next(name for name in ('native-short', 'native-oe', 'native-ios') if name in release.PARITY_SCHEMA)
+    if 'native-mobile' in release.PARITY_SCHEMA:
+        report['android_system_guard_policy'] = deepcopy(parity['android_system_guard_policy'])
+        report['android_system_guard'] = deepcopy(parity['android_system_guard'])
+    if any(name in release.PARITY_SCHEMA for name in ('native-short', 'native-oe', 'native-ios', 'native-mobile')):
+        trial = next(name for name in ('native-short', 'native-oe', 'native-ios', 'native-mobile')
+                     if name in release.PARITY_SCHEMA)
         report['source_version_summaries'] = {'candidate': {
             'trial_id': trial + '-v1',
             'intended_release_version': release.VERSION,
@@ -115,9 +132,9 @@ def fixture(tmp_path):
             'metadata_path': metadata_path, 'source': source, 'model': model, 'checkpoint': checkpoint}
 
 
-@pytest.mark.parametrize('generation',['v1','v2','v3','native','native_oe','native_ios'])
+@pytest.mark.parametrize('generation',['v1','v2','v3','native','native_oe','native_ios','native_mobile'])
 def test_prepares_new_preview_without_mutating_raw_evidence(tmp_path,monkeypatch,generation):
-    if generation in ('native','native_oe','native_ios'):
+    if generation in ('native','native_oe','native_ios','native_mobile'):
         for name in ('SELECTION_SCHEMA','PARITY_SCHEMA','DEVELOPMENT_SCHEMA','FREEZE_SCHEMA'):
             replacement = 'unified-native-short' if generation == 'native' else 'unified-' + generation.replace('_', '-')
             monkeypatch.setattr(release,name,getattr(release,name).replace('unified-short',replacement))
@@ -159,7 +176,7 @@ def test_rejects_mixed_training_and_parity_generations(tmp_path):
 @pytest.mark.parametrize('field,value', [('trial_id','native-short-v1'),
     ('intended_release_version','r22-unified-font-retention-v1-preview'),
     ('model_sha256','0'*64), ('selection_sha256','0'*64)])
-@pytest.mark.parametrize('generation', ['native-oe', 'native-ios'])
+@pytest.mark.parametrize('generation', ['native-oe', 'native-ios', 'native-mobile'])
 def test_native_oe_release_rejects_mixed_candidate_identity(tmp_path,monkeypatch,field,value,generation):
     for name in ('SELECTION_SCHEMA','PARITY_SCHEMA','DEVELOPMENT_SCHEMA','FREEZE_SCHEMA'):
         monkeypatch.setattr(release,name,getattr(release,name).replace('unified-short','unified-' + generation))
@@ -190,6 +207,39 @@ def test_ios_trial_requires_android_confusion_guard_in_addition_to_cal53(tmp_pat
     del parity['android_system_font_confusion']
     with pytest.raises(ValueError, match='confusion guard'):
         release.validate_calibration_boundary(selection, parity, metadata)
+
+
+@pytest.mark.parametrize(('target', 'key', 'value'), [
+    ('policy', 'maximum', 28), ('guard', 'actual', 28), ('guard', 'passed', False),
+    ('baseline', 'actual', 26), ('metadata_guard', 'actual', 19)])
+def test_mobile_trial_requires_separate_frozen_android_guard(tmp_path, monkeypatch, target, key, value):
+    for name in ('SELECTION_SCHEMA','PARITY_SCHEMA','DEVELOPMENT_SCHEMA','FREEZE_SCHEMA'):
+        monkeypatch.setattr(release, name,
+            getattr(release, name).replace('unified-short', 'unified-native-mobile'))
+    f = fixture(tmp_path)
+    selection, parity, metadata = (json.loads(f[k].read_text())
+        for k in ('selection_path', 'parity_path', 'metadata_path'))
+    release.validate_calibration_boundary(selection, parity, metadata)
+    locations = {'policy': parity['android_system_guard_policy'],
+        'guard': parity['android_system_guard'],
+        'baseline': parity['android_system_guard_baseline'],
+        'metadata_guard': metadata['validation']['android_system_guard']}
+    locations[target][key] = value
+    with pytest.raises(ValueError, match='native-mobile Android system guard'):
+        release.validate_calibration_boundary(selection, parity, metadata)
+
+
+def test_mobile_release_rejects_guard_changed_after_dev_freeze(tmp_path, monkeypatch):
+    for name in ('SELECTION_SCHEMA','PARITY_SCHEMA','DEVELOPMENT_SCHEMA','FREEZE_SCHEMA'):
+        monkeypatch.setattr(release, name,
+            getattr(release, name).replace('unified-short', 'unified-native-mobile'))
+    f = fixture(tmp_path)
+    report = json.loads(f['report_path'].read_text())
+    report['android_system_guard']['actual'] -= 1
+    write_json(f['report_path'], report)
+    with pytest.raises(ValueError, match='Development evidence changed'):
+        release.prepare_release(f['run'], f['region'], f['report_path'], tmp_path / 'output',
+                                f['freeze_path'])
 
 
 @pytest.mark.parametrize('field', ['gates', 'temperature', 'max_size_relative_spread'])

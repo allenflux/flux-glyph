@@ -41,6 +41,10 @@ SUPPORTED_SCHEMAS = {
         'flux-glyph-unified-native-ios-onnx-parity-v1',
         'flux-glyph-unified-native-ios-development-regression-v1',
         'flux-glyph-unified-native-ios-development-freeze-v1'),
+    'flux-glyph-unified-native-mobile-selection-v1': (
+        'flux-glyph-unified-native-mobile-onnx-parity-v1',
+        'flux-glyph-unified-native-mobile-development-regression-v1',
+        'flux-glyph-unified-native-mobile-development-freeze-v1'),
 }
 CAL_REGIONS = 18672
 CAL_TILES = 37834
@@ -64,6 +68,12 @@ DEVELOPMENT_POLICY = {
     'populations': ['all', 'ios', 'android'],
     'is_blind_test': False,
     'used_to_select_training_checkpoint': False,
+}
+NATIVE_MOBILE_ANDROID_GUARD_POLICY = {
+    'name': 'android_wrong_named_as_ios_system_family', 'domain': 'android',
+    'predicted_families': ['PingFang', 'SF Pro', 'Helvetica'], 'metric': 'wrong_named',
+    'operator': 'le', 'maximum': 27, 'r22_actual': 27,
+    'population': 'all true CAL Android regions', 'original_53_checks_unchanged': True,
 }
 
 
@@ -165,6 +175,18 @@ def _validate_cal(selection, parity, metadata):
                 and guard.get('passed') is True
                 and guard.get('predicted_families') == ['PingFang', 'SF Pro', 'Helvetica'],
                 'PARITY Android system-font confusion guard must pass in addition to CAL53')
+    if selection['schema'] == 'flux-glyph-unified-native-mobile-selection-v1':
+        policy = parity.get('android_system_guard_policy')
+        guard = parity.get('android_system_guard', {})
+        baseline = parity.get('android_system_guard_baseline', {})
+        require(policy == NATIVE_MOBILE_ANDROID_GUARD_POLICY
+                and guard == {**policy, 'actual': guard.get('actual'), 'passed': guard.get('passed')}
+                and type(guard.get('actual')) is int and 0 <= guard['actual'] <= 27
+                and guard.get('passed') is True
+                and baseline == {**policy, 'actual': 27, 'passed': True}
+                and metadata.get('validation', {}).get('android_system_guard_policy') == policy
+                and metadata.get('validation', {}).get('android_system_guard') == guard,
+                'PARITY native-mobile Android system guard must pass in addition to CAL53')
     batches = parity.get('batch_checks')
     require(isinstance(batches, list) and len(batches) == 4
             and {row.get('batch_size') for row in batches} == {1, 7, 32, 128}
@@ -209,6 +231,7 @@ def _validate_development(report, freeze, parity):
         'flux-glyph-unified-native-short-onnx-parity-v1': 'native-short-v1',
         'flux-glyph-unified-native-oe-onnx-parity-v1': 'native-oe-v1',
         'flux-glyph-unified-native-ios-onnx-parity-v1': 'native-ios-v1',
+        'flux-glyph-unified-native-mobile-onnx-parity-v1': 'native-mobile-v1',
     }
     if parity.get('schema') in native_trials:
         candidate = report.get('source_version_summaries', {}).get('candidate', {})
@@ -217,6 +240,12 @@ def _validate_development(report, freeze, parity):
                 and candidate.get('model_sha256') == parity.get('model_sha256')
                 and candidate.get('selection_sha256') == parity.get('selection_sha256'),
                 'Development candidate identity differs from the verified export')
+    if parity.get('schema') == 'flux-glyph-unified-native-mobile-onnx-parity-v1':
+        require(report.get('android_system_guard_policy') == freeze.get('android_system_guard_policy')
+                == parity.get('android_system_guard_policy') == NATIVE_MOBILE_ANDROID_GUARD_POLICY
+                and report.get('android_system_guard') == freeze.get('android_system_guard')
+                == parity.get('android_system_guard'),
+                'Development evidence changed the native-mobile Android system guard')
     matches = [schemas for schemas in SUPPORTED_SCHEMAS.values() if schemas[0] == parity.get('schema')]
     require(len(matches) == 1, 'Unknown short-region parity schema')
     _, development_schema, freeze_schema = matches[0]
